@@ -1,0 +1,20 @@
+{
+    "name": "meklis/helpprovider-switcher",
+    "description": "SNMP switcher for D-Link",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Max Boyar",
+            "email": "max.boyar.a@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Switcher\\": "src/"
+        }
+    },
+    "require": {
+        "meklis/snmp-wrapper": "dev-master"
+    }
+}

@@ -1,0 +1,32 @@
+ - {name: dlink.DevCtrlSystemReboot, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.1, access: write, values: {2: YES, 1: TEST}}
+ - {name: dlink.DevCtrlSystemIP, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.2, access: write} #Syntax = IpAddress
+ - {name: dlink.DevCtrlSubnetMask, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.3, access: write} #Syntax = IpAddress
+ - {name: dlink.DevCtrlDefaultGateway, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.4, access: write} #Syntax = IpAddress
+ - {name: dlink.DevCtrlManagmentVlanId, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.5, access: write} #Syntax = VlanID
+ - {name: dlink.DevCtrlClearAllStatisticCounter, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.12, access: write} #Syntax = integer
+ - {name: dlink.DevCtrlRmonState, oid: .1.3.6.1.4.1.171.11.63.6.2.1.2.16, access: write} #Syntax = integer
+ - {name: dlink.PortInfoMediumType, oid: .1.3.6.1.4.1.171.11.63.6.2.2.1.1.2, access: read}
+ - {name: dlink.PortInfoLinkStatus, oid: .1.3.6.1.4.1.171.11.63.6.2.2.1.1.4, access: read}
+ - {name: dlink.PortInfoNwayStatus, oid: .1.3.6.1.4.1.171.11.63.6.2.2.1.1.5, access: read}
+ - {name: dlink.PortCtrlPortMediumType, oid: .1.3.6.1.4.1.171.11.63.6.2.2.1.1.4, access: write}
+ - {name: dlink.PortCtrlPortAdminState, oid: .1.3.6.1.4.1.171.11.63.6.2.2.2.1.3, access: write}
+ - {name: dlink.PortCtrlPortNwayState, oid: .1.3.6.1.4.1.171.11.63.6.2.2.2.1.4, access: write}
+ - {name: dlink.PortErrPortState, oid: .1.3.6.1.4.1.171.11.63.6.2.2.3.1.2, access: read}
+ - {name: dlink.PortErrPortStatus, oid: .1.3.6.1.4.1.171.11.63.6.2.2.3.1.3, access: read}
+ - {name: dlink.PortErrPortReason, oid: .1.3.6.1.4.1.171.11.63.6.2.2.3.1.3, access: read}
+ - {name: dlink.PortErrDescription, oid: .1.3.6.1.4.1.171.11.63.6.2.2.3.1.5, access: read}
+
+#Port diagnostic
+ - {name: dlink.CableDiagPortIndex, oid: .1.3.6.1.4.1.171.12.58.1.1.1.1, access: read}
+ - {name: dlink.CableDiagPortType, oid: .1.3.6.1.4.1.171.12.58.1.1.1.2, access: read}
+ - {name: dlink.CableDiagLinkStatus, oid: .1.3.6.1.4.1.171.12.58.1.1.1.3, access: read}
+ - {name: dlink.CableDiagPair1Status, oid: .1.3.6.1.4.1.171.12.58.1.1.1.4, access: read}
+ - {name: dlink.CableDiagPair2Status, oid: .1.3.6.1.4.1.171.12.58.1.1.1.5, access: read}
+ - {name: dlink.CableDiagPair3Status, oid: .1.3.6.1.4.1.171.12.58.1.1.1.6, access: read}
+ - {name: dlink.CableDiagPair4Status, oid: .1.3.6.1.4.1.171.12.58.1.1.1.7, access: read}
+ - {name: dlink.CableDiagPair1Length, oid: .1.3.6.1.4.1.171.12.58.1.1.1.8, access: read}
+ - {name: dlink.CableDiagPair2Length, oid: .1.3.6.1.4.1.171.12.58.1.1.1.9, access: read}
+ - {name: dlink.CableDiagPair3Length, oid: .1.3.6.1.4.1.171.12.58.1.1.1.10, access: read}
+ - {name: dlink.CableDiagPair4Length, oid: .1.3.6.1.4.1.171.12.58.1.1.1.11, access: read}
+ - {name: dlink.CableDiagAction, oid: .1.3.6.1.4.1.171.12.58.1.1.1.12, access: write}
+ - {name: dlink.CableDiagStatus, oid: .1.3.6.1.4.1.171.12.58.1.1.1.13, access: read}
