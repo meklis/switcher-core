@@ -1,17 +1,17 @@
 #SYSTEM OIDS
-  - {name: sys.Descr, oid: .1.3.6.1.2.1.1.1, access: read }
-  - {name: sys.ObjId, oid: .1.3.6.1.2.1.1.2, access: read }
-  - {name: sys.Uptime, oid: .1.3.6.1.2.1.1.3, access: read }
-  - {name: sys.Contact, oid: .1.3.6.1.2.1.1.4, access: write, type: string }
-  - {name: sys.Name, oid: .1.3.6.1.2.1.1.5, access: write, type: string }
-  - {name: sys.Location, oid: .1.3.6.1.2.1.1.6, access: write, type: string }
-  - {name: sys.Serial, oid: .1.3.6.1.2.1.1.10, access: read }
-  - {name: sys.OsVersion, oid: .1.3.6.1.2.1.1.11, access: read }
-  - {name: sys.Mem, oid: .1.3.6.1.2.1.1.13, access: read }
-  - {name: sys.MemStatus, oid: .1.3.6.1.2.1.1.14, access: read }
+  - {name: sys.Descr, oid: .1.3.6.1.2.1.1.1.0, access: read }
+  - {name: sys.ObjId, oid: .1.3.6.1.2.1.1.2.0, access: read }
+  - {name: sys.Uptime, oid: .1.3.6.1.2.1.1.3.0, access: read }
+  - {name: sys.Contact, oid: .1.3.6.1.2.1.1.4.0, access: write, type: string }
+  - {name: sys.Name, oid: .1.3.6.1.2.1.1.5.0, access: write, type: string }
+  - {name: sys.Location, oid: .1.3.6.1.2.1.1.6.0, access: write, type: string }
+  - {name: sys.Serial, oid: .1.3.6.1.2.1.1.10.0, access: read }
+  - {name: sys.OsVersion, oid: .1.3.6.1.2.1.1.11.0, access: read }
+  - {name: sys.Mem, oid: .1.3.6.1.2.1.1.13.0, access: read }
+  - {name: sys.MemStatus, oid: .1.3.6.1.2.1.1.14.0, access: read }
   - {name: sys.CPU, oid: .1.3.6.1.2.1.1.15, access: read }
   - {name: sys.CPUStatus, oid: .1.3.6.1.2.1.1.16, access: read }
-  - {name: sys.Temp, oid: .1.3.6.1.2.1.1.17, access: read }
+  - {name: sys.Temp, oid: .1.3.6.1.2.1.1.17.0, access: read }
   - {name: sys.ConfigIp, oid: .1.3.6.1.2.1.1.19, access: read }
 #if mib (.iso.org.dod.internet.mgmt.mib-2.interfaces + .iso.org.dod.internet.mgmt.mib-2.ifMIB.ifMIBObjects.ifXTable.ifXEntry)
   - {name: if.Number, oid: .1.3.6.1.2.1.2.1, access: read }

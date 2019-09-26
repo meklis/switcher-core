@@ -9,16 +9,26 @@
 namespace Switcher\Config;
 
 
-use Switcher\Config\Models\Model;
-use Switcher\Config\Models\Oid;
+use Switcher\Config\Objects\Model;
+use Switcher\Config\Objects\Oid;
 
 class Reader
 {
     public $configPath = "";
+
+    /**
+     * Reader constructor.
+     * @param string $config_path
+     */
     function __construct($config_path)
     {
         $this->configPath = $config_path;
     }
+
+    /**
+     * @return array
+     * @throws \ErrorException
+     */
     function readModels() {
         $files = array_filter(scandir($this->configPath), function ($elem) {
 
@@ -42,11 +52,20 @@ class Reader
         }
         return $models;
     }
+
+    /**
+     * @return array
+     * @throws \ErrorException
+     */
     public function readGlobalOids() {
         return $this->readOids("{$this->configPath}/global.oids.yml");
     }
 
-
+    /**
+     * @param string $path
+     * @return array
+     * @throws \ErrorException
+     */
     private function readOids(string $path) {
             $data = yaml_parse_file($path);
             if (!$data) {
@@ -59,6 +78,11 @@ class Reader
             return $list;
     }
 
+    /**
+     * @param Model $model
+     * @return array
+     * @throws \ErrorException
+     */
     function readEnterpriseOids(Model $model)   {
           $oids = [];
           foreach ($model->getOidsPatches() as $path) {

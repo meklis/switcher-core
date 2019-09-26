@@ -6,7 +6,7 @@
  * Time: 16:40
  */
 
-namespace Switcher\Config\Models;
+namespace Switcher\Config\Objects;
 
 
 class Oid
@@ -35,6 +35,7 @@ class Oid
      * @var Oid::TYPE_OCTETSTRING|Oid::TYPE_INTEGER
      */
     public $type = Oid::TYPE_INTEGER;
+
 
     /**
      * @return string
@@ -125,6 +126,7 @@ class Oid
         $this->type = $type;
         return $this;
     }
+
     protected function __construct()
     {
     }
@@ -174,6 +176,14 @@ class Oid
             }
             $oid->setValues($array['values']);
         }
+        if(isset($array['values'])) {
+            if(!is_array($array['values'])) {
+                throw new \InvalidArgumentException("Values must be as array(hash map, key=>value)");
+            }
+            $oid->setValues($array['values']);
+        }
+
+
         return $oid;
     }
 }

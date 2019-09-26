@@ -6,8 +6,12 @@
  * Time: 16:37
  */
 
-namespace Switcher\Config\Models;
+namespace Switcher\Config\Objects;
 
+
+use Switcher\Switcher\Parser\AbstractParser;
+use Switcher\Switcher\Parser\ParserInterface;
+use Switcher\Switcher\Switcher;
 
 class Model
 {
@@ -32,6 +36,23 @@ class Model
      */
     public $extra = [];
 
+    /**
+     * @var AbstractParser[]
+     */
+    public $parsers;
+
+    /**
+     * @return AbstractParser[]
+     */
+    public function getParsers()
+    {
+        return $this->parsers;
+    }
+    public function setParser($name, ParserInterface $parser)
+    {
+        $this->parsers[$name] = $parser;
+        return $this;
+    }
 
     public static  function init($arr) : Model {
         $model = new Model();
@@ -56,6 +77,16 @@ class Model
         if(isset($arr['oids']) && is_array($arr['oids'])) {
             $model->setOidPatches($arr['oids']);
         }
+
+        if(isset($arr['parsers'])) {
+            foreach ($arr['parsers'] as $parser=>$object) {
+                $className = "\\Switcher\\Switcher\\Parser\\$object";
+                $model->setParser(
+                    $parser,
+                    new $className()
+                    );
+            }
+        }
         return $model;
     }
 
@@ -70,6 +101,7 @@ class Model
         return false;
     }
     public function detectByDescription($description) {
+        if(!$description) return true;
         if(preg_match("/{$this->detect['description']}/", $description)) {
             return true;
         } else {
@@ -77,6 +109,7 @@ class Model
         }
     }
     public function detectByHardWare($hardware) {
+        if(!$hardware) return true;
         if(preg_match("/{$this->detect['hardware']}/", $hardware)) {
             return true;
         } else {
@@ -84,6 +117,7 @@ class Model
         }
     }
     public function detectByObjId($objOid) {
+        if(!$objOid) return true;
         if(preg_match("/{$this->detect['objid']}/", $objOid)) {
             return true;
         } else {

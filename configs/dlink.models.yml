@@ -3,10 +3,19 @@ models:
    ports: 28
    oids:
      - ./dlink/des-3028.yml
-   detect: {description: ^D-Link DES-3028$, hardware: .*, objid: .* }
+   detect: {description: ^D-Link DES-3028, hardware: .*, objid: .* }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      combo_ports: [25, 26]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DefaultParser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DefaultParser
+     cable_diag: CableDiag\OldDlinkParser
+     errors: Errors\DefaultParser
+
  - name: D-link DES-2026
    ports: 28
    oids:
@@ -15,3 +24,12 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      combo_ports: [25, 26]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DefaultParser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DefaultParser
+     cable_diag: CableDiag\OldDlinkParser
+     errors: Errors\DefaultParser
+

@@ -1,17 +1,43 @@
 <?php
 
 
-namespace Config;
+namespace Switcher\Config;
 
 
-class ModelCollector
+use Switcher\Config\Objects\Model;
+
+class ModelCollector extends Collector
 {
-    protected static $instance;
-    protected function __construct(){}
-    public static function init() {
-
+    /**
+     * @var Model[]
+     */
+    protected $modelsDB;
+    protected function read()
+    {
+        $this->modelsDB = $this->reader->readModels();
     }
-    public static function getInstance() {
 
+    /**
+     * @param string $descr
+     * @param string $hardware
+     * @param string $oidId
+     * @return Model
+     * @throws \Exception
+     */
+    function getModelByDetect($descr = "", $hardware = "", $oidId = "") {
+        foreach ($this->modelsDB as $model) {
+            if(!$model->detectByDescription($descr)) {
+                continue;
+            }
+            if(!$model->detectByHardWare($hardware)) {
+                continue;
+            }
+            if(!$model->detectByObjId($oidId)) {
+                continue;
+            }
+            return $model;
+        }
+        throw new \Exception("Model not found by detects");
     }
+
 }
