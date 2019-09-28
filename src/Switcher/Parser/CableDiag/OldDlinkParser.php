@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser\CableDiag;
+namespace SnmpSwitcher\Switcher\Parser\CableDiag;
 
-use Switcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\AbstractParser;
 
 
 class OldDlinkParser extends AbstractParser
 {
     function parse($filter = [])
     {
-        // TODO: Implement parse() method.
+        parent::parse();
     }
 
     function getRaw()
@@ -18,13 +18,18 @@ class OldDlinkParser extends AbstractParser
         // TODO: Implement getRaw() method.
     }
 
-    function getSwitchData()
+    function getPretty()
     {
         // TODO: Implement getSwitchData() method.
+    }
+    function getPrettyFiltered($filter = [])
+    {
+        // TODO: Implement getPrettyFiltered() method.
     }
 
     public function walk($filter = [])
     {
         // TODO: Implement walk() method.
+        return $this;
     }
 }

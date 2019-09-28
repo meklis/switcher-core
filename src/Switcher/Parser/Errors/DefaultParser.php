@@ -1,30 +1,31 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser\Errors;
+namespace SnmpSwitcher\Switcher\Parser\Errors;
 
-use Switcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\AbstractParser;
 
 
 class DefaultParser extends AbstractParser
 {
-    function parse($filter = [])
-    {
-        // TODO: Implement parse() method.
-    }
 
     function getRaw()
     {
         // TODO: Implement getRaw() method.
     }
 
-    function getSwitchData()
+    function getPretty()
     {
         // TODO: Implement getSwitchData() method.
+    }
+    function getPrettyFiltered($filter = [])
+    {
+        // TODO: Implement getPrettyFiltered() method.
     }
 
     public function walk($filter = [])
     {
         // TODO: Implement walk() method.
+        return $this;
     }
 }

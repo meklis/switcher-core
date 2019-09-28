@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser\Vlan;
+namespace SnmpSwitcher\Switcher\Parser\Vlan;
 
-use Switcher\Switcher\Parser\AbstractParser;
-use Switcher\Switcher\Parser\ParserInterface;
+use \SnmpSwitcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\ParserInterface;
 
 class DefaultParser extends AbstractParser
 {
@@ -18,7 +18,11 @@ class DefaultParser extends AbstractParser
         // TODO: Implement getRaw() method.
     }
 
-    function getSwitchData()
+    function getPrettyFiltered($filter = [])
+    {
+        // TODO: Implement getPrettyFiltered() method.
+    }
+    function getPretty()
     {
         // TODO: Implement getSwitchData() method.
     }
@@ -26,5 +30,6 @@ class DefaultParser extends AbstractParser
     public function walk($filter = [])
     {
         // TODO: Implement walk() method.
+
     }
 }

@@ -6,11 +6,11 @@
  * Time: 16:33
  */
 
-namespace Switcher\Config;
+namespace SnmpSwitcher\Config;
 
 
-use Switcher\Config\Objects\Model;
-use Switcher\Config\Objects\Oid;
+use SnmpSwitcher\Config\Objects\Model;
+use SnmpSwitcher\Config\Objects\Oid;
 
 class Reader
 {

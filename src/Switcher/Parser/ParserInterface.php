@@ -1,15 +1,15 @@
 <?php
-namespace Switcher\Switcher\Parser;
+namespace SnmpSwitcher\Switcher\Parser;
 
-use SnmpWrapper\Walker;
-use Switcher\Config\Objects\Model;
-use Switcher\Config\OidCollector;
+use \SnmpWrapper\Walker;
+use \SnmpSwitcher\Config\Objects\Model;
+use \SnmpSwitcher\Config\OidCollector;
 
 interface ParserInterface
 {
     function parse();
     function getRaw();
-    function getSwitchData();
+    function getPretty();
     /**
      * @param Model $model
      * @return $this

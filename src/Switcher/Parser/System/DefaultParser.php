@@ -1,32 +1,52 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser\System;
+namespace SnmpSwitcher\Switcher\Parser\System;
 
 
-use Switcher\Switcher\Parser\AbstractParser;
+use SnmpSwitcher\Switcher\Objects\WrappedResponse;
+use \SnmpSwitcher\Switcher\Parser\AbstractParser;
 
 class DefaultParser extends AbstractParser
 {
-
-    function parse($filter = [])
+    /**
+     * @var WrappedResponse[]
+     */
+    protected $response = null ;
+    function getPrettyFiltered($filter = [])
     {
-        // TODO: Implement parse() method.
+        return $this->getPretty();
     }
-
     function getRaw()
     {
-        // TODO: Implement getRaw() method.
+        return $this->response;
     }
 
-    function getSwitchData()
+    function getPretty()
     {
-        // TODO: Implement getSwitchData() method.
+        return [
+            'descr' => $this->response['sys.Descr']->fetchOne()->getValue(),
+            'uptime' => $this->response['sys.Uptime']->fetchOne()->getValueAsTimeTicks(),
+            'contact' => $this->response['sys.Contact']->fetchOne()->getValue(),
+            'name' => $this->response['sys.Name']->fetchOne()->getValue(),
+            'location' => $this->response['sys.Location']->fetchOne()->getValue(),
+        ];
     }
 
+    /**
+     * @param array $filter
+     * @return $this|AbstractParser
+     * @throws \Exception
+     */
     public function walk($filter = [])
     {
-        // TODO: Implement walk() method.
+        $oids = $this->oidsCollector->getOidsByRegex('^sys\..*');
+        $oArray = [];
+        foreach ($oids as $oid) {
+            $oArray[] = $oid->getOid();
+        }
+        $this->response = $this->formatResponse($this->walker->walk($oArray));
+        return $this;
     }
 }
 

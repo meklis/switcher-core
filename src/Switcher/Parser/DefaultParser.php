@@ -1,15 +1,20 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser;
+namespace SnmpSwitcher\Switcher\Parser;
 
 
 
 class DefaultParser extends AbstractParser
 {
-    function parse()
+    function parse($filter = [])
     {
         // TODO: Implement parse() method.
+    }
+
+    function getPrettyFiltered($filter = [])
+    {
+        // TODO: Implement getPrettyFiltered() method.
     }
 
     function getRaw()
@@ -17,13 +22,15 @@ class DefaultParser extends AbstractParser
         // TODO: Implement getRaw() method.
     }
 
-    function getSwitchData()
+    function getPretty()
     {
         // TODO: Implement getSwitchData() method.
     }
 
-    public function walk()
+    public function walk($filter = [])
     {
+
         // TODO: Implement walk() method.
+        return $this;
     }
 }

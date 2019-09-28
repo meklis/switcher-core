@@ -2,11 +2,11 @@
 
 
 
-namespace Switcher\Config;
+namespace SnmpSwitcher\Config;
 
 
-use Switcher\Config\Objects\Model;
-use Switcher\Config\Objects\Oid;
+use SnmpSwitcher\Config\Objects\Model;
+use SnmpSwitcher\Config\Objects\Oid;
 
 
 class OidCollector extends Collector
@@ -67,13 +67,27 @@ class OidCollector extends Collector
     }
 
     /**
+     * @param $regex
+     * @return Oid[]
+     */
+    function getOidsByRegex($regex) {
+        $oids = [];
+        foreach ($this->cacheNames as $name=>$oid) {
+            if(preg_match("/{$regex}/", $name)) {
+                $oids[] = $oid;
+            }
+        }
+        return $oids;
+    }
+
+    /**
      * @param $oidId
      * @return Oid
      * @throws \Exception
      */
     function getOidById($oidId) {
-        if(isset($this->cacheNames[$oidId])) {
-            return $this->cacheNames[$oidId];
+        if(isset($this->cacheIds[$oidId])) {
+            return $this->cacheIds[$oidId];
         } else {
             throw new \Exception("Oid with name '$oidId' not found");
         }

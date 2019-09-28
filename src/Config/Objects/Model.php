@@ -6,12 +6,11 @@
  * Time: 16:37
  */
 
-namespace Switcher\Config\Objects;
+namespace SnmpSwitcher\Config\Objects;
 
 
-use Switcher\Switcher\Parser\AbstractParser;
-use Switcher\Switcher\Parser\ParserInterface;
-use Switcher\Switcher\Switcher;
+use SnmpSwitcher\Switcher\Parser\AbstractParser;
+use SnmpSwitcher\Switcher\Parser\ParserInterface;
 
 class Model
 {
@@ -80,7 +79,7 @@ class Model
 
         if(isset($arr['parsers'])) {
             foreach ($arr['parsers'] as $parser=>$object) {
-                $className = "\\Switcher\\Switcher\\Parser\\$object";
+                $className = "\\SnmpSwitcher\\Switcher\\Parser\\$object";
                 $model->setParser(
                     $parser,
                     new $className()

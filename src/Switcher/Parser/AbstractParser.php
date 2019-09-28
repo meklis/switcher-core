@@ -1,16 +1,22 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser;
+namespace SnmpSwitcher\Switcher\Parser;
 
 
 
-use SnmpWrapper\Walker;
-use Switcher\Config\Objects\Model;
-use Switcher\Config\OidCollector;
+use \SnmpWrapper\Response\PoollerResponse;
+use \SnmpWrapper\Walker;
+use \SnmpSwitcher\Config\Objects\Model;
+use \SnmpSwitcher\Config\OidCollector;
+use \SnmpSwitcher\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractParser implements ParserInterface
 {
+    /**
+     * @var WrappedResponse[]
+     */
+    protected $response;
     /**
      * @var Walker
      */
@@ -64,16 +70,39 @@ abstract class AbstractParser implements ParserInterface
      * @param array $filter
      * @return self
      */
-    public abstract function parse($filter = []);
+    public function parse($filter = []) {
+
+    }
 
     /**
      * @return array
      */
-    public abstract function getRaw();
+    public function getRaw() {
+        return  $this->response;
+    }
 
     /**
      * @return array
      */
-    public abstract function getSwitchData();
+    public abstract function getPretty();
+    public abstract function getPrettyFiltered($filter = []);
 
+    /**
+     * @param PoollerResponse[] $response
+     * @return WrappedResponse[]
+     */
+    protected function formatResponse($response) {
+        $formated = [];
+        foreach ($response as $resp) {
+            $oid = $this->oidsCollector->getOidById($resp->getOid());
+            $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
+        }
+        return $formated;
+    }
+    protected function prepareFilter(&$filter) {
+        if(!isset($filter['port'])) $filter['port'] = 0;
+        if(!isset($filter['vlan_id'])) $filter['vlan_id'] = 0;
+        if(!isset($filter['disa_linkup_diag'])) $filter = true;
+        if(!isset($filter['mac'])) $filter = true;
+    }
 }

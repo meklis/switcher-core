@@ -1,11 +1,12 @@
 <?php
 
-namespace Switcher\Switcher;
+namespace SnmpSwitcher\Switcher;
 
-use SnmpWrapper\Walker;
-use Switcher\Config\ModelCollector;
-use Switcher\Config\Objects\Model;
-use Switcher\Config\OidCollector;
+use mysql_xdevapi\Exception;
+use \SnmpWrapper\Walker;
+use \SnmpSwitcher\Config\ModelCollector;
+use \SnmpSwitcher\Config\Objects\Model;
+use \SnmpSwitcher\Config\OidCollector;
 
 
 class Switcher
@@ -39,7 +40,7 @@ class Switcher
         $prev_state = $this->walker->getCacheStatus();
         $response = $this->walker
             ->useCache('true')
-            ->get([
+            ->walk([
                 $this->oidCollector->getOidByName('sys.Descr')->getOid(),
                 $this->oidCollector->getOidByName('sys.ObjId')->getOid(),
             ]);
@@ -83,35 +84,37 @@ class Switcher
         }
     }
     function getSystemInfo() {
-        return $this->getParser('system')->walk()->getSwitchData();
+        return $this->getParser('system')->walk()->getPretty();
     }
     function getLinkInfo($port = 0) {
         return $this->getParser('link')->walk([
             'port' => $port,
-        ])->getSwitchData();
+        ])->getPretty();
     }
 
     function getCounters($port = 0) {
         return $this->getParser('counters')->walk([
             'port' => $port,
-        ])->getSwitchData();
+        ])->getPretty();
     }
     function getErrors($port = 0) {
         return $this->getParser('errors')->walk([
             'port' => $port,
-        ])->getSwitchData();
+        ])->getPrettyFiltered();
     }
-    function getFDB($port = 0, $vlan = 0)
+    function getFDB($port = 0, $vlan = 0, $mac = "")
     {
         return $this->getParser('fdb')->walk([
+            'mac' => $mac,
+            'vlan_id' => $vlan,
+        ])->getPrettyFiltered([
             'port' => $port,
-            'vlan' => $vlan,
-        ])->getSwitchData();
+        ]);
     }
     function getVlans($vlanId = 0) {
-        return $this->getParser('vlan')->walk(['vlan_id'=>$vlanId])->getSwitchData();
+        return $this->getParser('vlan')->walk(['vlan_id'=>$vlanId])->getPretty();
     }
     function getCableDiag($port = 0, $disable_diag_on_link_up = true) {
-        return $this->getParser('cable_diag')->walk(['port'=>$port, 'disa_linkup_diag' => $disable_diag_on_link_up])->getSwitchData();
+        return $this->getParser('cable_diag')->walk(['port'=>$port, 'disa_linkup_diag' => $disable_diag_on_link_up])->getPretty();
     }
 }

@@ -1,31 +1,50 @@
 <?php
 
 
-namespace Switcher\Switcher\Parser\Link;
+namespace SnmpSwitcher\Switcher\Parser\Link;
 
-use Switcher\Switcher\Parser\AbstractParser;
-use \Switcher\Switcher\Parser\ParserInterface;
+use SnmpSwitcher\Switcher\Objects\WrappedResponse;
+use \SnmpSwitcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\ParserInterface;
 
 class DefaultParser extends AbstractParser
 {
-    function parse($filter = [])
+    protected function formate() {
+      $ports = [];
+      if(!$this->response['if.Index']->error()) {
+          $data = $this->response['if.Index'];
+          foreach ($data->fetchAll() as $resp) {
+        }
+      }
+    }
+    function getPretty()
     {
-        // TODO: Implement parse() method.
+        $formated = $this->formate();
     }
 
-    function getRaw()
+    function getPrettyFiltered($filter = [])
     {
-        // TODO: Implement getRaw() method.
+        // TODO: Implement getPrettyFiltered() method.
     }
-
-    function getSwitchData()
-    {
-        // TODO: Implement getSwitchData() method.
-    }
-
     public function walk($filter = [])
     {
-        // TODO: Implement walk() method.
+        $data = [
+            $this->oidsCollector->getOidByName('if.Index')->getOid()  ,
+            $this->oidsCollector->getOidByName('if.HighSpeed')->getOid() ,
+            $this->oidsCollector->getOidByName('if.Name')->getOid(),
+            $this->oidsCollector->getOidByName('if.Type')->getOid(),
+            $this->oidsCollector->getOidByName('if.LastChange')->getOid(),
+            $this->oidsCollector->getOidByName('if.OperStatus')->getOid(),
+            $this->oidsCollector->getOidByName('if.AdminStatus')->getOid(),
+        ];
+        if ($filter['port']) {
+            foreach ($data as $d) {
+                $d .= ".{$filter['port']}";
+            }
+        }
+        $this->response = $this->formatResponse($this->walker->walk($data));
+
+        return $this;
     }
 }
 
