@@ -98,20 +98,40 @@ class OidCollector extends Collector
      * @param bool $reverse
      * @return Oid
      * @throws \Exception
-     */
+     *//*
     function getOidByRegexId($oidId, $reverse = true) {
+
         foreach ($this->cacheNames as $oid) {
             $o = $oid->getOid();
             if($reverse) {
-                if (preg_match("/{$o}/", $oidId)) {
+                if (preg_match("/^{$o}/", $oidId)) {
                     return $oid;
                 }
             } else {
-                if (preg_match("/{$oidId}/", $o)) {
+                if (preg_match("/^{$oidId}/", $o)) {
                     return $oid;
                 }
             }
         }
+        throw new \Exception("Oid with id $oidId not found");
+    }*/
+    function findOidById($oidId) {
+        foreach ($this->cacheNames as $oid) {
+            if(strpos($oidId, $oid->getOid()) !== false) {
+                $stack = explode(".", $oidId);
+                $needle = explode(".", $oid->getOid());
+                $sstack = "";
+                $sneedle = "";
+                foreach ($needle as $num=>$_) {
+                    $sneedle .= '.' . $stack[$num];
+                    $sstack .= '.' . $needle[$num];
+                }
+                if($sstack == $sneedle) {
+                    return $oid;
+                }
+            }
+        }
+        exit;
         throw new \Exception("Oid with id $oidId not found");
     }
 

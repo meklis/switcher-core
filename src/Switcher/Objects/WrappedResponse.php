@@ -55,10 +55,9 @@ class WrappedResponse {
     }
 
     /**
-     * @param $oidName
      * @return Resp[]
      */
-    public function fetchAll($oidName) {
+    public function fetchAll() {
         return $this->data->getResponse();
     }
 

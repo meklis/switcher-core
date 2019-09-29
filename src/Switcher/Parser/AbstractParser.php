@@ -13,6 +13,7 @@ use \SnmpSwitcher\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractParser implements ParserInterface
 {
+    private $indexesPort = [];
     /**
      * @var WrappedResponse[]
      */
@@ -94,15 +95,38 @@ abstract class AbstractParser implements ParserInterface
     protected function formatResponse($response) {
         $formated = [];
         foreach ($response as $resp) {
-            $oid = $this->oidsCollector->getOidById($resp->getOid());
+            $oid = $this->oidsCollector->findOidById($resp->getOid());
             $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
         }
+
         return $formated;
     }
     protected function prepareFilter(&$filter) {
         if(!isset($filter['port'])) $filter['port'] = 0;
         if(!isset($filter['vlan_id'])) $filter['vlan_id'] = 0;
-        if(!isset($filter['disa_linkup_diag'])) $filter = true;
-        if(!isset($filter['mac'])) $filter = true;
+        if(!isset($filter['disa_linkup_diag'])) $filter['disa_linkup_diag'] = true;
+        if(!isset($filter['mac'])) $filter['mac'] = '';
+        if(!isset($filter['type'])) $filter['type'] = '';
+    }
+
+    protected function getIndexes() {
+        $indexes = [];
+        if($this->indexesPort) {
+            return $this->indexesPort;
+        }
+        $last_cache_status = $this->walker->getCacheStatus();
+        $response = $this->formatResponse($this->walker->useCache(true)->walk([
+            $this->oidsCollector->getOidByName('if.Index')->getOid()
+        ]));
+        $this->walker->useCache($last_cache_status);
+        foreach ($response['if.Index']->fetchAll() as $resp) {
+            $indexes[$this->getIndexByOid($resp->getOid())] = $resp->getValue();
+        }
+        $this->indexesPort = $indexes;
+        return $indexes;
+    }
+    protected function getIndexByOid($oid) {
+        $exploded = explode(".", $oid);
+        return $exploded[count($exploded) - 1];
     }
 }

@@ -52,10 +52,10 @@ class Switcher
             if($resp->error) {
                 throw new \Exception("Walker returned error: {$resp->error}");
             } else {
-                if($this->oidCollector->getOidByRegexId($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
+                if($this->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
                     $descr = $resp->getResponse()[0]->getValue();
                 }
-                if($this->oidCollector->getOidByRegexId($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
+                if($this->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
                     $objId = $resp->getResponse()[0]->getValue();
                 }
             }
@@ -86,12 +86,11 @@ class Switcher
     function getSystemInfo() {
         return $this->getParser('system')->walk()->getPretty();
     }
-    function getLinkInfo($port = 0) {
+    function getLinkInfo($type='', $port = 0) {
         return $this->getParser('link')->walk([
             'port' => $port,
-        ])->getPretty();
+        ])->getPrettyFiltered(['type' => $type]);
     }
-
     function getCounters($port = 0) {
         return $this->getParser('counters')->walk([
             'port' => $port,
@@ -100,7 +99,7 @@ class Switcher
     function getErrors($port = 0) {
         return $this->getParser('errors')->walk([
             'port' => $port,
-        ])->getPrettyFiltered();
+        ])->getPretty();
     }
     function getFDB($port = 0, $vlan = 0, $mac = "")
     {

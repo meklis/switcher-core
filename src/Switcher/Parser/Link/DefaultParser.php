@@ -9,37 +9,97 @@ use \SnmpSwitcher\Switcher\Parser\ParserInterface;
 
 class DefaultParser extends AbstractParser
 {
+    private $indexesPort = [];
     protected function formate() {
-      $ports = [];
-      if(!$this->response['if.Index']->error()) {
-          $data = $this->response['if.Index'];
-          foreach ($data->fetchAll() as $resp) {
-        }
-      }
+          $snmp_high_speed = !$this->response['if.HighSpeed']->error() ? $this->response['if.HighSpeed']->fetchAll() : [];
+          $snmp_type = !$this->response['if.Type']->error() ? $this->response['if.Type']->fetchAll() : [];
+          $snmp_last_change = !$this->response['if.LastChange']->error() ? $this->response['if.LastChange']->fetchAll() : [];
+          $snmp_oper_status = !$this->response['if.OperStatus']->error() ? $this->response['if.OperStatus']->fetchAll() : [];
+          $snmp_admin_status = !$this->response['if.AdminStatus']->error() ? $this->response['if.AdminStatus']->fetchAll() : [];
+          $snmp_connector = !$this->response['if.ConnectorPresent']->error() ? $this->response['if.ConnectorPresent']->fetchAll() : [];
+          $snmp_duplex = !$this->response['if.StatsDuplexStatus']->error() ? $this->response['if.StatsDuplexStatus']->fetchAll() : [];
+
+          $indexes = [];
+          foreach ($this->getIndexes() as $index=>$port) {
+              $indexes[$index]['port'] = $port;
+          }
+
+          foreach ($snmp_high_speed as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['speed'] =  $index->getValue();
+          }
+          foreach ($snmp_type as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['type'] =  $index->getParsedValue();
+          }
+          foreach ($snmp_last_change as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['last_change'] =  $index->getValueAsTimeTicks();
+          }
+          foreach ($snmp_oper_status as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['oper_status'] =  $index->getParsedValue();
+          }
+          foreach ($snmp_admin_status as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['admin_status'] =  $index->getParsedValue();
+          }
+          foreach ($snmp_connector as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['connector_present'] =  $index->getParsedValue();
+          }
+          foreach ($snmp_duplex as $index) {
+              $indexes[$this->getIndexByOid($index->getOid())]['duplex'] =  $index->getParsedValue();
+          }
+          return $indexes;
     }
     function getPretty()
     {
-        $formated = $this->formate();
+        return $this->formate();
     }
-
     function getPrettyFiltered($filter = [])
     {
-        // TODO: Implement getPrettyFiltered() method.
+        $this->prepareFilter($filter);
+        $response = $this->formate();
+        if($filter['type']) {
+            $types = explode(",", $filter['type']);
+            foreach ($response as $num => $resp) {
+                if(!isset($resp['type']))  {
+                    unset($response[$num]);
+                    continue;
+                }
+                if (!in_array($resp['type'], $types)) {
+                    unset($response[$num]);
+                }
+            }
+        }
+        if($filter['port']) {
+            foreach ($response as $num=>$resp) {
+                if(!isset($resp['port']))  {
+                    unset($response[$num]);
+                    continue;
+                }
+                if($filter['port'] != $resp['port']) {
+                    unset($response[$num]);
+                }
+            }
+        }
+        return array_values($response);
     }
     public function walk($filter = [])
     {
+        $indexes = [];
+        foreach ($this->getIndexes() as $index=>$port) {
+         $indexes[$port] = $index;
+        }
+
         $data = [
-            $this->oidsCollector->getOidByName('if.Index')->getOid()  ,
             $this->oidsCollector->getOidByName('if.HighSpeed')->getOid() ,
             $this->oidsCollector->getOidByName('if.Name')->getOid(),
             $this->oidsCollector->getOidByName('if.Type')->getOid(),
             $this->oidsCollector->getOidByName('if.LastChange')->getOid(),
             $this->oidsCollector->getOidByName('if.OperStatus')->getOid(),
             $this->oidsCollector->getOidByName('if.AdminStatus')->getOid(),
+            $this->oidsCollector->getOidByName('if.ConnectorPresent')->getOid(),
+            $this->oidsCollector->getOidByName('if.StatsDuplexStatus')->getOid(),
         ];
         if ($filter['port']) {
-            foreach ($data as $d) {
-                $d .= ".{$filter['port']}";
+            foreach ($data as $num=>$d) {
+                $data[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
         $this->response = $this->formatResponse($this->walker->walk($data));
