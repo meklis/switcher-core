@@ -6,6 +6,7 @@ namespace SnmpSwitcher\Switcher\Parser\Link;
 use SnmpSwitcher\Switcher\Objects\WrappedResponse;
 use \SnmpSwitcher\Switcher\Parser\AbstractParser;
 use \SnmpSwitcher\Switcher\Parser\ParserInterface;
+use \SnmpSwitcher\Switcher\Parser\Helper;
 
 class DefaultParser extends AbstractParser
 {
@@ -25,25 +26,25 @@ class DefaultParser extends AbstractParser
           }
 
           foreach ($snmp_high_speed as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['speed'] =  $index->getValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['speed'] =  $index->getValue();
           }
           foreach ($snmp_type as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['type'] =  $index->getParsedValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['type'] =  $index->getParsedValue();
           }
           foreach ($snmp_last_change as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['last_change'] =  $index->getValueAsTimeTicks();
+              $indexes[Helper::getIndexByOid($index->getOid())]['last_change'] =  $index->getValueAsTimeTicks();
           }
           foreach ($snmp_oper_status as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['oper_status'] =  $index->getParsedValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] =  $index->getParsedValue();
           }
           foreach ($snmp_admin_status as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['admin_status'] =  $index->getParsedValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['admin_status'] =  $index->getParsedValue();
           }
           foreach ($snmp_connector as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['connector_present'] =  $index->getParsedValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['connector_present'] =  $index->getParsedValue();
           }
           foreach ($snmp_duplex as $index) {
-              $indexes[$this->getIndexByOid($index->getOid())]['duplex'] =  $index->getParsedValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['duplex'] =  $index->getParsedValue();
           }
           return $indexes;
     }
@@ -53,7 +54,7 @@ class DefaultParser extends AbstractParser
     }
     function getPrettyFiltered($filter = [])
     {
-        $this->prepareFilter($filter);
+        Helper::prepareFilter($filter);
         $response = $this->formate();
         if($filter['type']) {
             $types = explode(",", $filter['type']);

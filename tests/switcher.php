@@ -9,7 +9,7 @@ use SnmpWrapper\Walker;
 $reader = new  Reader(__DIR__ . "/../configs");
 $model = SnmpSwitcher\Config\ModelCollector::init($reader);
 $oids = SnmpSwitcher\Config\OidCollector::init($reader);
-$wrapper = new  WrapperWorker("http://127.0.0.1:8080");
+$wrapper = new  WrapperWorker("http://37.57.212.3:8080");
 $walker =  (new  Walker($wrapper))
     ->useCache(false);
 
@@ -79,4 +79,58 @@ Array
         )
 
 )
-*/
+print_r($switcher->getRmon(3));
+[0] => Array
+            (
+                [ether_stats_oversize_pkts] => 0
+                [port] => 3
+                [ether_stats_collisions] => 0
+                [ether_stats_drop_events] => 0
+                [ether_stats_crc_align_errors] => 66
+                [ether_stats_undersize_pkts] => 0
+                [ether_stats_fragments] => 0
+                [ether_stats_jabber] => 0
+            )
+
+)
+print_r($switcher->getErrors(3));
+Array
+(
+    [0] => Array
+    (
+        [port] => 3
+        [in_errors] => 66
+        [out_errors] => 0
+        [in_discards] => 0
+        [out_discards] => 0
+    )
+
+)
+
+print_r($switcher->getCounters(3));
+Array
+(
+    [0] => Array
+    (
+            [hc_in_multicast_pkts] => 1849766
+            [port] => 3
+            [hc_out_octets] => 82896948093
+            [hc_out_broadcast_pkts] => 207218038
+            [hc_in_broadcast_pkts] => 255
+            [hc_in_octets] => 5991600259
+            [hc_out_multicast_pkts] => 390801
+        )
+
+)
+print_r($switcher->getPVID(3));
+Array
+(
+    [0] => Array
+    (
+            [pvid] => 453
+            [port] => 3
+        )
+
+)
+ */
+print_r($switcher->getVlansByPort());

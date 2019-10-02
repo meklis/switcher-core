@@ -4,33 +4,34 @@
 namespace SnmpSwitcher\Switcher\Parser\Errors;
 
 use \SnmpSwitcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\Helper;
 
 
 class DefaultParser extends AbstractParser
 {
     protected function formate() {
-        $in_err = !$this->response['if.InErrors']->error() ?  $this->response['if.InErrors']->fetchAll() : [];
-        $out_err = !$this->response['if.OutErrors']->error() ?  $this->response['if.OutErrors']->fetchAll() : [];
+        $in_err = !$this->getResponseByName('if.InErrors')->error() ?  $this->getResponseByName('if.InErrors')->fetchAll() : [];
+        $out_err = !$this->getResponseByName('if.OutErrors')->error() ? $this->getResponseByName('if.OutErrors')->error()->fetchAll() : [];
         $in_disc = !$this->response['if.InDiscards']->error() ?  $this->response['if.InDiscards']->fetchAll() : [];
         $out_disc = !$this->response['if.OutDiscards']->error() ?  $this->response['if.OutDiscards']->fetchAll() : [];
         $indexes = $this->getIndexes();
 
         $errors = [];
         foreach ($in_err as $i) {
-            $index = $this->getIndexByOid($i->getOid());
+            $index = Helper::getIndexByOid($i->getOid());
             $errors[$index]['port'] = $indexes[$index];
             $errors[$index]['in_errors'] = $i->getValue();
         }
         foreach ($out_err as $o) {
-            $index = $this->getIndexByOid($o->getOid());
+            $index = Helper::getIndexByOid($o->getOid());
             $errors[$index]['out_errors'] = $o->getValue();
         }
         foreach ($in_disc as $o) {
-            $index = $this->getIndexByOid($o->getOid());
+            $index = Helper::getIndexByOid($o->getOid());
             $errors[$index]['in_discards'] = $o->getValue();
         }
         foreach ($out_disc as $o) {
-            $index = $this->getIndexByOid($o->getOid());
+            $index = Helper::getIndexByOid($o->getOid());
             $errors[$index]['out_discards'] = $o->getValue();
         }
         return array_values($errors);
@@ -41,6 +42,7 @@ class DefaultParser extends AbstractParser
     }
     function getPrettyFiltered($filter = [])
     {
+
         $errors = [];
         foreach ($this->formate() as $num=>$val) {
             if($filter['port'] && $filter['port'] != $val['port']) {

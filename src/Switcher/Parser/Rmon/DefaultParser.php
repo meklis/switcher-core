@@ -1,12 +1,10 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Counters;
+namespace SnmpSwitcher\Switcher\Parser\Rmon;
 
 use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\ParserInterface;
 use \SnmpSwitcher\Switcher\Parser\Helper;
-
 
 class DefaultParser extends AbstractParser
 {
@@ -16,8 +14,7 @@ class DefaultParser extends AbstractParser
         foreach ($this->response as $oid_name => $wrappedResponse) {
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
-                $metric_name = str_replace(['if_'], '', Helper::fromCamelCase($oid_name));
-                $response[$port_index][$metric_name] = $resp->getValue();
+                $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();
                 $response[$port_index]['port'] = $indexes[$port_index];
             }
         }
@@ -27,10 +24,8 @@ class DefaultParser extends AbstractParser
     {
         return $this->formate();
     }
-
     function getPrettyFiltered($filter = [])
     {
-        Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
             foreach ($formated as $num=>$val) {
@@ -44,9 +39,8 @@ class DefaultParser extends AbstractParser
 
     public function walk($filter = [])
     {
-        Helper::prepareFilter($filter);
         $oids = [];
-        foreach ($this->oidsCollector->getOidsByRegex('if\.HC.*') as $oid) {
+        foreach ($this->oidsCollector->getOidsByRegex('rmon.*') as $oid) {
             $oids[] = $oid->getOid();
         }
 

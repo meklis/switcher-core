@@ -12,9 +12,11 @@ models:
      link: Link\DefaultParser
      counters: Counters\DefaultParser
      system: System\DefaultParser
-     vlan: Vlan\DefaultParser
+     vlan: Vlan\DlinkVlanParser
      cable_diag: CableDiag\OldDlinkParser
      errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
 
  - name: D-link DES-2026
    ports: 28
@@ -26,10 +28,10 @@ models:
      combo_ports: [25, 26]
    parsers:
      fdb: Fdb\DefaultParser
-     link: Link\DefaultParser
+     link: Link\DDD
      counters: Counters\DefaultParser
      system: System\DefaultParser
-     vlan: Vlan\DefaultParser
+     vlan: Vlan\DlinkVlanParser
      cable_diag: CableDiag\OldDlinkParser
-     errors: Errors\DefaultParser
+    # errors: Errors\RmonParser
 

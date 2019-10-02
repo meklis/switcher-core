@@ -4,6 +4,7 @@
 namespace SnmpSwitcher\Switcher\Parser\Fdb;
 
 use \SnmpSwitcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\Helper;
 
 class DefaultParser extends AbstractParser
 {
@@ -16,7 +17,7 @@ class DefaultParser extends AbstractParser
                 throw new \Exception("Returned error {$this->response['dot1q.FdbStatus']->error()} from {$this->response['dot1q.FdbStatus']->getRaw()->ip}");
             } else {
                 while ($d = $this->response['dot1q.FdbStatus']->fetchOne()) {
-                   $data = $this->oid2mac($d->getOid());
+                   $data = Helper::oid2mac($d->getOid());
                    $statuses["{$data['vid']}-{$data['mac']}"] = $d->getParsedValue();
                 }
             }
@@ -24,7 +25,7 @@ class DefaultParser extends AbstractParser
                 throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
             } else {
                 while ($d = $this->response['dot1q.FdbPort']->fetchOne()) {
-                    $data = $this->oid2mac($d->getOid());
+                    $data = Helper::oid2mac($d->getOid());
                     $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
                 }
             }
@@ -43,7 +44,7 @@ class DefaultParser extends AbstractParser
         }
     }
     function getPrettyFiltered($filter = []) {
-        $this->prepareFilter($filter);
+        Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
             foreach ($formated as $num=>$fdb) {
@@ -75,7 +76,7 @@ class DefaultParser extends AbstractParser
 
     public function walk($filter = [])
     {
-       $this->prepareFilter($filter);
+       Helper::prepareFilter($filter);
        $fdb_port =  $this->oidsCollector->getOidByName('dot1q.FdbPort')->getOid();
        $fdb_status =  $this->oidsCollector->getOidByName('dot1q.FdbStatus')->getOid();
        if($filter['vlan_id']) {
@@ -83,8 +84,8 @@ class DefaultParser extends AbstractParser
            $fdb_status .= ".{$filter['vlan_id']}";
        }
        if($filter['vlan_id'] && $filter['mac']) {
-            $fdb_port .= "." . $this->mac2oid($filter['mac']);
-            $fdb_status .= "." .   $this->mac2oid($filter['mac']);
+            $fdb_port .= "." . Helper::mac2oid($filter['mac']);
+            $fdb_status .= "." .   Helper::mac2oid($filter['mac']);
        } elseif ($filter['mac']) {
            throw new \Exception("VlanID must be setted for mac filtering");
        }
@@ -94,25 +95,5 @@ class DefaultParser extends AbstractParser
         return $this;
     }
 
-    protected function oid2mac($oid) {
-        $count = substr_count($oid, '.');
-        $dec= explode('.', $oid);
-        $vid = $dec[$count-6];
-        if(strlen(dechex($dec[$count-5])) == 1) $m1 = '0'.dechex($dec[$count-5]); else $m1=dechex($dec[$count-5]);
-        if(strlen(dechex($dec[$count-4])) == 1) $m2 = '0'.dechex($dec[$count-4]); else $m2=dechex($dec[$count-4]);
-        if(strlen(dechex($dec[$count-3])) == 1) $m3 = '0'.dechex($dec[$count-3]); else $m3=dechex($dec[$count-3]);
-        if(strlen(dechex($dec[$count-2])) == 1) $m4 = '0'.dechex($dec[$count-2]); else $m4=dechex($dec[$count-2]);
-        if(strlen(dechex($dec[$count-1])) == 1) $m5 = '0'.dechex($dec[$count-1]); else $m5=dechex($dec[$count-1]);
-        if(strlen(dechex($dec[$count])) == 1) $m6 = '0'.dechex($dec[$count]); else $m6=dechex($dec[$count]);
 
-        return ['mac'=>strtoupper("$m1:$m2:$m3:$m4:$m5:$m6"), 'vid'=>$vid];
-    }
-    protected function mac2oid($mac) {
-        $mac = explode(":",strtoupper(str_replace(["-"," ","."],":",$mac)));
-        $RESP = "";
-        foreach ($mac as $otket) {
-            $RESP .= ".".hexdec($otket);
-        }
-        return trim($RESP,".");
-    }
 }

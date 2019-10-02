@@ -25,31 +25,34 @@
   - {name: if.OutDiscards, oid: .1.3.6.1.2.1.2.2.1.19, access: read }
   - {name: if.HCInOctets, oid: .1.3.6.1.2.1.31.1.1.1.6, access: read }
   - {name: if.HCOutOctets, oid: .1.3.6.1.2.1.31.1.1.1.10, access: read }
+  - {name: if.HCOutMulticastPkts, oid: .1.3.6.1.2.1.31.1.1.1.12, access: read }
+  - {name: if.HCInMulticastPkts, oid: .1.3.6.1.2.1.31.1.1.1.8, access: read }
+  - {name: if.HCOutBroadcastPkts, oid: .1.3.6.1.2.1.31.1.1.1.13, access: read }
+  - {name: if.HCInBroadcastPkts, oid: .1.3.6.1.2.1.31.1.1.1.9, access: read }
+
   - {name: if.HighSpeed, oid: .1.3.6.1.2.1.31.1.1.1.15, access: read }
   - {name: if.ConnectorPresent, oid: .1.3.6.1.2.1.31.1.1.1.17, access: read, values: { 1: 'YES', 2: 'NO' } }
   - {name: if.Name, oid: .1.3.6.1.2.1.31.1.1.1.1, access: read }
 #rmon mib
-  - {name: rmon.EtherStatsIndex, oid: .1.3.6.1.2.1.16.1.1.1.1, access: read }
   - {name: rmon.EtherStatsCRCAlignErrors, oid: .1.3.6.1.2.1.16.1.1.1.8, access: read }
   - {name: rmon.EtherStatsUndersizePkts, oid: .1.3.6.1.2.1.16.1.1.1.9, access: read }
   - {name: rmon.EtherStatsOversizePkts, oid: .1.3.6.1.2.1.16.1.1.1.10, access: read }
   - {name: rmon.EtherStatsFragments, oid: .1.3.6.1.2.1.16.1.1.1.11, access: read }
   - {name: rmon.EtherStatsJabber, oid: .1.3.6.1.2.1.16.1.1.1.12, access: read }
   - {name: rmon.EtherStatsCollisions, oid: .1.3.6.1.2.1.16.1.1.1.13, access: read }
+  - {name: rmon.EtherStatsDropEvents, oid: .1.3.6.1.2.1.16.1.1.1.3, access: read }
 #qBridgeMIB - dot1qVlan
   - {name: dot1q.VlanStaticName, oid: .1.3.6.1.2.1.17.7.1.4.3.1.1, access: read}
   - {name: dot1q.VlanStaticEgressPorts, oid: .1.3.6.1.2.1.17.7.1.4.3.1.2, access: read} #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
   - {name: dot1q.VlanStaticForbiddenEgressPorts, oid: .1.3.6.1.2.1.17.7.1.4.3.1.3, access: read} #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
   - {name: dot1q.VlanStaticUntaggedPorts, oid: .1.3.6.1.2.1.17.7.1.4.3.1.4, access: read } #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
+  - {name: dot1q.VlanStaticRowStatus, oid: .1.3.6.1.2.1.17.7.1.4.3.1.5, access: read } #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
 #qBridgeMIB - dot1qBase
+  - {name: dot1q.Pvid, oid: .1.3.6.1.2.1.17.7.1.4.5.1.1, access: read}
   - {name: dot1q.NumVlans, oid: .1.3.6.1.2.1.17.7.1.1.4, access: read}
   - {name: dot1q.MaxVlanId, oid: .1.3.6.1.2.1.17.7.1.1.1, access: read}
   - {name: dot1q.MaxSupportedVlans, oid: .1.3.6.1.2.1.17.7.1.1.3, access: read}
 #qBridgeMIB - dot1qTp
-#Count entries in vlan database, example .1.3.6.1.2.1.17.7.1.2.1.1.2.401 = Counter32: 10
-# .1.3.6.1.2.1.17.7.1.2.1.1.2.[VLAN ID] = Count entries
-  - {name: dot1q.FdbDynamicCount, oid: .1.3.6.1.2.1.17.7.1.2.1.1.2, access: read}
-# .1.3.6.1.2.1.17.7.1.2.2.1.2.50.164.43.176.212.12.39 = INTEGER: 25
 # .1.3.6.1.2.1.17.7.1.2.2.1.2.[VLAN ID].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET] = [PORT]
   - {name: dot1q.FdbPort, oid: .1.3.6.1.2.1.17.7.1.2.2.1.2, access: read}
 # .1.3.6.1.2.1.17.7.1.2.2.1.3.[VLAN ID].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET] = [STATUS]

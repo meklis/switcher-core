@@ -6,6 +6,7 @@ namespace SnmpSwitcher\Switcher\Parser\System;
 
 use SnmpSwitcher\Switcher\Objects\WrappedResponse;
 use \SnmpSwitcher\Switcher\Parser\AbstractParser;
+use \SnmpSwitcher\Switcher\Parser\Helper;
 
 class DefaultParser extends AbstractParser
 {

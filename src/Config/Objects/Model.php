@@ -9,6 +9,7 @@
 namespace SnmpSwitcher\Config\Objects;
 
 
+use SnmpSwitcher\Exceptions\ParserErrorLoadException;
 use SnmpSwitcher\Switcher\Parser\AbstractParser;
 use SnmpSwitcher\Switcher\Parser\ParserInterface;
 
@@ -39,6 +40,11 @@ class Model
      * @var AbstractParser[]
      */
     public $parsers;
+
+    /**
+     * @var string[]
+     */
+    protected $parsersNames;
 
     /**
      * @return AbstractParser[]
@@ -78,15 +84,25 @@ class Model
         }
 
         if(isset($arr['parsers'])) {
-            foreach ($arr['parsers'] as $parser=>$object) {
-                $className = "\\SnmpSwitcher\\Switcher\\Parser\\$object";
-                $model->setParser(
-                    $parser,
-                    new $className()
-                    );
-            }
+            $model->parsersNames = $arr['parsers'];
         }
         return $model;
+    }
+
+    function loadParsers() {
+        if(!$this->parsersNames) {
+            throw new ParserErrorLoadException("Parsers for model {$this->getName()} not found");
+        }
+        foreach ($this->parsersNames as $parser=>$object) {
+            $className = "\\SnmpSwitcher\\Switcher\\Parser\\$object";
+            if(!class_exists($className)) {
+                throw new ParserErrorLoadException("Parser for model {$this->getName()} with name '$parser' not found by ClassName {$className}");
+            }
+            $this->setParser(
+                $parser,
+                new $className()
+            );
+        }
     }
 
     /**

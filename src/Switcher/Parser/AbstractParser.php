@@ -5,6 +5,7 @@ namespace SnmpSwitcher\Switcher\Parser;
 
 
 
+use SnmpSwitcher\Exceptions\IncompleteResponseException;
 use \SnmpWrapper\Response\PoollerResponse;
 use \SnmpWrapper\Walker;
 use \SnmpSwitcher\Config\Objects\Model;
@@ -101,32 +102,36 @@ abstract class AbstractParser implements ParserInterface
 
         return $formated;
     }
-    protected function prepareFilter(&$filter) {
-        if(!isset($filter['port'])) $filter['port'] = 0;
-        if(!isset($filter['vlan_id'])) $filter['vlan_id'] = 0;
-        if(!isset($filter['disa_linkup_diag'])) $filter['disa_linkup_diag'] = true;
-        if(!isset($filter['mac'])) $filter['mac'] = '';
-        if(!isset($filter['type'])) $filter['type'] = '';
-    }
-
-    protected function getIndexes() {
+    function getIndexes() {
         $indexes = [];
         if($this->indexesPort) {
             return $this->indexesPort;
         }
         $last_cache_status = $this->walker->getCacheStatus();
         $response = $this->formatResponse($this->walker->useCache(true)->walk([
-            $this->oidsCollector->getOidByName('if.Index')->getOid()
+            $this->oidsCollector->getOidByName('if.Index')->getOid(),
+            $this->oidsCollector->getOidByName('if.Type')->getOid(),
         ]));
         $this->walker->useCache($last_cache_status);
+        $types = [];
+        foreach ($response['if.Type']->fetchAll() as $resp) {
+            $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
+        }
         foreach ($response['if.Index']->fetchAll() as $resp) {
-            $indexes[$this->getIndexByOid($resp->getOid())] = $resp->getValue();
+            $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
         }
         $this->indexesPort = $indexes;
         return $indexes;
     }
-    protected function getIndexByOid($oid) {
-        $exploded = explode(".", $oid);
-        return $exploded[count($exploded) - 1];
+    /**
+     * @param $name
+     * @return WrappedResponse
+     * @throws IncompleteResponseException
+     */
+    protected function getResponseByName($name) {
+        if(!isset($this->response[$name])) {
+            throw  new IncompleteResponseException("Response with oid $name not found");
+        }
+        return $this->response[$name];
     }
 }

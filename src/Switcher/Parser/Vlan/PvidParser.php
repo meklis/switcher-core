@@ -1,14 +1,13 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Counters;
+namespace SnmpSwitcher\Switcher\Parser\Vlan;
 
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\ParserInterface;
+
+use SnmpSwitcher\Switcher\Parser\AbstractParser;
 use \SnmpSwitcher\Switcher\Parser\Helper;
 
-
-class DefaultParser extends AbstractParser
+class PvidParser extends AbstractParser
 {
     protected function formate() {
         $indexes = $this->getIndexes();
@@ -16,7 +15,7 @@ class DefaultParser extends AbstractParser
         foreach ($this->response as $oid_name => $wrappedResponse) {
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
-                $metric_name = str_replace(['if_'], '', Helper::fromCamelCase($oid_name));
+                $metric_name = str_replace(['dot1q_'], '', Helper::fromCamelCase($oid_name));
                 $response[$port_index][$metric_name] = $resp->getValue();
                 $response[$port_index]['port'] = $indexes[$port_index];
             }
@@ -44,9 +43,8 @@ class DefaultParser extends AbstractParser
 
     public function walk($filter = [])
     {
-        Helper::prepareFilter($filter);
         $oids = [];
-        foreach ($this->oidsCollector->getOidsByRegex('if\.HC.*') as $oid) {
+        foreach ($this->oidsCollector->getOidsByRegex('dot1q.Pvid') as $oid) {
             $oids[] = $oid->getOid();
         }
 
