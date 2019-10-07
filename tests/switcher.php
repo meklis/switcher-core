@@ -2,7 +2,6 @@
 require __DIR__ . "/../vendor/autoload.php";
 
 use SnmpSwitcher\Config\Reader;
-use SnmpSwitcher\Switcher\Switcher;
 use SnmpWrapper\WrapperWorker;
 use SnmpWrapper\Walker;
 
@@ -13,11 +12,11 @@ $wrapper = new  WrapperWorker("http://37.57.212.3:8080");
 $walker =  (new  Walker($wrapper))
     ->useCache(false);
 
-$switcher = new Switcher($walker,$model,$oids);
+$switcher = new \SnmpSwitcher\Switcher\SnmpSwitcher($walker,$model,$oids);
 
 $switcher->connect('10.50.124.132', 'kievsnmprw');
 
-//print_r($switcher->getLinkInfo('gigabitEthernet,ethernet'));
+//
 /**
 Get information by port with filters
 Array
@@ -55,8 +54,8 @@ Array
 )
 
 Get System info
-print_r($switcher->getSystemInfo());
-Array
+ print_r($switcher->getSystemInfo());
+ Array
 (
     [descr] => D-Link DES-3028 Fast Ethernet Switch
     [uptime] => 11d 19h 13min 38sec
@@ -65,8 +64,12 @@ Array
     [location] => Zodchikh, 6a(9)
 )
 
+ *
+ *
 Get error information in default parser
-print_r($switcher->getErrors(3));
+
+print_r($switcher->getErrors());
+
 Array
 (
     [0] => Array
@@ -132,5 +135,52 @@ Array
         )
 
 )
- */
-print_r($switcher->getVlansByPort());
+print_r(json_encode($switcher->getVlans(430), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
+
+[
+    {
+        "name": "switches430",
+        "id": 430,
+        "ports": {
+        "egress": [
+            26
+        ],
+            "untagged": [],
+            "forbidden": [],
+            "tagged": [
+            26
+        ]
+        }
+    }
+]
+print_r(json_encode($switcher->getVlansByPort(26), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
+[
+    {
+        "port": 26,
+        "untagged": [],
+        "tagged": [
+            {
+                "name": "switches430",
+                "id": 430
+            },
+            {
+                "name": "INTERNET",
+                "id": 453
+            }
+        ],
+        "egress": [
+            {
+                "name": "switches430",
+                "id": 430
+            },
+            {
+                "name": "INTERNET",
+                "id": 453
+            }
+        ],
+        "forbidden": []
+    }
+]
+ **/
+
+print_r(json_encode($switcher->getCableDiag(5), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));

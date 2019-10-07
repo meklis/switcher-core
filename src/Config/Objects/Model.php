@@ -59,6 +59,14 @@ class Model
         return $this;
     }
 
+    function getModulesList() {
+        $modules = [];
+        foreach ($this->parsersNames as $name=>$_) {
+            $modules[] = $name;
+        }
+        return $modules;
+    }
+
     public static  function init($arr) : Model {
         $model = new Model();
         if(isset($arr['name']) && $arr['name']) {

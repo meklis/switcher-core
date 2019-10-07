@@ -55,11 +55,14 @@ class DlinkVlanParser extends AbstractParser
         foreach ($forbidden->fetchAll() as $resp) {
             $response[ Helper::getIndexByOid($resp->getOid())]['ports']['forbidden'] = $formater($resp);
         }
-        foreach ($response[ Helper::getIndexByOid($resp->getOid())]['ports']['egress'] as $port) {
-            if(in_array($port, $response[ Helper::getIndexByOid($resp->getOid())]['ports']['untagged'])) continue;
-            if(in_array($port, $response[ Helper::getIndexByOid($resp->getOid())]['ports']['forbidden'])) continue;
-            $response[Helper::getIndexByOid($resp->getOid())]['ports']['tagged'][] = $port;
+        foreach ($response as $vlan_id => $resp) {
+            foreach ($resp['ports']['egress'] as $port) {
+                if(in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
+                if(in_array($port, $response[$vlan_id]['ports']['forbidden'])) continue;
+                $response[$vlan_id]['ports']['tagged'][] = $port;
+            }
         }
+
         return array_values($response);
     }
     function getPretty()

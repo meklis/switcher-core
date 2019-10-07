@@ -6,9 +6,10 @@ models:
    detect: {description: ^D-Link DES-3028, hardware: .*, objid: .* }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
-     combo_ports: [25, 26]
+     diag_linkup: true
    parsers:
      fdb: Fdb\DefaultParser
+    # link: Link\DlinkParser
      link: Link\DefaultParser
      counters: Counters\DefaultParser
      system: System\DefaultParser
@@ -25,7 +26,6 @@ models:
    detect: {description: ^D-Link DES-3028$, hardware: .*, objid: .* }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
-     combo_ports: [25, 26]
    parsers:
      fdb: Fdb\DefaultParser
      link: Link\DDD

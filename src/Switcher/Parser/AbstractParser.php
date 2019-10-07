@@ -102,7 +102,7 @@ abstract class AbstractParser implements ParserInterface
 
         return $formated;
     }
-    function getIndexes() {
+    function getIndexes($ethernetOnly = true) {
         $indexes = [];
         if($this->indexesPort) {
             return $this->indexesPort;
@@ -115,10 +115,13 @@ abstract class AbstractParser implements ParserInterface
         $this->walker->useCache($last_cache_status);
         $types = [];
         foreach ($response['if.Type']->fetchAll() as $resp) {
-            $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
+            $types[Helper::getIndexByOid($resp->getOid())] = $resp->getParsedValue();
         }
+
         foreach ($response['if.Index']->fetchAll() as $resp) {
-            $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
+            if($ethernetOnly && in_array($types[Helper::getIndexByOid($resp->getOid())], ['FE','GE'])) {
+                $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
+            }
         }
         $this->indexesPort = $indexes;
         return $indexes;

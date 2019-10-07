@@ -29,7 +29,13 @@ class OldDlinkParser extends AbstractParser
 
     public function walk($filter = [])
     {
-        // TODO: Implement walk() method.
+        //Prepare ports and pairs list
+        $prepared = $this->formatResponse($this->walker->walk([
+          $this->oidsCollector->getOidByName('if.Type')->getOid(),
+        ]));
+        $ports_list = [];
+
+        print_r($prepared);
         return $this;
     }
 }

@@ -87,6 +87,9 @@ class WrappedResponse {
             if($data->error == '') {
                 $wrapped = [];
                 foreach ($data->getResponse() as $num=>$resp) {
+                    if($resp->getType() == 'NoSuchInstance') {
+                        throw new \Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
+                    }
                     $wrapperValue =  (new Resp())
                         ->setOid($resp->getOid())
                         ->setHexValue($resp->getHexValue())
@@ -94,6 +97,8 @@ class WrappedResponse {
                         ->setValue($resp->getValue());
                     if(isset($wrapValues[$resp->getValue()])) {
                         $wrapperValue->setParsed($wrapValues[$resp->getValue()]);
+                    } else {
+                        $wrapperValue->setParsed($resp->getValue());
                     }
                     $wrapped[] = $wrapperValue;
                 }

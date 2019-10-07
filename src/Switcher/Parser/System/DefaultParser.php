@@ -31,6 +31,13 @@ class DefaultParser extends AbstractParser
             'contact' => $this->response['sys.Contact']->fetchOne()->getValue(),
             'name' => $this->response['sys.Name']->fetchOne()->getValue(),
             'location' => $this->response['sys.Location']->fetchOne()->getValue(),
+            'meta' =>  [
+                'name' => $this->model->getName(),
+                'detect' => $this->model->getDetect(),
+                'ports' => $this->model->getPorts(),
+                'extra' => $this->model->getExtra(),
+                'modules' => $this->model->getModulesList(),
+                ]
         ];
     }
 

@@ -7,9 +7,9 @@ namespace SnmpSwitcher\Switcher\Parser;
 class Helper
 {
 
-    static function getIndexByOid($oid) {
+    static function getIndexByOid($oid, $offset =0) {
         $exploded = explode(".", $oid);
-        return $exploded[count($exploded) - 1];
+        return $exploded[count($exploded) - 1 - $offset];
     }
 
     static function fromCamelCase($input) {
