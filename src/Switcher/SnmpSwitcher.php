@@ -86,7 +86,7 @@ class SnmpSwitcher extends Switcher
     function getPVID($port = 0) {
         return $this->getParser('pvid')->walk(['port'=>$port])->getPretty();
     }
-    function getCableDiag($port = 0, $disable_diag_on_link_up = true) {
-        return $this->getParser('cable_diag')->walk(['port'=>$port, 'disa_linkup_diag' => $disable_diag_on_link_up])->getPretty();
+    function getCableDiag($port = 0) {
+        return $this->getParser('cable_diag')->walk(['port'=>$port])->getPretty();
     }
 }

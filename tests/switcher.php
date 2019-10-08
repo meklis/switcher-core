@@ -183,4 +183,4 @@ print_r(json_encode($switcher->getVlansByPort(26), JSON_PRETTY_PRINT | JSON_NUME
 ]
  **/
 
-print_r(json_encode($switcher->getCableDiag(5), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
+print_r(json_encode($switcher->getCableDiag(), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
