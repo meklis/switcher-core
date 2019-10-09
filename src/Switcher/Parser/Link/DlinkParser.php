@@ -17,7 +17,7 @@ class DlinkParser extends AbstractParser
           $link_state = $this->getResponseByName('dlink.PortCtrlPortAdminState');
           $nway_state = $this->getResponseByName('dlink.PortCtrlPortNwayState');
           $addr_learning = $this->getResponseByName('dlink.PortCtrlAddressLearning');
-          $description = $this->getResponseByName('dlink.PortCtrlDescription');
+          $description = $this->getResponseByName('if.Alias');
 
           if($link_state->error()) {
               throw new \Exception($link_state->error());
@@ -79,16 +79,17 @@ class DlinkParser extends AbstractParser
               $type = $_type($d->getOid());
               $response["{$port}-{$type}"]['nway_status'] =  $d->getParsedValue();
           }
-          foreach ($description->fetchAll() as $d) {
-              $port = Helper::getIndexByOid($d->getOid(),1);
-              $type = $_type($d->getOid());
-              $response["{$port}-{$type}"]['description'] =   $d->getValue();
-          }
           foreach ($addr_learning->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
               $type = $_type($d->getOid());
               $response["{$port}-{$type}"]['address_learning'] =  $d->getParsedValue();
           }
+
+        foreach ($description->fetchAll() as $d) {
+            $port = Helper::getIndexByOid($d->getOid());
+            if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['description'] =   $d->getValue();
+            if(isset($response["{$port}-Fiber"])) $response["{$port}-Fiber"]['description'] =   $d->getValue();
+        }
           return $response;
     }
     function getPretty()
@@ -121,7 +122,7 @@ class DlinkParser extends AbstractParser
             $this->oidsCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.PortCtrlAddressLearning')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.PortCtrlDescription')->getOid() ,
+            $this->oidsCollector->getOidByName('if.Alias')->getOid() ,
         ];
         $this->response = $this->formatResponse($this->walker->walkBulk($prepared));
         return $this;

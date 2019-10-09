@@ -87,7 +87,7 @@ class WrappedResponse {
             if($data->error == '') {
                 $wrapped = [];
                 foreach ($data->getResponse() as $num=>$resp) {
-                    if($resp->getType() == 'NoSuchInstance') {
+                    if($resp->getType() == 'NoSuchInstance' || $resp->getType() == 'NoSuchObject') {
                         throw new \Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
                     }
                     $wrapperValue =  (new Resp())

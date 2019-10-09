@@ -19,6 +19,7 @@ class DefaultParser extends AbstractParser
           $snmp_admin_status = !$this->response['if.AdminStatus']->error() ? $this->response['if.AdminStatus']->fetchAll() : [];
           $snmp_connector = !$this->response['if.ConnectorPresent']->error() ? $this->response['if.ConnectorPresent']->fetchAll() : [];
           $snmp_duplex = !$this->response['if.StatsDuplexStatus']->error() ? $this->response['if.StatsDuplexStatus']->fetchAll() : [];
+          $descr = !$this->response['if.Alias']->error() ? $this->response['if.Alias']->fetchAll() : [];
 
           $indexes = [];
           foreach ($this->getIndexes() as $index=>$port) {
@@ -34,8 +35,15 @@ class DefaultParser extends AbstractParser
           foreach ($snmp_high_speed as $index) {
               $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getValue();
           }
+          foreach ($descr as $index) {
+              $indexes[Helper::getIndexByOid($index->getOid())]['description'] =  $index->getValue();
+          }
           foreach ($snmp_duplex as $index) {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] .= "-" . $index->getParsedValue();
+                if($index->getParsedValue() == 'Down') {
+                    $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = $index->getParsedValue();
+                } else {
+                    $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] .= "-" . $index->getParsedValue();
+                }
           }
 
           foreach ($snmp_oper_status as $index) {
@@ -104,6 +112,7 @@ class DefaultParser extends AbstractParser
             $this->oidsCollector->getOidByName('if.AdminStatus')->getOid(),
             $this->oidsCollector->getOidByName('if.ConnectorPresent')->getOid(),
             $this->oidsCollector->getOidByName('if.StatsDuplexStatus')->getOid(),
+            $this->oidsCollector->getOidByName('if.Alias')->getOid(),
         ];
         if ($filter['port']) {
             foreach ($data as $num=>$d) {

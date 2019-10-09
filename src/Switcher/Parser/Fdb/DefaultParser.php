@@ -47,6 +47,9 @@ class DefaultParser extends AbstractParser
         Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
+            if($filter['port'] > $this->model->ports) {
+                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->ports}");
+            }
             foreach ($formated as $num=>$fdb) {
                 if($fdb['port'] != $filter['port']) {
                     unset($formated[$num]);

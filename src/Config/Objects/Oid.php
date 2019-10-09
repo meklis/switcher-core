@@ -11,8 +11,6 @@ namespace SnmpSwitcher\Config\Objects;
 
 class Oid
 {
-    const ACCESS_READ = "read";
-    const ACCESS_WRITE = "write";
     const TYPE_OCTETSTRING = "string";
     const TYPE_INTEGER = "integer";
     /**
@@ -27,10 +25,6 @@ class Oid
      * @var array
      */
     public $values = [];
-    /**
-     * @var Oid::ACCESS_READ|Oid::ACCESS_WRITE
-     */
-    public $access = Oid::ACCESS_READ;
     /**
      * @var Oid::TYPE_OCTETSTRING|Oid::TYPE_INTEGER
      */
@@ -73,23 +67,6 @@ class Oid
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getAccess(): string
-    {
-        return $this->access;
-    }
-
-    /**
-     * @param  Oid::ACCESS_READ|Oid::ACCESS_WRITE $access
-     * @return Oid
-     */
-    public function setAccess(string $access): Oid
-    {
-        $this->access = $access;
-        return $this;
-    }
 
     /**
      * @return array
@@ -148,17 +125,7 @@ class Oid
         } else {
             throw new \InvalidArgumentException("Array for initialize oid must have 'oid' element");
         }
-        if(isset($array['access'])) {
-            if($array['access'] === 'read') {
-                $oid->setAccess(Oid::ACCESS_READ);
-            } elseif ($array['access'] === 'write') {
-                $oid->setAccess(Oid::ACCESS_WRITE);
-            } else {
-                throw new \InvalidArgumentException("Array for initialize oid has incorrect value for 'access'. Must be 'read' or 'write'");
-            }
-        } else {
-            throw new \InvalidArgumentException("Array for initialize oid must have 'access' element");
-        }
+
 
         if(isset($array['type'])) {
             if($array['type'] === 'string') {

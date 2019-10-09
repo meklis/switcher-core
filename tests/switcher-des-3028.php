@@ -33,8 +33,10 @@ Array
 )
 
 Get information for FDB
-print_r($switcher->getFDB(27));
-Array
+*/
+//print_r(json_encode($switcher->getFDB(27)));
+/*
+ * Array
 (
     [0] => Array
     (
@@ -54,8 +56,10 @@ Array
 )
 
 Get System info
- print_r($switcher->getSystemInfo());
- Array
+*/
+//print_r(json_encode($switcher->getSystemInfo()));
+/*
+ *  Array
 (
     [descr] => D-Link DES-3028 Fast Ethernet Switch
     [uptime] => 11d 19h 13min 38sec
@@ -67,9 +71,9 @@ Get System info
  *
  *
 Get error information in default parser
-
-print_r($switcher->getErrors());
-
+*/
+//print_r(json_encode($switcher->getErrors()));
+/*
 Array
 (
     [0] => Array
@@ -81,8 +85,10 @@ Array
             [out_discards] => 0
         )
 
-)
-print_r($switcher->getRmon(3));
+)*/
+
+//print_r(json_encode($switcher->getRmon(3)));
+/*
 [0] => Array
             (
                 [ether_stats_oversize_pkts] => 0
@@ -95,9 +101,11 @@ print_r($switcher->getRmon(3));
                 [ether_stats_jabber] => 0
             )
 
-)
-print_r($switcher->getErrors(3));
-Array
+)*/
+
+//print_r(json_encode($switcher->getErrors(3)));
+/*
+ * Array
 (
     [0] => Array
     (
@@ -109,8 +117,9 @@ Array
     )
 
 )
-
-print_r($switcher->getCounters(3));
+*/
+//print_r(json_encode($switcher->getCounters(3)));
+/*
 Array
 (
     [0] => Array
@@ -125,7 +134,9 @@ Array
         )
 
 )
-print_r($switcher->getPVID(3));
+*/
+//print_r(json_encode($switcher->getPVID(3)));
+/*
 Array
 (
     [0] => Array
@@ -135,8 +146,9 @@ Array
         )
 
 )
-print_r(json_encode($switcher->getVlans(430), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
-
+*/
+//print_r(json_encode($switcher->getVlans(430)));
+/*
 [
     {
         "name": "switches430",
@@ -152,8 +164,9 @@ print_r(json_encode($switcher->getVlans(430), JSON_PRETTY_PRINT | JSON_NUMERIC_C
         ]
         }
     }
-]
-print_r(json_encode($switcher->getVlansByPort(26), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));
+]*/
+//print_r(json_encode($switcher->getVlansByPort(26)));
+/*
 [
     {
         "port": 26,
@@ -181,6 +194,35 @@ print_r(json_encode($switcher->getVlansByPort(26), JSON_PRETTY_PRINT | JSON_NUME
         "forbidden": []
     }
 ]
+*/
+print_r(json_encode($switcher->getCableDiag(27)));
+/*
+[
+    {
+        "port": 27,
+        "pairs": [
+            {
+                "number": 1,
+                "status": "OK",
+                "length": 33
+            },
+            {
+                "number": 2,
+                "status": "OK",
+                "length": 33
+            },
+            {
+                "number": 3,
+                "status": "OK",
+                "length": 33
+            },
+            {
+                "number": 4,
+                "status": "OK",
+                "length": 33
+            }
+        ]
+    }
+]
+ *
  **/
-
-print_r(json_encode($switcher->getCableDiag(), JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK));

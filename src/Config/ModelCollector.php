@@ -37,7 +37,7 @@ class ModelCollector extends Collector
             }
             return $model;
         }
-        throw new \Exception("Model not found by detects");
+        throw new \Exception("Model not found by detects with parameters descr='{$descr}', oidId='{$oidId}'");
     }
 
 }
