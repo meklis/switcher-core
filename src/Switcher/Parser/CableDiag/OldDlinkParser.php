@@ -128,6 +128,9 @@ class OldDlinkParser extends AbstractParser
         $ports_list = [];
         foreach ($this->getResponseByName('if.Type')->fetchAll() as $ident) {
             $port = Helper::getIndexByOid($ident->getOid());
+            if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
+                $ident->setParsed('GE');
+            }
             $pairs = 2;
             if($ident->getParsedValue() == 'GE') {
                 $pairs = 4;

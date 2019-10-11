@@ -18,9 +18,17 @@ class DlinkParser extends AbstractParser
           $nway_state = $this->getResponseByName('dlink.PortCtrlPortNwayState');
           $addr_learning = $this->getResponseByName('dlink.PortCtrlAddressLearning');
           $description = $this->getResponseByName('if.Alias');
+          $medium_type = $this->getResponseByName('dlink.PortInfoMediumType');
+          $types = $this->getResponseByName('if.Type');
 
           if($link_state->error()) {
               throw new \Exception($link_state->error());
+          }
+          if($types->error()) {
+              throw new \Exception($types->error());
+          }
+          if($medium_type->error()) {
+              throw new \Exception($medium_type->error());
           }
           if($link_status->error()) {
               throw new \Exception($link_status->error());
@@ -37,17 +45,16 @@ class DlinkParser extends AbstractParser
           if($addr_learning->error()) {
               throw new \Exception($addr_learning->error());
           }
+
+          $indexMediumType = [];
+          foreach ($medium_type->fetchAll() as $d) {
+              $indexMediumType[Helper::getIndexByOid($d->getOid())] = $d->getParsedValue();
+          }
+
           $response=[];
-          $_type = function ($oid) {
-              if(Helper::getIndexByOid($oid) == 100) {
-                  return "Cooper";
-              }  else {
-                  return "Fiber";
-              }
-          };
           foreach ($link_status->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
-              $type = $_type($d->getOid());
+              $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               $response["{$port}-{$type}"]['port'] = $port;
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = null;
@@ -62,13 +69,13 @@ class DlinkParser extends AbstractParser
 
         foreach ($nway_state->fetchAll() as $d) {
             $port = Helper::getIndexByOid($d->getOid(), 1);
-            $type = $_type($d->getOid());
+            $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
                 $response["{$port}-{$type}"]['admin_state'] = $d->getParsedValue();
         }
 
           foreach ($link_state->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
-              $type = $_type($d->getOid());
+              $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               if($d->getParsedValue() == 'Disabled') {
                   $response["{$port}-{$type}"]['admin_state'] = $d->getParsedValue();
               }
@@ -76,12 +83,12 @@ class DlinkParser extends AbstractParser
 
           foreach ($nway_status->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
-              $type = $_type($d->getOid());
+              $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               $response["{$port}-{$type}"]['nway_status'] =  $d->getParsedValue();
           }
           foreach ($addr_learning->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
-              $type = $_type($d->getOid());
+              $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               $response["{$port}-{$type}"]['address_learning'] =  $d->getParsedValue();
           }
 
@@ -89,6 +96,14 @@ class DlinkParser extends AbstractParser
             $port = Helper::getIndexByOid($d->getOid());
             if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['description'] =   $d->getValue();
             if(isset($response["{$port}-Fiber"])) $response["{$port}-Fiber"]['description'] =   $d->getValue();
+        }
+        foreach ($types->fetchAll() as $d) {
+            $port = Helper::getIndexByOid($d->getOid());
+            if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
+                $d->setParsed('GE');
+            }
+            if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['type'] =   $d->getParsedValue();
+            if(isset($response["{$port}-Fiber"])) $response["{$port}-Fiber"]['type'] =   $d->getParsedValue();
         }
           return $response;
     }
@@ -118,11 +133,13 @@ class DlinkParser extends AbstractParser
     {
         $prepared = [
             $this->oidsCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,
+            $this->oidsCollector->getOidByName('dlink.PortInfoMediumType')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.PortInfoNwayStatus')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.PortCtrlAddressLearning')->getOid() ,
             $this->oidsCollector->getOidByName('if.Alias')->getOid() ,
+            $this->oidsCollector->getOidByName('if.Type')->getOid() ,
         ];
         $this->response = $this->formatResponse($this->walker->walkBulk($prepared));
         return $this;
