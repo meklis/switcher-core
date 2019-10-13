@@ -12,7 +12,7 @@ class SnmpResponse extends \SnmpWrapper\Response\SnmpResponse
         return $this;
     }
     function getParsedValue() {
-        return $this->parsed_value;
+        return trim($this->parsed_value);
     }
     function setValue($val) {
         $this->value = $val;

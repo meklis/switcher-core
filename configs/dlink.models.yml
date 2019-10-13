@@ -1,10 +1,59 @@
+############################################## Parameters description  #####################################################
+## extra.ge_ports setted only if device response in cableDiag, link isn't correct. GE ports must detect automaticaly      ##
+## extra.diag_ports used in cableDiag for diag only cooper ports. Cooper ports not choose automaticaly in diagnostic.
+## extra.diag_linkup if setted false, links with operstatus=UP will be ignored, if port are not setted
+##
+##
+############################################################################################################################
 models:
+ - name: D-link DES-3526
+   ports: 26
+   oids:
+    - ./dlink/des-3526.yml
+    - ./dlink/common-diag-cable.yml
+   detect: {description: ^DES-3526 Fast-Ethernet Switch$, hardware: .*, objid: 171\.10\.64\.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
+     diag_linkup: false
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDes3526Parser
+    #link: Link\DefaultParser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\Des3526Parser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: D-link DES-1228/ME
+   ports: 28
+   oids:
+    - ./dlink/des-1228me.yml
+    - ./dlink/common-diag-cable.yml
+   detect: {description: ^D-Link DES-1228\/ME Metro Ethernet Switch$, hardware: .*, objid: 171\.10\.116\.2$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
+     diag_linkup: false
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkParser
+    #link: Link\DefaultParser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
  - name: D-link DES-3028
    ports: 28
    oids:
      - ./dlink/des-3028.yml
      - ./dlink/common-diag-cable.yml
-   detect: {description: ^D-Link DES-3028, hardware: .*, objid: .* }
+   detect: {description: ^D-Link DES-3028 Fast Ethernet Switch, hardware: .*, objid: .* }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      diag_linkup: false
@@ -15,7 +64,28 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: D-link DES-3028G
+   ports: 28
+   oids:
+     - ./dlink/des-3028G.yml
+     - ./dlink/common-diag-cable.yml
+   detect: {description: ^D-Link DES-3028G Fast Ethernet Switch, hardware: .*, objid: ^.*171\.10\.63\.11$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
+     diag_linkup: yes
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkParser
+     #link: Link\DefaultParser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -35,7 +105,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -55,7 +125,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -75,7 +145,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -96,7 +166,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -117,7 +187,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -138,7 +208,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -158,7 +228,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -178,7 +248,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -198,7 +268,7 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser
@@ -218,7 +288,146 @@ models:
      counters: Counters\DefaultParser
      system: System\DefaultParser
      vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\OldDlinkParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1210-28/ME/A2
+   ports: 28
+   oids:
+     - ./dlink/dgs-1210-28-me-a2.yml
+   detect: {description: ^DGS-1210-28\/ME\/A2$, hardware: .*, objid: ^.*171.10.76.28.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1210Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1210-20/ME/A1
+   ports: 20
+   oids:
+     - ./dlink/dgs-1210-20-me-a1.yml
+   detect: {description: ^DGS-1210-20\/ME\/A1$, hardware: .*, objid: ^.*171\.10\.76\.31\.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1210Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1210-10/ME/A1
+   ports: 10
+   oids:
+     - ./dlink/dgs-1210-10-me-a1.yml
+   detect: {description: ^DGS-1210-10\/ME\/A1$, hardware: .*, objid: ^.*171.10.76.35.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1210Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1210-20/ME/B1
+   ports: 20
+   oids:
+     - ./dlink/dgs-1210-20-me-b1.yml
+   detect: {description: ^DGS-1210-20\/ME\/B1$, hardware: .*, objid: ^.*171.10.76.31.2$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1210Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1210-28/ME/B1
+   ports: 28
+   oids:
+     - ./dlink/dgs-1210-28-me-b1.yml
+   detect: {description: ^DGS-1210-28\/ME\/B1$, hardware: .*, objid: ^.*171.10.76.28.2$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1210Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     cable_diag: CableDiag\DlinkParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1210-28XS/ME/B1
+   ports: 28
+   oids:
+     - ./dlink/dgs-1210-28xs-me-b1.yml
+   detect: {description: ^DGS-1210-28XS\/ME\/B1$, hardware: .*, objid: ^.*171.10.76.39.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1210Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     vlan: Vlan\DlinkVlanParser
+     errors: Errors\DefaultParser
+     rmon: Rmon\DefaultParser
+     pvid: Vlan\PvidParser
+
+ - name: Dlink DGS-1100-06/ME/A1
+   ports: 06
+   oids:
+     - ./dlink/dgs-1100-06-me-a1.yml
+   detect: {description: ^DGS-1100-06\/ME\/A1$, hardware: .*, objid: ^.*.171.10.134.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+   parsers:
+     fdb: Fdb\DefaultParser
+     link: Link\DlinkDgs1100Parser
+     counters: Counters\DefaultParser
+     system: System\DefaultParser
+     cable_diag: CableDiag\DlinkParser
+     vlan: Vlan\DlinkVlanParser
      errors: Errors\DefaultParser
      rmon: Rmon\DefaultParser
      pvid: Vlan\PvidParser

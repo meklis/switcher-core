@@ -9,7 +9,7 @@ use SnmpSwitcher\Switcher\Parser\Helper;
 use SnmpWrapper\Request\PoollerRequest;
 
 
-class OldDlinkParser extends AbstractParser
+class DlinkParser extends AbstractParser
 {
     protected $ports = [];
     protected $formatedResponse = [];

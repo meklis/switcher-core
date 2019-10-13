@@ -3,10 +3,11 @@
 
 namespace SnmpSwitcher\Switcher\Parser\Fdb;
 
+use SnmpSwitcher\Exceptions\IncompleteResponseException;
 use \SnmpSwitcher\Switcher\Parser\AbstractParser;
 use \SnmpSwitcher\Switcher\Parser\Helper;
 
-class DefaultParser extends AbstractParser
+class ByVlanParser extends AbstractParser
 {
     protected function formate() {
         if($this->response) {
@@ -80,21 +81,38 @@ class DefaultParser extends AbstractParser
     public function walk($filter = [])
     {
        Helper::prepareFilter($filter);
-       $fdb_port =  $this->oidsCollector->getOidByName('dot1q.FdbPort')->getOid();
-       $fdb_status =  $this->oidsCollector->getOidByName('dot1q.FdbStatus')->getOid();
+       //Get vlans
+       $this->response = $this->formatResponse($this->walker->walk([$this->oidsCollector->getOidByName('dot1q.VlanStaticName')->getOid()]));
+       $vlanResponse = $this->getResponseByName('dot1q.VlanStaticName');
+       if($vlanResponse->error()) {
+           throw new IncompleteResponseException($vlanResponse->error());
+       }
+       $vlans = [];
+       foreach ($vlanResponse->fetchAll() as $resp) {
+           $vlans[] = Helper::getIndexByOid($resp->getOid());
+       }
+
+       $oids = [];
+       $oids[] =  $this->oidsCollector->getOidByName('dot1q.FdbPort')->getOid();
+       $oids[] =  $this->oidsCollector->getOidByName('dot1q.FdbStatus')->getOid();
        if($filter['vlan_id']) {
-           $fdb_port .= ".{$filter['vlan_id']}";
-           $fdb_status .= ".{$filter['vlan_id']}";
+           $oids[0] .= ".{$filter['vlan_id']}";
+           $oids[1] .= ".{$filter['vlan_id']}";
+       } else {
+           $old_oids = $oids;
+           $oids = [];
+           foreach ($vlans as $vlan) {
+               $oids[] = $old_oids[0] . ".{$vlan}";
+               $oids[] = $old_oids[1] . ".{$vlan}";
+           }
        }
        if($filter['vlan_id'] && $filter['mac']) {
-            $fdb_port .= "." . Helper::mac2oid($filter['mac']);
-            $fdb_status .= "." .   Helper::mac2oid($filter['mac']);
+            $oids[0] .= "." . Helper::mac2oid($filter['mac']);
+            $oids[1] .= "." .   Helper::mac2oid($filter['mac']);
        } elseif ($filter['mac']) {
            throw new \Exception("VlanID must be setted for mac filtering");
        }
-       $this->response = $this->formatResponse($this->walker->walkBulk([
-            $fdb_status, $fdb_port,
-       ]));
+       $this->response = $this->formatResponse($this->walker->walk($oids));
         return $this;
     }
 
