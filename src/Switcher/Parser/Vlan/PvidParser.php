@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Vlan;
+namespace SwitcherCore\Switcher\Parser\Vlan;
 
 
-use SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\Helper;
+use SwitcherCore\Switcher\Parser\AbstractParser;
+use \SwitcherCore\Switcher\Parser\Helper;
 
 class PvidParser extends AbstractParser
 {

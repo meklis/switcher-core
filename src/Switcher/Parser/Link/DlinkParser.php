@@ -1,12 +1,12 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Link;
+namespace SwitcherCore\Switcher\Parser\Link;
 
-use SnmpSwitcher\Switcher\Objects\WrappedResponse;
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\ParserInterface;
-use \SnmpSwitcher\Switcher\Parser\Helper;
+use SwitcherCore\Switcher\Objects\WrappedResponse;
+use \SwitcherCore\Switcher\Parser\AbstractParser;
+use \SwitcherCore\Switcher\Parser\ParserInterface;
+use \SwitcherCore\Switcher\Parser\Helper;
 
 class DlinkParser extends AbstractParser
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher;
+namespace SwitcherCore\Switcher;
 
 
 class SnmpSwitcher extends Switcher

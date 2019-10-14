@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\CableDiag;
+namespace SwitcherCore\Switcher\Parser\CableDiag;
 
-use SnmpSwitcher\Exceptions\IncompleteResponseException;
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use SnmpSwitcher\Switcher\Parser\Helper;
+use SwitcherCore\Exceptions\IncompleteResponseException;
+use \SwitcherCore\Switcher\Parser\AbstractParser;
+use SwitcherCore\Switcher\Parser\Helper;
 use SnmpWrapper\Request\PoollerRequest;
 
 

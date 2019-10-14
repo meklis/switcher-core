@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SnmpSwitcher\Exceptions;
+namespace SwitcherCore\Exceptions;
 
 
 class IncompleteResponseException extends \Exception

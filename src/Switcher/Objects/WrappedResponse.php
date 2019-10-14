@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Objects;
+namespace SwitcherCore\Switcher\Objects;
 
 
-use SnmpSwitcher\Config\Objects\Oid;
-use SnmpSwitcher\Config\OidCollector;
+use SwitcherCore\Config\Objects\Oid;
+use SwitcherCore\Config\OidCollector;
 use SnmpWrapper\Response\PoollerResponse;
-use SnmpSwitcher\Switcher\Objects\SnmpResponse as Resp;
+use SwitcherCore\Switcher\Objects\SnmpResponse as Resp;
 
 class WrappedResponse {
     /**

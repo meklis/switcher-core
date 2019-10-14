@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Objects;
+namespace SwitcherCore\Switcher\Objects;
 
 
 class SnmpResponse extends \SnmpWrapper\Response\SnmpResponse

@@ -2,11 +2,11 @@
 
 
 
-namespace SnmpSwitcher\Config;
+namespace SwitcherCore\Config;
 
 
-use SnmpSwitcher\Config\Objects\Model;
-use SnmpSwitcher\Config\Objects\Oid;
+use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\Objects\Oid;
 
 
 class OidCollector extends Collector

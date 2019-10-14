@@ -6,12 +6,12 @@
  * Time: 16:37
  */
 
-namespace SnmpSwitcher\Config\Objects;
+namespace SwitcherCore\Config\Objects;
 
 
-use SnmpSwitcher\Exceptions\ParserErrorLoadException;
-use SnmpSwitcher\Switcher\Parser\AbstractParser;
-use SnmpSwitcher\Switcher\Parser\ParserInterface;
+use SwitcherCore\Exceptions\ParserErrorLoadException;
+use SwitcherCore\Switcher\Parser\AbstractParser;
+use SwitcherCore\Switcher\Parser\ParserInterface;
 
 class Model
 {
@@ -102,7 +102,7 @@ class Model
             throw new ParserErrorLoadException("Parsers for model {$this->getName()} not found");
         }
         foreach ($this->parsersNames as $parser=>$object) {
-            $className = "\\SnmpSwitcher\\Switcher\\Parser\\$object";
+            $className = "\\SwitcherCore\\Switcher\\Parser\\$object";
             if(!class_exists($className)) {
                 throw new ParserErrorLoadException("Parser for model {$this->getName()} with name '$parser' not found by ClassName {$className}");
             }

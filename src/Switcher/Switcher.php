@@ -1,12 +1,12 @@
 <?php
 
-namespace SnmpSwitcher\Switcher;
+namespace SwitcherCore\Switcher;
 
-use SnmpSwitcher\Exceptions\ParserNotFoundException;
+use SwitcherCore\Exceptions\ParserNotFoundException;
 use \SnmpWrapper\Walker;
-use \SnmpSwitcher\Config\ModelCollector;
-use \SnmpSwitcher\Config\Objects\Model;
-use \SnmpSwitcher\Config\OidCollector;
+use \SwitcherCore\Config\ModelCollector;
+use \SwitcherCore\Config\Objects\Model;
+use \SwitcherCore\Config\OidCollector;
 
 
 class Switcher

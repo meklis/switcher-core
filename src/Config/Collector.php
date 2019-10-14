@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SnmpSwitcher\Config;
+namespace SwitcherCore\Config;
 
 
 abstract class Collector

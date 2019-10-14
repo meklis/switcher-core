@@ -1,9 +1,9 @@
 <?php
-namespace SnmpSwitcher\Switcher\Parser;
+namespace SwitcherCore\Switcher\Parser;
 
 use \SnmpWrapper\Walker;
-use \SnmpSwitcher\Config\Objects\Model;
-use \SnmpSwitcher\Config\OidCollector;
+use \SwitcherCore\Config\Objects\Model;
+use \SwitcherCore\Config\OidCollector;
 
 interface ParserInterface
 {

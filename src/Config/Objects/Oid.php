@@ -6,7 +6,7 @@
  * Time: 16:40
  */
 
-namespace SnmpSwitcher\Config\Objects;
+namespace SwitcherCore\Config\Objects;
 
 
 class Oid

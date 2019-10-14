@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser;
+namespace SwitcherCore\Switcher\Parser;
 
 
 

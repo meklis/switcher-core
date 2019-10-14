@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Counters;
+namespace SwitcherCore\Switcher\Parser\Counters;
 
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\ParserInterface;
-use \SnmpSwitcher\Switcher\Parser\Helper;
+use \SwitcherCore\Switcher\Parser\AbstractParser;
+use \SwitcherCore\Switcher\Parser\ParserInterface;
+use \SwitcherCore\Switcher\Parser\Helper;
 
 
 class DefaultParser extends AbstractParser

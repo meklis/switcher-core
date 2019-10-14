@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Fdb;
+namespace SwitcherCore\Switcher\Parser\Fdb;
 
-use SnmpSwitcher\Exceptions\IncompleteResponseException;
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\Helper;
+use SwitcherCore\Exceptions\IncompleteResponseException;
+use \SwitcherCore\Switcher\Parser\AbstractParser;
+use \SwitcherCore\Switcher\Parser\Helper;
 
 class ByVlanParser extends AbstractParser
 {

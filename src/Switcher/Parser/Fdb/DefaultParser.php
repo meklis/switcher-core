@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Fdb;
+namespace SwitcherCore\Switcher\Parser\Fdb;
 
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\Helper;
+use \SwitcherCore\Switcher\Parser\AbstractParser;
+use \SwitcherCore\Switcher\Parser\Helper;
 
 class DefaultParser extends AbstractParser
 {

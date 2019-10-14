@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SnmpSwitcher\Config;
+namespace SwitcherCore\Config;
 
 
-use SnmpSwitcher\Config\Objects\Model;
+use SwitcherCore\Config\Objects\Model;
 
 class ModelCollector extends Collector
 {

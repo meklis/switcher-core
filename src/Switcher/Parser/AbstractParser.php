@@ -1,16 +1,16 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser;
+namespace SwitcherCore\Switcher\Parser;
 
 
 
-use SnmpSwitcher\Exceptions\IncompleteResponseException;
+use SwitcherCore\Exceptions\IncompleteResponseException;
 use \SnmpWrapper\Response\PoollerResponse;
 use \SnmpWrapper\Walker;
-use \SnmpSwitcher\Config\Objects\Model;
-use \SnmpSwitcher\Config\OidCollector;
-use \SnmpSwitcher\Switcher\Objects\WrappedResponse;
+use \SwitcherCore\Config\Objects\Model;
+use \SwitcherCore\Config\OidCollector;
+use \SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractParser implements ParserInterface
 {

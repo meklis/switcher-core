@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SnmpSwitcher\Exceptions;
+namespace SwitcherCore\Exceptions;
 
 
 class ParserNotFoundException extends \Exception

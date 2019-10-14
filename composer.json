@@ -1,6 +1,6 @@
 {
-    "name": "meklis/helpprovider-switcher",
-    "description": "SNMP switcher for D-Link",
+    "name": "meklis/switcher-core",
+    "description": "SNMP switcher core module",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "SnmpSwitcher\\": "src/"
+            "SwitcherCore\\": "src/"
         }
     },
     "require": {

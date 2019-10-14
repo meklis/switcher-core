@@ -1,18 +1,18 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
 
-use SnmpSwitcher\Config\Reader;
+use SwitcherCore\Config\Reader;
 use SnmpWrapper\WrapperWorker;
 use SnmpWrapper\Walker;
 
 $reader = new  Reader(__DIR__ . "/../configs");
-$model = SnmpSwitcher\Config\ModelCollector::init($reader);
-$oids = SnmpSwitcher\Config\OidCollector::init($reader);
+$model = SwitcherCore\Config\ModelCollector::init($reader);
+$oids = SwitcherCore\Config\OidCollector::init($reader);
 $wrapper = new  WrapperWorker("http://37.57.212.3:8080");
 $walker =  (new  Walker($wrapper))
     ->useCache(false);
 
-$switcher = new \SnmpSwitcher\Switcher\SnmpSwitcher($walker,$model,$oids);
+$switcher = new \SwitcherCore\Switcher\SnmpSwitcher($walker,$model,$oids);
 
 $handle = fopen ("php://stdin","r");
 

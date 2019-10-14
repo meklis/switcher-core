@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SnmpSwitcher\Switcher\Parser\Errors;
+namespace SwitcherCore\Switcher\Parser\Errors;
 
-use \SnmpSwitcher\Switcher\Parser\AbstractParser;
-use \SnmpSwitcher\Switcher\Parser\Helper;
+use \SwitcherCore\Switcher\Parser\AbstractParser;
+use \SwitcherCore\Switcher\Parser\Helper;
 
 
 class DefaultParser extends AbstractParser
