@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser\Fdb;
+namespace SwitcherCore\Parsers\Fdb;
 
-use \SwitcherCore\Switcher\Parser\AbstractParser;
-use \SwitcherCore\Switcher\Parser\Helper;
+use \SwitcherCore\Parsers\AbstractParser;
+use \SwitcherCore\Parsers\Helper;
 
 class DefaultParser extends AbstractParser
 {

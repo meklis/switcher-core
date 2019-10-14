@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser;
+namespace SwitcherCore\Parsers;
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser\CableDiag;
+namespace SwitcherCore\Parsers\CableDiag;
 
 
 class Des3526Parser extends DlinkParser

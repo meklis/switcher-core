@@ -10,8 +10,8 @@ namespace SwitcherCore\Config\Objects;
 
 
 use SwitcherCore\Exceptions\ParserErrorLoadException;
-use SwitcherCore\Switcher\Parser\AbstractParser;
-use SwitcherCore\Switcher\Parser\ParserInterface;
+use SwitcherCore\Parsers\AbstractParser;
+use SwitcherCore\Parsers\ParserInterface;
 
 class Model
 {
@@ -102,7 +102,7 @@ class Model
             throw new ParserErrorLoadException("Parsers for model {$this->getName()} not found");
         }
         foreach ($this->parsersNames as $parser=>$object) {
-            $className = "\\SwitcherCore\\Switcher\\Parser\\$object";
+            $className = "\\SwitcherCore\\Parsers\\$object";
             if(!class_exists($className)) {
                 throw new ParserErrorLoadException("Parser for model {$this->getName()} with name '$parser' not found by ClassName {$className}");
             }

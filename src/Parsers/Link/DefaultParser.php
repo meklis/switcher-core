@@ -1,12 +1,12 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser\Link;
+namespace SwitcherCore\Parsers\Link;
 
 use SwitcherCore\Switcher\Objects\WrappedResponse;
-use \SwitcherCore\Switcher\Parser\AbstractParser;
-use \SwitcherCore\Switcher\Parser\ParserInterface;
-use \SwitcherCore\Switcher\Parser\Helper;
+use \SwitcherCore\Parsers\AbstractParser;
+use \SwitcherCore\Parsers\ParserInterface;
+use \SwitcherCore\Parsers\Helper;
 
 class DefaultParser extends AbstractParser
 {

@@ -1,13 +1,12 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser\Vlan;
+namespace SwitcherCore\Parsers\Rmon;
 
+use \SwitcherCore\Parsers\AbstractParser;
+use \SwitcherCore\Parsers\Helper;
 
-use SwitcherCore\Switcher\Parser\AbstractParser;
-use \SwitcherCore\Switcher\Parser\Helper;
-
-class PvidParser extends AbstractParser
+class DefaultParser extends AbstractParser
 {
     protected function formate() {
         $indexes = $this->getIndexes();
@@ -15,8 +14,7 @@ class PvidParser extends AbstractParser
         foreach ($this->response as $oid_name => $wrappedResponse) {
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
-                $metric_name = str_replace(['dot1q_'], '', Helper::fromCamelCase($oid_name));
-                $response[$port_index][$metric_name] = $resp->getValue();
+                $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();
                 $response[$port_index]['port'] = $indexes[$port_index];
             }
         }
@@ -26,10 +24,8 @@ class PvidParser extends AbstractParser
     {
         return $this->formate();
     }
-
     function getPrettyFiltered($filter = [])
     {
-        Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
             foreach ($formated as $num=>$val) {
@@ -44,7 +40,7 @@ class PvidParser extends AbstractParser
     public function walk($filter = [])
     {
         $oids = [];
-        foreach ($this->oidsCollector->getOidsByRegex('dot1q.Pvid') as $oid) {
+        foreach ($this->oidsCollector->getOidsByRegex('rmon.*') as $oid) {
             $oids[] = $oid->getOid();
         }
 

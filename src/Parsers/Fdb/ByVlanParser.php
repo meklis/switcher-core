@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser\Fdb;
+namespace SwitcherCore\Parsers\Fdb;
 
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use \SwitcherCore\Switcher\Parser\AbstractParser;
-use \SwitcherCore\Switcher\Parser\Helper;
+use \SwitcherCore\Parsers\AbstractParser;
+use \SwitcherCore\Parsers\Helper;
 
 class ByVlanParser extends AbstractParser
 {

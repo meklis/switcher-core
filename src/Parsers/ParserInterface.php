@@ -1,5 +1,5 @@
 <?php
-namespace SwitcherCore\Switcher\Parser;
+namespace SwitcherCore\Parsers;
 
 use \SnmpWrapper\Walker;
 use \SwitcherCore\Config\Objects\Model;

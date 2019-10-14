@@ -1,12 +1,12 @@
 <?php
 
 
-namespace SwitcherCore\Switcher\Parser\Vlan;
+namespace SwitcherCore\Parsers\Vlan;
 
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use \SwitcherCore\Switcher\Parser\AbstractParser;
-use \SwitcherCore\Switcher\Parser\ParserInterface;
-use \SwitcherCore\Switcher\Parser\Helper;
+use \SwitcherCore\Parsers\AbstractParser;
+use \SwitcherCore\Parsers\ParserInterface;
+use \SwitcherCore\Parsers\Helper;
 
 class DlinkVlanParser extends AbstractParser
 {
