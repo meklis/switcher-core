@@ -104,6 +104,15 @@ class Oid
         return $this;
     }
 
+    public function getValueIdByName($valueName) {
+        foreach ($this->getValues() as $id=>$value) {
+                if($valueName == $value) {
+                    return $id;
+                }
+        }
+        throw new \InvalidArgumentException("Value with name '$valueName' not found in values");
+    }
+
     protected function __construct()
     {
     }

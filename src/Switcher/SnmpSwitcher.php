@@ -89,8 +89,8 @@ class SnmpSwitcher extends Switcher
     function getCableDiag($port = 0) {
         return $this->getModule('cable_diag')->walk(['port'=>$port])->getPretty();
     }
-    function resetCounters() {
-        return $this->getModule('reset_counters')->walk()->getPretty();
+    function clearCounters() {
+        return $this->getModule('clear_counters')->walk()->getPretty();
     }
     function rebootDevice() {
         return $this->getModule('reboot_device')->walk()->getPretty();
