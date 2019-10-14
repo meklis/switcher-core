@@ -2,7 +2,7 @@
 
 namespace SwitcherCore\Switcher;
 
-use SwitcherCore\Exceptions\ParserNotFoundException;
+use SwitcherCore\Exceptions\ModuleNotFoundException;
 use \SnmpWrapper\Walker;
 use \SwitcherCore\Config\ModelCollector;
 use \SwitcherCore\Config\Objects\Model;
@@ -64,12 +64,12 @@ class Switcher
         if($descr || $objId || $hardware) {
             $this->model = $this->modelCollector->getModelByDetect($descr,$hardware,$objId);
             $this->oidCollector->readEnterpriceOids($this->model);
-            $this->model->loadParsers();
-            //Implement objects for parsers
-            foreach ($this->model->getParsers() as $parserName=>$parser) {
-                $this->model->setParser(
-                    $parserName,
-                    $parser->setModel($this->model)->setOidCollector($this->oidCollector)->setWalker($this->walker)
+            $this->model->loadModules();
+            //Implement objects for modules
+            foreach ($this->model->getModules() as $moduleName=>$module) {
+                $this->model->setModule(
+                    $moduleName,
+                    $module->setModel($this->model)->setOidCollector($this->oidCollector)->setWalker($this->walker)
                 );
             }
 
@@ -77,17 +77,17 @@ class Switcher
             throw new \Exception("Returned empty response from walker, it's problem");
         }
     }
-    protected function getParser($parserName) {
+    protected function getModule($moduleName) {
         if(!$this->model) {
             throw new \Exception("Device properties and oids not loaded. Are you use ::connect() first?");
         }
-        if(isset($this->model->getParsers()[$parserName])) {
-            return $this->model->getParsers()[$parserName];
+        if(isset($this->model->getModules()[$moduleName])) {
+            return $this->model->getModules()[$moduleName];
         } else {
-            throw new ParserNotFoundException("Parser $parserName not found for model {$this->model->getName()}");
+            throw new ModuleNotFoundException("Module $moduleName not found for model {$this->model->getName()}");
         }
     }
     function getSystemInfo() {
-        return $this->getParser('system')->walk()->getPretty();
+        return $this->getModule('system')->walk()->getPretty();
     }
 }

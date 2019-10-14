@@ -11,28 +11,28 @@ class SnmpSwitcher extends Switcher
         if($ethernetOnly) {
             $type = 'GE,FE,-';
         }
-        return $this->getParser('link')->walk([
+        return $this->getModule('link')->walk([
             'port' => $port,
         ])->getPrettyFiltered(['type' => $type, 'port'=>$port]);
     }
     function getCounters($port = 0) {
-        return $this->getParser('counters')->walk([
+        return $this->getModule('counters')->walk([
             'port' => $port,
         ])->getPretty();
     }
     function getErrors($port = 0) {
-        return $this->getParser('errors')->walk([
+        return $this->getModule('errors')->walk([
             'port' => $port,
         ])->getPretty();
     }
     function getRmon($port) {
-        return $this->getParser('rmon')->walk([
+        return $this->getModule('rmon')->walk([
             'port' => $port,
         ])->getPretty();
     }
     function getFDB($port = 0, $vlan = 0, $mac = "")
     {
-        return $this->getParser('fdb')->walk([
+        return $this->getModule('fdb')->walk([
             'mac' => $mac,
             'vlan_id' => $vlan,
         ])->getPrettyFiltered([
@@ -40,10 +40,10 @@ class SnmpSwitcher extends Switcher
         ]);
     }
     function getVlans($vlanId = 0) {
-        return $this->getParser('vlan')->walk(['vlan_id'=>$vlanId])->getPrettyFiltered();
+        return $this->getModule('vlan')->walk(['vlan_id'=>$vlanId])->getPrettyFiltered();
     }
     function getVlansByPort($show_port = 0) {
-        $parser =  $this->getParser('vlan');
+        $parser =  $this->getModule('vlan');
         $data = $parser->walk()->getPrettyFiltered();
         $indexes = $parser->getIndexes();
         $response = [];
@@ -84,15 +84,15 @@ class SnmpSwitcher extends Switcher
         return $response;
     }
     function getPVID($port = 0) {
-        return $this->getParser('pvid')->walk(['port'=>$port])->getPretty();
+        return $this->getModule('pvid')->walk(['port'=>$port])->getPretty();
     }
     function getCableDiag($port = 0) {
-        return $this->getParser('cable_diag')->walk(['port'=>$port])->getPretty();
+        return $this->getModule('cable_diag')->walk(['port'=>$port])->getPretty();
     }
     function resetCounters() {
-        return $this->getParser('reset_counters')->walk()->getPretty();
+        return $this->getModule('reset_counters')->walk()->getPretty();
     }
     function rebootDevice() {
-        return $this->getParser('reboot_device')->walk()->getPretty();
+        return $this->getModule('reboot_device')->walk()->getPretty();
     }
 }

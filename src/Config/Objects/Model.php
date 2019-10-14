@@ -9,9 +9,10 @@
 namespace SwitcherCore\Config\Objects;
 
 
-use SwitcherCore\Exceptions\ParserErrorLoadException;
-use SwitcherCore\Parsers\AbstractParser;
-use SwitcherCore\Parsers\ParserInterface;
+use SwitcherCore\Exceptions\ModuleErrorLoadException;
+use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\ModuleInterface;
 
 class Model
 {
@@ -37,31 +38,31 @@ class Model
     public $extra = [];
 
     /**
-     * @var AbstractParser[]
+     * @var AbstractModule[]
      */
-    public $parsers;
+    public $modules;
 
     /**
      * @var string[]
      */
-    protected $parsersNames;
+    protected $modulesNames;
 
     /**
-     * @return AbstractParser[]
+     * @return AbstractModule[]
      */
-    public function getParsers()
+    public function getModules()
     {
-        return $this->parsers;
+        return $this->modules;
     }
-    public function setParser($name, ParserInterface $parser)
+    public function setModule($name, ModuleInterface $module)
     {
-        $this->parsers[$name] = $parser;
+        $this->modules[$name] = $module;
         return $this;
     }
 
     function getModulesList() {
         $modules = [];
-        foreach ($this->parsersNames as $name=>$_) {
+        foreach ($this->modulesNames as $name=>$_) {
             $modules[] = $name;
         }
         return $modules;
@@ -91,23 +92,23 @@ class Model
             $model->setOidPatches($arr['oids']);
         }
 
-        if(isset($arr['parsers'])) {
-            $model->parsersNames = $arr['parsers'];
+        if(isset($arr['modules'])) {
+            $model->modulesNames = $arr['modules'];
         }
         return $model;
     }
 
-    function loadParsers() {
-        if(!$this->parsersNames) {
-            throw new ParserErrorLoadException("Parsers for model {$this->getName()} not found");
+    function loadModules() {
+        if(!$this->modulesNames) {
+            throw new ModuleNotFoundException("Modules for model {$this->getName()} not found");
         }
-        foreach ($this->parsersNames as $parser=>$object) {
-            $className = "\\SwitcherCore\\Parsers\\$object";
+        foreach ($this->modulesNames as $module=>$object) {
+            $className = "\\SwitcherCore\\Modules\\$object";
             if(!class_exists($className)) {
-                throw new ParserErrorLoadException("Parser for model {$this->getName()} with name '$parser' not found by ClassName {$className}");
+                throw new ModuleErrorLoadException("Module for model {$this->getName()} with name '$module' not found by ClassName {$className}");
             }
-            $this->setParser(
-                $parser,
+            $this->setModule(
+                $module,
                 new $className()
             );
         }

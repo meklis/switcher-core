@@ -15,17 +15,17 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDes3526Parser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDes3526Parser
     #link: Link\DefaultParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\Des3526Parser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\Des3526Parser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-1228/ME
    ports: 28
@@ -36,17 +36,17 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
     #link: Link\DefaultParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3028
    ports: 28
@@ -57,17 +57,17 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
      #link: Link\DefaultParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3028G
    ports: 28
@@ -78,17 +78,17 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      diag_linkup: yes
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
      #link: Link\DefaultParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-10
    ports: 10
@@ -99,16 +99,16 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10]
      diag_linkup: true
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-10/C1
    ports: 10
@@ -119,16 +119,16 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10]
      diag_linkup: true
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-18/C1
    ports: 10
@@ -139,16 +139,16 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
      diag_linkup: true
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-26/C1
    ports: 10
@@ -160,16 +160,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      diag_linkup: true
      ge_ports: [25,26]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-28/C1
    ports: 10
@@ -181,16 +181,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      diag_linkup: true
      ge_ports: [25,26,27,28]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-28F/C1
    ports: 10
@@ -202,16 +202,16 @@ models:
      diag_ports: [25,26,27,28]
      diag_linkup: true
      ge_ports: [25,26,27,28]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-18
    ports: 18
@@ -222,16 +222,16 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-26
    ports: 26
@@ -242,16 +242,16 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-28
    ports: 28
@@ -262,16 +262,16 @@ models:
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,25,26,27,28]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: D-link DES-3200-28F
    ports: 28
@@ -282,16 +282,16 @@ models:
    extra:
      diag_ports: [25,26,27,28]
      diag_linkup: false
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkParser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkParser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1210-28/ME/A2
    ports: 28
@@ -302,16 +302,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1210Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1210Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1210-20/ME/A1
    ports: 20
@@ -322,16 +322,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1210Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1210Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1210-10/ME/A1
    ports: 10
@@ -342,16 +342,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8]
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1210Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1210Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1210-20/ME/B1
    ports: 20
@@ -362,16 +362,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1210Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1210Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1210-28/ME/B1
    ports: 28
@@ -382,16 +382,16 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1210Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     cable_diag: CableDiag\DlinkParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1210Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     cable_diag: Snmp\CableDiag\DlinkParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1210-28XS/ME/B1
    ports: 28
@@ -402,15 +402,15 @@ models:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1210Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     vlan: Vlan\DlinkVlanParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1210Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
 
  - name: Dlink DGS-1100-06/ME/A1
    ports: 6
@@ -418,16 +418,36 @@ models:
      - ./oids/dlink/dgs-1100-06-me-a1.yml
    detect: {description: ^DGS-1100-06\/ME\/A1$, hardware: .*, objid: ^.*.171.10.134.1$ }
    extra:
-     diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
-     diag_linkup: true
-     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
-   parsers:
-     fdb: Fdb\DefaultParser
-     link: Link\DlinkDgs1100Parser
-     counters: Counters\DefaultParser
-     system: System\DefaultParser
-     cable_diag: CableDiag\DlinkParser
-     vlan: Vlan\DlinkVlanParser
-     errors: Errors\DefaultParser
-     rmon: Rmon\DefaultParser
-     pvid: Vlan\PvidParser
+     diag_ports: [1,2,3,4,5]
+     diag_linkup: false
+     ge_ports: [1,2,3,4,5,6]
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1100Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     cable_diag: Snmp\CableDiag\DlinkDgs1100Parser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser
+
+ - name: Dlink DGS-1100-10/ME
+   ports: 10
+   oids:
+     - ./oids/dlink/dgs-1100-10-me.yml
+   detect: {description: ^DGS-1100-10\/ME, hardware: .*, objid: ^.*.171.10.134.2.1$ }
+   extra:
+     diag_ports: [1,2,3,4,5,6,7,8,9,10]
+     diag_linkup: false
+     ge_ports: [1,2,3,4,5,6,7,8,9,10]
+   modules:
+     fdb: Snmp\Fdb\DefaultParser
+     link: Snmp\Link\DlinkDgs1100Parser
+     counters: Snmp\Counters\DefaultParser
+     system: Snmp\System\DefaultParser
+     cable_diag: Snmp\CableDiag\DlinkDgs1100Parser
+     vlan: Snmp\Vlan\DlinkVlanParser
+     errors: Snmp\Errors\DefaultParser
+     rmon: Snmp\Rmon\DefaultParser
+     pvid: Snmp\Vlan\PvidParser

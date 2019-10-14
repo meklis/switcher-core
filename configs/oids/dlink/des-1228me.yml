@@ -4,3 +4,5 @@
 - {name: dlink.PortCtrlPortAdminState, oid: .1.3.6.1.4.1.171.11.116.2.2.2.2.1.3, values: {3: Enabled, 2: Disabled}}
 - {name: dlink.PortCtrlPortNwayState, oid: .1.3.6.1.4.1.171.11.116.2.2.2.2.1.4, values: {1: Auto, 2: 10-Half, 3: 10-Full, 4: 100-Half, 5: 100-Full, 6: 1G-Half, 7: 1G-Full}}
 - {name: dlink.PortCtrlAddressLearning, oid: .1.3.6.1.4.1.171.11.116.2.2.2.2.1.7, values: {2: Disabled, 3: Enabled}}
+
+
