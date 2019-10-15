@@ -58,7 +58,7 @@ class Reader
      * @throws \ErrorException
      */
     public function readGlobalOids() {
-        return $this->readOids("{$this->configPath}/global.oids.yml");
+        return $this->readOids("{$this->configPath}/oids/global.oids.yml");
     }
 
     /**

@@ -27,7 +27,7 @@ class DlinkClearCounters extends AbstractModule
     public function walk($filter = [])
     {
         $this->response = $this->formatResponse($this->walker->set(
-            $this->oidsCollector->getOidByName('dlink.DevCtrlCleanAllStatisticCounter')->getOid(),
+            $this->oidsCollector->getOidByName('dlink.DevCtrlCleanAllStatisticCounter')->getOid() ,
             PoollerRequest::TypeIntegerValue,
             $this->oidsCollector->getOidByName('dlink.DevCtrlCleanAllStatisticCounter')->getValueIdByName('active')
             )

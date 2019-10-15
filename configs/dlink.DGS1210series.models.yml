@@ -10,7 +10,7 @@ models:
    ports: 28
    oids:
      - ./oids/dlink/dgs-1210-28-me-a2.yml
-   detect: {description: ^DGS-1210-28\/ME\/A2$, hardware: .*, objid: ^.*171.10.76.28.1$ }
+   detect: {description: ^DGS-1210-28\/ME\/A2$,  objid: ^.*171.10.76.28.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
      diag_linkup: true
@@ -30,7 +30,7 @@ models:
    ports: 20
    oids:
      - ./oids/dlink/dgs-1210-20-me-a1.yml
-   detect: {description: ^DGS-1210-20\/ME\/A1$, hardware: .*, objid: ^.*171\.10\.76\.31\.1$ }
+   detect: {description: ^DGS-1210-20\/ME\/A1$,  objid: ^.*171\.10\.76\.31\.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
      diag_linkup: true
@@ -50,7 +50,7 @@ models:
    ports: 10
    oids:
      - ./oids/dlink/dgs-1210-10-me-a1.yml
-   detect: {description: ^DGS-1210-10\/ME\/A1$, hardware: .*, objid: ^.*171.10.76.35.1$ }
+   detect: {description: ^DGS-1210-10\/ME\/A1$,  objid: ^.*171.10.76.35.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8]
      diag_linkup: true
@@ -70,7 +70,7 @@ models:
    ports: 20
    oids:
      - ./oids/dlink/dgs-1210-20-me-b1.yml
-   detect: {description: ^DGS-1210-20\/ME\/B1$, hardware: .*, objid: ^.*171.10.76.31.2$ }
+   detect: {description: ^DGS-1210-20\/ME\/B1$,  objid: ^.*171.10.76.31.2$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
      diag_linkup: true
@@ -90,7 +90,7 @@ models:
    ports: 28
    oids:
      - ./oids/dlink/dgs-1210-28-me-b1.yml
-   detect: {description: ^DGS-1210-28\/ME\/B1$, hardware: .*, objid: ^.*171.10.76.28.2$ }
+   detect: {description: ^DGS-1210-28\/ME\/B1$,  objid: ^.*171.10.76.28.2$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
      diag_linkup: true
@@ -110,7 +110,7 @@ models:
    ports: 28
    oids:
      - ./oids/dlink/dgs-1210-28xs-me-b1.yml
-   detect: {description: ^DGS-1210-28XS\/ME\/B1$, hardware: .*, objid: ^.*171.10.76.39.1$ }
+   detect: {description: ^DGS-1210-28XS\/ME\/B1$,  objid: ^.*171.10.76.39.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      diag_linkup: true

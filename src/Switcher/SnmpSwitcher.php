@@ -93,6 +93,6 @@ class SnmpSwitcher extends Switcher
         return $this->getModule('clear_counters')->walk()->getPretty();
     }
     function rebootDevice() {
-        return $this->getModule('reboot_device')->walk()->getPretty();
+        return $this->getModule('reboot')->walk()->getPretty();
     }
 }

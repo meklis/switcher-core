@@ -63,10 +63,10 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param array $filter
+     * @param array $params
      * @return self
      */
-    public abstract function walk($filter = []);
+    public abstract function walk($params = []);
 
     /**
      * @param array $filter

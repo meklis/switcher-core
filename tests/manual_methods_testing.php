@@ -31,6 +31,8 @@ $evals = [
     'getVlansByPort()',
     'getCableDiag()',
     'getLinkInfo()',
+    'clearCounters()',
+    'rebootDevice()',
 ];
 
 

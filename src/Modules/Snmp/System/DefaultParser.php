@@ -26,11 +26,13 @@ class DefaultParser extends AbstractModule
     function getPretty()
     {
         return [
-            'descr' => $this->response['sys.Descr']->fetchOne()->getValue(),
-            'uptime' => $this->response['sys.Uptime']->fetchOne()->getValueAsTimeTicks(),
-            'contact' => $this->response['sys.Contact']->fetchOne()->getValue(),
-            'name' => $this->response['sys.Name']->fetchOne()->getValue(),
-            'location' => $this->response['sys.Location']->fetchOne()->getValue(),
+            'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
+            'uptime' => $this->getResponseByName('sys.Uptime')->fetchOne()->getValueAsTimeTicks(),
+            'contact' => $this->getResponseByName('sys.Contact')->fetchOne()->getValue(),
+            'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
+            'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
+            'firmware' => $this->getResponseByName('sys.Firmware')->fetchOne()->getValue(),
+            'revision' => $this->getResponseByName('sys.Revision')->fetchOne()->getValue(),
             'meta' =>  [
                 'name' => $this->model->getName(),
                 'detect' => $this->model->getDetect(),

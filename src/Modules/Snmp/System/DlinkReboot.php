@@ -4,56 +4,46 @@
 namespace SwitcherCore\Modules\Snmp\System;
 
 
+use SnmpWrapper\Request\PoollerRequest;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 use \SwitcherCore\Modules\AbstractModule;
 use \SwitcherCore\Modules\Helper;
 
 class DlinkReboot extends AbstractModule
 {
-    /**
-     * @var WrappedResponse[]
-     */
-    protected $response = null ;
-    function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
+    protected function formate() {
+        return true;
     }
-    function getRaw()
-    {
-        return $this->response;
-    }
-
     function getPretty()
     {
-        return [
-            'descr' => $this->response['sys.Descr']->fetchOne()->getValue(),
-            'uptime' => $this->response['sys.Uptime']->fetchOne()->getValueAsTimeTicks(),
-            'contact' => $this->response['sys.Contact']->fetchOne()->getValue(),
-            'name' => $this->response['sys.Name']->fetchOne()->getValue(),
-            'location' => $this->response['sys.Location']->fetchOne()->getValue(),
-            'meta' =>  [
-                'name' => $this->model->getName(),
-                'detect' => $this->model->getDetect(),
-                'ports' => $this->model->getPorts(),
-                'extra' => $this->model->getExtra(),
-                'modules' => $this->model->getModulesList(),
-                ]
-        ];
+        return true ;
     }
 
-    /**
-     * @param array $filter
-     * @return $this|AbstractModule
-     * @throws \Exception
-     */
+    function getPrettyFiltered($filter = [])
+    {
+        return true;
+    }
+
     public function walk($filter = [])
     {
-        $oids = $this->oidsCollector->getOidsByRegex('^sys\..*');
-        $oArray = [];
-        foreach ($oids as $oid) {
-            $oArray[] = $oid->getOid();
+        $method = $this->oidsCollector->getOidByName('dlink.DevCtrlSystemReboot')->getValueIdByName('reboot');
+        if(isset($filter['reboot_method'])) {
+            if($filter['reboot_method'] == 'reboot') {
+                $method = $this->oidsCollector->getOidByName('dlink.DevCtrlSystemReboot')->getValueIdByName('reboot');
+            }
+            if($filter['reboot_method'] == 'load_defaults') {
+                $method = $this->oidsCollector->getOidByName('dlink.DevCtrlSystemReboot')->getValueIdByName('reboot-and-load-factory-default-config');
+            }
+            if($filter['reboot_method'] == 'save_config') {
+                $method = $this->oidsCollector->getOidByName('dlink.DevCtrlSystemReboot')->getValueIdByName('save-config-and-reboot');
+            }
         }
-        $this->response = $this->formatResponse($this->walker->walk($oArray));
+        $this->response = $this->formatResponse($this->walker->set(
+            $this->oidsCollector->getOidByName('dlink.DevCtrlSystemReboot')->getOid() ,
+            PoollerRequest::TypeIntegerValue,
+            $method
+        )
+        );
         return $this;
     }
 }

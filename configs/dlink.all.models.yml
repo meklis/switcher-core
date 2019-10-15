@@ -11,7 +11,7 @@ models:
    oids:
     - ./oids/dlink/des-3526.yml
     - ./oids/dlink/common-diag-cable.yml
-   detect: {description: ^DES-3526 Fast-Ethernet Switch$, hardware: .*, objid: 171\.10\.64\.1$ }
+   detect: {description: ^DES-3526 Fast-Ethernet Switch$,  objid: 171\.10\.64\.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
      diag_linkup: false
@@ -32,7 +32,7 @@ models:
    oids:
     - ./oids/dlink/des-1228me.yml
     - ./oids/dlink/common-diag-cable.yml
-   detect: {description: ^D-Link DES-1228\/ME Metro Ethernet Switch$, hardware: .*, objid: 171\.10\.116\.2$ }
+   detect: {description: ^D-Link DES-1228\/ME Metro Ethernet Switch$,  objid: 171\.10\.116\.2$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
      diag_linkup: false
@@ -53,7 +53,7 @@ models:
    oids:
      - ./oids/dlink/des-3028.yml
      - ./oids/dlink/common-diag-cable.yml
-   detect: {description: ^D-Link DES-3028 Fast Ethernet Switch, hardware: .*, objid: .* }
+   detect: {description: ^D-Link DES-3028 Fast Ethernet Switch,  objid: .* }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      diag_linkup: false
@@ -68,13 +68,15 @@ models:
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Snmp\Counters\DlinkClearCounters
+     reboot: Snmp\System\DlinkReboot
 
  - name: D-link DES-3028G
    ports: 28
    oids:
      - ./oids/dlink/des-3028G.yml
      - ./oids/dlink/common-diag-cable.yml
-   detect: {description: ^D-Link DES-3028G Fast Ethernet Switch, hardware: .*, objid: ^.*171\.10\.63\.11$ }
+   detect: {description: ^D-Link DES-3028G Fast Ethernet Switch,  objid: ^.*171\.10\.63\.11$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,28]
      diag_linkup: yes
@@ -94,7 +96,7 @@ models:
    ports: 6
    oids:
      - ./oids/dlink/dgs-1100-06-me-a1.yml
-   detect: {description: ^DGS-1100-06\/ME\/A1$, hardware: .*, objid: ^.*.171.10.134.1$ }
+   detect: {description: ^DGS-1100-06\/ME\/A1$,  objid: ^.*.171.10.134.1$ }
    extra:
      diag_ports: [1,2,3,4,5]
      diag_linkup: false
@@ -114,7 +116,7 @@ models:
    ports: 10
    oids:
      - ./oids/dlink/dgs-1100-10-me.yml
-   detect: {description: ^DGS-1100-10\/ME, hardware: .*, objid: ^.*.171.10.134.2.1$ }
+   detect: {description: ^DGS-1100-10\/ME,  objid: ^.*.171.10.134.2.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10]
      diag_linkup: false
