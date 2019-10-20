@@ -4,9 +4,8 @@
 namespace SwitcherCore\Modules\Snmp\Vlan;
 
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\ModuleInterface;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 
 class DlinkVlanParser extends AbstractModule
 {

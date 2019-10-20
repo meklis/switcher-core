@@ -3,8 +3,8 @@
 
 namespace SwitcherCore\Modules\Snmp\Errors;
 
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 
 
 class DefaultParser extends AbstractModule

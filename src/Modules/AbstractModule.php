@@ -5,12 +5,13 @@ namespace SwitcherCore\Modules;
 
 
 
+use SnmpWrapper\Response\PoollerResponse;
+use SnmpWrapper\Walker;
+use SwitcherCore\Config\CommandCollector;
+use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use \SnmpWrapper\Response\PoollerResponse;
-use \SnmpWrapper\Walker;
-use \SwitcherCore\Config\Objects\Model;
-use \SwitcherCore\Config\OidCollector;
-use \SwitcherCore\Switcher\Objects\WrappedResponse;
+use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule implements ModuleInterface
 {
@@ -28,6 +29,10 @@ abstract class AbstractModule implements ModuleInterface
      * @var OidCollector
      */
     protected $oidsCollector;
+    /**
+     * @var CommandCollector
+     */
+    protected $commandCollector;
 
     /**
      * @var Model
@@ -59,6 +64,15 @@ abstract class AbstractModule implements ModuleInterface
      */
     function setWalker(Walker $walker) {
         $this->walker = $walker;
+        return $this;
+    }
+
+    /**
+     * @param Walker $walker
+     * @return self
+     */
+    function setCommandCollector(CommandCollector $collector) {
+        $this->commandCollector = $collector;
         return $this;
     }
 

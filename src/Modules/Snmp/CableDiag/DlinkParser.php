@@ -3,10 +3,10 @@
 
 namespace SwitcherCore\Modules\Snmp\CableDiag;
 
-use SwitcherCore\Exceptions\IncompleteResponseException;
-use \SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
 use SnmpWrapper\Request\PoollerRequest;
+use SwitcherCore\Exceptions\IncompleteResponseException;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 
 
 class DlinkParser extends AbstractModule

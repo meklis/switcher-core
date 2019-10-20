@@ -5,7 +5,7 @@ namespace SwitcherCore\Modules\Snmp\Vlan;
 
 
 use SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\Helper;
 
 class PvidParser extends AbstractModule
 {

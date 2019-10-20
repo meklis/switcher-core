@@ -4,8 +4,8 @@
 namespace SwitcherCore\Modules\Snmp\Fdb;
 
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 
 class ByVlanParser extends AbstractModule
 {

@@ -4,9 +4,8 @@
 namespace SwitcherCore\Modules\Snmp\System;
 
 
+use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\Helper;
 
 class DefaultParser extends AbstractModule
 {

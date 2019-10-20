@@ -3,9 +3,8 @@
 
 namespace SwitcherCore\Modules\Snmp\Counters;
 
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\ModuleInterface;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 
 
 class DefaultParser extends AbstractModule

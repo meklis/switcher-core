@@ -1,22 +1,22 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
 
-use SwitcherCore\Config\Reader;
-use SnmpWrapper\WrapperWorker;
 use SnmpWrapper\Walker;
+use SnmpWrapper\WrapperWorker;
+use SwitcherCore\Config\Reader;
 
 $reader = new  Reader(__DIR__ . "/../configs");
-$model = SwitcherCore\Config\ModelCollector::init($reader);
-$oids = SwitcherCore\Config\OidCollector::init($reader);
+
 $wrapper = new  WrapperWorker("http://37.57.212.3:8080");
 $walker =  (new  Walker($wrapper))
     ->useCache(false);
 
-$switcher = new \SwitcherCore\Switcher\SnmpSwitcher($walker,$model,$oids);
+$switcher = new \SwitcherCore\Switcher\Switcher($walker,$reader);
+$switcher->connect($argv[1], $argv[2]);
+
+$snmp_switcher = new \SwitcherCore\Switcher\SnmpSwitcher($switcher);
 
 $handle = fopen ("php://stdin","r");
-
-$switcher->connect($argv[1], $argv[2]);
 
 echo "Start testing ...\n\n";
 
@@ -43,7 +43,7 @@ foreach ($evals as $num=>$eval) {
     }
     echo "Step number {$num}, call method {$eval} \n";
     try {
-        eval("print_r(json_encode(\$switcher->$eval, JSON_PRETTY_PRINT));");
+        eval("print_r(json_encode(\$snmp_switcher->$eval, JSON_PRETTY_PRINT));");
     } catch (Exception $e) {
         echo "Method $eval has exception, fix it!\n";
         echo "Write num of step ($num) in arguments for running from this step.\n";

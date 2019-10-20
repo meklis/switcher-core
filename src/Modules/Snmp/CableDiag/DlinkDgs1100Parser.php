@@ -3,8 +3,8 @@
 
 namespace SwitcherCore\Modules\Snmp\CableDiag;
 
-use SwitcherCore\Modules\Helper;
 use SnmpWrapper\Request\PoollerRequest;
+use SwitcherCore\Modules\Helper;
 
 
 class DlinkDgs1100Parser extends DlinkParser

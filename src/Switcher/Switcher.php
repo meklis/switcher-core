@@ -2,39 +2,56 @@
 
 namespace SwitcherCore\Switcher;
 
+use SnmpWrapper\Walker;
+use SwitcherCore\Config\CommandCollector;
+use SwitcherCore\Config\ModelCollector;
+use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\OidCollector;
+use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
-use \SnmpWrapper\Walker;
-use \SwitcherCore\Config\ModelCollector;
-use \SwitcherCore\Config\Objects\Model;
-use \SwitcherCore\Config\OidCollector;
 
 
 class Switcher
 {
     /**
+     * @var string
+     */
+    public $ip;
+    /**
+     * @var string
+     */
+    public $community;
+    /**
      * @var ModelCollector
      */
-    protected $modelCollector;
+    public $modelCollector;
     /**
      * @var Walker
      */
-    protected $walker;
+    public $walker;
     /**
      * @var OidCollector
      */
-    protected $oidCollector;
+    public  $oidCollector;
+    /**
+     * @var CommandCollector
+     */
+    public  $commandCollector;
     /**
      * @var Model
      */
 
-    protected $model;
-    function __construct(Walker $walker, ModelCollector $modelCollector, OidCollector $oidCollector)
+    public $model;
+    function __construct(Walker $walker, Reader $reader)
     {
-        $this->modelCollector = $modelCollector;
+        $this->oidCollector = \SwitcherCore\Config\OidCollector::init($reader);
+        $this->modelCollector = \SwitcherCore\Config\ModelCollector::init($reader);
+        $this->commandCollector = \SwitcherCore\Config\CommandCollector::init($reader);
         $this->walker = $walker;
-        $this->oidCollector = $oidCollector;
     }
     function connect($ip, $community) {
+        $this->ip = $ip;
+        $this->community = $community;
         $this->walker
             ->setIp($ip)
             ->setCommunity($community);
@@ -63,13 +80,17 @@ class Switcher
         }
         if($descr || $objId || $hardware) {
             $this->model = $this->modelCollector->getModelByDetect($descr,$hardware,$objId);
+            $this->commandCollector->setModel($this->model);
             $this->oidCollector->readEnterpriceOids($this->model);
             $this->model->loadModules();
             //Implement objects for modules
             foreach ($this->model->getModules() as $moduleName=>$module) {
                 $this->model->setModule(
                     $moduleName,
-                    $module->setModel($this->model)->setOidCollector($this->oidCollector)->setWalker($this->walker)
+                    $module->setModel($this->model)
+                        ->setOidCollector($this->oidCollector)
+                        ->setWalker($this->walker)
+                        ->setCommandCollector($this->commandCollector)
                 );
             }
 
@@ -77,7 +98,7 @@ class Switcher
             throw new \Exception("Returned empty response from walker, it's problem");
         }
     }
-    protected function getModule($moduleName) {
+    function getModule($moduleName) {
         if(!$this->model) {
             throw new \Exception("Device properties and oids not loaded. Are you use ::connect() first?");
         }
@@ -86,8 +107,5 @@ class Switcher
         } else {
             throw new ModuleNotFoundException("Module $moduleName not found for model {$this->model->getName()}");
         }
-    }
-    function getSystemInfo() {
-        return $this->getModule('system')->walk()->getPretty();
     }
 }

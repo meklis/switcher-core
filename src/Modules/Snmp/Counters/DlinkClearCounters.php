@@ -4,9 +4,7 @@
 namespace SwitcherCore\Modules\Snmp\Counters;
 
 use SnmpWrapper\Request\PoollerRequest;
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\ModuleInterface;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
 
 
 class DlinkClearCounters extends AbstractModule

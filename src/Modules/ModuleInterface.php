@@ -1,9 +1,9 @@
 <?php
 namespace SwitcherCore\Modules;
 
-use \SnmpWrapper\Walker;
-use \SwitcherCore\Config\Objects\Model;
-use \SwitcherCore\Config\OidCollector;
+use SnmpWrapper\Walker;
+use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\OidCollector;
 
 interface ModuleInterface
 {

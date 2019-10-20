@@ -3,9 +3,10 @@
 
 namespace SwitcherCore\Modules\Snmp\Link;
 
-use SwitcherCore\Switcher\Objects\WrappedResponse;
-use \SwitcherCore\Modules\AbstractModule;;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
+
+;
 
 class DefaultParser extends AbstractModule
 {

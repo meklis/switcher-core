@@ -5,9 +5,7 @@ namespace SwitcherCore\Modules\Snmp\System;
 
 
 use SnmpWrapper\Request\PoollerRequest;
-use SwitcherCore\Switcher\Objects\WrappedResponse;
-use \SwitcherCore\Modules\AbstractModule;
-use \SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\AbstractModule;
 
 class DlinkReboot extends AbstractModule
 {

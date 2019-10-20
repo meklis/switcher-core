@@ -4,8 +4,6 @@
 namespace SwitcherCore\Switcher\Objects;
 
 
-use SwitcherCore\Config\Objects\Oid;
-use SwitcherCore\Config\OidCollector;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Switcher\Objects\SnmpResponse as Resp;
 

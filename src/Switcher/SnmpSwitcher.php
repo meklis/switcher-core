@@ -3,36 +3,48 @@
 
 namespace SwitcherCore\Switcher;
 
-
-class SnmpSwitcher extends Switcher
+/**
+ * Class SnmpSwitcher
+ * @package SwitcherCore\Switcher
+ */
+class SnmpSwitcher
 {
+    /**
+     * @var Switcher
+     */
+    protected $sw = null;
+    function __construct(Switcher $switcher)
+    {
+        $this->sw = $switcher;
+    }
+
     function getLinkInfo($port = 0, $ethernetOnly=true) {
         $type = '';
         if($ethernetOnly) {
             $type = 'GE,FE,-';
         }
-        return $this->getModule('link')->walk([
+        return $this->sw->getModule('link')->walk([
             'port' => $port,
         ])->getPrettyFiltered(['type' => $type, 'port'=>$port]);
     }
     function getCounters($port = 0) {
-        return $this->getModule('counters')->walk([
+        return $this->sw->getModule('counters')->walk([
             'port' => $port,
         ])->getPretty();
     }
     function getErrors($port = 0) {
-        return $this->getModule('errors')->walk([
+        return $this->sw->getModule('errors')->walk([
             'port' => $port,
         ])->getPretty();
     }
     function getRmon($port) {
-        return $this->getModule('rmon')->walk([
+        return $this->sw->getModule('rmon')->walk([
             'port' => $port,
         ])->getPretty();
     }
     function getFDB($port = 0, $vlan = 0, $mac = "")
     {
-        return $this->getModule('fdb')->walk([
+        return $this->sw->getModule('fdb')->walk([
             'mac' => $mac,
             'vlan_id' => $vlan,
         ])->getPrettyFiltered([
@@ -40,10 +52,10 @@ class SnmpSwitcher extends Switcher
         ]);
     }
     function getVlans($vlanId = 0) {
-        return $this->getModule('vlan')->walk(['vlan_id'=>$vlanId])->getPrettyFiltered();
+        return $this->sw->getModule('vlan')->walk(['vlan_id'=>$vlanId])->getPrettyFiltered();
     }
     function getVlansByPort($show_port = 0) {
-        $parser =  $this->getModule('vlan');
+        $parser =  $this->sw->getModule('vlan');
         $data = $parser->walk()->getPrettyFiltered();
         $indexes = $parser->getIndexes();
         $response = [];
@@ -84,15 +96,12 @@ class SnmpSwitcher extends Switcher
         return $response;
     }
     function getPVID($port = 0) {
-        return $this->getModule('pvid')->walk(['port'=>$port])->getPretty();
+        return $this->sw->getModule('pvid')->walk(['port'=>$port])->getPretty();
     }
     function getCableDiag($port = 0) {
-        return $this->getModule('cable_diag')->walk(['port'=>$port])->getPretty();
+        return $this->sw->getModule('cable_diag')->walk(['port'=>$port])->getPretty();
     }
-    function clearCounters() {
-        return $this->getModule('clear_counters')->walk()->getPretty();
-    }
-    function rebootDevice() {
-        return $this->getModule('reboot')->walk()->getPretty();
+    function getSystemInfo() {
+        return $this->sw->getModule('system')->walk()->getPretty();
     }
 }

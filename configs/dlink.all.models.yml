@@ -11,6 +11,8 @@ models:
    oids:
     - ./oids/dlink/des-3526.yml
     - ./oids/dlink/common-diag-cable.yml
+   commands:
+    - dlink.yml
    detect: {description: ^DES-3526 Fast-Ethernet Switch$,  objid: 171\.10\.64\.1$ }
    extra:
      diag_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]

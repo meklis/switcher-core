@@ -28,6 +28,7 @@ class Model
      * @var Oid[]
      */
     public $oids  = [];
+
     /**
      * @var array
      */
@@ -41,6 +42,12 @@ class Model
      * @var AbstractModule[]
      */
     public $modules;
+
+    /**
+     * @var string[]
+     */
+    protected $commands = [];
+
 
     /**
      * @var string[]
@@ -90,6 +97,9 @@ class Model
         }
         if(isset($arr['oids']) && is_array($arr['oids'])) {
             $model->setOidPatches($arr['oids']);
+        }
+        if(isset($arr['commands']) && is_array($arr['commands'])) {
+            $model->setOidPatches($arr['commands']);
         }
 
         if(isset($arr['modules'])) {
@@ -233,6 +243,25 @@ class Model
     public function setDetect(array $detect): Model
     {
         $this->detect = $detect;
+        return $this;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getCommandPatches(): array
+    {
+        return $this->commands;
+    }
+
+    /**
+     * @param array $detect
+     * @return Model
+     */
+    public function setCommandPatches(array $commands): Model
+    {
+        $this->commands = $commands;
         return $this;
     }
 
