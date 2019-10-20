@@ -1,0 +1,6 @@
+commands:
+  reboot:
+    - { line: 'reboot', wait_for: '#', fail: '.*' }
+    - { line: 'Y', wait_for: '#', fail: '.*' }
+  create_vlan:
+    - { line: 'create vlan {vlan_id}', wait_for: '#', fail: '.*' }

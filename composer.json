@@ -16,5 +16,6 @@
     },
     "require": {
         "meklis/snmp-wrapper": "dev-master"
-    }
+    },
+    "minimum-stability": "dev"
 }
