@@ -1,1 +1,8 @@
-- name:
+- name: fdb
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+    - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
+- name: system
+- name: link
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}

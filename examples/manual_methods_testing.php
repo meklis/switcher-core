@@ -5,50 +5,42 @@ use SnmpWrapper\Walker;
 use SnmpWrapper\WrapperWorker;
 use SwitcherCore\Config\Reader;
 
+//Switcher core initialization
 $reader = new  Reader(__DIR__ . "/../configs");
+$walker =  (new  Walker(
+    new  WrapperWorker("http://37.57.212.3:8080")
+))->useCache(false)->setIp($argv[1]);
 
-$wrapper = new  WrapperWorker("http://37.57.212.3:8080");
-$walker =  (new  Walker($wrapper))
-    ->useCache(false);
+$telnet = (new \Meklis\TelnetOverProxy\Telnet($argv[1], 23))
+    ->setLazyConnect(true)
+    ->connectOverProxy("tcp://127.0.0.1:3333");
 
-$switcher = new \SwitcherCore\Switcher\Switcher($walker,$reader);
-$switcher->connect($argv[1], $argv[2]);
-
-$telnet = new \meklis\network\Telnet($argv[1], 23);
+$core = new \SwitcherCore\Switcher\Core($reader);
 
 
-$snmp_switcher = new \SwitcherCore\Switcher\SnmpSwitcher($switcher);
+$core->setWalker($walker, $argv[2])->detectModel()->setTelnet($telnet, $argv[3], $argv[4]);
+
+
 
 $handle = fopen ("php://stdin","r");
 
 echo "Start testing ...\n\n";
 
 $evals = [
-    'getSystemInfo()',
-    'getFDB()',
-    'getErrors()',
-    'getRmon(3)',
-    'getCounters(3)',
-    'getPVID()',
-    'getVlans()',
-    'getVlansByPort()',
-    'getCableDiag()',
-    'getLinkInfo()',
-    'clearCounters()',
-    'rebootDevice()',
+    ['name'=>'system', 'argv' => '[]'],
 ];
 
 
 
 foreach ($evals as $num=>$eval) {
-    if(isset($argv[3])) {
-        if($argv[3] > $num) continue;
+    if(isset($argv[5])) {
+        if($argv[5] > $num) continue;
     }
-    echo "Step number {$num}, call method {$eval} \n";
+    echo "Step number {$num}, call method {$eval['name']}({$eval['argv']}) \n";
     try {
-        eval("print_r(json_encode(\$snmp_switcher->$eval, JSON_PRETTY_PRINT));");
+        eval("print_r(json_encode(\$core->action('{$eval['name']}', {$eval['argv']}), JSON_PRETTY_PRINT));");
     } catch (Exception $e) {
-        echo "Method $eval has exception, fix it!\n";
+        echo "Method {$eval['name']} has exception, fix it!\n";
         echo "Write num of step ($num) in arguments for running from this step.\n";
         throw new Exception($e);
     }

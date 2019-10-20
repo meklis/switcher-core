@@ -10,6 +10,7 @@ namespace SwitcherCore\Config;
 
 
 use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\Objects\Module;
 use SwitcherCore\Config\Objects\Oid;
 
 class Reader
@@ -30,9 +31,8 @@ class Reader
      * @throws \ErrorException
      */
     function readModels() {
-        $files = array_filter(scandir($this->configPath), function ($elem) {
-
-            if(preg_match('/^.*\.models\.(yml|yaml)$/', $elem)) {
+        $files = array_filter(scandir($this->configPath . "/models/"), function ($elem) {
+            if(preg_match('/^.*\.(yml|yaml)$/', $elem)) {
                 return true;
             } else {
                 return false;
@@ -40,7 +40,7 @@ class Reader
         });
         $models = [];
         foreach ($files as $filename) {
-            $parsedYaml = yaml_parse_file("{$this->configPath}/{$filename}");
+            $parsedYaml = yaml_parse_file("{$this->configPath}/models/{$filename}");
             if(!$parsedYaml) {
                 throw new \ErrorException("Error reading yaml configuration - {$this->configPath}/{$filename}");
             } elseif(!isset($parsedYaml['models'])) {
@@ -74,6 +74,22 @@ class Reader
             $list = [];
             foreach ($data as $oid) {
                 $list[] = Oid::init($oid);
+            }
+            return $list;
+    }
+/**
+     * @param string $path
+     * @return array
+     * @throws \ErrorException
+     */
+    function readModulesConfig() {
+            $data = yaml_parse_file("{$this->configPath}/modules.yml");
+            if (!$data) {
+                throw new \ErrorException("Error reading config modules.yml");
+            }
+            $list = [];
+            foreach ($data as $module) {
+                $list[] = Module::init($module);
             }
             return $list;
     }

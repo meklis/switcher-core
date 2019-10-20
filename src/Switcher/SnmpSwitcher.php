@@ -10,10 +10,10 @@ namespace SwitcherCore\Switcher;
 class SnmpSwitcher
 {
     /**
-     * @var Switcher
+     * @var Core
      */
     protected $sw = null;
-    function __construct(Switcher $switcher)
+    function __construct(Core $switcher)
     {
         $this->sw = $switcher;
 

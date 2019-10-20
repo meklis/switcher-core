@@ -19,29 +19,29 @@ class Model
     /**
      * @var string
      */
-    public $name = "";
+    protected $name = "";
     /**
      * @var int
      */
-    public $ports = 0;
+    protected $ports = 0;
     /**
      * @var Oid[]
      */
-    public $oids  = [];
+    protected $oids  = [];
 
     /**
      * @var array
      */
-    public $detect = [];
+    protected $detect = [];
     /**
      * @var array
      */
-    public $extra = [];
+    protected $extra = [];
 
     /**
      * @var AbstractModule[]
      */
-    public $modules;
+    protected $modules;
 
 
     /**
@@ -103,7 +103,7 @@ class Model
         if(isset($arr['oids']) && is_array($arr['oids'])) {
             $model->setOidPatches($arr['oids']);
         }
-        if(isset($arr['telnet_conn_type']) && is_array($arr['telnet_conn_type'])) {
+        if(isset($arr['telnet_conn_type'])) {
             $model->telnetConnType = $arr['telnet_conn_type'];
         }
 
