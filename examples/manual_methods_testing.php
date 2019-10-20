@@ -15,6 +15,7 @@ $telnet = (new \Meklis\TelnetOverProxy\Telnet($argv[1], 23))
     ->setLazyConnect(true)
     ->connectOverProxy("tcp://127.0.0.1:3333");
 
+print_r($telnet);
 $core = new \SwitcherCore\Switcher\Core($reader);
 
 
