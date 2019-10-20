@@ -14,6 +14,9 @@ $walker =  (new  Walker($wrapper))
 $switcher = new \SwitcherCore\Switcher\Switcher($walker,$reader);
 $switcher->connect($argv[1], $argv[2]);
 
+$telnet = new \meklis\network\Telnet($argv[1], 23);
+
+
 $snmp_switcher = new \SwitcherCore\Switcher\SnmpSwitcher($switcher);
 
 $handle = fopen ("php://stdin","r");

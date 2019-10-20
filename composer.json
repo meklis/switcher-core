@@ -15,7 +15,8 @@
         }
     },
     "require": {
-        "meklis/snmp-wrapper": "dev-master"
+        "meklis/snmp-wrapper": "dev-master",
+        "meklis/telnet-over-proxy": "dev-master"
     },
     "minimum-stability": "dev"
 }

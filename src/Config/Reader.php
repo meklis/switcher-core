@@ -9,7 +9,6 @@
 namespace SwitcherCore\Config;
 
 
-use Config\Objects\Command;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\Objects\Oid;
 
@@ -78,22 +77,7 @@ class Reader
             }
             return $list;
     }
-    /**
-     * @param string $path
-     * @return array
-     * @throws \ErrorException
-     */
-    private function readAndParseCommands(string $path) {
-            $data = yaml_parse_file($path);
-            if (!$data) {
-                throw new \ErrorException("Error reading config $path");
-            }
-            $list = [];
-            foreach ($data['commands'] as $command) {
-                $list[] = Command::init($command);
-            }
-            return $list;
-    }
+
 
     /**
      * @param Model $model
@@ -112,22 +96,7 @@ class Reader
           return $oids;
     }
 
-    /**
-     * @param Model $model
-     * @return Command[]
-     * @throws \ErrorException
-     */
-    function readCommands(Model $model) {
-        $commands = [];
-        foreach ($model->getCommandPatches() as $path) {
-            $data =  $this->readAndParseCommands("{$this->configPath}/{$path}");
-            if(!$data) {
-                throw new \Exception("Commands in path $path is empty. Please, fix it.");
-            }
-            $commands = array_merge($commands, $data);
-        }
-        return $commands;
-    }
+
 }
 
 

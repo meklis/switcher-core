@@ -5,6 +5,7 @@ namespace SwitcherCore\Modules;
 
 
 
+use Meklis\TelnetOverProxy\Telnet;
 use SnmpWrapper\Response\PoollerResponse;
 use SnmpWrapper\Walker;
 use SwitcherCore\Config\CommandCollector;
@@ -44,6 +45,17 @@ abstract class AbstractModule implements ModuleInterface
      * @param Model $model
      * @return self
      */
+
+    /**
+     * @var Telnet|null
+     */
+    protected $conn = null;
+
+    function setTelnetConn(Telnet $conn) {
+        $this->conn = $conn;
+        return $this;
+    }
+
     function setModel(Model $model) {
         $this->model = $model;
         return $this;

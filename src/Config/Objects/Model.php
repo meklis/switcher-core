@@ -43,16 +43,18 @@ class Model
      */
     public $modules;
 
-    /**
-     * @var string[]
-     */
-    protected $commands = [];
-
 
     /**
      * @var string[]
      */
     protected $modulesNames;
+
+
+    /**
+     * @var string
+     */
+    protected $telnetConnType;
+
 
     /**
      * @return AbstractModule[]
@@ -60,6 +62,9 @@ class Model
     public function getModules()
     {
         return $this->modules;
+    }
+    public function getTelnetConnType() {
+        return $this->telnetConnType;
     }
     public function setModule($name, ModuleInterface $module)
     {
@@ -98,8 +103,8 @@ class Model
         if(isset($arr['oids']) && is_array($arr['oids'])) {
             $model->setOidPatches($arr['oids']);
         }
-        if(isset($arr['commands']) && is_array($arr['commands'])) {
-            $model->setOidPatches($arr['commands']);
+        if(isset($arr['telnet_conn_type']) && is_array($arr['telnet_conn_type'])) {
+            $model->telnetConnType = $arr['telnet_conn_type'];
         }
 
         if(isset($arr['modules'])) {

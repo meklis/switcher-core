@@ -16,6 +16,7 @@ class SnmpSwitcher
     function __construct(Switcher $switcher)
     {
         $this->sw = $switcher;
+
     }
 
     function getLinkInfo($port = 0, $ethernetOnly=true) {

@@ -2,8 +2,8 @@
 
 namespace SwitcherCore\Switcher;
 
+use Meklis\TelnetOverProxy\Telnet;
 use SnmpWrapper\Walker;
-use SwitcherCore\Config\CommandCollector;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
@@ -30,28 +30,37 @@ class Switcher
      */
     public $walker;
     /**
+     * @var Telnet
+     */
+    public $telnet;
+    /**
      * @var OidCollector
      */
     public  $oidCollector;
-    /**
-     * @var CommandCollector
-     */
-    public  $commandCollector;
     /**
      * @var Model
      */
 
     public $model;
-    function __construct(Walker $walker, Reader $reader)
+    function __construct(Reader $reader)
     {
         $this->oidCollector = \SwitcherCore\Config\OidCollector::init($reader);
         $this->modelCollector = \SwitcherCore\Config\ModelCollector::init($reader);
-        $this->commandCollector = \SwitcherCore\Config\CommandCollector::init($reader);
+
+    }
+    function setWalker(Walker $walker) {
         $this->walker = $walker;
     }
-    function connect($ip, $community) {
+    function setTelnet(Telnet $telnet) {
+        $this->telnet = $telnet;
+    }
+
+    function detectModel($ip, $community) {
         $this->ip = $ip;
         $this->community = $community;
+        if(!$this->walker) {
+            throw new \Exception("Snmp walker not setted. You must set walker before connect");
+        }
         $this->walker
             ->setIp($ip)
             ->setCommunity($community);
@@ -80,7 +89,6 @@ class Switcher
         }
         if($descr || $objId || $hardware) {
             $this->model = $this->modelCollector->getModelByDetect($descr,$hardware,$objId);
-            $this->commandCollector->setModel($this->model);
             $this->oidCollector->readEnterpriceOids($this->model);
             $this->model->loadModules();
             //Implement objects for modules
@@ -90,13 +98,30 @@ class Switcher
                     $module->setModel($this->model)
                         ->setOidCollector($this->oidCollector)
                         ->setWalker($this->walker)
-                        ->setCommandCollector($this->commandCollector)
                 );
             }
 
         } else {
             throw new \Exception("Returned empty response from walker, it's problem");
         }
+    }
+    function loginTelnet($login, $password) {
+        $conn_type = $this->model->getTelnetConnType();
+        switch ($conn_type){
+            case 'dlink':
+                $this->conn->disableMagicControl()
+                    ->setLinuxEOL()
+                    ->login($login, $password, 'dlink')
+                    ->exec("disa clip");
+                break;
+            default:
+                throw new \Exception("Not supported connection type '$conn_type' ");
+        }
+
+        foreach ($this->model->getModules() as $module) {
+            $module->setTelnetConn($this->telnet);
+        }
+        return $this;
     }
     function getModule($moduleName) {
         if(!$this->model) {
