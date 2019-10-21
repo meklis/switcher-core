@@ -2,7 +2,7 @@
 
 namespace SwitcherCore\Switcher;
 
-use Meklis\TelnetOverProxy\Telnet;
+use SwitcherCore\Switcher\Objects\Telnet;
 use SnmpWrapper\Walker;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
@@ -56,16 +56,21 @@ class Core
         $this->moduleCollector = \SwitcherCore\Config\ModuleCollector::init($reader);
 
     }
-    function setWalker(Walker $walker, $community) {
-        $walker->setCommunity($community);
+    function setWalker(Walker $walker) {
         $this->walker = $walker;
         return $this;
     }
-    function setTelnet(Telnet $telnet, $login, $password) {
+    function setTelnet(Telnet $telnet) {
         $this->telnet = $telnet;
-        $this->loginTelnet($login, $password);
         return $this;
     }
+
+    /**
+     * @return $this
+     * @throws ModuleNotFoundException
+     * @throws \ErrorException
+     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException
+     */
     function detectModel() {
         if(!$this->walker) {
             throw new \Exception("Snmp walker not setted. You must set walker before connect");
@@ -97,39 +102,37 @@ class Core
             $this->model = $this->modelCollector->getModelByDetect($descr,$hardware,$objId);
             $this->oidCollector->readEnterpriceOids($this->model);
             $this->model->loadModules();
-            //Implement objects for modules
+            if($this->telnet) {
+                $this->telnet->setHostType($this->model->getTelnetConnType());
+            }
+            //Inject objects to modules
+            $modules = [];
             foreach ($this->model->getModules() as $moduleName=>$module) {
+                $modules[$moduleName] = $module;
                 $this->model->setModule(
                     $moduleName,
                     $module->setModel($this->model)
                         ->setOidCollector($this->oidCollector)
                         ->setWalker($this->walker)
+                        ->setTelnetConn($this->telnet)
+
                 );
+            }
+            foreach ($modules as $moduleName=>$module) {
+                $moduleParams = $this->moduleCollector->getByName($moduleName);
+                foreach ($moduleParams->getDependencyModules() as $name) {
+                    print_r($name);
+
+                    if(key_exists($name, $modules)) {
+                        $module->setDependencyModule($name, $modules[$name]);
+                    } else {
+                        $module->setDependencyModule($name, null);
+                    }
+                }
             }
 
         } else {
             throw new \Exception("Returned empty response from walker, it's problem");
-        }
-        return $this;
-    }
-    protected function loginTelnet($login, $password) {
-        if(!$this->model) {
-            throw new \Exception("Telnet must be used only after model detected");
-        }
-        $conn_type = $this->model->getTelnetConnType();
-        switch ($conn_type){
-            case 'dlink':
-                $this->telnet->disableMagicControl()
-                    ->setLinuxEOL()
-                    ->login($login, $password, 'dlink')
-                    ->exec("disa clip");
-                break;
-            default:
-                throw new \Exception("Not supported connection type '$conn_type' ");
-        }
-
-        foreach ($this->model->getModules() as $module) {
-            $module->setTelnetConn($this->telnet);
         }
         return $this;
     }

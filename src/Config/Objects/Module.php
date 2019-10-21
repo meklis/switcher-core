@@ -4,10 +4,13 @@
 namespace SwitcherCore\Config\Objects;
 
 
+use SwitcherCore\Modules\AbstractModule;
+
 class Module
 {
     protected $name;
     protected $arguments;
+    protected $dependency_modules = [];
 
     /**
      * @return mixed
@@ -21,7 +24,7 @@ class Module
      * @param mixed $name
      * @return Module
      */
-    public function setName($name)
+    protected function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -39,7 +42,7 @@ class Module
      * @param mixed $arguments
      * @return Module
      */
-    public function setArguments($arguments)
+    protected function setArguments($arguments)
     {
         $this->arguments = $arguments;
         return $this;
@@ -58,6 +61,9 @@ class Module
         }
         if(isset($arr['name'])) {
             $obj->setName($arr['name']);
+        }
+        if(isset($arr['dependency_modules'])) {
+            $obj->dependency_modules = $arr['dependency_modules'];
         }
         return $obj;
     }
@@ -82,5 +88,8 @@ class Module
 
         }
         return $this;
+    }
+    function getDependencyModules() {
+        return $this->dependency_modules;
     }
 }

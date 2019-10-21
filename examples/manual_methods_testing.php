@@ -6,21 +6,20 @@ use SnmpWrapper\WrapperWorker;
 use SwitcherCore\Config\Reader;
 
 //Switcher core initialization
-$reader = new  Reader(__DIR__ . "/../configs");
 $walker =  (new  Walker(
-    new  WrapperWorker("http://37.57.212.3:8080")
-))->useCache(false)->setIp($argv[1]);
+        new  WrapperWorker("http://37.57.212.3:8080"))
+    )->useCache(false)
+    ->setIp($argv[1])
+    ->setCommunity($argv[2]);
+$telnet = (new \SwitcherCore\Switcher\Objects\Telnet($argv[1], 23))
+    ->connectOverProxy("tcp://127.0.0.1:3333")
+    ->login($argv[3], $argv[4]);
 
-$telnet = (new \Meklis\TelnetOverProxy\Telnet($argv[1], 23))
-    ->setLazyConnect(true)
-    ->connectOverProxy("tcp://127.0.0.1:3333");
+$core = new \SwitcherCore\Switcher\Core(
+    new  Reader(__DIR__ . "/../configs")
+);
 
-print_r($telnet);
-$core = new \SwitcherCore\Switcher\Core($reader);
-
-
-$core->setWalker($walker, $argv[2])->detectModel()->setTelnet($telnet, $argv[3], $argv[4]);
-
+$core->setTelnet($telnet)->setWalker($walker)->detectModel();
 
 
 $handle = fopen ("php://stdin","r");

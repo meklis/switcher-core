@@ -40,6 +40,13 @@ abstract class AbstractModule implements ModuleInterface
      */
     protected $model;
 
+    /**
+     * @var AbstractModule[]
+     */
+    protected $modules;
+
+
+
     protected $oidNames = [];
     /**
      * @param Model $model
@@ -76,6 +83,14 @@ abstract class AbstractModule implements ModuleInterface
      */
     function setWalker(Walker $walker) {
         $this->walker = $walker;
+        return $this;
+    }
+    /**
+     * @param Walker $walker
+     * @return self
+     */
+    function setDependencyModule($moduleName, ?AbstractModule $module) {
+        $this->modules[$moduleName] = $module;
         return $this;
     }
 
