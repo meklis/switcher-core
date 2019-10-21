@@ -29,6 +29,7 @@ class Reboot extends AbstractModule
         $this->status = false;
         try {
            $this->telnet_conn->setPrompt('Command:')->exec("reboot\ny");
+           $this->status = true;
         } catch (\Exception $e) {
             throw new \Exception("Error execute command", 1, $e);
         }

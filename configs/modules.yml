@@ -5,7 +5,6 @@
 - name: link_info
   arguments:
     - {name: port, pattern: '^[0-9]{1,3}$', required: no}
-    - {name: ethernet_only, pattern: '^(yes|no)$', require: no, default: yes}
 
 #Module for get counters
 - name: counters
