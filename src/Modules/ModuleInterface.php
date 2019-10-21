@@ -17,6 +17,18 @@ interface ModuleInterface
     function setModel(Model $model);
 
     /**
+     * @param array $filter
+     * @return mixed
+     */
+    function getPrettyFiltered($filter = []);
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    function run($params = []);
+
+    /**
      * @param OidCollector $collector
      * @return $this
      */

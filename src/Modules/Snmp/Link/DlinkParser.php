@@ -127,7 +127,7 @@ class DlinkParser extends AbstractModule
         }
         return array_values($response);
     }
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $prepared = [
             $this->oidsCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,

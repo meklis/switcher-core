@@ -28,7 +28,7 @@ class DlinkParser extends AbstractModule
         return $this->parse($filter);
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         Helper::prepareFilter($filter) ;
         $ports_list = $this->getPortList($filter);
@@ -87,7 +87,7 @@ class DlinkParser extends AbstractModule
         return $this;
     }
     protected function waitToDiag($ports_list) {
-        for ($i=0;$i<50;$i++) {
+        for ($i=0;$i<100;$i++) {
             foreach ($ports_list as $port=>$pairs) {
                 $response = $this->formatResponse($this->walker->get(
                     [$this->oidsCollector->getOidByName('dlink.CableDiagStatus')->getOid() . ".{$port}"]
@@ -99,7 +99,7 @@ class DlinkParser extends AbstractModule
             if(count($ports_list) == 0) {
                 break;
             }
-            usleep(5000);
+            usleep(50000);
         }
         if(count($ports_list) != 0) {
             throw new IncompleteResponseException("Not all ports are diagnosted");

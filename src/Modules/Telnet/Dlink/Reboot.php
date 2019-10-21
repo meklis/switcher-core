@@ -21,11 +21,14 @@ class Reboot extends AbstractModule
         return $this->status;
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
+        if(!$this->telnet_conn) {
+            throw new \Exception("Module clear counters required telnet connection");
+        }
         $this->status = false;
         try {
-           $this->conn->setPrompt('Command:')->exec("reboot\ny");
+           $this->telnet_conn->setPrompt('Command:')->exec("reboot\ny");
         } catch (\Exception $e) {
             throw new \Exception("Error execute command", 1, $e);
         }

@@ -15,7 +15,6 @@ class DefaultParser extends AbstractModule
         $in_disc = !$this->response['if.InDiscards']->error() ?  $this->response['if.InDiscards']->fetchAll() : [];
         $out_disc = !$this->response['if.OutDiscards']->error() ?  $this->response['if.OutDiscards']->fetchAll() : [];
         $indexes = $this->getIndexes();
-
         $errors = [];
         foreach ($in_err as $i) {
             $index = Helper::getIndexByOid($i->getOid());
@@ -46,16 +45,15 @@ class DefaultParser extends AbstractModule
     }
     function getPrettyFiltered($filter = [])
     {
-
-        $errors = [];
-        foreach ($this->formate() as $num=>$val) {
+        $errors = $this->formate();
+        foreach ($errors as $num=>$val) {
             if($filter['port'] && $filter['port'] != $val['port']) {
                 unset($errors[$num]);
             }
         }
        return array_values($errors);
     }
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $oids = [
             $this->oidsCollector->getOidByName('if.InErrors')->getOid(),

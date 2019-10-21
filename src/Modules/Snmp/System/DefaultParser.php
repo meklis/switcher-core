@@ -47,7 +47,7 @@ class DefaultParser extends AbstractModule
      * @return $this|AbstractModule
      * @throws \Exception
      */
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $oids = $this->oidsCollector->getOidsByRegex('^sys\..*');
         $oArray = [];

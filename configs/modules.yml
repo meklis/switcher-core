@@ -1,10 +1,60 @@
+#Module for get system info + meta
+- name: system
+
+#Module for get link info
+- name: link_info
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+    - {name: ethernet_only, pattern: '^(yes|no)$', require: no, default: yes}
+
+#Module for get counters
+- name: counters
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+
+#Module for get errors
+- name: errors
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+
+#Module for get rmon data
+- name: rmon
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+
+#Module for get FDB
 - name: fdb
   arguments:
     - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+    - {name: mac, pattern: '^$', required: no}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-  dependency_modules:
-    - port
-- name: system
-- name: link
+
+#Get vlan info from device
+- name: vlans
+  arguments:
+    - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
+
+#Get vlan info from device by ports
+- name: vlans_by_port
   arguments:
     - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+  depends:
+    - vlans
+
+- name: pvid
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+
+#Cable diagnostic module
+- name: cable_diag
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,3}$', required: no}
+
+#Action clear counters
+- name: clear_counters
+
+#Action save configuration
+- name: save_config
+
+#Action reboot
+- name: reboot

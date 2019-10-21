@@ -22,7 +22,7 @@ class DlinkReboot extends AbstractModule
         return true;
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $method = $this->oidsCollector->getOidByName('dlink.DevCtrlSystemReboot')->getValueIdByName('reboot');
         if(isset($filter['reboot_method'])) {

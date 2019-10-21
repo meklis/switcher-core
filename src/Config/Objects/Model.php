@@ -72,6 +72,9 @@ class Model
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     function getModulesList() {
         $modules = [];
         foreach ($this->modulesNames as $name=>$_) {
@@ -251,24 +254,6 @@ class Model
         return $this;
     }
 
-
-    /**
-     * @return array
-     */
-    public function getCommandPatches(): array
-    {
-        return $this->commands;
-    }
-
-    /**
-     * @param array $detect
-     * @return Model
-     */
-    public function setCommandPatches(array $commands): Model
-    {
-        $this->commands = $commands;
-        return $this;
-    }
 
     /**
      * @return array

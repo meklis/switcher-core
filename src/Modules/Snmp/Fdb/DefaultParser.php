@@ -47,8 +47,8 @@ class DefaultParser extends AbstractModule
         Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
-            if($filter['port'] > $this->model->ports) {
-                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->ports}");
+            if($filter['port'] > $this->model->getPorts()) {
+                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
             }
             foreach ($formated as $num=>$fdb) {
                 if($fdb['port'] != $filter['port']) {
@@ -77,7 +77,7 @@ class DefaultParser extends AbstractModule
         return $this->formate();
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
        Helper::prepareFilter($filter);
        $fdb_port =  $this->oidsCollector->getOidByName('dot1q.FdbPort')->getOid();

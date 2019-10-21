@@ -2,7 +2,7 @@
 
 namespace SwitcherCore\Switcher;
 
-use SwitcherCore\Switcher\Objects\Telnet;
+use Meklis\TelnetOverProxy\Telnet;
 use SnmpWrapper\Walker;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
@@ -10,6 +10,7 @@ use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 
 class Core
@@ -31,7 +32,7 @@ class Core
      */
     protected  $walker;
     /**
-     * @var Telnet
+     * @var TelnetLazyConnect
      */
     protected  $telnet;
     /**
@@ -136,7 +137,7 @@ class Core
         }
         return $this;
     }
-    function getModule($moduleName) {
+    public function getModule($moduleName) {
         if(!$this->model) {
             throw new \Exception("Device properties and oids not loaded. Are you use ::connect() first?");
         }
@@ -147,10 +148,47 @@ class Core
         }
     }
 
-    function action($moduleName, $arguments = []) {
+    public function action($moduleName, $arguments = []) {
         $moduleParams = $this->moduleCollector->getByName($moduleName);
         $moduleParams->validate($arguments);
-        return $this->getModule($moduleName)->walk($arguments)->getPrettyFiltered($arguments);
+        return $this->getModule($moduleName)->run($arguments)->getPrettyFiltered($arguments);
     }
 
+    public function getModulesData() {
+        $modules = [];
+        foreach ($this->model->getModulesList() as $moduleName) {
+            $moduleConfig = $this->moduleCollector->getByName($moduleName);
+            $modules[] = [
+                'name' => $moduleConfig->getName(),
+                'depends' => $moduleConfig->getDependencyModules(),
+                'arguments' => $moduleConfig->getArguments(),
+                'class' => get_class($this->model->getModules()[$moduleName]),
+            ];
+        }
+        return $modules;
+    }
+
+    public function getDeviceMetaData() {
+        $meta = [
+            'ports' => $this->model->getPorts(),
+            'name' => $this->model->getName(),
+            'extra' => $this->model->getExtra(),
+            'detect' => $this->model->getDetect(),
+            'modules' => $this->model->getModulesList(),
+            '' => $this->model->setCommandPatches()
+        ];
+        $meta['connections'] = [
+          'mikrotik_api' => false,
+          'snmp' => false,
+          'telnet' => false,
+        ];
+        if($this->walker) {
+            $meta['connections']['snmp'] = true;
+        }
+        if($this->telnet) {
+            $meta['connections']['telnet'] = true;
+        }
+
+        return $meta;
+    }
 }

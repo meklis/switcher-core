@@ -83,7 +83,7 @@ class DlinkVlanParser extends AbstractModule
         return array_values($formated);
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         Helper::prepareFilter($filter);
         $oids[] = $this->oidsCollector->getOidByName('dot1q.VlanStaticName')->getOid();

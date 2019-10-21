@@ -118,7 +118,7 @@ class DlinkDes3526Parser extends DlinkParser
         }
         return array_values($response);
     }
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $prepared = [
             $this->oidsCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,

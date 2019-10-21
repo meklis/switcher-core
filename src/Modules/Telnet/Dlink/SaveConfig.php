@@ -21,11 +21,14 @@ class SaveConfig extends AbstractModule
         return $this->status;
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
+        if(!$this->telnet_conn) {
+            throw new \Exception("Module clear counters required telnet connection");
+        }
         $this->status = false;
         try {
-           $response = $this->conn->exec("save");
+           $response = $this->telnet_conn->exec("save");
            if (strpos($response, "Success") !== false) {
                $this->status = true;
            }

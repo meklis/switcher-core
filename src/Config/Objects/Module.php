@@ -54,6 +54,10 @@ class Module
         $obj = new self();
         if(isset($arr['arguments'])) {
             foreach ($arr['arguments'] as $val) {
+                if(!isset($val['name'])) throw new \Exception("Error reading yaml configuration for modules - name is required parameter");
+                if(!isset($val['pattern'])) throw new \Exception("Error reading yaml configuration for modules - pattern is required parameter");
+                if(!isset($val['required'])) $val['required'] = false;
+                if(!isset($val['default'])) $val['default'] = '';
                 $obj->arguments[$val['name']] = $val;
             }
         } else {

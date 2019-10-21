@@ -21,11 +21,14 @@ class ClearCounters extends AbstractModule
         return true;
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
+        if(!$this->telnet_conn) {
+            throw new \Exception("Module clear counters required telnet connection");
+        }
         $this->status = false;
         try {
-            $this->conn->exec("clear counters");
+            $this->telnet_conn->exec("clear counters");
             $this->status  = true;
         } catch (\Exception $e) {
             throw new \Exception("Error clear counters", 1, $e);

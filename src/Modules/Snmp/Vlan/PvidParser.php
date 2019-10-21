@@ -41,7 +41,7 @@ class PvidParser extends AbstractModule
         return array_values($formated);
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $oids = [];
         foreach ($this->oidsCollector->getOidsByRegex('dot1q.Pvid') as $oid) {

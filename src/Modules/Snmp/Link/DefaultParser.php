@@ -96,7 +96,7 @@ class DefaultParser extends AbstractModule
         }
         return array_values($response);
     }
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $indexes = [];
         foreach ($this->getIndexes() as $index=>$port) {

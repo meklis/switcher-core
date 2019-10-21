@@ -92,7 +92,7 @@ class DlinkDgs1100Parser extends AbstractModule
         }
         return array_values($response);
     }
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $prepared = [
             $this->oidsCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid() ,

@@ -56,10 +56,10 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @var Telnet|null
      */
-    protected $conn = null;
+    protected $telnet_conn = null;
 
     function setTelnetConn(Telnet $conn) {
-        $this->conn = $conn;
+        $this->telnet_conn = $conn;
         return $this;
     }
 
@@ -107,7 +107,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param array $params
      * @return self
      */
-    public abstract function walk($params = []);
+    public abstract function run($params = []);
 
     /**
      * @param array $filter

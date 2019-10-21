@@ -37,7 +37,7 @@ class DefaultParser extends AbstractModule
         return array_values($formated);
     }
 
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         $oids = [];
         foreach ($this->oidsCollector->getOidsByRegex('rmon.*') as $oid) {

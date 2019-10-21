@@ -8,6 +8,7 @@
 models:
  - name: D-link DES-3200-10
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-10-a1.yml
      - ./oids/dlink/common-diag-cable.yml
@@ -17,17 +18,21 @@ models:
      diag_linkup: true
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-10/C1
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-10-c1.yml
      - ./oids/dlink/des-3200-c1-diag.yml
@@ -37,17 +42,21 @@ models:
      diag_linkup: true
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-18/C1
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-18-c1.yml
      - ./oids/dlink/des-3200-c1-diag.yml
@@ -57,17 +66,21 @@ models:
      diag_linkup: true
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-26/C1
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-26-c1.yml
      - ./oids/dlink/des-3200-c1-diag.yml
@@ -78,17 +91,21 @@ models:
      ge_ports: [25,26]
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-28/C1
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-28-c1.yml
      - ./oids/dlink/des-3200-c1-diag.yml
@@ -99,17 +116,21 @@ models:
      ge_ports: [25,26,27,28]
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-28F/C1
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-28F-c1.yml
      - ./oids/dlink/des-3200-c1-diag.yml
@@ -120,17 +141,21 @@ models:
      ge_ports: [25,26,27,28]
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-18
    ports: 18
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-18-a1.yml
      - ./oids/dlink/common-diag-cable.yml
@@ -140,17 +165,21 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-26
    ports: 26
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-26-a1.yml
      - ./oids/dlink/common-diag-cable.yml
@@ -160,17 +189,21 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-28
    ports: 28
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-28-a1.yml
      - ./oids/dlink/common-diag-cable.yml
@@ -180,17 +213,21 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3200-28F
    ports: 28
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3200-28F-a1.yml
      - ./oids/dlink/common-diag-cable.yml
@@ -200,11 +237,14 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot

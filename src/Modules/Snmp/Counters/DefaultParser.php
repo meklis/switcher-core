@@ -15,6 +15,7 @@ class DefaultParser extends AbstractModule
         foreach ($this->response as $oid_name => $wrappedResponse) {
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
+                if(!isset($indexes[$port_index])) continue;
                 $metric_name = str_replace(['if_'], '', Helper::fromCamelCase($oid_name));
                 $response[$port_index][$metric_name] = $resp->getValue();
                 $response[$port_index]['port'] = $indexes[$port_index];
@@ -41,21 +42,21 @@ class DefaultParser extends AbstractModule
         return array_values($formated);
     }
 
-    public function walk($filter = [])
+    public function run($params = [])
     {
-        Helper::prepareFilter($filter);
+        Helper::prepareFilter($params);
         $oids = [];
         foreach ($this->oidsCollector->getOidsByRegex('if\.HC.*') as $oid) {
             $oids[] = $oid->getOid();
         }
 
-        if($filter['port']) {
+        if($params['port']) {
             $indexes = [];
             foreach ($this->getIndexes() as $index=>$port) {
                 $indexes[$port] = $index;
             }
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$indexes[$filter['port']]}";
+                $oids[$num] .= ".{$indexes[$params['port']]}";
             }
         }
         $this->response = $this->formatResponse($this->walker->walk($oids));

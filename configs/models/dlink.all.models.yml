@@ -8,6 +8,7 @@
 models:
  - name: D-link DES-3526
    ports: 26
+   telnet_conn_type: dlink
    oids:
     - ./oids/dlink/des-3526.yml
     - ./oids/dlink/common-diag-cable.yml
@@ -17,15 +18,17 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkDes3526Parser
-    #link: Link\DefaultParser
+     link_info: Snmp\Link\DlinkDes3526Parser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\Des3526Parser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-1228/ME
    ports: 28
@@ -38,15 +41,17 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
-    #link: Link\DefaultParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: D-link DES-3028
    ports: 28
@@ -60,11 +65,10 @@ models:
      diag_linkup: false
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
-     #link: Link\DefaultParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
@@ -76,6 +80,7 @@ models:
 
  - name: D-link DES-3028G
    ports: 28
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/des-3028G.yml
      - ./oids/dlink/common-diag-cable.yml
@@ -85,18 +90,21 @@ models:
      diag_linkup: yes
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkParser
-     #link: Link\DefaultParser
+     link_info: Snmp\Link\DlinkParser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      cable_diag: Snmp\CableDiag\DlinkParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1100-06/ME/A1
    ports: 6
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/dgs-1100-06-me-a1.yml
    detect: {description: ^DGS-1100-06\/ME\/A1$,  objid: ^.*.171.10.134.1$ }
@@ -106,17 +114,21 @@ models:
      ge_ports: [1,2,3,4,5,6]
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkDgs1100Parser
+     link_info: Snmp\Link\DlinkDgs1100Parser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
      cable_diag: Snmp\CableDiag\DlinkDgs1100Parser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1100-10/ME
    ports: 10
+   telnet_conn_type: dlink
    oids:
      - ./oids/dlink/dgs-1100-10-me.yml
    detect: {description: ^DGS-1100-10\/ME,  objid: ^.*.171.10.134.2.1$ }
@@ -126,11 +138,14 @@ models:
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
    modules:
      fdb: Snmp\Fdb\DefaultParser
-     link: Snmp\Link\DlinkDgs1100Parser
+     link_info: Snmp\Link\DlinkDgs1100Parser
      counters: Snmp\Counters\DefaultParser
      system: Snmp\System\DefaultParser
      cable_diag: Snmp\CableDiag\DlinkDgs1100Parser
-     vlan: Snmp\Vlan\DlinkVlanParser
+     vlans: Snmp\Vlan\DlinkVlanParser
      errors: Snmp\Errors\DefaultParser
      rmon: Snmp\Rmon\DefaultParser
      pvid: Snmp\Vlan\PvidParser
+     clear_counters: Telnet\Dlink\ClearCounters
+     save_config: Telnet\Dlink\SaveConfig
+     reboot: Telnet\Dlink\Reboot
