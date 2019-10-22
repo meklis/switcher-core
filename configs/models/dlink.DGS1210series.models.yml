@@ -29,6 +29,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: Dlink DGS-1210-20/ME/A1
    ports: 20
@@ -53,6 +54,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: Dlink DGS-1210-10/ME/A1
    ports: 10
@@ -77,6 +79,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: Dlink DGS-1210-20/ME/B1
    ports: 20
@@ -101,6 +104,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: Dlink DGS-1210-28/ME/B1
    ports: 28
@@ -125,6 +129,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: Dlink DGS-1210-28XS/ME/B1
    ports: 28
@@ -148,3 +153,4 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts

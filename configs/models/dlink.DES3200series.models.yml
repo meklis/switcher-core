@@ -29,6 +29,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-10/C1
    ports: 10
@@ -53,6 +54,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-18/C1
    ports: 10
@@ -77,6 +79,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-26/C1
    ports: 10
@@ -102,6 +105,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-28/C1
    ports: 10
@@ -127,6 +131,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-28F/C1
    ports: 10
@@ -152,6 +157,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-18
    ports: 18
@@ -176,6 +182,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-26
    ports: 26
@@ -200,6 +207,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-28
    ports: 28
@@ -224,6 +232,7 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
 
  - name: D-link DES-3200-28F
    ports: 28
@@ -248,3 +257,4 @@ models:
      clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts

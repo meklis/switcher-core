@@ -66,8 +66,8 @@ class Module
         if(isset($arr['name'])) {
             $obj->setName($arr['name']);
         }
-        if(isset($arr['dependency_modules'])) {
-            $obj->dependency_modules = $arr['dependency_modules'];
+        if(isset($arr['depends'])) {
+            $obj->dependency_modules = $arr['depends'];
         }
         return $obj;
     }

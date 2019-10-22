@@ -122,16 +122,11 @@ class Core
             foreach ($modules as $moduleName=>$module) {
                 $moduleParams = $this->moduleCollector->getByName($moduleName);
                 foreach ($moduleParams->getDependencyModules() as $name) {
-                    print_r($name);
-
-                    if(key_exists($name, $modules)) {
+                    if(isset($modules[$name])) {
                         $module->setDependencyModule($name, $modules[$name]);
-                    } else {
-                        $module->setDependencyModule($name, null);
                     }
                 }
             }
-
         } else {
             throw new \Exception("Returned empty response from walker, it's problem");
         }

@@ -26,14 +26,22 @@ $core = (new \SwitcherCore\Switcher\Core(
 //Prepare modules list
 $modules = $core->getModulesData();
 $evals = [];
-echo "Detected supported modules:\n";
-foreach ($modules as $module) {
+STEP_CHOOSING:
+echo "Supported modules:\n";
+foreach ($modules as $num=>$module) {
     $evals[] = ['name'=> $module['name'], 'argv' => '[]', 'module' => $module['class']];
-    echo "     {$module['name']}\n";
+    echo "{$num})     {$module['name']}\n";
+}
+echo "Write num of step or click enter for all modules testing\n";
+echo "Step: ";
+$step_num = trim(fgets($handle));
+if($step_num) {
+    echo "Choosed step number {$step_num}, call method {$evals[$step_num]['name']}({$evals[$step_num]['argv']}) - {$evals[$step_num]['module']} \n";
+    print_r(json_encode($core->action($evals[$step_num]['name']), JSON_PRETTY_PRINT));
+    echo "Diag finished!\n";
+    goto STEP_CHOOSING;
 }
 
-echo "\n";
-echo "\n";
 echo "Start testing...\n";
 sleep(1);
 foreach ($evals as $num=>$eval) {

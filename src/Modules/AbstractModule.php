@@ -98,6 +98,17 @@ abstract class AbstractModule implements ModuleInterface
      * @param Walker $walker
      * @return self
      */
+    function getDependencyModule($moduleName) {
+        if(isset($this->modules[$moduleName]) && $this->modules[$moduleName]) {
+            return $this->modules[$moduleName];
+        }
+        throw new \Exception("Module with name $moduleName not injected");
+    }
+
+    /**
+     * @param Walker $walker
+     * @return self
+     */
     function setCommandCollector(CommandCollector $collector) {
         $this->commandCollector = $collector;
         return $this;
