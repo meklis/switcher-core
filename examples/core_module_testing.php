@@ -50,7 +50,13 @@ foreach ($evals as $num=>$eval) {
     }
     echo "Step number {$num}, call method {$eval['name']}({$eval['argv']}) - {$eval['module']} \n";
     try {
-        eval("print_r(json_encode(\$core->action('{$eval['name']}', {$eval['argv']}), JSON_PRETTY_PRINT));");
+        echo "### Module {$eval['module']}    \n";
+        echo "```
+        json_encode(\$core->action('{$eval['name']}', ['port'=>3]), JSON_PRETTY_PRINT);    \n";
+        echo json_encode($core->action($eval['name'], ['port'=>27]), JSON_PRETTY_PRINT);
+        echo "
+```\n";
+        //eval("print_r(json_encode(\$core->action('{$eval['name']}', {$eval['argv']}), JSON_PRETTY_PRINT));");
     } catch (Exception $e) {
         echo "Method {$eval['name']} has exception, fix it!\n";
         echo "Write num of step ($num) in arguments for running from this step.\n";

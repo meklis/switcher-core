@@ -28,3 +28,6 @@ For using customization you can copy configuration directory to you directory
 project_dir$ cp -R vendor/meklis/switcher-core/configs ./switcher-config
 ```
 In configuration file you may add models.   
+
+### Build-in modules
+[Modules response example](docs/MODULES.md)
