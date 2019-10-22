@@ -10,16 +10,16 @@ $handle = fopen ("php://stdin","r");
 
 //Switcher core initialization
 $walker =  (new  Walker(
-        new  WrapperWorker("http://37.57.212.3:8080"))
+        new  WrapperWorker("http://127.0.0.1:8080"))
     )->useCache(false)
     ->setIp($argv[1])
     ->setCommunity($argv[2]);
 $telnet = (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($argv[1], 23))
-    ->connectOverProxy("tcp://37.57.212.3:3333")
+    ->connectOverProxy("tcp://127.0.0.1:3333")
     ->login($argv[3], $argv[4]);
 $core = (new \SwitcherCore\Switcher\Core(
     new  Reader(__DIR__ . "/../configs")
-))->setTelnet($telnet)->setWalker($walker)->detectModel();
+))->setTelnet($telnet)->setWalker($walker)->init();
 
 
 
@@ -53,7 +53,7 @@ foreach ($evals as $num=>$eval) {
         echo "### Module {$eval['module']}    \n";
         echo "```
         json_encode(\$core->action('{$eval['name']}', ['port'=>3]), JSON_PRETTY_PRINT);    \n";
-        echo json_encode($core->action($eval['name'], ['port'=>27]), JSON_PRETTY_PRINT);
+        echo json_encode($core->action($eval['name'], ['port'=>3]), JSON_PRETTY_PRINT);
         echo "
 ```\n";
         //eval("print_r(json_encode(\$core->action('{$eval['name']}', {$eval['argv']}), JSON_PRETTY_PRINT));");
@@ -62,7 +62,7 @@ foreach ($evals as $num=>$eval) {
         echo "Write num of step ($num) in arguments for running from this step.\n";
         throw new Exception($e);
     }
-    echo "\nClick ENTER for continue...\n";
+    echo "\n\n\n";
     fgets($handle);
 }
 

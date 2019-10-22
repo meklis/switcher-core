@@ -13,7 +13,7 @@ class TelnetLazyConnect extends \Meklis\TelnetOverProxy\Telnet
     protected $password = "";
     protected $host_type = "";
 
-    function connectOverProxy($proxy_addr = "tcp://127.0.0.1:3333", $timeout = 60)
+    function connectOverProxy($proxy_addr = "tcp://127.0.0.1:3333", $timeout = 180)
     {
         $this->proxy_addr = $proxy_addr;
         $this->timeout = $timeout;
@@ -32,7 +32,6 @@ class TelnetLazyConnect extends \Meklis\TelnetOverProxy\Telnet
     }
     function exec($command, $add_newline = true)
     {
-        echo "Exec command $command\n";
         if(!$this->is_logined) {
             parent::connectOverProxy($this->proxy_addr, $this->timeout);
             parent::setLinuxEOL();

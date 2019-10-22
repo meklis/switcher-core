@@ -30,6 +30,12 @@ models:
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+
 
  - name: Dlink DGS-1210-20/ME/A1
    ports: 20
@@ -55,6 +61,12 @@ models:
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+
 
  - name: Dlink DGS-1210-10/ME/A1
    ports: 10
@@ -80,6 +92,12 @@ models:
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+
 
  - name: Dlink DGS-1210-20/ME/B1
    ports: 20
@@ -105,6 +123,12 @@ models:
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+
 
  - name: Dlink DGS-1210-28/ME/B1
    ports: 28
@@ -130,6 +154,12 @@ models:
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+
 
  - name: Dlink DGS-1210-28XS/ME/B1
    ports: 28
@@ -154,3 +184,9 @@ models:
      save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+

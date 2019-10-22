@@ -9,7 +9,7 @@ use SwitcherCore\Modules\Helper;
 
 class DlinkDgs1100Parser extends DlinkParser
 {
-    public function walk($filter = [])
+    public function run($filter = [])
     {
         Helper::prepareFilter($filter) ;
         $ports_list = $this->getPortList($filter);

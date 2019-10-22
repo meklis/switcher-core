@@ -66,16 +66,7 @@ class Core
         return $this;
     }
 
-    /**
-     * @return $this
-     * @throws ModuleNotFoundException
-     * @throws \ErrorException
-     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException
-     */
-    function detectModel() {
-        if(!$this->walker) {
-            throw new \Exception("Snmp walker not setted. You must set walker before connect");
-        }
+    private function getDetectDevInfo() {
         $prev_state = $this->walker->getCacheStatus();
         $response = $this->walker
             ->useCache('true')
@@ -86,7 +77,6 @@ class Core
         $this->walker->useCache($prev_state);
         $descr = "";
         $objId = "";
-        $hardware = "";
         foreach ($response as $resp) {
             if($resp->error) {
                 throw new \Exception("Walker returned error: {$resp->error}");
@@ -99,37 +89,56 @@ class Core
                 }
             }
         }
-        if($descr || $objId || $hardware) {
-            $this->model = $this->modelCollector->getModelByDetect($descr,$hardware,$objId);
-            $this->oidCollector->readEnterpriceOids($this->model);
-            $this->model->loadModules();
-            if($this->telnet) {
-                $this->telnet->setHostType($this->model->getTelnetConnType());
-            }
-            //Inject objects to modules
-            $modules = [];
-            foreach ($this->model->getModules() as $moduleName=>$module) {
-                $modules[$moduleName] = $module;
-                $this->model->setModule(
-                    $moduleName,
-                    $module->setModel($this->model)
-                        ->setOidCollector($this->oidCollector)
-                        ->setWalker($this->walker)
-                        ->setTelnetConn($this->telnet)
+        if($descr || $objId) {
+            return [
+                'descr' => $descr,
+                'objid' => $objId,
+            ];
+        } else {
+            throw new \Exception("Returned empty response from walker in detect model");
+        }
+    }
+    /**
+     * @return $this
+     * @throws ModuleNotFoundException
+     * @throws \ErrorException
+     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException
+     */
+    function init() {
+        if(!$this->walker) {
+            throw new \Exception("Snmp walker not setted. You must set walker before connect");
+        }
+        $devInfo = $this->getDetectDevInfo();
+        $this->model = $this->modelCollector->getModelByDetect($devInfo['descr'],$devInfo['objid']);
 
-                );
-            }
-            foreach ($modules as $moduleName=>$module) {
-                $moduleParams = $this->moduleCollector->getByName($moduleName);
-                foreach ($moduleParams->getDependencyModules() as $name) {
-                    if(isset($modules[$name])) {
-                        $module->setDependencyModule($name, $modules[$name]);
-                    }
+        $this->oidCollector->readEnterpriceOids($this->model);
+        $this->model->loadModules();
+
+        if($this->telnet) {
+            $this->telnet->setHostType($this->model->getTelnetConnType());
+        }
+
+        //Inject objects to modules
+        $modules = [];
+        foreach ($this->model->getModules() as $moduleName=>$module) {
+            $modules[$moduleName] = $module;
+            $this->model->setModule(
+                $moduleName,
+                $module->setModel($this->model)
+                    ->setOidCollector($this->oidCollector)
+                    ->setWalker($this->walker)
+                    ->setTelnetConn($this->telnet)
+
+            );
+        }
+        foreach ($modules as $moduleName=>$module) {
+            foreach ($this->moduleCollector->getByName($moduleName)->getDependencyModules() as $name) {
+                if(isset($modules[$name])) {
+                    $module->setDependencyModule($name, $modules[$name]);
                 }
             }
-        } else {
-            throw new \Exception("Returned empty response from walker, it's problem");
         }
+
         return $this;
     }
     public function getModule($moduleName) {
@@ -170,7 +179,6 @@ class Core
             'extra' => $this->model->getExtra(),
             'detect' => $this->model->getDetect(),
             'modules' => $this->model->getModulesList(),
-            '' => $this->model->setCommandPatches()
         ];
         $meta['connections'] = [
           'mikrotik_api' => false,

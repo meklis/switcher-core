@@ -25,7 +25,7 @@
 - name: fdb
   arguments:
     - {name: port, pattern: '^[0-9]{1,3}$', required: no}
-    - {name: mac, pattern: '^$', required: no}
+    - {name: mac, pattern: '^.*$', required: no}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
 
 #Get vlan info from device
@@ -57,3 +57,36 @@
 
 #Action reboot
 - name: reboot
+
+#Action port state control
+- name: ctrl_port_state
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,4}$', required: yes}
+    - {name: state, pattern: '^(disable|enable)$', required: yes, values: [disable, enable]}
+
+#Action port state speed
+- name: ctrl_port_speed
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,4}$', required: yes}
+    - {name: speed, pattern: '^auto|(10|100|1000|10000)-(Half|Full)$', required: yes, values: [auto, 10-Full, 100-Full, 1000-Full]}
+
+#Action port state desciption
+- name: ctrl_port_descr
+  arguments:
+    - {name: port, pattern: '^[0-9]{1,4}$', required: yes}
+    - {name: description, pattern: '^[0-9a-zA-Z_]{1,}$', required: yes}
+
+#Action for vlan state control
+- name: ctrl_vlan_state
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,4}$', required: no}
+    - {name: name, pattern: '^[0-9a-zA-Z_]{1,16}$', required: no}
+    - {name: action, pattern: '^(delete|create)$', required: yes, values: [delete, create]}
+
+#Action for vlan state control
+- name: ctrl_vlan_port
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,4}$', required: yes}
+    - {name: port, pattern: '^[0-9]{1,4}$', required: yes}
+    - {name: type, pattern: '^(tagged|untagged)$', required: no, values: [tagged, untagged]}
+    - {name: action, pattern: '^(delete|add)$', required: yes, values: [delete, add]}

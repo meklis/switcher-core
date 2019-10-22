@@ -57,7 +57,8 @@ class Module
                 if(!isset($val['name'])) throw new \Exception("Error reading yaml configuration for modules - name is required parameter");
                 if(!isset($val['pattern'])) throw new \Exception("Error reading yaml configuration for modules - pattern is required parameter");
                 if(!isset($val['required'])) $val['required'] = false;
-                if(!isset($val['default'])) $val['default'] = '';
+                if(!isset($val['default'])) $val['default'] = null;
+                if(!isset($val['values'])) $val['values'] = null;
                 $obj->arguments[$val['name']] = $val;
             }
         } else {
