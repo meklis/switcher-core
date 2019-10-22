@@ -11,6 +11,20 @@ Now library has two inputs - snmp and telnet, in feature inputs will be extend.
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    
 * SnmpWalk-Proxy - https://github.com/meklis/http-snmpwalk-proxy    
-How to easy run proxies - https://github.com/meklis/Switcher/
+     
+Work only with PHP >=7.2
 
- 
+### Install
+```
+composer install meklis/switcher-core
+```
+
+
+### Customization
+You can add own devices models and create own modules using core.    
+
+For using customization you can copy configuration directory to you directory
+``` 
+project_dir$ cp -R vendor/meklis/switcher-core/configs ./switcher-config
+```
+In configuration file you may add models.   
