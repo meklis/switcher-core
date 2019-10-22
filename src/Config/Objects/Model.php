@@ -121,13 +121,12 @@ class Model
             throw new ModuleNotFoundException("Modules for model {$this->getName()} not found");
         }
         foreach ($this->modulesNames as $module=>$object) {
-            $className = "\\SwitcherCore\\Modules\\$object";
-            if(!class_exists($className)) {
-                throw new ModuleErrorLoadException("Module for model {$this->getName()} with name '$module' not found by ClassName {$className}");
+            if(!class_exists($object)) {
+                throw new ModuleErrorLoadException("Module for model {$this->getName()} with name '$module' not found by ClassName {$object}");
             }
             $this->setModule(
                 $module,
-                new $className()
+                new $object()
             );
         }
     }

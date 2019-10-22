@@ -17,18 +17,18 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
    modules:
-     fdb: Snmp\Fdb\DefaultParser
-     link_info: Snmp\Link\DlinkDgs1210Parser
-     counters: Snmp\Counters\DefaultParser
-     system: Snmp\System\DefaultParser
-     vlans: Snmp\Vlan\DlinkVlanParser
-     cable_diag: Snmp\CableDiag\DlinkParser
-     errors: Snmp\Errors\DefaultParser
-     rmon: Snmp\Rmon\DefaultParser
-     pvid: Snmp\Vlan\PvidParser
-     clear_counters: Telnet\Dlink\ClearCounters
-     save_config: Telnet\Dlink\SaveConfig
-     reboot: Telnet\Dlink\Reboot
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1210-20/ME/A1
    ports: 20
@@ -41,18 +41,18 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
    modules:
-     fdb: Snmp\Fdb\DefaultParser
-     link_info: Snmp\Link\DlinkDgs1210Parser
-     counters: Snmp\Counters\DefaultParser
-     system: Snmp\System\DefaultParser
-     vlans: Snmp\Vlan\DlinkVlanParser
-     cable_diag: Snmp\CableDiag\DlinkParser
-     errors: Snmp\Errors\DefaultParser
-     rmon: Snmp\Rmon\DefaultParser
-     pvid: Snmp\Vlan\PvidParser
-     clear_counters: Telnet\Dlink\ClearCounters
-     save_config: Telnet\Dlink\SaveConfig
-     reboot: Telnet\Dlink\Reboot
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1210-10/ME/A1
    ports: 10
@@ -65,18 +65,18 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
    modules:
-     fdb: Snmp\Fdb\DefaultParser
-     link_info: Snmp\Link\DlinkDgs1210Parser
-     counters: Snmp\Counters\DefaultParser
-     system: Snmp\System\DefaultParser
-     vlans: Snmp\Vlan\DlinkVlanParser
-     cable_diag: Snmp\CableDiag\DlinkParser
-     errors: Snmp\Errors\DefaultParser
-     rmon: Snmp\Rmon\DefaultParser
-     pvid: Snmp\Vlan\PvidParser
-     clear_counters: Telnet\Dlink\ClearCounters
-     save_config: Telnet\Dlink\SaveConfig
-     reboot: Telnet\Dlink\Reboot
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1210-20/ME/B1
    ports: 20
@@ -89,18 +89,18 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
    modules:
-     fdb: Snmp\Fdb\DefaultParser
-     link_info: Snmp\Link\DlinkDgs1210Parser
-     counters: Snmp\Counters\DefaultParser
-     system: Snmp\System\DefaultParser
-     vlans: Snmp\Vlan\DlinkVlanParser
-     cable_diag: Snmp\CableDiag\DlinkParser
-     errors: Snmp\Errors\DefaultParser
-     rmon: Snmp\Rmon\DefaultParser
-     pvid: Snmp\Vlan\PvidParser
-     clear_counters: Telnet\Dlink\ClearCounters
-     save_config: Telnet\Dlink\SaveConfig
-     reboot: Telnet\Dlink\Reboot
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1210-28/ME/B1
    ports: 28
@@ -113,18 +113,18 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
    modules:
-     fdb: Snmp\Fdb\DefaultParser
-     link_info: Snmp\Link\DlinkDgs1210Parser
-     counters: Snmp\Counters\DefaultParser
-     system: Snmp\System\DefaultParser
-     vlans: Snmp\Vlan\DlinkVlanParser
-     cable_diag: Snmp\CableDiag\DlinkParser
-     errors: Snmp\Errors\DefaultParser
-     rmon: Snmp\Rmon\DefaultParser
-     pvid: Snmp\Vlan\PvidParser
-     clear_counters: Telnet\Dlink\ClearCounters
-     save_config: Telnet\Dlink\SaveConfig
-     reboot: Telnet\Dlink\Reboot
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
 
  - name: Dlink DGS-1210-28XS/ME/B1
    ports: 28
@@ -137,14 +137,14 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
    modules:
-     fdb: Snmp\Fdb\DefaultParser
-     link_info: Snmp\Link\DlinkDgs1210Parser
-     counters: Snmp\Counters\DefaultParser
-     system: Snmp\System\DefaultParser
-     vlans: Snmp\Vlan\DlinkVlanParser
-     errors: Snmp\Errors\DefaultParser
-     rmon: Snmp\Rmon\DefaultParser
-     pvid: Snmp\Vlan\PvidParser
-     clear_counters: Telnet\Dlink\ClearCounters
-     save_config: Telnet\Dlink\SaveConfig
-     reboot: Telnet\Dlink\Reboot
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot

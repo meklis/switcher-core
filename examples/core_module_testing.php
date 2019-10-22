@@ -15,7 +15,7 @@ $walker =  (new  Walker(
     ->setIp($argv[1])
     ->setCommunity($argv[2]);
 $telnet = (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($argv[1], 23))
-    ->connectOverProxy("tcp://127.0.0.1:3333")
+    ->connectOverProxy("tcp://37.57.212.3:3333")
     ->login($argv[3], $argv[4]);
 $core = (new \SwitcherCore\Switcher\Core(
     new  Reader(__DIR__ . "/../configs")
