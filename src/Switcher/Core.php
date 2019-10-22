@@ -183,7 +183,6 @@ class Core
         if($this->telnet) {
             $meta['connections']['telnet'] = true;
         }
-
         return $meta;
     }
 }
