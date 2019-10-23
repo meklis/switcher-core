@@ -124,9 +124,13 @@ class DlinkParser extends AbstractModule
         $this->response = $this->formatResponse($this->walker->walk([
             $this->oidsCollector->getOidByName('if.Type')->getOid(),
             $this->oidsCollector->getOidByName('if.OperStatus')->getOid(),
+            $this->oidsCollector->getOidByName('dlink.PortInfoMediumType')->getOid(),
         ]));
         $ports_list = [];
         foreach ($this->getResponseByName('if.Type')->fetchAll() as $ident) {
+            if(!in_array($ident->getParsedValue(), ['GE', 'FE'])) {
+                continue;
+            }
             $port = Helper::getIndexByOid($ident->getOid());
             if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
                 $ident->setParsed('GE');
@@ -137,15 +141,7 @@ class DlinkParser extends AbstractModule
             }
             $ports_list[$port] = $pairs;
         }
-        foreach ($ports_list as $port=>$pairs) {
-            if(!in_array($port, $this->model->getExtra()['diag_ports'])) {
-                unset($ports_list[$port]);
-            }
-        }
         if($filter['port']) {
-            if(!in_array($filter['port'], $this->model->getExtra()['diag_ports'])) {
-                throw new \InvalidArgumentException("Incorrect port. Port not exist or denied for diag.");
-            }
             foreach ($ports_list as $port=>$pairs) {
                 if($filter['port'] != $port) {
                     unset($ports_list[$port]);
@@ -153,6 +149,13 @@ class DlinkParser extends AbstractModule
             }
             return $ports_list;
         }
+        foreach ($this->getResponseByName('dlink.PortInfoMediumType')->fetchAll() as $ident) {
+            $port = Helper::getIndexByOid($ident->getOid(), 1);
+            if($ident->getParsedValue() == 'Fiber') {
+                unset($ports_list[$port]);
+            }
+        }
+
         if(!$this->model->getExtra()['diag_linkup']) {
             foreach ($this->getResponseByName('if.OperStatus')->fetchAll() as $ident) {
                 $port = Helper::getIndexByOid($ident->getOid());

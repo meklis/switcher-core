@@ -12,7 +12,7 @@ class DlinkDgs1100Parser extends AbstractModule
           $nway_status = $this->getResponseByName('dlink.sysPortCtrlOperStatus');
           $nway_state = $this->getResponseByName('dlink.sysPortCtrlSpeed');
           $description = $this->getResponseByName('if.Alias');
-          $medium_type = $this->getResponseByName('dlink.sysPortCtrlMediumType');
+          $medium_type = $this->getResponseByName('dlink.PortInfoMediumType');
 
           if($medium_type->error()) {
               throw new \Exception($medium_type->error());
@@ -95,7 +95,7 @@ class DlinkDgs1100Parser extends AbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            $this->oidsCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid() ,
+            $this->oidsCollector->getOidByName('dlink.PortInfoMediumType')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid() ,
             $this->oidsCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid() ,
             $this->oidsCollector->getOidByName('if.Alias')->getOid() ,
