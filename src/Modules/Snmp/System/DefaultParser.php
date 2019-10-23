@@ -30,8 +30,6 @@ class DefaultParser extends AbstractModule
             'contact' => $this->getResponseByName('sys.Contact')->fetchOne()->getValue(),
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
-            'firmware' => $this->getResponseByName('sys.Firmware')->fetchOne()->getValue(),
-            'revision' => $this->getResponseByName('sys.Revision')->fetchOne()->getValue(),
             'meta' =>  [
                 'name' => $this->model->getName(),
                 'detect' => $this->model->getDetect(),

@@ -5,8 +5,10 @@
   - {name: sys.Contact, oid: .1.3.6.1.2.1.1.4, access: write, type: string }
   - {name: sys.Name, oid: .1.3.6.1.2.1.1.5, access: write, type: string }
   - {name: sys.Location, oid: .1.3.6.1.2.1.1.6, access: write, type: string }
-  - {name: sys.Revision, oid: .1.3.6.1.2.1.47.1.1.1.1.8.1, type: string }
-  - {name: sys.Firmware, oid: .1.3.6.1.2.1.47.1.1.1.1.9.1, type: string }
+
+# Not all device supported
+#  - {name: sys.Revision, oid: .1.3.6.1.2.1.47.1.1.1.1.8.1, type: string }
+#  - {name: sys.Firmware, oid: .1.3.6.1.2.1.47.1.1.1.1.9.1, type: string }
 #if mib (.iso.org.dod.internet.mgmt.mib-2.interfaces + .iso.org.dod.internet.mgmt.mib-2.ifMIB.ifMIBObjects.ifXTable.ifXEntry)
   - {name: if.Number, oid: .1.3.6.1.2.1.2.1, access: read }
   - {name: if.Index, oid: .1.3.6.1.2.1.2.2.1.1, access: read }
