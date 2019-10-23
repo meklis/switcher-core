@@ -11,7 +11,9 @@ Now library has two inputs - snmp and telnet, in feature inputs will be extend.
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    
 * SnmpWalk-Proxy - https://github.com/meklis/http-snmpwalk-proxy    
-     
+
+*Use https://github.com/meklis/switcher instructions and docker-compose files for easy start proxies* 
+
 Work only with PHP >=7.2
 
 ### Install
