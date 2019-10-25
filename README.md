@@ -2,11 +2,11 @@
 ### Module for help-provider services
 
 ## Overview
-It's library allow work with devices using a single interface - Core.
+This library allow works with devices using a single interface - Core.
 Library automaticaly detect model, load device configuration and modules for work with it.   
     
 Switcher-core using modules for work with devices and allow extend the kernel with your own modules.    
-Now library has two inputs - snmp and telnet, in feature inputs will be extend.
+Now library has two inputs are snmp and telnet, in feature inputs will be extend.
 
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    
@@ -14,7 +14,7 @@ Now library has two inputs - snmp and telnet, in feature inputs will be extend.
 
 *Use https://github.com/meklis/switcher instructions and docker-compose files for easy start proxies* 
 
-Work only with PHP >=7.2
+It works only with PHP >=7.2
 
 ### Install
 ```
@@ -25,7 +25,7 @@ composer install meklis/switcher-core
 ### Customization
 You can add own devices models and create own modules using core.    
 
-For using customization you can copy configuration directory to you directory
+For using the customization you must copy this configuration directory. Than you can use it for your derectory.
 ``` 
 project_dir$ cp -R vendor/meklis/switcher-core/configs ./switcher-config
 ```
