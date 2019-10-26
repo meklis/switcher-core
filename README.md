@@ -13,6 +13,15 @@ Now library has three inputs, in feature inputs will be extend.
 * SNMP
 * RouterOS API
 
+### Supported vendors
+- [x] D-link (snmp/telnet)
+- [x] Mikrotik, RouterOS (snmp/RouterOS api)
+- [ ] EdgeCore
+- [ ] BDcom
+- [ ] Xtreme
+- [ ] ZTE
+- [ ] Huawei
+
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    
 * SnmpWalk-Proxy - https://github.com/meklis/http-snmpwalk-proxy    
