@@ -12,6 +12,7 @@ models:
    modules:
      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
 
  - name: Mikrotik CCR1009-7G-1C-1S+
@@ -23,4 +24,5 @@ models:
    modules:
      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
