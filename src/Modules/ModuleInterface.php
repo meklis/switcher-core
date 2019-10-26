@@ -1,6 +1,7 @@
 <?php
 namespace SwitcherCore\Modules;
 
+use Meklis\TelnetOverProxy\Telnet;
 use SnmpWrapper\Walker;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
@@ -18,7 +19,7 @@ interface ModuleInterface
 
     /**
      * @param array $filter
-     * @return mixed
+     * @return $this
      */
     function getPrettyFiltered($filter = []);
 
@@ -36,7 +37,17 @@ interface ModuleInterface
 
     /**
      * @param Walker $walker
-     * @return $this
+     * @return self
      */
     function setWalker(Walker $walker) ;
+    /**
+     * @param Telnet $telnet
+     * @return $this
+     */
+    function setTelnetConn(?Telnet $telnet) ;
+    /**
+     * @param \RouterosAPI $api
+     * @return $this
+     */
+    function setRouterOsAPI(?\RouterosAPI $api) ;
 }

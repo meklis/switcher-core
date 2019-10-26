@@ -9,12 +9,15 @@
 models:
  - name: D-link DES-3028
    ports: 28
-   telnet_conn_type: dlink
+   inputs:
+     - snmp
+     - telnet
    oids:
      - ./oids/dlink/des-3028.yml
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3028 Fast Ethernet Switch,  objid: .* }
    extra:
+     telnet_conn_type: dlink
      diag_linkup: true
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -38,13 +41,16 @@ models:
 
  - name: D-link DES-3052
    ports: 52
-   telnet_conn_type: dlink
+   inputs:
+     - snmp
+     - telnet
    oids:
      - ./oids/dlink/des-3052.yml
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3052 Fast Ethernet Switch,  objid: .* }
    extra:
      diag_linkup: true
+     telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Snmp\Link\DlinkParser
@@ -68,13 +74,16 @@ models:
 
  - name: D-link DES-3028G
    ports: 28
-   telnet_conn_type: dlink
+   inputs:
+     - snmp
+     - telnet
    oids:
      - ./oids/dlink/des-3028G.yml
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3028G Fast Ethernet Switch,  objid: ^.*171\.10\.63\.11$ }
    extra:
      diag_linkup: yes
+     telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Snmp\Link\DlinkParser

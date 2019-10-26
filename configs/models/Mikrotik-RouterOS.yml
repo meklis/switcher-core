@@ -1,0 +1,26 @@
+############################################## Parameters description  #####################################################
+##
+############################################################################################################################
+
+models:
+ - name: Mikrotik RB1100AHx2
+   ports: 0
+   detect: {description: ^RouterOS RB1100AHx2$,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+
+ - name: Mikrotik CCR1009-7G-1C-1S+
+   ports: 0
+   detect: {description: ^RouterOS CCR1009-7G-1C-1S\+$,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo

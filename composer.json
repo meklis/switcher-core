@@ -18,7 +18,8 @@
     "require": {
         "php": ">=7.2.0",
         "meklis/snmp-wrapper": "~1.0",
-        "meklis/telnet-over-proxy": "~1.0"
+        "meklis/telnet-over-proxy": "~1.0",
+        "meklis/routeros-api": "dev-master"
     },
     "minimum-stability": "dev"
 }

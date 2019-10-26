@@ -54,15 +54,27 @@ abstract class AbstractModule implements ModuleInterface
      */
 
     /**
-     * @var Telnet|null
+     * @var Telnet
      */
-    protected $telnet_conn = null;
+    protected $telnet_conn;
+    /**
+     * @var \RouterosAPI
+     */
+    protected $routerOsAPI;
 
-    function setTelnetConn(Telnet $conn) {
+    /**
+     * @param Telnet $conn
+     * @return $this
+     */
+    function setTelnetConn(?Telnet $conn) {
         $this->telnet_conn = $conn;
         return $this;
     }
 
+    /**
+     * @param Model $model
+     * @return $this|ModuleInterface
+     */
     function setModel(Model $model) {
         $this->model = $model;
         return $this;
@@ -85,6 +97,15 @@ abstract class AbstractModule implements ModuleInterface
         $this->walker = $walker;
         return $this;
     }
+
+    /**
+     * @param \RouterosAPI $walker
+     * @return self
+     */
+    function setRouterOsAPI(?\RouterosAPI $api) {
+        $this->routerOsAPI = $api;
+        return $this;
+    }
     /**
      * @param Walker $walker
      * @return self
@@ -95,23 +116,15 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param Walker $walker
-     * @return self
+     * @param $moduleName
+     * @return AbstractModule
+     * @throws \Exception
      */
     function getDependencyModule($moduleName) {
         if(isset($this->modules[$moduleName]) && $this->modules[$moduleName]) {
             return $this->modules[$moduleName];
         }
         throw new \Exception("Module with name $moduleName not injected");
-    }
-
-    /**
-     * @param Walker $walker
-     * @return self
-     */
-    function setCommandCollector(CommandCollector $collector) {
-        $this->commandCollector = $collector;
-        return $this;
     }
 
     /**

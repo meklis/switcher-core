@@ -14,14 +14,24 @@ $walker =  (new  Walker(
     )->useCache(false)
     ->setIp($argv[1])
     ->setCommunity($argv[2]);
-$telnet = (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($argv[1], 23))
-    ->connectOverProxy("tcp://127.0.0.1:3333")
-    ->login($argv[3], $argv[4]);
 $core = (new \SwitcherCore\Switcher\Core(
     new  Reader(__DIR__ . "/../configs")
-))->setTelnet($telnet)->setWalker($walker)->init();
+))->setWalker($walker)->init();
 
+$inputs_list = $core->getNeedInputs();
+if(in_array('telnet', $inputs_list)) {
+    $telnet = (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($argv[1], 23))
+        ->connectOverProxy("tcp://127.0.0.1:3333")
+        ->login($argv[3], $argv[4]);
+    $core->setTelnet($telnet);
+}
 
+if(in_array('routeros_api', $inputs_list)) {
+    $routerOS = (new \SwitcherCore\Switcher\Objects\RouterOsLazyConnect())
+        ->setPort(55055)
+        ->connect($argv[1], $argv[3], $argv[4]);
+    $core->setRouterOsAPI($routerOS);
+}
 
 //Prepare modules list
 $modules = $core->getModulesData();

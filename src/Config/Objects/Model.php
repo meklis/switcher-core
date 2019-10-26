@@ -51,20 +51,29 @@ class Model
 
 
     /**
-     * @var string
+     * @var string[]
      */
-    protected $telnetConnType;
+    protected $inputs = [];
 
 
     /**
-     * @return AbstractModule[]
+     * @return ModuleInterface[]
      */
     public function getModules()
     {
         return $this->modules;
     }
+
+    public function getInputs() {
+        return $this->inputs;
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
     public function getTelnetConnType() {
-        return $this->telnetConnType;
+       return $this->getExtraParamByName('telnet_conn_type');
     }
     public function setModule($name, ModuleInterface $module)
     {
@@ -106,8 +115,8 @@ class Model
         if(isset($arr['oids']) && is_array($arr['oids'])) {
             $model->setOidPatches($arr['oids']);
         }
-        if(isset($arr['telnet_conn_type'])) {
-            $model->telnetConnType = $arr['telnet_conn_type'];
+        if(isset($arr['inputs'])) {
+            $model->inputs = $arr['inputs'];
         }
 
         if(isset($arr['modules'])) {
@@ -136,10 +145,12 @@ class Model
      * @return bool|mixed
      */
     public function getExtraParamByName($name = "") {
+        echo "GET EXTRAPARAM=$name\n";
         if(isset($this->extra[$name])) {
+            echo "EXTRAPARAM={$this->extra[$name]}\n";
             return $this->extra[$name];
         }
-        return false;
+        throw new \Exception("Extra param with name $name not found in model configuration");
     }
     public function detectByDescription($description) {
         if(!$description) return true;

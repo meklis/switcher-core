@@ -9,13 +9,16 @@
 models:
  - name: D-link DES-3526
    ports: 26
-   telnet_conn_type: dlink
+   inputs:
+     - snmp
+     - telnet
    oids:
     - ./oids/dlink/des-3526.yml
     - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^DES-3526 Fast-Ethernet Switch$,  objid: 171\.10\.64\.1$ }
    extra:
      diag_linkup: false
+     telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDes3526Parser

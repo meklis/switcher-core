@@ -9,13 +9,16 @@
 models:
  - name: Dlink DGS-1100-06/ME/A1
    ports: 6
-   telnet_conn_type: dlink
+   inputs:
+     - snmp
+     - telnet
    oids:
      - ./oids/dlink/dgs-1100-06-me-a1.yml
    detect: {description: ^DGS-1100-06\/ME\/A1$,  objid: ^.*.171.10.134.1$ }
    extra:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6]
+     telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser
@@ -39,13 +42,16 @@ models:
 
  - name: Dlink DGS-1100-10/ME
    ports: 10
-   telnet_conn_type: dlink
+   inputs:
+     - snmp
+     - telnet
    oids:
      - ./oids/dlink/dgs-1100-10-me.yml
    detect: {description: ^DGS-1100-10\/ME,  objid: ^.*.171.10.134.2.1$ }
    extra:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
+     telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser

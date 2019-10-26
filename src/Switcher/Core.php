@@ -10,6 +10,7 @@ use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
 use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 
@@ -36,6 +37,10 @@ class Core
      */
     protected  $telnet;
     /**
+     * @var RouterOsLazyConnect
+     */
+    protected  $routerOsAPI;
+    /**
      * @var OidCollector
      */
     protected   $oidCollector;
@@ -61,8 +66,26 @@ class Core
         $this->walker = $walker;
         return $this;
     }
-    function setTelnet(Telnet $telnet) {
+    function setTelnet(?Telnet $telnet) {
+        foreach ($this->model->getModules() as $moduleName=>$module) {
+            $this->model->setModule(
+                $moduleName,
+                $module->setTelnetConn($telnet)
+            );
+        }
+        $telnet->setHostType($this->model->getTelnetConnType());
         $this->telnet = $telnet;
+        return $this;
+    }
+
+    function setRouterOsAPI(?RouterOsLazyConnect $api) {
+        foreach ($this->model->getModules() as $moduleName=>$module) {
+            $this->model->setModule(
+                $moduleName,
+                $module->setRouterOsAPI($api)
+            );
+        }
+        $this->routerOsAPI = $api;
         return $this;
     }
 
@@ -98,6 +121,11 @@ class Core
             throw new \Exception("Returned empty response from walker in detect model");
         }
     }
+
+    function getNeedInputs() {
+        return $this->model->getInputs();
+    }
+
     /**
      * @return $this
      * @throws ModuleNotFoundException
@@ -114,10 +142,6 @@ class Core
         $this->oidCollector->readEnterpriceOids($this->model);
         $this->model->loadModules();
 
-        if($this->telnet) {
-            $this->telnet->setHostType($this->model->getTelnetConnType());
-        }
-
         //Inject objects to modules
         $modules = [];
         foreach ($this->model->getModules() as $moduleName=>$module) {
@@ -127,8 +151,6 @@ class Core
                 $module->setModel($this->model)
                     ->setOidCollector($this->oidCollector)
                     ->setWalker($this->walker)
-                    ->setTelnetConn($this->telnet)
-
             );
         }
         foreach ($modules as $moduleName=>$module) {
