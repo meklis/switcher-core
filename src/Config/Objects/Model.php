@@ -99,7 +99,7 @@ class Model
         } else {
             throw new \InvalidArgumentException("Array for initialize oid must have 'name' element");
         }
-        if(isset($arr['ports']) && $arr['ports']) {
+        if(isset($arr['ports'])) {
             $model->setPorts($arr['ports']);
         } else {
             throw new \InvalidArgumentException("Array for initialize oid must have 'ports' element");
@@ -145,9 +145,7 @@ class Model
      * @return bool|mixed
      */
     public function getExtraParamByName($name = "") {
-        echo "GET EXTRAPARAM=$name\n";
         if(isset($this->extra[$name])) {
-            echo "EXTRAPARAM={$this->extra[$name]}\n";
             return $this->extra[$name];
         }
         throw new \Exception("Extra param with name $name not found in model configuration");
