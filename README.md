@@ -6,7 +6,12 @@ This library allow works with devices using a single interface - Core.
 Library automaticaly detect model, load device configuration and modules for work with it.   
     
 Switcher-core using modules for work with devices and allow extend the kernel with your own modules.    
-Now library has two inputs are snmp and telnet, in feature inputs will be extend.
+Now library has three inputs, in feature inputs will be extend.    
+
+### Supported inputs
+* Telnet
+* SNMP
+* RouterOS API
 
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    
@@ -25,7 +30,7 @@ composer install meklis/switcher-core
 ### Customization
 You can add own devices models and create own modules using core.    
 
-For using the customization you must copy this configuration directory. Than you can use it for your derectory.
+For using the customization you must copy this configuration directory to you own dir. Than you can use it for your customization.
 ``` 
 project_dir$ cp -R vendor/meklis/switcher-core/configs ./switcher-config
 ```
