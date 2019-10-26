@@ -67,6 +67,9 @@ class Core
         return $this;
     }
     function setTelnet(?Telnet $telnet) {
+        if(!$this->model) {
+            throw new \Exception("Model not detected. You must call init() first");
+        }
         foreach ($this->model->getModules() as $moduleName=>$module) {
             $this->model->setModule(
                 $moduleName,
@@ -79,6 +82,9 @@ class Core
     }
 
     function setRouterOsAPI(?RouterOsLazyConnect $api) {
+        if(!$this->model) {
+            throw new \Exception("Model not detected. You must call init() first");
+        }
         foreach ($this->model->getModules() as $moduleName=>$module) {
             $this->model->setModule(
                 $moduleName,
