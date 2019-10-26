@@ -34,7 +34,8 @@ For using the customization you must copy this configuration directory to you ow
 ``` 
 project_dir$ cp -R vendor/meklis/switcher-core/configs ./switcher-config
 ```
-In configuration file you may add models.   
-
+In configuration files you may add models.      
+You can see in commit [7e368f7f](https://github.com/meklis/switcher-core/commit/7e368f7f4970a66b3c1a91ac174ce72e12e42725) how to add new module, for example.
+    
 ### Build-in modules
 [Modules response example](docs/MODULES.md)
