@@ -7,10 +7,13 @@ use SwitcherCore\Config\Reader;
 
 $handle = fopen ("php://stdin","r");
 
+$proxyConfig = new \SwitcherCore\Config\ProxyConfiguration(__DIR__ . '/../configs/proxies.yml');
+
+$proxyConfig->setSearchedIP($argv[1]);
 
 //Switcher core initialization
 $walker =  (new  Walker(
-        new  WrapperWorker("http://127.0.0.1:8080"))
+        new  WrapperWorker($proxyConfig->getSnmpConfiguration()['address']))
     )->useCache(false)
     ->setIp($argv[1])
     ->setCommunity($argv[2]);
@@ -21,7 +24,7 @@ $core = (new \SwitcherCore\Switcher\Core(
 $inputs_list = $core->getNeedInputs();
 if(in_array('telnet', $inputs_list)) {
     $telnet = (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($argv[1], 23))
-        ->connectOverProxy("tcp://127.0.0.1:3333")
+        ->connectOverProxy($proxyConfig->getTelnetConfiguration()['address'])
         ->login($argv[3], $argv[4]);
     $core->setTelnet($telnet);
 }

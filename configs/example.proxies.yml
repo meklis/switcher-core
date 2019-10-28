@@ -1,0 +1,11 @@
+- name: ProviderProxy
+  snmp:
+    address: http://127.0.0.1:8080
+    repeats: 3
+    timeout: 2
+  telnet:
+    address: tcp://127.0.0.1:3333
+    timeout: 60
+  networks:
+    - 0.0.0.0/0
+

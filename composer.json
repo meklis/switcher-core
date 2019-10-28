@@ -3,7 +3,6 @@
     "description": "SNMP switcher core module",
     "type": "library",
     "license": "MIT",
-    "version": "1.1.1",
     "authors": [
         {
             "name": "Max Boyar",
@@ -19,7 +18,8 @@
         "php": ">=7.2.0",
         "meklis/snmp-wrapper": "~1.0",
         "meklis/telnet-over-proxy": "~1.0",
-        "meklis/routeros-api": "dev-master"
+        "meklis/routeros-api": "dev-master",
+        "meklis/ipv4-subnet-calculator": "3.*"
     },
     "minimum-stability": "dev"
 }
