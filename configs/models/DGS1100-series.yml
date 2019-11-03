@@ -7,7 +7,7 @@
 ############################################################################################################################
 
 models:
- - name: Dlink DGS-1100-06/ME/A1
+ - name: D-link DGS-1100-06/ME/A1
    ports: 6
    inputs:
      - snmp
@@ -40,7 +40,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
 
- - name: Dlink DGS-1100-10/ME
+ - name: D-link DGS-1100-10/ME
    ports: 10
    inputs:
      - snmp

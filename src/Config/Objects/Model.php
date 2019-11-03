@@ -91,6 +91,12 @@ class Model
         }
         return $modules;
     }
+    /**
+     * @return string[]
+     */
+    function getModulesListAssoc() {
+        return $this->modulesNames;
+    }
 
     public static  function init($arr) : Model {
         $model = new Model();

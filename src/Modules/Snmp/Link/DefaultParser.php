@@ -23,6 +23,7 @@ class DefaultParser extends AbstractModule
 
           $indexes = [];
           foreach ($this->getIndexes() as $index=>$port) {
+
               $indexes[$index]['port'] = $port;
               $indexes[$index]['medium_type'] = null;
               $indexes[$index]['address_learning'] = null;
@@ -30,6 +31,11 @@ class DefaultParser extends AbstractModule
               $indexes[$index]['oper_status'] = null;
               $indexes[$index]['nway_status'] = null;
               $indexes[$index]['admin_state'] = null;
+              $indexes[$index]['admin_state'] = null;
+              $indexes[$index]['last_change'] = null;
+              $indexes[$index]['connector_present'] = null;
+              $indexes[$index]['id'] = $port;
+              $indexes[$index]['extra'] = [];
           }
 
           foreach ($snmp_high_speed as $index) {
@@ -114,13 +120,13 @@ class DefaultParser extends AbstractModule
             $this->oidsCollector->getOidByName('if.StatsDuplexStatus')->getOid(),
             $this->oidsCollector->getOidByName('if.Alias')->getOid(),
         ];
+
         if ($filter['port']) {
             foreach ($data as $num=>$d) {
                 $data[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
         $this->response = $this->formatResponse($this->walker->walk($data));
-
         return $this;
     }
 }

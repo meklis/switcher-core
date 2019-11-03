@@ -31,6 +31,7 @@ $telnet = (new TelnetLazyConnect($argv[1], 23))
     ->connectOverProxy()
     ->login($argv[3], $argv[4]);
 
+
 $core = new Core(new  Reader($configuration_path));
 
 //Include inputs

@@ -13,7 +13,7 @@
   - {name: if.Number, oid: .1.3.6.1.2.1.2.1, access: read }
   - {name: if.Index, oid: .1.3.6.1.2.1.2.2.1.1, access: read }
   - {name: if.Descr, oid: .1.3.6.1.2.1.2.2.1.2, access: read }
-  - {name: if.Type, oid: .1.3.6.1.2.1.2.2.1.3, access: read, values: {6: FE, 117: GE, 135: VLAN, 136: VLAN, 137: VLAN, 207: PON, 208: PON, 250: GPON, 266: ONU, 142: IP}}
+  - {name: if.Type, oid: .1.3.6.1.2.1.2.2.1.3, access: read, values: {6: FE, 117: GE, 135: VLAN, 136: VLAN, 137: VLAN, 207: PON, 208: PON, 250: GPON, 266: ONU, 142: IP, 300: EPON}}
   - {name: if.StatsDuplexStatus, oid: .1.3.6.1.2.1.10.7.2.1.19, access: read , values: {1: Down, 2: Half, 3: Full}}
   #Включен/отключен интерфейс
   # 1-UP/2-DOWN/3-TESTING

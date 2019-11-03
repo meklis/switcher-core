@@ -1,0 +1,31 @@
+models:
+#Зависит от прошивки, работает не для всех
+#  - name: ZXPON C320
+#    ports: 0
+#    inputs:
+#     - snmp
+#      - telnet
+#    oids:
+#      - ./oids/zte/common.yml
+#    detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
+#    modules:
+#      sfp_info: \SwitcherCore\Modules\Snmp\ZTE\SfpLinkInfo
+#      slot_info: \SwitcherCore\Modules\Snmp\ZTE\SlotInfo
+#      link_info: \SwitcherCore\Modules\Snmp\ZTE\LinkInfo
+#      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+  - name: ZTE ZXPON C300
+    ports: 0
+    inputs:
+      - snmp
+#      - telnet
+    oids:
+      - ./oids/zte/ZTE-C300.yml
+    detect: {description: C300.*,  objid: 1015.300.3.1$ }
+    modules:
+      sfp_info: \SwitcherCore\Modules\Snmp\ZTE\SfpLinkInfo
+      slot_info: \SwitcherCore\Modules\Snmp\ZTE\SlotInfo
+      link_info: \SwitcherCore\Modules\Snmp\ZTE\LinkInfo
+      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+      fdb: \SwitcherCore\Modules\Snmp\ZTE\Fdb
+      ont_info: \SwitcherCore\Modules\Snmp\ZTE\OntInfo
+

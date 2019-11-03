@@ -27,7 +27,7 @@ class Reader
     }
 
     /**
-     * @return array
+     * @return Model[]
      * @throws \ErrorException
      */
     function readModels() {
@@ -79,7 +79,7 @@ class Reader
     }
 /**
      * @param string $path
-     * @return array
+     * @return Module[]
      * @throws \ErrorException
      */
     function readModulesConfig() {

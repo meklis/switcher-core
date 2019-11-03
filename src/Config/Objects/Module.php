@@ -9,6 +9,7 @@ use SwitcherCore\Modules\AbstractModule;
 class Module
 {
     protected $name;
+    protected $descr;
     protected $arguments;
     protected $dependency_modules = [];
 
@@ -28,6 +29,26 @@ class Module
     {
         $this->name = $name;
         return $this;
+    }
+
+
+    /**
+     * @param mixed $name
+     * @return Module
+     */
+    protected function setDescr($descr)
+    {
+        $this->descr = $descr;
+        return $this;
+    }
+
+    /**
+     * @param mixed $name
+     * @return Module
+     */
+    public function getDescr()
+    {
+        return $this->descr;
     }
 
     /**
@@ -66,6 +87,9 @@ class Module
         }
         if(isset($arr['name'])) {
             $obj->setName($arr['name']);
+        }
+        if(isset($arr['descr'])) {
+            $obj->setDescr($arr['descr']);
         }
         if(isset($arr['depends'])) {
             $obj->dependency_modules = $arr['depends'];

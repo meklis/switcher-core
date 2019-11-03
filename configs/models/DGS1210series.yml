@@ -6,7 +6,7 @@
 ##
 ############################################################################################################################
 models:
- - name: Dlink DGS-1210-28/ME/A2
+ - name: D-link DGS-1210-28/ME/A2
    ports: 28
    inputs:
      - snmp
@@ -39,7 +39,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
 
- - name: Dlink DGS-1210-20/ME/A1
+ - name: D-link DGS-1210-20/ME/A1
    ports: 20
    inputs:
      - snmp
@@ -72,7 +72,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
 
- - name: Dlink DGS-1210-10/ME/A1
+ - name: D-link DGS-1210-10/ME/A1
    ports: 10
    inputs:
      - snmp
@@ -105,7 +105,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
 
- - name: Dlink DGS-1210-20/ME/B1
+ - name: D-link DGS-1210-20/ME/B1
    ports: 20
    inputs:
      - snmp
@@ -138,7 +138,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
 
- - name: Dlink DGS-1210-28/ME/B1
+ - name: D-link DGS-1210-28/ME/B1
    ports: 28
    inputs:
      - snmp
@@ -171,7 +171,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
 
- - name: Dlink DGS-1210-28XS/ME/B1
+ - name: D-link DGS-1210-28XS/ME/B1
    ports: 28
    inputs:
      - snmp
