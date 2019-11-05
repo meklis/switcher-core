@@ -1,112 +1,702 @@
-# Build-in Modules
-### Module SwitcherCore\Modules\Snmp\Fdb\DefaultParser
-```
-        json_encode($core->action('fdb', ['port'=>3]), JSON_PRETTY_PRINT);
+
+### arp_info - ARP information (L3 devices)
+Name: **arp_info**
+
+**Arguments:**
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **status**, pattern: *^(disabled|invalid|OK)$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"ip":"185.190.150.65"}', true);
+$core->action('arp_info', $parameters);
+
 [
     {
-        "port": "27",
-        "vlan_id": "453",
-        "mac": "20:89:84:2C:CA:3A",
-        "status": "LEARNED"
-    },
+        "ip": "185.190.150.65",
+        "mac": "64:D1:54:EE:A7:69",
+        "dynamic": "true",
+        "comment": "",
+        "vlan_id": -1,
+        "status": "disabled",
+        "extra": {
+            "id": "*169",
+            "interface_name": "ether1"
+        }
+    }
+]
+```
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+### arp_ping - ARP ping
+Name: **arp_ping**
+
+**Arguments:**
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*, required
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^[0-9a-zA-Z_\-]{1,}$*
+- **count**, pattern: *^[0-9]{1,}$*
+
+``` 
+$parameters=json_decode('{"ip":"185.190.150.65","vlan_name":"ether1"}', true);
+$core->action('arp_ping', $parameters);
+
+[
     {
-        "port": "27",
-        "vlan_id": "453",
-        "mac": "4C:CC:6A:D5:81:93",
-        "status": "LEARNED"
-    },
+        "seq": "0",
+        "host": "64:D1:54:EE:A7:69",
+        "time": "0ms",
+        "sent": "1",
+        "received": "1",
+        "packet-loss": "0",
+        "min-rtt": "0ms",
+        "avg-rtt": "0ms",
+        "max-rtt": "0ms"
+    }
+]
+```
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+### cable_diag - Cable diagnostic
+Name: **cable_diag**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,3}$*
+
+**Response example(test script)**
+```
+$parameters=json_decode('{"port":"1"}', true);
+$core->action('cable_diag', $parameters);
+
+[
     {
-        "port": "27",
-        "vlan_id": "453",
-        "mac": "B0:BE:76:1B:49:54",
+        "port": 1,
+        "pairs": [
+            {
+                "number": 1,
+                "status": "OK",
+                "length": "71"
+            },
+            {
+                "number": 2,
+                "status": "OK",
+                "length": "71"
+            }
+        ]
+    }
+]
+```
+
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\CableDiag\Des3526Parser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkDgs1100Parser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkDgs1100Parser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+
+
+### clear_counters - Clear counters
+Name: **clear_counters**
+
+**Response example(test script)**
+``` 
+$parameters=json_decode('[]', true);
+$core->action('clear_counters', $parameters);
+
+true
+```
+
+**Supported devices:**
+- D-Link devices 
+
+### counters - Counters on port
+Name: **counters**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,3}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"25"}', true);
+$core->action('counters', $parameters);
+
+[
+    {
+        "hc_out_octets": "260561",
+        "port": "25",
+        "hc_out_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "1",
+        "hc_in_octets": "7376986",
+        "hc_in_broadcast_pkts": "169",
+        "hc_in_multicast_pkts": "22"
+    }
+]
+```
+
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+
+
+### ctrl_port_descr - Port description configuration
+Name: **ctrl_port_descr**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,4}$*, required
+- **description**, pattern: *^[0-9a-zA-Z_]{1,}$*, required
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"3","description":"test"}', true);
+$core->action('ctrl_port_descr', $parameters);
+
+true
+```
+
+**Supported devices:**
+- D-Link devices 
+
+
+### ctrl_port_speed - Port speed configuration
+Name: **ctrl_port_speed**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,4}$*, required
+- **speed**, pattern: *^auto|(10|100|1000|10000)-(Half|Full)$*, required
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"3","speed":"auto"}', true);
+$core->action('ctrl_port_speed', $parameters);
+
+true
+```
+
+**Supported devices:**
+- D-Link devices 
+
+
+### ctrl_port_state - Port state configuration
+Name: **ctrl_port_state**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,4}$*, required
+- **state**, pattern: *^(disable|enable)$*, required
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"4","state":"enable"}', true);
+$core->action('ctrl_port_state', $parameters);
+
+true
+```
+
+
+**Supported devices:**
+- D-Link devices 
+
+
+### ctrl_static_arp - Adding and removing static ARP (L3 Devices)
+Name: **ctrl_static_arp**
+
+**Arguments:**
+- **action**, pattern: *^(add|remove)$*, required
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^[0-9a-zA-Z_\-]{1,}$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **comment**, pattern: *.**
+
+**Response example**
+``` 
+
+```
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+
+### ctrl_static_lease - Control static leases
+Name: **ctrl_static_lease**
+
+**Arguments:**
+- **action**, pattern: *^(add|remove)$*, required
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **dhcp_server**, pattern: *^.*$*
+- **comment**, pattern: *^.*$*
+ 
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+### ctrl_vlan_port - Vlan configuration on port
+Name: **ctrl_vlan_port**
+
+**Arguments:**
+- **id**, pattern: *^[0-9]{1,4}$*, required
+- **port**, pattern: *^[0-9]{1,4}$*, required
+- **type**, pattern: *^(tagged|untagged)$*
+- **action**, pattern: *^(delete|add)$*, required
+
+**Response example**
+``` 
+$parameters=json_decode('{"id":"400","port":"4","type":"tagged","action":"add"}', true);
+$core->action('ctrl_vlan_port', $parameters);
+true
+
+$parameters=json_decode('{"id":"400","port":"4","action":"delete"}', true);
+$core->action('ctrl_vlan_port', $parameters);
+true
+```
+
+**Supported devices:**
+- D-Link devices 
+
+
+### ctrl_vlan_state - Vlan configuration on device
+Name: **ctrl_vlan_state**
+
+**Arguments:**
+- **id**, pattern: *^[0-9]{1,4}$*
+- **name**, pattern: *^[0-9a-zA-Z_]{1,16}$*
+- **action**, pattern: *^(delete|create)$*, required
+
+**Response example**
+``` 
+$parameters=json_decode('{"id":"400","name":"TEST","action":"create"}', true);
+$core->action('ctrl_vlan_state', $parameters);
+
+true
+```
+
+**Supported devices:**
+- D-Link devices 
+
+### dhcp_server_info - DHCP-server information (RouterOS devices)
+Name: **dhcp_server_info**
+
+**Arguments:**
+- **name**, pattern: *^.*$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"name":"dhcp3"}', true);
+$core->action('dhcp_server_info', $parameters);
+
+[
+    {
+        "name": "dhcp3",
+        "interface": "bridge_wifi",
+        "lease_time": "10m",
+        "address_pool": "dhcp_pool5",
+        "extra": {
+            "vlan": null
+        }
+    }
+]
+```
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+### errors - Errors on port
+Name: **errors**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,3}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"4"}', true);
+$core->action('errors', $parameters);
+
+[
+    {
+        "port": "4",
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    }
+]
+```
+
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+
+
+### fdb - MAC forwarding database
+Name: **fdb**
+
+**Arguments:**
+- **port**, pattern: *.**
+- **mac**, pattern: *.**
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"9"}', true);
+$core->action('fdb', $parameters);
+
+[
+    {
+        "port": "9",
+        "vlan_id": "406",
+        "mac": "00:1B:38:2C:97:D1",
         "status": "LEARNED"
     }
 ]
 ```
 
-### Module SwitcherCore\Modules\Snmp\Link\DlinkParser
-```
-        json_encode($core->action('link_info', ['port'=>3]), JSON_PRETTY_PRINT);
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
+- ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\ZTE\Fdb)*
+
+
+### interface_vlan_info - Interface information (vlans on L3 devices)
+Name: **interface_vlan_info**
+
+**Arguments:**
+- **name**, pattern: *^[0-9a-zA-Z_]{1,16}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"name":"mng"}', true);
+$core->action('interface_vlan_info', $parameters);
+
 [
     {
-        "port": "27",
+        "vlan_id": "1000",
+        "name": "mng",
+        "disabled": "true",
+        "arp": "enabled"
+    }
+]
+```
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+### lease_info - Lease information
+Name: **lease_info**
+
+**Arguments:**
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **dhcp_server**, pattern: *^.*$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"ip":"30.30.0.8"}', true);
+$core->action('lease_info', $parameters);
+
+[
+    {
+        "ip": "30.30.0.8",
+        "mac": "00:0B:82:E3:3A:44",
+        "status": "bound",
+        "expires_at": 1572980866,
+        "server": "dhcp2",
+        "extra": {
+            "id": "*12AC",
+            "client_id": "1:0:b:82:e3:3a:44",
+            "server": {
+                "name": "dhcp2",
+                "interface": "bridge_office",
+                "lease_time": "10m",
+                "address_pool": "dhcp_pool4",
+                "extra": {
+                    "vlan": null
+                }
+            }
+        }
+    }
+]
+```
+
+**Supported devices:**
+- All mikrotik with routerOS 
+
+
+### link_info - Port information
+Name: **link_info**
+
+**Arguments:**
+- **port**, pattern: *^.*$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"9"}', true);
+$core->action('link_info', $parameters);
+
+[
+    {
+        "port": "9",
         "medium_type": "Cooper",
-        "type": "GE",
+        "type": "FE",
         "last_change": null,
         "connector_present": null,
         "oper_status": "Up",
-        "description": "3369516",
+        "description": "",
         "admin_state": "Auto",
-        "nway_status": "1G-Full",
+        "nway_status": "100-Full",
         "address_learning": "Enabled"
     }
 ]
 ```
 
-### Module SwitcherCore\Modules\Snmp\Counters\DefaultParser
-```
-        json_encode($core->action('counters', ['port'=>3]), JSON_PRETTY_PRINT);
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Link\DlinkDes3526Parser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
+- ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\ZTE\LinkInfo)*
+
+ 
+### pvid - PVID table
+Name: **pvid**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,3}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"9"}', true);
+$core->action('pvid', $parameters);
+
 [
     {
-        "hc_out_octets": "25261552791",
-        "port": "27",
-        "hc_out_broadcast_pkts": "6311150",
-        "hc_out_multicast_pkts": "10596",
-        "hc_in_multicast_pkts": "20992",
-        "hc_in_broadcast_pkts": "2068",
-        "hc_in_octets": "27111678291"
+        "pvid": "406",
+        "port": "9"
     }
 ]
 ```
 
-### Module SwitcherCore\Modules\Snmp\System\DefaultParser
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+
+
+### reboot - Reboot device
+Name: **reboot**
+
+
+**Supported devices:**
+- D-Link devices 
+
+
+### rmon - RMON statistic
+Name: **rmon**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,3}$*
+ 
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+
+
+### save_config - Save configuration
+Name: **save_config**
+
+**Response example**
+``` 
+
 ```
-        json_encode($core->action('system', ['port'=>3]), JSON_PRETTY_PRINT);
+
+**Supported devices:**
+- D-Link devices 
+
+
+### system - System information
+Name: **system**
+
+**Response example**
+``` 
+$parameters=json_decode('[]', true);
+$core->action('system', $parameters);
+
 {
-    "descr": "D-Link DES-3028 Fast Ethernet Switch",
-    "uptime": "0d 12h 50min 47sec",
-    "contact": "",
-    "name": "Kiev-Borshchagovskij (493\/5013)",
-    "location": "Zodchikh, 6a(9)",
-    "firmware": "2.94.B21",
-    "revision": "A1",
+    "descr": "D-Link DES-3200-26 Fast Ethernet Switch",
+    "uptime": "4d 16h 11min 5sec",
+    "contact": "asusgrin@gmail.com",
+    "name": "sw-eurocity-J1b-3p-1",
+    "location": "Krykovshina",
     "meta": {
-        "name": "D-link DES-3028",
+        "name": "D-link DES-3200-26\/A1",
         "detect": {
-            "description": "^D-Link DES-3028 Fast Ethernet Switch",
-            "objid": ".*"
+            "description": "^D-Link DES-3200-26 Fast Ethernet Switch$",
+            "objid": "^.*113.1.5$"
         },
-        "ports": 28,
+        "ports": 26,
         "extra": {
-            "diag_ports": [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11,
-                12,
-                13,
-                14,
-                15,
-                16,
-                17,
-                18,
-                19,
-                20,
-                21,
-                22,
-                23,
-                24,
-                27,
-                28
-            ],
-            "diag_linkup": false
+            "diag_linkup": true,
+            "telnet_conn_type": "dlink"
         },
         "modules": [
             "fdb",
@@ -121,205 +711,140 @@
             "clear_counters",
             "save_config",
             "reboot",
-            "vlans_by_port"
+            "vlans_by_port",
+            "ctrl_port_state",
+            "ctrl_port_speed",
+            "ctrl_port_descr",
+            "ctrl_vlan_state",
+            "ctrl_vlan_port"
         ]
     }
 }
 ```
 
-### Module SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
-```
-        json_encode($core->action('vlans', ['port'=>3]), JSON_PRETTY_PRINT);
+**Supported devices:**
+- D-Link devices 
+- Mikrotik devices
+
+### vlans - Vlan information
+Name: **vlans**
+
+**Arguments:**
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"vlan_id":"400"}', true);
+$core->action('vlans', $parameters);
+
 [
     {
-        "name": "default",
-        "id": "1",
-        "ports": {
-            "egress": [],
-            "untagged": [],
-            "forbidden": []
-        }
-    },
-    {
-        "name": "switches430",
-        "id": "430",
+        "name": "TEST",
+        "id": "400",
         "ports": {
             "egress": [
-                "26"
+                "4"
             ],
             "untagged": [],
             "forbidden": [],
             "tagged": [
-                "26"
-            ]
-        }
-    },
-    {
-        "name": "INTERNET",
-        "id": "453",
-        "ports": {
-            "egress": [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
-                "17",
-                "18",
-                "19",
-                "20",
-                "21",
-                "22",
-                "23",
-                "24",
-                "25",
-                "26",
-                "27",
-                "28"
-            ],
-            "untagged": [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
-                "17",
-                "18",
-                "19",
-                "20",
-                "21",
-                "22",
-                "23",
-                "24",
-                "25",
-                "27",
-                "28"
-            ],
-            "forbidden": [],
-            "tagged": [
-                "26"
+                "4"
             ]
         }
     }
 ]
 ```
 
-### Module SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
-```
-        json_encode($core->action('cable_diag', ['port'=>3]), JSON_PRETTY_PRINT);
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+
+
+### vlans_by_port - Vlan information over port
+Name: **vlans_by_port**
+
+**Arguments:**
+- **port**, pattern: *^[0-9]{1,3}$*
+
+**Response example**
+``` 
+$parameters=json_decode('{"port":"4"}', true);
+$core->action('vlans_by_port', $parameters);
+
 [
     {
-        "port": 27,
-        "pairs": [
+        "port": "4",
+        "untagged": [
             {
-                "number": 1,
-                "status": "OK",
-                "length": "33"
-            },
-            {
-                "number": 2,
-                "status": "OK",
-                "length": "33"
-            },
-            {
-                "number": 3,
-                "status": "OK",
-                "length": "33"
-            },
-            {
-                "number": 4,
-                "status": "OK",
-                "length": "33"
+                "name": "fake50",
+                "id": "50"
             }
-        ]
+        ],
+        "tagged": [
+            {
+                "name": "TEST",
+                "id": "400"
+            }
+        ],
+        "egress": [
+            {
+                "name": "fake50",
+                "id": "50"
+            },
+            {
+                "name": "TEST",
+                "id": "400"
+            }
+        ],
+        "forbidden": []
     }
 ]
 ```
 
-### Module SwitcherCore\Modules\Snmp\Errors\DefaultParser
-```
-        json_encode($core->action('errors', ['port'=>3]), JSON_PRETTY_PRINT);
-[
-    {
-        "port": "27",
-        "in_errors": "0",
-        "out_errors": "0",
-        "in_discards": "0",
-        "out_discards": "0"
-    }
-]
-```
-
-### Module SwitcherCore\Modules\Snmp\Rmon\DefaultParser
-```
-        json_encode($core->action('rmon', ['port'=>3]), JSON_PRETTY_PRINT);
-[
-    {
-        "ether_stats_undersize_pkts": "0",
-        "port": "27",
-        "ether_stats_drop_events": "0",
-        "ether_stats_collisions": "0",
-        "ether_stats_crc_align_errors": "0",
-        "ether_stats_oversize_pkts": "0",
-        "ether_stats_fragments": "0",
-        "ether_stats_jabber": "0"
-    }
-]
-```
-
-### Module SwitcherCore\Modules\Snmp\Vlan\PvidParser
-```
-        json_encode($core->action('pvid', ['port'=>3]), JSON_PRETTY_PRINT);
-[
-    {
-        "pvid": "453",
-        "port": "27"
-    }
-]
-```
-
-### Module SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
-```
-        json_encode($core->action('rmon', ['port'=>3]), JSON_PRETTY_PRINT);
-[
-   {
-       "port": "1",
-       "untagged": [
-           {
-               "name": "INTERNET",
-               "id": "453"
-           }
-       ],
-       "tagged": [],
-       "egress": [
-           {
-               "name": "INTERNET",
-               "id": "453"
-           }
-       ],
-       "forbidden": []
-   }
-]
-```
+**Supported devices:**
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
