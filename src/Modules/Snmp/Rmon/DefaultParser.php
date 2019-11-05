@@ -40,7 +40,7 @@ class DefaultParser extends AbstractModule
     public function run($filter = [])
     {
         $oids = [];
-        foreach ($this->oidsCollector->getOidsByRegex('rmon.*') as $oid) {
+        foreach ($this->obj->oidCollector->getOidsByRegex('rmon.*') as $oid) {
             $oids[] = $oid->getOid();
         }
 
@@ -53,7 +53,7 @@ class DefaultParser extends AbstractModule
                 $oids[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->walker->walk($oids));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 }

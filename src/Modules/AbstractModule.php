@@ -12,123 +12,43 @@ use SwitcherCore\Config\CommandCollector;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
+use SwitcherCore\Switcher\Objects\InputsStore;
+use SwitcherCore\Switcher\Objects\ModuleStore;
+use SwitcherCore\Switcher\Objects\ObjectSource;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-abstract class AbstractModule implements ModuleInterface
+abstract class AbstractModule
 {
     private $indexesPort = [];
     /**
      * @var WrappedResponse[]
      */
     protected $response;
-    /**
-     * @var Walker
-     */
-    protected $walker;
 
     /**
-     * @var OidCollector
+     * @var InputsStore
      */
-    protected $oidsCollector;
-    /**
-     * @var CommandCollector
-     */
-    protected $commandCollector;
+    protected $obj;
 
     /**
-     * @var Model
+     * @var ModuleStore
      */
-    protected $model;
+    protected $module;
 
-    /**
-     * @var AbstractModule[]
-     */
-    protected $modules;
-
-
-
-    protected $oidNames = [];
-    /**
-     * @param Model $model
-     * @return self
-     */
-
-    /**
-     * @var Telnet
-     */
-    protected $telnet_conn;
-    /**
-     * @var Telnet
-     */
-    protected $memcache;
-    /**
-     * @var \RouterosAPI
-     */
-    protected $routerOsAPI;
-
-    /**
-     * @param Telnet $conn
-     * @return $this
-     */
-    function setTelnetConn(?Telnet $conn) {
-        $this->telnet_conn = $conn;
+    public function setInputsStore(InputsStore $obj) {
+        $this->obj = $obj;
         return $this;
     }
 
-    /**
-     * @param Model $model
-     * @return $this|ModuleInterface
-     */
-    function setModel(Model $model) {
-        $this->model = $model;
+
+    public function setModuleStore(ModuleStore $obj) {
+        $this->module = $obj;
         return $this;
     }
 
-    /**
-     * @param OidCollector $collector
-     * @return self
-     */
-    function setOidCollector(OidCollector $collector) {
-        $this->oidsCollector = $collector;
+    final public function start($params = []) {
+        $this->run($params);
         return $this;
-    }
-
-    /**
-     * @param Walker $walker
-     * @return self
-     */
-    function setWalker(Walker $walker) {
-        $this->walker = $walker;
-        return $this;
-    }
-
-    /**
-     * @param \RouterosAPI $walker
-     * @return self
-     */
-    function setRouterOsAPI(?\RouterosAPI $api) {
-        $this->routerOsAPI = $api;
-        return $this;
-    }
-    /**
-     * @param Walker $walker
-     * @return self
-     */
-    function setDependencyModule($moduleName, ?AbstractModule $module) {
-        $this->modules[$moduleName] = $module;
-        return $this;
-    }
-
-    /**
-     * @param $moduleName
-     * @return AbstractModule
-     * @throws \Exception
-     */
-    function getDependencyModule($moduleName) {
-        if(isset($this->modules[$moduleName]) && $this->modules[$moduleName]) {
-            return $this->modules[$moduleName];
-        }
-        throw new \Exception("Module with name $moduleName not injected");
     }
 
     /**
@@ -162,11 +82,13 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @param PoollerResponse[] $response
      * @return WrappedResponse[]
+     *
+     * @throws \Exception
      */
     protected function formatResponse($response) {
         $formated = [];
         foreach ($response as $resp) {
-            $oid = $this->oidsCollector->findOidById($resp->getOid());
+            $oid = $this->obj->oidCollector->findOidById($resp->getOid());
             $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
         }
 
@@ -177,12 +99,12 @@ abstract class AbstractModule implements ModuleInterface
         if($this->indexesPort) {
             return $this->indexesPort;
         }
-        $last_cache_status = $this->walker->getCacheStatus();
-        $response = $this->formatResponse($this->walker->useCache(true)->walk([
-            $this->oidsCollector->getOidByName('if.Index')->getOid(),
-            $this->oidsCollector->getOidByName('if.Type')->getOid(),
+        $last_cache_status = $this->obj->walker->getCacheStatus();
+        $response = $this->formatResponse($this->obj->walker->useCache(true)->walk([
+            $this->obj->oidCollector->getOidByName('if.Index')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.Type')->getOid(),
         ]));
-        $this->walker->useCache($last_cache_status);
+        $this->obj->walker->useCache($last_cache_status);
         $types = [];
         foreach ($response['if.Type']->fetchAll() as $resp) {
             $types[Helper::getIndexByOid($resp->getOid())] = $resp->getParsedValue();
@@ -208,7 +130,4 @@ abstract class AbstractModule implements ModuleInterface
         return $this->response[$name];
     }
 
-    function setMemcache($memcache) {
-        $this->memcache = $memcache;
-    }
 }

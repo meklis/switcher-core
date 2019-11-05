@@ -88,7 +88,7 @@ class DlinkDes3526Parser extends DlinkParser
         }
         foreach ($types->fetchAll() as $d) {
             $port = Helper::getIndexByOid($d->getOid());
-            if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
+            if(isset($this->obj->model->getExtra()['ge_ports']) && in_array($port, $this->obj->model->getExtra()['ge_ports'])) {
                 $d->setParsed('GE');
             }
             if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['type'] =   $d->getParsedValue();
@@ -121,15 +121,15 @@ class DlinkDes3526Parser extends DlinkParser
     public function run($filter = [])
     {
         $prepared = [
-            $this->oidsCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.PortInfoMediumType')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.PortInfoNwayStatus')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid() ,
-            $this->oidsCollector->getOidByName('if.Alias')->getOid() ,
-            $this->oidsCollector->getOidByName('if.Type')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.PortInfoNwayStatus')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid() ,
+            $this->obj->oidCollector->getOidByName('if.Alias')->getOid() ,
+            $this->obj->oidCollector->getOidByName('if.Type')->getOid() ,
         ];
-        $this->response = $this->formatResponse($this->walker->walkBulk($prepared));
+        $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
         return $this;
     }
 }

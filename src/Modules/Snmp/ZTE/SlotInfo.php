@@ -10,12 +10,12 @@ class SlotInfo extends AbstractModule
 {
     public function run($params = [])
     {
-        $oidsObj = $this->oidsCollector->getOidsByRegex('^zx.slot.*');
+        $oidsObj = $this->obj->oidCollector->getOidsByRegex('^zx.slot.*');
         $oids = [];
         foreach ($oidsObj as $oid) {
             $oids[] = $oid->getOid();
         }
-        $this->response = $this->formatResponse($this->walker->walk($oids));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 

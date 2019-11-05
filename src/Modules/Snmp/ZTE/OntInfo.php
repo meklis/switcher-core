@@ -20,13 +20,13 @@ class OntInfo extends ZteAbstractModule
                 $index .= ".{$ont}";
             }
         }
-        $oidsObj = $this->oidsCollector->getOidsByRegex('^zx.ont.*');
+        $oidsObj = $this->obj->oidCollector->getOidsByRegex('^zx.ont.*');
         $oids = [];
         foreach ($oidsObj as $oid) {
             $oids[] = $oid->getOid() . "{$index}";
         }
         try {
-            $this->response = $this->formatResponse($this->walker->walk($oids));
+            $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         } catch (\Exception $e) {
             if(strpos($e->getMessage(), "NoSuchInstance") !== false) {
                 throw new NoSuchInstanceException($e->getMessage(), 1, $e);

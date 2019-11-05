@@ -21,7 +21,7 @@ class StaticArpControl extends ExecCommand
         return $this->response;
     }
     private function getInterfaceNameById($vlan_id) {
-        foreach ($this->getDependencyModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
             if($vlan_id == $vl['vlan_id']) {
                 return $vl['name'];
             }
@@ -58,7 +58,7 @@ class StaticArpControl extends ExecCommand
         return $this;
     }
     private function getArpsInfoByParam($params) {
-        return $this->getDependencyModule('arp_info')->run($params)->getPrettyFiltered();
+        return $this->obj->arp_info->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {

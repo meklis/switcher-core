@@ -76,7 +76,7 @@ class Fdb extends ZteAbstractModule
 
     public function run($filter = [])
     {
-       $fdb_status =  $this->oidsCollector->getOidByName('zx.onu.MacForwardingTable')->getOid();
+       $fdb_status =  $this->obj->oidCollector->getOidByName('zx.onu.MacForwardingTable')->getOid();
        if($filter['port']) {
            $fdb_status .= "." . ($this->getIndexByPort($filter['port'], 'onu') - $this->index_bias);
        }
@@ -89,7 +89,7 @@ class Fdb extends ZteAbstractModule
            $fdb_status .= "." . Helper::mac2oid($filter['mac']);
        }
 
-       $this->response = $this->formatResponse($this->walker->walkBulk([
+       $this->response = $this->formatResponse($this->obj->walker->walkBulk([
             $fdb_status,
        ]));
         return $this;

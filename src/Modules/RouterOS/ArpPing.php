@@ -27,7 +27,7 @@ class ArpPing extends ExecCommand
             throw new \InvalidArgumentException("vlan_id or vlan_name(interface name) required for this module");
         }
         $vlans = [];
-        foreach ($this->getDependencyModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
             $vlans[$vl['name']] = $vl;
         }
         $filter = [];

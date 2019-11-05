@@ -22,7 +22,7 @@ class DhcpServerInfo extends ExecCommand
         return $this->response;
     }
     private function getInterface($params) {
-        foreach ($this->getDependencyModule('interface_vlan_info')->run($params)->getPrettyFiltered() as $vl) {
+        foreach ($this->module->interface_vlan_info->run($params)->getPrettyFiltered() as $vl) {
             return $vl;
         }
         return null;

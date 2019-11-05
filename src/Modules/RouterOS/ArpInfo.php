@@ -30,7 +30,7 @@ class ArpInfo extends ExecCommand
     {
         $arps = [];
         $vlans = [];
-        foreach ($this->getDependencyModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
             $vlans[$vl['name']] = $vl;
         }
         $filter = [];

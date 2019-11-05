@@ -21,7 +21,7 @@ class StaticLeaseControl extends ExecCommand
         return $this->response;
     }
     private function getDhcpServer($params) {
-        foreach ($this->getDependencyModule('dhcp_server_info')->run($params)->getPrettyFiltered() as $vl) {
+        foreach ($this->module->dhcp_server_info->run($params)->getPrettyFiltered() as $vl) {
             return $vl;
         }
         throw new \Exception("DHCP-server not found");
@@ -56,7 +56,7 @@ class StaticLeaseControl extends ExecCommand
         return $this;
     }
     private function getLeasesByParam($params) {
-        return $this->getDependencyModule('lease_info')->run($params)->getPrettyFiltered();
+        return $this->obj->lease_info->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {

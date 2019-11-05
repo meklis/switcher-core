@@ -56,10 +56,10 @@ class DefaultParser extends AbstractModule
     public function run($filter = [])
     {
         $oids = [
-            $this->oidsCollector->getOidByName('if.InErrors')->getOid(),
-            $this->oidsCollector->getOidByName('if.OutErrors')->getOid(),
-            $this->oidsCollector->getOidByName('if.InDiscards')->getOid(),
-            $this->oidsCollector->getOidByName('if.OutDiscards')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.InErrors')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.OutErrors')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.InDiscards')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.OutDiscards')->getOid(),
         ];
         if($filter['port']) {
             $indexes = [];
@@ -70,7 +70,7 @@ class DefaultParser extends AbstractModule
                 $oids[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->walker->walk($oids));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 }

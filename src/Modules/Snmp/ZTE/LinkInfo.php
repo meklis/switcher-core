@@ -65,24 +65,24 @@ class LinkInfo extends ZteAbstractModule
         if($filter['port']) {
             $index = $this->getIndexByPort($filter['port']);
             $data = [
-                $this->oidsCollector->getOidByName('if.HighSpeed')->getOid() . "." . $index,
-                $this->oidsCollector->getOidByName('if.Name')->getOid() . "." . $index,
-                $this->oidsCollector->getOidByName('if.Type')->getOid() . "." . $index,
-                $this->oidsCollector->getOidByName('if.OperStatus')->getOid() . "." . $index,
-                $this->oidsCollector->getOidByName('if.AdminStatus')->getOid() . "." . $index,
-                $this->oidsCollector->getOidByName('if.Alias')->getOid() . "." . $index,
+                $this->obj->oidCollector->getOidByName('if.HighSpeed')->getOid() . "." . $index,
+                $this->obj->oidCollector->getOidByName('if.Name')->getOid() . "." . $index,
+                $this->obj->oidCollector->getOidByName('if.Type')->getOid() . "." . $index,
+                $this->obj->oidCollector->getOidByName('if.OperStatus')->getOid() . "." . $index,
+                $this->obj->oidCollector->getOidByName('if.AdminStatus')->getOid() . "." . $index,
+                $this->obj->oidCollector->getOidByName('if.Alias')->getOid() . "." . $index,
             ];
-            $this->response = $this->formatResponse($this->walker->walk($data));
+            $this->response = $this->formatResponse($this->obj->walker->walk($data));
         } else {
             $data = [
-                $this->oidsCollector->getOidByName('if.HighSpeed')->getOid(),
-                $this->oidsCollector->getOidByName('if.Name')->getOid(),
-                $this->oidsCollector->getOidByName('if.Type')->getOid(),
-                $this->oidsCollector->getOidByName('if.OperStatus')->getOid(),
-                $this->oidsCollector->getOidByName('if.AdminStatus')->getOid(),
-                $this->oidsCollector->getOidByName('if.Alias')->getOid(),
+                $this->obj->oidCollector->getOidByName('if.HighSpeed')->getOid(),
+                $this->obj->oidCollector->getOidByName('if.Name')->getOid(),
+                $this->obj->oidCollector->getOidByName('if.Type')->getOid(),
+                $this->obj->oidCollector->getOidByName('if.OperStatus')->getOid(),
+                $this->obj->oidCollector->getOidByName('if.AdminStatus')->getOid(),
+                $this->obj->oidCollector->getOidByName('if.Alias')->getOid(),
             ];
-            $this->response = $this->formatResponse($this->walker->walk($data));
+            $this->response = $this->formatResponse($this->obj->walker->walk($data));
         }
 
         return $this;

@@ -48,8 +48,8 @@ class ByVlanParser extends AbstractModule
         Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
-            if($filter['port'] > $this->model->getPorts()) {
-                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
+            if($filter['port'] > $this->obj->model->getPorts()) {
+                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->obj->model->getPorts()}");
             }
             foreach ($formated as $num=>$fdb) {
                 if($fdb['port'] != $filter['port']) {
@@ -82,7 +82,7 @@ class ByVlanParser extends AbstractModule
     {
        Helper::prepareFilter($filter);
        //Get vlans
-       $this->response = $this->formatResponse($this->walker->walk([$this->oidsCollector->getOidByName('dot1q.VlanStaticName')->getOid()]));
+       $this->response = $this->formatResponse($this->obj->walker->walk([$this->obj->oidCollector->getOidByName('dot1q.VlanStaticName')->getOid()]));
        $vlanResponse = $this->getResponseByName('dot1q.VlanStaticName');
        if($vlanResponse->error()) {
            throw new IncompleteResponseException($vlanResponse->error());
@@ -93,8 +93,8 @@ class ByVlanParser extends AbstractModule
        }
 
        $oids = [];
-       $oids[] =  $this->oidsCollector->getOidByName('dot1q.FdbPort')->getOid();
-       $oids[] =  $this->oidsCollector->getOidByName('dot1q.FdbStatus')->getOid();
+       $oids[] =  $this->obj->oidCollector->getOidByName('dot1q.FdbPort')->getOid();
+       $oids[] =  $this->obj->oidCollector->getOidByName('dot1q.FdbStatus')->getOid();
        if($filter['vlan_id']) {
            $oids[0] .= ".{$filter['vlan_id']}";
            $oids[1] .= ".{$filter['vlan_id']}";
@@ -112,7 +112,7 @@ class ByVlanParser extends AbstractModule
        } elseif ($filter['mac']) {
            throw new \Exception("VlanID must be setted for mac filtering");
        }
-       $this->response = $this->formatResponse($this->walker->walk($oids));
+       $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 

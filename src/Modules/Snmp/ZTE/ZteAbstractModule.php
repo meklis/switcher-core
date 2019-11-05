@@ -15,11 +15,11 @@ abstract class ZteAbstractModule extends AbstractModule
         if(count($this->indexes) > 0) {
             return $this->indexes;
         }
-        $cStatus = $this->walker->getCacheStatus();
-        $response = $this->walker->useCache(true)->walk(
-            [$this->oidsCollector->getOidByName('if.Name')->getOid()]
+        $cStatus = $this->obj->walker->getCacheStatus();
+        $response = $this->obj->walker->useCache(true)->walk(
+            [$this->obj->oidCollector->getOidByName('if.Name')->getOid()]
         );
-        $this->walker->useCache($cStatus);
+        $this->obj->walker->useCache($cStatus);
         foreach ($response as $resp) {
             foreach ($resp->response as $in) {
                 $resp = explode("_", $in->getValue());

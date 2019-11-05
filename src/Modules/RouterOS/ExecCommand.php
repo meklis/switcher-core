@@ -21,10 +21,10 @@ class ExecCommand extends AbstractModule
         return $this->status;
     }
     protected function execComm($comm, $params =[]) {
-        if(!$this->routerOsAPI) {
+        if(!$this->obj->isExist('routerOsApi')) {
             throw new \Exception("Module required routerOsApi connection");
         }
-        $resp = $this->routerOsAPI->comm($comm, $params);
+        $resp = $this->obj->routerOsApi->comm($comm, $params);
         if(!$resp) {
             return [];
         } elseif (isset($resp['!trap'][0]['message'])) {

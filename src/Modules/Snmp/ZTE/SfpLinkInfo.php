@@ -60,14 +60,14 @@ class SfpLinkInfo extends ZteAbstractModule
             $add = ".{$this->getIndexByPort($filter['port'])}";
         }
         $data = [
-            $this->oidsCollector->getOidByName('zx.olt.OpticalPowerTxCurrValue')->getOid() . $add,
-            $this->oidsCollector->getOidByName('zx.olt.OpticalSupplyVoltage')->getOid(). $add,
-            $this->oidsCollector->getOidByName('zx.olt.OpticalVenderName')->getOid(). $add,
-            $this->oidsCollector->getOidByName('zx.olt.OpticalVenderPn')->getOid(). $add,
-            $this->oidsCollector->getOidByName('zx.olt.OpticalModuleType')->getOid(). $add,
+            $this->obj->oidCollector->getOidByName('zx.olt.OpticalPowerTxCurrValue')->getOid() . $add,
+            $this->obj->oidCollector->getOidByName('zx.olt.OpticalSupplyVoltage')->getOid(). $add,
+            $this->obj->oidCollector->getOidByName('zx.olt.OpticalVenderName')->getOid(). $add,
+            $this->obj->oidCollector->getOidByName('zx.olt.OpticalVenderPn')->getOid(). $add,
+            $this->obj->oidCollector->getOidByName('zx.olt.OpticalModuleType')->getOid(). $add,
         ];
 
-        $this->response = $this->formatResponse($this->walker->walk($data));
+        $this->response = $this->formatResponse($this->obj->walker->walk($data));
         return $this;
     }
 

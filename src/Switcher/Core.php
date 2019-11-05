@@ -4,14 +4,11 @@ namespace SwitcherCore\Switcher;
 
 use Meklis\TelnetOverProxy\Telnet;
 use SnmpWrapper\Walker;
-use SwitcherCore\Config\ModelCollector;
-use SwitcherCore\Config\ModuleCollector;
-use SwitcherCore\Config\Objects\Model;
-use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Objects\InputsStore;
+use SwitcherCore\Switcher\Objects\ModuleStore;
 use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
-use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 
 class Core
@@ -24,101 +21,83 @@ class Core
      * @var string
      */
     protected  $community;
-    /**
-     * @var ModelCollector
-     */
-    protected  $modelCollector;
-    /**
-     * @var Walker
-     */
-    protected  $walker;
-    /**
-     * @var TelnetLazyConnect
-     */
-    protected  $telnet;
-    /**
-     * @var RouterOsLazyConnect
-     */
-    protected  $routerOsAPI;
-    /**
-     * @var OidCollector
-     */
-    protected   $oidCollector;
 
     /**
-     * @var \Memcache
+     * @var InputsStore
      */
-    protected $memcached;
+
+    protected $objects;
 
     /**
-     * @var ModuleCollector
+     * @var ModuleStore
      */
-    protected  $moduleCollector;
+    protected $modules;
 
-    /**
-     * @var Model
-     */
 
-    protected $model;
     function __construct(Reader $reader)
     {
-        $this->oidCollector = \SwitcherCore\Config\OidCollector::init($reader);
-        $this->modelCollector = \SwitcherCore\Config\ModelCollector::init($reader);
-        $this->moduleCollector = \SwitcherCore\Config\ModuleCollector::init($reader);
+        $this->objects = new InputsStore;
+        $this->objects->oidCollector = \SwitcherCore\Config\OidCollector::init($reader);
+        $this->objects->modelCollector = \SwitcherCore\Config\ModelCollector::init($reader);
+        $this->objects->moduleCollector = \SwitcherCore\Config\ModuleCollector::init($reader);
 
+        $this->modules = new ModuleStore;
     }
     function setWalker(Walker $walker) {
-        $this->walker = $walker;
+        $this->objects->walker = $walker;
         return $this;
     }
+
+    /**
+     * @param Telnet|null $telnet
+     * @return $this
+     * @throws \Exception
+     */
     function setTelnet(?Telnet $telnet) {
-        if(!$this->model) {
+        if(!$this->objects->isExist('model')) {
             throw new \Exception("Model not detected. You must call init() first");
         }
-        foreach ($this->model->getModules() as $moduleName=>$module) {
-            $this->model->setModule(
-                $moduleName,
-                $module->setTelnetConn($telnet)
-            );
-        }
-        $telnet->setHostType($this->model->getTelnetConnType());
-        $this->telnet = $telnet;
+        $telnet->setHostType($this->objects->model->getTelnetConnType());
+        $this->objects->telnet = $telnet;
         return $this;
     }
 
+    /**
+     * @param RouterOsLazyConnect|null $api
+     * @return $this
+     * @throws \Exception
+     */
     function setRouterOsAPI(?RouterOsLazyConnect $api) {
-        if(!$this->model) {
+        if(!$this->objects->isExist('model')) {
             throw new \Exception("Model not detected. You must call init() first");
         }
-        foreach ($this->model->getModules() as $moduleName=>$module) {
-            $this->model->setModule(
-                $moduleName,
-                $module->setRouterOsAPI($api)
-            );
-        }
-        $this->routerOsAPI = $api;
+        $this->objects->routerOsApi = $api;
         return $this;
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     private function getDetectDevInfo() {
-        $prev_state = $this->walker->getCacheStatus();
-        $response = $this->walker
+        $prev_state = $this->objects->walker->getCacheStatus();
+        $response = $this->objects->walker
             ->useCache('true')
             ->walk([
-                $this->oidCollector->getOidByName('sys.Descr')->getOid(),
-                $this->oidCollector->getOidByName('sys.ObjId')->getOid(),
+                $this->objects->oidCollector->getOidByName('sys.Descr')->getOid(),
+                $this->objects->oidCollector->getOidByName('sys.ObjId')->getOid(),
             ]);
-        $this->walker->useCache($prev_state);
+        $this->objects->walker->useCache($prev_state);
         $descr = "";
         $objId = "";
         foreach ($response as $resp) {
             if($resp->error) {
                 throw new \Exception("Walker returned error: {$resp->error}");
             } else {
-                if($this->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
+                if($this->objects->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
                     $descr = $resp->getResponse()[0]->getValue();
                 }
-                if($this->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
+                if($this->objects->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
                     $objId = $resp->getResponse()[0]->getValue();
                 }
             }
@@ -134,72 +113,57 @@ class Core
     }
 
     function getNeedInputs() {
-        return $this->model->getInputs();
+        return $this->objects->model->getInputs();
     }
 
     /**
      * @return $this
      * @throws ModuleNotFoundException
      * @throws \ErrorException
-     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException
+     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException | \Exception
      */
     function init() {
-        if(!$this->walker) {
+        if(!$this->objects->isExist('walker')) {
             throw new \Exception("Snmp walker not setted. You must set walker before connect");
         }
         $devInfo = $this->getDetectDevInfo();
-        $this->model = $this->modelCollector->getModelByDetect($devInfo['descr'],$devInfo['objid']);
+        $this->objects->model = $this->objects->modelCollector->getModelByDetect($devInfo['descr'],$devInfo['objid']);
 
-        $this->oidCollector->readEnterpriceOids($this->model);
-        $this->model->loadModules();
+        $this->objects->oidCollector->readEnterpriceOids($this->objects->model);
+        $this->objects->model->initModules();
 
-        //Inject objects to modules
-        $modules = [];
-        foreach ($this->model->getModules() as $moduleName=>$module) {
-            $modules[$moduleName] = $module;
-            $this->model->setModule(
-                $moduleName,
-                $module->setModel($this->model)
-                    ->setOidCollector($this->oidCollector)
-                    ->setWalker($this->walker)
-            );
+        foreach ($this->objects->model->getModules() as $moduleName=>$module) {
+            $this->modules->set($moduleName, $module);
+            $module->setInputsStore($this->objects);
+            $module->setModuleStore($this->modules);
         }
-        foreach ($modules as $moduleName=>$module) {
-            foreach ($this->moduleCollector->getByName($moduleName)->getDependencyModules() as $name) {
-                if(isset($modules[$name])) {
-                    $module->setDependencyModule($name, $modules[$name]);
-                }
-            }
-        }
-
         return $this;
     }
-    public function getModule($moduleName) {
-        if(!$this->model) {
-            throw new \Exception("Device properties and oids not loaded. Are you use ::connect() first?");
-        }
-        if(isset($this->model->getModules()[$moduleName])) {
-            return $this->model->getModules()[$moduleName];
-        } else {
-            throw new ModuleNotFoundException("Module $moduleName not found for model {$this->model->getName()}");
-        }
-    }
 
+    /**
+     * @param $moduleName
+     * @param array $arguments
+     * @return mixed
+     * @throws ModuleNotFoundException | \Exception
+     */
     public function action($moduleName, $arguments = []) {
-        $moduleParams = $this->moduleCollector->getByName($moduleName);
+        $moduleParams = $this->objects->moduleCollector->getByName($moduleName);
         $moduleParams->validate($arguments);
-        return $this->getModule($moduleName)->run($arguments)->getPrettyFiltered($arguments);
+        return $this->modules->get($moduleName)->run($arguments)->getPrettyFiltered($arguments);
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function getModulesData() {
         $modules = [];
-        foreach ($this->model->getModulesList() as $moduleName) {
-            $moduleConfig = $this->moduleCollector->getByName($moduleName);
+        foreach ($this->objects->model->getModulesList() as $moduleName) {
+            $moduleConfig = $this->objects->moduleCollector->getByName($moduleName);
             $modules[] = [
                 'name' => $moduleConfig->getName(),
-                'depends' => $moduleConfig->getDependencyModules(),
                 'arguments' => $moduleConfig->getArguments(),
-                'class' => get_class($this->model->getModules()[$moduleName]),
+                'class' => get_class($this->objects->model->getModules()[$moduleName]),
             ];
         }
         return $modules;
@@ -207,22 +171,25 @@ class Core
 
     public function getDeviceMetaData() {
         $meta = [
-            'ports' => $this->model->getPorts(),
-            'name' => $this->model->getName(),
-            'extra' => $this->model->getExtra(),
-            'detect' => $this->model->getDetect(),
-            'modules' => $this->model->getModulesList(),
+            'ports' => $this->objects->model->getPorts(),
+            'name' => $this->objects->model->getName(),
+            'extra' => $this->objects->model->getExtra(),
+            'detect' => $this->objects->model->getDetect(),
+            'modules' => $this->objects->model->getModulesList(),
         ];
         $meta['connections'] = [
           'mikrotik_api' => false,
           'snmp' => false,
           'telnet' => false,
         ];
-        if($this->walker) {
+        if($this->objects->isExist('snmp')) {
             $meta['connections']['snmp'] = true;
         }
-        if($this->telnet) {
+        if($this->objects->isExist('telnet')) {
             $meta['connections']['telnet'] = true;
+        }
+        if($this->objects->isExist('routerOsApi')) {
+            $meta['connections']['mikrotik_api'] = true;
         }
         return $meta;
     }

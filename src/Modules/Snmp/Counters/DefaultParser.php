@@ -46,7 +46,7 @@ class DefaultParser extends AbstractModule
     {
         Helper::prepareFilter($params);
         $oids = [];
-        foreach ($this->oidsCollector->getOidsByRegex('if\.HC.*') as $oid) {
+        foreach ($this->obj->oidCollector->getOidsByRegex('if\.HC.*') as $oid) {
             $oids[] = $oid->getOid();
         }
 
@@ -59,7 +59,7 @@ class DefaultParser extends AbstractModule
                 $oids[$num] .= ".{$indexes[$params['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->walker->walk($oids));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 }

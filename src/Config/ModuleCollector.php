@@ -11,6 +11,11 @@ use SwitcherCore\Config\Objects\Module;
 class ModuleCollector extends Collector
 {
     protected $modules;
+
+    /**
+     * @return $this
+     * @throws \ErrorException
+     */
     protected function read()
     {
         $modules = [];
@@ -21,9 +26,10 @@ class ModuleCollector extends Collector
         return $this;
     }
 
+
     /**
      * @param $name
-     * @return Module
+     * @return mixed
      * @throws \Exception
      */
     function getByName($name) {

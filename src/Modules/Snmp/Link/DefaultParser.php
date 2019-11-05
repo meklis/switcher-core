@@ -110,15 +110,15 @@ class DefaultParser extends AbstractModule
         }
 
         $data = [
-            $this->oidsCollector->getOidByName('if.HighSpeed')->getOid() ,
-            $this->oidsCollector->getOidByName('if.Name')->getOid(),
-            $this->oidsCollector->getOidByName('if.Type')->getOid(),
-            $this->oidsCollector->getOidByName('if.LastChange')->getOid(),
-            $this->oidsCollector->getOidByName('if.OperStatus')->getOid(),
-            $this->oidsCollector->getOidByName('if.AdminStatus')->getOid(),
-            $this->oidsCollector->getOidByName('if.ConnectorPresent')->getOid(),
-            $this->oidsCollector->getOidByName('if.StatsDuplexStatus')->getOid(),
-            $this->oidsCollector->getOidByName('if.Alias')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.HighSpeed')->getOid() ,
+            $this->obj->oidCollector->getOidByName('if.Name')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.Type')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.LastChange')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.OperStatus')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.AdminStatus')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.ConnectorPresent')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.StatsDuplexStatus')->getOid(),
+            $this->obj->oidCollector->getOidByName('if.Alias')->getOid(),
         ];
 
         if ($filter['port']) {
@@ -126,7 +126,7 @@ class DefaultParser extends AbstractModule
                 $data[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->walker->walk($data));
+        $this->response = $this->formatResponse($this->obj->walker->walk($data));
         return $this;
     }
 }

@@ -11,7 +11,6 @@ class Module
     protected $name;
     protected $descr;
     protected $arguments;
-    protected $dependency_modules = [];
 
     /**
      * @return mixed
@@ -91,9 +90,6 @@ class Module
         if(isset($arr['descr'])) {
             $obj->setDescr($arr['descr']);
         }
-        if(isset($arr['depends'])) {
-            $obj->dependency_modules = $arr['depends'];
-        }
         return $obj;
     }
 
@@ -117,8 +113,5 @@ class Module
 
         }
         return $this;
-    }
-    function getDependencyModules() {
-        return $this->dependency_modules;
     }
 }

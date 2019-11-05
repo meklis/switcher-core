@@ -23,12 +23,12 @@ abstract class ExecLineCtrl extends AbstractModule
 
     public function run($params = [])
     {
-        if(!$this->telnet_conn) {
+        if(!$this->obj->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $this->status = false;
         try {
-           $response = $this->telnet_conn->exec($this->getCommandLine($params));
+           $response = $this->obj->telnet->exec($this->getCommandLine($params));
            if (preg_match('/(Success|Saving all configurations)/', $response) !== false) {
                $this->status = true;
            } else {

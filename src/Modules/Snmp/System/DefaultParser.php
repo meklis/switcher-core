@@ -31,11 +31,11 @@ class DefaultParser extends AbstractModule
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
             'meta' =>  [
-                'name' => $this->model->getName(),
-                'detect' => $this->model->getDetect(),
-                'ports' => $this->model->getPorts(),
-                'extra' => $this->model->getExtra(),
-                'modules' => $this->model->getModulesList(),
+                'name' => $this->obj->model->getName(),
+                'detect' => $this->obj->model->getDetect(),
+                'ports' => $this->obj->model->getPorts(),
+                'extra' => $this->obj->model->getExtra(),
+                'modules' => $this->obj->model->getModulesList(),
                 ]
         ];
     }
@@ -47,12 +47,12 @@ class DefaultParser extends AbstractModule
      */
     public function run($filter = [])
     {
-        $oids = $this->oidsCollector->getOidsByRegex('^sys\..*');
+        $oids = $this->obj->oidCollector->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
             $oArray[] = $oid->getOid();
         }
-        $this->response = $this->formatResponse($this->walker->walk($oArray));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oArray));
         return $this;
     }
 }

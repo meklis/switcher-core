@@ -57,7 +57,7 @@ class Model
 
 
     /**
-     * @return ModuleInterface[]
+     * @return AbstractModule[]
      */
     public function getModules()
     {
@@ -75,7 +75,7 @@ class Model
     public function getTelnetConnType() {
        return $this->getExtraParamByName('telnet_conn_type');
     }
-    public function setModule($name, ModuleInterface $module)
+    public function setModule($name, AbstractModule $module)
     {
         $this->modules[$name] = $module;
         return $this;
@@ -131,7 +131,7 @@ class Model
         return $model;
     }
 
-    function loadModules() {
+    function initModules() {
         if(!$this->modulesNames) {
             throw new ModuleNotFoundException("Modules for model {$this->getName()} not found");
         }

@@ -14,8 +14,8 @@ class SpeedPortControl extends ExecLineCtrl
     }
     function getCommandLine($params = [])
     {
-        if($params['port'] > $this->model->getPorts()) {
-            throw new \InvalidArgumentException("Max number of port is {$this->model->getPorts()}");
+        if($params['port'] > $this->obj->model->getPorts()) {
+            throw new \InvalidArgumentException("Max number of port is {$this->obj->model->getPorts()}");
         }
         return "config ports {$params['port']} speed {$this->getRevertSpeed($params['speed'])}";
     }

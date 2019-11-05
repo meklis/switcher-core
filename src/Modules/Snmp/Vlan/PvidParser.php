@@ -44,7 +44,7 @@ class PvidParser extends AbstractModule
     public function run($filter = [])
     {
         $oids = [];
-        foreach ($this->oidsCollector->getOidsByRegex('dot1q.Pvid') as $oid) {
+        foreach ($this->obj->oidCollector->getOidsByRegex('dot1q.Pvid') as $oid) {
             $oids[] = $oid->getOid();
         }
 
@@ -57,7 +57,7 @@ class PvidParser extends AbstractModule
                 $oids[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->walker->walk($oids));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 }

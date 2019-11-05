@@ -117,14 +117,14 @@ class DlinkDgs1210Parser extends AbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            $this->oidsCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.sysPortCtrlState')->getOid() ,
-            $this->oidsCollector->getOidByName('dlink.sysPortLinkChangeTime')->getOid() ,
-            $this->oidsCollector->getOidByName('if.Alias')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlState')->getOid() ,
+            $this->obj->oidCollector->getOidByName('dlink.sysPortLinkChangeTime')->getOid() ,
+            $this->obj->oidCollector->getOidByName('if.Alias')->getOid() ,
         ];
-        $this->response = $this->formatResponse($this->walker->walkBulk($prepared));
+        $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
         return $this;
     }
 }

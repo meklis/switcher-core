@@ -86,18 +86,18 @@ class DlinkVlanParser extends AbstractModule
     public function run($filter = [])
     {
         Helper::prepareFilter($filter);
-        $oids[] = $this->oidsCollector->getOidByName('dot1q.VlanStaticName')->getOid();
-        $oids[] = $this->oidsCollector->getOidByName('dot1q.VlanStaticEgressPorts')->getOid();
-        $oids[] = $this->oidsCollector->getOidByName('dot1q.VlanStaticForbiddenEgressPorts')->getOid();
-        $oids[] = $this->oidsCollector->getOidByName('dot1q.VlanStaticUntaggedPorts')->getOid();
-        $oids[] = $this->oidsCollector->getOidByName('dot1q.VlanStaticRowStatus')->getOid();
+        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticName')->getOid();
+        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticEgressPorts')->getOid();
+        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticForbiddenEgressPorts')->getOid();
+        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticUntaggedPorts')->getOid();
+        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticRowStatus')->getOid();
 
         if($filter['vlan_id']) {
             foreach ($oids as $num=>$oid) {
                 $oids[$num] .= ".{$filter['vlan_id']}";
             }
         }
-        $this->response = $this->formatResponse($this->walker->walk($oids));
+        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
         return $this;
     }
 }

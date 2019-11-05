@@ -25,7 +25,10 @@ class VlanByPorts extends AbstractModule
 
     public function run($filter = [])
     {
-        $parser =  $this->getDependencyModule('vlans');
+        if(!$this->module->isExist('vlans')) {
+            throw new \Exception("Module vlans is required for working");
+        }
+        $parser =  $this->module->vlans;
         $data = $parser->run()->getPrettyFiltered();
         $indexes = $parser->getIndexes();
         $response = [];
