@@ -19,7 +19,8 @@
         "meklis/snmp-wrapper": "~1.0",
         "meklis/telnet-over-proxy": "~1.0",
         "meklis/routeros-api": "dev-master",
-        "meklis/ipv4-subnet-calculator": "3.*"
+        "meklis/ipv4-subnet-calculator": "3.*",
+        "khill/php-duration": "~1.0"
     },
     "minimum-stability": "dev"
 }

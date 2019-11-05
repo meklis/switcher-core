@@ -13,7 +13,7 @@ class TelnetLazyConnect extends \Meklis\TelnetOverProxy\Telnet
     protected $password = "";
     protected $host_type = "";
 
-    function connectOverProxy($proxy_addr = "tcp://127.0.0.1:3333", $timeout = 180)
+    function connectOverProxy($proxy_addr = "tcp://0.0.0.0:3333", $timeout = 180)
     {
         $this->proxy_addr = $proxy_addr;
         $this->timeout = $timeout;

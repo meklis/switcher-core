@@ -18,6 +18,12 @@ class ArpInfo extends ExecCommand
 
     function getPrettyFiltered($filter = [])
     {
+        if(isset($filter['status']) && $filter['status']) {
+            return array_filter($this->response, function ($e) use ($filter) {
+               if($filter['status'] == $e['status']) return true;
+               return false;
+            });
+        }
         return $this->response;
     }
     public function run($params = [])
@@ -28,12 +34,14 @@ class ArpInfo extends ExecCommand
             $vlans[$vl['name']] = $vl;
         }
         $filter = [];
-        $filter['?complete'] = 'true';
         if(isset($params['ip']) && $params['ip']) {
           $filter['?address'] = $params['ip'];
         }
         if(isset($params['mac']) && $params['mac']) {
           $filter['?mac-address'] = $params['mac'];
+        }
+        if(isset($params['vlan_name']) && $params['vlan_name']) {
+            $filter['?interface'] = $params['vlan_name'];
         }
         if(isset($params['vlan_id']) && $params['vlan_id']) {
             $interface = "";
@@ -46,13 +54,20 @@ class ArpInfo extends ExecCommand
           $filter['?interface'] = $interface;
         }
         foreach ($this->execComm('/ip/arp/print', $filter) as $a) {
-            if(!isset($vlans[$a['interface']]['vlan_id'])) continue;
+            $status = 'OK';
+            if($a['invalid']) $status='invalid';
+            if($a['disabled']) $status='disabled';
             $arps[] = [
                 'ip' => $a['address'],
-                'mac' => $a['mac-address'],
+                'mac' => isset($a['mac-address']) ? $a['mac-address'] : null,
                 'dynamic' => $a['dynamic'],
                 'comment' => isset($a['comment']) ? $a['comment'] : "",
-                'vlan_id' => $vlans[$a['interface']]['vlan_id'],
+                'vlan_id' => isset($vlans[$a['interface']]['vlan_id']) ? $vlans[$a['interface']]['vlan_id']: -1,
+                'status' => $status,
+                'extra' => [
+                    'id' => $a['.id'],
+                    'interface_name' => $a['interface'],
+                ]
             ];
         }
         $this->response = $arps;

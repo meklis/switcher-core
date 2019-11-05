@@ -46,6 +46,11 @@ class Core
     protected   $oidCollector;
 
     /**
+     * @var \Memcache
+     */
+    protected $memcached;
+
+    /**
      * @var ModuleCollector
      */
     protected  $moduleCollector;

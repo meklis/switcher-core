@@ -58,6 +58,10 @@ abstract class AbstractModule implements ModuleInterface
      */
     protected $telnet_conn;
     /**
+     * @var Telnet
+     */
+    protected $memcache;
+    /**
      * @var \RouterosAPI
      */
     protected $routerOsAPI;
@@ -133,6 +137,7 @@ abstract class AbstractModule implements ModuleInterface
      */
     public abstract function run($params = []);
 
+
     /**
      * @param array $filter
      * @return self
@@ -201,5 +206,9 @@ abstract class AbstractModule implements ModuleInterface
             throw  new IncompleteResponseException("Response with oid $name not found");
         }
         return $this->response[$name];
+    }
+
+    function setMemcache($memcache) {
+        $this->memcache = $memcache;
     }
 }

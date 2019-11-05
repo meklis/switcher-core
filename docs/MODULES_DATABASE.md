@@ -1,16 +1,18 @@
 
-
 ### arp_info - ARP information (L3 devices)
 Name: **arp_info**
 
 **Arguments:**
 - **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
 - **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
 - **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **status**, pattern: *^(disabled|invalid|OK)$*
 
 **Supported devices:**
 - Mikrotik RB1100AHx2  *(\SwitcherCore\Modules\RouterOS\ArpInfo)*
 - Mikrotik CCR1009-7G-1C-1S+  *(\SwitcherCore\Modules\RouterOS\ArpInfo)*
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\ArpInfo)*
 
 
 ### arp_ping - ARP ping
@@ -25,6 +27,7 @@ Name: **arp_ping**
 **Supported devices:**
 - Mikrotik RB1100AHx2  *(\SwitcherCore\Modules\RouterOS\ArpPing)*
 - Mikrotik CCR1009-7G-1C-1S+  *(\SwitcherCore\Modules\RouterOS\ArpPing)*
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\ArpPing)*
 
 
 ### cable_diag - Cable diagnostic
@@ -32,6 +35,33 @@ Name: **cable_diag**
 
 **Arguments:**
 - **port**, pattern: *^[0-9]{1,3}$*
+
+**Response example(test script)**
+```
+Start testing module cable_diag (SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)
+Module has params, setup please
+Params:
+   port: 1
+========================RESPONSE============================
+[
+    {
+        "port": 1,
+        "pairs": [
+            {
+                "number": 1,
+                "status": "OK",
+                "length": "71"
+            },
+            {
+                "number": 2,
+                "status": "OK",
+                "length": "71"
+            }
+        ]
+    }
+]
+==============================================================
+```
 
 **Supported devices:**
 - D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
@@ -61,6 +91,11 @@ Name: **cable_diag**
 
 ### clear_counters - Clear counters
 Name: **clear_counters**
+
+**Response example(test script)**
+``` 
+
+```
 
 **Supported devices:**
 - D-link DES-1228/ME  *(\SwitcherCore\Modules\Telnet\Dlink\ClearCounters)*
@@ -224,6 +259,37 @@ Name: **ctrl_port_state**
 - D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Telnet\Dlink\StatePortControl)*
 
 
+### ctrl_static_arp - Adding and removing static ARP (L3 Devices)
+Name: **ctrl_static_arp**
+
+**Arguments:**
+- **action**, pattern: *^(add|remove)$*, required
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^[0-9a-zA-Z_\-]{1,}$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **comment**, pattern: *.**
+
+**Supported devices:**
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\StaticArpControl)*
+
+
+### ctrl_static_lease - Control static leases
+Name: **ctrl_static_lease**
+
+**Arguments:**
+- **action**, pattern: *^(add|remove)$*, required
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **dhcp_server**, pattern: *^.*$*
+- **comment**, pattern: *^.*$*
+
+**Supported devices:**
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\StaticLeaseControl)*
+
+
 ### ctrl_vlan_port - Vlan configuration on port
 Name: **ctrl_vlan_port**
 
@@ -293,6 +359,18 @@ Name: **ctrl_vlan_state**
 - D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Telnet\Dlink\VlanStateControl)*
 - D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Telnet\Dlink\VlanStateControl)*
 - D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Telnet\Dlink\VlanStateControl)*
+
+
+### dhcp_server_info - DHCP-server information (RouterOS devices)
+Name: **dhcp_server_info**
+
+**Arguments:**
+- **name**, pattern: *^.*$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+
+**Supported devices:**
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\DhcpServerInfo)*
 
 
 ### errors - Errors on port
@@ -374,6 +452,21 @@ Name: **interface_vlan_info**
 **Supported devices:**
 - Mikrotik RB1100AHx2  *(\SwitcherCore\Modules\RouterOS\InterfaceVlanInfo)*
 - Mikrotik CCR1009-7G-1C-1S+  *(\SwitcherCore\Modules\RouterOS\InterfaceVlanInfo)*
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\InterfaceVlanInfo)*
+
+
+### lease_info - Lease information
+Name: **lease_info**
+
+**Arguments:**
+- **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*
+- **vlan_id**, pattern: *^[0-9]{1,4}$*
+- **vlan_name**, pattern: *^.*$*
+- **mac**, pattern: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*
+- **dhcp_server**, pattern: *^.*$*
+
+**Supported devices:**
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\RouterOS\LeaseInfo)*
 
 
 ### link_info - Port information
@@ -596,6 +689,7 @@ Name: **system**
 - D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\System\DefaultParser)*
 - Mikrotik RB1100AHx2  *(\SwitcherCore\Modules\Snmp\System\DefaultParser)*
 - Mikrotik CCR1009-7G-1C-1S+  *(\SwitcherCore\Modules\Snmp\System\DefaultParser)*
+- Mikrotik RB952Ui-5ac2nD  *(\SwitcherCore\Modules\Snmp\System\DefaultParser)*
 - ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\System\DefaultParser)*
 
 
