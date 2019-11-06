@@ -8,7 +8,6 @@ use SwitcherCore\Config\Reader;
 $handle = fopen ("php://stdin","r");
 
 $proxyConfig = new \SwitcherCore\Config\ProxyConfiguration(__DIR__ . '/../configs/proxies.yml');
-
 $proxyConfig->setSearchedIP($argv[1]);
 
 //Switcher core initialization
@@ -77,7 +76,9 @@ if($module['arguments']) {
     }
 }
 
-echo "========================RESPONSE============================\n";
+echo "==========================RESPONSE===============================\n";
+echo "\$parameters=json_decode('".json_encode($params)."', true);\n";
+echo "\$core->action('{$module['name']}', \$parameters);\n\n";
 echo json_encode($core->action($module['name'], $params), JSON_PRETTY_PRINT);
 echo "\n==============================================================\n\n\n";
 
