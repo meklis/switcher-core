@@ -8,6 +8,9 @@ use Exception;
 
 class Helper
 {
+    public static function getBuildInConfig() {
+           return realpath(__DIR__ . "/../../configs");
+    }
 
     static function getIndexByOid($oid, $offset =0) {
         $exploded = explode(".", $oid);

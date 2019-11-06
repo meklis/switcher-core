@@ -9,7 +9,6 @@ use SwitcherCore\Modules\Helper;
 
 class StaticArpControl extends ExecCommand
 {
-
     protected $status = false;
     function getPretty()
     {

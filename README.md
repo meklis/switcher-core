@@ -19,8 +19,8 @@ Now library has three inputs, in feature inputs will be extend.
 - [ ] EdgeCore
 - [ ] BDcom
 - [ ] Xtreme
-- [ ] ZTE
 - [ ] Huawei
+- [ ] ZTE
 
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    

@@ -56,6 +56,7 @@ class DefaultParser extends AbstractModule
                 $indexes[$port] = $index;
             }
             foreach ($oids as $num=>$oid) {
+                if(isset($indexes[$params['port']]))
                 $oids[$num] .= ".{$indexes[$params['port']]}";
             }
         }
