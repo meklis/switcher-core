@@ -55,8 +55,8 @@ class ArpInfo extends ExecCommand
         }
         foreach ($this->execComm('/ip/arp/print', $filter) as $a) {
             $status = 'OK';
-            if($a['invalid']) $status='invalid';
-            if($a['disabled']) $status='disabled';
+            if($a['invalid'] == 'true') $status='invalid';
+            if($a['disabled'] == 'true') $status='disabled';
             $arps[] = [
                 'ip' => $a['address'],
                 'mac' => isset($a['mac-address']) ? $a['mac-address'] : null,
