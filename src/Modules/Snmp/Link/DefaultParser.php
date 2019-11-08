@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Link;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
@@ -126,7 +127,11 @@ class DefaultParser extends AbstractModule
                 $data[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($data));
+        $oidObjects = [];
+        foreach ($data as $oid) {
+            $oidObjects[] = Oid::init($oid);
+        }
+        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
         return $this;
     }
 }

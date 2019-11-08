@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\CableDiag;
 
+use SnmpWrapper\Oid;
 use SnmpWrapper\Request\PoollerRequest;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Modules\AbstractModule;
@@ -38,16 +39,16 @@ class DlinkParser extends AbstractModule
         foreach ($ports_list as $port=>$count_pairs) {
             $oids = [];
             if($count_pairs >= 2) {
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair1Status')->getOid(). ".{$port}";
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair2Status')->getOid(). ".{$port}";
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair1Length')->getOid(). ".{$port}";
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair2Length')->getOid(). ".{$port}";
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair1Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair2Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair1Length')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair2Length')->getOid(). ".{$port}");
             }
             if($count_pairs >= 4 ) {
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair3Status')->getOid(). ".{$port}";
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair4Status')->getOid(). ".{$port}";
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair3Length')->getOid(). ".{$port}";
-                $oids[] = $this->obj->oidCollector->getOidByName('dlink.CableDiagPair4Length')->getOid(). ".{$port}";
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair3Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair4Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair3Length')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair4Length')->getOid(). ".{$port}");
             }
             $this->response = $this->formatResponse($this->obj->walker->get($oids));
 
@@ -90,7 +91,7 @@ class DlinkParser extends AbstractModule
         for ($i=0;$i<100;$i++) {
             foreach ($ports_list as $port=>$pairs) {
                 $response = $this->formatResponse($this->obj->walker->get(
-                    [$this->obj->oidCollector->getOidByName('dlink.CableDiagStatus')->getOid() . ".{$port}"]
+                    [Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagStatus')->getOid() . ".{$port}")]
                 ));
                 if(isset($response['dlink.CableDiagStatus']) && $response['dlink.CableDiagStatus']->fetchOne()->getParsedValue() != 'Proccessing') {
                     unset($ports_list[$port]);
@@ -109,10 +110,11 @@ class DlinkParser extends AbstractModule
     protected function activateDiag($ports_list) {
         foreach ($ports_list as $port=>$pairs) {
             $response = $this->formatResponse($this->obj->walker->set(
-                $this->obj->oidCollector->getOidByName('dlink.CableDiagAction')->getOid() . ".{$port}",
+                Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagAction')->getOid() . ".{$port}",
+                    false,
                 PoollerRequest::TypeIntegerValue,
                 1
-            ));
+            )));
             if(!isset($response['dlink.CableDiagAction'])) {
                 throw new IncompleteResponseException("No response from device");
             }
@@ -122,9 +124,9 @@ class DlinkParser extends AbstractModule
     }
     protected function getPortList($filter) {
         $this->response = $this->formatResponse($this->obj->walker->walk([
-            $this->obj->oidCollector->getOidByName('if.Type')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.OperStatus')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid(),
+            Oid::init($this->obj->oidCollector->getOidByName('if.Type')->getOid(), true),
+            Oid::init($this->obj->oidCollector->getOidByName('if.OperStatus')->getOid()),
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid(), true),
         ]));
         $ports_list = [];
         foreach ($this->getResponseByName('if.Type')->fetchAll() as $ident) {

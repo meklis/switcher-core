@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Link;
 
+use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
@@ -130,14 +131,14 @@ class DlinkParser extends AbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoNwayStatus')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortCtrlAddressLearning')->getOid() ,
-            $this->obj->oidCollector->getOidByName('if.Alias')->getOid() ,
-            $this->obj->oidCollector->getOidByName('if.Type')->getOid() ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoNwayStatus')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('dlink.PortCtrlAddressLearning')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('if.Alias')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->obj->oidCollector->getOidByName('if.Type')->getOid(), true) ,
         ];
         $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
         return $this;

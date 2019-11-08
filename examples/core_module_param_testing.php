@@ -1,39 +1,16 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
 
-use SnmpWrapper\Walker;
-use SnmpWrapper\WrapperWorker;
-use SwitcherCore\Config\Reader;
+use \SwitcherCore\Modules\Helper;
+use \SwitcherCore\Switcher\CoreConnector;
+
 
 $handle = fopen ("php://stdin","r");
 
-$proxyConfig = new \SwitcherCore\Config\ProxyConfiguration(__DIR__ . '/../configs/proxies.yml');
-$proxyConfig->setSearchedIP($argv[1]);
+$connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'))
+->setTelnetPort(23)->setMikrotikApiPort(55055);
 
-//Switcher core initialization
-$walker =  (new  Walker(
-        new  WrapperWorker($proxyConfig->getSnmpConfiguration()['address']))
-    )->useCache(false)
-    ->setIp($argv[1])
-    ->setCommunity($argv[2]);
-$core = (new \SwitcherCore\Switcher\Core(
-    new  Reader(__DIR__ . "/../configs")
-))->setWalker($walker)->init();
-
-$inputs_list = $core->getNeedInputs();
-if(in_array('telnet', $inputs_list)) {
-    $telnet = (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($argv[1], 23))
-        ->connectOverProxy($proxyConfig->getTelnetConfiguration()['address'])
-        ->login($argv[3], $argv[4]);
-    $core->setTelnet($telnet);
-}
-
-if(in_array('routeros_api', $inputs_list)) {
-    $routerOS = (new \SwitcherCore\Switcher\Objects\RouterOsLazyConnect())
-        ->setPort(55055)
-        ->connect($argv[1], $argv[3], $argv[4]);
-    $core->setRouterOsAPI($routerOS);
-}
+$core = $connector->init($argv[1], $argv[2], $argv[3], $argv[4]);
 
 //Prepare modules list
 $modules = $core->getModulesData();

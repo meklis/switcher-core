@@ -4,6 +4,7 @@
 namespace SwitcherCore\Modules\Snmp\System;
 
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
@@ -50,7 +51,7 @@ class DefaultParser extends AbstractModule
         $oids = $this->obj->oidCollector->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = $oid->getOid();
+            $oArray[] = Oid::init($oid->getOid(),true);
         }
         $this->response = $this->formatResponse($this->obj->walker->walk($oArray));
         return $this;

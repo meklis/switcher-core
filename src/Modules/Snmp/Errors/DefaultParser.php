@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Errors;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
@@ -70,7 +71,12 @@ class DefaultParser extends AbstractModule
                 $oids[$num] .= ".{$indexes[$filter['port']]}";
             }
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
+        $oidObjects = [];
+        foreach ($oids as $oid) {
+            $oidObjects[] = Oid::init($oid);
+        }
+
+        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
         return $this;
     }
 }

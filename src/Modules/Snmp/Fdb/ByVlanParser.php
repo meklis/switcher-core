@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Fdb;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -82,7 +83,7 @@ class ByVlanParser extends AbstractModule
     {
        Helper::prepareFilter($filter);
        //Get vlans
-       $this->response = $this->formatResponse($this->obj->walker->walk([$this->obj->oidCollector->getOidByName('dot1q.VlanStaticName')->getOid()]));
+       $this->response = $this->formatResponse($this->obj->walker->walk([Oid::init($this->obj->oidCollector->getOidByName('dot1q.VlanStaticName')->getOid())]));
        $vlanResponse = $this->getResponseByName('dot1q.VlanStaticName');
        if($vlanResponse->error()) {
            throw new IncompleteResponseException($vlanResponse->error());
@@ -112,7 +113,11 @@ class ByVlanParser extends AbstractModule
        } elseif ($filter['mac']) {
            throw new \Exception("VlanID must be setted for mac filtering");
        }
-       $this->response = $this->formatResponse($this->obj->walker->walk($oids));
+        $oidObjects = [];
+        foreach ($oids as $oid) {
+            $oidObjects[] = Oid::init($oid);
+        }
+       $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
         return $this;
     }
 

@@ -2,13 +2,13 @@
 
 namespace SwitcherCore\Switcher;
 
-use Meklis\TelnetOverProxy\Telnet;
-use SnmpWrapper\Walker;
+use SnmpWrapper\MultiWalker;
+use SwitcherCore\Config\Objects\Oid;
+use SnmpWrapper\Oid as O;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Switcher\Objects\InputsStore;
 use SwitcherCore\Switcher\Objects\ModuleStore;
-use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
 
 
 class Core
@@ -43,51 +43,38 @@ class Core
 
         $this->modules = new ModuleStore;
     }
-    function setWalker(Walker $walker) {
-        $this->objects->walker = $walker;
+
+    function addInput($input) {
+        if($input instanceof MultiWalker) {
+            $this->objects->walker = $input;
+        } elseif ($input instanceof \meklis\network\Telnet) {
+            if(!$this->objects->isExist('model')) {
+                throw new \Exception("Model not detected. You must call init() first");
+            }
+            $input->setHostType($this->objects->model->getTelnetConnType());
+            $this->objects->telnet = $input;
+        } elseif ($input instanceof \RouterosAPI) {
+            if(!$this->objects->isExist('model')) {
+                throw new \Exception("Model not detected. You must call init() first");
+            }
+            $this->objects->routerOsApi = $input;
+        } else {
+            throw new \Exception("Unknown type of input, not supported");
+        }
         return $this;
     }
 
-    /**
-     * @param Telnet|null $telnet
-     * @return $this
-     * @throws \Exception
-     */
-    function setTelnet(?Telnet $telnet) {
-        if(!$this->objects->isExist('model')) {
-            throw new \Exception("Model not detected. You must call init() first");
-        }
-        $telnet->setHostType($this->objects->model->getTelnetConnType());
-        $this->objects->telnet = $telnet;
-        return $this;
-    }
-
-    /**
-     * @param RouterOsLazyConnect|null $api
-     * @return $this
-     * @throws \Exception
-     */
-    function setRouterOsAPI(?RouterOsLazyConnect $api) {
-        if(!$this->objects->isExist('model')) {
-            throw new \Exception("Model not detected. You must call init() first");
-        }
-        $this->objects->routerOsApi = $api;
-        return $this;
-    }
 
     /**
      * @return array
      * @throws \Exception
      */
     private function getDetectDevInfo() {
-        $prev_state = $this->objects->walker->getCacheStatus();
         $response = $this->objects->walker
-            ->useCache('true')
             ->walk([
-                $this->objects->oidCollector->getOidByName('sys.Descr')->getOid(),
-                $this->objects->oidCollector->getOidByName('sys.ObjId')->getOid(),
+                O::init($this->objects->oidCollector->getOidByName('sys.Descr')->getOid(), true),
+                O::init($this->objects->oidCollector->getOidByName('sys.ObjId')->getOid(), true),
             ]);
-        $this->objects->walker->useCache($prev_state);
         $descr = "";
         $objId = "";
         foreach ($response as $resp) {
