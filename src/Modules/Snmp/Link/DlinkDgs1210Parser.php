@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Link;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
@@ -117,12 +118,12 @@ class DlinkDgs1210Parser extends AbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.sysPortCtrlState')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.sysPortLinkChangeTime')->getOid() ,
-            $this->obj->oidCollector->getOidByName('if.Alias')->getOid() ,
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid(), true) ,
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid()) ,
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid()) ,
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlState')->getOid() ),
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortLinkChangeTime')->getOid() , true),
+            Oid::init($this->obj->oidCollector->getOidByName('if.Alias')->getOid() ),
         ];
         $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
         return $this;

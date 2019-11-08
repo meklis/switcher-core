@@ -5,16 +5,11 @@ namespace SwitcherCore\Modules;
 
 
 
-use Meklis\TelnetOverProxy\Telnet;
+use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
-use SnmpWrapper\Walker;
-use SwitcherCore\Config\CommandCollector;
-use SwitcherCore\Config\Objects\Model;
-use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Switcher\Objects\InputsStore;
 use SwitcherCore\Switcher\Objects\ModuleStore;
-use SwitcherCore\Switcher\Objects\ObjectSource;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule
@@ -99,12 +94,10 @@ abstract class AbstractModule
         if($this->indexesPort) {
             return $this->indexesPort;
         }
-        $last_cache_status = $this->obj->walker->getCacheStatus();
-        $response = $this->formatResponse($this->obj->walker->useCache(true)->walk([
-            $this->obj->oidCollector->getOidByName('if.Index')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.Type')->getOid(),
+        $response = $this->formatResponse($this->obj->walker->walk([
+            Oid::init($this->obj->oidCollector->getOidByName('if.Index')->getOid()),
+            Oid::init($this->obj->oidCollector->getOidByName('if.Type')->getOid()),
         ]));
-        $this->obj->walker->useCache($last_cache_status);
         $types = [];
         foreach ($response['if.Type']->fetchAll() as $resp) {
             $types[Helper::getIndexByOid($resp->getOid())] = $resp->getParsedValue();

@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Link;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Helper;
 
 class DlinkDes3526Parser extends DlinkParser
@@ -129,7 +130,11 @@ class DlinkDes3526Parser extends DlinkParser
             $this->obj->oidCollector->getOidByName('if.Alias')->getOid() ,
             $this->obj->oidCollector->getOidByName('if.Type')->getOid() ,
         ];
-        $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
+        $oidObjects = [];
+        foreach ($prepared as $oid) {
+            $oidObjects[] = Oid::init($oid);
+        }
+        $this->response = $this->formatResponse($this->obj->walker->walkBulk($oidObjects));
         return $this;
     }
 }

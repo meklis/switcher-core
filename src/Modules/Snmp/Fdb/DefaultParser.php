@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Fdb;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
@@ -93,7 +94,7 @@ class DefaultParser extends AbstractModule
            throw new \Exception("VlanID must be setted for mac filtering");
        }
        $this->response = $this->formatResponse($this->obj->walker->walkBulk([
-            $fdb_status, $fdb_port,
+            Oid::init($fdb_status), Oid::init($fdb_port),
        ]));
         return $this;
     }

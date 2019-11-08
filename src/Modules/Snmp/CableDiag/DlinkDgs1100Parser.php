@@ -4,6 +4,8 @@
 namespace SwitcherCore\Modules\Snmp\CableDiag;
 
 use SnmpWrapper\Request\PoollerRequest;
+use SwitcherCore\Config\Objects\Oid;
+use SnmpWrapper\Oid as O;
 use SwitcherCore\Modules\Helper;
 
 
@@ -16,21 +18,22 @@ class DlinkDgs1100Parser extends DlinkParser
 
         $ports_diag_result = [];
         $oidsDiag = [
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair1TestResult')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair1FaultDistance')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair2TestResult')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair2FaultDistance')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair3TestResult')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair3FaultDistance')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair4TestResult')->getOid(),
-            $this->obj->oidCollector->getOidByName('dlink.cableDiagPair4FaultDistance')->getOid(),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair1TestResult')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair1FaultDistance')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair2TestResult')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair2FaultDistance')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair3TestResult')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair3FaultDistance')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair4TestResult')->getOid()),
+            O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagPair4FaultDistance')->getOid()),
         ];
         foreach ($ports_list as $port=>$count_pairs) {
             $triggerResult  = $this->formatResponse($this->obj->walker->set(
-                $this->obj->oidCollector->getOidByName('dlink.cableDiagTriggerIndex')->getOid(),
+                O::init($this->obj->oidCollector->getOidByName('dlink.cableDiagTriggerIndex')->getOid(),
+                false,
                 PoollerRequest::TypeIntegerValue,
                 $port
-            ))['dlink.cableDiagTriggerIndex']->fetchOne();
+            )))['dlink.cableDiagTriggerIndex']->fetchOne();
 
             $this->response = $this->formatResponse($this->obj->walker->get($oidsDiag));
             $ports_diag_result[] = [

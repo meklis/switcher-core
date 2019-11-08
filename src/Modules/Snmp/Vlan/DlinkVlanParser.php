@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Snmp\Vlan;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -97,7 +98,11 @@ class DlinkVlanParser extends AbstractModule
                 $oids[$num] .= ".{$filter['vlan_id']}";
             }
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oids));
+        $oidObjects = [];
+        foreach ($oids as $oid) {
+            $oidObjects[] = Oid::init($oid);
+        }
+        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
         return $this;
     }
 }
