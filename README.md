@@ -39,25 +39,14 @@ composer install meklis/switcher-core
 ``` 
 require __DIR__ . "/../vendor/autoload.php";
 
-use SnmpWrapper\Walker;
-use SnmpWrapper\WrapperWorker;
-use SwitcherCore\Config\Reader;
-use SwitcherCore\Config\ProxyConfiguration;
+use SwitcherCore\Switcher\CoreConnector;
 
 $ip = '10.90.90.90';
 $community = 'public';
-$snmp_proxy_addr = 'http://127.0.0.1:3332';
 
-//Switcher core initialization
-$walker =  (new  Walker(
-        new  WrapperWorker($snmp_proxy_addr)
-    )->useCache(false)
-    ->setIp($ip)
-    ->setCommunity($community);
-
-$core = (new \SwitcherCore\Switcher\Core(
-    new  Reader( __DIR__ . "/vendor/meklis/switcher-core/configs")
-))->setWalker($walker)->init();
+//Connect use CoreConnector
+$connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'));
+$core = $connector->init($ip, $community);
 
 //Get system info
 echo json_encode($core->action('system'), JSON_PRETTY_PRINT);

@@ -9,7 +9,6 @@ $handle = fopen ("php://stdin","r");
 
 $connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'))
 ->setTelnetPort(23)->setMikrotikApiPort(55055);
-
 $core = $connector->init($argv[1], $argv[2], $argv[3], $argv[4]);
 
 //Prepare modules list
