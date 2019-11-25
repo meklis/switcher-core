@@ -73,7 +73,7 @@ models:
 
 
  - name: D-link DES-3200-18/C1
-   ports: 10
+   ports: 18
    inputs:
      - snmp
      - telnet
@@ -106,7 +106,7 @@ models:
 
 
  - name: D-link DES-3200-26/C1
-   ports: 10
+   ports: 26
    inputs:
      - snmp
      - telnet
@@ -140,7 +140,7 @@ models:
 
 
  - name: D-link DES-3200-28/C1
-   ports: 10
+   ports: 28
    inputs:
      - snmp
      - telnet
@@ -174,7 +174,7 @@ models:
 
 
  - name: D-link DES-3200-28F/C1
-   ports: 10
+   ports: 28
    inputs:
      - snmp
      - telnet
