@@ -15,7 +15,6 @@ class DlinkDgs1210Parser extends AbstractModule
           $nway_state = $this->getResponseByName('dlink.sysPortCtrlSpeed');
           $description = $this->getResponseByName('if.Alias');
           $medium_type = $this->getResponseByName('dlink.sysPortCtrlMediumType');
-          $last_change = $this->getResponseByName('dlink.sysPortLinkChangeTime');
 
           if($link_state->error()) {
               throw new \Exception($link_state->error());
@@ -31,9 +30,6 @@ class DlinkDgs1210Parser extends AbstractModule
           }
           if($description->error()) {
               throw new \Exception($description->error());
-          }
-          if($last_change->error()) {
-              throw new \Exception($last_change->error());
           }
 
           $indexMediumType = [];
@@ -52,7 +48,6 @@ class DlinkDgs1210Parser extends AbstractModule
               $response["{$port}-{$type}"]['port'] = $port;
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = 'GE';
-              $response["{$port}-{$type}"]['last_change'] = null;
               $response["{$port}-{$type}"]['connector_present'] = null;
               $response["{$port}-{$type}"]['oper_status'] = $status;
               $response["{$port}-{$type}"]['description'] = null;
@@ -79,11 +74,6 @@ class DlinkDgs1210Parser extends AbstractModule
               $port = Helper::getIndexByOid($d->getOid(),1);
               $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               $response["{$port}-{$type}"]['nway_status'] =  $d->getParsedValue();
-          }
-          foreach ($last_change->fetchAll() as $d) {
-              $port = Helper::getIndexByOid($d->getOid(),1);
-              $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
-              $response["{$port}-{$type}"]['last_change'] =  $d->getParsedValue();
           }
 
         foreach ($description->fetchAll() as $d) {
@@ -122,7 +112,6 @@ class DlinkDgs1210Parser extends AbstractModule
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid()) ,
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid()) ,
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlState')->getOid() ),
-            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortLinkChangeTime')->getOid() , true),
             Oid::init($this->obj->oidCollector->getOidByName('if.Alias')->getOid() ),
         ];
         $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
