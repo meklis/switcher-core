@@ -38,3 +38,36 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+
+ - name: D-link DGS-3000-28L
+   ports: 28
+   inputs:
+     - snmp
+     - telnet
+   oids:
+     - ./oids/dlink/dgs-3000-28l.yml
+     - ./oids/dlink/common-diag-cable.yml
+   detect: {description: ^DGS-3000-28L Gigabit Ethernet Switch$,  objid: .* }
+   extra:
+     telnet_conn_type: dlink
+     diag_linkup: true
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+   modules:
+     fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Snmp\Link\DlinkParser
+     counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
