@@ -14,13 +14,14 @@ Now library has three inputs, in feature inputs will be extend.
 * RouterOS API
 
 ### Supported vendors
-- [x] D-link (snmp/telnet)
+- [x] D-link (switches, snmp/telnet)
 - [x] Mikrotik, RouterOS (snmp/RouterOS api)
-- [ ] EdgeCore
-- [ ] BDcom
-- [ ] Xtreme
-- [ ] Huawei
-- [ ] ZTE
+- [ ] EdgeCore (switches)
+- [ ] BDcom (PON)
+- [ ] Xtreme (Routers)
+- [ ] Huawei (Switches)
+- [ ] ZTE (PON)
+- [ ] C-Data (PON)
 
 ### Requirements   
 * Telnet-Proxy - https://github.com/meklis/telnet-proxy    
