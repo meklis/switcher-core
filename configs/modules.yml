@@ -206,7 +206,29 @@
     - {name: name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
     - {name: address, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
     - {name: comment, pattern: '.*', required: no}
+    - {name: timeout, pattern: '.*', required: no}
   descr: Working with address list
+
+- name: simple_queue_info
+  descr: Info of simple queue
+  arguments:
+    - {name: _id, pattern: .*, required: no}
+    - {name: name, pattern: .*, required: no}
+    - {name: target, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
+    - {name: type, pattern: '.*', required: no}
+    - {name: parent, pattern: '.*', required: no}
+- name: simple_queue_ctrl
+  arguments:
+    - {name: _id, pattern: '.*', required: no}
+    - {name: action, pattern: '^(remove|add|disable|enable)$', required: yes, values: [add,remove,disable,enable]}
+    - {name: name, pattern: .*, required: no}
+    - {name: target, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
+    - {name: type, pattern: '.*', required: no}
+    - {name: limit-at, pattern: '.*', required: no}
+    - {name: max-limit, pattern: '.*', required: no}
+    - {name: parent, pattern: '.*', required: no}
+    - {name: comment, pattern: '.*', required: no}
+  descr: Info of simple queue
 
 
 #Action Get arp info with filters

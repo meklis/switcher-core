@@ -8,7 +8,6 @@ $moduleData = [];
 foreach ($modules as $module) {
     $moduleData[$module->getName()] = [
         'descr' => $module->getDescr(),
-        'depends' => $module->getDependencyModules(),
         'arguments' => $module->getArguments(),
     ];
 }

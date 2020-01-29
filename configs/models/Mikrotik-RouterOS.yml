@@ -20,6 +20,8 @@ models:
      ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
      address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
      address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
 
 
 

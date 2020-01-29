@@ -4,7 +4,7 @@
 namespace SwitcherCore\Modules\RouterOS;
 
 
-class AddressListControl extends ExecCommand
+class SimpleQueuesCtrl extends ExecCommand
 {
     protected $status = false;
 
@@ -18,13 +18,12 @@ class AddressListControl extends ExecCommand
         return $this->response;
     }
 
-    private function getIdsByParams($name = "", $address = "")
+    private function getIdsByParams($name = "", $target = "")
     {
-
         $ids = [];
-        foreach ($this->module->address_list_info->run([
+        foreach ($this->module->simple_queue_info->run([
             'name' => $name,
-            'address' => $address,
+            'target' => $target,
         ])->getPrettyFiltered() as $id) {
             $ids[] = $id['_id'];
         }
@@ -38,29 +37,29 @@ class AddressListControl extends ExecCommand
             if ($params['_id']) {
                 $ids[] = $params['_id'];
             }
-            if ($params['name'] || $params['address']) {
-                $ids = array_merge($ids, $this->getIdsByParams($params['name'], $params['address']));
+            if ($params['name'] || $params['target']) {
+                $ids = array_merge($ids, $this->getIdsByParams($params['name'], $params['target']));
             }
         }
 
         switch ($params['action']) {
             case 'add':
                 if (!$params['name']) throw new \InvalidArgumentException("Name is required field from adding");
-                if (!$params['address']) throw new \InvalidArgumentException("Address is required field from adding");
+                if (!$params['target']) throw new \InvalidArgumentException("Address is required field from adding");
                 $this->add($params);
                 break;
             case 'remove':
-                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new \InvalidArgumentException("_id or name or address is required for remove");
+                if (!$params['_id'] && !$params['name'] && !$params['target']) throw new \InvalidArgumentException("_id or name or address is required for remove");
                 if (!$ids) throw new \InvalidArgumentException("Addresses not found on device");
                 $this->addressAction($ids, 'remove');
                 break;
             case 'disable':
-                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new \InvalidArgumentException("_id or name or address is required for disable");
+                if (!$params['_id'] && !$params['name'] && !$params['target']) throw new \InvalidArgumentException("_id or name or address is required for disable");
                 if (!$ids) throw new \InvalidArgumentException("Addresses not found on device");
                 $this->addressAction($ids, 'disable');
                 break;
             case 'enable':
-                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new \InvalidArgumentException("_id or name or address is required for enable");
+                if (!$params['_id'] && !$params['name'] && !$params['target']) throw new \InvalidArgumentException("_id or name or address is required for enable");
                 if (!$ids) throw new \InvalidArgumentException("Addresses not found on device");
                 $this->addressAction($ids, 'enable');
                 break;
@@ -73,17 +72,16 @@ class AddressListControl extends ExecCommand
     private function add($params)
     {
         $req = [
-            'address' => $params['address'],
-            'list' => $params['name'],
-            'comment' => $params['comment'],
+            'target' => $params['target'],
+            'name' => $params['name'],
         ];
-        if ($params['timeout']) {
-            $req['timeout'] = $params['timeout'];
-        }
-        if ($params['comment']) {
-            $req['comment'] = $params['comment'];
-        }
-        $result = $this->execComm("/ip/firewall/address-list/add", $req);
+        if ($params['comment']) $req['comment'] = $params['comment'];
+        if ($params['type']) $req['queue'] = $params['type'];
+        if ($params['parent']) $req['parent'] = $params['parent'];
+        if ($params['limit-at']) $req['limit-at'] = $params['limit-at'];
+        if ($params['max-limit']) $req['max-limit'] = $params['max-limit'];
+
+        $result = $this->execComm("/queue/simple/add", $req);
         $this->response = $result;
         return $this;
     }
@@ -92,13 +90,12 @@ class AddressListControl extends ExecCommand
     {
         $responses = [];
         foreach ($ids as $id) {
-            $resp = $this->execComm("/ip/firewall/address-list/$action", [
+            $resp = $this->execComm("/queue/simple/$action", [
                 'numbers' => $id
             ]);
-            $responses[$id] = $resp ? false : true ;
+            $responses[$id] = $resp ? false : true;
         }
         $this->response = $responses;
         return $this;
     }
-
 }

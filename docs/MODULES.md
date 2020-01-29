@@ -848,3 +848,121 @@ $core->action('vlans_by_port', $parameters);
 - D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
 - D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
 - D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+
+
+### simple_queue_ctrl - Control simple queue
+Name: **simple_queue_ctrl**   
+    
+**Arguments:**    
+- **_id**, pattern: *.**    
+- **action**, pattern: *^(remove|add|disable|enable)$*, required    
+- **name**, pattern: *.**    
+- **target**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$*    
+- **type**, pattern: *.**  (Variables  - /queue type print)
+- **limit-at**, pattern: *.**    , example: 50M/50M (In/Out = 50Mbits)   
+- **max-limit**, pattern: *.**, example: 50M/50M (In/Out = 50Mbits)   
+- **parent**, pattern: *.**    
+- **comment**, pattern: *.**    
+
+**Supported devices:**    
+- Mikrotik RouterOS  *(\SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl)*   
+
+**Work example**
+``` 
+$parameters=json_decode('{"action":"add","name":"TEST","target":"10.10.10.12","max-limit":"50M/50M","comment":"TEST"}', true);
+$core->action('simple_queue_ctrl', $parameters);
+
+Response: 
+"*419"
+```    
+       
+### simple_queue_info - Info of simple queue
+Name: **simple_queue_info**   
+    
+**Arguments:**    
+- **_id**, pattern: *.**    
+- **name**, pattern: *.**    
+- **target**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$*    
+- **type**, pattern: *.**    
+- **parent**, pattern: *.**    
+
+**Supported devices:**    
+- Mikrotik RouterOS  *(\SwitcherCore\Modules\RouterOS\SimpleQueuesInfo)*   
+
+**Work example**
+``` 
+$parameters=json_decode('{"target":"10.10.10.11\/32"}', true);
+$core->action('simple_queue_info', $parameters);
+[
+    {
+        "_id": "*41B",
+        "name": "10.10.10.11",
+        "target": "10.10.10.11\/32",
+        "parent": "none",
+        "type": "default-small\/default-small",
+        "limit-at": "0\/0",
+        "max-limit": "20480000\/20480000", #Max limit in bytes or k|M|G
+        "disabled": false,
+        "dynamic": false,
+        "comment": "sync_queue"
+    }
+]
+```
+
+    
+### address_list_ctrl - Working with address list
+Name: **address_list_ctrl**   
+    
+**Arguments:**    
+- **_id**, pattern: *.**    
+- **action**, pattern: *^(remove|add|disable|enable)$*, required    
+- **name**, pattern: *^[0-9a-zA-Z_\-]{1,}$*    
+- **address**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$*    
+- **comment**, pattern: *.**    
+- **timeout**, pattern: *.**    
+
+**Supported devices:**    
+- Mikrotik RouterOS  *(\SwitcherCore\Modules\RouterOS\AddressListControl)*   
+
+**Work example**
+```
+$parameters=json_decode('{"action":"add","name":"TEST_LIST","address":"10.0.0.1","comment":"TEST_COMMENT"}', true);
+$core->action('address_list_ctrl', $parameters);
+
+"*5E359F"
+
+$parameters=json_decode('{"_id":"*5E359F","action":"remove"}', true);
+$core->action('address_list_ctrl', $parameters);
+
+{
+    "*5E359F": true
+}
+```
+    
+### address_list_info - Info by addresses list
+Name: **address_list_info**   
+    
+**Arguments:**    
+- **name**, pattern: *^[0-9a-zA-Z_\-]{1,}$*    
+- **address**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$*    
+
+**Supported devices:**    
+- Mikrotik RouterOS  *(\SwitcherCore\Modules\RouterOS\AddressListInfo)*   
+
+**Work example**
+```
+$parameters=json_decode('{"name":"TEST"}', true);
+$core->action('address_list_info', $parameters);
+
+[
+    {
+        "_id": "*5E35A8",
+        "name": "TEST",
+        "address": "1.1.1.1",
+        "created": "2020-01-29 16:47:49",
+        "dynamic": false,
+        "disabled": false
+    }
+]
+
+```
