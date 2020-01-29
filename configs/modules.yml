@@ -193,6 +193,21 @@
     - interface_vlan_info
     - arp_info
 
+- name: address_list_info
+  arguments:
+    - {name: name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
+    - {name: address, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
+  descr: Info by addresses list
+
+- name: address_list_ctrl
+  arguments:
+    - {name: _id, pattern: '.*', required: no}
+    - {name: action, pattern: '^(remove|add|disable|enable)$', required: yes, values: [add,remove,disable,enable]}
+    - {name: name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
+    - {name: address, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
+    - {name: comment, pattern: '.*', required: no}
+  descr: Working with address list
+
 
 #Action Get arp info with filters
 - name: slot_info

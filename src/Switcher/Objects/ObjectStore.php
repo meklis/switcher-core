@@ -20,7 +20,6 @@ use SwitcherCore\Modules\AbstractModule;
  */
 class ObjectStore
 {
-
     protected $objects = [];
     function __construct()
     {
@@ -30,6 +29,7 @@ class ObjectStore
     {
         return $this->set($name, $value);
     }
+
     function __get($name)
     {
         return $this->get($name);
