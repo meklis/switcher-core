@@ -50,17 +50,17 @@ class SimpleQueuesCtrl extends ExecCommand
                 break;
             case 'remove':
                 if (!$params['_id'] && !$params['name'] && !$params['target']) throw new \InvalidArgumentException("_id or name or address is required for remove");
-                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device");
+                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device", 404);
                 $this->addressAction($ids, 'remove');
                 break;
             case 'disable':
                 if (!$params['_id'] && !$params['name'] && !$params['target']) throw new \InvalidArgumentException("_id or name or address is required for disable");
-                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device");
+                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device", 404);
                 $this->addressAction($ids, 'disable');
                 break;
             case 'enable':
                 if (!$params['_id'] && !$params['name'] && !$params['target']) throw new \InvalidArgumentException("_id or name or address is required for enable");
-                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device");
+                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device", 404);
                 $this->addressAction($ids, 'enable');
                 break;
             default:
