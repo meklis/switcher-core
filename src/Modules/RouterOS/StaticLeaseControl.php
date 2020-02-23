@@ -63,7 +63,7 @@ class StaticLeaseControl extends ExecCommand
         $arr = $this->getLeasesByParam($params);
         $ids = [];
         if(!$arr) {
-            throw new \Exception("Lease not found by parameters");
+            throw new \Exception("Lease not found by parameters", 404);
         }
         foreach ($arr as $a) {
             $this->execComm("/ip/dhcp-server/lease/remove", [
