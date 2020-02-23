@@ -231,6 +231,7 @@
   descr: Info of simple queue
 
 
+
 #Action Get arp info with filters
 - name: slot_info
   arguments:
