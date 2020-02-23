@@ -65,7 +65,7 @@ class StaticArpControl extends ExecCommand
         $arps = $this->getArpsInfoByParam($params);
         $ids = [];
         if(!$arps) {
-            throw new \Exception("Arp not found by parameters");
+            throw new \Exception("Arp not found by parameters", 404);
         }
         foreach ($arps as $arp) {
             $this->execComm("/ip/arp/remove", [
