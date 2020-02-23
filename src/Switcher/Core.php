@@ -2,6 +2,7 @@
 
 namespace SwitcherCore\Switcher;
 
+use envPHP\classes\std;
 use SnmpWrapper\MultiWalker;
 use SwitcherCore\Config\Objects\Oid;
 use SnmpWrapper\Oid as O;
@@ -120,6 +121,7 @@ class Core
         $this->objects->model->initModules();
 
         foreach ($this->objects->model->getModules() as $moduleName=>$module) {
+            std::msg("MODULE $moduleName");
             $this->modules->set($moduleName, $module);
             $module->setInputsStore($this->objects);
             $module->setModuleStore($this->modules);

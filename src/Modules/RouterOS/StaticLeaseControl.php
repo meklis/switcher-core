@@ -31,7 +31,7 @@ class StaticLeaseControl extends ExecCommand
         if($params['action'] == 'add') {
             if(!$params['ip']) throw new \InvalidArgumentException("IP address is required for adding");
             if(!$params['mac']) throw new \InvalidArgumentException("MAC address is required for adding");
-            if(!$params['vlan_id'] && !$params['vlan_name'] && !$params['server']) throw new \InvalidArgumentException("VLAN name or id is required for adding");
+            if(!$params['vlan_id'] && !$params['vlan_name'] && !$params['dhcp_server']) throw new \InvalidArgumentException("VLAN name or id is required for adding");
             return $this->add($params);
         }
         if($params['action'] == 'remove') {
@@ -56,14 +56,14 @@ class StaticLeaseControl extends ExecCommand
         return $this;
     }
     private function getLeasesByParam($params) {
-        return $this->obj->lease_info->run($params)->getPrettyFiltered();
+        return $this->module->lease_info->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {
         $arr = $this->getLeasesByParam($params);
         $ids = [];
         if(!$arr) {
-            throw new \Exception("Arp not found by parameters");
+            throw new \Exception("Lease not found by parameters");
         }
         foreach ($arr as $a) {
             $this->execComm("/ip/dhcp-server/lease/remove", [

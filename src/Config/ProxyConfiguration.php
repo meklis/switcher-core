@@ -6,7 +6,7 @@ namespace SwitcherCore\Config;
 
 use IPv4\SubnetCalculator;
 
-class ProxyConfiguration implements ProxyConfigurationInterface
+class ProxyConfiguration
 {
     protected $object;
     protected $networks;

@@ -57,7 +57,8 @@ class StaticArpControl extends ExecCommand
         return $this;
     }
     private function getArpsInfoByParam($params) {
-        return $this->obj->arp_info->run($params)->getPrettyFiltered();
+        
+        return $this->module->arp_info->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {

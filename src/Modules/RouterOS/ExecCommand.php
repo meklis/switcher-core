@@ -36,4 +36,5 @@ class ExecCommand extends AbstractModule
     {
         throw new \Exception("Method run must be rewrited");
     }
+
 }
