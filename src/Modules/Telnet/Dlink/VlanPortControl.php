@@ -25,7 +25,7 @@ class VlanPortControl extends ExecLineCtrl
                 break;
             case 'delete':
                 if($params['id']) {
-                    return "delete vlan vlanid {$params['id']} delete {$params['port']}";
+                    return "config vlan vlanid {$params['id']} delete {$params['port']}";
                 }
                 throw new \InvalidArgumentException("For action delete vlan from port parameter vlanid is required");
                 break;
