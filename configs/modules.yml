@@ -174,7 +174,7 @@
   arguments:
     - {name: ip, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$', required: yes}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-    - {name: vlan_name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
+    - {name: vlan_name, pattern: '^.*$', required: no}
     - {name: count, pattern: '^[0-9]{1,}$', required: no}
   depends:
     - interface_vlan_info
@@ -185,7 +185,7 @@
     - {name: action, pattern: '^(add|remove)$', required: yes, values: [add, remove]}
     - {name: ip, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$', required: no}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-    - {name: vlan_name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
+    - {name: vlan_name, pattern: '^.*$', required: no}
     - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no }
     - {name: comment, pattern: '.*', required: no }
   descr: Adding and removing static ARP (L3 Devices)
