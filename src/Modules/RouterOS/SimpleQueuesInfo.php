@@ -50,7 +50,7 @@ class SimpleQueuesInfo extends ExecCommand
                 'max-limit' => $d['max-limit'],
                 'disabled' => $d['disabled'] == "true",
                 'dynamic' => $d['dynamic'] == "true",
-                'comment' => $d['comment'],
+                'comment' => isset($d['comment']) ? $d['comment'] : "",
             ];
         }
         $this->response = $data;
