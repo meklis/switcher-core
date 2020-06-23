@@ -16,7 +16,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3200-10,  objid: ^\.1\.3\.6\.1\.4\.1\.171\.10\.113\.1\.1 }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -49,7 +49,7 @@ models:
      - ./oids/dlink/des-3200-c1-diag.yml
    detect: {description: ^DES-3200-10\/C1,  objid: ^\.1\.3\.6\.1\.4\.1\.171\.10\.113\.2\.1 }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -82,7 +82,7 @@ models:
      - ./oids/dlink/des-3200-c1-diag.yml
    detect: {description: ^DES-3200-18\/C1 Fast Ethernet Switch$,  objid: ^.*113\.3\.1$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -115,7 +115,7 @@ models:
      - ./oids/dlink/des-3200-c1-diag.yml
    detect: {description: ^DES-3200-26\/C1 Fast Ethernet Switch$,  objid: ^.*113\.4\.1$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      ge_ports: [25,26]
      telnet_conn_type: dlink
    modules:
@@ -149,7 +149,7 @@ models:
      - ./oids/dlink/des-3200-c1-diag.yml
    detect: {description: ^DES-3200-28\/C1 Fast Ethernet Switch$,  objid: ^.*113\.5\.1$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      ge_ports: [25,26,27,28]
      telnet_conn_type: dlink
    modules:
@@ -183,7 +183,7 @@ models:
      - ./oids/dlink/des-3200-c1-diag.yml
    detect: {description: ^DES-3200-28F\/C1 Fast Ethernet Switch$,  objid: ^.*113\.6\.1$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      ge_ports: [25,26,27,28]
      telnet_conn_type: dlink
    modules:
@@ -217,7 +217,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3200-18 Fast Ethernet Switch$,  objid: ^\.1\.3\.6\.1\.4\.1\.171\.10\.113\.1\.2 }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -250,7 +250,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3200-26 Fast Ethernet Switch$,  objid: ^.*113.1.5$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -283,7 +283,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3200-28 Fast Ethernet Switch$,  objid: ^.*113.1.3$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
@@ -316,7 +316,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
    detect: {description: ^D-Link DES-3200-28F Fast Ethernet Switch$,  objid: ^.*113.1.4$ }
    extra:
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
