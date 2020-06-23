@@ -32,6 +32,9 @@ class DefaultParser extends AbstractModule
             }
             foreach ($statuses as $key=>$status) {
                 list($vlanId, $macAddr) = explode("-", $key);
+                if(!isset($ports[$key])) {
+                    continue;
+                }
                 $pretties[] = [
                     'port' => $ports[$key],
                     'vlan_id' => $vlanId,
