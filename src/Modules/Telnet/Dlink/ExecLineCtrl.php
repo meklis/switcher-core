@@ -35,7 +35,7 @@ abstract class ExecLineCtrl extends AbstractModule
                throw new \Exception("Error save configuration, response: " . $response);
            }
         } catch (\Exception $e) {
-            throw new \Exception("Error execute command", 1, $e);
+            throw new \Exception("error execute command: {$e->getMessage()}", 1, $e);
         }
         return $this;
     }
