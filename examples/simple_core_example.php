@@ -21,6 +21,9 @@ $configuration_path = __DIR__ . "/../configs";
 
 //Initialize snmp walker
 $snmpProxy =  new  WrapperWorker($snmp_walker_proxy_address);
+
+$walker = new \SnmpWrapper\MultiWalker($snmpProxy);
+
 $walker =  (new  Walker($snmpProxy))->useCache(false)
     ->setIp($device_ip)
     ->setCommunity($community);

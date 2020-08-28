@@ -13,7 +13,6 @@ class Cache
         if(isset($config['host']) && isset($config['port'])) {
             $this->memcache = new \Memcache;
             $this->memcache->connect($config['host'], $config['port']);
-
         }
 
     }

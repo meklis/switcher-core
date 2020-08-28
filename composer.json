@@ -22,5 +22,8 @@
         "meklis/ipv4-subnet-calculator": "3.*",
         "khill/php-duration": "~1.0"
     },
+    "require-dev": {
+        "vlucas/phpdotenv": "^4.1@dev"
+    },
     "minimum-stability": "dev"
 }
