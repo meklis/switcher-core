@@ -75,4 +75,12 @@ class ProxyConfiguration
         }
         return true;
     }
+    function getMainConfig() {
+        foreach ($this->object as $proxies) {
+            if(isset($proxies['main']) && $proxies['main']) {
+                return $proxies;
+            }
+        }
+        throw new \Exception("Not found main proxy configuration");
+    }
 }
