@@ -57,6 +57,7 @@ class LeaseInfo extends ExecCommand
         $response = [];
         foreach ($this->execComm('/ip/dhcp-server/lease/print', $filter) as $a) {
             $response[] = [
+                'host_name' => isset($a['host-name']) ? $a['host-name'] : '',
                 'ip' => $a['address'],
                 'mac' => $a['mac-address'],
                 'status' => $a['status'],
