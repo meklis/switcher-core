@@ -16,7 +16,7 @@ models:
    detect: {description: ^DES-1210-28\/ME\/B2$,  objid: ^.*171.10.75.15.2$ }
    extra:
      ge_ports: [25,26,27,28]
-     diag_linkup: true
+     diag_linkup: false
      telnet_conn_type: dlink
    modules:
      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
