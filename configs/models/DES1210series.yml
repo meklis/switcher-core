@@ -15,6 +15,7 @@ models:
      - ./oids/dlink/des-1210-28-me-b2.yml
    detect: {description: ^DES-1210-28\/ME\/B2$,  objid: ^.*171.10.75.15.2$ }
    extra:
+     ge_ports: [25,26,27,28]
      diag_linkup: true
      telnet_conn_type: dlink
    modules:

@@ -14,8 +14,13 @@ class DlinkDgs1210Parser extends AbstractModule
           $link_state = $this->getResponseByName('dlink.sysPortCtrlState');
           $nway_state = $this->getResponseByName('dlink.sysPortCtrlSpeed');
           $description = $this->getResponseByName('if.Alias');
-          $medium_type = $this->getResponseByName('dlink.sysPortCtrlMediumType');
+          $medium_type = $this->getResponseByName('dlink.PortInfoMediumType');
           $last_change = $this->getResponseByName('dlink.sysPortLinkChangeTime');
+          $ctrl_type = $this->getResponseByName('dlink.sysPortCtrlType');
+
+          if($ctrl_type->error()) {
+              throw new \Exception($ctrl_type->error());
+          }
 
           if($link_state->error()) {
               throw new \Exception($link_state->error());
@@ -40,8 +45,13 @@ class DlinkDgs1210Parser extends AbstractModule
           foreach ($medium_type->fetchAll() as $d) {
               $indexMediumType[Helper::getIndexByOid($d->getOid())] = $d->getParsedValue();
           }
+          $indexCtrlType = [];
+          foreach ($ctrl_type->fetchAll() as $d) {
+              $indexCtrlType[Helper::getIndexByOid($d->getOid(), 1)] = $d->getParsedValue();
+          }
 
-          $response=[];
+
+        $response=[];
           foreach ($nway_status->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
               $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
@@ -51,7 +61,7 @@ class DlinkDgs1210Parser extends AbstractModule
               }
               $response["{$port}-{$type}"]['port'] = $port;
               $response["{$port}-{$type}"]['medium_type'] = $type;
-              $response["{$port}-{$type}"]['type'] = 'GE';
+              $response["{$port}-{$type}"]['type'] = $indexCtrlType[Helper::getIndexByOid($d->getOid(), 1)];
               $response["{$port}-{$type}"]['last_change'] = null;
               $response["{$port}-{$type}"]['connector_present'] = null;
               $response["{$port}-{$type}"]['oper_status'] = $status;
@@ -118,11 +128,12 @@ class DlinkDgs1210Parser extends AbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlMediumType')->getOid(), true) ,
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid()) ,
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid()) ,
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlState')->getOid() ),
             Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortLinkChangeTime')->getOid() , true),
+            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlType')->getOid() , true),
             Oid::init($this->obj->oidCollector->getOidByName('if.Alias')->getOid() ),
         ];
         $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
