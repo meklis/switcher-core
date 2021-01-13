@@ -30,6 +30,7 @@ class TelnetLazyConnect extends Telnet
         if(!$this->is_logined) {
             parent::setLinuxEOL();
             parent::disableMagicControl();
+            parent::setWindowSize(360,500);
             switch ($this->host_type) {
                 case "dlink":
                     parent::login($this->username, $this->password, $this->host_type);
