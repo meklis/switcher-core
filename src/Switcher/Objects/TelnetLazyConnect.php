@@ -3,8 +3,9 @@
 
 namespace SwitcherCore\Switcher\Objects;
 
+use \Meklis\network\Telnet;
 
-class TelnetLazyConnect extends \Meklis\TelnetOverProxy\Telnet
+class TelnetLazyConnect extends Telnet
 {
     protected $is_logined;
     protected $proxy_addr = "";
@@ -13,12 +14,6 @@ class TelnetLazyConnect extends \Meklis\TelnetOverProxy\Telnet
     protected $password = "";
     protected $host_type = "";
 
-    function connectOverProxy($proxy_addr = "tcp://0.0.0.0:3333", $timeout = 180)
-    {
-        $this->proxy_addr = $proxy_addr;
-        $this->timeout = $timeout;
-        return $this;
-    }
     function setHostType($host_type) {
         $this->host_type = $host_type;
         return $this;
@@ -33,7 +28,6 @@ class TelnetLazyConnect extends \Meklis\TelnetOverProxy\Telnet
     function exec($command, $add_newline = true)
     {
         if(!$this->is_logined) {
-            parent::connectOverProxy($this->proxy_addr, $this->timeout);
             parent::setLinuxEOL();
             parent::disableMagicControl();
             switch ($this->host_type) {

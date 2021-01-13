@@ -16,13 +16,10 @@
     },
     "require": {
         "php": ">=7.2.0",
-        "meklis/snmp-wrapper": "dev-master",
-        "meklis/telnet-over-proxy": "~1.0",
         "meklis/routeros-api": "dev-master",
+        "meklis/telnet": "dev-master",
         "meklis/ipv4-subnet-calculator": "3.*",
-        "khill/php-duration": "~1.0"
-    },
-    "require-dev": {
+        "khill/php-duration": "~1.0",
         "vlucas/phpdotenv": "^4.1@dev"
     },
     "minimum-stability": "dev"

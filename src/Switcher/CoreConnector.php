@@ -11,14 +11,12 @@ use SwitcherCore\Config\Reader;
 
 class CoreConnector
 {
-    protected  $proxyConfigPath;
     protected  $configPath;
     protected  $telnetPort = 23;
     protected  $mikrotikApi = 55055;
     protected static $instances = [];
-    public function __construct($configPath, $proxyConfigPath)
+    public function __construct($configPath)
     {
-        $this->proxyConfigPath = $proxyConfigPath;
         $this->configPath = $configPath;
     }
 
@@ -30,9 +28,6 @@ class CoreConnector
     public function setMikrotikApiPort($port) {
         $this->mikrotikApi = $port;
         return $this;
-    }
-    public function getProxyConfigPath() {
-        return $this->proxyConfigPath;
     }
     public function getTelnetPort() {
         return $this->telnetPort;
@@ -107,15 +102,6 @@ class CoreConnector
         return $core;
     }
 
-    /**
-     * @param $ip
-     * @return \SwitcherCore\Config\ProxyConfiguration
-     * @throws \Exception
-     */
-    private function getProxyConfig($ip) {
-        $proxyConfig = new \SwitcherCore\Config\ProxyConfiguration($this->proxyConfigPath);
-        return $proxyConfig->setSearchedIP($ip);
-    }
 
     private function initWalker($ip, $community) {
         $wrapper =  new  WrapperWorker(
@@ -133,7 +119,6 @@ class CoreConnector
     }
     private function initTelnet($ip, $login,$password) {
         return (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($ip, $this->getTelnetPort()))
-            ->connectOverProxy($this->getProxyConfig($ip)->getTelnetConfiguration()['address'])
             ->login($login, $password);
     }
     private function initMikrotikApi($ip, $login,$password) {
