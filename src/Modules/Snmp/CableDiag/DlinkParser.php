@@ -117,8 +117,9 @@ class DlinkParser extends AbstractModule
             )));
             if(!isset($response['dlink.CableDiagAction'])) {
                 throw new IncompleteResponseException("No response from device");
+            } elseif ($response['dlink.CableDiagAction']->error()) {
+                throw new IncompleteResponseException($response['dlink.CableDiagAction']->error());
             }
-
         }
         return $this;
     }

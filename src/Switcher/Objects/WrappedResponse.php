@@ -82,26 +82,26 @@ class WrappedResponse {
      */
     protected function __construct($data, $wrapValues = null)
     {
-            if($data->error == '') {
-                $wrapped = [];
-                foreach ($data->getResponse() as $num=>$resp) {
-                    if($resp->getType() == 'NoSuchInstance' || $resp->getType() == 'NoSuchObject') {
-                        throw new \Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
-                    }
-                    $wrapperValue =  (new Resp())
-                        ->setOid($resp->getOid())
-                        ->setHexValue($resp->getHexValue())
-                        ->setType($resp->getType())
-                        ->setValue($resp->getValue());
-                    if(isset($wrapValues[$resp->getValue()])) {
-                        $wrapperValue->setParsed($wrapValues[$resp->getValue()]);
-                    } else {
-                        $wrapperValue->setParsed($resp->getValue());
-                    }
-                    $wrapped[] = $wrapperValue;
+        if($data->error == '') {
+            $wrapped = [];
+            foreach ($data->getResponse() as $num=>$resp) {
+                if($resp->getType() == 'NoSuchInstance' || $resp->getType() == 'NoSuchObject') {
+                    throw new \Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
                 }
-                $data->response = $wrapped;
+                $wrapperValue =  (new Resp())
+                    ->setOid($resp->getOid())
+                    ->setHexValue($resp->getHexValue())
+                    ->setType($resp->getType())
+                    ->setValue($resp->getValue());
+                if(isset($wrapValues[$resp->getValue()])) {
+                    $wrapperValue->setParsed($wrapValues[$resp->getValue()]);
+                } else {
+                    $wrapperValue->setParsed($resp->getValue());
+                }
+                $wrapped[] = $wrapperValue;
             }
+            $data->response = $wrapped;
+        }
         $this->data = $data;
         $this->counter = 0;
     }

@@ -4,7 +4,7 @@
 namespace SwitcherCore\Switcher\Objects;
 
 
-use SnmpWrapper\MultiWalker;
+use SnmpWrapper\MultiWalkerInterface as MultiWalker;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
 use SwitcherCore\Config\Objects\Model;

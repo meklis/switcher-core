@@ -2,7 +2,8 @@
 
 namespace SwitcherCore\Switcher;
 
-use SnmpWrapper\MultiWalker;
+use SnmpWrapper\NoProxy\MultiWalker;
+use SnmpWrapper\MultiWalkerInterface;
 use SwitcherCore\Config\Objects\Oid;
 use SnmpWrapper\Oid as O;
 use SwitcherCore\Config\Reader;
@@ -45,7 +46,7 @@ class Core
     }
 
     function addInput($input) {
-        if($input instanceof MultiWalker) {
+        if($input instanceof MultiWalkerInterface) {
             $this->objects->walker = $input;
         } elseif ($input instanceof \meklis\network\Telnet) {
             if(!$this->objects->isExist('model')) {

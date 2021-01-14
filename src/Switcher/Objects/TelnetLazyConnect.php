@@ -3,7 +3,7 @@
 
 namespace SwitcherCore\Switcher\Objects;
 
-use \Meklis\network\Telnet;
+use \meklis\network\Telnet;
 
 class TelnetLazyConnect extends Telnet
 {

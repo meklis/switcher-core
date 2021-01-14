@@ -5,8 +5,7 @@ namespace SwitcherCore\Switcher;
 
 
 use SnmpWrapper\Device;
-use SnmpWrapper\MultiWalker;
-use SnmpWrapper\WrapperWorker;
+use SnmpWrapper\NoProxy\MultiWalker;
 use SwitcherCore\Config\Reader;
 
 class CoreConnector
@@ -14,6 +13,9 @@ class CoreConnector
     protected  $configPath;
     protected  $telnetPort = 23;
     protected  $mikrotikApi = 55055;
+    protected $snmp_timeout_sec = 2;
+    protected $snmp_repeats = 3;
+    protected $telnet_timeout = 10;
     protected static $instances = [];
     public function __construct($configPath)
     {
@@ -23,6 +25,18 @@ class CoreConnector
 
     public function setTelnetPort($port) {
         $this->telnetPort = $port;
+        return $this;
+    }
+    public function setSnmpTimeoutSec($snmp_timeout_sec) {
+        $this->snmp_timeout_sec = $snmp_timeout_sec;
+        return $this;
+    }
+    public function setSnmpRepeats($snmp_repeats) {
+        $this->snmp_repeats = $snmp_repeats;
+        return $this;
+    }
+    public function setTelnetTimeoutSec($telnet_timeout) {
+        $this->telnet_timeout = $telnet_timeout;
         return $this;
     }
     public function setMikrotikApiPort($port) {
@@ -104,21 +118,17 @@ class CoreConnector
 
 
     private function initWalker($ip, $community) {
-        $wrapper =  new  WrapperWorker(
-            $this->getProxyConfig($ip)
-                ->getSnmpConfiguration()['address']
-        );
-        return (new  MultiWalker($wrapper))->addDevice(
+        return (new  MultiWalker())->addDevice(
             Device::init(
                 $ip,
                 $community,
-                $this->getProxyConfig($ip)
-                    ->getSnmpConfiguration()['timeout']
+                $this->snmp_timeout_sec,
+                $this->snmp_repeats
             )
         );
     }
     private function initTelnet($ip, $login,$password) {
-        return (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($ip, $this->getTelnetPort()))
+        return (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($ip, $this->getTelnetPort(), $this->telnet_timeout))
             ->login($login, $password);
     }
     private function initMikrotikApi($ip, $login,$password) {
