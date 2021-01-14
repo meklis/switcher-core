@@ -29,3 +29,19 @@ models:
       fdb: \SwitcherCore\Modules\Snmp\ZTE\Fdb
       ont_info: \SwitcherCore\Modules\Snmp\ZTE\OntInfo
 
+  - name: ZTE ZXPON C320
+    ports: 0
+    inputs:
+      - snmp
+      - telnet
+    oids:
+      - ./oids/zte/ZTE-C320.yml
+    detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
+    modules:
+      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+    extra:
+      telnet_conn_type: linux
+      telnet_commands_after_connect:
+        - terminal length 0
+
+

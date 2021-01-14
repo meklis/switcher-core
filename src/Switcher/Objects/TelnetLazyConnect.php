@@ -13,7 +13,7 @@ class TelnetLazyConnect extends Telnet
     protected $username = "";
     protected $password = "";
     protected $host_type = "";
-
+    protected $afterLoginCommands =[];
     function setHostType($host_type) {
         $this->host_type = $host_type;
         return $this;
@@ -25,19 +25,26 @@ class TelnetLazyConnect extends Telnet
         $this->password = $password;
         return $this;
     }
+    function addCommandAfterLogin($command) {
+        $this->afterLoginCommands[] = $command;
+        return $this;
+    }
     function exec($command, $add_newline = true)
     {
         if(!$this->is_logined) {
             parent::setLinuxEOL();
             parent::disableMagicControl();
             parent::setWindowSize(360,500);
+            parent::login($this->username, $this->password, $this->host_type);
             switch ($this->host_type) {
                 case "dlink":
-                    parent::login($this->username, $this->password, $this->host_type);
                     parent::exec("disa clip");
                     break;
-                default:
-                    throw new \Exception("Not supported type of conn_type");
+            }
+            if($this->afterLoginCommands) {
+                foreach ($this->afterLoginCommands as $comm) {
+                    parent::exec($comm);
+                }
             }
         }
         $this->is_logined = true;

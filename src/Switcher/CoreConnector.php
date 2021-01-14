@@ -101,7 +101,6 @@ class CoreConnector
         $core = (new \SwitcherCore\Switcher\Core(
             new  Reader($this->configPath)
         ))->addInput($walker)->init();
-
         $inputs_list = $core->getNeedInputs();
         if(in_array('telnet', $inputs_list)) {
             $telnet = $this->initTelnet($ip,$login,$password);

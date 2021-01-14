@@ -53,6 +53,11 @@ class Core
                 throw new \Exception("Model not detected. You must call init() first");
             }
             $input->setHostType($this->objects->model->getTelnetConnType());
+            try {
+                foreach ($this->objects->model->getExtraParamByName('telnet_commands_after_connect') as $comm) {
+                    $input->addCommandAfterLogin($comm);
+                }
+            } catch (\Exception $e) {}
             $this->objects->telnet = $input;
         } elseif ($input instanceof \RouterosAPI) {
             if(!$this->objects->isExist('model')) {
