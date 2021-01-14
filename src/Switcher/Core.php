@@ -109,6 +109,14 @@ class Core
         return $this->objects->model->getInputs();
     }
 
+
+    /**
+     * @return InputsStore
+     */
+    public function getInternalObjects() {
+        return $this->objects;
+    }
+
     /**
      * @return $this
      * @throws ModuleNotFoundException

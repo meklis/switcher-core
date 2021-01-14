@@ -8,7 +8,7 @@ use \SwitcherCore\Switcher\CoreConnector;
 $handle = fopen ("php://stdin","r");
 
 $connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'))
-->setTelnetPort(23)->setMikrotikApiPort(8728);
+->setTelnetPort(23)->setMikrotikApiPort(55055);
 $core = $connector->init($argv[1], $argv[2], $argv[3], $argv[4]);
 
 //Prepare modules list
@@ -58,5 +58,8 @@ echo "\$core->action('{$module['name']}', \$parameters);\n\n";
 echo json_encode($core->action($module['name'], $params), JSON_PRETTY_PRINT);
 echo "\n==============================================================\n\n\n";
 
-echo "Diagnostic finished!\n";
+
+echo "\n==================DUMP OF TELNET CONNECTION===============\n";
+echo $core->getInternalObjects()->telnet->getGlobalBuffer();
+echo "\n===========================================================\nDiagnostic finished!\n";
 goto STEP_CHOOSING;

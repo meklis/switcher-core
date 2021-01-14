@@ -249,3 +249,15 @@
   arguments:
     - {name: port, pattern: '.*', required: no}
   descr: ONT info (on PON)
+
+#Show Unregistered ONT
+- name: unregistered_ont
+  arguments:
+    - {name: type, pattern: '^(all|gpon|epon)$', required: no, values: [all,gpon,epon]}
+  descr: List unregistered ONT
+
+#Get ONT state by interface
+- name: ont_state
+  arguments:
+    - {name: interface, pattern: '^(gpon|epon)-onu_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
+  descr: List ONT state by interface

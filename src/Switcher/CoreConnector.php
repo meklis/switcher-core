@@ -76,6 +76,11 @@ class CoreConnector
         return isset(self::$instances[$ip]);
     }
 
+    /**
+     * @param $ip
+     * @return Core
+     * @throws \Exception
+     */
     public function get($ip) {
         if(self::isConnected($ip)) {
             return self::$instances[$ip];

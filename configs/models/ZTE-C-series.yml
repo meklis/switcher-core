@@ -39,8 +39,10 @@ models:
     detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
     modules:
       system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+      unregistered_ont: \SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList
+      ont_state: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntStateInfo
     extra:
-      telnet_conn_type: linux
+      telnet_conn_type: ios
       telnet_commands_after_connect:
         - terminal length 0
 
