@@ -1,46 +1,21 @@
 models:
-#Зависит от прошивки, работает не для всех
-#  - name: ZXPON C320
-#    ports: 0
-#    inputs:
-#     - snmp
-#      - telnet
-#    oids:
-#      - ./oids/zte/common.yml
-#    detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
-#    modules:
-#      sfp_info: \SwitcherCore\Modules\Snmp\ZTE\SfpLinkInfo
-#      slot_info: \SwitcherCore\Modules\Snmp\ZTE\SlotInfo
-#      link_info: \SwitcherCore\Modules\Snmp\ZTE\LinkInfo
-#      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
-  - name: ZTE ZXPON C300
-    ports: 0
-    inputs:
-      - snmp
-#      - telnet
-    oids:
-      - ./oids/zte/ZTE-C300.yml
-    detect: {description: C300.*,  objid: 1015.300.3.1$ }
-    modules:
-      sfp_info: \SwitcherCore\Modules\Snmp\ZTE\SfpLinkInfo
-      slot_info: \SwitcherCore\Modules\Snmp\ZTE\SlotInfo
-      link_info: \SwitcherCore\Modules\Snmp\ZTE\LinkInfo
-      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
-      fdb: \SwitcherCore\Modules\Snmp\ZTE\Fdb
-      ont_info: \SwitcherCore\Modules\Snmp\ZTE\OntInfo
-
   - name: ZTE ZXPON C320
     ports: 0
     inputs:
       - snmp
       - telnet
-    oids:
-      - ./oids/zte/ZTE-C320.yml
     detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
     modules:
       system: \SwitcherCore\Modules\Snmp\System\DefaultParser
-      unregistered_ont: \SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList
       ont_state: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntStateInfo
+      ont_dereg: \SwitcherCore\Modules\Telnet\ZTE\C300Series\DeregOnt
+      zte_unregistered_ont: \SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList
+      zte_gpon_ont_profile_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\GponOntProfileList
+      zte_ont_interface_console: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInterfaceConfCommand
+      zte_ont_registration_gpon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationGPON
+      zte_ont_registration_epon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON
+      save_config: \SwitcherCore\Modules\Telnet\ZTE\C300Series\SaveConfig
+
     extra:
       telnet_conn_type: ios
       telnet_commands_after_connect:

@@ -250,14 +250,52 @@
     - {name: port, pattern: '.*', required: no}
   descr: ONT info (on PON)
 
+
+#Get ONT state by interface
+- name: ont_state
+  arguments:
+    - {name: interface, pattern: '^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
+    - {name: parse, pattern: '.*', required: no, values: []}
+  descr: List ONT state by interface
+
+- name: ont_dereg
+  descr: Allow send configuration command to interface
+  arguments:
+    - {name: ont, pattern: '^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
+
+
 #Show Unregistered ONT
-- name: unregistered_ont
+- name: zte_unregistered_ont
   arguments:
     - {name: type, pattern: '^(all|gpon|epon)$', required: no, values: [all,gpon,epon]}
   descr: List unregistered ONT
 
 #Get ONT state by interface
-- name: ont_state
+- name: zte_gpon_ont_profile_list
+  descr: List ONT profiles for GPON
   arguments:
-    - {name: interface, pattern: '^(gpon|epon)-onu_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
-  descr: List ONT state by interface
+      - {name: type, pattern: '^(remote|line)$', required: yes, values: [ remote,line ] }
+
+- name: zte_ont_registration_gpon
+  descr: ONT registration for GPON
+  arguments:
+    - {name: interface, pattern: '^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
+    - {name: type, pattern: '.*', required: yes}
+    - {name: serial, pattern: '.*', required: yes}
+    - {name: profile_line, pattern: '.*', required: yes}
+    - {name: profile_remote, pattern: '.*', required: yes}
+    - {name: number, pattern: '[0-9]{1,3}', required: yes}
+
+- name: zte_ont_registration_epon
+  descr: ONT registration for GPON
+  arguments:
+    - {name: interface, pattern: '^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
+    - {name: type, pattern: '.*', required: yes}
+    - {name: mac, pattern: '.*', required: yes}
+    - {name: number, pattern: '[0-9]{1,3}', required: yes}
+
+- name: zte_ont_interface_conf
+  descr: Allow send configuration command to interface
+  arguments:
+    - {name: ont, pattern: '^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
+    - {name: command, pattern: '.*', required: yes}

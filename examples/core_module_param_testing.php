@@ -51,15 +51,17 @@ if($module['arguments']) {
         }
     }
 }
+try {
+    echo "==========================RESPONSE===============================\n";
+    echo "\$parameters=json_decode('" . json_encode($params) . "', true);\n";
+    echo "\$core->action('{$module['name']}', \$parameters);\n\n";
+    echo json_encode($core->action($module['name'], $params), JSON_PRETTY_PRINT);
+    echo "\n==============================================================\n\n\n";
+    echo "Diagnostic finished!\n";
+} catch (\Exception $e) {
+    echo "\n==================DUMP OF TELNET CONNECTION===============\n";
+    echo $core->getInternalObjects()->telnet->getGlobalBuffer();
+    throw new Exception($e);
+}
 
-echo "==========================RESPONSE===============================\n";
-echo "\$parameters=json_decode('".json_encode($params)."', true);\n";
-echo "\$core->action('{$module['name']}', \$parameters);\n\n";
-echo json_encode($core->action($module['name'], $params), JSON_PRETTY_PRINT);
-echo "\n==============================================================\n\n\n";
-
-
-echo "\n==================DUMP OF TELNET CONNECTION===============\n";
-echo $core->getInternalObjects()->telnet->getGlobalBuffer();
-echo "\n===========================================================\nDiagnostic finished!\n";
 goto STEP_CHOOSING;

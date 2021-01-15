@@ -36,6 +36,7 @@ class TelnetLazyConnect extends Telnet
             parent::disableMagicControl();
             parent::setWindowSize(360,500);
             parent::login($this->username, $this->password, $this->host_type);
+            $this->setStreamTimeout(10.0);
             switch ($this->host_type) {
                 case "dlink":
                     parent::exec("disa clip");
