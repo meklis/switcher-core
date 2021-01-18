@@ -32,7 +32,7 @@ class OntStateInfo extends C300ModuleAbstract
         foreach (array_splice($lines, 2) as $line) {
             if(preg_match('/^(.*)[ ]{1,}(Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
                 $response[] = [
-                    'interface' => trim($matches[1]),
+                    'onu' => trim($matches[1]),
                     'online_status' => trim($matches[2]),
                     'oam_status' => trim($matches[3]),
                     'mac' => trim($matches[4]),
@@ -52,18 +52,12 @@ class OntStateInfo extends C300ModuleAbstract
         if(preg_match('/No related information to show/', $input)) {
             throw new \Exception('No related information to show');
         }
-        $lines = explode("\n", $input);
-        $response = [];
-        foreach (array_splice($lines, 2) as $line) {
-            if(preg_match('/^([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}:[0-9]{1,3})[ ]{2,}(.*?)[ ]{2,}(.*?)[ ]{2,}(.*?)[ ]{2,}(.*)$/', trim($line), $matches)) {
-                $response[] = [
-                    'interface' => 'gpon-onu_' . trim($matches[1]),
-                    'admin_state' => trim($matches[2]),
-                    'omcc_state' => trim($matches[3]),
-                    'phase_state' => trim($matches[4]),
-                    'channel' => trim($matches[5]),
-                ];
-            }
+        $rows = explode("\n", $input);
+        unset($rows[count($rows) -1]);
+        $response = $this->parseTable($rows);
+        foreach ($response as $k=>$resp) {
+            $response[$k]['onu'] = 'gpon-onu_' . $resp['onu_index'];
+            unset($response[$k]['onu_index']);
         }
         return [
             'data' => $response,

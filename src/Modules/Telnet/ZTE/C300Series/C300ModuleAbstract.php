@@ -50,4 +50,89 @@ abstract class C300ModuleAbstract extends AbstractModule
         }
         return strtolower("{$m[0]}{$m[1]}{$m[2]}.{$m[3]}{$m[4]}{$m[5]}.{$m[6]}{$m[7]}{$m[8]}.{$m[9]}{$m[10]}{$m[11]}");
     }
+    private function fromCamelCase($input) {
+        preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
+        $ret = $matches[0];
+        foreach ($ret as &$match) {
+            $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+        }
+        return implode('_', $ret);
+    }
+
+    function parseTable($rows) {
+        if(!is_array($rows)) {
+            $rows = explode("\n", $rows);
+        }
+        $width = 0;
+        foreach ($rows as $num=>$row) {
+            if(strlen($row) > $width) {
+                $width = strlen($row);
+            } elseif (strlen($row) === 0) {
+                unset($rows[$num]);
+            }
+        }
+        $rows = array_values($rows);
+        $symbolBlock = array_fill(0, $width, true);
+        foreach ($rows as $row) {
+            if(preg_match('/^[-]{1,}$/', $row)) continue;
+            foreach (str_split($row) as $num=>$symbol) {
+                if($symbol === ' ' || $symbol === '\t') continue;
+                $symbolBlock[$num] = false;
+            }
+        }
+        $cols = [];
+        $start = 0;
+        $mustBeEnd = false;
+        foreach ($symbolBlock as $num=>$is_space) {
+            if($is_space && !$mustBeEnd) {
+                $mustBeEnd = true;
+            } elseif (!$is_space && $mustBeEnd) {
+                $mustBeEnd = false;
+                $cols[] = [
+                    'start' => $start,
+                    'stop' => $num-1,
+                    'name' =>  $this->fromCamelCase(str_replace([' ', '-', ':'], '_', trim(substr($rows[0], $start, $num-1 - $start)))),
+                    'size' => $num-1 - $start,
+                ];
+                $start = $num;
+            }
+        }
+        $response = [];
+        foreach (array_splice($rows,2) as $row) {
+            $resp = [];
+            if(!trim($row)) continue;
+            foreach ($cols as $cell) {
+                $resp[$cell['name']] = trim(substr($row, $cell['start'], $cell['size']));
+            }
+            $response[] = $resp;
+        }
+        return $response;
+    }
+
+    function parseExpandedTable($input) {
+        $responses = [];
+        $r  = [];
+        if(preg_match('/^\%Error/', trim($input))) {
+            throw new \Exception("Device returned error - '$input'");
+        }
+        $lines = explode("\n", trim($input));
+        if(count($lines) < 2) {
+            throw new \Exception("Unknown input - '" . join($lines) . "'");
+        }
+        foreach ($lines as $line) {
+            if(preg_match('/^(.*?)\:(.*)$/', trim($line), $m)) {
+                $key = $this->fromCamelCase(str_replace([' ', '-'], '_', trim($m[1])));
+                $r[$key] = trim($m[2]);
+            } elseif (!trim($line)) {
+                if(count($r) > 0) {
+                    $responses[] = $r;
+                }
+                $r = [];
+            }
+        }
+        if(count($r) > 0) {
+            $responses[] = $r;
+        }
+        return $responses;
+    }
 }

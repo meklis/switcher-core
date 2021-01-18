@@ -25,22 +25,45 @@ class OntInfo extends C300ModuleAbstract
 
     private function getInfoEPON($interface)
     {
-        $input = $this->obj->telnet->exec("show epon onu state {$interface}");
+        $input = $this->obj->telnet->exec("show pon onu information {$interface}");
         if (!$input) throw new \Exception("Empty response on command 'show epon onu state {$interface}'");
-        $lines = explode("\n", $input);
-        $response = [];
-        foreach (array_splice($lines, 2) as $line) {
-            if(preg_match('/^(.*)[ ]{1,}(Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
-                $response[] = [
-                    'interface' => trim($matches[1]),
-                    'online_status' => trim($matches[2]),
-                    'oam_status' => trim($matches[3]),
-                    'mac' => trim($matches[4]),
+        @list($info, $logs) = @explode("------------------------------------------", $input);
+        if(!$logs || !$info) {
+            throw new \Exception("Error parse ont information");
+        }
+        $lines = explode("\n", $info);
+        $ont_info = [];
+        foreach ($lines as $line) {
+            if(preg_match('/^(.*?)\:(.*)$/', trim($line), $m)) {
+                $val = trim($m[2]);
+                switch (trim($m[1])) {
+                    case 'Auth information': $ont_info['auth_info'] = $val; break;
+                    case 'ONU interface': $ont_info['interface'] = $val; break;
+                    case 'State': $ont_info['state'] = $val; break;
+                    case 'MAC reported': $ont_info['mac'] = $val; break;
+                    case 'LLID': $ont_info['llid'] = $val; break;
+                    case 'ONU type configured': $ont_info['type_configured'] = $val; break;
+                    case 'ONU type reported': $ont_info['type_reported'] = $val; break;
+                    case 'Hardware version': $ont_info['ver_hardware'] = $val; break;
+                    case 'Firmware version': $ont_info['ver_firmware'] = $val; break;
+                    case 'Software version': $ont_info['ver_software'] = $val; break;
+                }
+            }
+        }
+        $ont_logs = [];
+        foreach (explode("\n", $logs) as $line) {
+            if(preg_match('/^([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})(.*)/', trim($line), $m)) {
+                $ont_logs[] = [
+                    'reg_time' => str_replace("/", "-", trim($m[1])),
+                    'authpath_time' => str_replace("/", "-", trim($m[2])),
+                    'dereg_time ' => str_replace("/", "-", trim($m[3])),
+                    'reason' => trim($m[4]),
                 ];
             }
         }
+        $ont_info['logs'] = $ont_logs;
         return [
-            'data' => $response,
+            'data' => $ont_info,
             'type' => 'epon',
         ];
     }
@@ -53,7 +76,7 @@ class OntInfo extends C300ModuleAbstract
         if(preg_match('/No related information to show/', $input)) {
             throw new \Exception('No related information to show');
         }
-        @list($info, $logs) = @explode("------------------------------------------", $input);
+        @list($info, $logs) = explode("------------------------------------------", $input);
         if(!$logs || !$info) {
             throw new \Exception("Error parse ont information");
         }

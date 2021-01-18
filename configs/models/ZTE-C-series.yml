@@ -7,7 +7,11 @@ models:
     detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
     modules:
       system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+      onu_reboot: \SwitcherCore\Modules\Telnet\ZTE\C300Series\RebootOnu
       zte_onu_info: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInfo
+      zte_onu_ether_iface_info: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OnuEtherPortInfo
+      zte_fdb: \SwitcherCore\Modules\Telnet\ZTE\C300Series\Fdb
+      zte_onu_signal_strength: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OnuSignalStrengthInfo
       zte_onu_state_by_interface: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntStateInfo
       zte_onu_dereg: \SwitcherCore\Modules\Telnet\ZTE\C300Series\DeregOnt
       zte_unregistered_onu: \SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList
@@ -16,6 +20,7 @@ models:
       zte_onu_registration_gpon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationGPON
       zte_onu_registration_epon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\Telnet\ZTE\C300Series\SaveConfig
+      zte_card_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\CardList
 
     extra:
       telnet_conn_type: ios

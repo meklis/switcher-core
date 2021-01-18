@@ -13,6 +13,7 @@ class TelnetLazyConnect extends Telnet
     protected $username = "";
     protected $password = "";
     protected $host_type = "";
+    protected $stream_timeout_sec = 5;
     protected $afterLoginCommands =[];
     function setHostType($host_type) {
         $this->host_type = $host_type;
@@ -34,7 +35,7 @@ class TelnetLazyConnect extends Telnet
         if(!$this->is_logined) {
             parent::setLinuxEOL();
             parent::disableMagicControl();
-            parent::setWindowSize(360,500);
+            parent::setWindowSize(840,500);
             parent::login($this->username, $this->password, $this->host_type);
             $this->setStreamTimeout(10.0);
             switch ($this->host_type) {
