@@ -12,7 +12,7 @@ class DeregOnt extends C300ModuleAbstract
         if (!$this->obj->telnet) {
             throw new \Exception("Module required telnet connection");
         }
-        $iface = $this->parsePortByName($params['ont']);
+        $iface = $this->parsePortByName($params['onu']);
         $interface = "{$iface['technology']}-olt_{$iface['shelf']}/{$iface['slot']}/{$iface['port']}";
         $this->exec("conf t");
         $this->exec("interface {$interface}");

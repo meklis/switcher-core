@@ -7,13 +7,14 @@ models:
     detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
     modules:
       system: \SwitcherCore\Modules\Snmp\System\DefaultParser
-      ont_state: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntStateInfo
-      ont_dereg: \SwitcherCore\Modules\Telnet\ZTE\C300Series\DeregOnt
-      zte_unregistered_ont: \SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList
-      zte_gpon_ont_profile_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\GponOntProfileList
-      zte_ont_interface_console: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInterfaceConfCommand
-      zte_ont_registration_gpon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationGPON
-      zte_ont_registration_epon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON
+      zte_onu_info: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInfo
+      zte_onu_state_by_interface: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntStateInfo
+      zte_onu_dereg: \SwitcherCore\Modules\Telnet\ZTE\C300Series\DeregOnt
+      zte_unregistered_onu: \SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList
+      zte_gpon_onu_profile_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\GponOntProfileList
+      zte_onu_interface_console: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInterfaceConfCommand
+      zte_onu_registration_gpon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationGPON
+      zte_onu_registration_epon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\Telnet\ZTE\C300Series\SaveConfig
 
     extra:
