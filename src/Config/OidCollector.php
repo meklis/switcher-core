@@ -37,6 +37,16 @@ class OidCollector extends Collector
     }
 
     /**
+     * @param Oid $oid
+     */
+    public function addOid2Cache($oid) {
+        $this->cacheIds[$oid->getOid()] = $oid;
+        $this->cacheNames[$oid->getName()] = $oid;
+        return $this;
+    }
+
+
+    /**
      * @param Model $model
      * @return $this
      * @throws \ErrorException

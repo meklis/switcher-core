@@ -25,6 +25,7 @@ class DefaultParser extends AbstractModule
 
     function getPretty()
     {
+
         return [
             'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
             'uptime' => $this->getResponseByName('sys.Uptime')->fetchOne()->getValueAsTimeTicks(),
