@@ -332,3 +332,11 @@
 
 - name: zte_card_list
   descr: Listing of cards on OLT
+
+
+- name: pon_interfaces_list
+  descr: Information of PON interfaces
+
+- name: pon_registered_onts
+  descr: Count registered onts on pon
+

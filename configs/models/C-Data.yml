@@ -1,0 +1,29 @@
+models:
+  - name: C-Data FD1204
+    ports: 0
+    inputs:
+      - snmp
+      - telnet
+    detect: {description: EasyPath Ethernet-PON,  objid: ^.1.3.6.1.4.1.17409$ }
+    oids:
+      - ./oids/cdata/fd1204.yml
+    modules:
+      system: \SwitcherCore\Modules\CData\SystemInformation
+      vlans: \SwitcherCore\Modules\CData\Vlans
+      pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
+      pon_registered_onts: \SwitcherCore\Modules\CData\PonRegisteredOnts
+
+    extra:
+      telnet_conn_type: ios
+      device_type: pon
+      interfaces:
+        - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
+        - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}
+        - {name: ge0/0/3, id: 16777984,  xid: 3, type: 1G-SFP}
+        - {name: ge0/0/4, id: 16778240,  xid: 4, type: 1G-SFP}
+        - {name: xge0/0/1, id: 16778240,  xid: 5, type: 10G-SFP}
+        - {name: xge0/0/2, id: 16778752,  xid: 6, type: 10G-SFP}
+        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON}
+        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON}
+        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON}
+        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON}

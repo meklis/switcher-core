@@ -1,0 +1,40 @@
+
+- {name: sys.macAddr, oid: .1.3.6.1.4.1.17409.2.3.1.1.6}
+- {name: sys.vendorName, oid: .1.3.6.1.4.1.17409.2.3.1.1.12}
+- {name: sys.serialNum, oid: .1.3.6.1.4.1.17409.2.3.1.1.13}
+- {name: sys.serialNum, oid: .1.3.6.1.4.1.17409.2.3.1.1.13}
+- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.7}
+- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.9}
+- {name: pon.countRegisteredOnts, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.8}
+- {name: vlan.list, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.3}
+- {name: vlan.tagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.4}
+- {name: vlan.untagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.5}
+
+
+#SNMP ACTIONS
+- {name: ont.reboot, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17, values: {1: Action}}
+- {name: sys.save, oid: .1.3.6.1.4.1.17409.2.3.1.1.14.0, values: {1: Action}}
+- {name: ont.delete, oid: .1.3.6.1.4.1.17409.2.3.4.5.2.1.4, values: {6: Delete}}
+- {name: ont.setVlan, oid: .1.3.6.1.4.1.17409.2.3.7.3.1.1.7}
+- {name: ont.setName, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
+- {name: ont.reset, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17}
+- {name: ont.clear_counters, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.48}
+
+#ONT BLOCK
+- {name: ont.opticalRx, oid: .1.3.6.1.4.1.17409.2.3.4.2.1.4}
+- {name: ont.opticalTx, oid: .1.3.6.1.4.1.17409.2.3.4.2.1.5}
+- {name: ont.opticalVoltage, oid: .1.3.6.1.4.1.17409.2.3.4.2.1.7}
+- {name: ont.opticalTemp, oid: .1.3.6.1.4.1.17409.2.3.4.2.1.8}
+- {name: ont.macAddr, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.7}
+- {name: ont.distance, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.15}
+- {name: ont.name, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
+- {name: ont.opStatus, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.8, values: {1: Up, 2: Down}}
+- {name: ont.adminStatus, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.9, values: {1: Enabled, 2: Disabled}}
+- {name: ont.verSoftware, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.13}
+- {name: ont.verHardware, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.27}
+- {name: ont.vendor, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.25}
+- {name: ont.model, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.26}
+- {name: ont.lastRegSince, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.18}
+- {name: ont.lastDownReason, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.7, values: {'dying-gasp': Dying Gasp, 'losi': Losi, '': Unknown}}
+- {name: ont.lastDownSince, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.6}
+- {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.3.14.1.1}

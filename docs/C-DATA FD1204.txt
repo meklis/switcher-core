@@ -1,0 +1,143 @@
+Максим Бояр, [01.02.21 14:52]
+Расчет порта по snmp
+
+Там вычитается кол-во GE + XGE портов: 1216 (-10 портов), 1208 (-12 портов), 1204(-8 портов).
+В итоге:
+.1.3.6.1.4.1.34592.1.3.100.13.1.1.5.16782108.0.1.1 = Hex-STRING: 50 D4 F7 AF E0 5F
+dec(16782108) -> hex(100131C)
+hex(13) = dec (19) // 19-12 = 7 (1208 серия); 19 - 10 = 9 (1216 серия); 19 - 8 = 11 (1204 серия)
+hex(1C) = dec (28) // это номер onu
+
+
+SNMPSETS
+Reboot - .1.3.6.1.4.1.17409.2.3.4.1.1.17.<ONU number> i 1
+Save settings - 1.3.6.1.4.1.17409.2.3.1.1.14.0 i 1
+Delete ONU - .1.3.6.1.4.1.17409.2.3.4.5.2.1.4.<ONU number> i 6
+Set vlan - 1.3.6.1.4.1.17409.2.3.7.3.1.1.7.<ONU number>.0.<UNI port> i <Vlan ID>
+Установка имени ОНУ - .1.3.6.1.4.1.17409.2.3.4.1.1.2.<номер ОНУ> s "<Name>"
+Включение/отключение ону - .1.3.6.1.4.1.17409.2.3.4.1.1.9.<номер ОНУ> i <1-включена/2-отключена>
+Reset ONU - .1.3.6.1.4.1.17409.2.3.4.1.1.17.<ONU number> i 1
+Clear ONU port counters - .1.3.6.1.4.1.17409.2.3.10.1.1.48.<ONU number>.0.<UNI port> i 2
+
+
+OLT System parameters
+.1.3.6.1.4.1.17409.2.3.1.1.6 - MAC address (inband)
+.1.3.6.1.4.1.17409.2.3.1.1.12 - vendor name
+.1.3.6.1.4.1.17409.2.3.1.1.13 - serial number
+.1.3.6.1.4.1.17409.2.3.1.3.1.1.7 - board hardware version
+.1.3.6.1.4.1.17409.2.3.1.3.1.1.9 - board software version
+.1.3.6.1.4.1.17409.2.3.3.1.1.7 - max onu support by port
+.1.3.6.1.4.1.17409.2.3.3.1.1.8 - registered onu number
+.1.3.6.1.4.1.17409.2.3.3.1.1.21 - pon port names
+
+.1.3.6.1.4.1.17409.2.3.7.1.1.4 - count created vlans on OLT
+.1.3.6.1.4.1.17409.2.3.7.2.1.1.3 - OLT vlan names
+      .1.3.6.1.4.1.17409.2.3.7.2.1.1.3.1.16777216 = STRING: "vlan1"
+      .1.3.6.1.4.1.17409.2.3.7.2.1.1.3.810.16777216 = STRING: "vlan810"
+      .1.3.6.1.4.1.17409.2.3.7.2.1.1.3.811.16777216 = STRING: "vlan811"
+
+
+VlantagPON/SNI in OLT It is presented by member port list.
+Each member port is identified by 4-byte format, same as TC of EponDeviceIndex.
+The actual length of this string depends of the number of member ports in the port list.
+The relationship is: Length of the string = 4 * (NUM of member ports)
+For example, if device 1, port 1/2 and 2/3 is the member ports, then this object will be presented as: 01 01 02 00 01 02 03 00
+Tagged vlans on ports
+.1.3.6.1.4.1.17409.2.3.7.2.1.1.4.810.16777216 = Hex-STRING: 01 00 01 00 01 00 02 00 01 00 07 00
+.1.3.6.1.4.1.17409.2.3.7.2.1.1.4.811.16777216 = Hex-STRING: 01 00 01 00 01 00 02 00 01 00 07 00
+
+Untagged vlans on ports
+.1.3.6.1.4.1.17409.2.3.7.2.1.1.5.1.16777216 = Hex-STRING: 01 00 01 00 01 00 02 00 01 00 03 00 01 00 04 00
+
+.1.3.6.1.4.1.17409.2.3.2.4.2.1.1 - FDB table with vlans
+.1.3.6.1.4.1.17409.2.3.2.4.2.1.1.4.94.164.205.143.177.811 = Hex-STRING: 04 5E A4 CD 8F B1
+.1.3.6.1.4.1.17409.2.3.2.4.2.1.1.<MAC IN DEC>.<VLAN ID> = Hex-STRING: <MAC ADDRESS>
+
+.1.3.6.1.4.1.34592.1.3.100.13.1.1.5 - FDB table with onu number
+.1.3.6.1.4.1.34592.1.3.100.13.1.1.5.<ONU NUMBER>.0.<UNI PORT>.<MAC NUMBER> = Hex-STRING: 5C 92 5E 49 30 91
+
+
+ONU
+.1.3.6.1.4.1.17409.2.3.4.2.1.4 - RX optical power (val / 100)
+.1.3.6.1.4.1.17409.2.3.4.2.1.5 - TX optical power (val / 100)
+.1.3.6.1.4.1.17409.2.3.4.2.1.7 - onu optical voltage (value / 100000)
+.1.3.6.1.4.1.17409.2.3.4.2.1.8 - onu temperature (val / 100)
+.1.3.6.1.4.1.17409.2.3.4.1.1.7 - ONU mac address
+.1.3.6.1.4.1.17409.2.3.4.1.1.15 - ONU distance in meters
+.1.3.6.1.4.1.17409.2.3.4.1.1.2 - ONU name
+.1.3.6.1.4.1.17409.2.3.4.1.1.8 - ONU operation status (1 - online, 2 - offline)
+.1.3.6.1.4.1.17409.2.3.4.1.1.9 - ONU admin status (1 - enabled, 2 - disabled)
+.1.3.6.1.4.1.17409.2.3.4.1.1.13 - ONU software version
+.1.3.6.1.4.1.17409.2.3.4.1.1.25 - ONU vendor name
+.1.3.6.1.4.1.17409.2.3.4.1.1.26 - ONU model
+.1.3.6.1.4.1.17409.2.3.4.1.1.27 - ONU hardware version
+.1.3.6.1.4.1.17409.2.3.4.1.1.18 - ONU last registered since (ago in seconds)
+.1.3.6.1.4.1.17409.2.3.4.1.1.29 - ONU last registered time (returned in HEX, must be converted to timestamp)
+.1.3.6.1.4.1.34592.1.3.100.12.3.1.1.7 - Last reason of ONU down ('dying-gasp', 'losi', ' ' - unknown status or newer down)
+.1.3.6.1.4.1.34592.1.3.100.12.3.1.1.6 - Since in seconds from last down
+
+.1.3.6.1.4.1.17409.2.3.4.1.1.10 - ONU chip vendor
+.1.3.6.1.4.1.17409.2.3.4.1.1.11 - ONU chip type
+.1.3.6.1.4.1.17409.2.3.4.1.1.12 - ONU chip version
+
+
+ONU AUTHEN TABLE
+.1.3.6.1.4.1.17409.2.3.4.5.2.1.2 - onu mac address (authen mac address)
+.1.3.6.1.4.1.17409.2.3.4.5.3.1.2 - onu mac address (blocked mac address)
+.1.3.6.1.4.1.17409.2.3.4.6.1.2 - ONU mac address (auto find table)
+
+Максим Бояр, [01.02.21 14:52]
+ONU UNI (порты в ОНУ)
+.1.3.6.1.4.1.17409.2.3.5.1.1.5 - Operation status (1 - up)
+.1.3.6.1.4.1.17409.2.3.5.1.1.4 - admin status (1 - enabled)
+.1.3.6.1.4.1.17409.2.3.7.3.1.1.7 - VLAN ID on port
+.1.3.6.1.4.1.17409.2.3.7.3.1.1.8 - vlan mode (0 - unknown, 1 - untagged, 2 - tagged)
+.1.3.6.1.4.1.17409.2.3.10.1.1.4 - stat in Octets
+.1.3.6.1.4.1.17409.2.3.10.1.1.15 - stat in undersize pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.16 - stat in oversize pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.17 - stat in fragments pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.22 - stat in CRC pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.23 - stat in drop pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.24 - stat in jabber pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.25 - stat in collision pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.26 - stat out octets
+.1.3.6.1.4.1.17409.2.3.10.1.1.37 - stat out undersize pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.38 - stat out oversize pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.39 - stat out fragments pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.44 - stat out CRC pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.45 - stat out drop pkts
+.1.3.6.1.4.1.17409.2.3.10.1.1.46 - stat out jabbers
+.1.3.6.1.4.1.17409.2.3.10.1.1.47 - stat out collision
+
+
+
+Dba profiles
+.1.3.6.1.4.1.34592.1.3.1.1.1.1.1.1.2 - profile names (string)
+.1.3.6.1.4.1.34592.1.3.1.1.1.1.1.1.3 - profile ids (int)
+
+Line profiles
+.1.3.6.1.4.1.34592.1.3.1.1.1.2.1.1.2 - profile names (string)
+.1.3.6.1.4.1.34592.1.3.1.1.1.2.1.1.7 - profile bind num (int)
+
+Srv profiles
+.1.3.6.1.4.1.34592.1.3.1.1.1.3.1.1.2 - profile names (string)
+.1.3.6.1.4.1.34592.1.3.1.1.1.3.1.1.3 - profile bind num (int) - Сколько онушек с этим профайлом
+
+
+OLT fd OIDS
+.1.3.6.1.4.1.34592.1.3.3.1.1.7 - Registered ONU number in interface
+
+.1.3.6.1.4.1.34592.1.3.3.14.1.1 - Onu status
+
+.1.3.6.1.4.1.34592.1.3.3.14.1.1.0.7 = Hex-STRING: 01 02 01 01 01 01 01 01 01 01 01 01 01 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Description: Every one byte for one ONU online status, max 64 ONUs. not exist(0) online(1) offline(2) alarm(3)
+.1.3.6.1.4.1.34592.1.3.4.1.1.11 - аналог, возвращает инфу по конкретной ОНУ, где 3 - онлайн, 2 - офлайн, 1 - алярм
+.1.3.6.1.4.1.34592.1.3.4.1.1.11.0.7.1 = INTEGER: 3
+.1.3.6.1.4.1.34592.1.3.4.1.1.11.0.7.2 = INTEGER: 2
+.1.3.6.1.4.1.34592.1.3.4.1.1.11.0.7.3 = INTEGER: 3
+.1.3.6.1.4.1.34592.1.3.4.1.1.11.0.7.4 = INTEGER: 3
+.1.3.6.1.4.1.34592.1.3.4.1.1.11.0.7.5 = INTEGER: 3
+.1.3.6.1.4.1.34592.1.3.4.1.1.11.0.7.6 = INTEGER: 3
