@@ -16,12 +16,18 @@ class CoreConnector
     protected $snmp_timeout_sec = 2;
     protected $snmp_repeats = 3;
     protected $telnet_timeout = 10;
+    /**
+     * @var CacheInterface
+     */
+    protected $cache;
     protected static $instances = [];
     public function __construct($configPath)
     {
         $this->configPath = $configPath;
     }
-
+    public function setCache(CacheInterface $cache) {
+        $this->cache = $cache;
+    }
 
     public function setTelnetPort($port) {
         $this->telnetPort = $port;
@@ -104,7 +110,8 @@ class CoreConnector
         $walker = $this->initWalker($ip, $community);
 
         $core = (new \SwitcherCore\Switcher\Core(
-            new  Reader($this->configPath)
+            new  Reader($this->configPath),
+            $this->cache
         ))->addInput($walker)->init();
         $inputs_list = $core->getNeedInputs();
         if(in_array('telnet', $inputs_list)) {

@@ -328,3 +328,7 @@
 - name: pon_registered_onts
   descr: Count registered onts on pon
 
+- name: pon_onts_status
+  descr: Returned onts statuses
+
+

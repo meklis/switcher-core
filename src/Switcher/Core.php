@@ -8,6 +8,7 @@ use SwitcherCore\Config\Objects\Oid;
 use SnmpWrapper\Oid as O;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\InputsStore;
 use SwitcherCore\Switcher\Objects\ModuleStore;
 
@@ -34,14 +35,23 @@ class Core
      */
     protected $modules;
 
+    /**
+     * @var CacheInterface|null
+     */
+    protected $cache = null;
 
-    function __construct(Reader $reader)
+    public function setCache(CacheInterface $cache) {
+        $this->cache = $cache;
+        return $this;
+    }
+
+    function __construct(Reader $reader, ?CacheInterface $cache = null)
     {
         $this->objects = new InputsStore;
         $this->objects->oidCollector = \SwitcherCore\Config\OidCollector::init($reader);
         $this->objects->modelCollector = \SwitcherCore\Config\ModelCollector::init($reader);
         $this->objects->moduleCollector = \SwitcherCore\Config\ModuleCollector::init($reader);
-
+        $this->cache = $cache;
         $this->modules = new ModuleStore;
     }
 
@@ -135,8 +145,12 @@ class Core
 
         foreach ($this->objects->model->getModules() as $moduleName=>$module) {
             $this->modules->set($moduleName, $module);
-            $module->setInputsStore($this->objects);
-            $module->setModuleStore($this->modules);
+            if($this->cache) {
+            }
+            $module->setInputsStore($this->objects)->setModuleStore($this->modules);
+            if($this->cache !== null) {
+                $module->setCache($this->cache);
+            }
         }
         return $this;
     }
@@ -168,6 +182,15 @@ class Core
             ];
         }
         return $modules;
+    }
+
+    /**
+     * @param string $module Module name
+     * @return AbstractModule
+     * @throws \Exception
+     */
+    public function getModule($module) {
+        return $this->modules->get($module);
     }
 
     public function getDeviceMetaData() {

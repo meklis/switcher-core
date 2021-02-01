@@ -8,6 +8,7 @@ namespace SwitcherCore\Modules;
 use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Exceptions\IncompleteResponseException;
+use SwitcherCore\Switcher\CacheInterface;
 use SwitcherCore\Switcher\Objects\InputsStore;
 use SwitcherCore\Switcher\Objects\ModuleStore;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
@@ -29,6 +30,16 @@ abstract class AbstractModule
      * @var ModuleStore
      */
     protected $module;
+
+    /**
+     * @var CacheInterface|null
+     */
+    protected $cache;
+
+    public function setCache(CacheInterface $cache) {
+        $this->cache = $cache;
+        return $this;
+    }
 
     public function setInputsStore(InputsStore $obj) {
         $this->obj = $obj;
@@ -108,7 +119,13 @@ abstract class AbstractModule
      * @return WrappedResponse
      * @throws IncompleteResponseException
      */
-    protected function getResponseByName($name) {
+    protected function getResponseByName($name, &$sourceMap = null) {
+        if($sourceMap) {
+            if(!isset($sourceMap[$name])) {
+                throw  new IncompleteResponseException("Response with oid $name not found");
+            }
+            return $sourceMap[$name];
+        }
         if(!isset($this->response[$name])) {
             throw  new IncompleteResponseException("Response with oid $name not found");
         }

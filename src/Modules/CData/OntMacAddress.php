@@ -46,8 +46,7 @@ class OntMacAddress extends CDataAbstractModule
     public function run($filter = [])
     {
 
-        $oid = $this->obj->oidCollector->getOidByName('pon.countRegisteredOnts');
-        $this->response = $this->formatResponse($this->obj->walker->walk([Oid::init($oid->getOid())]));
+        $this->getOntIdsByInterface($filter['interface']);
         return $this;
     }
 }

@@ -12,7 +12,7 @@ models:
       vlans: \SwitcherCore\Modules\CData\Vlans
       pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
       pon_registered_onts: \SwitcherCore\Modules\CData\PonRegisteredOnts
-
+      pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
     extra:
       telnet_conn_type: ios
       device_type: pon

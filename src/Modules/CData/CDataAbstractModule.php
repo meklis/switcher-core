@@ -96,16 +96,8 @@ abstract class CDataAbstractModule extends \SwitcherCore\Modules\AbstractModule
      *
      * @param $filter
      */
-    function getOntSuffixesByFilter($filter) {
-        $oids = [];
-        if($filter['interface']) {
-            if(!$interface = $this->parseInterface($filter['interface'])) {
-                throw new \InvalidArgumentException("Interface with name '{$filter['interface']}' is incorrect");
-            }
-            if($interface['onu_id']) {
-                $oids[] = $interface['onu_id'];
-            }
-        }
-
+    function getOntIdsByInterface($interface) {
+        $response = $this->obj->moduleCollector->getByName('pon_onts_status')->run()->getPretty();
+        print_r($response);
     }
 }
