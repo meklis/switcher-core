@@ -9,7 +9,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class PonRegisteredOnts extends CDataAbstractModule
+class OntMacAddress extends CDataAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -29,16 +29,14 @@ class PonRegisteredOnts extends CDataAbstractModule
         $response = $this->getResponseByName('pon.countRegisteredOnts')->fetchAll();
         $return = [];
         foreach ($response as $resp) {
-            $interface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
             $return[] = [
-                'interface' => $interface['name'],
-                '_id' => $interface['id'],
-                '_interface' => $interface,
+                'iface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
                 'count' => $resp->getValue(),
             ];
         }
         return $return;
     }
+
 
     /**
      * @param array $filter
@@ -47,6 +45,16 @@ class PonRegisteredOnts extends CDataAbstractModule
      */
     public function run($filter = [])
     {
+        $oids = [];
+        if($filter['interface']) {
+            if(!$interface = $this->parseInterface($filter['interface'])) {
+                throw new \InvalidArgumentException("Interface with name '{$filter['interface']}' is incorrect");
+            }
+            if($interface['onu_id']) {
+                $oids[] = $this->obj->oidCollector->getOidByName('onu');
+            }
+        }
+
         $oid = $this->obj->oidCollector->getOidByName('pon.countRegisteredOnts');
         $this->response = $this->formatResponse($this->obj->walker->walk([Oid::init($oid->getOid())]));
         return $this;

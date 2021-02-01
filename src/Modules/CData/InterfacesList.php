@@ -36,7 +36,6 @@ class InterfacesList extends AbstractModule
      */
     public function run($filter = [])
     {
-
         return $this;
     }
 }

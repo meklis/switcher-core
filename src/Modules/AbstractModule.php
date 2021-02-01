@@ -54,14 +54,6 @@ abstract class AbstractModule
 
 
     /**
-     * @param array $filter
-     * @return self
-     */
-    public function parse($filter = []) {
-
-    }
-
-    /**
      * @return array
      */
     public function getRaw() {
@@ -122,5 +114,7 @@ abstract class AbstractModule
         }
         return $this->response[$name];
     }
-
+    final function __construct()
+    {
+    }
 }
