@@ -90,4 +90,22 @@ abstract class CDataAbstractModule extends \SwitcherCore\Modules\AbstractModule
         }
         return null;
     }
+
+    /**
+     * Return suffixes (ID) of ont interfaces
+     *
+     * @param $filter
+     */
+    function getOntSuffixesByFilter($filter) {
+        $oids = [];
+        if($filter['interface']) {
+            if(!$interface = $this->parseInterface($filter['interface'])) {
+                throw new \InvalidArgumentException("Interface with name '{$filter['interface']}' is incorrect");
+            }
+            if($interface['onu_id']) {
+                $oids[] = $interface['onu_id'];
+            }
+        }
+
+    }
 }
