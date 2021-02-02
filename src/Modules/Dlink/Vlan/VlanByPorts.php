@@ -3,9 +3,7 @@
 
 namespace SwitcherCore\Modules\Dlink\Vlan;
 
-use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
-use SwitcherCore\Modules\Helper;
 
 class VlanByPorts extends SwitchesPortAbstractModule
 {
@@ -25,10 +23,7 @@ class VlanByPorts extends SwitchesPortAbstractModule
 
     public function run($filter = [])
     {
-        if(!$this->module->isExist('vlans')) {
-            throw new \Exception("Module vlans is required for working");
-        }
-        $parser =  $this->module->vlans;
+        $parser =  $this->getModule('vlans');
         $data = $parser->run()->getPrettyFiltered();
         $indexes = $parser->getIndexes();
         $response = [];

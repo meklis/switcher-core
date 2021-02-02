@@ -3,9 +3,6 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-
 
 class StaticArpControl extends ExecCommand
 {
@@ -20,7 +17,7 @@ class StaticArpControl extends ExecCommand
         return $this->response;
     }
     private function getInterfaceNameById($vlan_id) {
-        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->getModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
             if($vlan_id == $vl['vlan_id']) {
                 return $vl['name'];
             }
@@ -58,7 +55,7 @@ class StaticArpControl extends ExecCommand
     }
     private function getArpsInfoByParam($params) {
         
-        return $this->module->arp_info->run($params)->getPrettyFiltered();
+        return $this->getModule('arp_info')->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {

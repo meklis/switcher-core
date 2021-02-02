@@ -4,7 +4,6 @@
 namespace SwitcherCore\Modules\CData;
 
 
-use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
@@ -25,8 +24,7 @@ class InterfacesList extends AbstractModule
 
     function getPretty()
     {
-        $interfaces = $this->model->getExtraParamByName('interfaces');
-       return $interfaces;
+        return $this->model->getExtraParamByName('interfaces');
     }
 
     /**

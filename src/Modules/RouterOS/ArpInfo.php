@@ -3,9 +3,6 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-
 
 class ArpInfo extends ExecCommand
 {
@@ -30,7 +27,7 @@ class ArpInfo extends ExecCommand
     {
         $arps = [];
         $vlans = [];
-        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->getModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
             $vlans[$vl['name']] = $vl;
         }
         $filter = [];

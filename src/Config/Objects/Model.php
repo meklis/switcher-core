@@ -8,11 +8,6 @@
 
 namespace SwitcherCore\Config\Objects;
 
-
-use DI\Container;
-use Psr\Container\ContainerInterface;
-use SwitcherCore\Exceptions\ModuleErrorLoadException;
-use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
 
 class Model

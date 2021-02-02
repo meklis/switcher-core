@@ -9,7 +9,6 @@ use DI\Annotation\Inject;
 use DI\Container;
 use meklis\network\Telnet;
 use SnmpWrapper\MultiWalkerInterface;
-use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
@@ -106,10 +105,6 @@ abstract class AbstractModule
             throw  new IncompleteResponseException("Response with oid $name not found");
         }
         return $this->response[$name];
-    }
-    function __construct(OidCollector $collector)
-    {
-        $this->collector = $collector;
     }
     public function __toString()
     {

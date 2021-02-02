@@ -7,11 +7,8 @@ use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-;
-
 class DefaultParser extends SwitchesPortAbstractModule
 {
-    private $indexesPort = [];
     protected function formate() {
           $snmp_high_speed = !$this->response['if.HighSpeed']->error() ? $this->response['if.HighSpeed']->fetchAll() : [];
           $snmp_type = !$this->response['if.Type']->error() ? $this->response['if.Type']->fetchAll() : [];

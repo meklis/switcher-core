@@ -4,12 +4,11 @@
 namespace SwitcherCore\Modules\RouterOS;
 
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
 
 
 class ExecCommand extends AbstractModule
 {
-
+    protected $api;
     protected $status = false;
     function getPretty()
     {
@@ -20,11 +19,14 @@ class ExecCommand extends AbstractModule
     {
         return $this->status;
     }
+
+    function __construct(\RouterosAPI $api)
+    {
+        $this->api = $api;
+    }
+
     protected function execComm($comm, $params =[]) {
-        if(!$this->obj->isExist('routerOsApi')) {
-            throw new \Exception("Module required routerOsApi connection");
-        }
-        $resp = $this->obj->routerOsApi->comm($comm, $params);
+        $resp = $this->api->comm($comm, $params);
         if(!$resp) {
             return [];
         } elseif (isset($resp['!trap'][0]['message'])) {

@@ -4,7 +4,6 @@
 namespace SwitcherCore\Modules\Dlink\CableDiag;
 
 use SnmpWrapper\Request\PoollerRequest;
-use SwitcherCore\Config\Objects\Oid;
 use SnmpWrapper\Oid as O;
 use SwitcherCore\Modules\Helper;
 

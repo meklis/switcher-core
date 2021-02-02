@@ -4,8 +4,6 @@
 namespace SwitcherCore\Modules\CData;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
 class Vlans extends CDataAbstractModule

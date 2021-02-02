@@ -3,9 +3,6 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-
 
 class DhcpServerInfo extends ExecCommand
 {
@@ -22,7 +19,7 @@ class DhcpServerInfo extends ExecCommand
         return $this->response;
     }
     private function getInterface($params) {
-        foreach ($this->module->interface_vlan_info->run($params)->getPrettyFiltered() as $vl) {
+        foreach ($this->getModule('interface_vlan_info')->run($params)->getPrettyFiltered() as $vl) {
             return $vl;
         }
         return null;

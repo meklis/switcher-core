@@ -3,9 +3,6 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-
 
 class ArpPing extends ExecCommand
 {
@@ -27,7 +24,7 @@ class ArpPing extends ExecCommand
             throw new \InvalidArgumentException("vlan_id or vlan_name(interface name) required for this module");
         }
         $vlans = [];
-        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->getModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
             $vlans[$vl['name']] = $vl;
         }
         $filter = [];

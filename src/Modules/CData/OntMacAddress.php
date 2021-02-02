@@ -4,7 +4,6 @@
 namespace SwitcherCore\Modules\CData;
 
 
-use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;

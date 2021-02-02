@@ -4,7 +4,6 @@
 namespace SwitcherCore\Config\Objects;
 
 
-use SwitcherCore\Modules\AbstractModule;
 
 class Module
 {

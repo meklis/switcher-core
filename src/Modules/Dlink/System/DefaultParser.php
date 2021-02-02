@@ -5,6 +5,7 @@ namespace SwitcherCore\Modules\Dlink\System;
 
 
 use SnmpWrapper\Oid;
+use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 

@@ -3,8 +3,6 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
 
 
 class StaticLeaseControl extends ExecCommand
@@ -21,7 +19,7 @@ class StaticLeaseControl extends ExecCommand
         return $this->response;
     }
     private function getDhcpServer($params) {
-        foreach ($this->module->dhcp_server_info->run($params)->getPrettyFiltered() as $vl) {
+        foreach ($this->getModule('dhcp_server_info')->run($params)->getPrettyFiltered() as $vl) {
             return $vl;
         }
         throw new \Exception("DHCP-server not found");
@@ -56,7 +54,7 @@ class StaticLeaseControl extends ExecCommand
         return $this;
     }
     private function getLeasesByParam($params) {
-        return $this->module->lease_info->run($params)->getPrettyFiltered();
+        return $this->getModule('lease_info')->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {

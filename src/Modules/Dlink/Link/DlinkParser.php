@@ -3,13 +3,11 @@
 
 namespace SwitcherCore\Modules\Dlink\Link;
 
-use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
 class DlinkParser extends SwitchesPortAbstractModule
 {
-    private $indexesPort = [];
     protected function formate() {
           $link_status = $this->getResponseByName('dlink.PortInfoLinkStatus');
           $nway_status = $this->getResponseByName('dlink.PortInfoNwayStatus');

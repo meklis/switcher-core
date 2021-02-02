@@ -22,7 +22,7 @@ class AddressListControl extends ExecCommand
     {
 
         $ids = [];
-        foreach ($this->module->address_list_info->run([
+        foreach ($this->getModule('address_list_info')->run([
             'name' => $name,
             'address' => $address,
         ])->getPrettyFiltered() as $id) {

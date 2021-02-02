@@ -21,7 +21,7 @@ class SimpleQueuesCtrl extends ExecCommand
     private function getIdsByParams($name = "", $target = "")
     {
         $ids = [];
-        foreach ($this->module->simple_queue_info->run([
+        foreach ($this->getModule('simple_queue_info')->run([
             'name' => $name,
             'target' => $target,
         ])->getPrettyFiltered() as $id) {
