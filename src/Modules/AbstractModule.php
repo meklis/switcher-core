@@ -9,6 +9,7 @@ use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Switcher\CacheInterface;
+use SwitcherCore\Switcher\Device;
 use SwitcherCore\Switcher\Objects\InputsStore;
 use SwitcherCore\Switcher\Objects\ModuleStore;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
@@ -36,27 +37,30 @@ abstract class AbstractModule
      */
     protected $cache;
 
-    public function setCache(CacheInterface $cache) {
+    /**
+     * @var Device
+     */
+    protected $device;
+
+    public function _setDevice(Device $device) {
+
+    }
+
+    public function _setCache(CacheInterface $cache) {
         $this->cache = $cache;
         return $this;
     }
 
-    public function setInputsStore(InputsStore $obj) {
+    public function _setInputsStore(InputsStore $obj) {
         $this->obj = $obj;
         return $this;
     }
 
 
-    public function setModuleStore(ModuleStore $obj) {
+    public function _setModuleStore(ModuleStore $obj) {
         $this->module = $obj;
         return $this;
     }
-
-    final public function start($params = []) {
-        $this->run($params);
-        return $this;
-    }
-
     /**
      * @param array $params
      * @return self

@@ -55,6 +55,7 @@ class OntListWithStatuses extends CDataAbstractModule
                         'onu_id' => $interface['id'] + $ontNum,
                         'uni' => null,
                     ],
+                    '_id' => $interface['id'] + $ontNum,
                     'interface' => $interface['name'] . ":" . $ontNum,
                     'status' =>  $statusText,
                 ];
@@ -71,7 +72,6 @@ class OntListWithStatuses extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-//        if($this->cache && $this->cache->get($this->obj->model->get))
         $oid = $this->obj->oidCollector->getOidByName('pon.ontStatus');
         $this->response = $this->formatResponse($this->obj->walker->walk([Oid::init($oid->getOid())]));
         return $this;

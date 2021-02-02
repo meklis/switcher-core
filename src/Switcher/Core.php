@@ -15,14 +15,6 @@ use SwitcherCore\Switcher\Objects\ModuleStore;
 
 class Core
 {
-    /**
-     * @var string
-     */
-    protected  $ip;
-    /**
-     * @var string
-     */
-    protected  $community;
 
     /**
      * @var InputsStore
@@ -34,6 +26,11 @@ class Core
      * @var ModuleStore
      */
     protected $modules;
+
+    /**
+     * @var Device
+     */
+    protected $device;
 
     /**
      * @var CacheInterface|null
@@ -53,6 +50,10 @@ class Core
         $this->objects->moduleCollector = \SwitcherCore\Config\ModuleCollector::init($reader);
         $this->cache = $cache;
         $this->modules = new ModuleStore;
+    }
+    function setDevice(Device  $device) {
+        $this->device = $device;
+        return $this;
     }
 
     function addInput($input) {
@@ -145,11 +146,12 @@ class Core
 
         foreach ($this->objects->model->getModules() as $moduleName=>$module) {
             $this->modules->set($moduleName, $module);
-            if($this->cache) {
-            }
-            $module->setInputsStore($this->objects)->setModuleStore($this->modules);
+            $module->_setInputsStore($this->objects)->_setModuleStore($this->modules);
             if($this->cache !== null) {
-                $module->setCache($this->cache);
+                $module->_setCache($this->cache);
+            }
+            if($this->device !== null) {
+                $module->_setDevice($this->device);
             }
         }
         return $this;
