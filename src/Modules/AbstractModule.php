@@ -16,6 +16,8 @@ use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
+use SwitcherCore\Switcher\CacheInterface;
+use SwitcherCore\Switcher\Device;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule
@@ -56,6 +58,12 @@ abstract class AbstractModule
      * @var Telnet
      */
     protected $telnet;
+
+    /**
+     * @Inject
+     * @var Device
+     */
+    protected $device;
 
     /**
      * @param array $params
@@ -123,4 +131,45 @@ abstract class AbstractModule
     public function getModule($moduleName) {
         return $this->container->get("module.{$moduleName}");
     }
+
+    /**
+     *
+     * Method for working with cache.
+     * Cache method generate unique prefix key for isolating over device and modules
+     *
+     * @param $key
+     * @return mixed|null
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    protected function getCache($key) {
+        if(!$this->container->has(CacheInterface::class)) {
+            return null;
+        }
+        $cache = $this->container->get(CacheInterface::class);
+        $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+        return $cache->get($key);
+    }
+
+    /**
+     *
+     * Method for set value to cache
+     * Cache method generate unique prefix key for isolating over device and modules
+     *
+     * @param $key
+     * @param mixed $value Any value, not allow streams
+     * @param int $timeout Timeouts in sec
+     * @return bool
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    protected function setCache($key, $value, $timeout = -1) {
+        if(!$this->container->has(CacheInterface::class)) {
+            return false;
+        }
+        $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+        $this->container->get(CacheInterface::class)->set($key, $value, $timeout);
+        return  true;
+    }
+
 }

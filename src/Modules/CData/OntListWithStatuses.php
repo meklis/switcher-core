@@ -29,7 +29,11 @@ class OntListWithStatuses extends CDataAbstractModule
 
     function getPretty()
     {
-        $data = $this->getResponseByName('pon.ontStatus')->fetchAll();
+        return  $this->response;
+    }
+
+    protected function formate($resp) {
+        $data = $this->getResponseByName('pon.ontStatus', $resp)->fetchAll();
         $interfaces = [];
         foreach ($data as $d) {
             $interface = $this->parseInterface(Helper::getIndexByOid($d->getOid()));
@@ -42,9 +46,15 @@ class OntListWithStatuses extends CDataAbstractModule
                 }
                 $statusText = '';
                 switch ($status) {
-                    case 1: $statusText = 'Online'; break;
-                    case 2: $statusText = 'Offline'; break;
-                    case 3: $statusText = 'Alarm'; break;
+                    case 1:
+                        $statusText = 'Online';
+                        break;
+                    case 2:
+                        $statusText = 'Offline';
+                        break;
+                    case 3:
+                        $statusText = 'Alarm';
+                        break;
                 }
                 $interfaces[] = [
                     '_interface' => [
@@ -58,13 +68,12 @@ class OntListWithStatuses extends CDataAbstractModule
                     ],
                     '_id' => $interface['id'] + $ontNum,
                     'interface' => $interface['name'] . ":" . $ontNum,
-                    'status' =>  $statusText,
+                    'status' => $statusText,
                 ];
             }
         }
         return $interfaces;
     }
-
 
     /**
      * @param array $filter
@@ -73,8 +82,12 @@ class OntListWithStatuses extends CDataAbstractModule
      */
     public function run($filter = [])
     {
+        if ($this->response = $this->getCache('pon.ontStatus')) {
+            return $this;
+        }
         $oid = $this->oids->getOidByName('pon.ontStatus');
-        $this->response = $this->formatResponse($this->snmp->walk([Oid::init($oid->getOid())]));
+        $this->response = $this->formate($this->formatResponse($this->snmp->walk([Oid::init($oid->getOid())])));
+        $this->setCache('pon.ontStatus', $this->response, 1);
         return $this;
     }
 }

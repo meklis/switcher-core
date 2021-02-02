@@ -172,7 +172,6 @@ class Core
             if (!class_exists($object)) {
                 throw new ModuleErrorLoadException("Module with name '$module' not found by ClassName {$object}");
             }
-            echo "$module = $object\n";
             $this->container->set("module.{$module}", autowire($object)->lazy());
         }
     }
@@ -193,7 +192,6 @@ class Core
          * @var AbstractModule
          */
         $module = $this->container->get("module.{$moduleName}");
-        echo "$module\n";
         $this->container->get(ModuleCollector::class)->getByName($moduleName)->validate($arguments);
         return $module->run($arguments)->getPrettyFiltered($arguments);
     }
