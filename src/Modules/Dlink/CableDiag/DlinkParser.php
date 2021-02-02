@@ -1,16 +1,16 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\CableDiag;
+namespace SwitcherCore\Modules\Dlink\CableDiag;
 
 use SnmpWrapper\Oid;
 use SnmpWrapper\Request\PoollerRequest;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
 
-class DlinkParser extends AbstractModule
+class DlinkParser extends SwitchesPortAbstractModule
 {
     protected $ports = [];
     protected $formatedResponse = [];
@@ -39,18 +39,18 @@ class DlinkParser extends AbstractModule
         foreach ($ports_list as $port=>$count_pairs) {
             $oids = [];
             if($count_pairs >= 2) {
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair1Status')->getOid(). ".{$port}");
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair2Status')->getOid(). ".{$port}");
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair1Length')->getOid(). ".{$port}");
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair2Length')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair1Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair2Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair1Length')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair2Length')->getOid(). ".{$port}");
             }
             if($count_pairs >= 4 ) {
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair3Status')->getOid(). ".{$port}");
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair4Status')->getOid(). ".{$port}");
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair3Length')->getOid(). ".{$port}");
-                $oids[] = Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagPair4Length')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair3Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair4Status')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair3Length')->getOid(). ".{$port}");
+                $oids[] = Oid::init($this->oids->getOidByName('dlink.CableDiagPair4Length')->getOid(). ".{$port}");
             }
-            $this->response = $this->formatResponse($this->obj->walker->get($oids));
+            $this->response = $this->formatResponse($this->snmp->get($oids));
 
             $pairs = [];
             if($count_pairs >= 2) {
@@ -90,8 +90,8 @@ class DlinkParser extends AbstractModule
     protected function waitToDiag($ports_list) {
         for ($i=0;$i<100;$i++) {
             foreach ($ports_list as $port=>$pairs) {
-                $response = $this->formatResponse($this->obj->walker->get(
-                    [Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagStatus')->getOid() . ".{$port}")]
+                $response = $this->formatResponse($this->snmp->get(
+                    [Oid::init($this->oids->getOidByName('dlink.CableDiagStatus')->getOid() . ".{$port}")]
                 ));
                 if(isset($response['dlink.CableDiagStatus']) && $response['dlink.CableDiagStatus']->fetchOne()->getParsedValue() != 'Proccessing') {
                     unset($ports_list[$port]);
@@ -109,8 +109,8 @@ class DlinkParser extends AbstractModule
     }
     protected function activateDiag($ports_list) {
         foreach ($ports_list as $port=>$pairs) {
-            $response = $this->formatResponse($this->obj->walker->set(
-                Oid::init($this->obj->oidCollector->getOidByName('dlink.CableDiagAction')->getOid() . ".{$port}",
+            $response = $this->formatResponse($this->snmp->set(
+                Oid::init($this->oids->getOidByName('dlink.CableDiagAction')->getOid() . ".{$port}",
                     false,
                 PoollerRequest::TypeIntegerValue,
                 1
@@ -124,10 +124,10 @@ class DlinkParser extends AbstractModule
         return $this;
     }
     protected function getPortList($filter) {
-        $this->response = $this->formatResponse($this->obj->walker->walk([
-            Oid::init($this->obj->oidCollector->getOidByName('if.Type')->getOid(), true),
-            Oid::init($this->obj->oidCollector->getOidByName('if.OperStatus')->getOid()),
-            Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid(), true),
+        $this->response = $this->formatResponse($this->snmp->walk([
+            Oid::init($this->oids->getOidByName('if.Type')->getOid(), true),
+            Oid::init($this->oids->getOidByName('if.OperStatus')->getOid()),
+            Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true),
         ]));
         $ports_list = [];
         foreach ($this->getResponseByName('if.Type')->fetchAll() as $ident) {
@@ -135,7 +135,7 @@ class DlinkParser extends AbstractModule
                 continue;
             }
             $port = Helper::getIndexByOid($ident->getOid());
-            if(isset($this->obj->model->getExtra()['ge_ports']) && in_array($port, $this->obj->model->getExtra()['ge_ports'])) {
+            if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
                 $ident->setParsed('GE');
             }
             $pairs = 2;
@@ -159,7 +159,7 @@ class DlinkParser extends AbstractModule
             }
         }
 
-        if(!$this->obj->model->getExtra()['diag_linkup']) {
+        if(!$this->model->getExtra()['diag_linkup']) {
             foreach ($this->getResponseByName('if.OperStatus')->fetchAll() as $ident) {
                 $port = Helper::getIndexByOid($ident->getOid());
                 if($ident->getParsedValue() == 'Up') {

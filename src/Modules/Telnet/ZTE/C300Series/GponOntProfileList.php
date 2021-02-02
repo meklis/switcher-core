@@ -9,11 +9,11 @@ class GponOntProfileList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if (!$this->obj->telnet) {
+        if (!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $this->response = [];
-        $input = $this->obj->telnet->exec("show pon onu-profile gpon {$params['type']}");
+        $input = $this->telnet->exec("show pon onu-profile gpon {$params['type']}");
         $lines = explode("\n", $input);
         $lines = array_splice($lines, 2);
         foreach ($lines as $k=>$line) {

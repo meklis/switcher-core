@@ -9,7 +9,7 @@ class DeregOnt extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if (!$this->obj->telnet) {
+        if (!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $iface = $this->parsePortByName($params['onu']);

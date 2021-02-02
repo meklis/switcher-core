@@ -25,7 +25,7 @@ class InterfacesList extends AbstractModule
 
     function getPretty()
     {
-        $interfaces = $this->obj->model->getExtraParamByName('interfaces');
+        $interfaces = $this->model->getExtraParamByName('interfaces');
        return $interfaces;
     }
 

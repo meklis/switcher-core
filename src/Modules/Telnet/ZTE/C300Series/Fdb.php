@@ -9,7 +9,7 @@ class Fdb extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if (!$this->obj->telnet) {
+        if (!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $this->response = [];
@@ -25,7 +25,7 @@ class Fdb extends C300ModuleAbstract
             throw new \InvalidArgumentException("One of param 'interface' or 'onu' is required");
         }
 
-        $lines = explode("\n",$this->obj->telnet->exec($command));
+        $lines = explode("\n",$this->telnet->exec($command));
         if(preg_match('/Total mac address : ([0-9]{1,})/', trim($lines[0]), $matches)) {
             if($matches[1] == 0) {
                 return  $this;

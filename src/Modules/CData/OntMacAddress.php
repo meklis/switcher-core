@@ -45,7 +45,6 @@ class OntMacAddress extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-
         $this->getOntIdsByInterface($filter['interface']);
         return $this;
     }

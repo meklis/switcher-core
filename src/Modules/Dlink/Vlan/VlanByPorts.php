@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Vlan;
+namespace SwitcherCore\Modules\Dlink\Vlan;
 
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class VlanByPorts extends AbstractModule
+class VlanByPorts extends SwitchesPortAbstractModule
 {
     protected $data;
     protected function formate() {

@@ -6,7 +6,7 @@ models:
       - telnet
     detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
     modules:
-      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
       onu_reboot: \SwitcherCore\Modules\Telnet\ZTE\C300Series\RebootOnu
       zte_onu_info: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInfo
       zte_onu_ether_iface_info: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OnuEtherPortInfo

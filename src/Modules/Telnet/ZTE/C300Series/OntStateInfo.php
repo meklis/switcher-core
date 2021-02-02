@@ -9,7 +9,7 @@ class OntStateInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if (!$this->obj->telnet) {
+        if (!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $this->response = [];
@@ -25,7 +25,7 @@ class OntStateInfo extends C300ModuleAbstract
 
     private function getStateEPON($interface)
     {
-        $input = $this->obj->telnet->exec("show epon onu state {$interface}");
+        $input = $this->telnet->exec("show epon onu state {$interface}");
         if (!$input) throw new \Exception("Empty response on command 'show epon onu state {$interface}'");
         $lines = explode("\n", $input);
         $response = [];
@@ -47,7 +47,7 @@ class OntStateInfo extends C300ModuleAbstract
 
     private function getStateGPON($interface)
     {
-        $input = $this->obj->telnet->exec("show gpon onu state {$interface}");
+        $input = $this->telnet->exec("show gpon onu state {$interface}");
         if (!$input) throw new \Exception("Empty response on command 'show epon onu state {$interface}'");
         if(preg_match('/No related information to show/', $input)) {
             throw new \Exception('No related information to show');

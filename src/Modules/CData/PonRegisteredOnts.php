@@ -47,8 +47,8 @@ class PonRegisteredOnts extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        $oid = $this->obj->oidCollector->getOidByName('pon.countRegisteredOnts');
-        $this->response = $this->formatResponse($this->obj->walker->walk([Oid::init($oid->getOid())]));
+        $oid = $this->oids->getOidByName('pon.countRegisteredOnts');
+        $this->response = $this->formatResponse($this->snmp->walk([Oid::init($oid->getOid())]));
         return $this;
     }
 }

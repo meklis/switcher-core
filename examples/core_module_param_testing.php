@@ -69,7 +69,6 @@ try {
     echo "Diagnostic finished!\n";
 } catch (\Exception $e) {
     echo "\n==================DUMP OF TELNET CONNECTION===============\n";
-    echo $core->getInternalObjects()->telnet->getGlobalBuffer();
     throw new Exception($e);
 }
 

@@ -5,68 +5,61 @@ namespace SwitcherCore\Modules;
 
 
 
+use DI\Annotation\Inject;
+use DI\Container;
+use meklis\network\Telnet;
+use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
+use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Switcher\CacheInterface;
-use SwitcherCore\Switcher\Device;
-use SwitcherCore\Switcher\Objects\InputsStore;
-use SwitcherCore\Switcher\Objects\ModuleStore;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule
 {
-    private $indexesPort = [];
     /**
      * @var WrappedResponse[]
      */
     protected $response;
 
     /**
-     * @var InputsStore
+     * @Inject
+     * @var OidCollector
      */
-    protected $obj;
+    protected $oids;
+
 
     /**
-     * @var ModuleStore
+     * @Inject
+     * @var MultiWalkerInterface
      */
-    protected $module;
+    protected $snmp;
 
     /**
-     * @var CacheInterface|null
+     * @Inject
+     * @var Model
      */
-    protected $cache;
+    protected $model;
 
     /**
-     * @var Device
+     * @Inject
+     * @var Container
      */
-    protected $device;
-
-    public function _setDevice(Device $device) {
-
-    }
-
-    public function _setCache(CacheInterface $cache) {
-        $this->cache = $cache;
-        return $this;
-    }
-
-    public function _setInputsStore(InputsStore $obj) {
-        $this->obj = $obj;
-        return $this;
-    }
+    private $container;
 
 
-    public function _setModuleStore(ModuleStore $obj) {
-        $this->module = $obj;
-        return $this;
-    }
+    /**
+     * @Inject
+     * @var Telnet
+     */
+    protected $telnet;
+
     /**
      * @param array $params
      * @return self
      */
     public abstract function run($params = []);
-
 
     /**
      * @return array
@@ -90,34 +83,13 @@ abstract class AbstractModule
     protected function formatResponse($response) {
         $formated = [];
         foreach ($response as $resp) {
-            $oid = $this->obj->oidCollector->findOidById($resp->getOid());
+            $oid = $this->oids->findOidById($resp->getOid());
             $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
         }
 
         return $formated;
     }
-    function getIndexes($ethernetOnly = true) {
-        $indexes = [];
-        if($this->indexesPort) {
-            return $this->indexesPort;
-        }
-        $response = $this->formatResponse($this->obj->walker->walk([
-            Oid::init($this->obj->oidCollector->getOidByName('if.Index')->getOid()),
-            Oid::init($this->obj->oidCollector->getOidByName('if.Type')->getOid()),
-        ]));
-        $types = [];
-        foreach ($response['if.Type']->fetchAll() as $resp) {
-            $types[Helper::getIndexByOid($resp->getOid())] = $resp->getParsedValue();
-        }
 
-        foreach ($response['if.Index']->fetchAll() as $resp) {
-            if($ethernetOnly && in_array($types[Helper::getIndexByOid($resp->getOid())], ['FE','GE'])) {
-                $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
-            }
-        }
-        $this->indexesPort = $indexes;
-        return $indexes;
-    }
     /**
      * @param $name
      * @return WrappedResponse
@@ -135,7 +107,22 @@ abstract class AbstractModule
         }
         return $this->response[$name];
     }
-    final function __construct()
+    function __construct(OidCollector $collector)
     {
+        $this->collector = $collector;
+    }
+    public function __toString()
+    {
+        return get_class($this);
+    }
+
+    /**
+     * @param $moduleName
+     * @return AbstractModule
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
+    public function getModule($moduleName) {
+        return $this->container->get("module.{$moduleName}");
     }
 }

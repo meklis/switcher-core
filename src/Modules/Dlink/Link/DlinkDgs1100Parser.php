@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Link;
+namespace SwitcherCore\Modules\Dlink\Link;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class DlinkDgs1100Parser extends AbstractModule
+class DlinkDgs1100Parser extends SwitchesPortAbstractModule
 {
     protected function formate() {
           $nway_status = $this->getResponseByName('dlink.sysPortCtrlOperStatus');
@@ -96,12 +96,12 @@ class DlinkDgs1100Parser extends AbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            Oid::init($this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
-            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlSpeed')->getOid() ),
-            Oid::init($this->obj->oidCollector->getOidByName('dlink.sysPortCtrlOperStatus')->getOid() ),
-            Oid::init($this->obj->oidCollector->getOidByName('if.Alias')->getOid() ),
+            Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
+            Oid::init($this->oids->getOidByName('dlink.sysPortCtrlSpeed')->getOid() ),
+            Oid::init($this->oids->getOidByName('dlink.sysPortCtrlOperStatus')->getOid() ),
+            Oid::init($this->oids->getOidByName('if.Alias')->getOid() ),
         ];
-        $this->response = $this->formatResponse($this->obj->walker->walkBulk($prepared));
+        $this->response = $this->formatResponse($this->snmp->walkBulk($prepared));
         return $this;
     }
 }

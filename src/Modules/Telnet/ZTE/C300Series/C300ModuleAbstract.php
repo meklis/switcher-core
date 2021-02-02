@@ -28,7 +28,7 @@ abstract class C300ModuleAbstract extends AbstractModule
         throw new \InvalidArgumentException("Error parse port with name '$name'");
     }
     protected function exec($command) {
-        $response = $this->obj->telnet->exec($command);
+        $response = $this->telnet->exec($command);
         if(!trim($response)) return true;
         if(preg_match('/^\%Info/', $response)) return  true;
         if(preg_match('/\[Successful\]/', $response)) return  true;

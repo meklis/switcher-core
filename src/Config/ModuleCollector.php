@@ -8,6 +8,7 @@ namespace SwitcherCore\Config;
 
 use SwitcherCore\Config\Objects\Module;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Objects\ModuleStore;
 
 class ModuleCollector extends Collector
 {
@@ -30,7 +31,7 @@ class ModuleCollector extends Collector
 
     /**
      * @param $name
-     * @return AbstractModule
+     * @return Module
      * @throws \Exception
      */
     function getByName($name) {

@@ -10,7 +10,7 @@ models:
      - snmp
      - routeros_api
    modules:
-     system: \SwitcherCore\Modules\Snmp\System\DefaultParser
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo

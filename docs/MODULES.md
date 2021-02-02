@@ -95,29 +95,29 @@ $core->action('cable_diag', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\CableDiag\Des3526Parser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkDgs1100Parser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkDgs1100Parser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\CableDiag\Des3526Parser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkDgs1100Parser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkDgs1100Parser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
 
 
 ### clear_counters - Clear counters
@@ -159,30 +159,30 @@ $core->action('counters', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
 
 
 ### ctrl_port_descr - Port description configuration
@@ -374,30 +374,30 @@ $core->action('errors', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
 
 
 ### fdb - MAC forwarding database
@@ -424,31 +424,31 @@ $core->action('fdb', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\ZTE\Fdb)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- ZTE ZXPON C300  *(\SwitcherCore\Modules\Dlink\ZTE\Fdb)*
 
 
 ### interface_vlan_info - Interface information (vlans on L3 devices)
@@ -547,31 +547,31 @@ $core->action('link_info', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Link\DlinkDes3526Parser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\ZTE\LinkInfo)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Link\DlinkDes3526Parser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1100Parser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1100Parser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- ZTE ZXPON C300  *(\SwitcherCore\Modules\Dlink\ZTE\LinkInfo)*
 
  
 ### pvid - PVID table
@@ -594,30 +594,30 @@ $core->action('pvid', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
 
 
 ### reboot - Reboot device
@@ -635,30 +635,30 @@ Name: **rmon**
 - **port**, pattern: *^[0-9]{1,3}$*
  
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
 
 
 ### save_config - Save configuration
@@ -756,30 +756,30 @@ $core->action('vlans', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
 
 
 ### vlans_by_port - Vlan information over port
@@ -824,30 +824,30 @@ $core->action('vlans_by_port', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
 
 
 ### simple_queue_ctrl - Control simple queue

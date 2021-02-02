@@ -21,7 +21,16 @@
         "meklis/telnet": "dev-master",
         "meklis/ipv4-subnet-calculator": "3.*",
         "khill/php-duration": "~1.0",
-        "vlucas/phpdotenv": "^4.1@dev"
+        "vlucas/phpdotenv": "^4.1@dev",
+        "php-di/php-di": "dev-master",
+        "composer/package-versions-deprecated": "1.x-dev",
+        "ocramius/proxy-manager": "^2.2",
+        "doctrine/annotations": "1.11.x-dev"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
+    }
 }

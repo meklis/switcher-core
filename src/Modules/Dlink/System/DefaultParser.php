@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\System;
+namespace SwitcherCore\Modules\Dlink\System;
 
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class DefaultParser extends AbstractModule
+class DefaultParser extends SwitchesPortAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -33,11 +33,11 @@ class DefaultParser extends AbstractModule
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
             'meta' =>  [
-                'name' => $this->obj->model->getName(),
-                'detect' => $this->obj->model->getDetect(),
-                'ports' => $this->obj->model->getPorts(),
-                'extra' => $this->obj->model->getExtra(),
-                'modules' => $this->obj->model->getModulesList(),
+                'name' => $this->model->getName(),
+                'detect' => $this->model->getDetect(),
+                'ports' => $this->model->getPorts(),
+                'extra' => $this->model->getExtra(),
+                'modules' => $this->model->getModulesList(),
                 ]
         ];
     }
@@ -49,12 +49,12 @@ class DefaultParser extends AbstractModule
      */
     public function run($filter = [])
     {
-        $oids = $this->obj->oidCollector->getOidsByRegex('^sys\..*');
+        $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
             $oArray[] = Oid::init($oid->getOid(),true);
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oArray));
+        $this->response = $this->formatResponse($this->snmp->walk($oArray));
         return $this;
     }
 }

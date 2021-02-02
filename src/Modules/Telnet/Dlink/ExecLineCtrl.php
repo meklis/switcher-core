@@ -4,9 +4,6 @@
 namespace SwitcherCore\Modules\Telnet\Dlink;
 
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-
-
 abstract class ExecLineCtrl extends AbstractModule
 {
 
@@ -23,12 +20,12 @@ abstract class ExecLineCtrl extends AbstractModule
 
     public function run($params = [])
     {
-        if(!$this->obj->telnet) {
+        if(!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $this->status = false;
         try {
-           $response = $this->obj->telnet->exec($this->getCommandLine($params));
+           $response = $this->telnet->exec($this->getCommandLine($params));
            if (preg_match('/(Success|Saving all configurations)/', $response) !== false) {
                $this->status = true;
            } else {

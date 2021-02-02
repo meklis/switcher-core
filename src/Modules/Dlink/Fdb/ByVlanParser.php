@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Fdb;
+namespace SwitcherCore\Modules\Dlink\Fdb;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class ByVlanParser extends AbstractModule
+class ByVlanParser extends SwitchesPortAbstractModule
 {
     protected function formate() {
         if($this->response) {
@@ -49,8 +49,8 @@ class ByVlanParser extends AbstractModule
         Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
-            if($filter['port'] > $this->obj->model->getPorts()) {
-                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->obj->model->getPorts()}");
+            if($filter['port'] > $this->model->getPorts()) {
+                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
             }
             foreach ($formated as $num=>$fdb) {
                 if($fdb['port'] != $filter['port']) {
@@ -83,7 +83,7 @@ class ByVlanParser extends AbstractModule
     {
        Helper::prepareFilter($filter);
        //Get vlans
-       $this->response = $this->formatResponse($this->obj->walker->walk([Oid::init($this->obj->oidCollector->getOidByName('dot1q.VlanStaticName')->getOid())]));
+       $this->response = $this->formatResponse($this->snmp->walk([Oid::init($this->oids->getOidByName('dot1q.VlanStaticName')->getOid())]));
        $vlanResponse = $this->getResponseByName('dot1q.VlanStaticName');
        if($vlanResponse->error()) {
            throw new IncompleteResponseException($vlanResponse->error());
@@ -94,8 +94,8 @@ class ByVlanParser extends AbstractModule
        }
 
        $oids = [];
-       $oids[] =  $this->obj->oidCollector->getOidByName('dot1q.FdbPort')->getOid();
-       $oids[] =  $this->obj->oidCollector->getOidByName('dot1q.FdbStatus')->getOid();
+       $oids[] =  $this->oids->getOidByName('dot1q.FdbPort')->getOid();
+       $oids[] =  $this->oids->getOidByName('dot1q.FdbStatus')->getOid();
        if($filter['vlan_id']) {
            $oids[0] .= ".{$filter['vlan_id']}";
            $oids[1] .= ".{$filter['vlan_id']}";
@@ -117,7 +117,7 @@ class ByVlanParser extends AbstractModule
         foreach ($oids as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-       $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
+       $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
         return $this;
     }
 

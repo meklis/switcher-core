@@ -2,79 +2,96 @@
 
 namespace SwitcherCore\Switcher;
 
+use DI\Container;
+use meklis\network\Telnet;
+use Psr\Container\ContainerInterface;
 use SnmpWrapper\NoProxy\MultiWalker;
 use SnmpWrapper\MultiWalkerInterface;
+use SwitcherCore\Config\Collector;
+use SwitcherCore\Config\ModelCollector;
+use SwitcherCore\Config\ModuleCollector;
+use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\Objects\Oid;
 use SnmpWrapper\Oid as O;
+use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
+use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Switcher\Objects\InputsStore;
-use SwitcherCore\Switcher\Objects\ModuleStore;
 
 
 class Core
 {
 
     /**
-     * @var InputsStore
+     * @var Container
      */
+    protected $container;
 
-    protected $objects;
 
-    /**
-     * @var ModuleStore
-     */
-    protected $modules;
-
-    /**
-     * @var Device
-     */
-    protected $device;
-
-    /**
-     * @var CacheInterface|null
-     */
-    protected $cache = null;
-
-    public function setCache(CacheInterface $cache) {
-        $this->cache = $cache;
+    public function setCache(CacheInterface $cache)
+    {
+        $this->container->injectOn($cache);
         return $this;
     }
 
     function __construct(Reader $reader, ?CacheInterface $cache = null)
     {
-        $this->objects = new InputsStore;
-        $this->objects->oidCollector = \SwitcherCore\Config\OidCollector::init($reader);
-        $this->objects->modelCollector = \SwitcherCore\Config\ModelCollector::init($reader);
-        $this->objects->moduleCollector = \SwitcherCore\Config\ModuleCollector::init($reader);
-        $this->cache = $cache;
-        $this->modules = new ModuleStore;
+        $container = $this->buildContainer();
+        $container->set(Reader::class, $reader);
+        $container->set(OidCollector::class, function (ContainerInterface $c) {
+            return OidCollector::init($c->get(Reader::class));
+        });
+        $container->set(ModelCollector::class, function (ContainerInterface $c) {
+            return ModelCollector::init($c->get(Reader::class));
+        });
+        $container->set(ModuleCollector::class, function (ContainerInterface $c) {
+            return ModuleCollector::init($c->get(Reader::class));
+        });
+        if ($cache !== null) {
+            $container->set(CacheInterface::class, $cache);
+        }
+        $this->container = $container;
     }
-    function setDevice(Device  $device) {
-        $this->device = $device;
+
+    private function buildContainer()
+    {
+        $builder = new \DI\ContainerBuilder();
+        $builder->useAutowiring(true);
+        $builder->useAnnotations(true);
+        $container = $builder->build();
+        $container->injectOn($this);
+        return $container;
+    }
+
+    function setDevice(Device $device)
+    {
+        $this->container->injectOn($device);
         return $this;
     }
 
-    function addInput($input) {
-        if($input instanceof MultiWalkerInterface) {
-            $this->objects->walker = $input;
+    function addInput($input)
+    {
+        if ($input instanceof MultiWalkerInterface) {
+            $this->container->set(MultiWalkerInterface::class, $input);
         } elseif ($input instanceof \meklis\network\Telnet) {
-            if(!$this->objects->isExist('model')) {
-                throw new \Exception("Model not detected. You must call init() first");
+            if (!$this->container->has(Model::class)) {
+                throw new \Exception("Model not setted. You must call init() first");
             }
-            $input->setHostType($this->objects->model->getTelnetConnType());
+            $model = $this->container->get(Model::class);
+            $input->setHostType($model->getTelnetConnType());
             try {
-                foreach ($this->objects->model->getExtraParamByName('telnet_commands_after_connect') as $comm) {
+                foreach ($model->getExtraParamByName('telnet_commands_after_connect') as $comm) {
                     $input->addCommandAfterLogin($comm);
                 }
-            } catch (\Exception $e) {}
-            $this->objects->telnet = $input;
-        } elseif ($input instanceof \RouterosAPI) {
-            if(!$this->objects->isExist('model')) {
-                throw new \Exception("Model not detected. You must call init() first");
+            } catch (\Exception $e) {
             }
-            $this->objects->routerOsApi = $input;
+            $this->container->set(Telnet::class, $input);
+        } elseif ($input instanceof \RouterosAPI) {
+            if (!$this->container->has(Model::class)) {
+                throw new \Exception("Model not setted. You must call init() first");
+            }
+            $this->container->set(\RouterosAPI::class, $input);
         } else {
             throw new \Exception("Unknown type of input, not supported");
         }
@@ -86,27 +103,29 @@ class Core
      * @return array
      * @throws \Exception
      */
-    private function getDetectDevInfo() {
-        $response = $this->objects->walker
+    private function getDetectDevInfo()
+    {
+        $collector = $this->container->get(OidCollector::class);
+        $response = $this->container->get(MultiWalkerInterface::class)
             ->walk([
-                O::init($this->objects->oidCollector->getOidByName('sys.Descr')->getOid(), true),
-                O::init($this->objects->oidCollector->getOidByName('sys.ObjId')->getOid(), true),
+                O::init($collector->getOidByName('sys.Descr')->getOid()),
+                O::init($collector->getOidByName('sys.ObjId')->getOid()),
             ]);
         $descr = "";
         $objId = "";
         foreach ($response as $resp) {
-            if($resp->error) {
+            if ($resp->error) {
                 throw new \Exception("Walker returned error: {$resp->error}");
             } else {
-                if($this->objects->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
+                if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
                     $descr = $resp->getResponse()[0]->getValue();
                 }
-                if($this->objects->oidCollector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
+                if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
                     $objId = $resp->getResponse()[0]->getValue();
                 }
             }
         }
-        if($descr || $objId) {
+        if ($descr || $objId) {
             return [
                 'descr' => $descr,
                 'objid' => $objId,
@@ -116,17 +135,11 @@ class Core
         }
     }
 
-    function getNeedInputs() {
-        return $this->objects->model->getInputs();
+    function getNeedInputs()
+    {
+        return $this->container->get(Model::class)->getInputs();
     }
 
-
-    /**
-     * @return InputsStore
-     */
-    public function getInternalObjects() {
-        return $this->objects;
-    }
 
     /**
      * @return $this
@@ -134,28 +147,34 @@ class Core
      * @throws \ErrorException
      * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException | \Exception
      */
-    function init() {
-        if(!$this->objects->isExist('walker')) {
+    function init()
+    {
+
+        if (!$this->container->has(MultiWalkerInterface::class)) {
             throw new \Exception("Snmp walker not setted. You must set walker before connect");
         }
+        $modelCollector = $this->container->get(ModelCollector::class);
+        $oidCollector = $this->container->get(OidCollector::class);
         $devInfo = $this->getDetectDevInfo();
-        $this->objects->model = $this->objects->modelCollector->getModelByDetect($devInfo['descr'],$devInfo['objid']);
-
-        $this->objects->oidCollector->readEnterpriceOids($this->objects->model);
-        $this->objects->model->initModules();
-
-        foreach ($this->objects->model->getModules() as $moduleName=>$module) {
-            $this->modules->set($moduleName, $module);
-            $module->_setInputsStore($this->objects)->_setModuleStore($this->modules);
-            if($this->cache !== null) {
-                $module->_setCache($this->cache);
-            }
-            if($this->device !== null) {
-                $module->_setDevice($this->device);
-            }
-        }
+        $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid']);
+        $this->container->set(Model::class, $model);
+        $oidCollector->readEnterpriceOids($model);
+        $this->declareModules($model);
         return $this;
     }
+
+    function declareModules(Model $model)
+    {
+        foreach ($model->getModulesListAssoc() as $module => $object) {
+
+            if (!class_exists($object)) {
+                throw new ModuleErrorLoadException("Module with name '$module' not found by ClassName {$object}");
+            }
+            echo "$module = $object\n";
+            $this->container->set("module.{$module}", \DI\autowire($object)->lazy());
+        }
+    }
+
 
     /**
      * @param $moduleName
@@ -163,60 +182,69 @@ class Core
      * @return mixed
      * @throws ModuleNotFoundException | \Exception
      */
-    public function action($moduleName, $arguments = []) {
-        $moduleParams = $this->objects->moduleCollector->getByName($moduleName);
-        $moduleParams->validate($arguments);
-        return $this->modules->get($moduleName)->run($arguments)->getPrettyFiltered($arguments);
+    public function action($moduleName, $arguments = [])
+    {
+        if (!$this->container->has("module.{$moduleName}")) {
+            throw new ModuleNotFoundException("Module with name $moduleName not found");
+        }
+        /**
+         * @var AbstractModule
+         */
+        $module = $this->container->get("module.{$moduleName}");
+        echo "$module\n";
+        $this->container->get(ModuleCollector::class)->getByName($moduleName)->validate($arguments);
+        return $module->run($arguments)->getPrettyFiltered($arguments);
     }
 
     /**
      * @return array
      * @throws \Exception
      */
-    public function getModulesData() {
+    public function getModulesData()
+    {
         $modules = [];
-        foreach ($this->objects->model->getModulesList() as $moduleName) {
-            $moduleConfig = $this->objects->moduleCollector->getByName($moduleName);
+        $model = $this->container->get(Model::class);
+        $moduleCollector = $this->container->get(ModuleCollector::class);
+        foreach ($model->getModulesList() as $moduleName) {
+            $moduleConfig = $moduleCollector->getByName($moduleName);
             $modules[] = [
                 'name' => $moduleConfig->getName(),
                 'arguments' => $moduleConfig->getArguments(),
-                'class' => get_class($this->objects->model->getModules()[$moduleName]),
+                'class' => $model->getModulesListAssoc()[$moduleName],
             ];
         }
         return $modules;
     }
 
-    /**
-     * @param string $module Module name
-     * @return AbstractModule
-     * @throws \Exception
-     */
-    public function getModule($module) {
-        return $this->modules->get($module);
-    }
 
-    public function getDeviceMetaData() {
+    public function getDeviceMetaData()
+    {
+        $model = $this->container->get(Model::class);
         $meta = [
-            'ports' => $this->objects->model->getPorts(),
-            'name' => $this->objects->model->getName(),
-            'extra' => $this->objects->model->getExtra(),
-            'detect' => $this->objects->model->getDetect(),
-            'modules' => $this->objects->model->getModulesList(),
+            'ports' => $model->getPorts(),
+            'name' => $model->getName(),
+            'extra' => $model->getExtra(),
+            'detect' => $model->getDetect(),
+            'modules' => $model->getModulesList(),
         ];
         $meta['connections'] = [
-          'mikrotik_api' => false,
-          'snmp' => false,
-          'telnet' => false,
+            'mikrotik_api' => false,
+            'snmp' => false,
+            'telnet' => false,
         ];
-        if($this->objects->isExist('snmp')) {
+        if ($this->container->has(MultiWalkerInterface::class)) {
             $meta['connections']['snmp'] = true;
         }
-        if($this->objects->isExist('telnet')) {
+        if ($this->container->has(Telnet::class)) {
             $meta['connections']['telnet'] = true;
         }
-        if($this->objects->isExist('routerOsApi')) {
+        if ($this->container->has(\RouterosAPI::class)) {
             $meta['connections']['mikrotik_api'] = true;
         }
         return $meta;
+    }
+
+    public function getContainer() {
+        return $this->container;
     }
 }

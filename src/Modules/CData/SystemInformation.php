@@ -37,11 +37,11 @@ class SystemInformation extends AbstractModule
             'board_software_ver' => $this->getResponseByName('sys.boardSoftwareVer')->fetchOne()->getValue(),
             'board_hardware_ver' => $this->getResponseByName('sys.boardHardwareVer')->fetchOne()->getValue(),
             'meta' =>  [
-                'name' => $this->obj->model->getName(),
-                'detect' => $this->obj->model->getDetect(),
-                'ports' => $this->obj->model->getPorts(),
-                'extra' => $this->obj->model->getExtra(),
-                'modules' => $this->obj->model->getModulesList(),
+                'name' => $this->model->getName(),
+                'detect' => $this->model->getDetect(),
+                'ports' => $this->model->getPorts(),
+                'extra' => $this->model->getExtra(),
+                'modules' => $this->model->getModulesList(),
                 ]
         ];
     }
@@ -53,12 +53,12 @@ class SystemInformation extends AbstractModule
      */
     public function run($filter = [])
     {
-        $oids = $this->obj->oidCollector->getOidsByRegex('^sys\..*');
+        $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
             $oArray[] = Oid::init($oid->getOid(),true);
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oArray));
+        $this->response = $this->formatResponse($this->snmp->walk($oArray));
         return $this;
     }
 }

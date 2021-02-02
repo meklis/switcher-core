@@ -72,12 +72,12 @@ class Vlans extends CDataAbstractModule
     public function run($filter = [])
     {
         Helper::prepareFilter($filter);
-        $oids = $this->obj->oidCollector->getOidsByRegex('^vlan\..*');
+        $oids = $this->oids->getOidsByRegex('^vlan\..*');
         $oArray = [];
         foreach ($oids as $oid) {
             $oArray[] = Oid::init($oid->getOid(),true);
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oArray));
+        $this->response = $this->formatResponse($this->snmp->walk($oArray));
         return $this;
     }
 }

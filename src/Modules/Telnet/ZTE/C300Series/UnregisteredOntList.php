@@ -9,7 +9,7 @@ class UnregisteredOntList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if (!$this->obj->telnet) {
+        if (!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $result = [];
@@ -34,7 +34,7 @@ class UnregisteredOntList extends C300ModuleAbstract
 
     private function getUnregisteredEPON()
     {
-        $input = $this->obj->telnet->exec("show onu unauthentication");
+        $input = $this->telnet->exec("show onu unauthentication");
         if (!$input) throw new \Exception("Empty response on command 'show gpon onu uncfg'");
         $lines = explode("\n", $input);
         $response = [];
@@ -70,7 +70,7 @@ class UnregisteredOntList extends C300ModuleAbstract
 
     private function getUnregisteredGPON()
     {
-        $list = $this->obj->telnet->exec("show gpon onu uncfg");
+        $list = $this->telnet->exec("show gpon onu uncfg");
         if (!$list) throw new \Exception("Empty response on command 'show gpon onu uncfg'");
         //Parsing block
         $lines = explode("\n", $list);

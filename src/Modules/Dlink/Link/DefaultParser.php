@@ -1,15 +1,15 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Link;
+namespace SwitcherCore\Modules\Dlink\Link;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
 ;
 
-class DefaultParser extends AbstractModule
+class DefaultParser extends SwitchesPortAbstractModule
 {
     private $indexesPort = [];
     protected function formate() {
@@ -111,15 +111,15 @@ class DefaultParser extends AbstractModule
         }
 
         $data = [
-            $this->obj->oidCollector->getOidByName('if.HighSpeed')->getOid() ,
-            $this->obj->oidCollector->getOidByName('if.Name')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.Type')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.LastChange')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.OperStatus')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.AdminStatus')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.ConnectorPresent')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.StatsDuplexStatus')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.Alias')->getOid(),
+            $this->oids->getOidByName('if.HighSpeed')->getOid() ,
+            $this->oids->getOidByName('if.Name')->getOid(),
+            $this->oids->getOidByName('if.Type')->getOid(),
+            $this->oids->getOidByName('if.LastChange')->getOid(),
+            $this->oids->getOidByName('if.OperStatus')->getOid(),
+            $this->oids->getOidByName('if.AdminStatus')->getOid(),
+            $this->oids->getOidByName('if.ConnectorPresent')->getOid(),
+            $this->oids->getOidByName('if.StatsDuplexStatus')->getOid(),
+            $this->oids->getOidByName('if.Alias')->getOid(),
         ];
 
         if ($filter['port']) {
@@ -131,7 +131,7 @@ class DefaultParser extends AbstractModule
         foreach ($data as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
+        $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
         return $this;
     }
 }

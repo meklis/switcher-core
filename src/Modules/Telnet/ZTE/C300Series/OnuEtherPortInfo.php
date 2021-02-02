@@ -18,7 +18,7 @@ class OnuEtherPortInfo extends C300ModuleAbstract
         return $this;
     }
     private function getDataGpon($onu) {
-        $resp = $this->parseExpandedTable($this->obj->telnet->exec("show gpon remote-onu interface eth {$onu}"));
+        $resp = $this->parseExpandedTable($this->telnet->exec("show gpon remote-onu interface eth {$onu}"));
         foreach ($resp as $num=>$info) {
             foreach ($info as $k=>$v) {
                 switch ($k) {

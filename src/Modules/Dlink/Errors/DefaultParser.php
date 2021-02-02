@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Errors;
+namespace SwitcherCore\Modules\Dlink\Errors;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
 
-class DefaultParser extends AbstractModule
+class DefaultParser extends SwitchesPortAbstractModule
 {
     protected function formate() {
         $in_err = !$this->getResponseByName('if.InErrors')->error() ?  $this->getResponseByName('if.InErrors')->fetchAll() : [];
@@ -57,10 +57,10 @@ class DefaultParser extends AbstractModule
     public function run($filter = [])
     {
         $oids = [
-            $this->obj->oidCollector->getOidByName('if.InErrors')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.OutErrors')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.InDiscards')->getOid(),
-            $this->obj->oidCollector->getOidByName('if.OutDiscards')->getOid(),
+            $this->oids->getOidByName('if.InErrors')->getOid(),
+            $this->oids->getOidByName('if.OutErrors')->getOid(),
+            $this->oids->getOidByName('if.InDiscards')->getOid(),
+            $this->oids->getOidByName('if.OutDiscards')->getOid(),
         ];
         if($filter['port']) {
             $indexes = [];
@@ -76,7 +76,7 @@ class DefaultParser extends AbstractModule
             $oidObjects[] = Oid::init($oid);
         }
 
-        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
+        $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
         return $this;
     }
 }

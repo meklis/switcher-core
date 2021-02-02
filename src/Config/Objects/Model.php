@@ -9,10 +9,11 @@
 namespace SwitcherCore\Config\Objects;
 
 
+use DI\Container;
+use Psr\Container\ContainerInterface;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\ModuleInterface;
 
 class Model
 {
@@ -56,14 +57,6 @@ class Model
     protected $inputs = [];
 
 
-    /**
-     * @return AbstractModule[]
-     */
-    public function getModules()
-    {
-        return $this->modules;
-    }
-
     public function getInputs() {
         return $this->inputs;
     }
@@ -74,11 +67,6 @@ class Model
      */
     public function getTelnetConnType() {
        return $this->getExtraParamByName('telnet_conn_type');
-    }
-    public function setModule($name, AbstractModule $module)
-    {
-        $this->modules[$name] = $module;
-        return $this;
     }
 
     /**
@@ -129,21 +117,6 @@ class Model
             $model->modulesNames = $arr['modules'];
         }
         return $model;
-    }
-
-    function initModules() {
-        if(!$this->modulesNames) {
-            throw new ModuleNotFoundException("Modules for model {$this->getName()} not found");
-        }
-        foreach ($this->modulesNames as $module=>$object) {
-            if(!class_exists($object)) {
-                throw new ModuleErrorLoadException("Module for model {$this->getName()} with name '$module' not found by ClassName {$object}");
-            }
-            $this->setModule(
-                $module,
-                new $object()
-            );
-        }
     }
 
     /**

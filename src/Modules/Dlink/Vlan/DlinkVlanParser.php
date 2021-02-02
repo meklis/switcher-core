@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Vlan;
+namespace SwitcherCore\Modules\Dlink\Vlan;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 
-class DlinkVlanParser extends AbstractModule
+class DlinkVlanParser extends SwitchesPortAbstractModule
 {
     protected function formate() {
         $response = [];
@@ -87,11 +87,11 @@ class DlinkVlanParser extends AbstractModule
     public function run($filter = [])
     {
         Helper::prepareFilter($filter);
-        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticName')->getOid();
-        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticEgressPorts')->getOid();
-        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticForbiddenEgressPorts')->getOid();
-        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticUntaggedPorts')->getOid();
-        $oids[] = $this->obj->oidCollector->getOidByName('dot1q.VlanStaticRowStatus')->getOid();
+        $oids[] = $this->oids->getOidByName('dot1q.VlanStaticName')->getOid();
+        $oids[] = $this->oids->getOidByName('dot1q.VlanStaticEgressPorts')->getOid();
+        $oids[] = $this->oids->getOidByName('dot1q.VlanStaticForbiddenEgressPorts')->getOid();
+        $oids[] = $this->oids->getOidByName('dot1q.VlanStaticUntaggedPorts')->getOid();
+        $oids[] = $this->oids->getOidByName('dot1q.VlanStaticRowStatus')->getOid();
 
         if($filter['vlan_id']) {
             foreach ($oids as $num=>$oid) {
@@ -102,7 +102,7 @@ class DlinkVlanParser extends AbstractModule
         foreach ($oids as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
+        $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
         return $this;
     }
 }

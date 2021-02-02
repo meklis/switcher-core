@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Fdb;
+namespace SwitcherCore\Modules\Dlink\Fdb;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class DefaultParser extends AbstractModule
+class DefaultParser extends SwitchesPortAbstractModule
 {
     protected function formate() {
         if($this->response) {
@@ -51,8 +51,8 @@ class DefaultParser extends AbstractModule
         Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['port']) {
-            if($filter['port'] > $this->obj->model->getPorts()) {
-                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->obj->model->getPorts()}");
+            if($filter['port'] > $this->model->getPorts()) {
+                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
             }
             foreach ($formated as $num=>$fdb) {
                 if($fdb['port'] != $filter['port']) {
@@ -84,8 +84,8 @@ class DefaultParser extends AbstractModule
     public function run($filter = [])
     {
        Helper::prepareFilter($filter);
-       $fdb_port =  $this->obj->oidCollector->getOidByName('dot1q.FdbPort')->getOid();
-       $fdb_status =  $this->obj->oidCollector->getOidByName('dot1q.FdbStatus')->getOid();
+       $fdb_port =  $this->oids->getOidByName('dot1q.FdbPort')->getOid();
+       $fdb_status =  $this->oids->getOidByName('dot1q.FdbStatus')->getOid();
        if($filter['vlan_id']) {
            $fdb_port .= ".{$filter['vlan_id']}";
            $fdb_status .= ".{$filter['vlan_id']}";
@@ -96,7 +96,7 @@ class DefaultParser extends AbstractModule
        } elseif ($filter['mac']) {
            throw new \Exception("VlanID must be setted for mac filtering");
        }
-       $this->response = $this->formatResponse($this->obj->walker->walkBulk([
+       $this->response = $this->formatResponse($this->snmp->walkBulk([
             Oid::init($fdb_status), Oid::init($fdb_port),
        ]));
         return $this;

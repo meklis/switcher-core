@@ -9,7 +9,7 @@ class OnuSignalStrengthInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if (!$this->obj->telnet) {
+        if (!$this->telnet) {
             throw new \Exception("Module required telnet connection");
         }
         $this->response = [
@@ -20,7 +20,7 @@ class OnuSignalStrengthInfo extends C300ModuleAbstract
         return $this;
     }
     private function command($input) {
-        $input = $this->obj->telnet->exec($input);
+        $input = $this->telnet->exec($input);
         if (!$input) throw new \Exception("Empty response on command '$input'");
         $lines = explode("\n", $input);
         if(count($lines) < 3) {

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Rmon;
+namespace SwitcherCore\Modules\Dlink\Rmon;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class DefaultParser extends AbstractModule
+class DefaultParser extends SwitchesPortAbstractModule
 {
     protected function formate() {
         $indexes = $this->getIndexes();
@@ -41,7 +41,7 @@ class DefaultParser extends AbstractModule
     public function run($filter = [])
     {
         $oids = [];
-        foreach ($this->obj->oidCollector->getOidsByRegex('rmon.*') as $oid) {
+        foreach ($this->oids->getOidsByRegex('rmon.*') as $oid) {
             $oids[] = $oid->getOid();
         }
 
@@ -58,7 +58,7 @@ class DefaultParser extends AbstractModule
         foreach ($oids as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-        $this->response = $this->formatResponse($this->obj->walker->walk($oidObjects));
+        $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
         return $this;
     }
 }

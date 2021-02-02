@@ -1,20 +1,21 @@
 <?php
 
 
-namespace SwitcherCore\Modules\Snmp\Link;
+namespace SwitcherCore\Modules\Dlink\Link;
 
-use SnmpWrapper\Oid;
+use SwitcherCore\Config\Objects\Oid;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class DlinkDes3526Parser extends DlinkParser
+class DlinkParser extends SwitchesPortAbstractModule
 {
+    private $indexesPort = [];
     protected function formate() {
-
           $link_status = $this->getResponseByName('dlink.PortInfoLinkStatus');
           $nway_status = $this->getResponseByName('dlink.PortInfoNwayStatus');
           $link_state = $this->getResponseByName('dlink.PortCtrlPortAdminState');
           $nway_state = $this->getResponseByName('dlink.PortCtrlPortNwayState');
-          //$addr_learning = $this->getResponseByName('dlink.PortCtrlAddressLearning');
+          $addr_learning = $this->getResponseByName('dlink.PortCtrlAddressLearning');
           $description = $this->getResponseByName('if.Alias');
           $medium_type = $this->getResponseByName('dlink.PortInfoMediumType');
           $types = $this->getResponseByName('if.Type');
@@ -40,6 +41,9 @@ class DlinkDes3526Parser extends DlinkParser
           if($description->error()) {
               throw new \Exception($description->error());
           }
+          if($addr_learning->error()) {
+              throw new \Exception($addr_learning->error());
+          }
 
           $indexMediumType = [];
           foreach ($medium_type->fetchAll() as $d) {
@@ -59,7 +63,7 @@ class DlinkDes3526Parser extends DlinkParser
               $response["{$port}-{$type}"]['description'] = "";
               $response["{$port}-{$type}"]['admin_state'] = "";
               $response["{$port}-{$type}"]['nway_status'] = "";
-              $response["{$port}-{$type}"]['address_learning'] = null;
+              $response["{$port}-{$type}"]['address_learning'] = "";
           }
 
         foreach ($nway_state->fetchAll() as $d) {
@@ -81,6 +85,11 @@ class DlinkDes3526Parser extends DlinkParser
               $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               $response["{$port}-{$type}"]['nway_status'] =  $d->getParsedValue();
           }
+          foreach ($addr_learning->fetchAll() as $d) {
+              $port = Helper::getIndexByOid($d->getOid(),1);
+              $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
+              $response["{$port}-{$type}"]['address_learning'] =  $d->getParsedValue();
+          }
 
         foreach ($description->fetchAll() as $d) {
             $port = Helper::getIndexByOid($d->getOid());
@@ -89,7 +98,7 @@ class DlinkDes3526Parser extends DlinkParser
         }
         foreach ($types->fetchAll() as $d) {
             $port = Helper::getIndexByOid($d->getOid());
-            if(isset($this->obj->model->getExtra()['ge_ports']) && in_array($port, $this->obj->model->getExtra()['ge_ports'])) {
+            if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
                 $d->setParsed('GE');
             }
             if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['type'] =   $d->getParsedValue();
@@ -122,19 +131,16 @@ class DlinkDes3526Parser extends DlinkParser
     public function run($filter = [])
     {
         $prepared = [
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoLinkStatus')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoMediumType')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortInfoNwayStatus')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortCtrlPortAdminState')->getOid() ,
-            $this->obj->oidCollector->getOidByName('dlink.PortCtrlPortNwayState')->getOid() ,
-            $this->obj->oidCollector->getOidByName('if.Alias')->getOid() ,
-            $this->obj->oidCollector->getOidByName('if.Type')->getOid() ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortInfoLinkStatus')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortInfoNwayStatus')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortCtrlPortAdminState')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortCtrlPortNwayState')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortCtrlAddressLearning')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()) ,
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Type')->getOid(), true) ,
         ];
-        $oidObjects = [];
-        foreach ($prepared as $oid) {
-            $oidObjects[] = Oid::init($oid);
-        }
-        $this->response = $this->formatResponse($this->obj->walker->walkBulk($oidObjects));
+        $this->response = $this->formatResponse($this->snmp->walkBulk($prepared));
         return $this;
     }
 }

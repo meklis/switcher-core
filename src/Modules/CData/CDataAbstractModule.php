@@ -6,9 +6,10 @@ abstract class CDataAbstractModule extends \SwitcherCore\Modules\AbstractModule
 {
     protected $interfaces;
 
+
     protected function parseInterface($input)
     {
-        $this->interfaces = $this->obj->model->getExtraParamByName('interfaces');
+        $this->interfaces = $this->model->getExtraParamByName('interfaces');
 
         if (is_numeric($input) && $input < 100) {
             $interface = $this->findInterface($input, 'xid');
@@ -92,12 +93,12 @@ abstract class CDataAbstractModule extends \SwitcherCore\Modules\AbstractModule
     }
 
     /**
-     * Return suffixes (ID) of ont interfaces
-     *
-     * @param $filter
+     * @param $interface
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
      */
     function getOntIdsByInterface($interface) {
-        $response = $this->obj->moduleCollector->getByName('pon_onts_status')->run()->getPretty();
+        $response = $this->getModule('pon_onts_status')->run()->getPretty();
         print_r($response);
     }
 }
