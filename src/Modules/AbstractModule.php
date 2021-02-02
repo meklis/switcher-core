@@ -7,6 +7,9 @@ namespace SwitcherCore\Modules;
 
 use DI\Annotation\Inject;
 use DI\Container;
+use DI\DependencyException;
+use DI\NotFoundException;
+use Exception;
 use meklis\network\Telnet;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Response\PoollerResponse;
@@ -77,7 +80,7 @@ abstract class AbstractModule
      * @param PoollerResponse[] $response
      * @return WrappedResponse[]
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function formatResponse($response) {
         $formated = [];
@@ -114,8 +117,8 @@ abstract class AbstractModule
     /**
      * @param $moduleName
      * @return AbstractModule
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
+     * @throws DependencyException
+     * @throws NotFoundException
      */
     public function getModule($moduleName) {
         return $this->container->get("module.{$moduleName}");

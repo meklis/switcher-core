@@ -5,6 +5,8 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 
+use InvalidArgumentException;
+
 class OnuEtherPortInfo extends C300ModuleAbstract
 {
     public function run($params = [])
@@ -12,8 +14,8 @@ class OnuEtherPortInfo extends C300ModuleAbstract
         $onuIface = $this->parsePortByName($params['onu']);
         switch ($onuIface['technology']) {
             case 'gpon': $this->response = $this->getDataGPON($params['onu']); break;
-            case 'epon': throw new \InvalidArgumentException("Not realized for epon onu");
-            default: throw new \InvalidArgumentException("Incorrect onu name");
+            case 'epon': throw new InvalidArgumentException("Not realized for epon onu");
+            default: throw new InvalidArgumentException("Incorrect onu name");
         }
         return $this;
     }

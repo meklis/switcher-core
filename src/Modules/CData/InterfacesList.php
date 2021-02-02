@@ -4,6 +4,7 @@
 namespace SwitcherCore\Modules\CData;
 
 
+use Exception;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
@@ -30,7 +31,7 @@ class InterfacesList extends AbstractModule
     /**
      * @param array $filter
      * @return $this|AbstractModule
-     * @throws \Exception
+     * @throws Exception
      */
     public function run($filter = [])
     {

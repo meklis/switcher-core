@@ -5,12 +5,14 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 
+use Exception;
+
 class OntInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
         if (!$this->telnet) {
-            throw new \Exception("Module required telnet connection");
+            throw new Exception("Module required telnet connection");
         }
         $this->response = [];
         $interface = $this->parsePortByName($params['onu']);
@@ -18,7 +20,7 @@ class OntInfo extends C300ModuleAbstract
         switch ($type) {
             case 'gpon': $this->response = $this->getInfoGPON($params['onu']); break;
             case 'epon': $this->response = $this->getInfoEPON($params['onu']); break;
-            default: throw new \Exception("Unknown type of interface - '$type'");
+            default: throw new Exception("Unknown type of interface - '$type'");
         }
         return $this;
     }
@@ -26,10 +28,10 @@ class OntInfo extends C300ModuleAbstract
     private function getInfoEPON($interface)
     {
         $input = $this->telnet->exec("show pon onu information {$interface}");
-        if (!$input) throw new \Exception("Empty response on command 'show epon onu state {$interface}'");
+        if (!$input) throw new Exception("Empty response on command 'show epon onu state {$interface}'");
         @list($info, $logs) = @explode("------------------------------------------", $input);
         if(!$logs || !$info) {
-            throw new \Exception("Error parse ont information");
+            throw new Exception("Error parse ont information");
         }
         $lines = explode("\n", $info);
         $ont_info = [];
@@ -72,13 +74,13 @@ class OntInfo extends C300ModuleAbstract
     {
         //Get gereral information and logs
         $input = $this->telnet->exec("show gpon onu detail-info {$interface}");
-        if (!$input) throw new \Exception("Empty response on command ' gpon onu detail-info {$interface}'");
+        if (!$input) throw new Exception("Empty response on command ' gpon onu detail-info {$interface}'");
         if(preg_match('/No related information to show/', $input)) {
-            throw new \Exception('No related information to show');
+            throw new Exception('No related information to show');
         }
         @list($info, $logs) = explode("------------------------------------------", $input);
         if(!$logs || !$info) {
-            throw new \Exception("Error parse ont information");
+            throw new Exception("Error parse ont information");
         }
         $lines = explode("\n", $info);
         $ont_info = [];

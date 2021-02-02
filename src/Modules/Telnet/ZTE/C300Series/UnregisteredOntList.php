@@ -5,12 +5,14 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 
+use Exception;
+
 class UnregisteredOntList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
         if (!$this->telnet) {
-            throw new \Exception("Module required telnet connection");
+            throw new Exception("Module required telnet connection");
         }
         $result = [];
         switch ($params['type']) {
@@ -35,7 +37,7 @@ class UnregisteredOntList extends C300ModuleAbstract
     private function getUnregisteredEPON()
     {
         $input = $this->telnet->exec("show onu unauthentication");
-        if (!$input) throw new \Exception("Empty response on command 'show gpon onu uncfg'");
+        if (!$input) throw new Exception("Empty response on command 'show gpon onu uncfg'");
         $lines = explode("\n", $input);
         $response = [];
         $block = [];
@@ -71,7 +73,7 @@ class UnregisteredOntList extends C300ModuleAbstract
     private function getUnregisteredGPON()
     {
         $list = $this->telnet->exec("show gpon onu uncfg");
-        if (!$list) throw new \Exception("Empty response on command 'show gpon onu uncfg'");
+        if (!$list) throw new Exception("Empty response on command 'show gpon onu uncfg'");
         //Parsing block
         $lines = explode("\n", $list);
         $lines = array_splice($lines, 2);

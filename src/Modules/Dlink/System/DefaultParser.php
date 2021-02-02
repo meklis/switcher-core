@@ -4,6 +4,7 @@
 namespace SwitcherCore\Modules\Dlink\System;
 
 
+use Exception;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
@@ -46,7 +47,7 @@ class DefaultParser extends SwitchesPortAbstractModule
     /**
      * @param array $filter
      * @return $this|AbstractModule
-     * @throws \Exception
+     * @throws Exception
      */
     public function run($filter = [])
     {

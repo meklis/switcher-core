@@ -4,6 +4,8 @@
 namespace SwitcherCore\Modules\Telnet\Dlink;
 
 
+use InvalidArgumentException;
+
 class SpeedPortControl extends ExecLineCtrl
 {
     private function getRevertSpeed($speed) {
@@ -12,7 +14,7 @@ class SpeedPortControl extends ExecLineCtrl
     function getCommandLine($params = [])
     {
         if($params['port'] > $this->model->getPorts()) {
-            throw new \InvalidArgumentException("Max number of port is {$this->model->getPorts()}");
+            throw new InvalidArgumentException("Max number of port is {$this->model->getPorts()}");
         }
         return "config ports {$params['port']} speed {$this->getRevertSpeed($params['speed'])}";
     }

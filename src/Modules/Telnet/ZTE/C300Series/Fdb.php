@@ -5,16 +5,19 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 
+use Exception;
+use InvalidArgumentException;
+
 class Fdb extends C300ModuleAbstract
 {
     public function run($params = [])
     {
         if (!$this->telnet) {
-            throw new \Exception("Module required telnet connection");
+            throw new Exception("Module required telnet connection");
         }
         $this->response = [];
         if($params['interface'] && $params['onu']) {
-            throw new \InvalidArgumentException("Only one of parameter allowed");
+            throw new InvalidArgumentException("Only one of parameter allowed");
         } elseif($params['interface']) {
             $technology = $this->parsePortByName($params['interface'])['technology'];
             $command = "show mac-real-time $technology olt {$params['interface']}";
@@ -22,7 +25,7 @@ class Fdb extends C300ModuleAbstract
             $technology = $this->parsePortByName($params['onu'])['technology'];
             $command = "show mac-real-time $technology onu {$params['interface']}";
         } else {
-            throw new \InvalidArgumentException("One of param 'interface' or 'onu' is required");
+            throw new InvalidArgumentException("One of param 'interface' or 'onu' is required");
         }
 
         $lines = explode("\n",$this->telnet->exec($command));

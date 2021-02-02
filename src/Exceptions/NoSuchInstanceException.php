@@ -4,7 +4,9 @@
 namespace SwitcherCore\Exceptions;
 
 
-class NoSuchInstanceException extends \Exception
+use Exception;
+
+class NoSuchInstanceException extends Exception
 {
 
 }

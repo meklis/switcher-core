@@ -4,6 +4,9 @@
 namespace SwitcherCore\Modules\RouterOS;
 
 
+use Exception;
+use Khill\Duration\Duration;
+
 class LeaseInfo extends ExecCommand
 {
 
@@ -27,7 +30,7 @@ class LeaseInfo extends ExecCommand
         foreach ($this->module->dhcp_server_info->run($params)->getPrettyFiltered() as $vl) {
                 return $vl;
         }
-        throw new \Exception("Dhcp server not found");
+        throw new Exception("Dhcp server not found");
     }
     public function run($params = [])
     {
@@ -58,7 +61,7 @@ class LeaseInfo extends ExecCommand
                 'ip' => $a['address'],
                 'mac' => $a['mac-address'],
                 'status' => $a['status'],
-                'expires_at' => isset($a['expires-after']) ? (new \Khill\Duration\Duration($a['expires-after']))->toSeconds() + time() : "-1",
+                'expires_at' => isset($a['expires-after']) ? (new Duration($a['expires-after']))->toSeconds() + time() : "-1",
                 'server' => $a['server'],
                 'extra' => [
                     'id' => $a['.id'],

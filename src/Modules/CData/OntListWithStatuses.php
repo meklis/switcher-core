@@ -4,6 +4,7 @@
 namespace SwitcherCore\Modules\CData;
 
 
+use Exception;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -68,7 +69,7 @@ class OntListWithStatuses extends CDataAbstractModule
     /**
      * @param array $filter
      * @return $this|AbstractModule
-     * @throws \Exception
+     * @throws Exception
      */
     public function run($filter = [])
     {

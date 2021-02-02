@@ -3,6 +3,8 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
+use Exception;
+use RouterosAPI;
 use SwitcherCore\Modules\AbstractModule;
 
 
@@ -20,7 +22,7 @@ class ExecCommand extends AbstractModule
         return $this->status;
     }
 
-    function __construct(\RouterosAPI $api)
+    function __construct(RouterosAPI $api)
     {
         $this->api = $api;
     }
@@ -30,13 +32,13 @@ class ExecCommand extends AbstractModule
         if(!$resp) {
             return [];
         } elseif (isset($resp['!trap'][0]['message'])) {
-            throw  new \Exception("RouterOS api returned error - ".$resp['!trap'][0]['message']);
+            throw  new Exception("RouterOS api returned error - ".$resp['!trap'][0]['message']);
         }
         return $resp;
     }
     public function run($params = [])
     {
-        throw new \Exception("Method run must be rewrited");
+        throw new Exception("Method run must be rewrited");
     }
 
 }

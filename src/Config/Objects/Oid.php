@@ -9,6 +9,8 @@
 namespace SwitcherCore\Config\Objects;
 
 
+use InvalidArgumentException;
+
 class Oid
 {
     const TYPE_OCTETSTRING = "string";
@@ -110,7 +112,7 @@ class Oid
                     return $id;
                 }
         }
-        throw new \InvalidArgumentException("Value with name '$valueName' not found in values");
+        throw new InvalidArgumentException("Value with name '$valueName' not found in values");
     }
 
     protected function __construct()
@@ -127,12 +129,12 @@ class Oid
         if(isset($array['name']) && $array['name']) {
             $oid->setName($array['name']);
         } else {
-            throw new \InvalidArgumentException("Array for initialize oid must have 'name' element");
+            throw new InvalidArgumentException("Array for initialize oid must have 'name' element");
         }
         if(isset($array['oid']) && $array['oid']) {
             $oid->setOid($array['oid']);
         } else {
-            throw new \InvalidArgumentException("Array for initialize oid must have 'oid' element");
+            throw new InvalidArgumentException("Array for initialize oid must have 'oid' element");
         }
 
 
@@ -142,19 +144,19 @@ class Oid
             } elseif ($array['type'] === 'integer') {
                 $oid->setType(Oid::TYPE_INTEGER);
             } else {
-                throw new \InvalidArgumentException("Array for initialize oid has incorrect value for 'type'. Must be 'string' or 'integer'");
+                throw new InvalidArgumentException("Array for initialize oid has incorrect value for 'type'. Must be 'string' or 'integer'");
             }
         }
 
         if(isset($array['values'])) {
             if(!is_array($array['values'])) {
-                throw new \InvalidArgumentException("Values must be as array(hash map, key=>value)");
+                throw new InvalidArgumentException("Values must be as array(hash map, key=>value)");
             }
             $oid->setValues($array['values']);
         }
         if(isset($array['values'])) {
             if(!is_array($array['values'])) {
-                throw new \InvalidArgumentException("Values must be as array(hash map, key=>value)");
+                throw new InvalidArgumentException("Values must be as array(hash map, key=>value)");
             }
             $oid->setValues($array['values']);
         }

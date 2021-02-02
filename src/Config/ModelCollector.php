@@ -4,6 +4,7 @@
 namespace SwitcherCore\Config;
 
 
+use Exception;
 use SwitcherCore\Config\Objects\Model;
 
 class ModelCollector extends Collector
@@ -22,7 +23,7 @@ class ModelCollector extends Collector
      * @param string $hardware
      * @param string $oidId
      * @return Model
-     * @throws \Exception
+     * @throws Exception
      */
     function getModelByDetect($descr = "",  $oidId = "") {
         foreach ($this->modelsDB as $model) {
@@ -34,7 +35,7 @@ class ModelCollector extends Collector
             }
             return $model;
         }
-        throw new \Exception("Model not found by detects with parameters descr='{$descr}', oidId='{$oidId}'");
+        throw new Exception("Model not found by detects with parameters descr='{$descr}', oidId='{$oidId}'");
     }
 
 }

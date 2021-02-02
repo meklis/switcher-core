@@ -4,6 +4,8 @@
 namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
+use Exception;
+use InvalidArgumentException;
 use SwitcherCore\Modules\AbstractModule;
 
 abstract class C300ModuleAbstract extends AbstractModule
@@ -25,7 +27,7 @@ abstract class C300ModuleAbstract extends AbstractModule
                 'onu' => $onu,
             ];
         }
-        throw new \InvalidArgumentException("Error parse port with name '$name'");
+        throw new InvalidArgumentException("Error parse port with name '$name'");
     }
     protected function exec($command) {
         $response = $this->telnet->exec($command);
@@ -33,20 +35,20 @@ abstract class C300ModuleAbstract extends AbstractModule
         if(preg_match('/^\%Info/', $response)) return  true;
         if(preg_match('/\[Successful\]/', $response)) return  true;
         if(preg_match('/\[OK\]/', $response)) return  true;
-        if(preg_match('/Invalid input detected/', $response)) throw new \Exception("Invalid input detected for command '$command'");
-        throw new \Exception("Unknown response for command '$command' - \n>>>{$response}<<<");
+        if(preg_match('/Invalid input detected/', $response)) throw new Exception("Invalid input detected for command '$command'");
+        throw new Exception("Unknown response for command '$command' - \n>>>{$response}<<<");
     }
     public function macTo6octets($mac) {
         $m = str_split(str_replace(["-", ".", ":", " "], "", trim($mac)));
         if(count($m) < 12) {
-            throw new \Exception("Received incorrect MAC-address");
+            throw new Exception("Received incorrect MAC-address");
         }
         return strtoupper("{$m[0]}{$m[1]}:{$m[2]}{$m[3]}:{$m[4]}{$m[5]}:{$m[6]}{$m[7]}:{$m[8]}{$m[9]}:{$m[10]}{$m[11]}");
     }
     public function macTo3octets($mac) {
         $m = str_split(str_replace(["-", ".", ":", " "], "", trim($mac)));
         if(count($m) < 12) {
-            throw new \Exception("Received incorrect MAC-address");
+            throw new Exception("Received incorrect MAC-address");
         }
         return strtolower("{$m[0]}{$m[1]}{$m[2]}.{$m[3]}{$m[4]}{$m[5]}.{$m[6]}{$m[7]}{$m[8]}.{$m[9]}{$m[10]}{$m[11]}");
     }
@@ -113,11 +115,11 @@ abstract class C300ModuleAbstract extends AbstractModule
         $responses = [];
         $r  = [];
         if(preg_match('/^\%Error/', trim($input))) {
-            throw new \Exception("Device returned error - '$input'");
+            throw new Exception("Device returned error - '$input'");
         }
         $lines = explode("\n", trim($input));
         if(count($lines) < 2) {
-            throw new \Exception("Unknown input - '" . join($lines) . "'");
+            throw new Exception("Unknown input - '" . join($lines) . "'");
         }
         foreach ($lines as $line) {
             if(preg_match('/^(.*?)\:(.*)$/', trim($line), $m)) {

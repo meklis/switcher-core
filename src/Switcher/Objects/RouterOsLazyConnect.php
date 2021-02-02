@@ -4,7 +4,9 @@
 namespace SwitcherCore\Switcher\Objects;
 
 
-class RouterOsLazyConnect extends \RouterosAPI
+use RouterosAPI;
+
+class RouterOsLazyConnect extends RouterosAPI
 {
     protected $ip = "";
     protected $login = "";

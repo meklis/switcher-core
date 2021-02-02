@@ -4,6 +4,8 @@
 namespace SwitcherCore\Modules\RouterOS;
 
 
+use InvalidArgumentException;
+
 class ArpPing extends ExecCommand
 {
 
@@ -21,7 +23,7 @@ class ArpPing extends ExecCommand
     {
 
         if(!(isset($params['vlan_id']) || isset($params['vlan_name']))) {
-            throw new \InvalidArgumentException("vlan_id or vlan_name(interface name) required for this module");
+            throw new InvalidArgumentException("vlan_id or vlan_name(interface name) required for this module");
         }
         $vlans = [];
         foreach ($this->getModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {

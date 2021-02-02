@@ -2,7 +2,11 @@
 
 namespace SwitcherCore\Modules\CData;
 
-abstract class CDataAbstractModule extends \SwitcherCore\Modules\AbstractModule
+use DI\DependencyException;
+use DI\NotFoundException;
+use SwitcherCore\Modules\AbstractModule;
+
+abstract class CDataAbstractModule extends AbstractModule
 {
     protected $interfaces;
 
@@ -94,8 +98,8 @@ abstract class CDataAbstractModule extends \SwitcherCore\Modules\AbstractModule
 
     /**
      * @param $interface
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
+     * @throws DependencyException
+     * @throws NotFoundException
      */
     function getOntIdsByInterface($interface) {
         $response = $this->getModule('pon_onts_status')->run()->getPretty();

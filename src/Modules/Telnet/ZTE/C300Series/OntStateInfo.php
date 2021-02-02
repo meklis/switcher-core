@@ -5,12 +5,14 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 
+use Exception;
+
 class OntStateInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
         if (!$this->telnet) {
-            throw new \Exception("Module required telnet connection");
+            throw new Exception("Module required telnet connection");
         }
         $this->response = [];
         $interface = $this->parsePortByName($params['interface']);
@@ -18,7 +20,7 @@ class OntStateInfo extends C300ModuleAbstract
         switch ($type) {
             case 'gpon': $this->response = $this->getStateGPON($params['interface']); break;
             case 'epon': $this->response = $this->getStateEPON($params['interface']); break;
-            default: throw new \Exception("Unknown type of interface - '$type'");
+            default: throw new Exception("Unknown type of interface - '$type'");
         }
         return $this;
     }
@@ -26,7 +28,7 @@ class OntStateInfo extends C300ModuleAbstract
     private function getStateEPON($interface)
     {
         $input = $this->telnet->exec("show epon onu state {$interface}");
-        if (!$input) throw new \Exception("Empty response on command 'show epon onu state {$interface}'");
+        if (!$input) throw new Exception("Empty response on command 'show epon onu state {$interface}'");
         $lines = explode("\n", $input);
         $response = [];
         foreach (array_splice($lines, 2) as $line) {
@@ -48,9 +50,9 @@ class OntStateInfo extends C300ModuleAbstract
     private function getStateGPON($interface)
     {
         $input = $this->telnet->exec("show gpon onu state {$interface}");
-        if (!$input) throw new \Exception("Empty response on command 'show epon onu state {$interface}'");
+        if (!$input) throw new Exception("Empty response on command 'show epon onu state {$interface}'");
         if(preg_match('/No related information to show/', $input)) {
-            throw new \Exception('No related information to show');
+            throw new Exception('No related information to show');
         }
         $rows = explode("\n", $input);
         unset($rows[count($rows) -1]);

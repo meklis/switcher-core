@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Telnet\Dlink;
 
+use Exception;
 use SwitcherCore\Modules\AbstractModule;
 
 
@@ -23,14 +24,14 @@ class Reboot extends AbstractModule
     public function run($filter = [])
     {
         if(!$this->telnet) {
-            throw new \Exception("Module clear counters required telnet connection");
+            throw new Exception("Module clear counters required telnet connection");
         }
         $this->status = false;
         try {
            $this->telnet->setPrompt('Command:')->exec("reboot\ny");
            $this->status = true;
-        } catch (\Exception $e) {
-            throw new \Exception("Error execute command", 1, $e);
+        } catch (Exception $e) {
+            throw new Exception("Error execute command", 1, $e);
         }
         return $this;
     }

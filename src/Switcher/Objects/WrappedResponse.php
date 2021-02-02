@@ -4,6 +4,7 @@
 namespace SwitcherCore\Switcher\Objects;
 
 
+use Exception;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Switcher\Objects\SnmpResponse as Resp;
 
@@ -86,7 +87,7 @@ class WrappedResponse {
             $wrapped = [];
             foreach ($data->getResponse() as $num=>$resp) {
                 if($resp->getType() == 'NoSuchInstance' || $resp->getType() == 'NoSuchObject') {
-                    throw new \Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
+                    throw new Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
                 }
                 $wrapperValue =  (new Resp())
                     ->setOid($resp->getOid())

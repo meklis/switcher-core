@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Dlink\Link;
 
+use Exception;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -19,26 +20,26 @@ class DlinkDgs1210Parser extends SwitchesPortAbstractModule
           $ctrl_type = $this->getResponseByName('dlink.sysPortCtrlType');
 
           if($ctrl_type->error()) {
-              throw new \Exception($ctrl_type->error());
+              throw new Exception($ctrl_type->error());
           }
 
           if($link_state->error()) {
-              throw new \Exception($link_state->error());
+              throw new Exception($link_state->error());
           }
           if($medium_type->error()) {
-              throw new \Exception($medium_type->error());
+              throw new Exception($medium_type->error());
           }
           if($nway_status->error()) {
-              throw new \Exception($nway_status->error());
+              throw new Exception($nway_status->error());
           }
           if($nway_state->error()) {
-              throw new \Exception($nway_state->error());
+              throw new Exception($nway_state->error());
           }
           if($description->error()) {
-              throw new \Exception($description->error());
+              throw new Exception($description->error());
           }
           if($last_change->error()) {
-              throw new \Exception($last_change->error());
+              throw new Exception($last_change->error());
           }
 
           $indexMediumType = [];

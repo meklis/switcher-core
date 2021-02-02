@@ -5,6 +5,8 @@ namespace SwitcherCore\Modules\RouterOS;
 
 
 
+use DateTime;
+
 class AddressListInfo extends ExecCommand
 {
 
@@ -32,7 +34,7 @@ class AddressListInfo extends ExecCommand
                 '_id' => $d['.id'],
                 'name' => $d['list'],
                 'address' => $d['address'],
-                'created' => (\DateTime::createFromFormat('M/d/Y H:i:s', strtolower($d['creation-time'])))->format('Y-m-d H:i:s'),
+                'created' => (DateTime::createFromFormat('M/d/Y H:i:s', strtolower($d['creation-time'])))->format('Y-m-d H:i:s'),
                 'dynamic' => $d['dynamic'] == "true" ? true : false ,
                 'disabled' => $d['disabled'] == "true" ? true : false ,
             ];

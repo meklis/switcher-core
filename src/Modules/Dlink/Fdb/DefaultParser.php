@@ -3,6 +3,8 @@
 
 namespace SwitcherCore\Modules\Dlink\Fdb;
 
+use Exception;
+use InvalidArgumentException;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -15,7 +17,7 @@ class DefaultParser extends SwitchesPortAbstractModule
             $statuses = [];
             $ports = [];
             if($this->response['dot1q.FdbStatus']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbStatus']->error()} from {$this->response['dot1q.FdbStatus']->getRaw()->ip}");
+                throw new Exception("Returned error {$this->response['dot1q.FdbStatus']->error()} from {$this->response['dot1q.FdbStatus']->getRaw()->ip}");
             } else {
                 while ($d = $this->response['dot1q.FdbStatus']->fetchOne()) {
                    $data = Helper::oid2mac($d->getOid());
@@ -23,7 +25,7 @@ class DefaultParser extends SwitchesPortAbstractModule
                 }
             }
             if($this->response['dot1q.FdbPort']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
+                throw new Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
             } else {
                 while ($d = $this->response['dot1q.FdbPort']->fetchOne()) {
                     $data = Helper::oid2mac($d->getOid());
@@ -44,7 +46,7 @@ class DefaultParser extends SwitchesPortAbstractModule
             }
             return $pretties;
         } else {
-            throw new \Exception("No response");
+            throw new Exception("No response");
         }
     }
     function getPrettyFiltered($filter = []) {
@@ -52,7 +54,7 @@ class DefaultParser extends SwitchesPortAbstractModule
         $formated = $this->formate();
         if($filter['port']) {
             if($filter['port'] > $this->model->getPorts()) {
-                throw new \InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
+                throw new InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
             }
             foreach ($formated as $num=>$fdb) {
                 if($fdb['port'] != $filter['port']) {
@@ -94,7 +96,7 @@ class DefaultParser extends SwitchesPortAbstractModule
             $fdb_port .= "." . Helper::mac2oid($filter['mac']);
             $fdb_status .= "." .   Helper::mac2oid($filter['mac']);
        } elseif ($filter['mac']) {
-           throw new \Exception("VlanID must be setted for mac filtering");
+           throw new Exception("VlanID must be setted for mac filtering");
        }
        $this->response = $this->formatResponse($this->snmp->walkBulk([
             Oid::init($fdb_status), Oid::init($fdb_port),

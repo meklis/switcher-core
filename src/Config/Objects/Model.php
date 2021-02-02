@@ -8,6 +8,8 @@
 
 namespace SwitcherCore\Config\Objects;
 
+use Exception;
+use InvalidArgumentException;
 use SwitcherCore\Modules\AbstractModule;
 
 class Model
@@ -58,7 +60,7 @@ class Model
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getTelnetConnType() {
        return $this->getExtraParamByName('telnet_conn_type');
@@ -86,17 +88,17 @@ class Model
         if(isset($arr['name']) && $arr['name']) {
             $model->setName($arr['name']);
         } else {
-            throw new \InvalidArgumentException("Array for initialize oid must have 'name' element");
+            throw new InvalidArgumentException("Array for initialize oid must have 'name' element");
         }
         if(isset($arr['ports'])) {
             $model->setPorts($arr['ports']);
         } else {
-            throw new \InvalidArgumentException("Array for initialize oid must have 'ports' element");
+            throw new InvalidArgumentException("Array for initialize oid must have 'ports' element");
         }
         if(isset($arr['detect']) && isset($arr['detect']['description'])) {
             $model->setDetect($arr['detect']);
         } else {
-            throw new \InvalidArgumentException("Array for initialize oid must have 'detect.description' element");
+            throw new InvalidArgumentException("Array for initialize oid must have 'detect.description' element");
         }
         if(isset($arr['extra']) && is_array($arr['extra'])) {
             $model->setExtra($arr['extra']);
@@ -122,7 +124,7 @@ class Model
         if(isset($this->extra[$name])) {
             return $this->extra[$name];
         }
-        throw new \Exception("Extra param with name $name not found in model configuration");
+        throw new Exception("Extra param with name $name not found in model configuration");
     }
     public function detectByDescription($description) {
         if(!$description) return true;
@@ -153,14 +155,14 @@ class Model
         if(isset($this->oids[$name])) {
             return $this->oids[$name];
         } else {
-            throw new \InvalidArgumentException("Oid by name '$name' not found in model '{$this->name}'");
+            throw new InvalidArgumentException("Oid by name '$name' not found in model '{$this->name}'");
         }
     }
     public function getOidById($name) {
         if(isset($this->oids[$name])) {
             return $this->oids[$name];
         } else {
-            throw new \InvalidArgumentException("Oid by name '$name' not found in model '{$this->name}'");
+            throw new InvalidArgumentException("Oid by name '$name' not found in model '{$this->name}'");
         }
     }
 

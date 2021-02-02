@@ -5,12 +5,14 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 
+use Exception;
+
 class OnuSignalStrengthInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
         if (!$this->telnet) {
-            throw new \Exception("Module required telnet connection");
+            throw new Exception("Module required telnet connection");
         }
         $this->response = [
             'onu' => $params['onu'],
@@ -21,10 +23,10 @@ class OnuSignalStrengthInfo extends C300ModuleAbstract
     }
     private function command($input) {
         $input = $this->telnet->exec($input);
-        if (!$input) throw new \Exception("Empty response on command '$input'");
+        if (!$input) throw new Exception("Empty response on command '$input'");
         $lines = explode("\n", $input);
         if(count($lines) < 3) {
-            throw new \Exception("Unknown output - '$input'");
+            throw new Exception("Unknown output - '$input'");
         }
         $lines = array_splice($lines, 2);
         if(preg_match('/^(.*?)[ ]{1,}(.*)$/', $lines[0], $matches)) {

@@ -3,6 +3,8 @@
 
 namespace SwitcherCore\Modules\Dlink\Link;
 
+use Exception;
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
@@ -19,28 +21,28 @@ class DlinkParser extends SwitchesPortAbstractModule
           $types = $this->getResponseByName('if.Type');
 
           if($link_state->error()) {
-              throw new \Exception($link_state->error());
+              throw new Exception($link_state->error());
           }
           if($types->error()) {
-              throw new \Exception($types->error());
+              throw new Exception($types->error());
           }
           if($medium_type->error()) {
-              throw new \Exception($medium_type->error());
+              throw new Exception($medium_type->error());
           }
           if($link_status->error()) {
-              throw new \Exception($link_status->error());
+              throw new Exception($link_status->error());
           }
           if($nway_status->error()) {
-              throw new \Exception($nway_status->error());
+              throw new Exception($nway_status->error());
           }
           if($nway_state->error()) {
-              throw new \Exception($nway_state->error());
+              throw new Exception($nway_state->error());
           }
           if($description->error()) {
-              throw new \Exception($description->error());
+              throw new Exception($description->error());
           }
           if($addr_learning->error()) {
-              throw new \Exception($addr_learning->error());
+              throw new Exception($addr_learning->error());
           }
 
           $indexMediumType = [];
@@ -129,14 +131,14 @@ class DlinkParser extends SwitchesPortAbstractModule
     public function run($filter = [])
     {
         $prepared = [
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortInfoLinkStatus')->getOid()) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortInfoNwayStatus')->getOid()) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortCtrlPortAdminState')->getOid()) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortCtrlPortNwayState')->getOid()) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('dlink.PortCtrlAddressLearning')->getOid()) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()) ,
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Type')->getOid(), true) ,
+            Oid::init($this->oids->getOidByName('dlink.PortInfoLinkStatus')->getOid()) ,
+            Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true) ,
+            Oid::init($this->oids->getOidByName('dlink.PortInfoNwayStatus')->getOid()) ,
+            Oid::init($this->oids->getOidByName('dlink.PortCtrlPortAdminState')->getOid()) ,
+            Oid::init($this->oids->getOidByName('dlink.PortCtrlPortNwayState')->getOid()) ,
+            Oid::init($this->oids->getOidByName('dlink.PortCtrlAddressLearning')->getOid()) ,
+            Oid::init($this->oids->getOidByName('if.Alias')->getOid()) ,
+            Oid::init($this->oids->getOidByName('if.Type')->getOid(), true) ,
         ];
         $this->response = $this->formatResponse($this->snmp->walkBulk($prepared));
         return $this;

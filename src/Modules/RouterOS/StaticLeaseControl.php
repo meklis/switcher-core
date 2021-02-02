@@ -5,6 +5,9 @@ namespace SwitcherCore\Modules\RouterOS;
 
 
 
+use Exception;
+use InvalidArgumentException;
+
 class StaticLeaseControl extends ExecCommand
 {
 
@@ -22,21 +25,21 @@ class StaticLeaseControl extends ExecCommand
         foreach ($this->getModule('dhcp_server_info')->run($params)->getPrettyFiltered() as $vl) {
             return $vl;
         }
-        throw new \Exception("DHCP-server not found");
+        throw new Exception("DHCP-server not found");
     }
     public function run($params = [])
     {
         if($params['action'] == 'add') {
-            if(!$params['ip']) throw new \InvalidArgumentException("IP address is required for adding");
-            if(!$params['mac']) throw new \InvalidArgumentException("MAC address is required for adding");
-            if(!$params['vlan_id'] && !$params['vlan_name'] && !$params['dhcp_server']) throw new \InvalidArgumentException("VLAN name or id is required for adding");
+            if(!$params['ip']) throw new InvalidArgumentException("IP address is required for adding");
+            if(!$params['mac']) throw new InvalidArgumentException("MAC address is required for adding");
+            if(!$params['vlan_id'] && !$params['vlan_name'] && !$params['dhcp_server']) throw new InvalidArgumentException("VLAN name or id is required for adding");
             return $this->add($params);
         }
         if($params['action'] == 'remove') {
-            if(!$params['ip'] && !$params['mac']) throw new \InvalidArgumentException("Not all arguments passed for removing");
+            if(!$params['ip'] && !$params['mac']) throw new InvalidArgumentException("Not all arguments passed for removing");
             return $this->remove($params);
         }
-        throw new \Exception("StaticArpControl support only add|remove methods");
+        throw new Exception("StaticArpControl support only add|remove methods");
     }
     private function add($params) {
         $server = $params['dhcp_server'];
@@ -61,7 +64,7 @@ class StaticLeaseControl extends ExecCommand
         $arr = $this->getLeasesByParam($params);
         $ids = [];
         if(!$arr) {
-            throw new \Exception("Lease not found by parameters", 404);
+            throw new Exception("Lease not found by parameters", 404);
         }
         foreach ($arr as $a) {
             $this->execComm("/ip/dhcp-server/lease/remove", [

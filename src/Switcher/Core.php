@@ -3,8 +3,12 @@
 namespace SwitcherCore\Switcher;
 
 use DI\Container;
+use DI\ContainerBuilder;
+use ErrorException;
+use Exception;
 use meklis\network\Telnet;
 use Psr\Container\ContainerInterface;
+use RouterosAPI;
 use SnmpWrapper\MultiWalkerInterface;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
@@ -15,6 +19,7 @@ use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
+use function DI\autowire;
 
 
 class Core
@@ -53,7 +58,7 @@ class Core
 
     private function buildContainer()
     {
-        $builder = new \DI\ContainerBuilder();
+        $builder = new ContainerBuilder();
         $builder->useAutowiring(true);
         $builder->useAnnotations(true);
         $container = $builder->build();
@@ -71,9 +76,9 @@ class Core
     {
         if ($input instanceof MultiWalkerInterface) {
             $this->container->set(MultiWalkerInterface::class, $input);
-        } elseif ($input instanceof \meklis\network\Telnet) {
+        } elseif ($input instanceof Telnet) {
             if (!$this->container->has(Model::class)) {
-                throw new \Exception("Model not setted. You must call init() first");
+                throw new Exception("Model not setted. You must call init() first");
             }
             $model = $this->container->get(Model::class);
             $input->setHostType($model->getTelnetConnType());
@@ -81,16 +86,16 @@ class Core
                 foreach ($model->getExtraParamByName('telnet_commands_after_connect') as $comm) {
                     $input->addCommandAfterLogin($comm);
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
             }
             $this->container->set(Telnet::class, $input);
-        } elseif ($input instanceof \RouterosAPI) {
+        } elseif ($input instanceof RouterosAPI) {
             if (!$this->container->has(Model::class)) {
-                throw new \Exception("Model not setted. You must call init() first");
+                throw new Exception("Model not setted. You must call init() first");
             }
-            $this->container->set(\RouterosAPI::class, $input);
+            $this->container->set(RouterosAPI::class, $input);
         } else {
-            throw new \Exception("Unknown type of input, not supported");
+            throw new Exception("Unknown type of input, not supported");
         }
         return $this;
     }
@@ -98,7 +103,7 @@ class Core
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     private function getDetectDevInfo()
     {
@@ -112,7 +117,7 @@ class Core
         $objId = "";
         foreach ($response as $resp) {
             if ($resp->error) {
-                throw new \Exception("Walker returned error: {$resp->error}");
+                throw new Exception("Walker returned error: {$resp->error}");
             } else {
                 if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
                     $descr = $resp->getResponse()[0]->getValue();
@@ -128,7 +133,7 @@ class Core
                 'objid' => $objId,
             ];
         } else {
-            throw new \Exception("Returned empty response from walker in detect model");
+            throw new Exception("Returned empty response from walker in detect model");
         }
     }
 
@@ -141,14 +146,14 @@ class Core
     /**
      * @return $this
      * @throws ModuleNotFoundException
-     * @throws \ErrorException
-     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException | \Exception
+     * @throws ErrorException
+     * @throws ModuleErrorLoadException | Exception
      */
     function init()
     {
 
         if (!$this->container->has(MultiWalkerInterface::class)) {
-            throw new \Exception("Snmp walker not setted. You must set walker before connect");
+            throw new Exception("Snmp walker not setted. You must set walker before connect");
         }
         $modelCollector = $this->container->get(ModelCollector::class);
         $oidCollector = $this->container->get(OidCollector::class);
@@ -168,7 +173,7 @@ class Core
                 throw new ModuleErrorLoadException("Module with name '$module' not found by ClassName {$object}");
             }
             echo "$module = $object\n";
-            $this->container->set("module.{$module}", \DI\autowire($object)->lazy());
+            $this->container->set("module.{$module}", autowire($object)->lazy());
         }
     }
 
@@ -177,7 +182,7 @@ class Core
      * @param $moduleName
      * @param array $arguments
      * @return mixed
-     * @throws ModuleNotFoundException | \Exception
+     * @throws ModuleNotFoundException | Exception
      */
     public function action($moduleName, $arguments = [])
     {
@@ -195,7 +200,7 @@ class Core
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getModulesData()
     {
@@ -235,7 +240,7 @@ class Core
         if ($this->container->has(Telnet::class)) {
             $meta['connections']['telnet'] = true;
         }
-        if ($this->container->has(\RouterosAPI::class)) {
+        if ($this->container->has(RouterosAPI::class)) {
             $meta['connections']['mikrotik_api'] = true;
         }
         return $meta;

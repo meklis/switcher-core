@@ -4,7 +4,9 @@
 namespace SwitcherCore\Exceptions;
 
 
-class IncompleteResponseException extends \Exception
+use Exception;
+
+class IncompleteResponseException extends Exception
 {
 
 }

@@ -4,6 +4,7 @@
 namespace SwitcherCore\Modules\CData;
 
 
+use Exception;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
@@ -40,7 +41,7 @@ class OntMacAddress extends CDataAbstractModule
     /**
      * @param array $filter
      * @return $this|AbstractModule
-     * @throws \Exception
+     * @throws Exception
      */
     public function run($filter = [])
     {

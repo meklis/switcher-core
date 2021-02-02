@@ -3,6 +3,7 @@
 
 namespace SwitcherCore\Modules\Dlink\Link;
 
+use Exception;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Helper;
 
@@ -20,25 +21,25 @@ class DlinkDes3526Parser extends DlinkParser
           $types = $this->getResponseByName('if.Type');
 
           if($link_state->error()) {
-              throw new \Exception($link_state->error());
+              throw new Exception($link_state->error());
           }
           if($types->error()) {
-              throw new \Exception($types->error());
+              throw new Exception($types->error());
           }
           if($medium_type->error()) {
-              throw new \Exception($medium_type->error());
+              throw new Exception($medium_type->error());
           }
           if($link_status->error()) {
-              throw new \Exception($link_status->error());
+              throw new Exception($link_status->error());
           }
           if($nway_status->error()) {
-              throw new \Exception($nway_status->error());
+              throw new Exception($nway_status->error());
           }
           if($nway_state->error()) {
-              throw new \Exception($nway_state->error());
+              throw new Exception($nway_state->error());
           }
           if($description->error()) {
-              throw new \Exception($description->error());
+              throw new Exception($description->error());
           }
 
           $indexMediumType = [];

@@ -5,6 +5,7 @@ namespace SwitcherCore\Modules;
 
 
 use Exception;
+use InvalidArgumentException;
 
 class Helper
 {
@@ -75,7 +76,7 @@ class Helper
     static function formatMac($macStr) {
         $m = str_split(strtoupper(str_replace(['-', ':', '.', ','], '',$macStr)));
         if(count($m) < 12) {
-            throw new \InvalidArgumentException("Incorrect mac address - $macStr");
+            throw new InvalidArgumentException("Incorrect mac address - $macStr");
         }
         return "{$m[0]}{$m[1]}:{$m[2]}{$m[3]}:{$m[4]}{$m[5]}:{$m[6]}{$m[7]}:{$m[8]}{$m[9]}:{$m[10]}{$m[11]}";
     }
@@ -111,13 +112,13 @@ class Helper
             return $value;
         };
         if($shelf < 0 || $shelf > 256) {
-            throw new \InvalidArgumentException("Shelf number is incorrect");
+            throw new InvalidArgumentException("Shelf number is incorrect");
         }
         if($slot < 0 || $slot > 256) {
-            throw new \InvalidArgumentException("Slot number is incorrect");
+            throw new InvalidArgumentException("Slot number is incorrect");
         }
         if($olt < 0) {
-            throw new \InvalidArgumentException("Olt number is incorrect");
+            throw new InvalidArgumentException("Olt number is incorrect");
         }
         $bits = "";
         switch ($encodeType) {
@@ -129,7 +130,7 @@ class Helper
                 break;
             case 'onu':
                 if($onu <= 0) {
-                    throw new \InvalidArgumentException("Incorrect onu number");
+                    throw new InvalidArgumentException("Incorrect onu number");
                 }
                 $bits .= $addBit(decbin(4), 4);
                 $bits .= $addBit(decbin($shelf), 4);
@@ -139,7 +140,7 @@ class Helper
                 break;
             case 'eonu':
                 if($onu <= 0) {
-                    throw new \InvalidArgumentException("Incorrect onu number");
+                    throw new InvalidArgumentException("Incorrect onu number");
                 }
                 $bits .= $addBit(decbin(3), 4);
                 $bits .= $addBit(decbin($shelf), 4);
@@ -148,7 +149,7 @@ class Helper
                 $bits .= $addBit(decbin($onu), 8);
                 break;
             default:
-                throw new \Exception("Unkown type $encodeType. Supported types: slot, onu, eonu");
+                throw new Exception("Unkown type $encodeType. Supported types: slot, onu, eonu");
         }
         $bits .= $addBit('', 8);
         return bindec($bits);
@@ -191,7 +192,7 @@ class Helper
                 break;
 
             default:
-                throw new \Exception("Unknown type number = {$response['type']}");
+                throw new Exception("Unknown type number = {$response['type']}");
         }
         return $response;
     }
