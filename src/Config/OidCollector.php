@@ -5,6 +5,8 @@
 namespace SwitcherCore\Config;
 
 
+use ErrorException;
+use Exception;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\Objects\Oid;
 
@@ -37,9 +39,19 @@ class OidCollector extends Collector
     }
 
     /**
+     * @param Oid $oid
+     */
+    public function addOid2Cache($oid) {
+        $this->cacheIds[$oid->getOid()] = $oid;
+        $this->cacheNames[$oid->getName()] = $oid;
+        return $this;
+    }
+
+
+    /**
      * @param Model $model
      * @return $this
-     * @throws \ErrorException
+     * @throws ErrorException
      */
     function readEnterpriceOids(Model $model) {
         $this->updateOidCache($this->reader->readEnterpriseOids($model));
@@ -56,13 +68,13 @@ class OidCollector extends Collector
     /**
      * @param $oidName
      * @return Oid
-     * @throws \Exception
+     * @throws Exception
      */
     function getOidByName($oidName) {
         if(isset($this->cacheNames[$oidName])) {
             return $this->cacheNames[$oidName];
         } else {
-            throw new \Exception("Oid with name '$oidName' not found");
+            throw new Exception("Oid with name '$oidName' not found");
         }
     }
 
@@ -83,13 +95,13 @@ class OidCollector extends Collector
     /**
      * @param $oidId
      * @return Oid
-     * @throws \Exception
+     * @throws Exception
      */
     function getOidById($oidId) {
         if(isset($this->cacheIds[$oidId])) {
             return $this->cacheIds[$oidId];
         } else {
-            throw new \Exception("Oid with name '$oidId' not found");
+            throw new Exception("Oid with name '$oidId' not found");
         }
     }
 
@@ -97,7 +109,7 @@ class OidCollector extends Collector
      * @param $oidId
      * @param bool $reverse
      * @return Oid
-     * @throws \Exception
+     * @throws Exception
      *//*
     function getOidByRegexId($oidId, $reverse = true) {
 
@@ -131,8 +143,7 @@ class OidCollector extends Collector
                 }
             }
         }
-        exit;
-        throw new \Exception("Oid with id $oidId not found");
+        throw new Exception("Oid with id $oidId not found");
     }
 
 }

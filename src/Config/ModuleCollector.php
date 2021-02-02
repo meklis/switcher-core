@@ -6,6 +6,8 @@ namespace SwitcherCore\Config;
 
 
 
+use ErrorException;
+use Exception;
 use SwitcherCore\Config\Objects\Module;
 
 class ModuleCollector extends Collector
@@ -14,7 +16,7 @@ class ModuleCollector extends Collector
 
     /**
      * @return $this
-     * @throws \ErrorException
+     * @throws ErrorException
      */
     protected function read()
     {
@@ -29,14 +31,14 @@ class ModuleCollector extends Collector
 
     /**
      * @param $name
-     * @return mixed
-     * @throws \Exception
+     * @return Module
+     * @throws Exception
      */
     function getByName($name) {
         if(isset($this->modules[$name])) {
             return $this->modules[$name];
         }
-        throw new \Exception("Module configuration with name $name not found");
+        throw new Exception("Module configuration with name $name not found");
     }
 
 }

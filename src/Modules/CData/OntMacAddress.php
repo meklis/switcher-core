@@ -1,0 +1,52 @@
+<?php
+
+
+namespace SwitcherCore\Modules\CData;
+
+
+use Exception;
+use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
+use SwitcherCore\Switcher\Objects\WrappedResponse;
+
+class OntMacAddress extends CDataAbstractModule
+{
+    /**
+     * @var WrappedResponse[]
+     */
+    protected $response = null ;
+    function getPrettyFiltered($filter = [])
+    {
+        return $this->getPretty();
+    }
+    function getRaw()
+    {
+        return $this->response;
+    }
+
+    function getPretty()
+    {
+        $response = $this->getResponseByName('pon.countRegisteredOnts')->fetchAll();
+        $return = [];
+        foreach ($response as $resp) {
+            $return[] = [
+                'iface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
+                'count' => $resp->getValue(),
+            ];
+        }
+        return $return;
+    }
+
+
+    /**
+     * @param array $filter
+     * @return $this|AbstractModule
+     * @throws Exception
+     */
+    public function run($filter = [])
+    {
+        $this->getOntIdsByInterface($filter['interface']);
+        return $this;
+    }
+}
+

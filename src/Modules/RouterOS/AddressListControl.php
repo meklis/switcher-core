@@ -4,6 +4,9 @@
 namespace SwitcherCore\Modules\RouterOS;
 
 
+use Exception;
+use InvalidArgumentException;
+
 class AddressListControl extends ExecCommand
 {
     protected $status = false;
@@ -22,7 +25,7 @@ class AddressListControl extends ExecCommand
     {
 
         $ids = [];
-        foreach ($this->module->address_list_info->run([
+        foreach ($this->getModule('address_list_info')->run([
             'name' => $name,
             'address' => $address,
         ])->getPrettyFiltered() as $id) {
@@ -45,27 +48,27 @@ class AddressListControl extends ExecCommand
 
         switch ($params['action']) {
             case 'add':
-                if (!$params['name']) throw new \InvalidArgumentException("Name is required field from adding");
-                if (!$params['address']) throw new \InvalidArgumentException("Address is required field from adding", 404);
+                if (!$params['name']) throw new InvalidArgumentException("Name is required field from adding");
+                if (!$params['address']) throw new InvalidArgumentException("Address is required field from adding", 404);
                 $this->add($params);
                 break;
             case 'remove':
-                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new \InvalidArgumentException("_id or name or address is required for remove");
-                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device", 404);
+                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new InvalidArgumentException("_id or name or address is required for remove");
+                if (!$ids) throw new InvalidArgumentException("Addresses not found on device", 404);
                 $this->addressAction($ids, 'remove');
                 break;
             case 'disable':
-                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new \InvalidArgumentException("_id or name or address is required for disable");
-                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device", 404);
+                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new InvalidArgumentException("_id or name or address is required for disable");
+                if (!$ids) throw new InvalidArgumentException("Addresses not found on device", 404);
                 $this->addressAction($ids, 'disable');
                 break;
             case 'enable':
-                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new \InvalidArgumentException("_id or name or address is required for enable");
-                if (!$ids) throw new \InvalidArgumentException("Addresses not found on device", 404);
+                if (!$params['_id'] && !$params['name'] && !$params['address']) throw new InvalidArgumentException("_id or name or address is required for enable");
+                if (!$ids) throw new InvalidArgumentException("Addresses not found on device", 404);
                 $this->addressAction($ids, 'enable');
                 break;
             default:
-                throw new \Exception("Incorrect action. Allowed add,remove,disable,enable");
+                throw new Exception("Incorrect action. Allowed add,remove,disable,enable");
         }
         return $this;
     }

@@ -5,61 +5,63 @@ namespace SwitcherCore\Modules;
 
 
 
-use SnmpWrapper\Oid;
+use DI\Annotation\Inject;
+use DI\Container;
+use DI\DependencyException;
+use DI\NotFoundException;
+use Exception;
+use meklis\network\Telnet;
+use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Response\PoollerResponse;
+use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Switcher\Objects\InputsStore;
-use SwitcherCore\Switcher\Objects\ModuleStore;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule
 {
-    private $indexesPort = [];
     /**
      * @var WrappedResponse[]
      */
     protected $response;
 
     /**
-     * @var InputsStore
+     * @Inject
+     * @var OidCollector
      */
-    protected $obj;
+    protected $oids;
+
 
     /**
-     * @var ModuleStore
+     * @Inject
+     * @var MultiWalkerInterface
      */
-    protected $module;
+    protected $snmp;
 
-    public function setInputsStore(InputsStore $obj) {
-        $this->obj = $obj;
-        return $this;
-    }
+    /**
+     * @Inject
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * @Inject
+     * @var Container
+     */
+    private $container;
 
 
-    public function setModuleStore(ModuleStore $obj) {
-        $this->module = $obj;
-        return $this;
-    }
-
-    final public function start($params = []) {
-        $this->run($params);
-        return $this;
-    }
+    /**
+     * @Inject
+     * @var Telnet
+     */
+    protected $telnet;
 
     /**
      * @param array $params
      * @return self
      */
     public abstract function run($params = []);
-
-
-    /**
-     * @param array $filter
-     * @return self
-     */
-    public function parse($filter = []) {
-
-    }
 
     /**
      * @return array
@@ -78,49 +80,47 @@ abstract class AbstractModule
      * @param PoollerResponse[] $response
      * @return WrappedResponse[]
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function formatResponse($response) {
         $formated = [];
         foreach ($response as $resp) {
-            $oid = $this->obj->oidCollector->findOidById($resp->getOid());
+            $oid = $this->oids->findOidById($resp->getOid());
             $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
         }
 
         return $formated;
     }
-    function getIndexes($ethernetOnly = true) {
-        $indexes = [];
-        if($this->indexesPort) {
-            return $this->indexesPort;
-        }
-        $response = $this->formatResponse($this->obj->walker->walk([
-            Oid::init($this->obj->oidCollector->getOidByName('if.Index')->getOid()),
-            Oid::init($this->obj->oidCollector->getOidByName('if.Type')->getOid()),
-        ]));
-        $types = [];
-        foreach ($response['if.Type']->fetchAll() as $resp) {
-            $types[Helper::getIndexByOid($resp->getOid())] = $resp->getParsedValue();
-        }
 
-        foreach ($response['if.Index']->fetchAll() as $resp) {
-            if($ethernetOnly && in_array($types[Helper::getIndexByOid($resp->getOid())], ['FE','GE'])) {
-                $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
-            }
-        }
-        $this->indexesPort = $indexes;
-        return $indexes;
-    }
     /**
      * @param $name
      * @return WrappedResponse
      * @throws IncompleteResponseException
      */
-    protected function getResponseByName($name) {
+    protected function getResponseByName($name, &$sourceMap = null) {
+        if($sourceMap) {
+            if(!isset($sourceMap[$name])) {
+                throw  new IncompleteResponseException("Response with oid $name not found");
+            }
+            return $sourceMap[$name];
+        }
         if(!isset($this->response[$name])) {
             throw  new IncompleteResponseException("Response with oid $name not found");
         }
         return $this->response[$name];
     }
+    public function __toString()
+    {
+        return get_class($this);
+    }
 
+    /**
+     * @param $moduleName
+     * @return AbstractModule
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    public function getModule($moduleName) {
+        return $this->container->get("module.{$moduleName}");
+    }
 }

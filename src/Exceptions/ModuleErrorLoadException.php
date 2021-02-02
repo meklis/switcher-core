@@ -4,7 +4,9 @@
 namespace SwitcherCore\Exceptions;
 
 
-class ModuleErrorLoadException extends \Exception
+use Exception;
+
+class ModuleErrorLoadException extends Exception
 {
 
 }

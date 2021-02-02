@@ -17,13 +17,22 @@
     "require": {
         "php": ">=7.2.0",
         "meklis/snmp-wrapper": "dev-master",
-        "meklis/telnet-over-proxy": "~1.0",
         "meklis/routeros-api": "dev-master",
+        "meklis/telnet": "dev-master",
         "meklis/ipv4-subnet-calculator": "3.*",
-        "khill/php-duration": "~1.0"
+        "khill/php-duration": "~1.0",
+        "vlucas/phpdotenv": "^4.1@dev",
+        "php-di/php-di": "dev-master",
+        "composer/package-versions-deprecated": "1.x-dev",
+        "ocramius/proxy-manager": "^2.2",
+        "doctrine/annotations": "1.11.x-dev",
+        "ext-yaml": "*",
+        "ext-memcache": "*"
     },
-    "require-dev": {
-        "vlucas/phpdotenv": "^4.1@dev"
-    },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
+    }
 }

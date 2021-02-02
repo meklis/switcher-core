@@ -20,19 +20,19 @@ models:
       diag_linkup: false
       telnet_conn_type: dlink
     modules:
-      fdb: \SwitcherCore\Modules\Snmp\Fdb\DefaultParser
-      counters: \SwitcherCore\Modules\Snmp\Counters\DefaultParser
-      system: \SwitcherCore\Modules\Snmp\System\DefaultParser
-      cable_diag: \SwitcherCore\Modules\Snmp\CableDiag\DlinkParser
-      errors: \SwitcherCore\Modules\Snmp\Errors\DefaultParser
-      rmon: \SwitcherCore\Modules\Snmp\Rmon\DefaultParser
-      pvid: \SwitcherCore\Modules\Snmp\Vlan\PvidParser
-      link_info: \SwitcherCore\Modules\Snmp\Link\DlinkParser
-      vlans: \SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser
+      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
+      counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
+      errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
+      rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
+      pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
+      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
+      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
       clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
       save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
       reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
-      vlans_by_port: \SwitcherCore\Modules\Snmp\Vlan\VlanByPorts
+      vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
       ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
       ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
       ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl

@@ -95,29 +95,29 @@ $core->action('cable_diag', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\CableDiag\Des3526Parser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkDgs1100Parser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkDgs1100Parser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\CableDiag\DlinkParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\CableDiag\Des3526Parser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkDgs1100Parser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkDgs1100Parser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\CableDiag\DlinkParser)*
 
 
 ### clear_counters - Clear counters
@@ -159,30 +159,30 @@ $core->action('counters', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Counters\DefaultParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Counters\DefaultParser)*
 
 
 ### ctrl_port_descr - Port description configuration
@@ -374,30 +374,30 @@ $core->action('errors', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Errors\DefaultParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Errors\DefaultParser)*
 
 
 ### fdb - MAC forwarding database
@@ -424,31 +424,31 @@ $core->action('fdb', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Fdb\DefaultParser)*
-- ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\ZTE\Fdb)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Fdb\DefaultParser)*
+- ZTE ZXPON C300  *(\SwitcherCore\Modules\Dlink\ZTE\Fdb)*
 
 
 ### interface_vlan_info - Interface information (vlans on L3 devices)
@@ -547,31 +547,31 @@ $core->action('link_info', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Link\DlinkDes3526Parser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1100Parser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Link\DlinkDgs1210Parser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Link\DlinkParser)*
-- ZTE ZXPON C300  *(\SwitcherCore\Modules\Snmp\ZTE\LinkInfo)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Link\DlinkDes3526Parser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1100Parser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1100Parser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Link\DlinkParser)*
+- ZTE ZXPON C300  *(\SwitcherCore\Modules\Dlink\ZTE\LinkInfo)*
 
  
 ### pvid - PVID table
@@ -594,30 +594,30 @@ $core->action('pvid', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\PvidParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Vlan\PvidParser)*
 
 
 ### reboot - Reboot device
@@ -635,30 +635,30 @@ Name: **rmon**
 - **port**, pattern: *^[0-9]{1,3}$*
  
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Rmon\DefaultParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Rmon\DefaultParser)*
 
 
 ### save_config - Save configuration
@@ -756,30 +756,30 @@ $core->action('vlans', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\DlinkVlanParser)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser)*
 
 
 ### vlans_by_port - Vlan information over port
@@ -824,30 +824,30 @@ $core->action('vlans_by_port', $parameters);
 ```
 
 **Supported devices:**
-- D-link DES-1228/ME  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3028  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3052  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3028G  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DES-3526  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
-- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Snmp\Vlan\VlanByPorts)*
+- D-link DES-1228/ME  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3028  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3052  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3028G  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-10/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-10/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-18/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-26/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28F/C1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-18/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-26/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3200-28F/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DES-3526  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1100-06/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1100-10/ME  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-28/ME/A2  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-20/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-10/ME/A1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-20/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-28/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-1210-28XS/ME/B1  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
+- D-link DGS-3000-26TC  *(\SwitcherCore\Modules\Dlink\Vlan\VlanByPorts)*
 
 
 ### simple_queue_ctrl - Control simple queue
@@ -966,3 +966,926 @@ $core->action('address_list_info', $parameters);
 ]
 
 ```
+
+
+
+### zte_card_list - Listing of cards on OLT
+Name: **zte_card_list**
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\CardList)*
+
+```json
+[
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "1",
+        "cfg_type": "ETGO",
+        "real_type": "ETGOD",
+        "port": "8",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V2.1.0"
+    },
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "2",
+        "cfg_type": "GTGO",
+        "real_type": "GTGOG",
+        "port": "8",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V2.1.0"
+    },
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "3",
+        "cfg_type": "PRAM",
+        "real_type": "PRAM",
+        "port": "3",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V1.01"
+    },
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "4",
+        "cfg_type": "SMXA",
+        "real_type": "SMXA",
+        "port": "3",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V2.1.0"
+    }
+]
+```
+### zte_fdb - ONU signal strength info (on PON)
+Name: **zte_fdb**
+
+**Arguments:**
+- **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*
+- **interface**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*
+
+```json
+[
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "00:30:67:17:CE:9B",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "10:47:80:0E:EA:6F",
+        "vlan_id": 4056,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:B3:90",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:44",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "44"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:42:42:4F",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9A:70",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:12",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "12"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:AD:CA:0B",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:3C:89:27",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "C4:6E:1F:E1:AB:0B",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "E8:94:F6:2C:AF:39",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "80:FB:06:6C:70:AF",
+        "vlan_id": 4056,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:3C:84:03",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "34:79:16:B7:20:35",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "64:66:B3:36:0D:11",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:42:40:99",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "F4:F2:6D:B1:A7:F5",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EF:84",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:33",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "33"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:8A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:15",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "15"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "C4:6E:1F:AF:CA:95",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B8:A3:86:9B:32:97",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "E4:77:23:F1:EB:4A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:17",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "17"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BE:4C",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:23",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "23"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:34:70:F7",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "C0:4A:00:AA:45:F3",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EA:7A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:28",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "28"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:D8:EC",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:35",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "35"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:2A:5A:E9",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EC:A8",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:22",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "22"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EE:C4",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:19",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "19"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D4:DA:5C",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:27",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "27"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9B:48",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:4",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "4"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:42:42:ED",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:C0",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:24",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "24"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "A4:B6:1E:32:BC:B1",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:ED:BC",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:18",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "18"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:D6:16",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:2",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "2"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "80:FB:06:6C:70:BA",
+        "vlan_id": 4056,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "BC:EE:7B:1F:3E:30",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A7:7E",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:6",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "6"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:DD:5A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:47",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "47"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "64:66:B3:36:8D:A1",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:88:91:49",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A7:42",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:30",
+        "_interface": {
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu": "30"
+        }
+    }
+]
+```
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\Fdb)*
+
+
+### zte_gpon_onu_profile_list - List ONU profiles for GPON
+Name: **zte_gpon_onu_profile_list**
+
+**Arguments:**
+- **type**, pattern: *^(remote|line)$*, required
+
+```php
+$parameters=json_decode('{"type":"remote"}', true);
+$core->action('zte_gpon_onu_profile_list', $parameters);
+```
+```json
+
+[
+    "One\/VID\/4078",
+    "ZTE\/VID\/4078",
+    "1GE_Trunk_4055\/4056\/4078",
+    "VLAN_4052\/4055\/4056\/4060\/4078"
+]
+```
+
+```json5
+$parameters=json_decode('{"type":"line"}', true);
+$core->action('zte_gpon_onu_profile_list', $parameters);
+[
+    "100mb",
+    "500mb",
+    "1000mb"
+]
+```
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\GponOntProfileList)*
+
+
+### zte_onu_dereg - Allow send configuration command to interface
+Name: **zte_onu_dereg**
+
+**Arguments:**
+- **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\DeregOnt)*
+
+
+### zte_onu_ether_iface_info - ONU info (on PON)
+Name: **zte_onu_ether_iface_info**
+
+**Arguments:**
+- **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OnuEtherPortInfo)*
+
+
+### zte_onu_info - ONU info (on PON)
+Name: **zte_onu_info**
+
+**Arguments:**
+- **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInfo)*
+
+
+### zte_onu_interface_console - Allow send configuration command to interface
+Name: **zte_onu_interface_console**
+
+**Arguments:**
+- **onu**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required
+- **command**, pattern: *.**, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OntInterfaceConfCommand)*
+
+
+### zte_onu_pon_info - Info about all ONUs on interface
+Name: **zte_onu_pon_info**
+
+**Arguments:**
+- **interface**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*, required
+
+
+
+### zte_onu_registration_epon - ONU registration for GPON
+Name: **zte_onu_registration_epon**
+
+**Arguments:**
+- **interface**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*, required
+- **type**, pattern: *.**, required
+- **mac**, pattern: *.**, required
+- **number**, pattern: *[0-9]{1,3}*, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON)*
+
+
+### zte_onu_registration_gpon - ONU registration for GPON
+Name: **zte_onu_registration_gpon**
+
+**Arguments:**
+- **interface**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*, required
+- **type**, pattern: *.**, required
+- **serial**, pattern: *.**, required
+- **profile_line**, pattern: *.**, required
+- **profile_remote**, pattern: *.**, required
+- **number**, pattern: *[0-9]{1,3}*, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationGPON)*
+
+
+### zte_onu_signal_strength - ONU signal strength info (on PON)
+Name: **zte_onu_signal_strength**
+
+**Arguments:**
+- **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OnuSignalStrengthInfo)*
+
+
+### zte_onu_state_by_interface - List ONU state by interface
+Name: **zte_onu_state_by_interface**
+
+**Arguments:**
+- **interface**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*, required
+- **parse**, pattern: *.**
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\OntStateInfo)*
+
+
+### zte_unregistered_onu - List unregistered ONU
+Name: **zte_unregistered_onu**
+
+**Arguments:**
+- **type**, pattern: *^(all|gpon|epon)$*
+
+**Supported devices:**
+- ZTE ZXPON C320  *(\SwitcherCore\Modules\Telnet\ZTE\C300Series\UnregisteredOntList)*   

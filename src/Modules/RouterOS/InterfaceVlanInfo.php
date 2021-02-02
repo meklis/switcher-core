@@ -3,10 +3,6 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-
-
 class InterfaceVlanInfo extends ExecCommand
 {
 

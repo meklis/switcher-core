@@ -3,9 +3,9 @@
 
 namespace SwitcherCore\Modules\RouterOS;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
 
+use Exception;
+use InvalidArgumentException;
 
 class StaticArpControl extends ExecCommand
 {
@@ -20,26 +20,26 @@ class StaticArpControl extends ExecCommand
         return $this->response;
     }
     private function getInterfaceNameById($vlan_id) {
-        foreach ($this->module->interface_vlan_info->run()->getPrettyFiltered() as $vl) {
+        foreach ($this->getModule('interface_vlan_info')->run()->getPrettyFiltered() as $vl) {
             if($vlan_id == $vl['vlan_id']) {
                 return $vl['name'];
             }
         }
-        throw new \Exception("Interface by vlan_id=$vlan_id not found");
+        throw new Exception("Interface by vlan_id=$vlan_id not found");
     }
     public function run($params = [])
     {
         if($params['action'] == 'add') {
-            if(!$params['ip']) throw new \InvalidArgumentException("IP address is required for adding");
-            if(!$params['mac']) throw new \InvalidArgumentException("MAC address is required for adding");
-            if(!$params['vlan_id'] && !$params['vlan_name']) throw new \InvalidArgumentException("VLAN name or id is required for adding");
+            if(!$params['ip']) throw new InvalidArgumentException("IP address is required for adding");
+            if(!$params['mac']) throw new InvalidArgumentException("MAC address is required for adding");
+            if(!$params['vlan_id'] && !$params['vlan_name']) throw new InvalidArgumentException("VLAN name or id is required for adding");
             return $this->add($params);
         }
         if($params['action'] == 'remove') {
-            if(!$params['ip'] && !$params['mac']) throw new \InvalidArgumentException("Not all arguments passed for removing");
+            if(!$params['ip'] && !$params['mac']) throw new InvalidArgumentException("Not all arguments passed for removing");
             return $this->remove($params);
         }
-        throw new \Exception("StaticArpControl support only add|remove methods");
+        throw new Exception("StaticArpControl support only add|remove methods");
     }
     private function add($params) {
         $interface = $params['vlan_name'];
@@ -58,14 +58,14 @@ class StaticArpControl extends ExecCommand
     }
     private function getArpsInfoByParam($params) {
         
-        return $this->module->arp_info->run($params)->getPrettyFiltered();
+        return $this->getModule('arp_info')->run($params)->getPrettyFiltered();
     }
 
     private function remove($params) {
         $arps = $this->getArpsInfoByParam($params);
         $ids = [];
         if(!$arps) {
-            throw new \Exception("Arp not found by parameters", 404);
+            throw new Exception("Arp not found by parameters", 404);
         }
         foreach ($arps as $arp) {
             $this->execComm("/ip/arp/remove", [

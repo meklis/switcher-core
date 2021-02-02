@@ -4,42 +4,33 @@
 namespace SwitcherCore\Switcher;
 
 
+use ErrorException;
+use Exception;
 use SnmpWrapper\Device;
-use SnmpWrapper\MultiWalker;
-use SnmpWrapper\WrapperWorker;
+use SnmpWrapper\NoProxy\MultiWalker;
 use SwitcherCore\Config\Reader;
+use SwitcherCore\Exceptions\ModuleErrorLoadException;
+use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 class CoreConnector
 {
-    protected  $proxyConfigPath;
     protected  $configPath;
-    protected  $telnetPort = 23;
-    protected  $mikrotikApi = 55055;
+    /**
+     * @var CacheInterface
+     */
+    protected $cache;
     protected static $instances = [];
-    public function __construct($configPath, $proxyConfigPath)
+    public function __construct($configPath)
     {
-        $this->proxyConfigPath = $proxyConfigPath;
         $this->configPath = $configPath;
     }
-
-
-    public function setTelnetPort($port) {
-        $this->telnetPort = $port;
+    public function setCache(CacheInterface $cache) {
+        $this->cache = $cache;
         return $this;
     }
-    public function setMikrotikApiPort($port) {
-        $this->mikrotikApi = $port;
-        return $this;
-    }
-    public function getProxyConfigPath() {
-        return $this->proxyConfigPath;
-    }
-    public function getTelnetPort() {
-        return $this->telnetPort;
-    }
-    public function getMikrotikApiPort() {
-        return $this->mikrotikApi;
-    }
+
 
     /**
      * @param $ip
@@ -47,16 +38,16 @@ class CoreConnector
      * @param $login
      * @param $password
      * @return Core
-     * @throws \ErrorException
-     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException
-     * @throws \SwitcherCore\Exceptions\ModuleNotFoundException
-     * @throws \Exception
+     * @throws ErrorException
+     * @throws ModuleErrorLoadException
+     * @throws ModuleNotFoundException
+     * @throws Exception
      */
-    public function getOrInit($ip, $community, $login, $password) {
-        if(isset(self::$instances[$ip])) {
-            return self::$instances[$ip];
+    public function getOrInit(\SwitcherCore\Switcher\Device  $device) {
+        if(isset(self::$instances[$device->getIp()])) {
+            return self::$instances[$device->getIp()];
         }
-        return $this->init($ip, $community, $login, $password);
+        return $this->init($device);
     }
 
     /**
@@ -67,78 +58,58 @@ class CoreConnector
         return isset(self::$instances[$ip]);
     }
 
+    /**
+     * @param $ip
+     * @return Core
+     * @throws Exception
+     */
     public function get($ip) {
         if(self::isConnected($ip)) {
             return self::$instances[$ip];
         }
-        throw new \Exception("Connection to $ip not existed");
+        throw new Exception("Connection to $ip not existed");
     }
 
-    /**
-     * @param $ip
-     * @param $community
-     * @param $login
-     * @param $password
-     * @return Core
-     * @throws \ErrorException
-     * @throws \SwitcherCore\Exceptions\ModuleErrorLoadException
-     * @throws \SwitcherCore\Exceptions\ModuleNotFoundException
-     * @throws \Exception
-     */
-    public function init($ip, $community, $login, $password) {
+    public function init(\SwitcherCore\Switcher\Device  $device) {
 
-        $walker = $this->initWalker($ip, $community);
+        $walker = $this->initWalker($device);
 
-        $core = (new \SwitcherCore\Switcher\Core(
-            new  Reader($this->configPath)
-        ))->addInput($walker)->init();
-
+        $core = (new Core(
+            new  Reader($this->configPath),
+            $this->cache
+        ))->setDevice($device)->addInput($walker)->init();
         $inputs_list = $core->getNeedInputs();
         if(in_array('telnet', $inputs_list)) {
-            $telnet = $this->initTelnet($ip,$login,$password);
+            $telnet = $this->initTelnet($device);
             $core->addInput($telnet);
         }
 
         if(in_array('routeros_api', $inputs_list)) {
-            $routerOS = $this->initMikrotikApi($ip, $login,$password);
+            $routerOS = $this->initMikrotikApi($device);
             $core->addInput($routerOS);
         }
-        self::$instances[$ip] = $core;
+        self::$instances[$device->getIp()] = $core;
         return $core;
     }
 
-    /**
-     * @param $ip
-     * @return \SwitcherCore\Config\ProxyConfiguration
-     * @throws \Exception
-     */
-    private function getProxyConfig($ip) {
-        $proxyConfig = new \SwitcherCore\Config\ProxyConfiguration($this->proxyConfigPath);
-        return $proxyConfig->setSearchedIP($ip);
-    }
 
-    private function initWalker($ip, $community) {
-        $wrapper =  new  WrapperWorker(
-            $this->getProxyConfig($ip)
-                ->getSnmpConfiguration()['address']
-        );
-        return (new  MultiWalker($wrapper))->addDevice(
+    private function initWalker(\SwitcherCore\Switcher\Device $device) {
+        return (new  MultiWalker())->addDevice(
             Device::init(
-                $ip,
-                $community,
-                $this->getProxyConfig($ip)
-                    ->getSnmpConfiguration()['timeout']
+                $device->getIp(),
+                $device->getCommunity(),
+                $device->snmpTimeoutSec,
+                $device->snmpRepeats
             )
         );
     }
-    private function initTelnet($ip, $login,$password) {
-        return (new \SwitcherCore\Switcher\Objects\TelnetLazyConnect($ip, $this->getTelnetPort()))
-            ->connectOverProxy($this->getProxyConfig($ip)->getTelnetConfiguration()['address'])
-            ->login($login, $password);
+    private function initTelnet(\SwitcherCore\Switcher\Device $device) {
+        return (new TelnetLazyConnect($device->getIp(), $device->telnetPort , $device->telnetTimeout))
+            ->login($device->getLogin(), $device->getPassword());
     }
-    private function initMikrotikApi($ip, $login,$password) {
-        return (new \SwitcherCore\Switcher\Objects\RouterOsLazyConnect())
-            ->setPort($this->getMikrotikApiPort())
-            ->connect($ip, $login, $password);
+    private function initMikrotikApi(\SwitcherCore\Switcher\Device $device) {
+        return (new RouterOsLazyConnect())
+            ->setPort($device->mikrotikApiPort)
+            ->connect($device->getIp(), $device->getLogin(), $device->getPassword());
     }
 }
