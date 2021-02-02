@@ -5,6 +5,8 @@ namespace SwitcherCore\Modules\CData;
 
 
 use Exception;
+use SnmpWrapper\Oid;
+use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
@@ -15,26 +17,56 @@ class OntMacAddress extends CDataAbstractModule
      * @var WrappedResponse[]
      */
     protected $response = null ;
-    function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
-    }
     function getRaw()
     {
         return $this->response;
     }
 
-    function getPretty()
-    {
-        $response = $this->getResponseByName('pon.countRegisteredOnts')->fetchAll();
+    private function processNoInterface($response) {
         $return = [];
-        foreach ($response as $resp) {
+        foreach ($this->getResponseByName('ont.macAddr', $response)->fetchAll() as $r) {
+            $onuId = Helper::getIndexByOid($r->getOid());
+            $interface = $this->parseInterface($onuId);
+            $interface['onu_id'] = $onuId;
             $return[] = [
-                'iface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
-                'count' => $resp->getValue(),
+                '_id' =>   $onuId,
+                '_interface' => $interface,
+                'interface' => $interface['name'] . ":" . $interface['onu_num'],
+                'mac_address' => $r->getHexValue(),
             ];
         }
         return $return;
+    }
+
+    /**
+     * @param PoollerResponse[] $response
+     * @return array
+     * @throws \SwitcherCore\Exceptions\IncompleteResponseException
+     */
+    private function processWithInterface($response) {
+        $return = [];
+        $responses = [];
+        foreach ($response as $poolerResponse) {
+            if($poolerResponse->error) continue;
+            $responses[] = $poolerResponse->getResponse()[0];
+        }
+        foreach ($responses as $r) {
+            $onuId = Helper::getIndexByOid($r->getOid());
+            $interface = $this->parseInterface($onuId);
+            $interface['onu_id'] = $onuId;
+            $return[] = [
+                '_id' =>   $onuId,
+                '_interface' => $interface,
+                'interface' => $interface['name'] . ":" . $interface['onu_num'],
+                'mac_address' => $r->getHexValue(),
+            ];
+        }
+        return $return;
+    }
+
+    function getPretty()
+    {
+        return $this->response;
     }
 
 
@@ -45,7 +77,18 @@ class OntMacAddress extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        $this->getOntIdsByInterface($filter['interface']);
+        $oid = $this->oids->getOidByName('ont.macAddr');
+        if(!$filter['interface']) {
+            $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk([Oid::init($oid->getOid())])));
+        } else {
+            $oidId = $oid->getOid();
+            $oids = [];
+            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
+                $oids[] = Oid::init("{$oidId}.$id");
+            }
+            $this->response = $this->processWithInterface($this->snmp->get($oids));
+        }
+
         return $this;
     }
 }

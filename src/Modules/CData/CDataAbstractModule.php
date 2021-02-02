@@ -4,16 +4,31 @@ namespace SwitcherCore\Modules\CData;
 
 use DI\DependencyException;
 use DI\NotFoundException;
+use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Modules\AbstractModule;
 
 abstract class CDataAbstractModule extends AbstractModule
 {
-    protected $interfaces;
+    private $interfaces;
 
+
+    function __construct(Model $model) {
+        $this->interfaces = $model->getExtraParamByName('interfaces');
+    }
+
+    function getPrettyFiltered($filter = [])
+    {
+        $resp = $this->getPretty();
+        if($filter['meta'] !== 'yes') {
+            foreach ($resp as $k=>$_) {
+                unset($resp[$k]['_interface']);
+            }
+        }
+        return $resp;
+    }
 
     protected function parseInterface($input)
     {
-        $this->interfaces = $this->model->getExtraParamByName('interfaces');
 
         if (is_numeric($input) && $input < 100) {
             $interface = $this->findInterface($input, 'xid');
@@ -50,13 +65,13 @@ abstract class CDataAbstractModule extends AbstractModule
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],
                     'onu_num' => $onuNum,
-                    'onu_id' => null,
+                    'onu_id' => $interface['id'] + $onuNum,
                     'uni' => null,
                 ];
             }
         } elseif (!is_numeric($input)) {
             if (preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $input, $m)) {
-                $interface = $this->findInterface("{$m[0]}{$m[1]}/{$m[2]}/{$m[3]}");
+                $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}", 'name');
                 $response = [
                     'name' => $interface['name'],
                     'id' => $interface['id'],
@@ -71,12 +86,12 @@ abstract class CDataAbstractModule extends AbstractModule
                         $response['uni'] = (int)$m[6];
                         $response['onu_num'] = (int)$m[5];
                         $response['type'] = 'UNI';
-                        $response['onu_id'] = (int)$m[5] + $response['xid'];
+                        $response['onu_id'] = (int)$m[5] + $response['id'];
                         break;
                     case 6:
                         $response['onu_num'] = (int)$m[5];
                         $response['type'] = 'ONU';
-                        $response['onu_id'] = (int)$m[5] + $response['xid'];
+                        $response['onu_id'] = (int)$m[5] + $response['id'];
                         break;
                 }
                 return $response;
@@ -102,7 +117,19 @@ abstract class CDataAbstractModule extends AbstractModule
      * @throws NotFoundException
      */
     function getOntIdsByInterface($interface) {
-        $response = $this->getModule('pon_onts_status')->run()->getPretty();
-        print_r($response);
+        $interface = $this->parseInterface($interface);
+        if($interface['onu_num']) {
+            return [(int)$interface['onu_id']];
+        }
+        $min = $interface['id'];
+        $max = $min + 256;
+        $ontIds = [];
+        $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+        foreach ($onts as $ont) {
+            if($ont['_id'] > $min && $ont['_id'] <= $max) {
+                $ontIds[] = (int)$ont['_id'];
+            }
+        }
+        return  $ontIds;
     }
 }

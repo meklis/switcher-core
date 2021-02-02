@@ -13,6 +13,10 @@ models:
       pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
       pon_registered_onts: \SwitcherCore\Modules\CData\PonRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
+      pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
+      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
+      pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
+      pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
     extra:
       telnet_conn_type: ios
       device_type: pon
