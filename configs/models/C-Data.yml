@@ -17,6 +17,8 @@ models:
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
+      pon_fdb: \SwitcherCore\Modules\CData\PonFDBTable
+      pon_uni_info: \SwitcherCore\Modules\CData\OntUniInformation
     extra:
       telnet_conn_type: ios
       device_type: pon
