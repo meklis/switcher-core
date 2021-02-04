@@ -18,7 +18,8 @@ models:
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
       pon_fdb: \SwitcherCore\Modules\CData\PonFDBTable
-      pon_uni_info: \SwitcherCore\Modules\CData\OntUniInformation
+      pon_interface_info: \SwitcherCore\Modules\CData\PonInterfaceInformation
+      pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
     extra:
       telnet_conn_type: ios
       device_type: pon

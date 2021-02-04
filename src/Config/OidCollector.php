@@ -101,7 +101,7 @@ class OidCollector extends Collector
         if(isset($this->cacheIds[$oidId])) {
             return $this->cacheIds[$oidId];
         } else {
-            throw new Exception("Oid with name '$oidId' not found");
+            throw new Exception("Oid with id '$oidId' not found");
         }
     }
 

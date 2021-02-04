@@ -121,6 +121,9 @@ abstract class CDataAbstractModule extends AbstractModule
         if($interface['onu_num']) {
             return [(int)$interface['onu_id']];
         }
+        if($interface['type'] !== 'PON') {
+            return [(int)$interface['id']];
+        }
         $min = $interface['id'];
         $max = $min + 256;
         $ontIds = [];

@@ -64,9 +64,11 @@ try {
     echo "==========================RESPONSE===============================\n";
     echo "\$parameters=json_decode('" . json_encode($params) . "', true);\n";
     echo "\$core->action('{$module['name']}', \$parameters);\n\n";
+    $start = microtime(true);
     echo json_encode($core->action($module['name'], $params), JSON_PRETTY_PRINT);
+    $time = round(microtime(true) - $start, 3);
     echo "\n==============================================================\n\n\n";
-    echo "Diagnostic finished!\n";
+    echo "Diagnostic finished with time $time sec!\n";
 } catch (\Exception $e) {
     echo "\n==================DUMP OF TELNET CONNECTION===============\n";
     throw new Exception($e);

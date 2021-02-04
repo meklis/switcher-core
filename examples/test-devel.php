@@ -10,10 +10,12 @@ $C = [
     'community' => 'billing',
     'login' => 'test',
     'password' => 'test',
-    'module' => 'pon_uni_info',
+    'module' => 'pon_interfaces_tree',
 ];
 
-$ARGUMENTS = [];
+$ARGUMENTS = [
+    'as_tree' => 'yes',
+];
 
 $connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'))
     ->setCache(new \SwitcherCore\Switcher\PhpCache());
