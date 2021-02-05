@@ -3,14 +3,16 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use \SwitcherCore\Modules\Helper;
 use \SwitcherCore\Switcher\CoreConnector;
+use SwitcherCore\Switcher\Device;
+use SwitcherCore\Switcher\PhpCache;
 
 
 $handle = fopen("php://stdin", "r");
 
-$connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'))
-    ->setCache(new \SwitcherCore\Switcher\PhpCache());
+$connector = (new CoreConnector(Helper::getBuildInConfig()))
+    ->setCache(new PhpCache());
 
-$core = $connector->init(\SwitcherCore\Switcher\Device::init($argv[1], $argv[2], $argv[3], $argv[4])
+$core = $connector->init(Device::init($argv[1], $argv[2], $argv[3], $argv[4])
     ->set('telnetTimeout', 10)
     ->set('telnetPort', 23)
     ->set('snmpRepeats', 3)

@@ -375,3 +375,22 @@
     - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
     - {name: meta, pattern: 'yes|no', required: no }
 
+- name: pon_ont_reboot
+  descr: Reboot ONU by interface
+  arguments:
+    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)$', required: yes}
+
+- name: pon_ont_reset
+  descr: Reset ONT configuration
+  arguments:
+    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)$', required: yes}
+
+- name: pon_ont_delete
+  descr: Delete ont from system
+  arguments:
+    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)$', required: yes}
+
+- name: pon_ont_clear_counters
+  descr: Clear counters on ONT (uni port)
+  arguments:
+    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)\/?([0-9]{1,3})?$', required: yes}

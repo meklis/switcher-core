@@ -12,6 +12,11 @@ abstract class CDataAbstractModule extends AbstractModule
     private $interfaces;
 
 
+    function getPretty()
+    {
+        return true;
+    }
+
     function __construct(Model $model) {
         $this->interfaces = $model->getExtraParamByName('interfaces');
     }
@@ -19,7 +24,7 @@ abstract class CDataAbstractModule extends AbstractModule
     function getPrettyFiltered($filter = [])
     {
         $resp = $this->getPretty();
-        if($filter['meta'] !== 'yes') {
+        if(isset($filter['meta']) && $filter['meta'] !== 'yes') {
             foreach ($resp as $k=>$_) {
                 unset($resp[$k]['_interface']);
             }

@@ -1,59 +1,84 @@
 # Switcher-Core
-### Module for help-provider services
+### Библиотека PHP для работы с сетевым оборудованием 
 
-## Overview
-This library allow works with devices using a single interface - Core.
-Library automaticaly detect model, load device configuration and modules for work with it.   
-    
-Switcher-core using modules for work with devices and allow extend the kernel with your own modules.    
-Now library has three inputs, in feature inputs will be extend.    
+## Обзор
+Библиотека позволяет работать с устройствами через единый интерфейс - нет необходимости писать интерфейсы и врапперы под каждого вендора, используйте модули.
+Набор модулей и возвращаемый результат может отличаться в зависимости от типа оборудования, но это необходимая жертва. 
 
-### Supported inputs
+Так же есть возможность доработки своих модулей, на случай, если вашего оборудования не будет в списке - просто сделайте fork). 
+
+### Поддерживаемые интерфейсы 
 * Telnet
 * SNMP
 * RouterOS API
 
-### Supported vendors
-- [x] D-link (switches, snmp/telnet)
-- [x] Mikrotik, RouterOS (snmp/RouterOS api)
-- [ ] EdgeCore (switches)
-- [ ] BDcom (PON)
-- [ ] Xtreme (Routers)
-- [ ] Huawei (Switches)
-- [ ] ZTE (PON)
-- [ ] C-Data (PON)
+### Поддерживаемые вендоры
+- [x] D-link switches (snmp/telnet)
+- [x] Mikrotik routers (snmp/RouterOS api)
+- [ ] EdgeCore switches 
+- [ ] BDcom OLTs
+- [ ] Xtreme routers
+- [ ] Huawei switches
+- [x] ZTE OLTs
+- [x] C-Data OLts
 
-### Requirements   
-* Telnet-Proxy - https://github.com/meklis/telnet-proxy    
-* SnmpWalk-Proxy - https://github.com/meklis/http-snmpwalk-proxy    
+### [Полный список поддерживаемого оборудования и их модулей](docs/DEVICES.md)     
+### [Список модулей](docs/MODULES.md)    
 
-*Use https://github.com/meklis/switcher instructions and docker-compose files for easy start proxies* 
+### Необходимо для начала работы   
+PHP >= 7.2    
+Модули PHP: yaml, zip, curl, json, mbstring, snmp, sockets    
 
-It works only with PHP >=7.2
 
-### Install
+*больше нет необходимости в использовании прокси(возможность работы через прокси убрана с версии 2.0)*
+
+
+
+### Подключение к вашему проекту
 ```
 composer install meklis/switcher-core
 ```
 
-### How to use
-``` 
-require __DIR__ . "/../vendor/autoload.php";
+### Как использовать
+```PHP
+<?php
+require __DIR__ . "/vendor/autoload.php";
 
-use SwitcherCore\Switcher\CoreConnector;
+use SwitcherCore\Modules\Helper; 
+use SwitcherCore\Switcher\CoreConnector; //Подготавливает объект кора, более удобно
+use SwitcherCore\Switcher\Device;
+use SwitcherCore\Switcher\PhpCache; //Кеш для кора, или используйте свой, реализовав интерфейс SwitcherCore\Switcher\CacheInterface
+ 
+ $deviceIp = '127.0.0.1';
+ $deviceCommunity = 'public';
+ $deviceLogin = 'login';
+ $devicePassword = 'password';
+ 
+$coreConnector = new CoreConnector(
+    //Возвращает путь к встроенному каталогу с конфигурацией
+    //При желании можно скопировать конфигурацию с библиотеки (vendor/meklis/switcher-core/configs) и изменять ее
+    Helper::getBuildInConfig()    
+);
+$connector = ($coreConnector)
+    //Кеш устанавливать необязательно, но желательно и желательно использовать реализацию с memcache
+    ->setCache(new PhpCache());
 
-$ip = '10.90.90.90';
-$community = 'public';
+$core = $connector->init(
+    //Метод init возвращает экземпляр класса Device
+    Device::init($deviceIp, $deviceCommunity, $deviceLogin, $devicePassword)
+        //Установка параметров для подключений, необязательно (в примере указаны дефолтные параметры)
+        ->set('telnetTimeout', 10) 
+        ->set('telnetPort', 23)
+        ->set('snmpRepeats', 3)
+        ->set('snmpTimeoutSec', 2)
+        ->set('mikrotikApiPort', 8728)
+);
 
-//Connect use CoreConnector
-$connector = (new CoreConnector(Helper::getBuildInConfig(), __DIR__ . '/../configs/proxies.yml'));
-$core = $connector->init($ip, $community);
-
-//Get system info
+//Пример получения данных с модуля 
 echo json_encode($core->action('system'), JSON_PRETTY_PRINT);
-
-/**
-{
+/*
+Модуль system вернет следующий вывод (поля могут изменяться в зависимости от производителя)
+ {
     "descr": "RouterOS RB952Ui-5ac2nD",
     "uptime": "8d 9h 55min 32sec",
     "contact": "",
@@ -82,18 +107,3 @@ echo json_encode($core->action('system'), JSON_PRETTY_PRINT);
 */
 
 ```
-
-    
-### Build-in modules
-[Modules response example](docs/MODULES.md)
-
-### Customization
-You can add own devices models and create own modules using core.    
-
-For using the customization you must copy this configuration directory to you own dir. Than you can use it for your customization.
-``` 
-project_dir$ cp -R vendor/meklis/switcher-core/configs ./switcher-config
-```
-In configuration files you may add models.      
-You can see in commit [7e368f7f](https://github.com/meklis/switcher-core/commit/7e368f7f4970a66b3c1a91ac174ce72e12e42725) how to add new module, for example.
-
