@@ -18,7 +18,7 @@ $MARKDONW = "###Список поддерживаемого оборудован
 foreach ($supportDevices as $data) {
     $modules = '';
     foreach ($data['modules'] as $module) {
-        $modules .= "[{$module}](docs/MODULES.md#{$module}), ";
+        $modules .= "[{$module}](MODULES.md#{$module}), ";
     }
     $modules = trim($modules, ', ');
     $MARKDONW .= "* **{$data['name']}** - {$modules}           \n";
