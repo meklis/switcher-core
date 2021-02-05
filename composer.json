@@ -22,7 +22,7 @@
         "meklis/ipv4-subnet-calculator": "3.*",
         "khill/php-duration": "~1.0",
         "vlucas/phpdotenv": "^4.1@dev",
-        "php-di/php-di": "dev-master",
+        "php-di/php-di": "^6.1",
         "composer/package-versions-deprecated": "1.x-dev",
         "ocramius/proxy-manager": "^2.2",
         "doctrine/annotations": "1.11.x-dev",
