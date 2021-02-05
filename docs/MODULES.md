@@ -1,6 +1,6 @@
 ### Список поддерживаемых модулей    
     
-### [address_list_ctrl](#address_list_ctrl) - Working with address list 
+### [address_list_ctrl](#address_list_ctrl) - Управление записями в адрес-листе 
     
 **Arguments:**    
 - **_id**, pattern: *.**    
@@ -11,14 +11,14 @@
 - **timeout**, pattern: *.**    
      
     
-### [address_list_info](#address_list_info) - Info by addresses list 
+### [address_list_info](#address_list_info) - Информация по адрес-листам (Router OS) 
     
 **Arguments:**    
 - **name**, pattern: *^[0-9a-zA-Z_\-]{1,}$*    
 - **address**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$*    
      
     
-### [arp_info](#arp_info) - ARP information (L3 devices) 
+### [arp_info](#arp_info) - ARP таблица 
     
 **Arguments:**    
 - **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*    
@@ -37,43 +37,43 @@
 - **count**, pattern: *^[0-9]{1,}$*    
      
     
-### [cable_diag](#cable_diag) - Cable diagnostic 
+### [cable_diag](#cable_diag) - Диагностика кабеля (длина и состояние пары) 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,3}$*    
      
     
-### [clear_counters](#clear_counters) - Clear counters 
+### [clear_counters](#clear_counters) - Очистка счетчиков (во всей системе) 
      
     
-### [counters](#counters) - Counters on port 
+### [counters](#counters) - Счетчики на портах 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,3}$*    
      
     
-### [ctrl_port_descr](#ctrl_port_descr) - Port description configuration 
+### [ctrl_port_descr](#ctrl_port_descr) - Установка описания порта 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,4}$*, required    
 - **description**, pattern: *^[0-9a-zA-Z_]{1,}$*, required    
      
     
-### [ctrl_port_speed](#ctrl_port_speed) - Port speed configuration 
+### [ctrl_port_speed](#ctrl_port_speed) - Установка скорости на порту 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,4}$*, required    
 - **speed**, pattern: *^auto|(10|100|1000|10000)-(Half|Full)$*, required    
      
     
-### [ctrl_port_state](#ctrl_port_state) - Port state configuration 
+### [ctrl_port_state](#ctrl_port_state) - Установка административного состояния порта(включение/отключение) 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,4}$*, required    
 - **state**, pattern: *^(disable|enable)$*, required    
      
     
-### [ctrl_static_arp](#ctrl_static_arp) - Adding and removing static ARP (L3 Devices) 
+### [ctrl_static_arp](#ctrl_static_arp) - Управление ARP-ами  (L3 Devices) 
     
 **Arguments:**    
 - **action**, pattern: *^(add|remove)$*, required    
@@ -84,7 +84,7 @@
 - **comment**, pattern: *.**    
      
     
-### [ctrl_static_lease](#ctrl_static_lease) - Control static leases 
+### [ctrl_static_lease](#ctrl_static_lease) - Управление лизами 
     
 **Arguments:**    
 - **action**, pattern: *^(add|remove)$*, required    
@@ -96,7 +96,7 @@
 - **comment**, pattern: *^.*$*    
      
     
-### [ctrl_vlan_port](#ctrl_vlan_port) - Vlan configuration on port 
+### [ctrl_vlan_port](#ctrl_vlan_port) - Управление вланами на порту устройства 
     
 **Arguments:**    
 - **id**, pattern: *^[0-9]{1,4}$*, required    
@@ -105,7 +105,7 @@
 - **action**, pattern: *^(delete|add)$*, required    
      
     
-### [ctrl_vlan_state](#ctrl_vlan_state) - Vlan configuration on device 
+### [ctrl_vlan_state](#ctrl_vlan_state) - Управление вланами на устройстве 
     
 **Arguments:**    
 - **id**, pattern: *^[0-9]{1,4}$*    
@@ -113,7 +113,7 @@
 - **action**, pattern: *^(delete|create)$*, required    
      
     
-### [dhcp_server_info](#dhcp_server_info) - DHCP-server information (RouterOS devices) 
+### [dhcp_server_info](#dhcp_server_info) - Список DHCP-серверов и их конфиг (RouterOS devices) 
     
 **Arguments:**    
 - **name**, pattern: *^.*$*    
@@ -121,13 +121,13 @@
 - **vlan_name**, pattern: *^.*$*    
      
     
-### [errors](#errors) - Errors on port 
+### [errors](#errors) - Ошибки на портах 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,3}$*    
      
     
-### [fdb](#fdb) - MAC forwarding database 
+### [fdb](#fdb) - FDB-таблица 
     
 **Arguments:**    
 - **port**, pattern: *.**    
@@ -135,14 +135,14 @@
 - **vlan_id**, pattern: *^[0-9]{1,4}$*    
      
     
-### [interface_vlan_info](#interface_vlan_info) - Interface information (vlans on L3 devices) 
+### [interface_vlan_info](#interface_vlan_info) - Информация по интерфейсам (vlans on L3 devices) 
     
 **Arguments:**    
 - **name**, pattern: *^[0-9a-zA-Z_]{1,16}$*    
 - **vlan_id**, pattern: *^[0-9]{1,4}$*    
      
     
-### [lease_info](#lease_info) - Lease information 
+### [lease_info](#lease_info) - Lease таблица 
     
 **Arguments:**    
 - **ip**, pattern: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*    
@@ -152,13 +152,13 @@
 - **dhcp_server**, pattern: *^.*$*    
      
     
-### [link_info](#link_info) - Port information 
+### [link_info](#link_info) - Информация о портах (для свитчей) 
     
 **Arguments:**    
 - **port**, pattern: *^.*$*    
      
     
-### [onu_reboot](#onu_reboot) - Reboot ONU 
+### [onu_reboot](#onu_reboot) - Перезагрузка ОНУ 
     
 **Arguments:**    
 - **onu**, pattern: *.**, required    
@@ -250,31 +250,31 @@
 ### [pon_registered_onts](#pon_registered_onts) - Count registered onts on pon 
      
     
-### [pvid](#pvid) - PVID table 
+### [pvid](#pvid) - PVID таблица 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,3}$*    
      
     
-### [reboot](#reboot) - Reboot device 
+### [reboot](#reboot) - Перезагрузка устройства 
      
     
-### [rmon](#rmon) - RMON statistic 
+### [rmon](#rmon) - RMON статистика (более детальная инфа о ошибках) 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,3}$*    
      
     
-### [save_config](#save_config) - Save configuration 
+### [save_config](#save_config) - Сохранение конфигурации 
      
     
-### [sfp_info](#sfp_info) - SFP into 
+### [sfp_info](#sfp_info) - Информация о SFP-модулях 
     
 **Arguments:**    
 - **port**, pattern: *.**    
      
     
-### [simple_queue_ctrl](#simple_queue_ctrl) - Info of simple queue 
+### [simple_queue_ctrl](#simple_queue_ctrl) - Управление ограничением скорости 
     
 **Arguments:**    
 - **_id**, pattern: *.**    
@@ -288,7 +288,7 @@
 - **comment**, pattern: *.**    
      
     
-### [simple_queue_info](#simple_queue_info) - Info of simple queue 
+### [simple_queue_info](#simple_queue_info) - Информация о ограничении скорости  (микротик) 
     
 **Arguments:**    
 - **_id**, pattern: *.**    
@@ -298,22 +298,22 @@
 - **parent**, pattern: *.**    
      
     
-### [slot_info](#slot_info) - Slot information (ZTE devices) 
+### [slot_info](#slot_info) - Информация о слотах (ZTE devices) 
     
 **Arguments:**    
 - **slot_num**, pattern: *^[0-9]{1,4}$*    
      
     
-### [system](#system) - System information 
+### [system](#system) - Системная информация о устройстве 
      
     
-### [vlans](#vlans) - Vlan information 
+### [vlans](#vlans) - Информация о вланах на устройстве 
     
 **Arguments:**    
 - **vlan_id**, pattern: *^[0-9]{1,4}$*    
      
     
-### [vlans_by_port](#vlans_by_port) - Vlan information over port 
+### [vlans_by_port](#vlans_by_port) - Информация о вланах на портах 
     
 **Arguments:**    
 - **port**, pattern: *^[0-9]{1,3}$*    
@@ -322,7 +322,7 @@
 ### [zte_card_list](#zte_card_list) - Listing of cards on OLT 
      
     
-### [zte_fdb](#zte_fdb) - ONU signal strength info (on PON) 
+### [zte_fdb](#zte_fdb) - FDB таблица с интерфейса/порта/ОНУ 
     
 **Arguments:**    
 - **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*    
@@ -341,13 +341,13 @@
 - **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required    
      
     
-### [zte_onu_ether_iface_info](#zte_onu_ether_iface_info) - ONU info (on PON) 
+### [zte_onu_ether_iface_info](#zte_onu_ether_iface_info) - Инфо о Ethernet портах на ONU (UNI ports) 
     
 **Arguments:**    
 - **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required    
      
     
-### [zte_onu_info](#zte_onu_info) - ONU info (on PON) 
+### [zte_onu_info](#zte_onu_info) - Информация о ОНУшке (детально) 
     
 **Arguments:**    
 - **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required    
@@ -360,7 +360,7 @@
 - **command**, pattern: *.**, required    
      
     
-### [zte_onu_pon_info](#zte_onu_pon_info) - Info about all ONUs on interface 
+### [zte_onu_pon_info](#zte_onu_pon_info) - Информация о всех онушках в порту PON 
     
 **Arguments:**    
 - **interface**, pattern: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*, required    
@@ -386,7 +386,7 @@
 - **number**, pattern: *[0-9]{1,3}*, required    
      
     
-### [zte_onu_signal_strength](#zte_onu_signal_strength) - ONU signal strength info (on PON) 
+### [zte_onu_signal_strength](#zte_onu_signal_strength) - Инфо у уровне сигналов ОНУ 
     
 **Arguments:**    
 - **onu**, pattern: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, required    
