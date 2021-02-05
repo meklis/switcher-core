@@ -20,14 +20,14 @@ foreach ($moduleData as $name=>$data) {
     $arguments = "";
     if($data['arguments']) {
         $arguments .= "    \n";
-        $arguments .= "**Arguments:**    \n";
+        $arguments .= "**Аргументы:**    \n";
         foreach ($data['arguments'] as $argument) {
             if ($argument['required']) {
-                $req = ", required";
+                $req = ", обязательный";
             } else {
                 $req = "";
             }
-            $arguments .= "- **{$argument['name']}**, pattern: *{$argument['pattern']}*$req    \n";
+            $arguments .= "- **{$argument['name']}**, проверка выражением: *{$argument['pattern']}*$req    \n";
         }
     }
 
