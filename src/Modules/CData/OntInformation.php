@@ -16,10 +16,6 @@ class OntInformation extends CDataAbstractModule
      * @var WrappedResponse[]
      */
     protected $response = null ;
-    function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
-    }
     function getRaw()
     {
         return $this->response;

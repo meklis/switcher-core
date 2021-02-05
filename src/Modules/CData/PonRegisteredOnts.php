@@ -16,7 +16,7 @@ class PonRegisteredOnts extends CDataAbstractModule
      * @var WrappedResponse[]
      */
     protected $response = null ;
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
         return $this->getPretty();
     }

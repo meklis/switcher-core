@@ -13,6 +13,9 @@ class DefaultParser extends SwitchesPortAbstractModule
         $indexes = $this->getIndexes();
         $response = [];
         foreach ($this->response as $oid_name => $wrappedResponse) {
+            if($wrappedResponse->error()) {
+                return  [];
+            }
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
                 $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();

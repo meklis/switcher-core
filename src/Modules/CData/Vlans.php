@@ -13,7 +13,7 @@ class Vlans extends CDataAbstractModule
         return $this->getPrettyFiltered();
     }
 
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
         Helper::prepareFilter($filter);
         $ports = [];

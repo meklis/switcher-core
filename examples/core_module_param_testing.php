@@ -67,7 +67,9 @@ try {
     echo "\$parameters=json_decode('" . json_encode($params) . "', true);\n";
     echo "\$core->action('{$module['name']}', \$parameters);\n\n";
     $start = microtime(true);
-    echo json_encode($core->action($module['name'], $params), JSON_PRETTY_PRINT);
+    $response = $core->action($module['name'], $params);
+    file_put_contents(__DIR__ . '/../docs/modules_example_output/' . $module['name'] . '.json', json_encode(['data' => $response, 'arguments' => $params], JSON_PRETTY_PRINT));
+    echo json_encode($response, JSON_PRETTY_PRINT);
     $time = round(microtime(true) - $start, 3);
     echo "\n==============================================================\n\n\n";
     echo "Diagnostic finished with time $time sec!\n";

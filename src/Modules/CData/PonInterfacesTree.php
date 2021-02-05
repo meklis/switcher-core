@@ -29,7 +29,7 @@ class PonInterfacesTree extends CDataAbstractModule
         return $this->response;
     }
 
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
         if ($filter['as_tree'] !== 'yes') {
             return $this->response;

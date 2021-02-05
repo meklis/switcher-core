@@ -14,21 +14,25 @@ abstract class CDataAbstractModule extends AbstractModule
 
     function getPretty()
     {
-        return true;
+        return [];
     }
 
     function __construct(Model $model) {
         $this->interfaces = $model->getExtraParamByName('interfaces');
     }
 
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
+        if($fromCache && $ret = $this->getCache(json_encode($filter))) {
+            return $ret;
+        }
         $resp = $this->getPretty();
         if(isset($filter['meta']) && $filter['meta'] !== 'yes') {
             foreach ($resp as $k=>$_) {
                 unset($resp[$k]['_interface']);
             }
         }
+        $this->setCache(json_encode($filter), $resp, 10);
         return $resp;
     }
 
