@@ -1,0 +1,131 @@
+{
+    "data": [
+        {
+            "_id": 16779009,
+            "interface": "pon0\/0\/1:1",
+            "status": "Online",
+            "last_reg": 1611725158,
+            "last_reg_since": "9d 8h 39min 14sec",
+            "last_down_reason": "Losi",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779010,
+            "interface": "pon0\/0\/1:2",
+            "status": "Online",
+            "last_reg": 1612519577,
+            "last_reg_since": "0d 3h 58min 55sec",
+            "last_down_reason": "Losi",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779011,
+            "interface": "pon0\/0\/1:3",
+            "status": "Online",
+            "last_reg": 1611879801,
+            "last_reg_since": "7d 13h 41min 51sec",
+            "last_down_reason": "Dying Gasp",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779012,
+            "interface": "pon0\/0\/1:4",
+            "status": "Online",
+            "last_reg": 1611725165,
+            "last_reg_since": "9d 8h 39min 7sec",
+            "last_down_reason": "Losi",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779013,
+            "interface": "pon0\/0\/1:5",
+            "status": "Online",
+            "last_reg": 1611725168,
+            "last_reg_since": "9d 8h 39min 4sec",
+            "last_down_reason": "Losi",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779014,
+            "interface": "pon0\/0\/1:6",
+            "status": "Online",
+            "last_reg": 1612267124,
+            "last_reg_since": "3d 2h 6min 28sec",
+            "last_down_reason": "Dying Gasp",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779015,
+            "interface": "pon0\/0\/1:7",
+            "status": "Online",
+            "last_reg": 1612267289,
+            "last_reg_since": "3d 2h 3min 43sec",
+            "last_down_reason": "Dying Gasp",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779016,
+            "interface": "pon0\/0\/1:8",
+            "status": "Online",
+            "last_reg": 1612507990,
+            "last_reg_since": "0d 7h 12min 2sec",
+            "last_down_reason": "Dying Gasp",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779017,
+            "interface": "pon0\/0\/1:9",
+            "status": "Online",
+            "last_reg": 1612267135,
+            "last_reg_since": "3d 2h 6min 17sec",
+            "last_down_reason": "Dying Gasp",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779018,
+            "interface": "pon0\/0\/1:10",
+            "status": "Online",
+            "last_reg": 1612518851,
+            "last_reg_since": "0d 4h 11min 1sec",
+            "last_down_reason": "Losi",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779019,
+            "interface": "pon0\/0\/1:11",
+            "status": "Online",
+            "last_reg": 1612007141,
+            "last_reg_since": "6d 2h 19min 31sec",
+            "last_down_reason": "",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779020,
+            "interface": "pon0\/0\/1:12",
+            "status": "Online",
+            "last_reg": 1612012256,
+            "last_reg_since": "6d 0h 54min 16sec",
+            "last_down_reason": "",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779021,
+            "interface": "pon0\/0\/1:13",
+            "status": "Online",
+            "last_reg": 1612021602,
+            "last_reg_since": "5d 22h 18min 30sec",
+            "last_down_reason": "Dying Gasp",
+            "admin_status": "Enabled"
+        },
+        {
+            "_id": 16779022,
+            "interface": "pon0\/0\/1:14",
+            "status": "Online",
+            "last_reg": 1612167410,
+            "last_reg_since": "4d 5h 48min 22sec",
+            "last_down_reason": "",
+            "admin_status": "Enabled"
+        }
+    ],
+    "arguments": []
+}

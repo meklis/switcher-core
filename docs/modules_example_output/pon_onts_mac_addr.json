@@ -1,0 +1,75 @@
+{
+    "data": [
+        {
+            "_id": "16779009",
+            "interface": "pon0\/0\/1:1",
+            "mac_address": "E0:E8:E6:75:C9:EF"
+        },
+        {
+            "_id": "16779010",
+            "interface": "pon0\/0\/1:2",
+            "mac_address": "E0:67:B3:BF:8F:E0"
+        },
+        {
+            "_id": "16779011",
+            "interface": "pon0\/0\/1:3",
+            "mac_address": "E0:67:B3:AE:42:26"
+        },
+        {
+            "_id": "16779012",
+            "interface": "pon0\/0\/1:4",
+            "mac_address": "E0:67:B3:AD:CC:12"
+        },
+        {
+            "_id": "16779013",
+            "interface": "pon0\/0\/1:5",
+            "mac_address": "E0:67:B3:AD:CC:00"
+        },
+        {
+            "_id": "16779014",
+            "interface": "pon0\/0\/1:6",
+            "mac_address": "E0:E8:E6:75:C9:CF"
+        },
+        {
+            "_id": "16779015",
+            "interface": "pon0\/0\/1:7",
+            "mac_address": "E0:E8:E6:75:C9:B5"
+        },
+        {
+            "_id": "16779016",
+            "interface": "pon0\/0\/1:8",
+            "mac_address": "E0:E8:E6:75:C9:D5"
+        },
+        {
+            "_id": "16779017",
+            "interface": "pon0\/0\/1:9",
+            "mac_address": "E0:E8:E6:75:C9:E5"
+        },
+        {
+            "_id": "16779018",
+            "interface": "pon0\/0\/1:10",
+            "mac_address": "E0:E8:E6:18:87:7D"
+        },
+        {
+            "_id": "16779019",
+            "interface": "pon0\/0\/1:11",
+            "mac_address": "E0:E8:E6:75:AF:5F"
+        },
+        {
+            "_id": "16779020",
+            "interface": "pon0\/0\/1:12",
+            "mac_address": "E0:E8:E6:75:AF:41"
+        },
+        {
+            "_id": "16779021",
+            "interface": "pon0\/0\/1:13",
+            "mac_address": "E0:E8:E6:75:C9:B9"
+        },
+        {
+            "_id": "16779022",
+            "interface": "pon0\/0\/1:14",
+            "mac_address": "E0:E8:E6:78:9D:DB"
+        }
+    ],
+    "arguments": []
+}

@@ -1,0 +1,131 @@
+{
+    "data": [
+        {
+            "_id": 16779009,
+            "interface": "pon0\/0\/1:1",
+            "rx": -18.12,
+            "tx": 1.22,
+            "voltage": 3.34,
+            "temp": 24.05,
+            "distance": 5
+        },
+        {
+            "_id": 16779010,
+            "interface": "pon0\/0\/1:2",
+            "rx": -21.19,
+            "tx": 1.62,
+            "voltage": 3.35,
+            "temp": 28.46,
+            "distance": 5
+        },
+        {
+            "_id": 16779011,
+            "interface": "pon0\/0\/1:3",
+            "rx": -19.28,
+            "tx": 1.81,
+            "voltage": 3.29,
+            "temp": 28.13,
+            "distance": 5
+        },
+        {
+            "_id": 16779012,
+            "interface": "pon0\/0\/1:4",
+            "rx": -21.8,
+            "tx": 1.83,
+            "voltage": 3.32,
+            "temp": 25.41,
+            "distance": 5
+        },
+        {
+            "_id": 16779013,
+            "interface": "pon0\/0\/1:5",
+            "rx": -22.68,
+            "tx": 1.72,
+            "voltage": 3.33,
+            "temp": 25.41,
+            "distance": 5
+        },
+        {
+            "_id": 16779014,
+            "interface": "pon0\/0\/1:6",
+            "rx": -18.57,
+            "tx": 1.34,
+            "voltage": 3.32,
+            "temp": 26.77,
+            "distance": 5
+        },
+        {
+            "_id": 16779015,
+            "interface": "pon0\/0\/1:7",
+            "rx": -18.6,
+            "tx": 1.44,
+            "voltage": 3.32,
+            "temp": 30.16,
+            "distance": 5
+        },
+        {
+            "_id": 16779016,
+            "interface": "pon0\/0\/1:8",
+            "rx": -19.17,
+            "tx": 1.37,
+            "voltage": 3.33,
+            "temp": 27.45,
+            "distance": 5
+        },
+        {
+            "_id": 16779017,
+            "interface": "pon0\/0\/1:9",
+            "rx": -19.63,
+            "tx": 1.49,
+            "voltage": 3.33,
+            "temp": 24.73,
+            "distance": 5
+        },
+        {
+            "_id": 16779018,
+            "interface": "pon0\/0\/1:10",
+            "rx": -9.65,
+            "tx": 1.7,
+            "voltage": 3.34,
+            "temp": 35.92,
+            "distance": 6
+        },
+        {
+            "_id": 16779019,
+            "interface": "pon0\/0\/1:11",
+            "rx": -17.88,
+            "tx": 1.34,
+            "voltage": 3.32,
+            "temp": 28.13,
+            "distance": 5
+        },
+        {
+            "_id": 16779020,
+            "interface": "pon0\/0\/1:12",
+            "rx": -17.88,
+            "tx": 1.5,
+            "voltage": 3.35,
+            "temp": 29.14,
+            "distance": 5
+        },
+        {
+            "_id": 16779021,
+            "interface": "pon0\/0\/1:13",
+            "rx": -17.98,
+            "tx": 1.46,
+            "voltage": 3.34,
+            "temp": 25.07,
+            "distance": 5
+        },
+        {
+            "_id": 16779022,
+            "interface": "pon0\/0\/1:14",
+            "rx": -21.55,
+            "tx": 1.43,
+            "voltage": 3.35,
+            "temp": 23.38,
+            "distance": 5
+        }
+    ],
+    "arguments": []
+}

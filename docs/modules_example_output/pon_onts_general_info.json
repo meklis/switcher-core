@@ -1,0 +1,117 @@
+{
+    "data": [
+        {
+            "_id": 16779009,
+            "interface": "pon0\/0\/1:1",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779010,
+            "interface": "pon0\/0\/1:2",
+            "ver_software": "V2.1.5",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "xPON",
+            "model": "101Z"
+        },
+        {
+            "_id": 16779011,
+            "interface": "pon0\/0\/1:3",
+            "ver_software": "V2.1.3",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779012,
+            "interface": "pon0\/0\/1:4",
+            "ver_software": "V2.1.3",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779013,
+            "interface": "pon0\/0\/1:5",
+            "ver_software": "V2.1.3",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779014,
+            "interface": "pon0\/0\/1:6",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779015,
+            "interface": "pon0\/0\/1:7",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779016,
+            "interface": "pon0\/0\/1:8",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779017,
+            "interface": "pon0\/0\/1:9",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779018,
+            "interface": "pon0\/0\/1:10",
+            "ver_software": "V2.1.12",
+            "ver_hardware": "R310.1A",
+            "vendor": "HWTC",
+            "model": "15BR"
+        },
+        {
+            "_id": 16779019,
+            "interface": "pon0\/0\/1:11",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779020,
+            "interface": "pon0\/0\/1:12",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779021,
+            "interface": "pon0\/0\/1:13",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        },
+        {
+            "_id": 16779022,
+            "interface": "pon0\/0\/1:14",
+            "ver_software": "V3.0.6",
+            "ver_hardware": "HZ660.2A",
+            "vendor": "PICO",
+            "model": "E710"
+        }
+    ],
+    "arguments": []
+}

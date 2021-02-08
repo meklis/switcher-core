@@ -1,0 +1,489 @@
+{
+    "data": [
+        {
+            "port": "1",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "2",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "3",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "4",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "5",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "6",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "7",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "8",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "9",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "10",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "11",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "12",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "13",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "14",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "15",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "16",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "17",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "18",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "19",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "20",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "21",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "22",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "23",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "24",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "25",
+            "untagged": [],
+            "tagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                },
+                {
+                    "name": "J1sw502",
+                    "id": "502"
+                }
+            ],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                },
+                {
+                    "name": "J1sw502",
+                    "id": "502"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "26",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "27",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        },
+        {
+            "port": "28",
+            "untagged": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "tagged": [],
+            "egress": [
+                {
+                    "name": "J1ext302",
+                    "id": "302"
+                }
+            ],
+            "forbidden": []
+        }
+    ],
+    "arguments": []
+}

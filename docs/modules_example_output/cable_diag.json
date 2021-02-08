@@ -1,0 +1,80 @@
+{
+    "data": [
+        {
+            "port": 2,
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": "29"
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": "29"
+                }
+            ]
+        },
+        {
+            "port": 4,
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": "14"
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": "13"
+                }
+            ]
+        },
+        {
+            "port": 10,
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": "19"
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": "19"
+                }
+            ]
+        },
+        {
+            "port": 13,
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": "14"
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": "14"
+                }
+            ]
+        },
+        {
+            "port": 24,
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": "0"
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": "0"
+                }
+            ]
+        }
+    ],
+    "arguments": []
+}

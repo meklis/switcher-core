@@ -1,0 +1,187 @@
+{
+    "data": [
+        {
+            "port": "1",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "2",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "3",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "4",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "5",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "6",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "7",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "8",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "9",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "10",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "11",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "12",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "13",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "14",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "15",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "16",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "17",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "18",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "19",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "20",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "21",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "22",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "23",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "24",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "25",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        },
+        {
+            "port": "26",
+            "in_errors": "0",
+            "out_errors": "0",
+            "in_discards": "0",
+            "out_discards": "0"
+        }
+    ],
+    "arguments": []
+}
