@@ -1,0 +1,13 @@
+{
+    "data": [
+        {
+            "vlan_id": "100",
+            "name": "ControlPower",
+            "disabled": "false",
+            "arp": "enabled"
+        }
+    ],
+    "arguments": {
+        "vlan_id": "100"
+    }
+}

@@ -23,6 +23,9 @@ class AddressListInfo extends ExecCommand
     {
         $data = [];
         $req = [];
+        if (isset($params['_id']) && $params['_id']) {
+            $req['?.id'] = $params['_id'];
+        }
         if(isset($params['name']) && $params['name']) {
             $req['?list'] = $params['name'];
         }

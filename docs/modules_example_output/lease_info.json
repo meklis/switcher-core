@@ -1,0 +1,85 @@
+{
+    "data": [
+        {
+            "host_name": "",
+            "ip": "172.18.1.2",
+            "mac": "74:7D:24:15:93:BB",
+            "status": "bound",
+            "expires_at": 1612861176,
+            "server": "ControlPower",
+            "extra": {
+                "id": "*1",
+                "client_id": null,
+                "server": {
+                    "name": "ControlPower",
+                    "interface": "ControlPower",
+                    "lease_time": "1d",
+                    "address_pool": "ControlPower",
+                    "extra": {
+                        "vlan": {
+                            "vlan_id": "100",
+                            "name": "ControlPower",
+                            "disabled": "false",
+                            "arp": "enabled"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "host_name": "",
+            "ip": "172.18.1.3",
+            "mac": "74:7D:24:15:8E:54",
+            "status": "bound",
+            "expires_at": 1612841469,
+            "server": "ControlPower",
+            "extra": {
+                "id": "*2",
+                "client_id": null,
+                "server": {
+                    "name": "ControlPower",
+                    "interface": "ControlPower",
+                    "lease_time": "1d",
+                    "address_pool": "ControlPower",
+                    "extra": {
+                        "vlan": {
+                            "vlan_id": "100",
+                            "name": "ControlPower",
+                            "disabled": "false",
+                            "arp": "enabled"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "host_name": "WR702N",
+            "ip": "172.18.1.4",
+            "mac": "10:FE:ED:41:1D:DF",
+            "status": "bound",
+            "expires_at": 1612861151,
+            "server": "ControlPower",
+            "extra": {
+                "id": "*7",
+                "client_id": "1:10:fe:ed:41:1d:df",
+                "server": {
+                    "name": "ControlPower",
+                    "interface": "ControlPower",
+                    "lease_time": "1d",
+                    "address_pool": "ControlPower",
+                    "extra": {
+                        "vlan": {
+                            "vlan_id": "100",
+                            "name": "ControlPower",
+                            "disabled": "false",
+                            "arp": "enabled"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "arguments": {
+        "vlan_id": "100"
+    }
+}

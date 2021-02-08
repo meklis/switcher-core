@@ -19,6 +19,8 @@ use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 use function DI\autowire;
 
 
@@ -76,7 +78,7 @@ class Core
     {
         if ($input instanceof MultiWalkerInterface) {
             $this->container->set(MultiWalkerInterface::class, $input);
-        } elseif ($input instanceof Telnet) {
+        } elseif ($input instanceof TelnetLazyConnect) {
             if (!$this->container->has(Model::class)) {
                 throw new Exception("Model not setted. You must call init() first");
             }
@@ -88,7 +90,7 @@ class Core
                 }
             } catch (Exception $e) {
             }
-            $this->container->set(Telnet::class, $input);
+            $this->container->set(TelnetLazyConnect::class, $input);
         } elseif ($input instanceof RouterosAPI) {
             if (!$this->container->has(Model::class)) {
                 throw new Exception("Model not setted. You must call init() first");

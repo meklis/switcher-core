@@ -21,6 +21,11 @@ class TelnetLazyConnect extends Telnet
         return $this;
     }
 
+    function __construct($host = '127.0.0.1', $port = 23, $timeout = 10, $stream_timeout = 1.0)
+    {
+        parent::__construct($host, $port, $timeout, $stream_timeout);
+    }
+
     function login($username, $password, $host_type="")
     {
         $this->username = $username;

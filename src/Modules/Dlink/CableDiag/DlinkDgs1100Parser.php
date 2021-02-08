@@ -41,22 +41,22 @@ class DlinkDgs1100Parser extends DlinkParser
                     [
                        'number' => 1,
                        'status' => $this->getResponseByName('dlink.cableDiagPair1TestResult')->fetchOne()->getParsedValue(),
-                       'length' => $this->getResponseByName('dlink.cableDiagPair1FaultDistance')->fetchOne()->getValue(),
+                       'length' => (int)$this->getResponseByName('dlink.cableDiagPair1FaultDistance')->fetchOne()->getValue(),
                     ],
                     [
                        'number' => 2,
                        'status' => $this->getResponseByName('dlink.cableDiagPair2TestResult')->fetchOne()->getParsedValue(),
-                       'length' => $this->getResponseByName('dlink.cableDiagPair2FaultDistance')->fetchOne()->getValue(),
+                       'length' => (int)$this->getResponseByName('dlink.cableDiagPair2FaultDistance')->fetchOne()->getValue(),
                     ],
                     [
                        'number' => 3,
                        'status' => $this->getResponseByName('dlink.cableDiagPair3TestResult')->fetchOne()->getParsedValue(),
-                       'length' => $this->getResponseByName('dlink.cableDiagPair3FaultDistance')->fetchOne()->getValue(),
+                       'length' => (int)$this->getResponseByName('dlink.cableDiagPair3FaultDistance')->fetchOne()->getValue(),
                     ],
                     [
                        'number' => 4,
                        'status' => $this->getResponseByName('dlink.cableDiagPair4TestResult')->fetchOne()->getParsedValue(),
-                       'length' => $this->getResponseByName('dlink.cableDiagPair4FaultDistance')->fetchOne()->getValue(),
+                       'length' => (int)$this->getResponseByName('dlink.cableDiagPair4FaultDistance')->fetchOne()->getValue(),
                     ],
                 ]
             ];

@@ -17,7 +17,7 @@ $core = $connector->init(Device::init($argv[1], $argv[2], $argv[3], $argv[4])
     ->set('telnetPort', 23)
     ->set('snmpRepeats', 3)
     ->set('snmpTimeoutSec', 2)
-    ->set('mikrotikApiPort', 2)
+    ->set('mikrotikApiPort', 55055)
 );
 
 //Prepare modules list
@@ -62,7 +62,6 @@ if ($module['arguments']) {
         }
     }
 }
-try {
     echo "==========================RESPONSE===============================\n";
     echo "\$parameters=json_decode('" . json_encode($params) . "', true);\n";
     echo "\$core->action('{$module['name']}', \$parameters);\n\n";
@@ -73,9 +72,6 @@ try {
     $time = round(microtime(true) - $start, 3);
     echo "\n==============================================================\n\n\n";
     echo "Diagnostic finished with time $time sec!\n";
-} catch (\Exception $e) {
-    echo "\n==================DUMP OF TELNET CONNECTION===============\n";
-    throw new Exception($e);
-}
+
 
 goto STEP_CHOOSING;

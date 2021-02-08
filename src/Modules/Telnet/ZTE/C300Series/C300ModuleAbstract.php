@@ -4,12 +4,21 @@
 namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
+use DI\Annotation\Inject;
 use Exception;
 use InvalidArgumentException;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 abstract class C300ModuleAbstract extends AbstractModule
 {
+
+    /**
+     * @Inject
+     * @var TelnetLazyConnect
+     */
+    protected $telnet;
+
     public function parsePortByName($name)
     {
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})/', $name, $matches)) {

@@ -1,0 +1,21 @@
+{
+    "data": [
+        {
+            "name": "ControlPower",
+            "interface": "ControlPower",
+            "lease_time": "1d",
+            "address_pool": "ControlPower",
+            "extra": {
+                "vlan": {
+                    "vlan_id": "100",
+                    "name": "ControlPower",
+                    "disabled": "false",
+                    "arp": "enabled"
+                }
+            }
+        }
+    ],
+    "arguments": {
+        "vlan_id": "100"
+    }
+}

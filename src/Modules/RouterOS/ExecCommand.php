@@ -6,6 +6,7 @@ namespace SwitcherCore\Modules\RouterOS;
 use Exception;
 use RouterosAPI;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
 
 
 class ExecCommand extends AbstractModule

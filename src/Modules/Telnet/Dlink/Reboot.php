@@ -3,14 +3,21 @@
 
 namespace SwitcherCore\Modules\Telnet\Dlink;
 
+use DI\Annotation\Inject;
 use Exception;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 
 class Reboot extends AbstractModule
 {
 
     protected $status = false;
+    /**
+     * @Inject
+     * @var TelnetLazyConnect
+     */
+    protected $telnet;
     function getPretty()
     {
         return $this->status;

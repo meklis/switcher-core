@@ -10,7 +10,6 @@ use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Exception;
-use meklis\network\Telnet;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
@@ -18,6 +17,7 @@ use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Switcher\CacheInterface;
 use SwitcherCore\Switcher\Device;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule
@@ -52,12 +52,6 @@ abstract class AbstractModule
      */
     private $container;
 
-
-    /**
-     * @Inject
-     * @var Telnet
-     */
-    protected $telnet;
 
     /**
      * @Inject

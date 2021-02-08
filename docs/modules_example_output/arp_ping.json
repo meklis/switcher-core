@@ -1,0 +1,53 @@
+{
+    "data": [
+        {
+            "seq": "0",
+            "host": "14:4D:67:CA:4A:85",
+            "time": "0ms",
+            "sent": "1",
+            "received": "1",
+            "packet-loss": "0",
+            "min-rtt": "0ms",
+            "avg-rtt": "0ms",
+            "max-rtt": "0ms"
+        },
+        {
+            "seq": "1",
+            "host": "14:4D:67:CA:4A:85",
+            "time": "0ms",
+            "sent": "2",
+            "received": "2",
+            "packet-loss": "0",
+            "min-rtt": "0ms",
+            "avg-rtt": "0ms",
+            "max-rtt": "0ms"
+        },
+        {
+            "seq": "2",
+            "host": "14:4D:67:CA:4A:85",
+            "time": "0ms",
+            "sent": "3",
+            "received": "3",
+            "packet-loss": "0",
+            "min-rtt": "0ms",
+            "avg-rtt": "0ms",
+            "max-rtt": "0ms"
+        },
+        {
+            "seq": "3",
+            "host": "14:4D:67:CA:4A:85",
+            "time": "0ms",
+            "sent": "4",
+            "received": "4",
+            "packet-loss": "0",
+            "min-rtt": "0ms",
+            "avg-rtt": "0ms",
+            "max-rtt": "0ms"
+        }
+    ],
+    "arguments": {
+        "ip": "172.16.14.130",
+        "vlan_id": "304",
+        "count": "4"
+    }
+}

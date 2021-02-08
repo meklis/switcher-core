@@ -1,0 +1,1789 @@
+{
+    "data": [
+        {
+            "_id": "*1",
+            "name": "AllowFake",
+            "address": "speedtest.net",
+            "created": "2021-01-23 23:28:01",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*6",
+            "name": "AllowFake",
+            "address": "www.privat24.ua",
+            "created": "2021-01-23 23:28:01",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*A",
+            "name": "AllowFake",
+            "address": "privatbank.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D",
+            "name": "AllowFake",
+            "address": "p24.privatbank.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*10",
+            "name": "AllowFake",
+            "address": "www.monobank.com.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*13",
+            "name": "AllowFake",
+            "address": "city24.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*17",
+            "name": "AllowFake",
+            "address": "easypay.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*19",
+            "name": "AllowFake",
+            "address": "8.8.8.8",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*1A",
+            "name": "AllowFake",
+            "address": "www.liqpay.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*1D",
+            "name": "AllowFake",
+            "address": "ligpay.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*1E",
+            "name": "AllowFake",
+            "address": "golden.net.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*21",
+            "name": "AllowFake",
+            "address": "habr.com",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*23",
+            "name": "AllowFake",
+            "address": "www.monobank.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*26",
+            "name": "AllowFake",
+            "address": "fonts.google.com",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*28",
+            "name": "AllowFake",
+            "address": "next.privat24.ua",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*2B",
+            "name": "AllowFake",
+            "address": "1.1.1.1",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*2C",
+            "name": "AllowFake",
+            "address": "fonts.googleapis.com",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*2E",
+            "name": "AllowFake",
+            "address": "maps.googleapis.com",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*30",
+            "name": "AllowFake",
+            "address": "ajax.googleapis.com",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*32",
+            "name": "BFD",
+            "address": "185.190.149.5",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*33",
+            "name": "BFD",
+            "address": "185.129.48.186",
+            "created": "2021-01-23 23:28:02",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*34",
+            "name": "BFD",
+            "address": "194.126.183.144",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*35",
+            "name": "BFD",
+            "address": "181.129.48.186",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*36",
+            "name": "BFD",
+            "address": "198.108.67.48",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*37",
+            "name": "BFD",
+            "address": "185.190.150.12",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*38",
+            "name": "BFD",
+            "address": "195.54.160.99",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*39",
+            "name": "AllowPing",
+            "address": "176.36.86.10",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*3A",
+            "name": "AllowPing",
+            "address": "37.17.247.23",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*3B",
+            "name": "AllowPing",
+            "address": "185.190.149.134",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*3C",
+            "name": "AllowPing",
+            "address": "185.190.150.7",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*3D",
+            "name": "AllowWB",
+            "address": "176.36.86.10",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*3E",
+            "name": "AllowWB",
+            "address": "37.17.247.23",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*3F",
+            "name": "AllowWB",
+            "address": "185.190.150.8",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*40",
+            "name": "AllowWB",
+            "address": "185.190.150.77",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*41",
+            "name": "AllowWB",
+            "address": "185.190.149.134",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*42",
+            "name": "AllowWB",
+            "address": "172.16.9.0\/24",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*43",
+            "name": "AllowWB",
+            "address": "185.190.150.7",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*44",
+            "name": "AllowWB",
+            "address": "30.30.0.0\/24",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*45",
+            "name": "AllowPing",
+            "address": "8.8.8.8",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*46",
+            "name": "AllowPing",
+            "address": "185.190.150.8",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*47",
+            "name": "AllowPing",
+            "address": "185.190.150.77",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*48",
+            "name": "AllowPing",
+            "address": "37.57.212.3",
+            "created": "2021-01-23 23:28:03",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*49",
+            "name": "BlockCasino",
+            "address": "vinrajrada.org.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*4C",
+            "name": "BlockCasino",
+            "address": "kosmolot.games",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*4F",
+            "name": "BlockCasino",
+            "address": "cosmolot.games",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*52",
+            "name": "BlockCasino",
+            "address": "kazino777bonus.net",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*55",
+            "name": "BlockCasino",
+            "address": "play.slots4money.com",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*58",
+            "name": "BlockCasino",
+            "address": "cosmolot-casino.com.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*5B",
+            "name": "BlockCasino",
+            "address": "cosmolot.at.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*5D",
+            "name": "BlockCasino",
+            "address": "cosmolotonline.com",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*5F",
+            "name": "BlockCasino",
+            "address": "kosmo-lot.org",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*62",
+            "name": "BlockCasino",
+            "address": "3topora.net",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*65",
+            "name": "BlockCasino",
+            "address": "a777zino.org",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*68",
+            "name": "BlockCasino",
+            "address": "agava.com.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*6A",
+            "name": "BlockCasino",
+            "address": "autoworks.com.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*6C",
+            "name": "BlockCasino",
+            "address": "cosmolot777.com.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*6F",
+            "name": "BlockCasino",
+            "address": "diya.in.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*72",
+            "name": "BlockCasino",
+            "address": "foxline.com.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*75",
+            "name": "BlockCasino",
+            "address": "igrat-igrovyeavtomaty.com",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*78",
+            "name": "BlockCasino",
+            "address": "irshansk-rada.com.ua",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*7B",
+            "name": "BlockCasino",
+            "address": "klub-azino777.co",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*7E",
+            "name": "BlockCasino",
+            "address": "kosmolot.bet",
+            "created": "2021-01-23 23:28:04",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*81",
+            "name": "BlockCasino",
+            "address": "kosmolot.casino",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*82",
+            "name": "BlockCasino",
+            "address": "kosmolot-casino.net",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*85",
+            "name": "BlockCasino",
+            "address": "kosmolots.net",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*86",
+            "name": "BlockCasino",
+            "address": "lazok.com.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*89",
+            "name": "BlockCasino",
+            "address": "liturgia.org.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*8B",
+            "name": "BlockCasino",
+            "address": "pelmsi.kiev.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*8E",
+            "name": "BlockCasino",
+            "address": "perlina-kiev.com.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*91",
+            "name": "BlockCasino",
+            "address": "play-cosmolot.com",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*94",
+            "name": "BlockCasino",
+            "address": "rada-zinkiv.com.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*97",
+            "name": "BlockCasino",
+            "address": "slots4money.com",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*98",
+            "name": "BlockCasino",
+            "address": "thekosmolot.com",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*9A",
+            "name": "BlockCasino",
+            "address": "unc-mps.com.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*9D",
+            "name": "BlockCasino",
+            "address": "vhod-v-kazino777.space",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*A0",
+            "name": "BlockCasino",
+            "address": "vrboutique.com.ua",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*A3",
+            "name": "BlockCasino",
+            "address": "vulkan-grand.co",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*A6",
+            "name": "BlockCasino",
+            "address": "x100000.com",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*AB",
+            "name": "BlockCasino",
+            "address": "xn----7sbah6bgddnebb9ahdi8l.com",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*AC",
+            "name": "VkCom",
+            "address": "vk.com",
+            "created": "2021-01-23 23:28:05",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B3",
+            "name": "SipGoldeNet",
+            "address": "176.36.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B4",
+            "name": "SipGoldeNet",
+            "address": "37.17.247.23",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B5",
+            "name": "SipGoldeNet",
+            "address": "185.190.150.0\/24",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B6",
+            "name": "GoldeSipServer",
+            "address": "185.190.150.15",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B7",
+            "name": "GoldeSipServer",
+            "address": "185.190.150.17",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B8",
+            "name": "AllowWB",
+            "address": "185.190.150.10",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*B9",
+            "name": "SipGoldeNet",
+            "address": "185.253.216.0\/24",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*BA",
+            "name": "SipGoldeNet",
+            "address": "46.211.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*BB",
+            "name": "SipGoldeNet",
+            "address": "1.1.1.1",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*BC",
+            "name": "SipGoldeNet",
+            "address": "8.8.8.8",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*BD",
+            "name": "SipGoldeNet",
+            "address": "176.36.9.102",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*BE",
+            "name": "AllowWB",
+            "address": "188.231.213.134",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*BF",
+            "name": "SipGoldeNet",
+            "address": "5.248.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C0",
+            "name": "SipGoldeNet",
+            "address": "37.115.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C1",
+            "name": "SipGoldeNet",
+            "address": "37.229.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C2",
+            "name": "SipGoldeNet",
+            "address": "46.118.0.0\/15",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C3",
+            "name": "SipGoldeNet",
+            "address": "46.185.0.0\/17",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C4",
+            "name": "SipGoldeNet",
+            "address": "37.73.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C5",
+            "name": "SipGoldeNet",
+            "address": "46.96.0.0\/16",
+            "created": "2021-01-23 23:28:06",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C6",
+            "name": "SipGoldeNet",
+            "address": "88.154.0.0\/15",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C7",
+            "name": "SipGoldeNet",
+            "address": "46.211.48.123",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C8",
+            "name": "SipGoldeNet",
+            "address": "94.153.0.0\/19",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*C9",
+            "name": "FakeRedirect",
+            "address": "10.36.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*CA",
+            "name": "FakeRedirect",
+            "address": "10.37.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*CB",
+            "name": "AllowPing",
+            "address": "185.190.150.19",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*CC",
+            "name": "AllowWB",
+            "address": "185.190.150.19",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*CD",
+            "name": "FakeRedirect",
+            "address": "10.31.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*CE",
+            "name": "FakeRedirect",
+            "address": "10.34.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*CF",
+            "name": "FakeRedirect",
+            "address": "10.33.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D0",
+            "name": "FakeRedirect",
+            "address": "10.32.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D1",
+            "name": "FakeRedirect",
+            "address": "10.35.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D2",
+            "name": "DropFake",
+            "address": "10.31.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D3",
+            "name": "DropFake",
+            "address": "10.32.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D4",
+            "name": "DropFake",
+            "address": "10.33.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D5",
+            "name": "DropFake",
+            "address": "10.34.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D6",
+            "name": "DropFake",
+            "address": "10.35.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D7",
+            "name": "DropFake",
+            "address": "10.36.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D8",
+            "name": "DropFake",
+            "address": "10.37.10.0\/24",
+            "created": "2021-01-23 23:28:07",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*D9",
+            "name": "AllowWB",
+            "address": "185.190.150.20",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*DA",
+            "name": "AllowPing",
+            "address": "185.190.150.20",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*DB",
+            "name": "AllowPing",
+            "address": "1.1.1.1",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*DC",
+            "name": "AllowWB",
+            "address": "8.8.8.8",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*DD",
+            "name": "SipGoldeNet",
+            "address": "91.202.104.0\/22",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*DE",
+            "name": "BFD",
+            "address": "1.248.159.227",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*DF",
+            "name": "BFD",
+            "address": "1.228.187.14",
+            "created": "2021-01-23 23:28:08",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*E6",
+            "name": "VkCom",
+            "address": "87.240.190.78",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*E7",
+            "name": "VkCom",
+            "address": "87.240.190.67",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*E8",
+            "name": "VkCom",
+            "address": "87.240.137.158",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*E9",
+            "name": "VkCom",
+            "address": "87.240.190.72",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*EA",
+            "name": "VkCom",
+            "address": "87.240.139.194",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*EB",
+            "name": "VkCom",
+            "address": "93.186.225.208",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*EC",
+            "name": "BlockCasino",
+            "address": "194.182.76.154",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*ED",
+            "name": "BlockCasino",
+            "address": "31.7.188.5",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*EE",
+            "name": "AllowFake",
+            "address": "52.211.158.17",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*EF",
+            "name": "AllowFake",
+            "address": "34.252.3.186",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F0",
+            "name": "AllowFake",
+            "address": "99.83.167.35",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F1",
+            "name": "AllowFake",
+            "address": "75.2.32.163",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F3",
+            "name": "BlockCasino",
+            "address": "172.67.155.121",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F4",
+            "name": "BlockCasino",
+            "address": "104.21.7.128",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F5",
+            "name": "BlockCasino",
+            "address": "104.21.58.72",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F6",
+            "name": "BlockCasino",
+            "address": "172.67.157.122",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F7",
+            "name": "BlockCasino",
+            "address": "104.21.59.169",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F8",
+            "name": "BlockCasino",
+            "address": "172.67.181.91",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*F9",
+            "name": "AllowFake",
+            "address": "75.2.86.201",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*FA",
+            "name": "AllowFake",
+            "address": "99.83.131.17",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*FB",
+            "name": "BlockCasino",
+            "address": "172.67.195.183",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*FC",
+            "name": "BlockCasino",
+            "address": "104.21.84.185",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*FD",
+            "name": "BlockCasino",
+            "address": "172.67.218.138",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*FE",
+            "name": "BlockCasino",
+            "address": "104.21.94.26",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*103",
+            "name": "BlockCasino",
+            "address": "104.21.68.215",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*104",
+            "name": "BlockCasino",
+            "address": "172.67.198.244",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*105",
+            "name": "BlockCasino",
+            "address": "104.21.86.64",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*106",
+            "name": "BlockCasino",
+            "address": "172.67.216.87",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*107",
+            "name": "AllowFake",
+            "address": "104.21.88.227",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*108",
+            "name": "AllowFake",
+            "address": "172.67.153.180",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*109",
+            "name": "BlockCasino",
+            "address": "127.0.0.1",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*10B",
+            "name": "BlockCasino",
+            "address": "198.54.117.197",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*10C",
+            "name": "BlockCasino",
+            "address": "198.54.117.200",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*10D",
+            "name": "BlockCasino",
+            "address": "198.54.117.198",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*10E",
+            "name": "BlockCasino",
+            "address": "198.54.117.199",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*10F",
+            "name": "BlockCasino",
+            "address": "104.21.1.85",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*110",
+            "name": "BlockCasino",
+            "address": "172.67.128.239",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*111",
+            "name": "AllowFake",
+            "address": "104.22.46.80",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*112",
+            "name": "AllowFake",
+            "address": "104.22.47.80",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*113",
+            "name": "AllowFake",
+            "address": "172.67.40.40",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*114",
+            "name": "BlockCasino",
+            "address": "185.162.9.79",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*115",
+            "name": "BlockCasino",
+            "address": "37.1.221.89",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*116",
+            "name": "BlockCasino",
+            "address": "172.67.129.238",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*117",
+            "name": "BlockCasino",
+            "address": "104.21.1.210",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*118",
+            "name": "BlockCasino",
+            "address": "172.67.140.160",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*119",
+            "name": "BlockCasino",
+            "address": "104.21.62.240",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*11A",
+            "name": "AllowFake",
+            "address": "75.2.39.153",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*11B",
+            "name": "AllowFake",
+            "address": "99.83.233.10",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*11C",
+            "name": "BlockCasino",
+            "address": "172.67.168.48",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*11D",
+            "name": "BlockCasino",
+            "address": "104.21.25.238",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*11E",
+            "name": "AllowFake",
+            "address": "151.101.194.219",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*11F",
+            "name": "AllowFake",
+            "address": "151.101.66.219",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*120",
+            "name": "AllowFake",
+            "address": "151.101.130.219",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*121",
+            "name": "AllowFake",
+            "address": "151.101.2.219",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*122",
+            "name": "BlockCasino",
+            "address": "104.21.66.195",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*123",
+            "name": "BlockCasino",
+            "address": "172.67.163.235",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*124",
+            "name": "BlockCasino",
+            "address": "104.21.82.89",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*125",
+            "name": "BlockCasino",
+            "address": "172.67.155.114",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*126",
+            "name": "BlockCasino",
+            "address": "172.67.175.138",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*127",
+            "name": "BlockCasino",
+            "address": "104.21.83.112",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*128",
+            "name": "AllowFake",
+            "address": "77.222.150.187",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*129",
+            "name": "BlockCasino",
+            "address": "104.21.87.155",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*12A",
+            "name": "BlockCasino",
+            "address": "172.67.144.78",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*12B",
+            "name": "AllowFake",
+            "address": "178.248.237.68",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*12C",
+            "name": "BlockCasino",
+            "address": "185.82.218.199",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*12D",
+            "name": "BlockCasino",
+            "address": "104.21.52.29",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*12E",
+            "name": "BlockCasino",
+            "address": "172.67.194.156",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*12F",
+            "name": "BlockCasino",
+            "address": "104.21.65.144",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*130",
+            "name": "BlockCasino",
+            "address": "172.67.164.24",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*131",
+            "name": "BlockCasino",
+            "address": "172.67.194.242",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*132",
+            "name": "BlockCasino",
+            "address": "104.21.90.45",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*133",
+            "name": "BlockCasino",
+            "address": "104.21.80.129",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*134",
+            "name": "BlockCasino",
+            "address": "172.67.181.80",
+            "created": "2021-01-24 22:35:57",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*135",
+            "name": "BlockCasino",
+            "address": "104.21.45.48",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*136",
+            "name": "BlockCasino",
+            "address": "172.67.209.180",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*137",
+            "name": "BlockCasino",
+            "address": "104.21.46.174",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*138",
+            "name": "BlockCasino",
+            "address": "172.67.168.205",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*139",
+            "name": "BlockCasino",
+            "address": "172.67.179.82",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*13A",
+            "name": "BlockCasino",
+            "address": "104.21.67.181",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*13B",
+            "name": "BlockCasino",
+            "address": "172.67.215.47",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*13C",
+            "name": "BlockCasino",
+            "address": "104.21.45.140",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*13D",
+            "name": "BlockCasino",
+            "address": "172.67.133.215",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*13E",
+            "name": "BlockCasino",
+            "address": "104.21.5.208",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*13F",
+            "name": "BlockCasino",
+            "address": "172.67.212.79",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*140",
+            "name": "BlockCasino",
+            "address": "104.21.23.159",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*141",
+            "name": "BlockCasino",
+            "address": "172.67.182.62",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*142",
+            "name": "BlockCasino",
+            "address": "104.21.75.217",
+            "created": "2021-01-24 22:35:58",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*79E",
+            "name": "BFD",
+            "address": "193.59.0.0\/22",
+            "created": "2021-01-27 14:00:51",
+            "dynamic": false,
+            "disabled": false
+        },
+        {
+            "_id": "*1897",
+            "name": "AllowFake",
+            "address": "54.72.157.3",
+            "created": "2021-02-03 08:47:04",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1A06",
+            "name": "AllowFake",
+            "address": "52.48.253.176",
+            "created": "2021-02-04 00:31:05",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1A07",
+            "name": "AllowFake",
+            "address": "34.241.122.142",
+            "created": "2021-02-04 00:31:05",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1C33",
+            "name": "AllowFake",
+            "address": "52.16.59.182",
+            "created": "2021-02-05 05:09:56",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1C35",
+            "name": "AllowFake",
+            "address": "52.214.236.131",
+            "created": "2021-02-05 05:09:56",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1D03",
+            "name": "AllowFake",
+            "address": "52.214.49.54",
+            "created": "2021-02-05 16:24:53",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1E96",
+            "name": "AllowFake",
+            "address": "34.250.215.185",
+            "created": "2021-02-06 13:19:11",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*1FA2",
+            "name": "AllowFake",
+            "address": "172.217.20.202",
+            "created": "2021-02-07 04:17:53",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*2196",
+            "name": "AllowFake",
+            "address": "172.217.20.206",
+            "created": "2021-02-08 06:11:46",
+            "dynamic": true,
+            "disabled": false
+        },
+        {
+            "_id": "*2241",
+            "name": "AllowFake",
+            "address": "172.217.20.170",
+            "created": "2021-02-08 15:50:51",
+            "dynamic": true,
+            "disabled": false
+        }
+    ],
+    "arguments": []
+}

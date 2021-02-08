@@ -22,7 +22,7 @@ class SimpleQueuesInfo extends ExecCommand
         $data = [];
         $req = [];
         if (isset($params['_id']) && $params['_id']) {
-            $req['numbers'] = $params['id'];
+            $req['?.id'] = $params['_id'];
         }
         if (isset($params['name']) && $params['name']) {
             $req['?name'] = $params['name'];

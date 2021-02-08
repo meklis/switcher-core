@@ -57,24 +57,24 @@ class DlinkParser extends SwitchesPortAbstractModule
                 $pairs[] = [
                     'number' => 1,
                     'status' => $this->getResponseByName('dlink.CableDiagPair1Status')->fetchOne()->getParsedValue(),
-                    'length' => $this->getResponseByName('dlink.CableDiagPair1Length')->fetchOne()->getParsedValue(),
+                    'length' =>(int) $this->getResponseByName('dlink.CableDiagPair1Length')->fetchOne()->getParsedValue(),
                 ];
                 $pairs[] = [
                     'number' => 2,
                     'status' => $this->getResponseByName('dlink.CableDiagPair2Status')->fetchOne()->getParsedValue(),
-                    'length' => $this->getResponseByName('dlink.CableDiagPair2Length')->fetchOne()->getParsedValue(),
+                    'length' =>(int) $this->getResponseByName('dlink.CableDiagPair2Length')->fetchOne()->getParsedValue(),
                 ];
             }
             if($count_pairs >= 4) {
                 $pairs[] = [
                     'number' => 3,
                     'status' => $this->getResponseByName('dlink.CableDiagPair3Status')->fetchOne()->getParsedValue(),
-                    'length' => $this->getResponseByName('dlink.CableDiagPair3Length')->fetchOne()->getParsedValue(),
+                    'length' =>(int) $this->getResponseByName('dlink.CableDiagPair3Length')->fetchOne()->getParsedValue(),
                 ];
                 $pairs[] = [
                     'number' => 4,
                     'status' => $this->getResponseByName('dlink.CableDiagPair4Status')->fetchOne()->getParsedValue(),
-                    'length' => $this->getResponseByName('dlink.CableDiagPair4Length')->fetchOne()->getParsedValue(),
+                    'length' =>(int) $this->getResponseByName('dlink.CableDiagPair4Length')->fetchOne()->getParsedValue(),
                 ];
             }
 
