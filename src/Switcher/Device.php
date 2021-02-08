@@ -139,5 +139,7 @@ class Device
             ->setPassword($password);
     }
 
-
+    public function getObject() {
+        return $this;
+    }
 }

@@ -21,13 +21,24 @@ class CoreConnector
      * @var CacheInterface
      */
     protected $cache;
+
+    /**
+     * @var \Monolog\Logger
+     */
+    protected $logger;
+
     protected static $instances = [];
     public function __construct($configPath)
     {
         $this->configPath = $configPath;
+
     }
     public function setCache(CacheInterface $cache) {
         $this->cache = $cache;
+        return $this;
+    }
+    public function setLogger(\Monolog\Logger $logger) {
+        $this->logger = $logger;
         return $this;
     }
 
@@ -76,7 +87,8 @@ class CoreConnector
 
         $core = (new Core(
             new  Reader($this->configPath),
-            $this->cache
+            $this->cache,
+            $this->logger
         ))->setDevice($device)->addInput($walker)->init();
         $inputs_list = $core->getNeedInputs();
         if(in_array('telnet', $inputs_list)) {

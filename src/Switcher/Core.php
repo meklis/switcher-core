@@ -7,6 +7,10 @@ use DI\ContainerBuilder;
 use ErrorException;
 use Exception;
 use meklis\network\Telnet;
+use Monolog\Handler\NullHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use RouterosAPI;
 use SnmpWrapper\MultiWalkerInterface;
@@ -33,15 +37,52 @@ class Core
     protected $container;
 
 
+    /**
+     * @var Logger
+     */
+    protected $logger;
+    /**
+     * @var Device
+     */
+    protected $device;
+    /**
+     * @var CacheInterface
+     */
+    protected $cache;
+
+    /**
+     * @param CacheInterface $cache
+     * @return $this
+     * @throws \DI\DependencyException
+     */
+
     public function setCache(CacheInterface $cache)
     {
         $this->container->injectOn($cache);
+        $this->cache = $cache;
         return $this;
     }
 
-    function __construct(Reader $reader, ?CacheInterface $cache = null)
+
+    public function setLogger(Logger $logger)
+    {
+        $this->container->injectOn($logger);
+        $this->logger = $logger;
+        return $this;
+    }
+
+    function __construct(Reader $reader, ?CacheInterface $cache = null, ?Logger $logger = null)
     {
         $container = $this->buildContainer();
+
+        if($logger === null) {
+            $logger = new \Monolog\Logger('switcher-core');
+            $processor = new UidProcessor();
+            $logger->pushProcessor($processor);
+            $handler = new NullHandler();
+            $logger->pushHandler($handler);
+        }
+        $this->logger = $logger;
         $container->set(Reader::class, $reader);
         $container->set(OidCollector::class, function (ContainerInterface $c) {
             return OidCollector::init($c->get(Reader::class));
@@ -70,6 +111,11 @@ class Core
 
     function setDevice(Device $device)
     {
+
+        $this->logger->info("Device setted", [
+            $device->getObject()
+        ]);
+        $this->device = $device;
         $this->container->injectOn($device);
         return $this;
     }
@@ -77,11 +123,14 @@ class Core
     function addInput($input)
     {
         if ($input instanceof MultiWalkerInterface) {
+            $this->logger->info("Added walker interface - " . get_class($input));
             $this->container->set(MultiWalkerInterface::class, $input);
         } elseif ($input instanceof TelnetLazyConnect) {
             if (!$this->container->has(Model::class)) {
+                $this->logger->info("Error: Model not setted. You must call init() first");
                 throw new Exception("Model not setted. You must call init() first");
             }
+            $this->logger->info("Added telnet interface - " . get_class($input));
             $model = $this->container->get(Model::class);
             $input->setHostType($model->getTelnetConnType());
             try {
@@ -110,6 +159,10 @@ class Core
     private function getDetectDevInfo()
     {
         $collector = $this->container->get(OidCollector::class);
+        if($this->cache && $resp = $this->cache->get("SW_CORE_MODEL_DETECT:{$this->device->getIp()}")) {
+            $this->logger->info("Returned detecting from cache", $resp );
+            return  $resp;
+        }
         $response = $this->container->get(MultiWalkerInterface::class)
             ->walk([
                 O::init($collector->getOidByName('sys.Descr')->getOid()),
@@ -130,11 +183,19 @@ class Core
             }
         }
         if ($descr || $objId) {
+            $this->logger->info("Detected model by descr and objId", [$descr, $objId]);
+            if($this->cache) {
+                $this->cache->set("SW_CORE_MODEL_DETECT:{$this->device->getIp()}",  [
+                    'descr' => $descr,
+                    'objid' => $objId,
+                ], 3600);
+            }
             return [
                 'descr' => $descr,
                 'objid' => $objId,
             ];
         } else {
+            $this->logger->error("Returned empty response for model Detect");
             throw new Exception("Returned empty response from walker in detect model");
         }
     }
@@ -170,8 +231,9 @@ class Core
     function declareModules(Model $model)
     {
         foreach ($model->getModulesListAssoc() as $module => $object) {
-
+            $this->logger->info("Declare module.{$module} with $object to DI");
             if (!class_exists($object)) {
+                $this->logger->critical("ModuleClass {$object} for $module not found");
                 throw new ModuleErrorLoadException("Module with name '$module' not found by ClassName {$object}");
             }
             $this->container->set("module.{$module}", autowire($object)->lazy());
@@ -188,6 +250,7 @@ class Core
     public function action($moduleName, $arguments = [])
     {
         if (!$this->container->has("module.{$moduleName}")) {
+            $this->logger->critical("Module $moduleName not found");
             throw new ModuleNotFoundException("Module with name $moduleName not found");
         }
         /**
