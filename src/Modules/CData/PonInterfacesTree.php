@@ -14,7 +14,6 @@ use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 
 /**
- * Class OntUniInformation
  * @package SwitcherCore\Modules\CData
  */
 class PonInterfacesTree extends CDataAbstractModule
