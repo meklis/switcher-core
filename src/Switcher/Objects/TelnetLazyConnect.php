@@ -23,6 +23,12 @@ class TelnetLazyConnect extends Telnet
 
     function __construct($host = '127.0.0.1', $port = 23, $timeout = 10, $stream_timeout = 1.0)
     {
+        if(!$timeout) {
+            $timeout = $this->timeout;
+        }
+        if(!$stream_timeout) {
+            $stream_timeout = $this->stream_timeout_sec;
+        }
         parent::__construct($host, $port, $timeout, $stream_timeout);
     }
 
