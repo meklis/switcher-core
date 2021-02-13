@@ -21,6 +21,7 @@ models:
       zte_onu_registration_epon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\Telnet\ZTE\C300Series\SaveConfig
       zte_card_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\CardList
+      zte_interfaces: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfacesList
 
     extra:
       telnet_conn_type: ios
