@@ -33,8 +33,11 @@ class OntStateInfo extends C300ModuleAbstract
         $response = [];
         foreach (array_splice($lines, 2) as $line) {
             if(preg_match('/^(.*)[ ]{1,}(Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
+                $interface = $this->parsePortByName(trim($matches[1]));
                 $response[] = [
-                    'onu' => trim($matches[1]),
+                    'interface' => trim($matches[1]),
+                    '_interface' => $interface,
+                    '_id' => $interface['id'] + $interface['onu_num'],
                     'online_status' => trim($matches[2]),
                     'oam_status' => trim($matches[3]),
                     'mac' => trim($matches[4]),
@@ -58,7 +61,10 @@ class OntStateInfo extends C300ModuleAbstract
         unset($rows[count($rows) -1]);
         $response = $this->parseTable($rows);
         foreach ($response as $k=>$resp) {
-            $response[$k]['onu'] = 'gpon-onu_' . $resp['onu_index'];
+            $interface = $this->parsePortByName( 'gpon-onu_' . $resp['onu_index']);
+            $response[$k]['interface'] = 'gpon-onu_' . $resp['onu_index'];
+            $response[$k]['_id'] = $interface['id'] + $interface['onu_num'];
+            $response[$k]['_interface'] = $interface;
             unset($response[$k]['onu_index']);
         }
         return [

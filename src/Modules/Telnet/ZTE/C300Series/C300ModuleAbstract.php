@@ -27,12 +27,9 @@ abstract class C300ModuleAbstract extends AbstractModule
                 $onu = $m[6];
             }
             $id =
-                $matches[3] * 10000 +
-                $matches[4] * 1000 +
-                $matches[5] * 100;
-            if($onu) {
-                $id += $onu;
-            }
+                $matches[3] * 100000 +
+                $matches[4] * 10000 +
+                $matches[5] * 1000;
             return [
                 'id' => $id,
                 'technology' => $matches[1],
@@ -41,7 +38,7 @@ abstract class C300ModuleAbstract extends AbstractModule
                 'shelf' => $matches[3],
                 'slot' => $matches[4],
                 'port' => $matches[5],
-                'onu' => $onu,
+                'onu_num' => $onu,
             ];
         }
         throw new InvalidArgumentException("Error parse port with name '$name'");
