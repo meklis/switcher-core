@@ -14,9 +14,9 @@ class InterfacesList extends C300ModuleAbstract
         $response  = [];
         foreach ($cards as $card) {
             switch ($card['real_type']) {
-                case 'ETGO': $prefix = "epon"; break;
+                case 'ETGOD': $prefix = "epon"; break;
                 case 'GTGOG': $prefix = "gpon"; break;
-                default: continue;
+                default: continue(2);
             }
             for ($i = 1; $i <= $card['port']; $i++) {
                 $response[] = [
@@ -26,7 +26,8 @@ class InterfacesList extends C300ModuleAbstract
                         'slot' =>  (int)$card['slot'],
                         'port' =>  (int)$i,
                         'type' => $prefix
-                    ]
+                    ],
+                    'card' => $card,
                 ];
             }
         }
