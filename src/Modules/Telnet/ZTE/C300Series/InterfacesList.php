@@ -10,6 +10,11 @@ class InterfacesList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
+        $list = $this->getCache('interface_list');
+        if($list) {
+            $this->response = $list;
+            return  $this;
+        }
         $cards = $this->getModule('zte_card_list')->run()->getPretty();
         $response  = [];
         foreach ($cards as $card) {
@@ -31,6 +36,7 @@ class InterfacesList extends C300ModuleAbstract
                 ];
             }
         }
+        $this->setCache('interfaces_list', $response,  3600 );
         $this->response = $response;
         return  $this;
     }

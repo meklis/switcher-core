@@ -11,6 +11,10 @@ class GponOntProfileList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
+        if($cache = $this->getCache('onu_profile_list')) {
+            $this->response = $cache;
+            return  $this;
+        }
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
@@ -24,6 +28,7 @@ class GponOntProfileList extends C300ModuleAbstract
         if($lines) {
             $this->response = $lines;
         }
+        $this->setCache('onu_profile_list', $this->response, 300);
         return $this;
     }
 
