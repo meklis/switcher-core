@@ -26,7 +26,15 @@ abstract class C300ModuleAbstract extends AbstractModule
             if ($matches[2] == 'onu' && preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})/', $name, $m)) {
                 $onu = $m[6];
             }
+            $id =
+                $matches[3] * 10000 +
+                $matches[4] * 1000 +
+                $matches[5] * 100;
+            if($onu) {
+                $id += $onu;
+            }
             return [
+                'id' => $id,
                 'technology' => $matches[1],
                 'is_onu' => $matches[2] === 'onu',
                 'is_port' => $matches[2] === 'olt',

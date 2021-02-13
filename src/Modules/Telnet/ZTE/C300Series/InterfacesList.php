@@ -24,14 +24,11 @@ class InterfacesList extends C300ModuleAbstract
                 default: continue(2);
             }
             for ($i = 1; $i <= $card['port']; $i++) {
+                $interface = $this->parsePortByName($prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i");
                 $response[] = [
                     'interface' => $prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i",
-                    '_interface' => [
-                        'shelf' => (int)$card['shelf'],
-                        'slot' =>  (int)$card['slot'],
-                        'port' =>  (int)$i,
-                        'type' => $prefix
-                    ],
+                    '_id' => $interface['id'],
+                    '_interface' => $interface,
                     'card' => $card,
                 ];
             }
