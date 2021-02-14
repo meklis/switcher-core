@@ -15286,6 +15286,13 @@ true
 </details>
             
     
+### [interfaces_info](#interfaces_info) -  
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
 ### [lease_info](#lease_info) - Lease таблица 
     
 **Аргументы:**    
@@ -15773,6 +15780,12 @@ true
 ```json             
 [
     {
+        "_id": 16779020,
+        "interface": "pon0\/0\/1:12\/1",
+        "mac_address": "04:5E:A4:CD:8F:B1",
+        "vlan_id": 811
+    },
+    {
         "_id": 16779019,
         "interface": "pon0\/0\/1:11\/1",
         "mac_address": "10:FE:ED:7C:85:F9",
@@ -15788,18 +15801,6 @@ true
         "_id": 16779011,
         "interface": "pon0\/0\/1:3\/1",
         "mac_address": "14:4D:67:B1:F0:0D",
-        "vlan_id": 811
-    },
-    {
-        "_id": 16779010,
-        "interface": "pon0\/0\/1:2\/1",
-        "mac_address": "14:4D:67:CA:46:55",
-        "vlan_id": 811
-    },
-    {
-        "_id": 16779015,
-        "interface": "pon0\/0\/1:7\/1",
-        "mac_address": "24:4B:FE:92:0E:E0",
         "vlan_id": 811
     },
     {
@@ -15880,36 +15881,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "120138",
+        "stat_in_octets": "54682",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 233,
+        "stat_in_fragments_pkts": 538,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "99912",
-        "stat_out_undersize_pkts": 0,
-        "stat_out_oversize_pkts": 0,
-        "stat_out_fragments_pkts": 0,
-        "stat_out_crc_pkts": 0,
-        "stat_out_drop_pkts": 0,
-        "stat_out_jabber": 0
-    },
-    {
-        "status": "Up",
-        "_id": 16779010,
-        "interface": "pon0\/0\/1:2\/1",
-        "admin_status": "Enabled",
-        "vlan_id": 811,
-        "vlan_mode": "Untagged",
-        "stat_in_octets": "384",
-        "stat_in_undersize_pkts": 0,
-        "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 6,
-        "stat_in_crc_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "10250",
+        "stat_out_octets": "357983",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -15924,14 +15903,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "1564",
+        "stat_in_octets": "43936",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 19,
+        "stat_in_fragments_pkts": 583,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "20674",
+        "stat_out_octets": "1106263",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -15946,14 +15925,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "292",
+        "stat_in_octets": "2055",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 4,
+        "stat_in_fragments_pkts": 27,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "19930",
+        "stat_out_octets": "6462",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -15968,14 +15947,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "0",
+        "stat_in_octets": "6751",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 0,
+        "stat_in_fragments_pkts": 65,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "19840",
+        "stat_out_octets": "25124",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -15990,36 +15969,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "271496",
+        "stat_in_octets": "82",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 1339,
+        "stat_in_fragments_pkts": 1,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "9346399",
-        "stat_out_undersize_pkts": 0,
-        "stat_out_oversize_pkts": 0,
-        "stat_out_fragments_pkts": 0,
-        "stat_out_crc_pkts": 0,
-        "stat_out_drop_pkts": 0,
-        "stat_out_jabber": 0
-    },
-    {
-        "status": "Up",
-        "_id": 16779015,
-        "interface": "pon0\/0\/1:7\/1",
-        "admin_status": "Enabled",
-        "vlan_id": 811,
-        "vlan_mode": "Untagged",
-        "stat_in_octets": "368",
-        "stat_in_undersize_pkts": 0,
-        "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 5,
-        "stat_in_crc_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "18889",
+        "stat_out_octets": "4284",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16034,14 +15991,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "640",
+        "stat_in_octets": "18020",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 10,
+        "stat_in_fragments_pkts": 163,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "21695",
+        "stat_out_octets": "397682",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16056,14 +16013,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "640",
+        "stat_in_octets": "333259",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 10,
+        "stat_in_fragments_pkts": 4808,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "20957",
+        "stat_out_octets": "29582063",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16078,14 +16035,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "228",
+        "stat_in_octets": "67222",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 3,
+        "stat_in_fragments_pkts": 956,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "19539",
+        "stat_out_octets": "3250841",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16107,7 +16064,7 @@ true
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "18409",
+        "stat_out_octets": "3418",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16122,14 +16079,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "874",
+        "stat_in_octets": "231181",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 13,
+        "stat_in_fragments_pkts": 1176,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "18825",
+        "stat_out_octets": "2322185",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16144,14 +16101,14 @@ true
         "admin_status": "Enabled",
         "vlan_id": 811,
         "vlan_mode": "Untagged",
-        "stat_in_octets": "131193",
+        "stat_in_octets": "0",
         "stat_in_undersize_pkts": 0,
         "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 1156,
+        "stat_in_fragments_pkts": 0,
         "stat_in_crc_pkts": 0,
         "stat_in_drop_pkts": 0,
         "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "4848874",
+        "stat_out_octets": "0",
         "stat_out_undersize_pkts": 0,
         "stat_out_oversize_pkts": 0,
         "stat_out_fragments_pkts": 0,
@@ -16180,22 +16137,22 @@ true
         "stat_out_jabber": 0
     },
     {
-        "stat_in_octets": "1084819736394",
+        "stat_in_octets": "2338955803889",
         "_id": 16777472,
         "interface": "ge0\/0\/1",
         "stat_in_oversize_pkts": 0,
         "stat_in_drop_pkts": 556,
-        "stat_out_octets": "74383272803",
+        "stat_out_octets": "138747160006",
         "stat_out_oversize_pkts": 0,
         "stat_out_drop_pkts": 0
     },
     {
-        "stat_in_octets": "4348565360",
+        "stat_in_octets": "9802406046",
         "_id": 16777728,
         "interface": "ge0\/0\/2",
         "stat_in_oversize_pkts": 0,
         "stat_in_drop_pkts": 10,
-        "stat_out_octets": "25105037261",
+        "stat_out_octets": "69516455853",
         "stat_out_oversize_pkts": 0,
         "stat_out_drop_pkts": 0
     },
@@ -16240,12 +16197,12 @@ true
         "stat_out_drop_pkts": 0
     },
     {
-        "stat_in_octets": "69950460492",
+        "stat_in_octets": "128835642811",
         "_id": 16779008,
         "interface": "pon0\/0\/1",
         "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 54333,
-        "stat_out_octets": "1059759837520",
+        "stat_in_drop_pkts": 117489,
+        "stat_out_octets": "2269752929031",
         "stat_out_oversize_pkts": 0,
         "stat_out_drop_pkts": 0
     },
@@ -16374,7 +16331,7 @@ true
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **as_tree**=yes         
+Параметры запроса: без параметров         
 
 Ответ в JSON:          
 
@@ -16402,6 +16359,13 @@ true
         "status": null
     },
     {
+        "name": "ge0\/0\/4",
+        "id": 16778240,
+        "parent": null,
+        "type": "1G-SFP",
+        "status": null
+    },
+    {
         "name": "xge0\/0\/1",
         "id": 16778240,
         "parent": null,
@@ -16420,107 +16384,7 @@ true
         "id": 16779008,
         "parent": null,
         "type": "PON",
-        "status": null,
-        "children": [
-            {
-                "name": "pon0\/0\/1:1",
-                "id": 16779009,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:2",
-                "id": 16779010,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:3",
-                "id": 16779011,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:4",
-                "id": 16779012,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:5",
-                "id": 16779013,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:6",
-                "id": 16779014,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:7",
-                "id": 16779015,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:8",
-                "id": 16779016,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:9",
-                "id": 16779017,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:10",
-                "id": 16779018,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:11",
-                "id": 16779019,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:12",
-                "id": 16779020,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:13",
-                "id": 16779021,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            },
-            {
-                "name": "pon0\/0\/1:14",
-                "id": 16779022,
-                "parent": 16779008,
-                "type": "ONT",
-                "status": "Online"
-            }
-        ]
+        "status": null
     },
     {
         "name": "pon0\/0\/2",
@@ -16542,6 +16406,104 @@ true
         "parent": null,
         "type": "PON",
         "status": null
+    },
+    {
+        "name": "pon0\/0\/1:1",
+        "id": 16779009,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:2",
+        "id": 16779010,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Offline"
+    },
+    {
+        "name": "pon0\/0\/1:3",
+        "id": 16779011,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:4",
+        "id": 16779012,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:5",
+        "id": 16779013,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:6",
+        "id": 16779014,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:7",
+        "id": 16779015,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Offline"
+    },
+    {
+        "name": "pon0\/0\/1:8",
+        "id": 16779016,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:9",
+        "id": 16779017,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:10",
+        "id": 16779018,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:11",
+        "id": 16779019,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:12",
+        "id": 16779020,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:13",
+        "id": 16779021,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
+    },
+    {
+        "name": "pon0\/0\/1:14",
+        "id": 16779022,
+        "parent": 16779008,
+        "type": "ONT",
+        "status": "Online"
     }
 ]
 ```             
@@ -28362,7 +28324,7 @@ true
 ```json             
 {
     "descr": "EasyPath Ethernet-PON",
-    "uptime": "936d 23h 23min 20sec",
+    "uptime": "1256d 1h 0min 0sec",
     "contact": "contact",
     "name": "EasyPath Series PON Switch Access",
     "location": "location",
@@ -29070,7 +29032,62 @@ true
     
 ### [zte_card_list](#zte_card_list) - Listing of cards on OLT 
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "1",
+        "cfg_type": "ETGO",
+        "real_type": "ETGOD",
+        "port": "8",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V2.1.0"
+    },
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "2",
+        "cfg_type": "GTGO",
+        "real_type": "GTGOG",
+        "port": "8",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V2.1.0"
+    },
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "3",
+        "cfg_type": "PRAM",
+        "real_type": "PRAM",
+        "port": "3",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V1.01"
+    },
+    {
+        "rack": "1",
+        "shelf": "1",
+        "slot": "4",
+        "cfg_type": "SMXA",
+        "real_type": "SMXA",
+        "port": "3",
+        "hard_ver": "V1.0.0",
+        "soft_ver": "V2.1.0"
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [zte_fdb](#zte_fdb) - FDB таблица с интерфейса/порта/ОНУ 
     
@@ -29078,7 +29095,1318 @@ true
 - **onu**, проверка выражением: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*    
 - **interface**, проверка выражением: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: **interface**=gpon-olt_1/2/1         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9A:22",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:36",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "36"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "10:47:80:0E:EA:6F",
+        "vlan_id": 4056,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:B3:90",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:44",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "44"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:42:42:4F",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9A:70",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:12",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "12"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:AD:CA:0B",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "C4:6E:1F:E1:AB:0B",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "E8:94:F6:2C:AF:39",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "80:FB:06:6C:70:AF",
+        "vlan_id": 4056,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:3C:84:03",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9E:C6",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:42",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "42"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "34:79:16:B7:20:35",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "64:66:B3:36:0D:11",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:42:40:99",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "F4:F2:6D:B1:A7:F5",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EF:84",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:33",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "33"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:8A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:15",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "15"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "C4:6E:1F:AF:CA:95",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B8:A3:86:9B:32:97",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "E4:77:23:F1:EB:4A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:17",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "17"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:2A:79:B9",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:34:70:F7",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "C0:4A:00:AA:45:F3",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EA:7A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:28",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "28"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:D8:EC",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:35",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "35"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:2A:5A:E9",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EC:A8",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:22",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "22"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:EE:C4",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:19",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "19"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D4:DA:5C",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:27",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "27"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9B:48",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:4",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "4"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:42:42:ED",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:C0",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:24",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "24"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "A4:B6:1E:32:BC:B1",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:ED:BC",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:18",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "18"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:D6:16",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:2",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "2"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "80:FB:06:6C:70:BA",
+        "vlan_id": 4056,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "BC:EE:7B:1F:3E:30",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A7:7E",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:6",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "6"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:DD:5A",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:47",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "47"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "64:66:B3:36:8D:A1",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "B0:BE:76:88:91:49",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A7:42",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:30",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "30"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BA:AA",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:51",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "51"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:2A:7A:6F",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:1",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "1"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9A:FA",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:7",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "7"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:3C:8A:4D",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "D4:6E:0E:95:F2:C3",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "64:D1:54:2D:62:AF",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A7:96",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:10",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "10"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:2A:5C:0D",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:9C:C8",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:3",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "3"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "0C:80:63:36:3F:E1",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A6:82",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:5",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "5"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:A7:F6",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:9",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "9"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BD:CE",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:8",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "8"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:CC",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:14",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "14"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:60",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:34",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "34"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "14:CC:20:AD:C5:F3",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "90:72:40:00:D4:92",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "88:C3:97:E0:74:5A",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:DC:7C",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:46",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "46"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "30:B5:C2:34:70:FB",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BF:18",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:38",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "38"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:99:50",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:29",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "29"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:D8:A4",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:45",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "45"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:B9:3C",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:43",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "43"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D6:DD:06",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:13",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "13"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "DC:02:8E:D3:BE:A0",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:37",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "37"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "50:D4:F7:8C:DE:15",
+        "vlan_id": 4078,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:50",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "50"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "90:F6:52:5B:52:EF",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:49",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "49"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "A4:2B:B0:D4:0C:29",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    },
+    {
+        "vport": "1",
+        "time": "N\/A",
+        "mac": "E8:94:F6:63:48:4D",
+        "vlan_id": 4055,
+        "type": "Dynamic",
+        "onu": "gpon-onu_1\/2\/1:48",
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": true,
+            "is_port": false,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": "48"
+        }
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [zte_gpon_onu_profile_list](#zte_gpon_onu_profile_list) - List ONU profiles for GPON 
     
@@ -29086,6 +30414,409 @@ true
 - **type**, проверка выражением: *^(remote|line)$*, обязательный    
       
     
+    
+### [zte_interfaces](#zte_interfaces) - Build interfaces list by card info 
+      
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "interface": "epon-olt_1\/1\/1",
+        "_id": 111000,
+        "_interface": {
+            "id": 111000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "1",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/2",
+        "_id": 112000,
+        "_interface": {
+            "id": 112000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "2",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/3",
+        "_id": 113000,
+        "_interface": {
+            "id": 113000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "3",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/4",
+        "_id": 114000,
+        "_interface": {
+            "id": 114000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "4",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/5",
+        "_id": 115000,
+        "_interface": {
+            "id": 115000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "5",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/6",
+        "_id": 116000,
+        "_interface": {
+            "id": 116000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "6",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/7",
+        "_id": 117000,
+        "_interface": {
+            "id": 117000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "7",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "epon-olt_1\/1\/8",
+        "_id": 118000,
+        "_interface": {
+            "id": 118000,
+            "technology": "epon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "1",
+            "port": "8",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/1",
+        "_id": 121000,
+        "_interface": {
+            "id": 121000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "1",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/2",
+        "_id": 122000,
+        "_interface": {
+            "id": 122000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "2",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/3",
+        "_id": 123000,
+        "_interface": {
+            "id": 123000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "3",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/4",
+        "_id": 124000,
+        "_interface": {
+            "id": 124000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "4",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/5",
+        "_id": 125000,
+        "_interface": {
+            "id": 125000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "5",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/6",
+        "_id": 126000,
+        "_interface": {
+            "id": 126000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "6",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/7",
+        "_id": 127000,
+        "_interface": {
+            "id": 127000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "7",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    },
+    {
+        "interface": "gpon-olt_1\/2\/8",
+        "_id": 128000,
+        "_interface": {
+            "id": 128000,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": "1",
+            "slot": "2",
+            "port": "8",
+            "onu_num": null
+        },
+        "card": {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [zte_onu_dereg](#zte_onu_dereg) - Allow send configuration command to interface 
     
@@ -29106,7 +30837,114 @@ true
 **Аргументы:**    
 - **onu**, проверка выражением: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, обязательный    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: **onu**=gpon-onu_1/2/1:3         
+
+Ответ в JSON:          
+
+```json             
+{
+    "type": "gpon",
+    "data": {
+        "name": "13677",
+        "type": "ZTE-F660",
+        "state": "ready",
+        "configured_channel": "auto",
+        "current_channel": "1(GPON)",
+        "admin_state": "enable",
+        "phase_state": "working",
+        "config_state": "success",
+        "auth_mode": "sn",
+        "sn_bind": "enable with SN check",
+        "serial": "ZTEGC1086C70",
+        "password": "",
+        "description": "13677",
+        "vport_mode": "gemport",
+        "dba_mode": "Hybrid",
+        "onu_status": "enable",
+        "bw_profile": "",
+        "line_profile": "500mb",
+        "service_profile": "ZTE\/VID\/4078",
+        "onu_distance": "353m",
+        "online_duration": "625h 22m 23s",
+        "fec": "upstream",
+        "fec_actual_mode": "N\/A",
+        "pps1_tod": "disable",
+        "auto_replace": "disable",
+        "mcast_encrypt": "disable",
+        "mcast_encrypt_current_state": "N\/A",
+        "logs": [
+            {
+                "_id": "1",
+                "authpath_time": "2020-12-03 13:03:39",
+                "dereg_time": "2020-12-15 21:24:46",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "2",
+                "authpath_time": "2020-12-15 21:25:41",
+                "dereg_time": "2020-12-19 18:20:44",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "3",
+                "authpath_time": "2020-12-19 18:25:04",
+                "dereg_time": "2020-12-25 18:19:36",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "4",
+                "authpath_time": "2020-12-25 18:22:50",
+                "dereg_time": "2020-12-26 12:09:24",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "5",
+                "authpath_time": "2020-12-26 12:14:16",
+                "dereg_time": "2020-12-26 12:14:57",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "6",
+                "authpath_time": "2020-12-26 12:25:48",
+                "dereg_time": "2020-12-29 23:37:11",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "7",
+                "authpath_time": "2020-12-29 23:39:05",
+                "dereg_time": "2021-01-01 13:36:29",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "8",
+                "authpath_time": "2021-01-01 13:37:31",
+                "dereg_time": "2021-01-19 19:11:52",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "9",
+                "authpath_time": "2021-01-19 19:12:48",
+                "dereg_time": "2021-01-19 21:13:43",
+                "reason": "DyingGasp"
+            },
+            {
+                "_id": "10",
+                "authpath_time": "2021-01-19 21:14:57",
+                "dereg_time": "0000-00-00 00:00:00",
+                "reason": ""
+            }
+        ]
+    }
+}
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [zte_onu_interface_console](#zte_onu_interface_console) - Allow send configuration command to interface 
     
@@ -29150,18 +30988,901 @@ true
 **Аргументы:**    
 - **onu**, проверка выражением: *^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$*, обязательный    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: **onu**=gpon-onu_1/2/1:3         
+
+Ответ в JSON:          
+
+```json             
+{
+    "onu": "gpon-onu_1\/2\/1:3",
+    "onu_rx": "-28.860",
+    "olt_rx": "-26.856"
+}
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [zte_onu_state_by_interface](#zte_onu_state_by_interface) - List ONU state by interface 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$*, обязательный    
-- **parse**, проверка выражением: *.**    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: **interface**=gpon-olt_1/2/1         
+
+Ответ в JSON:          
+
+```json             
+{
+    "data": [
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:1",
+            "_id": 121001,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "1"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:2",
+            "_id": 121002,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "2"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:3",
+            "_id": 121003,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "3"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:4",
+            "_id": 121004,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "4"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:5",
+            "_id": 121005,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "5"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:6",
+            "_id": 121006,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "6"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:7",
+            "_id": 121007,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "7"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:8",
+            "_id": 121008,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "8"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:9",
+            "_id": 121009,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "9"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:10",
+            "_id": 121010,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "10"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:12",
+            "_id": 121012,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "12"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:13",
+            "_id": 121013,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "13"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:14",
+            "_id": 121014,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "14"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:15",
+            "_id": 121015,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "15"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:17",
+            "_id": 121017,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "17"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:18",
+            "_id": 121018,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "18"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:19",
+            "_id": 121019,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "19"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:20",
+            "_id": 121020,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "20"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:21",
+            "_id": 121021,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "21"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:22",
+            "_id": 121022,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "22"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:23",
+            "_id": 121023,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "23"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:24",
+            "_id": 121024,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "24"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "DyingGasp",
+            "interface": "gpon-onu_1\/2\/1:25",
+            "_id": 121025,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "25"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "DyingGasp",
+            "interface": "gpon-onu_1\/2\/1:26",
+            "_id": 121026,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "26"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:27",
+            "_id": 121027,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "27"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:28",
+            "_id": 121028,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "28"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:29",
+            "_id": 121029,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "29"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:30",
+            "_id": 121030,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "30"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "DyingGasp",
+            "interface": "gpon-onu_1\/2\/1:31",
+            "_id": 121031,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "31"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "DyingGasp",
+            "interface": "gpon-onu_1\/2\/1:32",
+            "_id": 121032,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "32"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:33",
+            "_id": 121033,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "33"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:34",
+            "_id": 121034,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "34"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:35",
+            "_id": 121035,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "35"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:36",
+            "_id": 121036,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "36"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:37",
+            "_id": 121037,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "37"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:38",
+            "_id": 121038,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "38"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "LOS",
+            "interface": "gpon-onu_1\/2\/1:39",
+            "_id": 121039,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "39"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "LOS",
+            "interface": "gpon-onu_1\/2\/1:40",
+            "_id": 121040,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "40"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "disable",
+            "phase_state": "DyingGasp",
+            "interface": "gpon-onu_1\/2\/1:41",
+            "_id": 121041,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "41"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:42",
+            "_id": 121042,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "42"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:43",
+            "_id": 121043,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "43"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:44",
+            "_id": 121044,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "44"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:45",
+            "_id": 121045,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "45"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:46",
+            "_id": 121046,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "46"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:47",
+            "_id": 121047,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "47"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:48",
+            "_id": 121048,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "48"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:49",
+            "_id": 121049,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "49"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:50",
+            "_id": 121050,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "50"
+            }
+        },
+        {
+            "admin_state": "enable",
+            "state": "enable",
+            "phase_state": "working",
+            "interface": "gpon-onu_1\/2\/1:51",
+            "_id": 121051,
+            "_interface": {
+                "id": 121000,
+                "technology": "gpon",
+                "is_onu": true,
+                "is_port": false,
+                "shelf": "1",
+                "slot": "2",
+                "port": "1",
+                "onu_num": "51"
+            }
+        }
+    ],
+    "type": "gpon"
+}
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [zte_unregistered_onu](#zte_unregistered_onu) - List unregistered ONU 
     
 **Аргументы:**    
 - **type**, проверка выражением: *^(all|gpon|epon)$*    
       
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[]
+```             
+         
+        
+</p>
+</details>
+        
