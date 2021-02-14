@@ -1,0 +1,843 @@
+{
+    "data": {
+        "data": [
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:1",
+                "_id": 121001,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "1"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:2",
+                "_id": 121002,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "2"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:3",
+                "_id": 121003,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "3"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:4",
+                "_id": 121004,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "4"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:5",
+                "_id": 121005,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "5"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:6",
+                "_id": 121006,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "6"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:7",
+                "_id": 121007,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "7"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:8",
+                "_id": 121008,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "8"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:9",
+                "_id": 121009,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "9"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:10",
+                "_id": 121010,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "10"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:12",
+                "_id": 121012,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "12"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:13",
+                "_id": 121013,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "13"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:14",
+                "_id": 121014,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "14"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:15",
+                "_id": 121015,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "15"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:17",
+                "_id": 121017,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "17"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:18",
+                "_id": 121018,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "18"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:19",
+                "_id": 121019,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "19"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:20",
+                "_id": 121020,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "20"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:21",
+                "_id": 121021,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "21"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:22",
+                "_id": 121022,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "22"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:23",
+                "_id": 121023,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "23"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:24",
+                "_id": 121024,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "24"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "DyingGasp",
+                "interface": "gpon-onu_1\/2\/1:25",
+                "_id": 121025,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "25"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "DyingGasp",
+                "interface": "gpon-onu_1\/2\/1:26",
+                "_id": 121026,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "26"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:27",
+                "_id": 121027,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "27"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:28",
+                "_id": 121028,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "28"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:29",
+                "_id": 121029,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "29"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:30",
+                "_id": 121030,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "30"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "DyingGasp",
+                "interface": "gpon-onu_1\/2\/1:31",
+                "_id": 121031,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "31"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "DyingGasp",
+                "interface": "gpon-onu_1\/2\/1:32",
+                "_id": 121032,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "32"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:33",
+                "_id": 121033,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "33"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:34",
+                "_id": 121034,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "34"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:35",
+                "_id": 121035,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "35"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:36",
+                "_id": 121036,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "36"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:37",
+                "_id": 121037,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "37"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:38",
+                "_id": 121038,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "38"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "LOS",
+                "interface": "gpon-onu_1\/2\/1:39",
+                "_id": 121039,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "39"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "LOS",
+                "interface": "gpon-onu_1\/2\/1:40",
+                "_id": 121040,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "40"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "DyingGasp",
+                "interface": "gpon-onu_1\/2\/1:41",
+                "_id": 121041,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "41"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:42",
+                "_id": 121042,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "42"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:43",
+                "_id": 121043,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "43"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:44",
+                "_id": 121044,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "44"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:45",
+                "_id": 121045,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "45"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:46",
+                "_id": 121046,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "46"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:47",
+                "_id": 121047,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "47"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:48",
+                "_id": 121048,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "48"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:49",
+                "_id": 121049,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "49"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:50",
+                "_id": 121050,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "50"
+                }
+            },
+            {
+                "admin_state": "enable",
+                "state": "enable",
+                "phase_state": "working",
+                "interface": "gpon-onu_1\/2\/1:51",
+                "_id": 121051,
+                "_interface": {
+                    "id": 121000,
+                    "technology": "gpon",
+                    "is_onu": true,
+                    "is_port": false,
+                    "shelf": "1",
+                    "slot": "2",
+                    "port": "1",
+                    "onu_num": "51"
+                }
+            }
+        ],
+        "type": "gpon"
+    },
+    "arguments": {
+        "interface": "gpon-olt_1\/2\/1"
+    }
+}

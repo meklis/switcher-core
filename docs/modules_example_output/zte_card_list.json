@@ -1,0 +1,45 @@
+{
+    "data": [
+        {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "1",
+            "cfg_type": "ETGO",
+            "real_type": "ETGOD",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        },
+        {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "2",
+            "cfg_type": "GTGO",
+            "real_type": "GTGOG",
+            "port": "8",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        },
+        {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "3",
+            "cfg_type": "PRAM",
+            "real_type": "PRAM",
+            "port": "3",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V1.01"
+        },
+        {
+            "rack": "1",
+            "shelf": "1",
+            "slot": "4",
+            "cfg_type": "SMXA",
+            "real_type": "SMXA",
+            "port": "3",
+            "hard_ver": "V1.0.0",
+            "soft_ver": "V2.1.0"
+        }
+    ],
+    "arguments": []
+}

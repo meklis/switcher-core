@@ -1,0 +1,99 @@
+{
+    "data": {
+        "type": "gpon",
+        "data": {
+            "name": "13677",
+            "type": "ZTE-F660",
+            "state": "ready",
+            "configured_channel": "auto",
+            "current_channel": "1(GPON)",
+            "admin_state": "enable",
+            "phase_state": "working",
+            "config_state": "success",
+            "auth_mode": "sn",
+            "sn_bind": "enable with SN check",
+            "serial": "ZTEGC1086C70",
+            "password": "",
+            "description": "13677",
+            "vport_mode": "gemport",
+            "dba_mode": "Hybrid",
+            "onu_status": "enable",
+            "bw_profile": "",
+            "line_profile": "500mb",
+            "service_profile": "ZTE\/VID\/4078",
+            "onu_distance": "353m",
+            "online_duration": "625h 22m 23s",
+            "fec": "upstream",
+            "fec_actual_mode": "N\/A",
+            "pps1_tod": "disable",
+            "auto_replace": "disable",
+            "mcast_encrypt": "disable",
+            "mcast_encrypt_current_state": "N\/A",
+            "logs": [
+                {
+                    "_id": "1",
+                    "authpath_time": "2020-12-03 13:03:39",
+                    "dereg_time": "2020-12-15 21:24:46",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "2",
+                    "authpath_time": "2020-12-15 21:25:41",
+                    "dereg_time": "2020-12-19 18:20:44",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "3",
+                    "authpath_time": "2020-12-19 18:25:04",
+                    "dereg_time": "2020-12-25 18:19:36",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "4",
+                    "authpath_time": "2020-12-25 18:22:50",
+                    "dereg_time": "2020-12-26 12:09:24",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "5",
+                    "authpath_time": "2020-12-26 12:14:16",
+                    "dereg_time": "2020-12-26 12:14:57",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "6",
+                    "authpath_time": "2020-12-26 12:25:48",
+                    "dereg_time": "2020-12-29 23:37:11",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "7",
+                    "authpath_time": "2020-12-29 23:39:05",
+                    "dereg_time": "2021-01-01 13:36:29",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "8",
+                    "authpath_time": "2021-01-01 13:37:31",
+                    "dereg_time": "2021-01-19 19:11:52",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "9",
+                    "authpath_time": "2021-01-19 19:12:48",
+                    "dereg_time": "2021-01-19 21:13:43",
+                    "reason": "DyingGasp"
+                },
+                {
+                    "_id": "10",
+                    "authpath_time": "2021-01-19 21:14:57",
+                    "dereg_time": "0000-00-00 00:00:00",
+                    "reason": ""
+                }
+            ]
+        }
+    },
+    "arguments": {
+        "onu": "gpon-onu_1\/2\/1:3"
+    }
+}

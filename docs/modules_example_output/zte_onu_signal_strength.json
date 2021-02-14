@@ -1,0 +1,10 @@
+{
+    "data": {
+        "onu": "gpon-onu_1\/2\/1:3",
+        "onu_rx": "-28.860",
+        "olt_rx": "-26.856"
+    },
+    "arguments": {
+        "onu": "gpon-onu_1\/2\/1:3"
+    }
+}
