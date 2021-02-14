@@ -399,7 +399,7 @@
   arguments:
     - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)\/?([0-9]{1,3})?$', required: yes}
 
-- name: interfaces_info
+- name: interfaces_list
   description: Interface information
   arguments:
     - { name: interface, pattern: '.*', required: no }
