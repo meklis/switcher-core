@@ -88,7 +88,8 @@ class DlinkParser extends SwitchesPortAbstractModule
         return $this;
     }
     protected function waitToDiag($ports_list) {
-        for ($i=0;$i<100;$i++) {
+        for ($i=0;$i<500;$i++) {
+            usleep(100000);
             foreach ($ports_list as $port=>$pairs) {
                 $response = $this->formatResponse($this->snmp->get(
                     [Oid::init($this->oids->getOidByName('dlink.CableDiagStatus')->getOid() . ".{$port}")]
@@ -96,12 +97,11 @@ class DlinkParser extends SwitchesPortAbstractModule
                 if(isset($response['dlink.CableDiagStatus']) && $response['dlink.CableDiagStatus']->fetchOne()->getParsedValue() != 'Proccessing') {
                     unset($ports_list[$port]);
                 }
-                usleep(10000);
             }
             if(count($ports_list) == 0) {
                 break;
             }
-            usleep(80000);
+            usleep(8000);
         }
         if(count($ports_list) != 0) {
             throw new IncompleteResponseException("Not all ports are diagnosted");
