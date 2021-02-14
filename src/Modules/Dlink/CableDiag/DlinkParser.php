@@ -96,11 +96,12 @@ class DlinkParser extends SwitchesPortAbstractModule
                 if(isset($response['dlink.CableDiagStatus']) && $response['dlink.CableDiagStatus']->fetchOne()->getParsedValue() != 'Proccessing') {
                     unset($ports_list[$port]);
                 }
+                usleep(10000);
             }
             if(count($ports_list) == 0) {
                 break;
             }
-            usleep(50000);
+            usleep(80000);
         }
         if(count($ports_list) != 0) {
             throw new IncompleteResponseException("Not all ports are diagnosted");
