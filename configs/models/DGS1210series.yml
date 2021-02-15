@@ -8,6 +8,7 @@
 models:
  - name: D-link DGS-1210-28/ME/A2
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -41,6 +42,7 @@ models:
 
  - name: D-link DGS-1210-20/ME/A1
    ports: 20
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -74,6 +76,7 @@ models:
 
  - name: D-link DGS-1210-10/ME/A1
    ports: 10
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -107,6 +110,7 @@ models:
 
  - name: D-link DGS-1210-20/ME/B1
    ports: 20
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -140,6 +144,7 @@ models:
 
  - name: D-link DGS-1210-28/ME/B1
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -173,6 +178,7 @@ models:
 
  - name: D-link DGS-1210-28XS/ME/B1
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

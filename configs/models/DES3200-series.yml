@@ -8,6 +8,7 @@
 models:
  - name: D-link DES-3200-10/A1
    ports: 10
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -41,6 +42,7 @@ models:
 
  - name: D-link DES-3200-10/C1
    ports: 10
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -74,6 +76,7 @@ models:
 
  - name: D-link DES-3200-18/C1
    ports: 18
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -107,6 +110,7 @@ models:
 
  - name: D-link DES-3200-26/C1
    ports: 26
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -141,6 +145,7 @@ models:
 
  - name: D-link DES-3200-28/C1
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -175,6 +180,7 @@ models:
 
  - name: D-link DES-3200-28F/C1
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -209,6 +215,7 @@ models:
 
  - name: D-link DES-3200-18/A1
    ports: 18
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -242,6 +249,7 @@ models:
 
  - name: D-link DES-3200-26/A1
    ports: 26
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -275,6 +283,7 @@ models:
 
  - name: D-link DES-3200-28/A1
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -308,6 +317,7 @@ models:
 
  - name: D-link DES-3200-28F/A1
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

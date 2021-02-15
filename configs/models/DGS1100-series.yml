@@ -9,6 +9,7 @@
 models:
  - name: D-link DGS-1100-06/ME/A1
    ports: 6
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -42,6 +43,7 @@ models:
 
  - name: D-link DGS-1100-10/ME
    ports: 10
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

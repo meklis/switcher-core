@@ -9,6 +9,7 @@
 models:
  - name: D-link DGS-3000-26TC
    ports: 26
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -41,6 +42,7 @@ models:
 
  - name: D-link DGS-3000-28L
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

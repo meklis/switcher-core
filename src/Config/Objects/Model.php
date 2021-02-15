@@ -23,6 +23,11 @@ class Model
      */
     protected $ports = 0;
     /**
+     * @var string
+     */
+    protected $deviceType = '';
+
+    /**
      * @var Oid[]
      */
     protected $oids  = [];
@@ -56,6 +61,10 @@ class Model
 
     public function getInputs() {
         return $this->inputs;
+    }
+
+    public function getDeviceType() {
+        return $this->deviceType;
     }
 
     /**
@@ -108,6 +117,9 @@ class Model
         }
         if(isset($arr['inputs'])) {
             $model->inputs = $arr['inputs'];
+        }
+        if(isset($arr['device_type'])) {
+            $model->deviceType = $arr['device_type'];
         }
 
         if(isset($arr['modules'])) {

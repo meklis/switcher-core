@@ -9,6 +9,7 @@
 models:
  - name: D-link DES-3028
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -41,6 +42,7 @@ models:
 
  - name: D-link DES-3052
    ports: 52
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet
@@ -74,6 +76,7 @@ models:
 
  - name: D-link DES-3028G
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

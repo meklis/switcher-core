@@ -75,51 +75,132 @@ Array<[интерфесов](#structure_interface)>
 ] 
 ```     
 
+
+### [system](#system) - Возвращает информацию о состоянии интерфейса
+
+**Возвращаемый результат**          
+[StructureSystem](#structure_system)
+
+Пример json
+
+```json5
+{
+  "descr": "C320 Version V2.1.0 Software, Copyright (c) by ZTE Corporation Compiled",
+  "uptime": "338d 21h 55min 0sec",
+  "contact": "admin",
+  "name": "Nivky",
+  "location": "Ukraine, Kyiv",
+  "meta": {
+    "type": "OLT",
+    "name": "ZTE ZXPON C320",
+    "ports": 0,
+    "extra": {
+      "telnet_conn_type": "ios"
+    },
+    "modules": [
+      "system",
+      "onu_reboot",
+      "zte_onu_info",
+      "zte_onu_ether_iface_info",
+      "zte_fdb",
+      "zte_onu_signal_strength",
+      "zte_onu_state_by_interface",
+      "zte_onu_dereg"
+    ]
+  }
+}
+```     
+
 ## Структуры
 
 #### [Интерфейс](#structure_interface)
 
 **Interface**
+
 ```json5
 {
-  "id": 64844524, //[Integer] Внутренний ID интерфейса для устройства, должен быть уникальным
-  "name": "pon0/1/2:24", //[String] Имя интерфейса. Имя может отличаться в зависимости от производителя и модели устройства
-  "parent": 64844500,  //[Integer|null] ID родительского интерфейса, если такой есть. В случае если это корневой интерфейс - возвращается null
-  "type": "ONU",  //[Enum[String]] Тип интерфейса* 
-  "meta": {}  //[null|Array[String]Interface] Возвращаемые дополнительные данные по интерфейсу**. Может быть статус, детальный разбор парсинга интерфейса или любая другая информация
+  "id": 64844524,
+  //[Integer] Внутренний ID интерфейса для устройства, должен быть уникальным
+  "name": "pon0/1/2:24",
+  //[String] Имя интерфейса. Имя может отличаться в зависимости от производителя и модели устройства
+  "parent": 64844500,
+  //[Integer|null] ID родительского интерфейса, если такой есть. В случае если это корневой интерфейс - возвращается null
+  "type": "ONU",
+  //[Enum[String]] Тип интерфейса* 
+  "meta": {}
+  //[null|Array[String]Interface] Возвращаемые дополнительные данные по интерфейсу**. Может быть статус, детальный разбор парсинга интерфейса или любая другая информация
 }
 ```
+
 #### [Состояние интерфейса](#structure_interface_status)
 
 **InterfaceStatus**
+
 ```json5
   {
-  "interface": {Interface}, //Интерфейс 
-  "status": "Up",  //[Enum(Up|Down|Disabled)] Состояние. Для ONU - Up=Online|Down=Offline
-  "address_learning": null, //[Boolean|Null] Изучать MAC-адреса
-  "nway_status": null, //[Enum(*)] Текущая скорость интерфейса  
-  "nway_state": null, //[Enum(*)] Административная скорость интерфейса 
-  "last_status_change": 1612518851, //[Integer]  Последнее изменение состояние 
-  "meta": {} // Метаданные 
+  "interface": {
+    Interface
+  },
+  //Интерфейс 
+  "status": "Up",
+  //[Enum(Up|Down|Disabled)] Состояние. Для ONU - Up=Online|Down=Offline
+  "address_learning": null,
+  //[Boolean|Null] Изучать MAC-адреса
+  "nway_status": null,
+  //[Enum(*)] Текущая скорость интерфейса  
+  "nway_state": null,
+  //[Enum(*)] Административная скорость интерфейса 
+  "last_status_change": 1612518851,
+  //[Integer]  Последнее изменение состояние 
+  "meta": {}
+  // Метаданные 
 }
 ```
+
 Возможные status:
 - Up - интерфейс работает/ОНУшка в сети
-- Down - интерфейс не работает/ОНУшка не в сети 
-- Disabled - интерфейс отключен     
+- Down - интерфейс не работает/ОНУшка не в сети
+- Disabled - интерфейс отключен
       
-Возможные nway_status|nway_state:
-- 10-Half    
-- 100-Half    
-- 1G-Half    
-- 10-Full    
-- 100-Full    
-- 1G-Half    
-- 1G-Full      
-- 10G-Full    
+Возможные nway_status|nway_state:     
+- 10-Half
+- 100-Half
+- 1G-Half
+- 10-Full
+- 100-Full
+- 1G-Half
+- 1G-Full
+- 10G-Full
 - 40G-Full
 - Down (только для nway_status)
-- Disabled - (только для nway_state)    
+- Disabled - (только для nway_state)
 
-**Метаданные могут быть любые и любого формата или могут быть null 
-  
+**Метаданные могут быть любые и любого формата или могут быть null     
+     
+     
+     
+#### [Система](#structure_system)
+
+**System**
+
+```json5
+{
+  "descr": "C320 Version V2.1.0 Software, Copyright (c) by ZTE Corporation Compiled", //Описание возвращаемое устройством
+  "uptime": "338d 21h 55min 0sec", //Аптайм 
+  "contact": "admin", //Контакт возвращаемый устройством 
+  "name": "Nivky", //Имя возвращаемое устройством  
+  "location": "Ukraine, Kyiv", //Размещение, возвращаемое устройством 
+  "meta": { //Метаинформация с switcher-core 
+    "type": "OLT", //Тип устройства. Возможные варианты: SWITCH|OLT|ROUTER
+    "name": "ZTE ZXPON C320", //Имя устройства в конфиге switcher-core
+    "extra": {}, //Дополнительная информация по устройству. Указывается в конфиге модели, должен быть массив ключ=>значение
+    "modules": [ //Список поддерживаемых модулей
+      "system",
+      "onu_reboot",
+      "zte_onu_info",
+      "zte_onu_ether_iface_info",
+      "zte_fdb"
+    ]
+  }
+}
+```

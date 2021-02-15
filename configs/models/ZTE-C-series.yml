@@ -1,6 +1,7 @@
 models:
   - name: ZTE ZXPON C320
     ports: 0
+    device_type: OLT
     inputs:
       - snmp
       - telnet

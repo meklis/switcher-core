@@ -9,6 +9,7 @@
 models:
  - name: D-link DES-3526
    ports: 26
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

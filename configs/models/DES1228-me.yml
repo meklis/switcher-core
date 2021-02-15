@@ -9,6 +9,7 @@
 models:
   - name: D-link DES-1228/ME
     ports: 28
+    device_type: SWITCH
     inputs:
       - snmp
       - telnet

@@ -8,6 +8,7 @@
 models:
  - name: D-link DES-1210-28/ME/B2
    ports: 28
+   device_type: SWITCH
    inputs:
      - snmp
      - telnet

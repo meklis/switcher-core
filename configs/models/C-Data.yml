@@ -5,6 +5,7 @@ models:
       - snmp
       - telnet
     detect: {description: EasyPath Ethernet-PON,  objid: ^.1.3.6.1.4.1.17409$ }
+    device_type: OLT
     oids:
       - ./oids/cdata/fd1204.yml
     modules:
