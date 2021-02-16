@@ -15,7 +15,7 @@ class OntStateInfo extends C300ModuleAbstract
             throw new Exception("Module required telnet connection");
         }
         $this->response = [];
-        $interface = $this->parsePortByName($params['interface']);
+        $interface = $this->parseInterface($params['interface']);
         $type = $interface['technology'];
         switch ($type) {
             case 'gpon': $this->response = $this->getStateGPON($params['interface']); break;
@@ -33,11 +33,9 @@ class OntStateInfo extends C300ModuleAbstract
         $response = [];
         foreach (array_splice($lines, 2) as $line) {
             if(preg_match('/^(.*)[ ]{1,}(Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
-                $interface = $this->parsePortByName(trim($matches[1]));
+                $interface = $this->parseInterface(trim($matches[1]));
                 $response[] = [
-                    'interface' => trim($matches[1]),
-                    '_interface' => $interface,
-                    '_id' => $interface['id'] + $interface['onu_num'],
+                    'interface' => $interface,
                     'online_status' => trim($matches[2]),
                     'oam_status' => trim($matches[3]),
                     'mac' => trim($matches[4]),
@@ -61,10 +59,8 @@ class OntStateInfo extends C300ModuleAbstract
         unset($rows[count($rows) -1]);
         $response = $this->parseTable($rows);
         foreach ($response as $k=>$resp) {
-            $interface = $this->parsePortByName( 'gpon-onu_' . $resp['onu_index']);
-            $response[$k]['interface'] = 'gpon-onu_' . $resp['onu_index'];
-            $response[$k]['_id'] = $interface['id'] + $interface['onu_num'];
-            $response[$k]['_interface'] = $interface;
+            $interface = $this->parseInterface( 'gpon-onu_' . $resp['onu_index']);
+            $response[$k]['interface'] = $interface;
             unset($response[$k]['onu_index']);
         }
         return [

@@ -15,7 +15,7 @@ class OntInfo extends C300ModuleAbstract
             throw new Exception("Module required telnet connection");
         }
         $this->response = [];
-        $interface = $this->parsePortByName($params['onu']);
+        $interface = $this->parseInterface($params['onu']);
         $type = $interface['technology'];
         switch ($type) {
             case 'gpon': $this->response = $this->getInfoGPON($params['onu']); break;

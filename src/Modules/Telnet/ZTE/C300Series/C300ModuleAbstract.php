@@ -19,26 +19,74 @@ abstract class C300ModuleAbstract extends AbstractModule
      */
     protected $telnet;
 
-    public function parsePortByName($name)
+    public function parseInterface($name)
     {
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})/', $name, $matches)) {
             $onu = null;
+            $type = 'PON';
+            $id =
+                ($matches[3] * 1000000) +
+                ($matches[4] * 100000) +
+                ($matches[5] * 1000);
+            $parent = null;
             if ($matches[2] == 'onu' && preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})/', $name, $m)) {
                 $onu = $m[6];
+                $type = 'ONU';
+                $parent = $id;
+                $id += $onu;
             }
-            $id =
-                $matches[3] * 100000 +
-                $matches[4] * 10000 +
-                $matches[5] * 1000;
+
             return [
-                'id' => $id,
+                'name' => $name,
+                'id' => (int)$id,
+                'type' => $type,
+                'parent' => (int)$parent,
                 'technology' => $matches[1],
                 'is_onu' => $matches[2] === 'onu',
                 'is_port' => $matches[2] === 'olt',
-                'shelf' => $matches[3],
-                'slot' => $matches[4],
-                'port' => $matches[5],
-                'onu_num' => $onu,
+                'shelf' => (int)$matches[3],
+                'slot' => (int)$matches[4],
+                'port' => (int)$matches[5],
+                'onu_num' => (int)$onu,
+            ];
+        }
+        if(is_numeric($name)) {
+            $shelf = floor($name / 1000000);
+            $slot = floor(($name - ($shelf * 1000000)) / 100000);
+            $port = floor(($name - (($slot * 100000) + ($shelf * 1000000))) / 1000);
+            $onu = floor(($name - (($port * 1000) + ($slot * 100000) + ($shelf * 1000000))));
+            $technology = '';
+            $cards = $this->getModule('zte_card_list')->run()->getPretty();
+            $cardTypes = [];
+            foreach ($this->model->getExtra()['card_types'] as $type) {
+                $cardTypes[$type['name']] = $type;
+            }
+            foreach ($cards as $card) {
+                if($card['shelf'] == $shelf && $card['slot'] == $slot && isset($cardTypes[$card['real_type']])) {
+                    $technology = $cardTypes[$card['real_type']]['interface_type'];
+                }
+            }
+            if($onu) {
+                $parent = (int)$name - $onu;
+                $type = 'PON';
+                $interface = "{$technology}-onu_{$shelf}/{$slot}/{$port}:{$onu}";
+            } else {
+                $parent = null;
+                $type = 'ONU';
+                $interface = "{$technology}-olt_{$shelf}/{$slot}/{$port}";
+            }
+            return [
+                'id' => (int)$name,
+                'type' => $type,
+                'name' => $interface,
+                'parent' => $parent,
+                'technology' => $technology,
+                'is_onu' => $onu ? true : false,
+                'is_port' => $onu ? false : true,
+                'shelf' => $shelf,
+                'slot' => $slot,
+                'port' => $port,
+                'onu_num' => (int)$onu,
             ];
         }
         throw new InvalidArgumentException("Error parse port with name '$name'");

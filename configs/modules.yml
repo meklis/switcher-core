@@ -400,6 +400,15 @@
     - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)\/?([0-9]{1,3})?$', required: yes}
 
 - name: interfaces_list
-  description: Interface information
+  description: Возвращает список интерфейсов (Стандартизированный модуль)
   arguments:
     - { name: interface, pattern: '.*', required: no }
+    - { name: parent, pattern: '.*', required: no }
+    - { name: root, pattern: '.*', required: no }
+
+- name: interfaces_status
+  description: Возвращает список интерфейсов c их состоянием (Стандартизированный модуль)
+  arguments:
+    - { name: interface, pattern: '.*', required: no }
+    - { name: parent, pattern: '.*', required: no }
+    - { name: root, pattern: '.*', required: no }

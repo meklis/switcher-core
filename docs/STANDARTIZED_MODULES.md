@@ -76,7 +76,7 @@ Array<[интерфесов](#structure_interface)>
 ```     
 
 
-### [system](#system) - Возвращает информацию о состоянии интерфейса
+### [system](#system) - Возвращает информацию о системе
 
 **Возвращаемый результат**          
 [StructureSystem](#structure_system)

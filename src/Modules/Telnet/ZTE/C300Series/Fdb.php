@@ -19,10 +19,10 @@ class Fdb extends C300ModuleAbstract
         if($params['interface'] && $params['onu']) {
             throw new InvalidArgumentException("Only one of parameter allowed");
         } elseif($params['interface']) {
-            $technology = $this->parsePortByName($params['interface'])['technology'];
+            $technology = $this->parseInterface($params['interface'])['technology'];
             $command = "show mac-real-time $technology olt {$params['interface']}";
         } elseif ($params['onu']) {
-            $technology = $this->parsePortByName($params['onu'])['technology'];
+            $technology = $this->parseInterface($params['onu'])['technology'];
             $command = "show mac-real-time $technology onu {$params['interface']}";
         } else {
             throw new InvalidArgumentException("One of param 'interface' or 'onu' is required");
@@ -50,7 +50,7 @@ class Fdb extends C300ModuleAbstract
                 $response['vlan_id'] = (int) $m[2];
                 $response['type'] = $m[3];
                 $response['onu'] = $m[4];
-                $response['_interface'] = $this->parsePortByName($m[4]);
+                $response['_interface'] = $this->parseInterface($m[4]);
                 $this->response[] = $response;
             }
         }

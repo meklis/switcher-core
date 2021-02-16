@@ -10,13 +10,61 @@ class InterfacesList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        $list = $this->getCache('interface_list');
-        if($list) {
-            $this->response = $list;
-            return  $this;
-        }
-        $cards = $this->getModule('zte_card_list')->run()->getPretty();
         $response  = [];
+        if($params['interface']) {
+            $interface = $this->parseInterface($params['interface']);
+            if($interface['type'] === 'ONU') {
+                $interfacesForFilter = $this->getChildrenInterfaces($interface['parent']);
+            } else {
+                $interfacesForFilter = $this->getRootInterfaces();
+            }
+            $response = array_filter($interfacesForFilter, function ($e) use ($interface) {
+                return $interface['id'] == $e['id'];
+            });
+        } elseif ($params['parent']) {
+            $response = $this->getChildrenInterfaces($params['parent']);
+        } elseif ($params['root']) {
+           $response = $this->getRootInterfaces();
+        } else {
+            $response = $this->getRootInterfaces();
+            foreach ($response as $resp) {
+                try {
+                    $response = array_merge($response, $this->getChildrenInterfaces($resp['name']));
+                } catch (\Exception $e) {
+                }
+            }
+        }
+        $this->response = $response;
+        return  $this;
+    }
+    protected function getChildrenInterfaces($interface) {
+        $interface = $this->parseInterface($interface);
+        try {
+            $moduleResponse = $this->getModule('zte_onu_state_by_interface')->run(['interface' => $interface['name']])->getPretty();
+        } catch (\Exception $e) {
+            if(preg_match('/related information to show/', $e->getMessage())) {
+                return  [];
+            }
+            throw $e;
+        }
+        $response = [];
+        foreach ($moduleResponse['data'] as $data) {
+            $iface = $data['interface'];
+            unset($data['interface']);
+            $data['technology'] = $moduleResponse['type'];
+            $response[] = [
+                'id' => $iface['id'],
+                'name' => $iface['name'],
+                'parent' => $iface['parent'],
+                'type' => $iface['type'],
+                'meta' => $data,
+            ];
+        }
+        return $response;
+    }
+    protected function getRootInterfaces() {
+        $response = [];
+        $cards = $this->getModule('zte_card_list')->run()->getPretty();
         foreach ($cards as $card) {
             switch ($card['real_type']) {
                 case 'ETGOD': $prefix = "epon"; break;
@@ -24,18 +72,17 @@ class InterfacesList extends C300ModuleAbstract
                 default: continue(2);
             }
             for ($i = 1; $i <= $card['port']; $i++) {
-                $interface = $this->parsePortByName($prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i");
+                $interface = $this->parseInterface($prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i");
                 $response[] = [
-                    'interface' => $prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i",
-                    '_id' => $interface['id'],
-                    '_interface' => $interface,
-                    'card' => $card,
+                    'id' => $interface['id'],
+                    'name' => $interface['name'],
+                    'parent' => $interface['parent'],
+                    'type' => $interface['type'],
+                    'meta' => $interface,
                 ];
             }
         }
-        $this->setCache('interfaces_list', $response,  3600 );
-        $this->response = $response;
-        return  $this;
+        return $response;
     }
     public function getPretty()
     {

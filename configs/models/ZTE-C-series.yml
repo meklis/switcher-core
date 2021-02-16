@@ -22,10 +22,13 @@ models:
       zte_onu_registration_epon: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\Telnet\ZTE\C300Series\SaveConfig
       zte_card_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\CardList
-      zte_interfaces: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfacesList
-
+      interfaces_list: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfacesList
+      interfaces_status: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfacesStatus
     extra:
       telnet_conn_type: ios
+      card_types:
+        - {name: ETGOD, interface_type: epon, count_ports: 8}
+        - {name: GTGOG, interface_type: gpon, count_ports: 8}
       telnet_commands_after_connect:
         - terminal length 0
 
