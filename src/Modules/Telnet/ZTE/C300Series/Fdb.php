@@ -12,20 +12,15 @@ class Fdb extends C300ModuleAbstract
 {
     public function run($params = [])
     {
+        $interface = $this->parseInterface($params['interface']);
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
         $this->response = [];
-        if($params['interface'] && $params['onu']) {
-            throw new InvalidArgumentException("Only one of parameter allowed");
-        } elseif($params['interface']) {
-            $technology = $this->parseInterface($params['interface'])['technology'];
-            $command = "show mac-real-time $technology olt {$params['interface']}";
-        } elseif ($params['onu']) {
-            $technology = $this->parseInterface($params['onu'])['technology'];
-            $command = "show mac-real-time $technology onu {$params['interface']}";
+        if($interface['type'] !== 'ONU') {
+            $command = "show mac-real-time {$interface['technology']} olt {$interface['name']}";
         } else {
-            throw new InvalidArgumentException("One of param 'interface' or 'onu' is required");
+            $command = "show mac-real-time {$interface['technology']} onu {$interface['name']}";
         }
 
         $lines = explode("\n",$this->telnet->exec($command));
@@ -40,17 +35,16 @@ class Fdb extends C300ModuleAbstract
             $response = [];
             if(preg_match('/^([[:xdigit:]]{4}\.[[:xdigit:]]{4}\.[[:xdigit:]]{4})[ ]{1,}([0-9]{1,4})[ ]{1,}(\S*)[ ]{1,}((gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3}))[ ]{1,}(.*)$/', trim($line), $m)) {
                 if(preg_match('/vport ([0-9]{1,})[ ]{1,}(.*)/', trim($m[11]), $vport)) {
-                    $response['vport'] = $vport[1];
+                    $response['uni'] = $vport[1];
                     $response['time'] = $vport[2];
                 } else {
-                    $response['vport'] = null;
+                    $response['uni'] = null;
                     $response['time'] = $m[11];
                 }
                 $response['mac'] = $this->macTo6octets($m[1]);
                 $response['vlan_id'] = (int) $m[2];
                 $response['type'] = $m[3];
-                $response['onu'] = $m[4];
-                $response['_interface'] = $this->parseInterface($m[4]);
+                $response['interface'] = $this->parseInterface($m[4]);
                 $this->response[] = $response;
             }
         }

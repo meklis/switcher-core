@@ -11,9 +11,12 @@ class OnuEtherPortInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        $onuIface = $this->parseInterface($params['onu']);
-        switch ($onuIface['technology']) {
-            case 'gpon': $this->response = $this->getDataGPON($params['onu']); break;
+        $interface = $this->parseInterface($params['interface']);
+        if($interface['type'] !== 'ONU') {
+            throw new \Exception("Only ONU interface is allowed");
+        }
+       switch ($interface['technology']) {
+            case 'gpon': $this->response = $this->getDataGPON($interface['name']); break;
             case 'epon': throw new InvalidArgumentException("Not realized for epon onu");
             default: throw new InvalidArgumentException("Incorrect onu name");
         }

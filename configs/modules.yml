@@ -244,7 +244,7 @@
 #Action Get ont data
 - name: zte_onu_info
   arguments:
-    - {name: onu, pattern: '^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
+    - {name: interface, pattern: '.*', required: yes}
   descr: Информация о ОНУшке (детально)
 #Action Get ont data
 - name: zte_onu_pon_info
@@ -255,21 +255,27 @@
 #Action Get ont data
 - name: zte_onu_ether_iface_info
   arguments:
-    - {name: onu, pattern: '^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
+    - {name: interface, pattern: '.*', required: yes}
   descr: Инфо о Ethernet портах на ONU (UNI ports)
+
 
 #Action Get ont data
 - name: zte_onu_signal_strength
   arguments:
-    - {name: onu, pattern: '^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
+    - {name: interface, pattern: '.*', required: yes}
   descr: Инфо у уровне сигналов ОНУ
 
 #Action Get ont data
 - name: zte_fdb
   arguments:
-    - {name: onu, pattern: '^(gpon|epon)-(onu)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: no}
-    - {name: interface, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: no}
+    - {name: interface, pattern: '.*', required: true}
   descr: FDB таблица с интерфейса/порта/ОНУ
+
+#Action Get ont data
+- name: zte_fully_onu_info
+  arguments:
+    - {name: interface, pattern: '.*', required: yes}
+  descr: Солянка из zte_fdb, zte_onu_signal_strength, zte_onu_ether_iface_info, zte_onu_info
 
 
 #Get ONU state by interface
@@ -412,3 +418,8 @@
     - { name: interface, pattern: '.*', required: no }
     - { name: parent, pattern: '.*', required: no }
     - { name: root, pattern: '.*', required: no }
+
+- name: zte_interface_running_config
+  description: Возвращает список профайлов и серийников
+  arguments:
+    - { name: interface, pattern: '.*', required: true }

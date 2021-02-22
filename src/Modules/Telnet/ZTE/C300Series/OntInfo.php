@@ -11,17 +11,18 @@ class OntInfo extends C300ModuleAbstract
 {
     public function run($params = [])
     {
+        $interface = $this->parseInterface($params['interface']);
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
         $this->response = [];
-        $interface = $this->parseInterface($params['onu']);
         $type = $interface['technology'];
         switch ($type) {
-            case 'gpon': $this->response = $this->getInfoGPON($params['onu']); break;
-            case 'epon': $this->response = $this->getInfoEPON($params['onu']); break;
+            case 'gpon': $this->response = $this->getInfoGPON($interface['name']); break;
+            case 'epon': $this->response = $this->getInfoEPON($interface['name']); break;
             default: throw new Exception("Unknown type of interface - '$type'");
         }
+        $this->response['interface'] = $interface;
         return $this;
     }
 
@@ -58,7 +59,7 @@ class OntInfo extends C300ModuleAbstract
                 $ont_logs[] = [
                     'reg_time' => str_replace("/", "-", trim($m[1])),
                     'authpath_time' => str_replace("/", "-", trim($m[2])),
-                    'dereg_time ' => str_replace("/", "-", trim($m[3])),
+                    'dereg_time' => str_replace("/", "-", trim($m[3])),
                     'reason' => trim($m[4]),
                 ];
             }

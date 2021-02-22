@@ -68,11 +68,11 @@ abstract class C300ModuleAbstract extends AbstractModule
             }
             if($onu) {
                 $parent = (int)$name - $onu;
-                $type = 'PON';
+                $type = 'ONU';
                 $interface = "{$technology}-onu_{$shelf}/{$slot}/{$port}:{$onu}";
             } else {
                 $parent = null;
-                $type = 'ONU';
+                $type = 'PON';
                 $interface = "{$technology}-olt_{$shelf}/{$slot}/{$port}";
             }
             return [

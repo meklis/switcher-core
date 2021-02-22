@@ -14,25 +14,37 @@ class OnuSignalStrengthInfo extends C300ModuleAbstract
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
-        $this->response = [
-            'onu' => $params['onu'],
-            'onu_rx' => $this->command("show pon power onu-rx {$params['onu']}"),
-            'olt_rx' => $this->command("show pon power olt-rx {$params['onu']}"),
-        ];
+        $interface = $this->parseInterface($params['interface']);
+        $onuRx = [];
+        $oltRx = [];
+        $raw = explode("\n",$this->telnet->exec("show pon power onu-rx {$interface['name']}"));
+        foreach ($raw as $line) {
+            if(preg_match('/^(gpon-onu|epon-onu)(.*?)[ ]{1,}(.*)$/', $line, $matches)) {
+                 $onuRx["{$matches[1]}{$matches[2]}"] = str_replace('(dbm)', '', $matches[3]);
+            }
+        }
+        $raw = explode("\n",$this->telnet->exec("show pon power olt-rx {$interface['name']}"));
+        foreach ($raw as $line) {
+            if(preg_match('/^(gpon-onu|epon-onu)(.*?)[ ]{1,}(.*)$/', $line, $matches)) {
+                $oltRx["{$matches[1]}{$matches[2]}"] = str_replace('(dbm)', '', $matches[3]);
+            }
+        }
+        $response = [];
+        foreach ($oltRx as $onu=>$v) {
+            $iface = $this->parseInterface($onu);
+            $response[$iface['id']]['interface'] = $iface;
+            if(!is_numeric($v)) {
+                $v = null;
+            }
+            $response[$iface['id']]['olt_rx'] = $v;
+            if(isset($onuRx[$onu]) && is_numeric($onuRx[$onu])) {
+                $response[$iface['id']]['onu_rx'] = $onuRx[$onu];
+            } else {
+                $response[$iface['id']]['onu_rx'] = null;
+            }
+        }
+        $this->response = array_values($response);
         return $this;
-    }
-    private function command($input) {
-        $input = $this->telnet->exec($input);
-        if (!$input) throw new Exception("Empty response on command '$input'");
-        $lines = explode("\n", $input);
-        if(count($lines) < 3) {
-            throw new Exception("Unknown output - '$input'");
-        }
-        $lines = array_splice($lines, 2);
-        if(preg_match('/^(.*?)[ ]{1,}(.*)$/', $lines[0], $matches)) {
-            return str_replace('(dbm)', '', $matches[2]);
-        }
-        return null;
     }
 
     public function getPretty()
