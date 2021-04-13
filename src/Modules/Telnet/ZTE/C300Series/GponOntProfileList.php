@@ -11,7 +11,7 @@ class GponOntProfileList extends C300ModuleAbstract
 {
     public function run($params = [])
     {
-        if($cache = $this->getCache('onu_profile_list')) {
+        if($cache = $this->getCache('onu_profile_list_' . $params['type'])) {
             $this->response = $cache;
             return  $this;
         }
@@ -28,7 +28,7 @@ class GponOntProfileList extends C300ModuleAbstract
         if($lines) {
             $this->response = $lines;
         }
-        $this->setCache('onu_profile_list', $this->response, 300);
+        $this->setCache('onu_profile_list_' . $params['type'], $this->response, 300);
         return $this;
     }
 

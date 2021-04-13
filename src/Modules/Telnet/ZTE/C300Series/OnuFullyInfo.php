@@ -22,20 +22,15 @@ class OnuFullyInfo extends C300ModuleAbstract
             $etherInfo = null;
         }
         $fdb = $this->getModule('zte_fdb')->run(['interface' => $interface['name']])->getPretty();
-        $signal = $this->getModule('zte_onu_signal_strength')->run(['interface' => $interface['name']])->getPretty();
+        $signal = $this->getModule('zte_pon_power_attenuation')->run(['interface' => $interface['name']])->getPretty();
         foreach ($fdb as $k=>$_) {
             unset($fdb[$k]['interface']);
         }
-        if(count($signal) === 0) {
-            $signal = null;
-        } else {
-            unset($signal[0]['interface']);
-        }
-        unset($signal[0]['interface']);
+        unset($signal['interface']);
         $this->response = [
             'general' => $generalInfo['data'],
             'fdb' => $fdb,
-            'signal' => $signal[0],
+            'signal' => $signal,
             'ether' => $etherInfo,
             'interface' => $interface,
         ];

@@ -28,7 +28,7 @@ class UnregisteredOntList extends C300ModuleAbstract
                 $result = array_merge($result, $this->getUnregisteredEPON());
         }
         foreach ($result as $k=>$v) {
-            $result[$k]['_interface_parsed'] = $this->parseInterface($v['interface']);
+            $result[$k]['interface'] = $this->parseInterface($v['interface']);
         }
         $this->response  =$result;
         return $this;

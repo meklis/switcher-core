@@ -18,7 +18,7 @@ class DeregOnt extends C300ModuleAbstract
         $interface = "{$iface['technology']}-olt_{$iface['shelf']}/{$iface['slot']}/{$iface['port']}";
         $this->exec("conf t");
         $this->exec("interface {$interface}");
-        $this->exec("no onu {$iface['onu']}");
+        $this->exec("no onu {$iface['onu_num']}");
         return $this;
     }
 

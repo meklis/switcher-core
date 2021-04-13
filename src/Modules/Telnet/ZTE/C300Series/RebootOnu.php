@@ -14,10 +14,13 @@ class RebootOnu extends C300ModuleAbstract
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
-        $iface = $this->parseInterface($params['onu']);
-        $interface = "{$iface['technology']}-olt_{$iface['shelf']}/{$iface['slot']}/{$iface['port']}";
+        $interface = $this->parseInterface($params['interface']);
+        if($interface['type'] !== 'ONU') {
+            throw new \Exception("Reboot allow only for ONU");
+        }
+
         $this->exec("conf t");
-        $this->exec("pon-onu-mng {$interface}");
+        $this->exec("pon-onu-mng {$interface['name']}");
         $this->exec("reboot");
         $this->exec("end");
         return $this;

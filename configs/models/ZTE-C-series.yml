@@ -26,6 +26,10 @@ models:
       interfaces_status: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfacesStatus
       zte_interface_running_config: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfaceRunningConfig
       zte_fully_onu_info: \SwitcherCore\Modules\Telnet\ZTE\C300Series\OnuFullyInfo
+      zte_pon_power_attenuation: \SwitcherCore\Modules\Telnet\ZTE\C300Series\PonPowerAttenuation
+      telnet_command: \SwitcherCore\Modules\Telnet\ZTE\C300Series\RawTelnetCommand
+      multi_telnet_command: \SwitcherCore\Modules\Telnet\ZTE\C300Series\MultiRawTelnetCommand
+      zte_interface_parser: \SwitcherCore\Modules\Telnet\ZTE\C300Series\InterfaceParser
     extra:
       telnet_conn_type: ios
       card_types:
