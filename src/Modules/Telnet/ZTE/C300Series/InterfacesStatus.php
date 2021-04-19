@@ -37,7 +37,7 @@ class InterfacesStatus extends C300ModuleAbstract
                 $runningConfigs[$iFaceId] = $conf;
             }
         }
-        foreach ($interfaces as $k=>$interface) {
+        foreach ($interfaces as $interface) {
             $meta=[];
             $status = null;
             if(isset($interface['meta']['shelf'])) {
@@ -63,7 +63,6 @@ class InterfacesStatus extends C300ModuleAbstract
                 }
                 $meta['technology'] = $interface['meta']['technology'];
             }
-            unset($interface['meta']);
             $response[] = [
                 'interface' => $interface,
                 'meta' => $meta,

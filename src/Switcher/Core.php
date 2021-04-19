@@ -172,7 +172,8 @@ class Core
         $objId = "";
         foreach ($response as $resp) {
             if ($resp->error) {
-                throw new Exception("Walker returned error: {$resp->error}");
+                $this->logger->error("Walker returned error: {$resp->error}");
+                throw new \SNMPException($resp->error);
             } else {
                 if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
                     $descr = $resp->getResponse()[0]->getValue();
