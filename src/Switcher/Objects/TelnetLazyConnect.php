@@ -72,6 +72,9 @@ class TelnetLazyConnect extends Telnet
                     case 'dlink':
                         parent::exec("logout");
                         break;
+                    case 'ios':
+                        parent::exec("exit");
+                        break;
                 }
             }
         } catch (Exception $e) {}
