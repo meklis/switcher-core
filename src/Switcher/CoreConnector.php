@@ -116,7 +116,7 @@ class CoreConnector
         );
     }
     private function initTelnet(\SwitcherCore\Switcher\Device $device) {
-        return (new TelnetLazyConnect($device->getIp(), $device->telnetPort , $device->telnetTimeout, 10))
+        return (new TelnetLazyConnect($device->getIp(), $device->telnetPort , $device->telnetTimeout, 15))
             ->login($device->getLogin(), $device->getPassword());
     }
     private function initMikrotikApi(\SwitcherCore\Switcher\Device $device) {
