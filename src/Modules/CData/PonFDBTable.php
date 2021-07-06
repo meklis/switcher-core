@@ -31,7 +31,7 @@ class PonFDBTable extends CDataAbstractModule
         if($filter['interface']) {
             $interfaceIds = $this->getOntIdsByInterface($filter['interface']);
             $this->response = array_values(array_filter($this->response, function ($el) use ($interfaceIds) {
-                return in_array($el['_id'], $interfaceIds) ;
+                return in_array($el['interface']['id'], $interfaceIds) ;
             }));
         }
         if($filter['vlan_id']) {
@@ -56,9 +56,7 @@ class PonFDBTable extends CDataAbstractModule
                 Helper::getIndexByOid($r->getOid(), 1),
             ]);
             $return["{$r->getValue()}-{$mac}"] = [
-                '_id' =>   (int)$r->getValue(),
-                '_interface' => $interface,
-                'interface' => $interface['name'] . ":" . $interface['onu_num'],
+                'interface' => $interface,
                 'mac_address' => $mac,
                 'vlan_id' => (int)$vlanId,
             ];
@@ -66,9 +64,8 @@ class PonFDBTable extends CDataAbstractModule
         foreach ($this->getResponseByName('pon.fdbWithUni', $response)->fetchAll() as $r) {
             $interface = $this->parseInterface(Helper::getIndexByOid($r->getOid(), 3));
             $interface['uni'] = Helper::getIndexByOid($r->getOid(), 1);
-            if(isset($return["{$interface['onu_id']}-{$r->getHexValue()}"])) {
-                $return["{$interface['onu_id']}-{$r->getHexValue()}"]['_interface'] = $interface;
-                $return["{$interface['onu_id']}-{$r->getHexValue()}"]['interface'] = $interface['name'] . ":" . $interface['onu_num'] . "/" . $interface['uni'];
+            if(isset($return["{$interface['id']}-{$r->getHexValue()}"])) {
+                $return["{$interface['id']}-{$r->getHexValue()}"]['interface'] = $interface;
             }
         }
         return array_values($return);

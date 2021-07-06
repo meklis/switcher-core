@@ -52,17 +52,15 @@ class OntListWithStatuses extends CDataAbstractModule
                         break;
                 }
                 $interfaces[] = [
-                    '_interface' => [
-                        'name' => $interface['name'],
-                        'id' => $interface['id'],
+                    'interface' => [
+                        'name' => $interface['name'] . ":" . $ontNum,
+                        'parent' => $interface['id'],
+                        'id' =>  $interface['id'] + $ontNum,
                         'xid' => $interface['xid'],
                         'type' => 'ONU',
                         'onu_num' => $ontNum,
-                        'onu_id' => $interface['id'] + $ontNum,
                         'uni' => null,
                     ],
-                    '_id' => $interface['id'] + $ontNum,
-                    'interface' => $interface['name'] . ":" . $ontNum,
                     'status' => $statusText,
                 ];
             }

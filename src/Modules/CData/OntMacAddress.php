@@ -29,9 +29,7 @@ class OntMacAddress extends CDataAbstractModule
             $interface = $this->parseInterface($onuId);
             $interface['onu_id'] = $onuId;
             $return[] = [
-                '_id' =>   $onuId,
-                '_interface' => $interface,
-                'interface' => $interface['name'] . ":" . $interface['onu_num'],
+                'interface' => $interface,
                 'mac_address' => $r->getHexValue(),
             ];
         }
@@ -55,9 +53,7 @@ class OntMacAddress extends CDataAbstractModule
             $interface = $this->parseInterface($onuId);
             $interface['onu_id'] = $onuId;
             $return[] = [
-                '_id' =>   $onuId,
-                '_interface' => $interface,
-                'interface' => $interface['name'] . ":" . $interface['onu_num'],
+                'interface' => $interface,
                 'mac_address' => $r->getHexValue(),
             ];
         }

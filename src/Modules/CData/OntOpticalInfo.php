@@ -71,9 +71,7 @@ class OntOpticalInfo extends CDataAbstractModule
                 $onuId = Helper::getIndexByOid($r->getOid(),2);
             }
             $interface = $this->parseInterface($onuId);
-            $return[$onuId]['_interface'] = $interface;
-            $return[$onuId]['_id'] = $onuId;
-            $return[$onuId]['interface'] =  $interface['name'] . ":" . $interface['onu_num'];
+            $return[$onuId]['interface'] = $interface;
             switch ($oid->getName()) {
                 case 'ont.opticalRx': $return[$onuId]['rx'] =  round((float)$r->getValue() / 100,2); break;
                 case 'ont.opticalTx': $return[$onuId]['tx'] =  round((float)$r->getValue() / 100,2); break;

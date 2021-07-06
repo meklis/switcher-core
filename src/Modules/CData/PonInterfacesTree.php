@@ -96,10 +96,8 @@ class PonInterfacesTree extends CDataAbstractModule
                         break;
                 }
                 $return["{$ifaceId}{$uni}"][$key] = $val;
-                $return["{$ifaceId}{$uni}"]['_interface'] = $interface;
-                $return["{$ifaceId}{$uni}"]['_id'] = (int)$ifaceId;
-                $return["{$ifaceId}{$uni}"]['interface'] = $interface['name'] . ($interface['onu_num'] ? ":{$interface['onu_num']}" : '') . ($interface['uni'] ? "/{$interface['uni']}" : '');
-            }
+                $return["{$ifaceId}{$uni}"]['interface'] = $interface;
+             }
         }
         return array_values($return);
     }
@@ -123,8 +121,7 @@ class PonInterfacesTree extends CDataAbstractModule
 
         foreach ($interfaces as $interface) {
             $list[] = [
-                'name' => $interface['name'],
-                'id' => $interface['id'],
+                'interface' => $interface,
                 'parent' => null,
                 'type' => $interface['type'],
                 'status' => null,
@@ -132,9 +129,8 @@ class PonInterfacesTree extends CDataAbstractModule
         }
         foreach ($onts as $ont) {
             $list[] = [
-                'name' => $ont['interface'],
-                'id' => $ont['_id'],
-                'parent' => $ont['_interface']['id'],
+                'interface' => $ont['interface'],
+                'parent' => $ont['interface']['id'],
                 'type' => 'ONT',
                 'status' => $ont['status'],
             ];

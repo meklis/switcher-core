@@ -355,67 +355,59 @@
   descr: Count registered onts on pon
 
 - name: pon_onts_status
-  arguments:
-    - { name: meta, pattern: 'yes|no', required: no }
   descr: Returned onts statuses
 
 - name: pon_onts_mac_addr
   descr: Returned ONTs MAC addresses
   arguments:
-    - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
-    - {name: meta, pattern: 'yes|no', required: no}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_onts_optical
   descr: Returned ONTs MAC addresses
   arguments:
-    - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
-    - {name: meta, pattern: 'yes|no', required: no}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_onts_status_detailed
   descr: Returned ONTs MAC addresses
   arguments:
-    - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
-    - {name: meta, pattern: 'yes|no', required: no}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_onts_general_info
   descr: Returned ONTs MAC addresses
   arguments:
-    - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
-    - {name: meta, pattern: 'yes|no', required: no}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_fdb
   descr: Returned FDB table on ONTs
   arguments:
-    - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
-    - {name: meta, pattern: 'yes|no', required: no}
+    - {name: interface, pattern: '.*', required: no}
     - {name: vlan_id, pattern: '[0-9]{1,4}', required: no}
     - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
 
 - name: pon_interface_info
   descr: Returned FDB table on ONTs
   arguments:
-    - {name: interface, pattern: '^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?$', required: no}
-    - {name: meta, pattern: 'yes|no', required: no }
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_ont_reboot
   descr: Reboot ONU by interface
   arguments:
-    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)$', required: yes}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_ont_reset
   descr: Reset ONT configuration
   arguments:
-    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)$', required: yes}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_ont_delete
   descr: Delete ont from system
   arguments:
-    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)$', required: yes}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: pon_ont_clear_counters
   descr: Clear counters on ONT (uni port)
   arguments:
-    - {name: interface, pattern: '^([0-9]{1,7})|((pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?)\/?([0-9]{1,3})?$', required: yes}
+    - {name: interface, pattern: '.*', required: no}
 
 
 - name: pon_onts_fully_info

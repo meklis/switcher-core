@@ -32,9 +32,7 @@ class PonRegisteredOnts extends CDataAbstractModule
         foreach ($response as $resp) {
             $interface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
             $return[] = [
-                'interface' => $interface['name'],
-                '_id' => $interface['id'],
-                '_interface' => $interface,
+                'interface' => $interface,
                 'count' => $resp->getValue(),
             ];
         }
