@@ -69,9 +69,7 @@ class PonInterfaceInformation extends CDataAbstractModule
                     case 'stat_out_octets': $val = $resp->getValue(); break;
                 }
                 $return["{$ifaceId}{$uni}"][$key] = $val;
-                $return["{$ifaceId}{$uni}"]['_interface'] = $interface;
-                $return["{$ifaceId}{$uni}"]['_id'] = (int)$ifaceId;
-                $return["{$ifaceId}{$uni}"]['interface'] = $interface['name'] . ($interface['onu_num'] ? ":{$interface['onu_num']}" : '') .  ($interface['uni'] ? "/{$interface['uni']}" : '');
+                $return["{$ifaceId}{$uni}"]['interface'] = $interface;
             }
         }
         return array_values($return);
@@ -96,11 +94,7 @@ class PonInterfaceInformation extends CDataAbstractModule
         $suffix = '';
         if($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            if($interface['onu_id']) {
-                $suffix = '.'.$interface['onu_id'];
-            } elseif($interface['id']) {
-                $suffix = '.'.$interface['id'];
-            }
+            $suffix = '.'.$interface['id'];
         }
         foreach ($oidsLoc as $oid) {
             $oids[] = Oid::init($oid->getOid() . $suffix);

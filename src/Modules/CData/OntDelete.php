@@ -27,11 +27,11 @@ class OntDelete extends CDataAbstractModule
     public function run($filter = [])
     {
         $interface = $this->parseInterface($filter['interface']);
-        if(!$interface['onu_id']) {
+        if(!$interface['id']) {
             throw new \Exception("Incorrect ONU number");
         }
         $oid = $this->oids->getOidByName('ont.action.delete')->getOid();
-        $resp = $this->snmp->set(Oid::init($oid . ".{$interface['onu_id']}", false, 'Integer', 6));
+        $resp = $this->snmp->set(Oid::init($oid . ".{$interface['id']}", false, 'Integer', 6));
         if($resp[0]->error) {
             throw new \Exception("Returned error from device: {$resp[0]->error}");
         }

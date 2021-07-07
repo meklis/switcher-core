@@ -1,170 +1,504 @@
 {
     "data": [
         {
-            "name": "ge0\/0\/1",
-            "id": 16777472,
+            "interface": {
+                "name": "ge0\/0\/1",
+                "id": 16777472,
+                "xid": 1,
+                "type": "1G-SFP"
+            },
             "parent": null,
             "type": "1G-SFP",
             "status": null
         },
         {
-            "name": "ge0\/0\/2",
-            "id": 16777728,
+            "interface": {
+                "name": "ge0\/0\/2",
+                "id": 16777728,
+                "xid": 2,
+                "type": "1G-SFP"
+            },
             "parent": null,
             "type": "1G-SFP",
             "status": null
         },
         {
-            "name": "ge0\/0\/3",
-            "id": 16777984,
+            "interface": {
+                "name": "ge0\/0\/3",
+                "id": 16777984,
+                "xid": 3,
+                "type": "1G-SFP"
+            },
             "parent": null,
             "type": "1G-SFP",
             "status": null
         },
         {
-            "name": "ge0\/0\/4",
-            "id": 16778240,
+            "interface": {
+                "name": "ge0\/0\/4",
+                "id": 16778240,
+                "xid": 4,
+                "type": "1G-SFP"
+            },
             "parent": null,
             "type": "1G-SFP",
             "status": null
         },
         {
-            "name": "xge0\/0\/1",
-            "id": 16778240,
+            "interface": {
+                "name": "xge0\/0\/1",
+                "id": 16778240,
+                "xid": 5,
+                "type": "10G-SFP"
+            },
             "parent": null,
             "type": "10G-SFP",
             "status": null
         },
         {
-            "name": "xge0\/0\/2",
-            "id": 16778752,
+            "interface": {
+                "name": "xge0\/0\/2",
+                "id": 16778752,
+                "xid": 6,
+                "type": "10G-SFP"
+            },
             "parent": null,
             "type": "10G-SFP",
             "status": null
         },
         {
-            "name": "pon0\/0\/1",
-            "id": 16779008,
+            "interface": {
+                "name": "pon0\/0\/1",
+                "id": 16779008,
+                "xid": 7,
+                "type": "PON"
+            },
             "parent": null,
             "type": "PON",
             "status": null
         },
         {
-            "name": "pon0\/0\/2",
-            "id": 16779264,
+            "interface": {
+                "name": "pon0\/0\/2",
+                "id": 16779264,
+                "xid": 8,
+                "type": "PON"
+            },
             "parent": null,
             "type": "PON",
             "status": null
         },
         {
-            "name": "pon0\/0\/3",
-            "id": 16779520,
+            "interface": {
+                "name": "pon0\/0\/3",
+                "id": 16779520,
+                "xid": 9,
+                "type": "PON"
+            },
             "parent": null,
             "type": "PON",
             "status": null
         },
         {
-            "name": "pon0\/0\/4",
-            "id": 16779776,
+            "interface": {
+                "name": "pon0\/0\/4",
+                "id": 16779776,
+                "xid": 10,
+                "type": "PON"
+            },
             "parent": null,
             "type": "PON",
             "status": null
         },
         {
-            "name": "pon0\/0\/1:1",
-            "id": 16779009,
-            "parent": 16779008,
+            "interface": {
+                "name": "pon0\/0\/1:1",
+                "parent": 16779008,
+                "id": 16779009,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 1,
+                "uni": null
+            },
+            "parent": 16779009,
             "type": "ONT",
             "status": "Online"
         },
         {
-            "name": "pon0\/0\/1:2",
-            "id": 16779010,
-            "parent": 16779008,
+            "interface": {
+                "name": "pon0\/0\/1:2",
+                "parent": 16779008,
+                "id": 16779010,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 2,
+                "uni": null
+            },
+            "parent": 16779010,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:3",
+                "parent": 16779008,
+                "id": 16779011,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 3,
+                "uni": null
+            },
+            "parent": 16779011,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:4",
+                "parent": 16779008,
+                "id": 16779012,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 4,
+                "uni": null
+            },
+            "parent": 16779012,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:5",
+                "parent": 16779008,
+                "id": 16779013,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 5,
+                "uni": null
+            },
+            "parent": 16779013,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:6",
+                "parent": 16779008,
+                "id": 16779014,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 6,
+                "uni": null
+            },
+            "parent": 16779014,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:7",
+                "parent": 16779008,
+                "id": 16779015,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 7,
+                "uni": null
+            },
+            "parent": 16779015,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:8",
+                "parent": 16779008,
+                "id": 16779016,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 8,
+                "uni": null
+            },
+            "parent": 16779016,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:9",
+                "parent": 16779008,
+                "id": 16779017,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 9,
+                "uni": null
+            },
+            "parent": 16779017,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:10",
+                "parent": 16779008,
+                "id": 16779018,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 10,
+                "uni": null
+            },
+            "parent": 16779018,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:11",
+                "parent": 16779008,
+                "id": 16779019,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 11,
+                "uni": null
+            },
+            "parent": 16779019,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:12",
+                "parent": 16779008,
+                "id": 16779020,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 12,
+                "uni": null
+            },
+            "parent": 16779020,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:13",
+                "parent": 16779008,
+                "id": 16779021,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 13,
+                "uni": null
+            },
+            "parent": 16779021,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:14",
+                "parent": 16779008,
+                "id": 16779022,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 14,
+                "uni": null
+            },
+            "parent": 16779022,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:15",
+                "parent": 16779008,
+                "id": 16779023,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 15,
+                "uni": null
+            },
+            "parent": 16779023,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/1:16",
+                "parent": 16779008,
+                "id": 16779024,
+                "xid": 7,
+                "type": "ONU",
+                "onu_num": 16,
+                "uni": null
+            },
+            "parent": 16779024,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:1",
+                "parent": 16779264,
+                "id": 16779265,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 1,
+                "uni": null
+            },
+            "parent": 16779265,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:2",
+                "parent": 16779264,
+                "id": 16779266,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 2,
+                "uni": null
+            },
+            "parent": 16779266,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:3",
+                "parent": 16779264,
+                "id": 16779267,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 3,
+                "uni": null
+            },
+            "parent": 16779267,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:4",
+                "parent": 16779264,
+                "id": 16779268,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 4,
+                "uni": null
+            },
+            "parent": 16779268,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:5",
+                "parent": 16779264,
+                "id": 16779269,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 5,
+                "uni": null
+            },
+            "parent": 16779269,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:6",
+                "parent": 16779264,
+                "id": 16779270,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 6,
+                "uni": null
+            },
+            "parent": 16779270,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:7",
+                "parent": 16779264,
+                "id": 16779271,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 7,
+                "uni": null
+            },
+            "parent": 16779271,
+            "type": "ONT",
+            "status": "Online"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/2:8",
+                "parent": 16779264,
+                "id": 16779272,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 8,
+                "uni": null
+            },
+            "parent": 16779272,
             "type": "ONT",
             "status": "Offline"
         },
         {
-            "name": "pon0\/0\/1:3",
-            "id": 16779011,
-            "parent": 16779008,
+            "interface": {
+                "name": "pon0\/0\/2:9",
+                "parent": 16779264,
+                "id": 16779273,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 9,
+                "uni": null
+            },
+            "parent": 16779273,
             "type": "ONT",
             "status": "Online"
         },
         {
-            "name": "pon0\/0\/1:4",
-            "id": 16779012,
-            "parent": 16779008,
+            "interface": {
+                "name": "pon0\/0\/2:10",
+                "parent": 16779264,
+                "id": 16779274,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 10,
+                "uni": null
+            },
+            "parent": 16779274,
             "type": "ONT",
             "status": "Online"
         },
         {
-            "name": "pon0\/0\/1:5",
-            "id": 16779013,
-            "parent": 16779008,
+            "interface": {
+                "name": "pon0\/0\/2:11",
+                "parent": 16779264,
+                "id": 16779275,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 11,
+                "uni": null
+            },
+            "parent": 16779275,
             "type": "ONT",
             "status": "Online"
         },
         {
-            "name": "pon0\/0\/1:6",
-            "id": 16779014,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:7",
-            "id": 16779015,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Offline"
-        },
-        {
-            "name": "pon0\/0\/1:8",
-            "id": 16779016,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:9",
-            "id": 16779017,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:10",
-            "id": 16779018,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:11",
-            "id": 16779019,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:12",
-            "id": 16779020,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:13",
-            "id": 16779021,
-            "parent": 16779008,
-            "type": "ONT",
-            "status": "Online"
-        },
-        {
-            "name": "pon0\/0\/1:14",
-            "id": 16779022,
-            "parent": 16779008,
+            "interface": {
+                "name": "pon0\/0\/2:12",
+                "parent": 16779264,
+                "id": 16779276,
+                "xid": 8,
+                "type": "ONU",
+                "onu_num": 12,
+                "uni": null
+            },
+            "parent": 16779276,
             "type": "ONT",
             "status": "Online"
         }

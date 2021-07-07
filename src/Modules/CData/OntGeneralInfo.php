@@ -27,7 +27,7 @@ class OntGeneralInfo extends CDataAbstractModule
         $return = [];
         foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
             unset($onts['status']);
-            $return[$onts['_id']] = $onts;
+            $return[$onts['interface']['id']] = $onts;
         }
 
         foreach ($this->getResponseByName('ont.verSoftware', $response)->fetchAll() as $r) {
@@ -58,7 +58,7 @@ class OntGeneralInfo extends CDataAbstractModule
         $return = [];
         $responses = [];
         foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            $return[$onts['_id']] = $onts;
+            $return[$onts['interface']['id']] = $onts;
         }
         $issetIds = [];
         foreach ($response as $poolerResponse) {
@@ -80,7 +80,7 @@ class OntGeneralInfo extends CDataAbstractModule
         }
         $ids = array_keys($issetIds);
         $return = array_filter($return, function ($e) use ($ids) {
-            return in_array($e['_id'], $ids);
+            return in_array($e['interface']['id'], $ids);
         });
         return array_values($return);
     }

@@ -27,11 +27,6 @@ abstract class CDataAbstractModule extends AbstractModule
             return $ret;
         }
         $resp = $this->getPretty();
-        if(isset($filter['meta']) && $filter['meta'] !== 'yes') {
-            foreach ($resp as $k=>$_) {
-                unset($resp[$k]['_interface']);
-            }
-        }
         $this->setCache(json_encode($filter), $resp, 10);
         return $resp;
     }
@@ -49,17 +44,18 @@ abstract class CDataAbstractModule extends AbstractModule
                 'onu_num' => null,
                 'onu_id' => null,
                 'uni' => null,
+                'parent' => null,
             ];
         } elseif (is_numeric($input) && $input > 10000) {
             //Check is port
             if ($interface = $this->findInterface($input, 'id')) {
                 return [
                     'name' => $interface['name'],
+                    'parent' => null,
                     'id' => $interface['id'],
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],
                     'onu_num' => null,
-                    'onu_id' => null,
                     'uni' => null,
                 ];
             }
@@ -69,12 +65,12 @@ abstract class CDataAbstractModule extends AbstractModule
             $onuNum = hexdec("{$arr[5]}{$arr[6]}");
             if ($interface = $this->findInterface($xid, 'xid')) {
                 return [
-                    'name' => $interface['name'],
-                    'id' => $interface['id'],
+                    'name' => $interface['name'] . ":{$onuNum}",
+                    'parent' => $interface['id'],
+                    'id' => $interface['id'] + $onuNum,
                     'xid' => $interface['xid'],
-                    'type' => $interface['type'],
+                    'type' => 'ONU',
                     'onu_num' => $onuNum,
-                    'onu_id' => $interface['id'] + $onuNum,
                     'uni' => null,
                 ];
             }
@@ -84,23 +80,25 @@ abstract class CDataAbstractModule extends AbstractModule
                 $response = [
                     'name' => $interface['name'],
                     'id' => $interface['id'],
+                    'parent' => null,
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],
                     'onu_num' => null,
-                    'onu_id' => null,
                     'uni' => null,
                 ];
                 switch (count($m)) {
                     case 7:
+                        $response['name'] .= ":{$m[5]}";
                         $response['uni'] = (int)$m[6];
                         $response['onu_num'] = (int)$m[5];
                         $response['type'] = 'UNI';
-                        $response['onu_id'] = (int)$m[5] + $response['id'];
+                        $response['id'] = (int)$m[5] + $response['id'];
                         break;
                     case 6:
+                        $response['name'] .= ":{$m[5]}";
                         $response['onu_num'] = (int)$m[5];
                         $response['type'] = 'ONU';
-                        $response['onu_id'] = (int)$m[5] + $response['id'];
+                        $response['id'] = (int)$m[5] + $response['id'];
                         break;
                 }
                 return $response;
@@ -127,9 +125,6 @@ abstract class CDataAbstractModule extends AbstractModule
      */
     function getOntIdsByInterface($interface) {
         $interface = $this->parseInterface($interface);
-        if($interface['onu_num']) {
-            return [(int)$interface['onu_id']];
-        }
         if($interface['type'] !== 'PON') {
             return [(int)$interface['id']];
         }
@@ -138,8 +133,8 @@ abstract class CDataAbstractModule extends AbstractModule
         $ontIds = [];
         $onts = $this->getModule('pon_onts_status')->run()->getPretty();
         foreach ($onts as $ont) {
-            if($ont['_id'] > $min && $ont['_id'] <= $max) {
-                $ontIds[] = (int)$ont['_id'];
+            if($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
+                $ontIds[] = (int)$ont['interface']['id'];
             }
         }
         return  $ontIds;

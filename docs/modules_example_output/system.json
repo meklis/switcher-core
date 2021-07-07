@@ -1,41 +1,106 @@
 {
     "data": {
-        "descr": "C320 Version V2.1.0 Software, Copyright (c) by ZTE Corporation Compiled",
-        "uptime": "31234d 7h 35min 0sec",
-        "contact": "formatj@gmail.com",
-        "name": "Nivky",
-        "location": "Ukraine, Kyiv",
+        "descr": "EasyPath Ethernet-PON",
+        "uptime": "3752d 9h 58min 20sec",
+        "contact": "contact",
+        "name": "EasyPath Series PON Switch Access",
+        "location": "location",
+        "mac_addr": "E0:67:B3:7A:34:90",
+        "vendor_name": "C-Data",
+        "serial_num": "AF2703-1906000003",
+        "board_software_ver": "V1.4.1_190422",
+        "board_hardware_ver": "V2.0",
         "meta": {
-            "type": "OLT",
-            "name": "ZTE ZXPON C320",
+            "name": "C-Data FD1204",
             "detect": {
-                "description": "C320.*",
-                "objid": ".3902.1082.1001.320.2.1$"
+                "description": "EasyPath Ethernet-PON",
+                "objid": "^.1.3.6.1.4.1.17409$"
             },
             "ports": 0,
             "extra": {
                 "telnet_conn_type": "ios",
-                "telnet_commands_after_connect": [
-                    "terminal length 0"
+                "device_type": "pon",
+                "interfaces": [
+                    {
+                        "name": "ge0\/0\/1",
+                        "id": 16777472,
+                        "xid": 1,
+                        "type": "1G-SFP"
+                    },
+                    {
+                        "name": "ge0\/0\/2",
+                        "id": 16777728,
+                        "xid": 2,
+                        "type": "1G-SFP"
+                    },
+                    {
+                        "name": "ge0\/0\/3",
+                        "id": 16777984,
+                        "xid": 3,
+                        "type": "1G-SFP"
+                    },
+                    {
+                        "name": "ge0\/0\/4",
+                        "id": 16778240,
+                        "xid": 4,
+                        "type": "1G-SFP"
+                    },
+                    {
+                        "name": "xge0\/0\/1",
+                        "id": 16778240,
+                        "xid": 5,
+                        "type": "10G-SFP"
+                    },
+                    {
+                        "name": "xge0\/0\/2",
+                        "id": 16778752,
+                        "xid": 6,
+                        "type": "10G-SFP"
+                    },
+                    {
+                        "name": "pon0\/0\/1",
+                        "id": 16779008,
+                        "xid": 7,
+                        "type": "PON"
+                    },
+                    {
+                        "name": "pon0\/0\/2",
+                        "id": 16779264,
+                        "xid": 8,
+                        "type": "PON"
+                    },
+                    {
+                        "name": "pon0\/0\/3",
+                        "id": 16779520,
+                        "xid": 9,
+                        "type": "PON"
+                    },
+                    {
+                        "name": "pon0\/0\/4",
+                        "id": 16779776,
+                        "xid": 10,
+                        "type": "PON"
+                    }
                 ]
             },
             "modules": [
                 "system",
-                "onu_reboot",
-                "zte_onu_info",
-                "zte_onu_ether_iface_info",
-                "zte_fdb",
-                "zte_onu_signal_strength",
-                "zte_onu_state_by_interface",
-                "zte_onu_dereg",
-                "zte_unregistered_onu",
-                "zte_gpon_onu_profile_list",
-                "zte_onu_interface_console",
-                "zte_onu_registration_gpon",
-                "zte_onu_registration_epon",
+                "vlans",
+                "pon_interfaces_list",
+                "pon_registered_onts",
+                "pon_onts_status",
+                "pon_onts_mac_addr",
+                "pon_onts_optical",
+                "pon_onts_status_detailed",
+                "pon_onts_general_info",
+                "pon_fdb",
+                "pon_interface_info",
+                "pon_interfaces_tree",
                 "save_config",
-                "zte_card_list",
-                "zte_interfaces"
+                "pon_ont_reboot",
+                "pon_ont_reset",
+                "pon_ont_delete",
+                "pon_ont_clear_counters"
             ]
         }
     },
