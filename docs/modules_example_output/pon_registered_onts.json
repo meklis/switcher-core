@@ -1,58 +1,54 @@
 {
     "data": [
         {
-            "interface": "pon0\/0\/1",
-            "_id": 16779008,
-            "_interface": {
+            "interface": {
                 "name": "pon0\/0\/1",
                 "id": 16779008,
                 "xid": 7,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
-                "uni": null
+                "uni": null,
+                "parent": null
             },
-            "count": "14"
+            "count": "16"
         },
         {
-            "interface": "pon0\/0\/2",
-            "_id": 16779264,
-            "_interface": {
+            "interface": {
                 "name": "pon0\/0\/2",
                 "id": 16779264,
                 "xid": 8,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
-                "uni": null
+                "uni": null,
+                "parent": null
             },
-            "count": "0"
+            "count": "11"
         },
         {
-            "interface": "pon0\/0\/3",
-            "_id": 16779520,
-            "_interface": {
+            "interface": {
                 "name": "pon0\/0\/3",
                 "id": 16779520,
                 "xid": 9,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
-                "uni": null
+                "uni": null,
+                "parent": null
             },
             "count": "0"
         },
         {
-            "interface": "pon0\/0\/4",
-            "_id": 16779776,
-            "_interface": {
+            "interface": {
                 "name": "pon0\/0\/4",
                 "id": 16779776,
                 "xid": 10,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
-                "uni": null
+                "uni": null,
+                "parent": null
             },
             "count": "0"
         }

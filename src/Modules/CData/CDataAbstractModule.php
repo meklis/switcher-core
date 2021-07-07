@@ -65,11 +65,11 @@ abstract class CDataAbstractModule extends AbstractModule
             $onuNum = hexdec("{$arr[5]}{$arr[6]}");
             if ($interface = $this->findInterface($xid, 'xid')) {
                 return [
-                    'name' => $interface['name'],
+                    'name' => $interface['name'] . ":{$onuNum}",
                     'parent' => $interface['id'],
                     'id' => $interface['id'] + $onuNum,
                     'xid' => $interface['xid'],
-                    'type' => $interface['type'],
+                    'type' => 'ONU',
                     'onu_num' => $onuNum,
                     'uni' => null,
                 ];
@@ -88,12 +88,14 @@ abstract class CDataAbstractModule extends AbstractModule
                 ];
                 switch (count($m)) {
                     case 7:
+                        $response['name'] .= ":{$m[5]}";
                         $response['uni'] = (int)$m[6];
                         $response['onu_num'] = (int)$m[5];
                         $response['type'] = 'UNI';
                         $response['id'] = (int)$m[5] + $response['id'];
                         break;
                     case 6:
+                        $response['name'] .= ":{$m[5]}";
                         $response['onu_num'] = (int)$m[5];
                         $response['type'] = 'ONU';
                         $response['id'] = (int)$m[5] + $response['id'];
