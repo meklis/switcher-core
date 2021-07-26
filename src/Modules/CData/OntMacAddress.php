@@ -24,7 +24,11 @@ class OntMacAddress extends CDataAbstractModule
 
     private function processNoInterface($response) {
         $return = [];
-        foreach ($this->getResponseByName('ont.macAddr', $response)->fetchAll() as $r) {
+        $responses = $this->getResponseByName('ont.macAddr', $response);
+        if($responses->error()) {
+            throw new \Exception($responses->error());
+        }
+        foreach ($responses->fetchAll() as $r) {
             $onuId = Helper::getIndexByOid($r->getOid());
             $interface = $this->parseInterface($onuId);
             $interface['onu_id'] = $onuId;

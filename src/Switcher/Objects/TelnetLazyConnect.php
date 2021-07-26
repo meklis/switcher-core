@@ -47,7 +47,11 @@ class TelnetLazyConnect extends Telnet
         if(!$this->is_logined) {
             parent::setLinuxEOL();
             parent::disableMagicControl();
-            parent::setWindowSize(840,500);
+            try {
+                parent::setWindowSize(840,500);
+            } catch (\Exception $e) {
+
+            }
             parent::login($this->username, $this->password, $this->host_type);
             $this->setStreamTimeout(10.0);
             switch ($this->host_type) {
