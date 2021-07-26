@@ -94,10 +94,12 @@ class Core
             return ModuleCollector::init($c->get(Reader::class));
         });
         if ($cache !== null) {
+            $this->cache = $cache;
             $container->set(CacheInterface::class, $cache);
         }
         $this->container = $container;
     }
+
 
     private function buildContainer()
     {
@@ -189,7 +191,7 @@ class Core
                 $this->cache->set("SW_CORE_MODEL_DETECT:{$this->device->getIp()}",  [
                     'descr' => $descr,
                     'objid' => $objId,
-                ], 3600);
+                ], 120);
             }
             return [
                 'descr' => $descr,
