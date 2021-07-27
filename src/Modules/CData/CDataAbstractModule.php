@@ -27,7 +27,7 @@ abstract class CDataAbstractModule extends AbstractModule
             return $ret;
         }
         $resp = $this->getPretty();
-        $this->setCache(json_encode($filter), $resp, 10);
+        $this->setCache(json_encode($filter), $resp, 15);
         return $resp;
     }
 
