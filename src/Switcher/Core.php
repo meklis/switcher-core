@@ -165,11 +165,13 @@ class Core
             $this->logger->info("Returned detecting from cache", $resp );
             return  $resp;
         }
-        $response = $this->container->get(MultiWalkerInterface::class)
-            ->walk([
-                O::init($collector->getOidByName('sys.Descr')->getOid()),
-                O::init($collector->getOidByName('sys.ObjId')->getOid()),
-            ]);
+        $multiwalker = $this->container->get(MultiWalkerInterface::class);
+        $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')]);
+        if($response[0]->error) {
+            throw new \SNMPException($response[0]->error);
+        }
+        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')]));
+
         $descr = "";
         $objId = "";
         foreach ($response as $resp) {
