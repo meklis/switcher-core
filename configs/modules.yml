@@ -341,6 +341,7 @@
   arguments:
     - {name: interface, pattern: '.*', required: yes}
 
+
 - name: zte_interfaces
   descr: Build interfaces list by card info
 
@@ -446,3 +447,8 @@
   arguments:
     - {name: commands, pattern: '.*', required: true}
     - {name: break_on_error, pattern: '(true|false)', required: false}
+
+- name: parse_interface
+  descr: Returened parsed interface from input
+  arguments:
+    - {name: interface, pattern: '.*', required: yes}
