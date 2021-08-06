@@ -62,7 +62,7 @@ class PonInterfaceInformation extends CDataAbstractModule
                    continue;
                 }
                 switch ($key) {
-                    case 'status':
+                    case 'status': $val = $resp->getParsedValue(); break;
                     case 'admin_status':
                     case 'vlan_mode': $val = $resp->getParsedValue(); break;
                     case 'stat_in_octets':
@@ -100,6 +100,7 @@ class PonInterfaceInformation extends CDataAbstractModule
             $oids[] = Oid::init($oid->getOid() . $suffix);
         }
         $this->response = $this->process($this->snmp->walk($oids));
+
         return $this;
     }
 }
