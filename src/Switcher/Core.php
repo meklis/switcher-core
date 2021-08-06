@@ -166,11 +166,11 @@ class Core
             return  $resp;
         }
         $multiwalker = $this->container->get(MultiWalkerInterface::class);
-        $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')]);
+        $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
         if($response[0]->error) {
             throw new \SNMPException($response[0]->error);
         }
-        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')]));
+        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 1, 1));
 
         $descr = "";
         $objId = "";
