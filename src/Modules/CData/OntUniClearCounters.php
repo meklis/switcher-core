@@ -31,7 +31,7 @@ class OntUniClearCounters extends CDataAbstractModule
             throw new \Exception("Incorrect ONU number");
         }
         $oid = $this->oids->getOidByName('ont.action.reset')->getOid();
-        $resp = $this->snmp->set(Oid::init($oid . ".{$interface['id']}", false, 'Integer', 2));
+        $resp = $this->snmp->set(Oid::init($oid . ".{$interface['id']}", false, 'Integer', 3));
         if($resp[0]->error) {
             throw new \Exception("Returned error from device: {$resp[0]->error}");
         }
