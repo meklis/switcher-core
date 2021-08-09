@@ -79,7 +79,6 @@ class DlinkParser extends SwitchesPortAbstractModule
             }
 
             $ports_diag_result[] = [
-                'port' => $port,
                 'interface' => $this->parseInterface($port),
                 'pairs' => $pairs,
             ];
@@ -146,9 +145,10 @@ class DlinkParser extends SwitchesPortAbstractModule
             }
             $ports_list[$port] = $pairs;
         }
-        if($filter['port']) {
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($ports_list as $port=>$pairs) {
-                if($filter['port'] != $port) {
+                if($interface['id'] != $port) {
                     unset($ports_list[$port]);
                 }
             }
