@@ -74,9 +74,10 @@ class DlinkVlanParser extends SwitchesPortAbstractModule
     {
         Helper::prepareFilter($filter);
         $formated = $this->formate();
-        if($filter['port']) {
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($formated as $num=>$val) {
-                if($filter['port'] != $val['port']) {
+                if($interface['id'] != $val['interface']['id']) {
                     unset($formated[$num]);
                 }
             }

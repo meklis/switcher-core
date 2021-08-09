@@ -6,9 +6,10 @@ namespace SwitcherCore\Modules\Telnet\Dlink;
 use DI\Annotation\Inject;
 use Exception;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
-abstract class ExecLineCtrl extends AbstractModule
+abstract class ExecLineCtrl extends SwitchesPortAbstractModule
 {
 
     protected $status = false;

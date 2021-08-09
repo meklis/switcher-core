@@ -10,9 +10,7 @@ class DescriptionPortControl extends ExecLineCtrl
 {
     function getCommandLine($params = [])
     {
-        if($params['port'] > $this->model->getPorts()) {
-            throw new InvalidArgumentException("Max number of port is {$this->model->getPorts()}");
-        }
-        return "config ports {$params['port']} description {$params['description']}";
+        $interface = $this->parseInterface($params['interface']);
+        return "config ports {$interface['_key']} description {$params['description']}";
     }
 }

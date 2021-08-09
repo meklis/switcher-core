@@ -27,35 +27,37 @@ class VlanByPorts extends SwitchesPortAbstractModule
         $data = $parser->run()->getPrettyFiltered();
         $indexes = $parser->getIndexes();
         $response = [];
-        foreach ($indexes as $index=>$port) {
-            if($filter['port'] && $port['id'] != $filter['port']) continue;
+        foreach ($indexes as $index=>$interface) {
+            if($filter['interface']) {
+                $iface = $this->parseInterface($filter['interface']);
+                if($iface['id'] !== $interface['id']) continue;
+            }
             $untagged_vlans = [];
             $tagged_vlans = [];
             $egress_vlans = [];
             $forbidden_vlans = [];
             foreach ($data as $d) {
-                if(in_array($port['id'], $d['ports']['untagged'])) $untagged_vlans[] = [
+                if(in_array($interface, $d['ports']['untagged'])) $untagged_vlans[] = [
                     'name' => $d['name'],
                     'id' => $d['id'],
                 ];
-                if(in_array($port['id'], $d['ports']['egress'])) $egress_vlans[] = [
+                if(in_array($interface, $d['ports']['egress'])) $egress_vlans[] = [
                     'name' => $d['name'],
                     'id' => $d['id'],
                 ];
                 if(isset($d['ports']['tagged'])) {
-                    if(in_array($port['id'], $d['ports']['tagged'])) $tagged_vlans[] = [
+                    if(in_array($interface, $d['ports']['tagged'])) $tagged_vlans[] = [
                         'name' => $d['name'],
                         'id' => $d['id'],
                     ];
                 }
-                if(in_array($port['id'], $d['ports']['forbidden'])) $forbidden_vlans[] = [
+                if(in_array($interface, $d['ports']['forbidden'])) $forbidden_vlans[] = [
                     'name' => $d['name'],
                     'id' => $d['id'],
                 ];
             }
             $response[] = [
-                'port' => $port['id'],
-                'interface' => $port,
+                'interface' => $interface,
                 'untagged' => $untagged_vlans,
                 'tagged' => $tagged_vlans,
                 'egress' => $egress_vlans,

@@ -27,7 +27,7 @@ class Helper
         return implode('_', $ret);
     }
     static function prepareFilter(&$filter) {
-        if(!isset($filter['port'])) $filter['port'] = 0;
+        if(!isset($filter['interface'])) $filter['interface'] = null;
         if(!isset($filter['vlan_id'])) $filter['vlan_id'] = 0;
         if(!isset($filter['disa_linkup_diag'])) $filter['disa_linkup_diag'] = true;
         if(!isset($filter['mac'])) $filter['mac'] = '';

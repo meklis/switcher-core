@@ -1,311 +1,607 @@
 {
     "data": [
         {
-            "port": "1",
             "interface": {
                 "id": "1",
-                "name": "1\/1"
+                "name": "1\/1",
+                "_key": "1"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "2",
             "interface": {
                 "id": "2",
-                "name": "1\/2"
+                "name": "1\/2",
+                "_key": "2"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "3",
             "interface": {
                 "id": "3",
-                "name": "1\/3"
+                "name": "1\/3",
+                "_key": "3"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "4",
             "interface": {
                 "id": "4",
-                "name": "1\/4"
+                "name": "1\/4",
+                "_key": "4"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "5",
             "interface": {
                 "id": "5",
-                "name": "1\/5"
+                "name": "1\/5",
+                "_key": "5"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "6",
             "interface": {
                 "id": "6",
-                "name": "1\/6"
+                "name": "1\/6",
+                "_key": "6"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "7",
             "interface": {
                 "id": "7",
-                "name": "1\/7"
+                "name": "1\/7",
+                "_key": "7"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "8",
             "interface": {
                 "id": "8",
-                "name": "1\/8"
+                "name": "1\/8",
+                "_key": "8"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "9",
             "interface": {
                 "id": "9",
-                "name": "1\/9"
+                "name": "1\/9",
+                "_key": "9"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "10",
             "interface": {
                 "id": "10",
-                "name": "1\/10"
+                "name": "1\/10",
+                "_key": "10"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "11",
             "interface": {
                 "id": "11",
-                "name": "1\/11"
+                "name": "1\/11",
+                "_key": "11"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "12",
             "interface": {
                 "id": "12",
-                "name": "1\/12"
+                "name": "1\/12",
+                "_key": "12"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "13",
             "interface": {
                 "id": "13",
-                "name": "1\/13"
+                "name": "1\/13",
+                "_key": "13"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "14",
             "interface": {
                 "id": "14",
-                "name": "1\/14"
+                "name": "1\/14",
+                "_key": "14"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "15",
             "interface": {
                 "id": "15",
-                "name": "1\/15"
+                "name": "1\/15",
+                "_key": "15"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "16",
             "interface": {
                 "id": "16",
-                "name": "1\/16"
+                "name": "1\/16",
+                "_key": "16"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "17",
             "interface": {
                 "id": "17",
-                "name": "1\/17"
+                "name": "1\/17",
+                "_key": "17"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "18",
             "interface": {
                 "id": "18",
-                "name": "1\/18"
+                "name": "1\/18",
+                "_key": "18"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "19",
             "interface": {
                 "id": "19",
-                "name": "1\/19"
+                "name": "1\/19",
+                "_key": "19"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "20",
             "interface": {
                 "id": "20",
-                "name": "1\/20"
+                "name": "1\/20",
+                "_key": "20"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "21",
             "interface": {
                 "id": "21",
-                "name": "1\/21"
+                "name": "1\/21",
+                "_key": "21"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "22",
             "interface": {
                 "id": "22",
-                "name": "1\/22"
+                "name": "1\/22",
+                "_key": "22"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "23",
             "interface": {
                 "id": "23",
-                "name": "1\/23"
+                "name": "1\/23",
+                "_key": "23"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "24",
             "interface": {
                 "id": "24",
-                "name": "1\/24"
+                "name": "1\/24",
+                "_key": "24"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "OmoVlan",
+                    "id": "800"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "OmoVlan",
+                    "id": "800"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "25",
             "interface": {
                 "id": "25",
-                "name": "1\/25"
+                "name": "1\/25",
+                "_key": "25"
             },
             "untagged": [],
-            "tagged": [],
-            "egress": [],
+            "tagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                },
+                {
+                    "name": "E2sw501",
+                    "id": "501"
+                },
+                {
+                    "name": "OmoVlan",
+                    "id": "800"
+                }
+            ],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                },
+                {
+                    "name": "E2sw501",
+                    "id": "501"
+                },
+                {
+                    "name": "OmoVlan",
+                    "id": "800"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "26",
             "interface": {
                 "id": "26",
-                "name": "1\/26"
+                "name": "1\/26",
+                "_key": "26"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "27",
             "interface": {
                 "id": "27",
-                "name": "1\/27"
+                "name": "1\/27",
+                "_key": "27"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         },
         {
-            "port": "28",
             "interface": {
                 "id": "28",
-                "name": "1\/28"
+                "name": "1\/28",
+                "_key": "28"
             },
-            "untagged": [],
+            "untagged": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "tagged": [],
-            "egress": [],
+            "egress": [
+                {
+                    "name": "E2ext301",
+                    "id": "301"
+                }
+            ],
             "forbidden": []
         }
     ],

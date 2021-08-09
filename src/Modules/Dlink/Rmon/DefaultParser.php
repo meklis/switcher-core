@@ -19,7 +19,6 @@ class DefaultParser extends SwitchesPortAbstractModule
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
                 $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();
-                $response[$port_index]['port'] = $indexes[$port_index]['id'];
                 $response[$port_index]['interface'] = $indexes[$port_index];
             }
         }
@@ -32,9 +31,10 @@ class DefaultParser extends SwitchesPortAbstractModule
     function getPrettyFiltered($filter = [])
     {
         $formated = $this->formate();
-        if($filter['port']) {
+        if($filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
             foreach ($formated as $num=>$val) {
-                if($filter['port'] != $val['port']) {
+                if($iface['id'] != $val['interface']['id']) {
                     unset($formated[$num]);
                 }
             }
@@ -49,9 +49,10 @@ class DefaultParser extends SwitchesPortAbstractModule
             $oids[] = $oid->getOid();
         }
 
-        if($filter['port']) {
+        if($filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$this->parseInterface($filter['port'])}";
+                $oids[$num] .= ".{$iface['id']}";
             }
         }
         $oidObjects = [];

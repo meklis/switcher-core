@@ -36,8 +36,7 @@ class DlinkDgs1100Parser extends DlinkParser
 
             $this->response = $this->formatResponse($this->snmp->get($oidsDiag));
             $ports_diag_result[] = [
-                'port' => $port,
-
+                'interface' => $this->parseInterface($port),
                 'pairs' => [
                     [
                        'number' => 1,

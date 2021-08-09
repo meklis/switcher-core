@@ -51,7 +51,6 @@ class DlinkDes3526Parser extends DlinkParser
           foreach ($link_status->fetchAll() as $d) {
               $port = Helper::getIndexByOid($d->getOid(),1);
               $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
-              $response["{$port}-{$type}"]['port'] = $port;
               $response["{$port}-{$type}"]['interface'] = $this->parseInterface($port);
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = null;
@@ -108,13 +107,14 @@ class DlinkDes3526Parser extends DlinkParser
         Helper::prepareFilter($filter);
         $response = $this->formate();
 
-        if($filter['port']) {
+        if($filter['interface']) {
+            $iface  = $this->parseInterface($filter['interface']);
             foreach ($response as $num=>$resp) {
-                if(!isset($resp['port']))  {
+                if(!isset($resp['interface']))  {
                     unset($response[$num]);
                     continue;
                 }
-                if($filter['port'] != $resp['port']) {
+                if($iface['id'] != $resp['interface']['id']) {
                     unset($response[$num]);
                 }
             }

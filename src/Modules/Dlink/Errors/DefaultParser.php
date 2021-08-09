@@ -20,28 +20,24 @@ class DefaultParser extends SwitchesPortAbstractModule
         foreach ($in_err as $i) {
             $index = Helper::getIndexByOid($i->getOid());
             if(!isset($indexes[$index])) continue;
-            $errors[$index]['port'] = $indexes[$index]['id'];
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['in_errors'] = $i->getValue();
         }
         foreach ($out_err as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
-            $errors[$index]['port'] = $indexes[$index]['id'];
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['out_errors'] = $o->getValue();
         }
         foreach ($in_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
-            $errors[$index]['port'] = $indexes[$index]['id'];
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['in_discards'] = $o->getValue();
         }
         foreach ($out_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
-            $errors[$index]['port'] = $indexes[$index]['id'];
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['out_discards'] = $o->getValue();
         }
@@ -54,9 +50,12 @@ class DefaultParser extends SwitchesPortAbstractModule
     function getPrettyFiltered($filter = [])
     {
         $errors = $this->formate();
-        foreach ($errors as $num=>$val) {
-            if($filter['port'] && $filter['port'] != $val['port']) {
-                unset($errors[$num]);
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
+            foreach ($errors as $num=>$val) {
+                if($interface['id'] != $val['interface']['id']) {
+                    unset($errors[$num]);
+                }
             }
         }
        return array_values($errors);
@@ -69,10 +68,10 @@ class DefaultParser extends SwitchesPortAbstractModule
             $this->oids->getOidByName('if.InDiscards')->getOid(),
             $this->oids->getOidByName('if.OutDiscards')->getOid(),
         ];
-        if($filter['port']) {
-            $indexes = $this->getIndexes();
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$indexes[$filter['port']]['id']}";
+                $oids[$num] .= ".{$interface['id']}";
             }
         }
         $oidObjects = [];

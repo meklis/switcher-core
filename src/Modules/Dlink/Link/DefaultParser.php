@@ -23,7 +23,6 @@ class DefaultParser extends SwitchesPortAbstractModule
           foreach ($this->getIndexes() as $index=>$port) {
 
               $indexes[$index]['interface'] = $port;
-              $indexes[$index]['port'] = $port['id'];
               $indexes[$index]['medium_type'] = null;
               $indexes[$index]['address_learning'] = null;
               $indexes[$index]['description'] = null;
@@ -88,13 +87,14 @@ class DefaultParser extends SwitchesPortAbstractModule
                 }
             }
         }
-        if($filter['port']) {
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($response as $num=>$resp) {
-                if(!isset($resp['port']))  {
+                if(!isset($resp['interface']))  {
                     unset($response[$num]);
                     continue;
                 }
-                if($filter['port'] != $resp['port']) {
+                if($interface['id'] != $resp['interface']['id']) {
                     unset($response[$num]);
                 }
             }
@@ -117,9 +117,10 @@ class DefaultParser extends SwitchesPortAbstractModule
             $this->oids->getOidByName('if.Alias')->getOid(),
         ];
 
-        if ($filter['port']) {
+        if ($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($data as $num=>$d) {
-                $data[$num] .= ".{$indexes[$filter['port']]['id']}";
+                $data[$num] .= ".{$interface['id']}";
             }
         }
         $oidObjects = [];

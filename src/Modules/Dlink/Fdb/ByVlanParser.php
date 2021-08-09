@@ -37,7 +37,6 @@ class ByVlanParser extends SwitchesPortAbstractModule
                 list($vlanId, $macAddr) = explode("-", $key);
                 if(!(int)$ports[$key])  continue;
                 $pretties[] = [
-                    'port' => $ports[$key],
                     'interface' => $this->parseInterface($ports[$key]),
                     'vlan_id' => $vlanId,
                     'mac' => $macAddr,
@@ -52,12 +51,10 @@ class ByVlanParser extends SwitchesPortAbstractModule
     function getPrettyFiltered($filter = []) {
         Helper::prepareFilter($filter);
         $formated = $this->formate();
-        if($filter['port']) {
-            if($filter['port'] > $this->model->getPorts()) {
-                throw new InvalidArgumentException("Not corrected port value. Max port value is {$this->model->getPorts()}");
-            }
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($formated as $num=>$fdb) {
-                if($fdb['port'] != $filter['port']) {
+                if($fdb['interface']['id'] != $interface['id']) {
                     unset($formated[$num]);
                 }
             }

@@ -42,7 +42,6 @@ class DlinkDgs1100Parser extends SwitchesPortAbstractModule
               if($d->getParsedValue() != 'Down') {
                   $status = 'Up';
               }
-              $response["{$port}-{$type}"]['port'] = $port;
               $response["{$port}-{$type}"]['interface'] = $this->parseInterface($port);
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = 'GE';
@@ -82,13 +81,14 @@ class DlinkDgs1100Parser extends SwitchesPortAbstractModule
         Helper::prepareFilter($filter);
         $response = $this->formate();
 
-        if($filter['port']) {
+        if($filter['interface']) {
+            $iface  = $this->parseInterface($filter['interface']);
             foreach ($response as $num=>$resp) {
                 if(!isset($resp['port']))  {
                     unset($response[$num]);
                     continue;
                 }
-                if($filter['port'] != $resp['port']) {
+                if($iface['interface']['id'] != $resp['interface']['id']) {
                     unset($response[$num]);
                 }
             }
