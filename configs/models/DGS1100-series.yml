@@ -21,6 +21,7 @@ models:
      ge_ports: [1,2,3,4,5,6]
      telnet_conn_type: dlink
    modules:
+     parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkDgs1100Parser
      counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser

@@ -21,6 +21,7 @@ models:
      telnet_conn_type: dlink
      diag_linkup: true
    modules:
+     parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
      counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
