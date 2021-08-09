@@ -52,6 +52,7 @@ class DlinkDes3526Parser extends DlinkParser
               $port = Helper::getIndexByOid($d->getOid(),1);
               $type = $indexMediumType[Helper::getIndexByOid($d->getOid())];
               $response["{$port}-{$type}"]['port'] = $port;
+              $response["{$port}-{$type}"]['interface'] = $this->parseInterface($port);
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = null;
               $response["{$port}-{$type}"]['last_change'] = null;

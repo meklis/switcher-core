@@ -80,6 +80,7 @@ class DlinkParser extends SwitchesPortAbstractModule
 
             $ports_diag_result[] = [
                 'port' => $port,
+                'interface' => $this->parseInterface($port),
                 'pairs' => $pairs,
             ];
         }

@@ -43,6 +43,7 @@ class DlinkDgs1100Parser extends SwitchesPortAbstractModule
                   $status = 'Up';
               }
               $response["{$port}-{$type}"]['port'] = $port;
+              $response["{$port}-{$type}"]['interface'] = $this->parseInterface($port);
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = 'GE';
               $response["{$port}-{$type}"]['last_change'] = null;

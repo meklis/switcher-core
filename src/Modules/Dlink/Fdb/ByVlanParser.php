@@ -35,8 +35,10 @@ class ByVlanParser extends SwitchesPortAbstractModule
             }
             foreach ($statuses as $key=>$status) {
                 list($vlanId, $macAddr) = explode("-", $key);
+                if(!(int)$ports[$key])  continue;
                 $pretties[] = [
                     'port' => $ports[$key],
+                    'interface' => $this->parseInterface($ports[$key]),
                     'vlan_id' => $vlanId,
                     'mac' => $macAddr,
                     'status' => $status,

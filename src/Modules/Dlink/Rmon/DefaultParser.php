@@ -19,7 +19,8 @@ class DefaultParser extends SwitchesPortAbstractModule
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
                 $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();
-                $response[$port_index]['port'] = $indexes[$port_index];
+                $response[$port_index]['port'] = $indexes[$port_index]['id'];
+                $response[$port_index]['interface'] = $indexes[$port_index];
             }
         }
         return array_values($response);
@@ -49,12 +50,8 @@ class DefaultParser extends SwitchesPortAbstractModule
         }
 
         if($filter['port']) {
-            $indexes = [];
-            foreach ($this->getIndexes() as $index=>$port) {
-                $indexes[$port] = $index;
-            }
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$indexes[$filter['port']]}";
+                $oids[$num] .= ".{$this->parseInterface($filter['port'])}";
             }
         }
         $oidObjects = [];

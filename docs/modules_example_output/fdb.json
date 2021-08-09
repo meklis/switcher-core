@@ -1,13 +1,17 @@
 {
     "data": [
         {
-            "port": "13",
-            "vlan_id": "303",
-            "mac": "E8:94:F6:7B:18:4B",
+            "port": "24",
+            "interface": {
+                "id": "24",
+                "name": "1\/24"
+            },
+            "vlan_id": "800",
+            "mac": "DC:A6:32:3F:9C:B5",
             "status": "LEARNED"
         }
     ],
     "arguments": {
-        "port": "13"
+        "port": "24"
     }
 }

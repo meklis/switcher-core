@@ -19,7 +19,7 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
             return $this->indexesPort;
         }
         $response = $this->formatResponse($this->snmp->walk([
-            Oid::init($this->oids->getOidByName('if.Index')->getOid()),
+            Oid::init($this->oids->getOidByName('if.Name')->getOid()),
             Oid::init($this->oids->getOidByName('if.Type')->getOid()),
         ]));
         $types = [];
@@ -27,12 +27,33 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
             $types[Helper::getIndexByOid($resp->getOid())] = $resp->getParsedValue();
         }
 
-        foreach ($response['if.Index']->fetchAll() as $resp) {
+        foreach ($response['if.Name']->fetchAll() as $resp) {
             if($ethernetOnly && in_array($types[Helper::getIndexByOid($resp->getOid())], ['FE','GE'])) {
-                $indexes[Helper::getIndexByOid($resp->getOid())] = $resp->getValue();
+                $indexes[Helper::getIndexByOid($resp->getOid())] = [
+                    'id' =>  Helper::getIndexByOid($resp->getOid()),
+                    'name' => $resp->getValue(),
+                ];
             }
         }
         $this->indexesPort = $indexes;
         return $indexes;
+    }
+
+    function parseInterface($interface) {
+        $interfaces = $this->getIndexes();
+        if(preg_match('/^[0-9]{1,}$/', $interface)) {
+            if(isset($interfaces[$interface])) {
+                return $interfaces[$interface];
+            } else {
+                throw new \Exception("Interface with id '$interface' not found in device");
+            }
+        } else {
+            foreach ($interfaces as $iface) {
+                if($iface['name'] === $interface) {
+                    return $iface;
+                }
+            }
+            throw new \Exception("Interface with name|key '$interface' not found in device");
+        }
     }
 }

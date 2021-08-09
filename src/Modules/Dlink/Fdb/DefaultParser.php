@@ -37,8 +37,10 @@ class DefaultParser extends SwitchesPortAbstractModule
                 if(!isset($ports[$key])) {
                     continue;
                 }
+                if(!(int)$ports[$key])  continue;
                 $pretties[] = [
                     'port' => $ports[$key],
+                    'interface' => $this->parseInterface($ports[$key]),
                     'vlan_id' => $vlanId,
                     'mac' => $macAddr,
                     'status' => $status,

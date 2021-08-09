@@ -1,16 +1,369 @@
 {
     "data": [
         {
-            "hc_in_octets": "10684489545",
+            "hc_in_octets": "1482664451",
+            "port": "1",
+            "interface": {
+                "id": "1",
+                "name": "1\/1"
+            },
+            "hc_out_octets": "40117955893",
+            "hc_out_multicast_pkts": "12528442",
+            "hc_in_multicast_pkts": "22",
+            "hc_out_broadcast_pkts": "3865636",
+            "hc_in_broadcast_pkts": "84"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "2",
+            "interface": {
+                "id": "2",
+                "name": "1\/2"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "2993252998",
+            "port": "3",
+            "interface": {
+                "id": "3",
+                "name": "1\/3"
+            },
+            "hc_out_octets": "72602088153",
+            "hc_out_multicast_pkts": "12528376",
+            "hc_in_multicast_pkts": "223",
+            "hc_out_broadcast_pkts": "3865661",
+            "hc_in_broadcast_pkts": "237"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "4",
+            "interface": {
+                "id": "4",
+                "name": "1\/4"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "14915932336",
+            "port": "5",
+            "interface": {
+                "id": "5",
+                "name": "1\/5"
+            },
+            "hc_out_octets": "136896628887",
+            "hc_out_multicast_pkts": "12526555",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "3865132",
+            "hc_in_broadcast_pkts": "54"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "6",
+            "interface": {
+                "id": "6",
+                "name": "1\/6"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "7",
+            "interface": {
+                "id": "7",
+                "name": "1\/7"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "8",
+            "interface": {
+                "id": "8",
+                "name": "1\/8"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "9",
+            "interface": {
+                "id": "9",
+                "name": "1\/9"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "10",
+            "interface": {
+                "id": "10",
+                "name": "1\/10"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "19874528041",
+            "port": "11",
+            "interface": {
+                "id": "11",
+                "name": "1\/11"
+            },
+            "hc_out_octets": "255963933153",
+            "hc_out_multicast_pkts": "12528122",
+            "hc_in_multicast_pkts": "3",
+            "hc_out_broadcast_pkts": "3846623",
+            "hc_in_broadcast_pkts": "18860"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "12",
+            "interface": {
+                "id": "12",
+                "name": "1\/12"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
             "port": "13",
-            "hc_out_octets": "200072841889",
-            "hc_out_multicast_pkts": "7264401",
-            "hc_in_multicast_pkts": "330",
-            "hc_out_broadcast_pkts": "3957920",
-            "hc_in_broadcast_pkts": "93"
+            "interface": {
+                "id": "13",
+                "name": "1\/13"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "14",
+            "interface": {
+                "id": "14",
+                "name": "1\/14"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "15",
+            "interface": {
+                "id": "15",
+                "name": "1\/15"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "16",
+            "interface": {
+                "id": "16",
+                "name": "1\/16"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "17",
+            "interface": {
+                "id": "17",
+                "name": "1\/17"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "18",
+            "interface": {
+                "id": "18",
+                "name": "1\/18"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "2742137001",
+            "port": "19",
+            "interface": {
+                "id": "19",
+                "name": "1\/19"
+            },
+            "hc_out_octets": "23086667061",
+            "hc_out_multicast_pkts": "12397167",
+            "hc_in_multicast_pkts": "131745",
+            "hc_out_broadcast_pkts": "3643347",
+            "hc_in_broadcast_pkts": "222813"
+        },
+        {
+            "hc_in_octets": "13879513985",
+            "port": "20",
+            "interface": {
+                "id": "20",
+                "name": "1\/20"
+            },
+            "hc_out_octets": "65615812060",
+            "hc_out_multicast_pkts": "12516457",
+            "hc_in_multicast_pkts": "11654",
+            "hc_out_broadcast_pkts": "3863417",
+            "hc_in_broadcast_pkts": "2209"
+        },
+        {
+            "hc_in_octets": "10197469922",
+            "port": "21",
+            "interface": {
+                "id": "21",
+                "name": "1\/21"
+            },
+            "hc_out_octets": "79430170274",
+            "hc_out_multicast_pkts": "12528143",
+            "hc_in_multicast_pkts": "76",
+            "hc_out_broadcast_pkts": "3794752",
+            "hc_in_broadcast_pkts": "70742"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "22",
+            "interface": {
+                "id": "22",
+                "name": "1\/22"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "23",
+            "interface": {
+                "id": "23",
+                "name": "1\/23"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "438985281",
+            "port": "24",
+            "interface": {
+                "id": "24",
+                "name": "1\/24"
+            },
+            "hc_out_octets": "373408508",
+            "hc_out_multicast_pkts": "281109",
+            "hc_in_multicast_pkts": "21",
+            "hc_out_broadcast_pkts": "353606",
+            "hc_in_broadcast_pkts": "141"
+        },
+        {
+            "hc_in_octets": "867998500541",
+            "port": "25",
+            "interface": {
+                "id": "25",
+                "name": "1\/25"
+            },
+            "hc_out_octets": "118834116749",
+            "hc_out_multicast_pkts": "214576",
+            "hc_in_multicast_pkts": "12417333",
+            "hc_out_broadcast_pkts": "317354",
+            "hc_in_broadcast_pkts": "4018459"
+        },
+        {
+            "hc_in_octets": "0",
+            "port": "26",
+            "interface": {
+                "id": "26",
+                "name": "1\/26"
+            },
+            "hc_out_octets": "0",
+            "hc_out_multicast_pkts": "0",
+            "hc_in_multicast_pkts": "0",
+            "hc_out_broadcast_pkts": "0",
+            "hc_in_broadcast_pkts": "0"
+        },
+        {
+            "hc_in_octets": "34538926195",
+            "port": "27",
+            "interface": {
+                "id": "27",
+                "name": "1\/27"
+            },
+            "hc_out_octets": "76123091910",
+            "hc_out_multicast_pkts": "12387920",
+            "hc_in_multicast_pkts": "35072",
+            "hc_out_broadcast_pkts": "3864055",
+            "hc_in_broadcast_pkts": "2116"
+        },
+        {
+            "hc_in_octets": "15904173125",
+            "port": "28",
+            "interface": {
+                "id": "28",
+                "name": "1\/28"
+            },
+            "hc_out_octets": "116957861574",
+            "hc_out_multicast_pkts": "12422546",
+            "hc_in_multicast_pkts": "446",
+            "hc_out_broadcast_pkts": "3866079",
+            "hc_in_broadcast_pkts": "90"
         }
     ],
-    "arguments": {
-        "port": "13"
-    }
+    "arguments": []
 }

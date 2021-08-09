@@ -20,22 +20,29 @@ class DefaultParser extends SwitchesPortAbstractModule
         foreach ($in_err as $i) {
             $index = Helper::getIndexByOid($i->getOid());
             if(!isset($indexes[$index])) continue;
-            $errors[$index]['port'] = $indexes[$index];
+            $errors[$index]['port'] = $indexes[$index]['id'];
+            $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['in_errors'] = $i->getValue();
         }
         foreach ($out_err as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
+            $errors[$index]['port'] = $indexes[$index]['id'];
+            $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['out_errors'] = $o->getValue();
         }
         foreach ($in_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
+            $errors[$index]['port'] = $indexes[$index]['id'];
+            $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['in_discards'] = $o->getValue();
         }
         foreach ($out_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
+            $errors[$index]['port'] = $indexes[$index]['id'];
+            $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['out_discards'] = $o->getValue();
         }
         return array_values($errors);
@@ -63,12 +70,9 @@ class DefaultParser extends SwitchesPortAbstractModule
             $this->oids->getOidByName('if.OutDiscards')->getOid(),
         ];
         if($filter['port']) {
-            $indexes = [];
-            foreach ($this->getIndexes() as $index=>$port) {
-                $indexes[$port] = $index;
-            }
+            $indexes = $this->getIndexes();
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$indexes[$filter['port']]}";
+                $oids[$num] .= ".{$indexes[$filter['port']]['id']}";
             }
         }
         $oidObjects = [];

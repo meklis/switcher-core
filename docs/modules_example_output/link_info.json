@@ -2,42 +2,58 @@
     "data": [
         {
             "port": "1",
+            "interface": {
+                "id": "1",
+                "name": "1\/1"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Up",
-            "description": "1444",
+            "description": "2979",
             "admin_state": "Auto",
             "nway_status": "100-Full",
             "address_learning": "Enabled"
         },
         {
             "port": "2",
+            "interface": {
+                "id": "2",
+                "name": "1\/2"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Down",
-            "description": "1404",
+            "description": "1996",
             "admin_state": "Auto",
             "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "3",
+            "interface": {
+                "id": "3",
+                "name": "1\/3"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Up",
-            "description": "",
+            "description": "2656",
             "admin_state": "Auto",
             "nway_status": "100-Full",
             "address_learning": "Enabled"
         },
         {
             "port": "4",
+            "interface": {
+                "id": "4",
+                "name": "1\/4"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
@@ -50,198 +66,314 @@
         },
         {
             "port": "5",
+            "interface": {
+                "id": "5",
+                "name": "1\/5"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Up",
-            "description": "1404",
+            "description": "1996",
             "admin_state": "Auto",
             "nway_status": "100-Full",
             "address_learning": "Enabled"
         },
         {
             "port": "6",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "1404",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "7",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "2607",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "8",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "2265",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "9",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "2752",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "10",
+            "interface": {
+                "id": "6",
+                "name": "1\/6"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Down",
-            "description": "1425",
+            "description": "",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "7",
+            "interface": {
+                "id": "7",
+                "name": "1\/7"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "8",
+            "interface": {
+                "id": "8",
+                "name": "1\/8"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "9",
+            "interface": {
+                "id": "9",
+                "name": "1\/9"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "10",
+            "interface": {
+                "id": "10",
+                "name": "1\/10"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "",
             "admin_state": "Auto",
             "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "11",
+            "interface": {
+                "id": "11",
+                "name": "1\/11"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Up",
-            "description": "40543",
+            "description": "2888",
             "admin_state": "Auto",
             "nway_status": "100-Full",
             "address_learning": "Enabled"
         },
         {
             "port": "12",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "3858",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "13",
+            "interface": {
+                "id": "12",
+                "name": "1\/12"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Down",
-            "description": "1425",
+            "description": "",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "13",
+            "interface": {
+                "id": "13",
+                "name": "1\/13"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "",
             "admin_state": "Auto",
             "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "14",
+            "interface": {
+                "id": "14",
+                "name": "1\/14"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
-            "oper_status": "Up",
-            "description": "3391",
+            "oper_status": "Down",
+            "description": "",
             "admin_state": "Auto",
-            "nway_status": "100-Full",
+            "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "15",
+            "interface": {
+                "id": "15",
+                "name": "1\/15"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
-            "oper_status": "Up",
-            "description": "54739",
+            "oper_status": "Down",
+            "description": "1987",
             "admin_state": "Auto",
-            "nway_status": "100-Full",
+            "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "16",
+            "interface": {
+                "id": "16",
+                "name": "1\/16"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
-            "oper_status": "Up",
-            "description": "53716",
+            "oper_status": "Down",
+            "description": "",
             "admin_state": "Auto",
-            "nway_status": "100-Full",
+            "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "17",
+            "interface": {
+                "id": "17",
+                "name": "1\/17"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
-            "oper_status": "Up",
-            "description": "2245",
+            "oper_status": "Down",
+            "description": "",
             "admin_state": "Auto",
-            "nway_status": "100-Full",
+            "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "18",
+            "interface": {
+                "id": "18",
+                "name": "1\/18"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
-            "oper_status": "Up",
-            "description": "84978",
+            "oper_status": "Down",
+            "description": "",
             "admin_state": "Auto",
-            "nway_status": "100-Full",
+            "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "19",
+            "interface": {
+                "id": "19",
+                "name": "1\/19"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Up",
-            "description": "2005",
+            "description": "2899",
             "admin_state": "Auto",
             "nway_status": "100-Full",
             "address_learning": "Enabled"
         },
         {
             "port": "20",
+            "interface": {
+                "id": "20",
+                "name": "1\/20"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Up",
-            "description": "2240",
+            "description": "3095",
             "admin_state": "Auto",
             "nway_status": "100-Full",
             "address_learning": "Enabled"
         },
         {
             "port": "21",
+            "interface": {
+                "id": "21",
+                "name": "1\/21"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Up",
+            "description": "2997",
+            "admin_state": "Auto",
+            "nway_status": "100-Full",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "22",
+            "interface": {
+                "id": "22",
+                "name": "1\/22"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "23",
+            "interface": {
+                "id": "23",
+                "name": "1\/23"
+            },
+            "medium_type": "Cooper",
+            "type": "FE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "1404",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "24",
+            "interface": {
+                "id": "24",
+                "name": "1\/24"
+            },
             "medium_type": "Cooper",
             "type": "FE",
             "last_change": null,
@@ -253,43 +385,11 @@
             "address_learning": "Enabled"
         },
         {
-            "port": "22",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "3017",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "23",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Up",
-            "description": "2131",
-            "admin_state": "Auto",
-            "nway_status": "100-Full",
-            "address_learning": "Enabled"
-        },
-        {
-            "port": "24",
-            "medium_type": "Cooper",
-            "type": "FE",
-            "last_change": null,
-            "connector_present": null,
-            "oper_status": "Down",
-            "description": "53716",
-            "admin_state": "Auto",
-            "nway_status": "Down",
-            "address_learning": "Enabled"
-        },
-        {
             "port": "25",
+            "interface": {
+                "id": "25",
+                "name": "1\/25"
+            },
             "medium_type": "Cooper",
             "type": "GE",
             "last_change": null,
@@ -302,6 +402,10 @@
         },
         {
             "port": "25",
+            "interface": {
+                "id": "25",
+                "name": "1\/25"
+            },
             "medium_type": "Fiber",
             "type": "GE",
             "last_change": null,
@@ -314,24 +418,96 @@
         },
         {
             "port": "26",
+            "interface": {
+                "id": "26",
+                "name": "1\/26"
+            },
             "medium_type": "Cooper",
             "type": "GE",
             "last_change": null,
             "connector_present": null,
-            "oper_status": "Up",
-            "description": "1404",
+            "oper_status": "Down",
+            "description": "58373",
             "admin_state": "Auto",
-            "nway_status": "100-Full",
+            "nway_status": "Down",
             "address_learning": "Enabled"
         },
         {
             "port": "26",
+            "interface": {
+                "id": "26",
+                "name": "1\/26"
+            },
             "medium_type": "Fiber",
             "type": "GE",
             "last_change": null,
             "connector_present": null,
             "oper_status": "Down",
-            "description": "1404",
+            "description": "58373",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "27",
+            "interface": {
+                "id": "27",
+                "name": "1\/27"
+            },
+            "medium_type": "Cooper",
+            "type": "GE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Up",
+            "description": "3002",
+            "admin_state": "Auto",
+            "nway_status": "1G-Full",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "27",
+            "interface": {
+                "id": "27",
+                "name": "1\/27"
+            },
+            "medium_type": "Fiber",
+            "type": "GE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "3002",
+            "admin_state": "Auto",
+            "nway_status": "Down",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "28",
+            "interface": {
+                "id": "28",
+                "name": "1\/28"
+            },
+            "medium_type": "Cooper",
+            "type": "GE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Up",
+            "description": "3399",
+            "admin_state": "Auto",
+            "nway_status": "1G-Full",
+            "address_learning": "Enabled"
+        },
+        {
+            "port": "28",
+            "interface": {
+                "id": "28",
+                "name": "1\/28"
+            },
+            "medium_type": "Fiber",
+            "type": "GE",
+            "last_change": null,
+            "connector_present": null,
+            "oper_status": "Down",
+            "description": "3399",
             "admin_state": "Auto",
             "nway_status": "Down",
             "address_learning": "Enabled"

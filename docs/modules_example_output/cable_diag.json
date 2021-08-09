@@ -1,22 +1,309 @@
 {
     "data": [
         {
-            "port": 13,
+            "port": 2,
+            "interface": {
+                "id": "2",
+                "name": "1\/2"
+            },
             "pairs": [
                 {
                     "number": 1,
-                    "status": "OK",
-                    "length": 56
+                    "status": "NoCable",
+                    "length": 0
                 },
                 {
                     "number": 2,
-                    "status": "OK",
-                    "length": 56
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 4,
+            "interface": {
+                "id": "4",
+                "name": "1\/4"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": 13
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": 13
+                }
+            ]
+        },
+        {
+            "port": 6,
+            "interface": {
+                "id": "6",
+                "name": "1\/6"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 7,
+            "interface": {
+                "id": "7",
+                "name": "1\/7"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 8,
+            "interface": {
+                "id": "8",
+                "name": "1\/8"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": 20
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": 20
+                }
+            ]
+        },
+        {
+            "port": 9,
+            "interface": {
+                "id": "9",
+                "name": "1\/9"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 10,
+            "interface": {
+                "id": "10",
+                "name": "1\/10"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 12,
+            "interface": {
+                "id": "12",
+                "name": "1\/12"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": 32
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": 32
+                }
+            ]
+        },
+        {
+            "port": 13,
+            "interface": {
+                "id": "13",
+                "name": "1\/13"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 14,
+            "interface": {
+                "id": "14",
+                "name": "1\/14"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 15,
+            "interface": {
+                "id": "15",
+                "name": "1\/15"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 16,
+            "interface": {
+                "id": "16",
+                "name": "1\/16"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 17,
+            "interface": {
+                "id": "17",
+                "name": "1\/17"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 18,
+            "interface": {
+                "id": "18",
+                "name": "1\/18"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
+                }
+            ]
+        },
+        {
+            "port": 22,
+            "interface": {
+                "id": "22",
+                "name": "1\/22"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "Open",
+                    "length": 24
+                },
+                {
+                    "number": 2,
+                    "status": "Open",
+                    "length": 24
+                }
+            ]
+        },
+        {
+            "port": 23,
+            "interface": {
+                "id": "23",
+                "name": "1\/23"
+            },
+            "pairs": [
+                {
+                    "number": 1,
+                    "status": "NoCable",
+                    "length": 0
+                },
+                {
+                    "number": 2,
+                    "status": "NoCable",
+                    "length": 0
                 }
             ]
         }
     ],
-    "arguments": {
-        "port": "13"
-    }
+    "arguments": []
 }

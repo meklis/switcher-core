@@ -22,7 +22,8 @@ class DefaultParser extends SwitchesPortAbstractModule
           $indexes = [];
           foreach ($this->getIndexes() as $index=>$port) {
 
-              $indexes[$index]['port'] = $port;
+              $indexes[$index]['interface'] = $port;
+              $indexes[$index]['port'] = $port['id'];
               $indexes[$index]['medium_type'] = null;
               $indexes[$index]['address_learning'] = null;
               $indexes[$index]['description'] = null;
@@ -102,10 +103,7 @@ class DefaultParser extends SwitchesPortAbstractModule
     }
     public function run($filter = [])
     {
-        $indexes = [];
-        foreach ($this->getIndexes() as $index=>$port) {
-         $indexes[$port] = $index;
-        }
+        $indexes = $this->getIndexes();
 
         $data = [
             $this->oids->getOidByName('if.HighSpeed')->getOid() ,
@@ -121,7 +119,7 @@ class DefaultParser extends SwitchesPortAbstractModule
 
         if ($filter['port']) {
             foreach ($data as $num=>$d) {
-                $data[$num] .= ".{$indexes[$filter['port']]}";
+                $data[$num] .= ".{$indexes[$filter['port']]['id']}";
             }
         }
         $oidObjects = [];

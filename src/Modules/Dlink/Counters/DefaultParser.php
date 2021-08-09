@@ -19,7 +19,8 @@ class DefaultParser extends SwitchesPortAbstractModule
                 if(!isset($indexes[$port_index])) continue;
                 $metric_name = str_replace(['if_'], '', Helper::fromCamelCase($oid_name));
                 $response[$port_index][$metric_name] = $resp->getValue();
-                $response[$port_index]['port'] = $indexes[$port_index];
+                $response[$port_index]['port'] = $indexes[$port_index]['id'];
+                $response[$port_index]['interface'] = $indexes[$port_index];
             }
         }
         return array_values($response);
@@ -52,13 +53,10 @@ class DefaultParser extends SwitchesPortAbstractModule
         }
 
         if($params['port']) {
-            $indexes = [];
-            foreach ($this->getIndexes() as $index=>$port) {
-                $indexes[$port] = $index;
-            }
+            $indexes = $this->getIndexes();
             foreach ($oids as $num=>$oid) {
                 if(isset($indexes[$params['port']]))
-                $oids[$num] .= ".{$indexes[$params['port']]}";
+                $oids[$num] .= ".{$indexes[$params['port']]['id']}";
             }
         }
 

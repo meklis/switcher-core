@@ -61,6 +61,7 @@ class DlinkDgs1210Parser extends SwitchesPortAbstractModule
                   $status = 'Up';
               }
               $response["{$port}-{$type}"]['port'] = $port;
+              $response["{$port}-{$type}"]['interface'] = $this->parseInterface($port);
               $response["{$port}-{$type}"]['medium_type'] = $type;
               $response["{$port}-{$type}"]['type'] = $indexCtrlType[Helper::getIndexByOid($d->getOid(), 1)];
               $response["{$port}-{$type}"]['last_change'] = null;
