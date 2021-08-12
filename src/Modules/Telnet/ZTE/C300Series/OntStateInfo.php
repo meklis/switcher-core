@@ -57,7 +57,7 @@ class OntStateInfo extends C300ModuleAbstract
         }
         $rows = explode("\n", $input);
         unset($rows[count($rows) -1]);
-        $response = $this->parseTable($rows);
+        $response = $this->parseGponRows($rows);
         foreach ($response as $k=>$resp) {
             $interface = $this->parseInterface( 'gpon-onu_' . $resp['onu_index']);
             $response[$k]['interface'] = $interface;
@@ -67,6 +67,23 @@ class OntStateInfo extends C300ModuleAbstract
             'data' => $response,
             'type' => 'gpon',
             ];
+    }
+    protected function parseGponRows($rows) {
+        unset($rows[1]);
+        unset($rows[0]);
+        $response = [];
+        foreach ($rows as $row) {
+            if(preg_match('/^([0-9].*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*)$/', $row, $match)) {
+                $response[] = [
+                  'onu_index' => $match[1],
+                  'admin_state' => $match[2],
+                  'state' => $match[3],
+                  'phase_state' => $match[4],
+                  'channel' => $match[5],
+                ];
+            }
+        }
+        return $response;
     }
 
     public function getPretty()

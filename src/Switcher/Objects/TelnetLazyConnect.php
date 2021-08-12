@@ -72,6 +72,7 @@ class TelnetLazyConnect extends Telnet
     {
         try {
             if($this->is_logined) {
+                parent::setStreamTimeout(0.1);
                 switch ($this->host_type) {
                     case 'dlink':
                         parent::exec("logout");
