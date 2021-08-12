@@ -65,12 +65,16 @@ class InterfacesList extends C300ModuleAbstract
     protected function getRootInterfaces() {
         $response = [];
         $cards = $this->getModule('zte_card_list')->run()->getPretty();
+        $cardTypes = $this->model->getExtra()['card_types'];
         foreach ($cards as $card) {
-            switch ($card['real_type']) {
-                case 'ETGOD': $prefix = "epon"; break;
-                case 'GTGOG': $prefix = "gpon"; break;
-                default: continue(2);
+            $type = array_filter($cardTypes, function ($e) use ($card) {
+               if($card['real_type'] === $e['name']) return true;
+               return  false;
+            });
+            if(count($type) === 0) {
+                continue;
             }
+            $prefix = array_values($type)[0]['interface_type'];
             for ($i = 1; $i <= $card['port']; $i++) {
                 $interface = $this->parseInterface($prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i");
                 $response[] = [
