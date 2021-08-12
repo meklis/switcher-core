@@ -35,6 +35,7 @@ models:
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
+        - {name: GTGHG, interface_type: gpon, count_ports: 16}
       telnet_commands_after_connect:
         - terminal length 0
 
