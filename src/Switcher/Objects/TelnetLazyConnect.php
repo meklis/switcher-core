@@ -42,7 +42,7 @@ class TelnetLazyConnect extends Telnet
         $this->afterLoginCommands[] = $command;
         return $this;
     }
-    function exec($command, $add_newline = true)
+    function exec($command, $add_newline = true, $prompt = null)
     {
         if(!$this->is_logined) {
             parent::setLinuxEOL();
@@ -61,7 +61,7 @@ class TelnetLazyConnect extends Telnet
             }
             if($this->afterLoginCommands) {
                 foreach ($this->afterLoginCommands as $comm) {
-                     mb_convert_encoding(parent::exec($comm), 'UTF-8', 'UTF-8');
+                     mb_convert_encoding(parent::exec($comm, true, $prompt), 'UTF-8', 'UTF-8');
                 }
             }
         }

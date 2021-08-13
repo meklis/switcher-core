@@ -21,7 +21,9 @@ class RebootOnu extends C300ModuleAbstract
 
         $this->exec("conf t");
         $this->exec("pon-onu-mng {$interface['name']}");
-        $this->exec("reboot");
+        $this->telnet->write("reboot");
+        $this->telnet->waitPrompt("Confirm to reboot?");
+        $this->telnet->exec("yes");
         $this->exec("end");
         return $this;
     }
