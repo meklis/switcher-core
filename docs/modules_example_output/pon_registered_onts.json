@@ -3,34 +3,86 @@
         {
             "interface": {
                 "name": "pon0\/0\/1",
-                "id": 16779008,
-                "xid": 7,
+                "id": 16780544,
+                "xid": 13,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
                 "uni": null,
                 "parent": null
             },
-            "count": "16"
+            "count": "48"
         },
         {
             "interface": {
                 "name": "pon0\/0\/2",
-                "id": 16779264,
-                "xid": 8,
+                "id": 16780800,
+                "xid": 14,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
                 "uni": null,
                 "parent": null
             },
-            "count": "11"
+            "count": "29"
         },
         {
             "interface": {
                 "name": "pon0\/0\/3",
-                "id": 16779520,
-                "xid": 9,
+                "id": 16781056,
+                "xid": 15,
+                "type": "PON",
+                "onu_num": null,
+                "onu_id": null,
+                "uni": null,
+                "parent": null
+            },
+            "count": "64"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/4",
+                "id": 16781312,
+                "xid": 16,
+                "type": "PON",
+                "onu_num": null,
+                "onu_id": null,
+                "uni": null,
+                "parent": null
+            },
+            "count": "32"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/5",
+                "id": 16781568,
+                "xid": 17,
+                "type": "PON",
+                "onu_num": null,
+                "onu_id": null,
+                "uni": null,
+                "parent": null
+            },
+            "count": "18"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/6",
+                "id": 16781824,
+                "xid": 18,
+                "type": "PON",
+                "onu_num": null,
+                "onu_id": null,
+                "uni": null,
+                "parent": null
+            },
+            "count": "38"
+        },
+        {
+            "interface": {
+                "name": "pon0\/0\/7",
+                "id": 16782080,
+                "xid": 19,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
@@ -41,16 +93,16 @@
         },
         {
             "interface": {
-                "name": "pon0\/0\/4",
-                "id": 16779776,
-                "xid": 10,
+                "name": "pon0\/0\/8",
+                "id": 16782336,
+                "xid": 20,
                 "type": "PON",
                 "onu_num": null,
                 "onu_id": null,
                 "uni": null,
                 "parent": null
             },
-            "count": "0"
+            "count": "10"
         }
     ],
     "arguments": []

@@ -154,6 +154,8 @@ class PonFDBTable extends CDataAbstractModule
         foreach ($oidLoc as $o) {
             $oids[] = Oid::init($o->getOid());
         }
+        print_r($oids);
+        exit;
         $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk($oids)));
         return $this;
     }
