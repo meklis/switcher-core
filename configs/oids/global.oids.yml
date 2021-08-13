@@ -1,6 +1,7 @@
 #SYSTEM OIDS
   - {name: sys.Descr, oid: .1.3.6.1.2.1.1.1, access: read }
   - {name: sys.ObjId, oid: .1.3.6.1.2.1.1.2, access: read }
+  - {name: sys.IfacesCount, oid: .1.3.6.1.2.1.2.1, access: read }
   - {name: sys.Uptime, oid: .1.3.6.1.2.1.1.3, access: read }
   - {name: sys.Contact, oid: .1.3.6.1.2.1.1.4, access: write, type: string }
   - {name: sys.Name, oid: .1.3.6.1.2.1.1.5, access: write, type: string }

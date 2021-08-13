@@ -102,7 +102,7 @@ class Model
         if(isset($arr['ports'])) {
             $model->setPorts($arr['ports']);
         } else {
-            throw new InvalidArgumentException("Array for initialize oid must have 'ports' element");
+            $model->setPorts(0);
         }
         if(isset($arr['detect']) && isset($arr['detect']['description'])) {
             $model->setDetect($arr['detect']);
@@ -161,6 +161,11 @@ class Model
         } else {
             return false;
         }
+    }
+    public function detectByIfacesCount($ifacesCount) {
+        if(!$ifacesCount) return true;
+        if(!isset($this->detect['ifacesCount'])) return  true;
+        return $ifacesCount == $this->detect['ifacesCount'];
     }
 
     public function getOidByName($name) {

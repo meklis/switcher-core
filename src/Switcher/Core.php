@@ -171,9 +171,11 @@ class Core
             throw new \SNMPException($response[0]->error);
         }
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 1, 1));
+        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.IfacesCount')->getOid() . '.0')], 1, 1));
 
         $descr = "";
         $objId = "";
+        $ifacesCount = 0;
         foreach ($response as $resp) {
             if ($resp->error) {
                 $this->logger->error("Walker returned error: {$resp->error}");
@@ -185,6 +187,9 @@ class Core
                 if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
                     $objId = $resp->getResponse()[0]->getValue();
                 }
+                if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.IfacesCount') {
+                    $ifacesCount = $resp->getResponse()[0]->getValue();
+                }
             }
         }
         if ($descr || $objId) {
@@ -193,11 +198,13 @@ class Core
                 $this->cache->set("SW_CORE_MODEL_DETECT:{$this->device->getIp()}",  [
                     'descr' => $descr,
                     'objid' => $objId,
-                ], 120);
+                    'ifacesCount' => $ifacesCount,
+                ], 600);
             }
             return [
                 'descr' => $descr,
                 'objid' => $objId,
+                'ifacesCount' => $ifacesCount,
             ];
         } else {
             $this->logger->error("Returned empty response for model Detect");
@@ -226,7 +233,7 @@ class Core
         $modelCollector = $this->container->get(ModelCollector::class);
         $oidCollector = $this->container->get(OidCollector::class);
         $devInfo = $this->getDetectDevInfo();
-        $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid']);
+        $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
         $this->container->set(Model::class, $model);
         $oidCollector->readEnterpriceOids($model);
         $this->declareModules($model);

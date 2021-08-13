@@ -1,15 +1,15 @@
 {
     "data": {
         "descr": "EasyPath Ethernet-PON",
-        "uptime": "3752d 9h 58min 20sec",
-        "contact": "contact",
-        "name": "EasyPath Series PON Switch Access",
-        "location": "location",
-        "mac_addr": "E0:67:B3:7A:34:90",
+        "uptime": "1d 1h 3min 36sec",
+        "contact": "formatj@gmail.com",
+        "name": "sw-strelkovoe",
+        "location": "Strelkovoe",
+        "mac_addr": "E0:67:B3:7A:64:CA",
         "vendor_name": "C-Data",
-        "serial_num": "AF2703-1906000003",
-        "board_software_ver": "V1.4.1_190422",
-        "board_hardware_ver": "V2.0",
+        "serial_num": "AF2101-2010000002",
+        "board_software_ver": "V1.6.0_210601",
+        "board_hardware_ver": "V4.0",
         "meta": {
             "name": "C-Data FD1204",
             "detect": {
@@ -100,7 +100,8 @@
                 "pon_ont_reboot",
                 "pon_ont_reset",
                 "pon_ont_delete",
-                "pon_ont_clear_counters"
+                "pon_ont_clear_counters",
+                "parse_interface"
             ]
         }
     },

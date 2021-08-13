@@ -25,12 +25,15 @@ class ModelCollector extends Collector
      * @return Model
      * @throws Exception
      */
-    function getModelByDetect($descr = "",  $oidId = "") {
+    function getModelByDetect($descr = "",  $oidId = "", $ifacesCount = 0) {
         foreach ($this->modelsDB as $model) {
             if(!$model->detectByDescription($descr)) {
                 continue;
             }
             if(!$model->detectByObjId($oidId)) {
+                continue;
+            }
+            if(!$model->detectByIfacesCount($ifacesCount)) {
                 continue;
             }
             return $model;
