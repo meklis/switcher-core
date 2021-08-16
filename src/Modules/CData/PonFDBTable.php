@@ -61,6 +61,7 @@ class PonFDBTable extends CDataAbstractModule
                 'vlan_id' => (int)$vlanId,
             ];
         }
+
         foreach ($this->getResponseByName('pon.fdbWithUni', $response)->fetchAll() as $r) {
             $interface = $this->parseInterface(Helper::getIndexByOid($r->getOid(), 3));
             $interface['uni'] = Helper::getIndexByOid($r->getOid(), 1);
@@ -68,6 +69,7 @@ class PonFDBTable extends CDataAbstractModule
                 $return["{$interface['id']}-{$r->getHexValue()}"]['interface'] = $interface;
             }
         }
+        $return = [];
         return array_values($return);
     }
 
@@ -154,8 +156,6 @@ class PonFDBTable extends CDataAbstractModule
         foreach ($oidLoc as $o) {
             $oids[] = Oid::init($o->getOid());
         }
-        print_r($oids);
-        exit;
         $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk($oids)));
         return $this;
     }
