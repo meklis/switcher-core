@@ -3330,19 +3330,6 @@
         },
         {
             "interface": {
-                "name": "pon0\/0\/8:4",
-                "parent": 16782336,
-                "id": 16782340,
-                "xid": 20,
-                "type": "ONU",
-                "onu_num": 4,
-                "uni": null,
-                "onu_id": "16782340"
-            },
-            "mac_address": "E0:E8:E6:12:68:CF"
-        },
-        {
-            "interface": {
                 "name": "pon0\/0\/8:5",
                 "parent": 16782336,
                 "id": 16782341,

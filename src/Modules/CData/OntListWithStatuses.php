@@ -80,7 +80,7 @@ class OntListWithStatuses extends CDataAbstractModule
         }
         $oid = $this->oids->getOidByName('pon.ontStatus');
         $this->response = $this->formate($this->formatResponse($this->snmp->walk([Oid::init($oid->getOid())])));
-        $this->setCache('pon.ontStatus', $this->response, 1);
+        $this->setCache('pon.ontStatus', $this->response, 3);
         return $this;
     }
 }

@@ -25,6 +25,7 @@
 - {name: pon.portMaxUsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.18}
 - {name: pon.portActualUsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.19}
 - {name: pon.portRemainUsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.20}
+- {name: pon.portOpticalRxOfOnu, oid: .1.3.6.1.4.1.17409.2.3.3.6.1.2}
 
 
 #SNMP ACTIONS
@@ -33,7 +34,7 @@
 - {name: ont.action.delete, oid: .1.3.6.1.4.1.17409.2.3.4.5.2.1.4, values: {6: Delete}}
 #- {name: ont.action.setVlan, oid: .1.3.6.1.4.1.17409.2.3.7.3.1.1.7}
 - {name: ont.action.setName, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
-- {name: ont.action.reset, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17}
+- {name: ont.action.resetOnu, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17, values: {1: Reset}}
 - {name: ont.action.clear_counters, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.48}
 
 #ONT BLOCK
@@ -53,7 +54,7 @@
 - {name: ont.lastRegSince, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.18}
 - {name: ont.lastDownReason, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.7, values: {'dying-gasp': Dying Gasp, 'losi': Losi, '': Unknown}}
 - {name: ont.lastDownSince, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.6}
-- {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.3.14.1.1}
+- {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.3.14.1}
 
 #UNI Block
 - {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.17409.2.3.5.1.1.5, values: {1: Up, 2: Down}}

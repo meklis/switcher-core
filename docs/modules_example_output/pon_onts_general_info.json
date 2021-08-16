@@ -1045,10 +1045,10 @@
                 "onu_num": 18,
                 "uni": null
             },
-            "ver_software": "V2.1.1",
-            "ver_hardware": "HZ600.1A",
-            "vendor": "xPON",
-            "model": "101Z"
+            "ver_software": "",
+            "ver_hardware": "",
+            "vendor": "",
+            "model": ""
         },
         {
             "interface": {
@@ -1060,10 +1060,10 @@
                 "onu_num": 19,
                 "uni": null
             },
-            "ver_software": "V2.1.1",
-            "ver_hardware": "HZ600.1A",
-            "vendor": "xPON",
-            "model": "101Z"
+            "ver_software": "",
+            "ver_hardware": "",
+            "vendor": "",
+            "model": ""
         },
         {
             "interface": {
@@ -1195,10 +1195,10 @@
                 "onu_num": 28,
                 "uni": null
             },
-            "ver_software": "V1.7.1",
-            "ver_hardware": "V1.3.0",
-            "vendor": "MONU",
-            "model": "D201"
+            "ver_software": "",
+            "ver_hardware": "",
+            "vendor": "",
+            "model": ""
         },
         {
             "interface": {
@@ -1240,10 +1240,10 @@
                 "onu_num": 31,
                 "uni": null
             },
-            "ver_software": "V1.2.2",
-            "ver_hardware": "F680.1A",
-            "vendor": "EPON",
-            "model": "EPON"
+            "ver_software": "",
+            "ver_hardware": "",
+            "vendor": "",
+            "model": ""
         },
         {
             "interface": {
@@ -3190,10 +3190,10 @@
                 "onu_num": 29,
                 "uni": null
             },
-            "ver_software": "",
-            "ver_hardware": "",
-            "vendor": "",
-            "model": ""
+            "ver_software": "V2.1.2",
+            "ver_hardware": "HZ660.1B",
+            "vendor": "xPON",
+            "model": "101Z"
         },
         {
             "interface": {
@@ -3430,10 +3430,10 @@
                 "onu_num": 16,
                 "uni": null
             },
-            "ver_software": "V2.1.2",
-            "ver_hardware": "HZ600.1A",
-            "vendor": "xPON",
-            "model": "101Z"
+            "ver_software": "",
+            "ver_hardware": "",
+            "vendor": "",
+            "model": ""
         },
         {
             "interface": {
@@ -3833,21 +3833,6 @@
                 "xid": 20,
                 "type": "ONU",
                 "onu_num": 3,
-                "uni": null
-            },
-            "ver_software": "V2.1.5",
-            "ver_hardware": "HZ660.2A",
-            "vendor": "xPON",
-            "model": "101Z"
-        },
-        {
-            "interface": {
-                "name": "pon0\/0\/8:4",
-                "parent": 16782336,
-                "id": 16782340,
-                "xid": 20,
-                "type": "ONU",
-                "onu_num": 4,
                 "uni": null
             },
             "ver_software": "V2.1.5",
