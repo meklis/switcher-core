@@ -69,7 +69,6 @@ class PonFDBTable extends CDataAbstractModule
                 $return["{$interface['id']}-{$r->getHexValue()}"]['interface'] = $interface;
             }
         }
-        $return = [];
         return array_values($return);
     }
 
