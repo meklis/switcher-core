@@ -26,7 +26,12 @@ class SystemInformation extends AbstractModule
 
     function getPretty()
     {
-        return [
+        $data = [
+            'cpu_usage' => null,
+            'mem_total_size' => null,
+            'mem_free_size' => null,
+            'temperature' => null,
+            'temperature_trashhold' => null,
             'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
             'uptime' => $this->getResponseByName('sys.Uptime')->fetchOne()->getValueAsTimeTicks(),
             'contact' => $this->getResponseByName('sys.Contact')->fetchOne()->getValue(),
@@ -45,6 +50,16 @@ class SystemInformation extends AbstractModule
                 'modules' => $this->model->getModulesList(),
                 ]
         ];
+        if($this->model->getName() === 'C-Data FD1208S') {
+            $data = array_merge($data, [
+               'cpu_usage' => (int)$this->getResponseByName('sys.cpuUsage')->fetchOne()->getValue(),
+               'mem_total_size' => (int)$this->getResponseByName('sys.memTotalSize')->fetchOne()->getValue(),
+               'mem_free_size' => (int)$this->getResponseByName('sys.memFreeSize')->fetchOne()->getValue(),
+               'temperature' => (float) ($this->getResponseByName('sys.temperature')->fetchOne()->getValue()) / 10,
+               'temperature_trashhold' => (float)($this->getResponseByName('sys.temperatureTreshhold')->fetchOne()->getValue()) / 10,
+            ]);
+        }
+        return $data;
     }
 
     /**
@@ -57,9 +72,9 @@ class SystemInformation extends AbstractModule
         $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid(),true);
+            $oArray[] = Oid::init($oid->getOid() . ".0"  ,true);
         }
-        $this->response = $this->formatResponse($this->snmp->walk($oArray));
+        $this->response = $this->formatResponse($this->snmp->get($oArray));
         return $this;
     }
 }
