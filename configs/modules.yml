@@ -353,7 +353,7 @@
   descr: Information of PON interfaces with onu and parent Ids
   arguments:
     - {name: as_tree, pattern: 'yes|no', required: no }
-- name: pon_registered_onts
+- name: pon_count_registered_onts
   descr: Count registered onts on pon
 
 - name: pon_onts_status

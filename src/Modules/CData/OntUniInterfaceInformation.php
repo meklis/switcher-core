@@ -17,7 +17,7 @@ use SwitcherCore\Switcher\Objects\WrappedResponse;
  * Class OntUniInformation
  * @package SwitcherCore\Modules\CData
  */
-class PonInterfaceInformation extends CDataAbstractModule
+class OntUniInterfaceInformation extends CDataAbstractModule
 {
     /**
      * @var WrappedResponse[]

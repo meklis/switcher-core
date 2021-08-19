@@ -10,7 +10,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class PonRegisteredOnts extends CDataAbstractModule
+class PortCountRegisteredOnts extends CDataAbstractModule
 {
     /**
      * @var WrappedResponse[]

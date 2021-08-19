@@ -2,8 +2,8 @@
 - {name: sys.macAddr, oid: .1.3.6.1.4.1.17409.2.3.1.1.6}
 - {name: sys.vendorName, oid: .1.3.6.1.4.1.17409.2.3.1.1.12}
 - {name: sys.serialNum, oid: .1.3.6.1.4.1.17409.2.3.1.1.13}
-- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.7}
-- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.9}
+- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.7.1}
+- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.9.1}
 - {name: pon.countRegisteredOnts, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.8}
 - {name: vlan.list, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.3}
 - {name: vlan.tagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.4}
@@ -33,7 +33,7 @@
 
 #SNMP ACTIONS
 - {name: ont.action.reboot, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17, values: {1: Action}}
-- {name: sys.save, oid: .1.3.6.1.4.1.17409.2.3.1.1.14.0, values: {1: Action}}
+- {name: olt.save, oid: .1.3.6.1.4.1.17409.2.3.1.1.14.0, values: {1: Action}}
 - {name: ont.action.delete, oid: .1.3.6.1.4.1.17409.2.3.4.5.2.1.4, values: {6: Delete}}
 #- {name: ont.action.setVlan, oid: .1.3.6.1.4.1.17409.2.3.7.3.1.1.7}
 - {name: ont.action.setName, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}

@@ -11,7 +11,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class PonFDBTable extends CDataAbstractModule
+class OntFDBTable extends CDataAbstractModule
 {
     /**
      * @var WrappedResponse[]
