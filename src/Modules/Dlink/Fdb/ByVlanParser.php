@@ -21,7 +21,7 @@ class ByVlanParser extends SwitchesPortAbstractModule
                 throw new Exception("Returned error {$this->response['dot1q.FdbStatus']->error()} from {$this->response['dot1q.FdbStatus']->getRaw()->ip}");
             } else {
                 while ($d = $this->response['dot1q.FdbStatus']->fetchOne()) {
-                   $data = Helper::oid2mac($d->getOid());
+                   $data = Helper::oid2MacVlan($d->getOid());
                    $statuses["{$data['vid']}-{$data['mac']}"] = $d->getParsedValue();
                 }
             }
@@ -29,7 +29,7 @@ class ByVlanParser extends SwitchesPortAbstractModule
                 throw new Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
             } else {
                 while ($d = $this->response['dot1q.FdbPort']->fetchOne()) {
-                    $data = Helper::oid2mac($d->getOid());
+                    $data = Helper::oid2MacVlan($d->getOid());
                     $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
                 }
             }

@@ -33,7 +33,7 @@ class Helper
         if(!isset($filter['mac'])) $filter['mac'] = '';
         if(!isset($filter['type'])) $filter['type'] = '';
     }
-    static function oid2mac($oid) {
+    static function oid2MacVlan($oid) {
         $count = substr_count($oid, '.');
         $dec= explode('.', $oid);
         $vid = $dec[$count-6];
