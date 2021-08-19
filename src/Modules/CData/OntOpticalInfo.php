@@ -24,6 +24,17 @@ class OntOpticalInfo extends CDataAbstractModule
 
     private function processNoInterface($response) {
         $return = [];
+        foreach ($this->getModule('pon_onts_status')->run()->getPretty() as $iface) {
+            $return[$iface['interface']['id']] = [
+                'interface' => $iface['interface'],
+                'rx' => null,
+                'tx' => null,
+                'voltage' => null,
+                'temp' => null,
+                'distance' => null,
+            ];
+        }
+
         foreach ($this->getResponseByName('ont.opticalRx', $response)->fetchAll() as $r) {
             $onuId = Helper::getIndexByOid($r->getOid(),2);
             $interface = $this->parseInterface($onuId);
