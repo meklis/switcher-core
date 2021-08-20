@@ -123,21 +123,21 @@ models:
         - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}
         - {name: ge0/0/3, id: 16777984,  xid: 3, type: 1G-SFP}
         - {name: ge0/0/4, id: 16778240,  xid: 4, type: 1G-SFP}
-        - {name: xge0/0/1, id: 16779520,  xid: 5, type: 10G-SFP}
-        - {name: xge0/0/2, id: 16779776,  xid: 6, type: 10G-SFP}
-        - {name: pon0/0/1, id: 16780544,  xid: 7, type: PON}
-        - {name: pon0/0/2, id: 16780800,  xid: 8, type: PON}
-        - {name: pon0/0/3, id: 16781056,  xid: 9, type: PON}
-        - {name: pon0/0/4, id: 16781312,  xid: 10, type: PON}
-        - {name: pon0/0/5, id: 16781568,  xid: 11, type: PON}
-        - {name: pon0/0/6, id: 16781824,  xid: 12, type: PON}
-        - {name: pon0/0/7, id: 16782080,  xid: 13, type: PON}
-        - {name: pon0/0/8, id: 16782336,  xid: 14, type: PON}
-        - {name: pon0/0/9, id: 16782336,  xid: 15, type: PON}
-        - {name: pon0/0/10, id: 16782336,  xid: 16, type: PON}
-        - {name: pon0/0/11, id: 16782336,  xid: 17, type: PON}
-        - {name: pon0/0/12, id: 16782336,  xid: 18, type: PON}
-        - {name: pon0/0/13, id: 16782336,  xid: 19, type: PON}
+        - {name: xge0/0/1, id: 16778496,  xid: 5, type: 10G-SFP}
+        - {name: xge0/0/2, id: 16778752,  xid: 6, type: 10G-SFP}
+        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON}
+        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON}
+        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON}
+        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON}
+        - {name: pon0/0/5, id: 16780032,  xid: 11, type: PON}
+        - {name: pon0/0/6, id: 16780288,  xid: 12, type: PON}
+        - {name: pon0/0/7, id: 16780544,  xid: 13, type: PON}
+        - {name: pon0/0/8, id: 16780800,  xid: 14, type: PON}
+        - {name: pon0/0/9, id: 16781056,  xid: 15, type: PON}
+        - {name: pon0/0/10, id: 16781312,  xid: 16, type: PON}
+        - {name: pon0/0/11, id: 16781568,  xid: 17, type: PON}
+        - {name: pon0/0/12, id: 16781824,  xid: 18, type: PON}
+        - {name: pon0/0/13, id: 16782080,  xid: 19, type: PON}
         - {name: pon0/0/14, id: 16782336,  xid: 20, type: PON}
-        - {name: pon0/0/15, id: 16782336,  xid: 21, type: PON}
-        - {name: pon0/0/16, id: 16782336,  xid: 22, type: PON}
+        - {name: pon0/0/15, id: 16782592,  xid: 21, type: PON}
+        - {name: pon0/0/16, id: 16782848,  xid: 22, type: PON}
