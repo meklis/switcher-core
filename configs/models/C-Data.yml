@@ -101,20 +101,19 @@ models:
       system: \SwitcherCore\Modules\CData\SystemInformation
       vlans: \SwitcherCore\Modules\CData\Vlans
       pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
-      pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
-      pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
+      pon_onts_serial: \SwitcherCore\Modules\CData\GponOntSerial
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
-      pon_fdb: \SwitcherCore\Modules\CData\OntFDBTable
+      pon_fdb: \SwitcherCore\Modules\CData\GponOntFdbTable
       pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
       pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-      pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
+      #pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
+      #pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
+      #pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
+      #pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
     extra:
       telnet_conn_type: ios

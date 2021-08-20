@@ -36,6 +36,9 @@ abstract class CDataAbstractModule extends AbstractModule
 
         if (is_numeric($input) && $input < 100) {
             $interface = $this->findInterface($input, 'xid');
+            if($interface === null) {
+                throw new \Exception("Interface with xid=$input not found");
+            }
             return [
                 'name' => $interface['name'],
                 'id' => $interface['id'],

@@ -360,7 +360,12 @@
   descr: Returned onts statuses
 
 - name: pon_onts_mac_addr
-  descr: Returned ONTs MAC addresses
+  descr: Returned ONTs MAC addresses (for EPON)
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: pon_onts_serial
+  descr: Returned ONTs serial number (for GPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
