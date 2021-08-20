@@ -45,6 +45,7 @@ class TelnetLazyConnect extends Telnet
     function exec($command, $add_newline = true, $prompt = null)
     {
         if(!$this->is_logined) {
+            $this->connect();
             parent::setLinuxEOL();
             parent::disableMagicControl();
             try {
