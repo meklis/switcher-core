@@ -28,9 +28,12 @@ class OntListWithStatuses extends CDataAbstractModule
     }
 
     protected function formate($resp) {
-        $data = $this->getResponseByName('pon.ontStatus', $resp)->fetchAll();
+        $data = $this->getResponseByName('pon.ontStatus', $resp);
+        if($data->error()) {
+            throw new \Exception($data->error());
+        }
         $interfaces = [];
-        foreach ($data as $d) {
+        foreach ($data->fetchAll() as $d) {
             $interface = $this->parseInterface(Helper::getIndexByOid($d->getOid()));
             $onts = explode(":", $d->getHexValue());
             foreach ($onts as $k => $ont) {
