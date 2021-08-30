@@ -32,9 +32,10 @@ class PvidParser extends SwitchesPortAbstractModule
     {
         Helper::prepareFilter($filter);
         $formated = $this->formate();
-        if($filter['port']) {
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             foreach ($formated as $num=>$val) {
-                if($filter['port'] != $val['port']) {
+                if($interface['id'] != $val['port']) {
                     unset($formated[$num]);
                 }
             }
@@ -49,13 +50,14 @@ class PvidParser extends SwitchesPortAbstractModule
             $oids[] = $oid->getOid();
         }
 
-        if($filter['port']) {
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
             $indexes = [];
             foreach ($this->getIndexes() as $index=>$port) {
                 $indexes[$port] = $index;
             }
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$indexes[$filter['port']]}";
+                $oids[$num] .= ".{$indexes[$interface['id']]}";
             }
         }
         $oidObjects = [];
