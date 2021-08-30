@@ -18,7 +18,7 @@ class PvidParser extends SwitchesPortAbstractModule
                 $port_index = Helper::getIndexByOid($resp->getOid());
                 $metric_name = str_replace(['dot1q_'], '', Helper::fromCamelCase($oid_name));
                 $response[$port_index][$metric_name] = $resp->getValue();
-                $response[$port_index]['port'] = $indexes[$port_index];
+                $response[$port_index]['interface'] = $this->parseInterface($port_index);
             }
         }
         return array_values($response);
