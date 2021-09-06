@@ -18,6 +18,7 @@ class Reboot extends AbstractModule
      * @var TelnetLazyConnect
      */
     protected $telnet;
+
     function getPretty()
     {
         return $this->status;
@@ -28,15 +29,21 @@ class Reboot extends AbstractModule
         return $this->status;
     }
 
+
     public function run($filter = [])
     {
-        if(!$this->telnet) {
+        if (!$this->telnet) {
             throw new Exception("Module clear counters required telnet connection");
         }
         $this->status = false;
         try {
-           $this->telnet->setPrompt('Command:')->exec("reboot\ny");
-           $this->status = true;
+            $this->telnet->exec("show switch");
+
+            $this->telnet->write("reboot");
+            sleep(1);
+            $this->telnet->write("y");
+            sleep(1);
+            $this->status = true;
         } catch (Exception $e) {
             throw new Exception("Error execute command", 1, $e);
         }
