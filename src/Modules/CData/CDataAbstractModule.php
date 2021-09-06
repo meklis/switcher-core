@@ -6,11 +6,17 @@ use DI\DependencyException;
 use DI\NotFoundException;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 abstract class CDataAbstractModule extends AbstractModule
 {
     private $interfaces;
 
+    /**
+     * @Inject
+     * @var TelnetLazyConnect
+     */
+    protected $telnet;
 
     function getPretty()
     {
@@ -48,6 +54,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 'onu_id' => null,
                 'uni' => null,
                 'parent' => null,
+                'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
             ];
         } elseif (is_numeric($input) && $input > 10000) {
             //Check is port
@@ -60,6 +67,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => $interface['type'],
                     'onu_num' => null,
                     'uni' => null,
+                    'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
                 ];
             }
             //Find ont number
@@ -75,6 +83,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => 'ONU',
                     'onu_num' => $onuNum,
                     'uni' => null,
+                    'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
                 ];
             }
         } elseif (!is_numeric($input)) {
@@ -88,6 +97,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => $interface['type'],
                     'onu_num' => null,
                     'uni' => null,
+                    'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
                 ];
                 switch (count($m)) {
                     case 7:
@@ -142,4 +152,5 @@ abstract class CDataAbstractModule extends AbstractModule
         }
         return  $ontIds;
     }
+
 }

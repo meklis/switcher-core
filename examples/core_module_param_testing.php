@@ -66,7 +66,19 @@ if ($module['arguments']) {
     echo "\$parameters=json_decode('" . json_encode($params) . "', true);\n";
     echo "\$core->action('{$module['name']}', \$parameters);\n\n";
     $start = microtime(true);
-    $response = $core->action($module['name'], $params);
+    try {
+        $response = $core->action($module['name'], $params);
+    } catch (\Throwable $e) {
+        /**
+         * @var \SwitcherCore\Switcher\Objects\TelnetLazyConnect $telnet
+         */
+        $telnet = $core->getContainer()->get(\SwitcherCore\Switcher\Objects\TelnetLazyConnect::class);
+        echo "Global telnet buffer: \n";
+        echo $telnet->getGlobalBuffer();
+        echo "==================================\n";
+
+        throw $e;
+    }
     file_put_contents(__DIR__ . '/../docs/modules_example_output/' . $module['name'] . '.json', json_encode(['data' => $response, 'arguments' => $params], JSON_PRETTY_PRINT));
     echo json_encode($response, JSON_PRETTY_PRINT);
     $time = round(microtime(true) - $start, 3);

@@ -49,7 +49,7 @@ class TelnetLazyConnect extends Telnet
             parent::setLinuxEOL();
             parent::disableMagicControl();
             try {
-                parent::setWindowSize(840,500);
+                parent::setWindowSize(1024,500);
             } catch (\Exception $e) {
 
             }
@@ -58,6 +58,12 @@ class TelnetLazyConnect extends Telnet
             switch ($this->host_type) {
                 case "dlink":
                     parent::exec("disa clip");
+                    break;
+                case "cdata":
+                    parent::enableMagicControl();
+                    parent::exec("enable");
+                    parent::exec("config");
+                    parent::exec("vty output show-all");
                     break;
             }
             if($this->afterLoginCommands) {
@@ -80,6 +86,9 @@ class TelnetLazyConnect extends Telnet
                         break;
                     case 'ios':
                         parent::exec("exit");
+                        break;
+                    case 'cdata':
+                        parent::write("logout");
                         break;
                 }
             }

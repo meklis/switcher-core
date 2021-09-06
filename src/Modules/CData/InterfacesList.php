@@ -25,7 +25,12 @@ class InterfacesList extends AbstractModule
 
     function getPretty()
     {
-        return $this->model->getExtraParamByName('interfaces');
+        return array_map(function($e){
+            if(!isset($e['pontype'])) {
+                $e['pontype'] = null;
+            }
+            return $e;
+        },$this->model->getExtraParamByName('interfaces'));
     }
 
     /**
