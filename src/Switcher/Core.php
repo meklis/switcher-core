@@ -161,14 +161,16 @@ class Core
     private function getDetectDevInfo()
     {
         $collector = $this->container->get(OidCollector::class);
-        if($this->cache && $resp = $this->cache->get("SW_CORE_MODEL_DETECT:{$this->device->getIp()}")) {
-            $this->logger->info("Returned detecting from cache", $resp );
-            return  $resp;
-        }
         $multiwalker = $this->container->get(MultiWalkerInterface::class);
+
+        //Check device is alive before getting info from cache
         $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
         if($response[0]->error) {
             throw new \SNMPException($response[0]->error);
+        }
+        if($this->cache && $resp = $this->cache->get("SW_CORE_MODEL_DETECT:{$this->device->getIp()}")) {
+            $this->logger->info("Returned detecting from cache", $resp );
+            return  $resp;
         }
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 1, 1));
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.IfacesCount')->getOid() . '.0')], 1, 1));
