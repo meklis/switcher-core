@@ -1,4 +1,18 @@
 {
-    "data": [],
+    "data": [
+        {
+            "interface": {
+                "name": "pon0\/0\/2:1",
+                "parent": 16780800,
+                "id": 16780801,
+                "xid": 14,
+                "type": "ONU",
+                "onu_num": 1,
+                "uni": "1"
+            },
+            "mac_address": "40:16:7E:B3:91:98",
+            "vlan_id": 40
+        }
+    ],
     "arguments": []
 }
