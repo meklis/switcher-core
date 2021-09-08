@@ -1,5 +1,5 @@
 models:
-  - name: C-Data FD1204
+  - name: C-Data FD1204SN
     inputs:
       - snmp
     detect: {description: EasyPath Ethernet-PON,  objid: ^.1.3.6.1.4.1.17409$, ifacesCount: 10}
