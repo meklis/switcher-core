@@ -32,9 +32,10 @@ class GponOntSerial extends CDataAbstractModule
             $onuId = Helper::getIndexByOid($r->getOid());
             $interface = $this->parseInterface($onuId);
             $interface['onu_id'] = $onuId;
+            $serial = str_replace(":", "", $r->getHexValue());
             $return[] = [
                 'interface' => $interface,
-                'serial' => $r->getHexValue(),
+                'serial' => Helper::hexToStr(substr($serial, 0, 8)) . substr($serial, 8),
             ];
         }
         return $return;
@@ -55,10 +56,11 @@ class GponOntSerial extends CDataAbstractModule
         foreach ($responses as $r) {
             $onuId = Helper::getIndexByOid($r->getOid());
             $interface = $this->parseInterface($onuId);
+            $serial = str_replace(":", "", $r->getHexValue());
             $interface['onu_id'] = $onuId;
             $return[] = [
                 'interface' => $interface,
-                'serial' => $r->getHexValue(),
+                'serial' => Helper::hexToStr(substr($serial, 0, 8)) . substr($serial, 8),
             ];
         }
         return $return;
