@@ -58,7 +58,7 @@ class GponOntSerial extends CDataAbstractModule
             $interface['onu_id'] = $onuId;
             $return[] = [
                 'interface' => $interface,
-                'mac_address' => $r->getHexValue(),
+                'serial' => $r->getHexValue(),
             ];
         }
         return $return;
