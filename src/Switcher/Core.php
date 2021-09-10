@@ -172,8 +172,8 @@ class Core
             $this->logger->info("Returned detecting from cache", $resp );
             return  $resp;
         }
-        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 1, 1));
-        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.IfacesCount')->getOid() . '.0')], 1, 1));
+        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 2, 2));
+        $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.IfacesCount')->getOid() . '.0')], 2, 2));
 
         $descr = "";
         $objId = "";
