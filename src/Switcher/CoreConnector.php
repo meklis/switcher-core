@@ -7,6 +7,7 @@ namespace SwitcherCore\Switcher;
 use ErrorException;
 use Exception;
 use SnmpWrapper\Device;
+use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\NoProxy\MultiWalker;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
@@ -23,6 +24,11 @@ class CoreConnector
     protected $cache;
 
     /**
+     * @var MultiWalkerInterface
+     */
+    protected $walker;
+
+    /**
      * @var \Monolog\Logger
      */
     protected $logger;
@@ -31,8 +37,13 @@ class CoreConnector
     public function __construct($configPath)
     {
         $this->configPath = $configPath;
-
+        $this->walker = new MultiWalker();
     }
+
+    public function setWalker(MultiWalkerInterface $walker) {
+        $this->walker = $walker;
+    }
+
     public function setCache(CacheInterface $cache) {
         $this->cache = $cache;
         return $this;
@@ -106,7 +117,8 @@ class CoreConnector
 
 
     private function initWalker(\SwitcherCore\Switcher\Device $device) {
-        return (new  MultiWalker())->addDevice(
+        $walker = clone $this->walker;
+        return $walker->addDevice(
             Device::init(
                 $device->getIp(),
                 $device->getCommunity(),
