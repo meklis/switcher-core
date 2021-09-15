@@ -9,6 +9,7 @@
 models:
  - name: D-link DES-3526
    ports: 26
+   key: d_link_des_3526
    device_type: SWITCH
    inputs:
      - snmp

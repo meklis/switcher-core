@@ -7,6 +7,7 @@
 ############################################################################################################################
 models:
  - name: D-link DGS-1210-28/ME/A2
+   key: d_link_dgs_1210_28_me_a2
    ports: 28
    device_type: SWITCH
    inputs:
@@ -42,6 +43,7 @@ models:
 
 
  - name: D-link DGS-1210-20/ME/A1
+   key: d_link_dgs_1210_20_me_a1
    ports: 20
    device_type: SWITCH
    inputs:
@@ -76,6 +78,7 @@ models:
 
 
  - name: D-link DGS-1210-10/ME/A1
+   key: d_link_dgs_1210_10_me_a1
    ports: 10
    device_type: SWITCH
    inputs:
@@ -110,6 +113,7 @@ models:
 
 
  - name: D-link DGS-1210-20/ME/B1
+   key: d_link_dgs_1210_20_me_b1
    ports: 20
    device_type: SWITCH
    inputs:
@@ -144,6 +148,7 @@ models:
 
 
  - name: D-link DGS-1210-28/ME/B1
+   key: d_link_dgs_1210_28_me_b1
    ports: 28
    device_type: SWITCH
    inputs:
@@ -178,6 +183,7 @@ models:
 
 
  - name: D-link DGS-1210-28XS/ME/B1
+   key: d_link_dgs_1210_28xs_me_b1
    ports: 28
    device_type: SWITCH
    inputs:

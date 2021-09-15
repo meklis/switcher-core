@@ -48,6 +48,11 @@ class Model
 
 
     /**
+     * @var string
+     */
+    protected $key;
+
+    /**
      * @var string[]
      */
     protected $modulesNames;
@@ -103,6 +108,11 @@ class Model
             $model->setPorts($arr['ports']);
         } else {
             $model->setPorts(0);
+        }
+        if(isset($arr['key'])) {
+            $model->setKey($arr['key']);
+        } else {
+            throw new InvalidArgumentException("Model with name '{$arr['name']}' must contain unique key");
         }
         if(isset($arr['detect']) && isset($arr['detect']['description'])) {
             $model->setDetect($arr['detect']);
@@ -273,6 +283,61 @@ class Model
         $this->extra = $extra;
         return $this;
     }
+
+    /**
+     * @return Oid[]
+     */
+    public function getOids(): array
+    {
+        return $this->oids;
+    }
+
+    /**
+     * @param Oid[] $oids
+     * @return Model
+     */
+    public function setOids(array $oids): Model
+    {
+        $this->oids = $oids;
+        return $this;
+    }
+
+    /**
+     * @return AbstractModule[]
+     */
+    public function getModules(): array
+    {
+        return $this->modules;
+    }
+
+    /**
+     * @param AbstractModule[] $modules
+     * @return Model
+     */
+    public function setModules(array $modules): Model
+    {
+        $this->modules = $modules;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param string $key
+     * @return Model
+     */
+    public function setKey(string $key): Model
+    {
+        $this->key = $key;
+        return $this;
+    }
+
 
 
     protected function __construct(){}

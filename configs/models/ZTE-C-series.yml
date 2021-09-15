@@ -1,5 +1,6 @@
 models:
   - name: ZTE ZXPON C320
+    key: zte_zxpon_c320
     ports: 0
     device_type: OLT
     inputs:
