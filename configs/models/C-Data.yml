@@ -1,5 +1,6 @@
 models:
   - name: C-Data FD1204SN
+    key: c_data_fd1204sn
     inputs:
       - snmp
     detect: {description: EasyPath Ethernet-PON,  objid: ^.1.3.6.1.4.1.17409$, ifacesCount: 10}
@@ -39,6 +40,7 @@ models:
         - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: epon}
 
   - name: C-Data FD1208S
+    key: c_data_fd12008s
     inputs:
       - snmp
       - telnet
@@ -91,6 +93,7 @@ models:
         - {name: pon0/0/8, id: 16782336,  xid: 20, type: PON, pontype: epon}
 
   - name: C-Data FD1616SN-R1
+    key: c_data_fd1616sn_r1
     inputs:
       - snmp
     detect: {description: ^FD1616SN-R1$,  objid: ^.1.3.6.1.4.1.17409$}

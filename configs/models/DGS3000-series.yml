@@ -8,6 +8,7 @@
 
 models:
  - name: D-link DGS-3000-26TC
+   key: d_link_dgs_3000_26tc
    ports: 26
    device_type: SWITCH
    inputs:
@@ -42,6 +43,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
  - name: D-link DGS-3000-28L
+   key: d_link_dgs_3000_28l
    ports: 28
    device_type: SWITCH
    inputs:

@@ -41,4 +41,18 @@ class ModelCollector extends Collector
         throw new Exception("Model not found by detects with parameters descr='{$descr}', oidId='{$oidId}'");
     }
 
+    /**
+     * @param $key
+     * @return Model
+     * @throws Exception
+     */
+    function getModelByKey($key) {
+        foreach ($this->modelsDB as $model) {
+            if($model->getKey() === $key) {
+                return $model;
+            }
+        }
+        throw new \Exception("Model not found by key $key");
+    }
+
 }

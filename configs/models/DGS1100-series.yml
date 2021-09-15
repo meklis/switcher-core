@@ -8,6 +8,7 @@
 
 models:
  - name: D-link DGS-1100-06/ME/A1
+   key: d_link_dgs_1100_06_me_a1
    ports: 6
    device_type: SWITCH
    inputs:
@@ -43,6 +44,7 @@ models:
 
 
  - name: D-link DGS-1100-10/ME
+   key: d_link_dgs_1100_10_me
    ports: 10
    device_type: SWITCH
    inputs:
