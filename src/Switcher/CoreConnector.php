@@ -121,12 +121,18 @@ class CoreConnector
 
         $core = (new Core)->setDevice($device)
             ->addInput($walker)
-            ->setCache($this->cache)
-            ->setLogger($this->logger)
             ->setModelCollector($this->modelCollector)
             ->setModuleCollector($this->moduleCollector)
-            ->setOidCollector($this->oidCollector)
-            ->init();
+            ->setOidCollector($this->oidCollector);
+
+        if($this->cache) {
+            $core->setCache($this->cache);
+        }
+        if($this->logger) {
+            $core->setLogger($this->logger);
+        }
+
+        $core->init();
         $inputs_list = $core->getNeedInputs();
         if(in_array('telnet', $inputs_list)) {
             $telnet = $this->initTelnet($device);
