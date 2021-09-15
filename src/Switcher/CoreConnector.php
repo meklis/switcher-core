@@ -6,9 +6,13 @@ namespace SwitcherCore\Switcher;
 
 use ErrorException;
 use Exception;
+use Psr\Container\ContainerInterface;
 use SnmpWrapper\Device;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\NoProxy\MultiWalker;
+use SwitcherCore\Config\ModelCollector;
+use SwitcherCore\Config\ModuleCollector;
+use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
@@ -33,11 +37,30 @@ class CoreConnector
      */
     protected $logger;
 
+
+    /**
+     * @var \SwitcherCore\Config\Collector|ModuleCollector
+     */
+    protected $moduleCollector;
+
+    /**
+     * @var \SwitcherCore\Config\Collector|ModelCollector
+     */
+    protected $modelCollector;
+
+    /**
+     * @var \SwitcherCore\Config\Collector|OidCollector
+     */
+    protected $oidCollector;
+
     protected static $instances = [];
     public function __construct($configPath)
     {
-        $this->configPath = $configPath;
         $this->walker = new MultiWalker();
+        $reader = new Reader($configPath);
+        $this->oidCollector = OidCollector::init($reader);
+        $this->modelCollector = ModelCollector::init($reader);
+        $this->moduleCollector = ModuleCollector::init($reader);
     }
 
     public function setWalker(MultiWalkerInterface $walker) {
@@ -96,11 +119,14 @@ class CoreConnector
 
         $walker = $this->initWalker($device);
 
-        $core = (new Core(
-            new  Reader($this->configPath),
-            $this->cache,
-            $this->logger
-        ))->setDevice($device)->addInput($walker)->init();
+        $core = (new Core)->setDevice($device)
+            ->addInput($walker)
+            ->setCache($this->cache)
+            ->setLogger($this->logger)
+            ->setModelCollector($this->modelCollector)
+            ->setModuleCollector($this->moduleCollector)
+            ->setOidCollector($this->oidCollector)
+            ->init();
         $inputs_list = $core->getNeedInputs();
         if(in_array('telnet', $inputs_list)) {
             $telnet = $this->initTelnet($device);

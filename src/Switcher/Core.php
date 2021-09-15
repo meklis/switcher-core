@@ -71,7 +71,20 @@ class Core
         return $this;
     }
 
-    function __construct(Reader $reader, ?CacheInterface $cache = null, ?Logger $logger = null)
+    function setOidCollector(OidCollector $collector) {
+        $this->container->set(OidCollector::class, $collector);
+        return $this;
+    }
+    function setModuleCollector(ModuleCollector $collector) {
+        $this->container->set(ModuleCollector::class, $collector);
+        return $this;
+    }
+    function setModelCollector(ModelCollector $collector) {
+        $this->container->set(ModelCollector::class, $collector);
+        return $this;
+    }
+
+    function __construct(?CacheInterface $cache = null, ?Logger $logger = null)
     {
         $container = $this->buildContainer();
 
@@ -83,16 +96,6 @@ class Core
             $logger->pushHandler($handler);
         }
         $this->logger = $logger;
-        $container->set(Reader::class, $reader);
-        $container->set(OidCollector::class, function (ContainerInterface $c) {
-            return OidCollector::init($c->get(Reader::class));
-        });
-        $container->set(ModelCollector::class, function (ContainerInterface $c) {
-            return ModelCollector::init($c->get(Reader::class));
-        });
-        $container->set(ModuleCollector::class, function (ContainerInterface $c) {
-            return ModuleCollector::init($c->get(Reader::class));
-        });
         if ($cache !== null) {
             $this->cache = $cache;
             $container->set(CacheInterface::class, $cache);
@@ -295,13 +298,13 @@ class Core
         return $modules;
     }
 
-
     public function getDeviceMetaData()
     {
         $model = $this->container->get(Model::class);
         $meta = [
             'ports' => $model->getPorts(),
             'name' => $model->getName(),
+            'key' => $model->getKey(),
             'extra' => $model->getExtra(),
             'detect' => $model->getDetect(),
             'modules' => $model->getModulesList(),
