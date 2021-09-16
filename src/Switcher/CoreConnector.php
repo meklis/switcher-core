@@ -56,7 +56,7 @@ class CoreConnector
     /**
      * @var Core[]
      */
-    protected static $instances = [];
+    protected $instances = [];
     public function __construct($configPath)
     {
         $this->walker = new MultiWalker();
@@ -79,11 +79,12 @@ class CoreConnector
         return $this;
     }
     public function getAllCoreInstances() {
-        return self::$instances;
+        return $this->instances;
     }
 
     public function closeAllCoreInstances() {
-        self::$instances = [];
+        $this->instances = [];
+        return $this;
     }
 
 
@@ -99,8 +100,8 @@ class CoreConnector
      * @throws Exception
      */
     public function getOrInit(\SwitcherCore\Switcher\Device  $device) {
-        if(isset(self::$instances[$device->getIp()])) {
-            return self::$instances[$device->getIp()];
+        if(isset($this->instances[$device->getIp()])) {
+            return $this->instances[$device->getIp()];
         }
         return $this->init($device);
     }
@@ -110,7 +111,7 @@ class CoreConnector
      * @return bool
      */
     public function isConnected($ip) {
-        return isset(self::$instances[$ip]);
+        return isset($this->instances[$ip]);
     }
 
     /**
@@ -120,7 +121,7 @@ class CoreConnector
      */
     public function get($ip) {
         if(self::isConnected($ip)) {
-            return self::$instances[$ip];
+            return $this->instances[$ip];
         }
         throw new Exception("Connection to $ip not existed");
     }
@@ -153,7 +154,7 @@ class CoreConnector
             $routerOS = $this->initMikrotikApi($device);
             $core->addInput($routerOS);
         }
-        self::$instances[$device->getIp()] = $core;
+        $this->instances[$device->getIp()] = $core;
         return $core;
     }
 
