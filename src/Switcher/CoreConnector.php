@@ -53,6 +53,9 @@ class CoreConnector
      */
     protected $oidCollector;
 
+    /**
+     * @var Core[]
+     */
     protected static $instances = [];
     public function __construct($configPath)
     {
@@ -74,6 +77,13 @@ class CoreConnector
     public function setLogger(\Monolog\Logger $logger) {
         $this->logger = $logger;
         return $this;
+    }
+    public function getAllCoreInstances() {
+        return self::$instances;
+    }
+
+    public function closeAllCoreInstances() {
+        self::$instances = [];
     }
 
 
