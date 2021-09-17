@@ -9,19 +9,21 @@ $devices = $reader->readModels();
 $supportDevices = [];
 foreach ($devices as $dev) {
     $supportDevices[$dev->getName()]['name'] = $dev->getName();
+    $supportDevices[$dev->getName()]['key'] = $dev->getKey();
     $supportDevices[$dev->getName()]['modules'] = $dev->getModulesList();
 }
 
 
 ksort($supportDevices);
-$MARKDONW = "###Список поддерживаемого оборудования со списком модулей    \n";
+$MARKDONW = "# Список поддерживаемого оборудования и модулей  \n";
 foreach ($supportDevices as $data) {
     $modules = '';
     foreach ($data['modules'] as $module) {
         $modules .= "[{$module}](MODULES.md#{$module}), ";
     }
     $modules = trim($modules, ', ');
-    $MARKDONW .= "* **{$data['name']}** - {$modules}           \n";
+    $MARKDONW .= "## {$data['name']} ({$data['key']})    \n";
+    $MARKDONW .= trim($modules, ", ") . "           \n";
 }
 $MARKDONW .= "\n\n\n";
 

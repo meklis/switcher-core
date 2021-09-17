@@ -15009,29 +15009,318 @@
 ### [cable_diag](#cable_diag) - Диагностика кабеля (длина и состояние пары) 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,3}$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **port**=13         
+Параметры запроса: без параметров         
 
 Ответ в JSON:          
 
 ```json             
 [
     {
-        "port": 13,
+        "interface": {
+            "id": "2",
+            "name": "1\/2",
+            "_key": "2"
+        },
         "pairs": [
             {
                 "number": 1,
-                "status": "OK",
-                "length": 56
+                "status": "NoCable",
+                "length": 0
             },
             {
                 "number": 2,
-                "status": "OK",
-                "length": 56
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "4",
+            "name": "1\/4",
+            "_key": "4"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "Open",
+                "length": 13
+            },
+            {
+                "number": 2,
+                "status": "Open",
+                "length": 13
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "6",
+            "name": "1\/6",
+            "_key": "6"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "7",
+            "name": "1\/7",
+            "_key": "7"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "8",
+            "name": "1\/8",
+            "_key": "8"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "Open",
+                "length": 20
+            },
+            {
+                "number": 2,
+                "status": "Open",
+                "length": 20
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "9",
+            "name": "1\/9",
+            "_key": "9"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "10",
+            "name": "1\/10",
+            "_key": "10"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "12",
+            "name": "1\/12",
+            "_key": "12"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "Open",
+                "length": 32
+            },
+            {
+                "number": 2,
+                "status": "Open",
+                "length": 32
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "13",
+            "name": "1\/13",
+            "_key": "13"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "14",
+            "name": "1\/14",
+            "_key": "14"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "15",
+            "name": "1\/15",
+            "_key": "15"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "16",
+            "name": "1\/16",
+            "_key": "16"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "17",
+            "name": "1\/17",
+            "_key": "17"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "18",
+            "name": "1\/18",
+            "_key": "18"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "22",
+            "name": "1\/22",
+            "_key": "22"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "Open",
+                "length": 24
+            },
+            {
+                "number": 2,
+                "status": "Open",
+                "length": 24
+            }
+        ]
+    },
+    {
+        "interface": {
+            "id": "23",
+            "name": "1\/23",
+            "_key": "23"
+        },
+        "pairs": [
+            {
+                "number": 1,
+                "status": "NoCable",
+                "length": 0
+            },
+            {
+                "number": 2,
+                "status": "NoCable",
+                "length": 0
             }
         ]
     }
@@ -15064,25 +15353,380 @@ true
 ### [counters](#counters) - Счетчики на портах 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,3}$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **port**=13         
+Параметры запроса: без параметров         
 
 Ответ в JSON:          
 
 ```json             
 [
     {
-        "hc_in_octets": "10684489545",
-        "port": "13",
-        "hc_out_octets": "200072841889",
-        "hc_out_multicast_pkts": "7264401",
-        "hc_in_multicast_pkts": "330",
-        "hc_out_broadcast_pkts": "3957920",
-        "hc_in_broadcast_pkts": "93"
+        "hc_in_octets": "1504587908",
+        "interface": {
+            "id": "1",
+            "name": "1\/1",
+            "_key": "1"
+        },
+        "hc_out_octets": "41256863977",
+        "hc_out_multicast_pkts": "12649514",
+        "hc_in_multicast_pkts": "22",
+        "hc_out_broadcast_pkts": "3901655",
+        "hc_in_broadcast_pkts": "85"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "2",
+            "name": "1\/2",
+            "_key": "2"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "2996468732",
+        "interface": {
+            "id": "3",
+            "name": "1\/3",
+            "_key": "3"
+        },
+        "hc_out_octets": "72655732337",
+        "hc_out_multicast_pkts": "12649490",
+        "hc_in_multicast_pkts": "223",
+        "hc_out_broadcast_pkts": "3901716",
+        "hc_in_broadcast_pkts": "237"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "4",
+            "name": "1\/4",
+            "_key": "4"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "14929664003",
+        "interface": {
+            "id": "5",
+            "name": "1\/5",
+            "_key": "5"
+        },
+        "hc_out_octets": "137247862882",
+        "hc_out_multicast_pkts": "12647662",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "3901182",
+        "hc_in_broadcast_pkts": "54"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "6",
+            "name": "1\/6",
+            "_key": "6"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "7",
+            "name": "1\/7",
+            "_key": "7"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "8",
+            "name": "1\/8",
+            "_key": "8"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "9",
+            "name": "1\/9",
+            "_key": "9"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "10",
+            "name": "1\/10",
+            "_key": "10"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "19874615072",
+        "interface": {
+            "id": "11",
+            "name": "1\/11",
+            "_key": "11"
+        },
+        "hc_out_octets": "255975688627",
+        "hc_out_multicast_pkts": "12649211",
+        "hc_in_multicast_pkts": "3",
+        "hc_out_broadcast_pkts": "3882403",
+        "hc_in_broadcast_pkts": "19135"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "12",
+            "name": "1\/12",
+            "_key": "12"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "13",
+            "name": "1\/13",
+            "_key": "13"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "14",
+            "name": "1\/14",
+            "_key": "14"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "15",
+            "name": "1\/15",
+            "_key": "15"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "16",
+            "name": "1\/16",
+            "_key": "16"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "17",
+            "name": "1\/17",
+            "_key": "17"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "18",
+            "name": "1\/18",
+            "_key": "18"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "2742361571",
+        "interface": {
+            "id": "19",
+            "name": "1\/19",
+            "_key": "19"
+        },
+        "hc_out_octets": "23098166503",
+        "hc_out_multicast_pkts": "12517031",
+        "hc_in_multicast_pkts": "132970",
+        "hc_out_broadcast_pkts": "3677546",
+        "hc_in_broadcast_pkts": "224664"
+    },
+    {
+        "hc_in_octets": "13879588197",
+        "interface": {
+            "id": "20",
+            "name": "1\/20",
+            "_key": "20"
+        },
+        "hc_out_octets": "65627456083",
+        "hc_out_multicast_pkts": "12637469",
+        "hc_in_multicast_pkts": "11731",
+        "hc_out_broadcast_pkts": "3899466",
+        "hc_in_broadcast_pkts": "2210"
+    },
+    {
+        "hc_in_octets": "10236980832",
+        "interface": {
+            "id": "21",
+            "name": "1\/21",
+            "_key": "21"
+        },
+        "hc_out_octets": "80159621603",
+        "hc_out_multicast_pkts": "12649228",
+        "hc_in_multicast_pkts": "76",
+        "hc_out_broadcast_pkts": "3830205",
+        "hc_in_broadcast_pkts": "71335"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "22",
+            "name": "1\/22",
+            "_key": "22"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "23",
+            "name": "1\/23",
+            "_key": "23"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "442713596",
+        "interface": {
+            "id": "24",
+            "name": "1\/24",
+            "_key": "24"
+        },
+        "hc_out_octets": "376424493",
+        "hc_out_multicast_pkts": "283472",
+        "hc_in_multicast_pkts": "21",
+        "hc_out_broadcast_pkts": "353759",
+        "hc_in_broadcast_pkts": "141"
+    },
+    {
+        "hc_in_octets": "873463784443",
+        "interface": {
+            "id": "25",
+            "name": "1\/25",
+            "_key": "25"
+        },
+        "hc_out_octets": "119321935882",
+        "hc_out_multicast_pkts": "217245",
+        "hc_in_multicast_pkts": "12536620",
+        "hc_out_broadcast_pkts": "320093",
+        "hc_in_broadcast_pkts": "4052423"
+    },
+    {
+        "hc_in_octets": "0",
+        "interface": {
+            "id": "26",
+            "name": "1\/26",
+            "_key": "26"
+        },
+        "hc_out_octets": "0",
+        "hc_out_multicast_pkts": "0",
+        "hc_in_multicast_pkts": "0",
+        "hc_out_broadcast_pkts": "0",
+        "hc_in_broadcast_pkts": "0"
+    },
+    {
+        "hc_in_octets": "34844894799",
+        "interface": {
+            "id": "27",
+            "name": "1\/27",
+            "_key": "27"
+        },
+        "hc_out_octets": "78015300862",
+        "hc_out_multicast_pkts": "12507051",
+        "hc_in_multicast_pkts": "36140",
+        "hc_out_broadcast_pkts": "3900088",
+        "hc_in_broadcast_pkts": "2134"
+    },
+    {
+        "hc_in_octets": "15990243198",
+        "interface": {
+            "id": "28",
+            "name": "1\/28",
+            "_key": "28"
+        },
+        "hc_out_octets": "117995634223",
+        "hc_out_multicast_pkts": "12542743",
+        "hc_in_multicast_pkts": "448",
+        "hc_out_broadcast_pkts": "3902130",
+        "hc_in_broadcast_pkts": "90"
     }
 ]
 ```             
@@ -15095,8 +15739,8 @@ true
 ### [ctrl_port_descr](#ctrl_port_descr) - Установка описания порта 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,4}$*, обязательный    
-- **description**, проверка выражением: *^[0-9a-zA-Z_]{1,}$*, обязательный    
+- **interface**, проверка выражением: *^.*$*, обязательный    
+- **description**, проверка выражением: *^[0-9a-zA-Z_]{0,}$*, обязательный    
       
 <details>
 <summary>Пример ответа</summary>
@@ -15117,7 +15761,7 @@ true
 ### [ctrl_port_speed](#ctrl_port_speed) - Установка скорости на порту 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,4}$*, обязательный    
+- **interface**, проверка выражением: *^.*$*, обязательный    
 - **speed**, проверка выражением: *^auto|(10|100|1000|10000)-(Half|Full)$*, обязательный    
       
     
@@ -15125,7 +15769,7 @@ true
 ### [ctrl_port_state](#ctrl_port_state) - Установка административного состояния порта(включение/отключение) 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,4}$*, обязательный    
+- **interface**, проверка выражением: *^.*$*, обязательный    
 - **state**, проверка выражением: *^(disable|enable)$*, обязательный    
       
     
@@ -15159,7 +15803,7 @@ true
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,4}$*, обязательный    
-- **port**, проверка выражением: *^[0-9]{1,4}$*, обязательный    
+- **interface**, проверка выражением: *^.*$*, обязательный    
 - **type**, проверка выражением: *^(tagged|untagged)$*    
 - **action**, проверка выражением: *^(delete|add)$*, обязательный    
       
@@ -15215,19 +15859,320 @@ true
 ### [errors](#errors) - Ошибки на портах 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,3}$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **port**=13         
+Параметры запроса: без параметров         
 
 Ответ в JSON:          
 
 ```json             
 [
     {
-        "port": "13",
+        "interface": {
+            "id": "1",
+            "name": "1\/1",
+            "_key": "1"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "2",
+            "name": "1\/2",
+            "_key": "2"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "3",
+            "name": "1\/3",
+            "_key": "3"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "4",
+            "name": "1\/4",
+            "_key": "4"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "5",
+            "name": "1\/5",
+            "_key": "5"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "6",
+            "name": "1\/6",
+            "_key": "6"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "7",
+            "name": "1\/7",
+            "_key": "7"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "8",
+            "name": "1\/8",
+            "_key": "8"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "9",
+            "name": "1\/9",
+            "_key": "9"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "10",
+            "name": "1\/10",
+            "_key": "10"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "11",
+            "name": "1\/11",
+            "_key": "11"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "12",
+            "name": "1\/12",
+            "_key": "12"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "13",
+            "name": "1\/13",
+            "_key": "13"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "14",
+            "name": "1\/14",
+            "_key": "14"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "15",
+            "name": "1\/15",
+            "_key": "15"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "16",
+            "name": "1\/16",
+            "_key": "16"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "17",
+            "name": "1\/17",
+            "_key": "17"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "18",
+            "name": "1\/18",
+            "_key": "18"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "19",
+            "name": "1\/19",
+            "_key": "19"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "20",
+            "name": "1\/20",
+            "_key": "20"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "21",
+            "name": "1\/21",
+            "_key": "21"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "22",
+            "name": "1\/22",
+            "_key": "22"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "23",
+            "name": "1\/23",
+            "_key": "23"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "24",
+            "name": "1\/24",
+            "_key": "24"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "25",
+            "name": "1\/25",
+            "_key": "25"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "26",
+            "name": "1\/26",
+            "_key": "26"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "27",
+            "name": "1\/27",
+            "_key": "27"
+        },
+        "in_errors": "0",
+        "out_errors": "0",
+        "in_discards": "0",
+        "out_discards": "0"
+    },
+    {
+        "interface": {
+            "id": "28",
+            "name": "1\/28",
+            "_key": "28"
+        },
         "in_errors": "0",
         "out_errors": "0",
         "in_discards": "0",
@@ -15244,23 +16189,26 @@ true
 ### [fdb](#fdb) - FDB-таблица 
     
 **Аргументы:**    
-- **port**, проверка выражением: *.**    
+- **interface**, проверка выражением: *^.*$*    
 - **mac**, проверка выражением: *.**    
 - **vlan_id**, проверка выражением: *^[0-9]{1,4}$*    
       
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **port**=13         
+Параметры запроса: **interface**=3         
 
 Ответ в JSON:          
 
 ```json             
 [
     {
-        "port": "13",
-        "vlan_id": "303",
-        "mac": "E8:94:F6:7B:18:4B",
+        "interface": {
+            "id": "3",
+            "name": "1\/3"
+        },
+        "vlan_id": "301",
+        "mac": "20:C9:D0:98:BE:5A",
         "status": "LEARNED"
     }
 ]
@@ -15425,7 +16373,7 @@ true
 ### [link_info](#link_info) - Информация о портах (для свитчей) 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^.*$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
@@ -15437,19 +16385,363 @@ true
 ```json             
 [
     {
-        "port": "1",
+        "interface": {
+            "id": "1",
+            "name": "1\/1",
+            "_key": "1"
+        },
         "medium_type": "Cooper",
         "type": "FE",
         "last_change": null,
         "connector_present": null,
         "oper_status": "Up",
-        "description": "1444",
+        "description": "2979",
         "admin_state": "Auto",
         "nway_status": "100-Full",
         "address_learning": "Enabled"
     },
     {
-        "port": "2",
+        "interface": {
+            "id": "2",
+            "name": "1\/2",
+            "_key": "2"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "1996",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "3",
+            "name": "1\/3",
+            "_key": "3"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "2656",
+        "admin_state": "Auto",
+        "nway_status": "100-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "4",
+            "name": "1\/4",
+            "_key": "4"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "5",
+            "name": "1\/5",
+            "_key": "5"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "1996",
+        "admin_state": "Auto",
+        "nway_status": "100-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "6",
+            "name": "1\/6",
+            "_key": "6"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "7",
+            "name": "1\/7",
+            "_key": "7"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "8",
+            "name": "1\/8",
+            "_key": "8"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "9",
+            "name": "1\/9",
+            "_key": "9"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "10",
+            "name": "1\/10",
+            "_key": "10"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "11",
+            "name": "1\/11",
+            "_key": "11"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "2888",
+        "admin_state": "Auto",
+        "nway_status": "100-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "12",
+            "name": "1\/12",
+            "_key": "12"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "13",
+            "name": "1\/13",
+            "_key": "13"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "14",
+            "name": "1\/14",
+            "_key": "14"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "15",
+            "name": "1\/15",
+            "_key": "15"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "1987",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "16",
+            "name": "1\/16",
+            "_key": "16"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "17",
+            "name": "1\/17",
+            "_key": "17"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "18",
+            "name": "1\/18",
+            "_key": "18"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "19",
+            "name": "1\/19",
+            "_key": "19"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "2899",
+        "admin_state": "Auto",
+        "nway_status": "100-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "20",
+            "name": "1\/20",
+            "_key": "20"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "3095",
+        "admin_state": "Auto",
+        "nway_status": "100-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "21",
+            "name": "1\/21",
+            "_key": "21"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "2997",
+        "admin_state": "Auto",
+        "nway_status": "100-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "22",
+            "name": "1\/22",
+            "_key": "22"
+        },
+        "medium_type": "Cooper",
+        "type": "FE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "23",
+            "name": "1\/23",
+            "_key": "23"
+        },
         "medium_type": "Cooper",
         "type": "FE",
         "last_change": null,
@@ -15461,7 +16753,11 @@ true
         "address_learning": "Enabled"
     },
     {
-        "port": "3",
+        "interface": {
+            "id": "24",
+            "name": "1\/24",
+            "_key": "24"
+        },
         "medium_type": "Cooper",
         "type": "FE",
         "last_change": null,
@@ -15473,259 +16769,11 @@ true
         "address_learning": "Enabled"
     },
     {
-        "port": "4",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Down",
-        "description": "",
-        "admin_state": "Auto",
-        "nway_status": "Down",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "5",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "1404",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "6",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "1404",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "7",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2607",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "8",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2265",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "9",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2752",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "10",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Down",
-        "description": "1425",
-        "admin_state": "Auto",
-        "nway_status": "Down",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "11",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "40543",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "12",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "3858",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "13",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Down",
-        "description": "1425",
-        "admin_state": "Auto",
-        "nway_status": "Down",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "14",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "3391",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "15",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "54739",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "16",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "53716",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "17",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2245",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "18",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "84978",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "19",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2005",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "20",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2240",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "21",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "22",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "3017",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "23",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Up",
-        "description": "2131",
-        "admin_state": "Auto",
-        "nway_status": "100-Full",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "24",
-        "medium_type": "Cooper",
-        "type": "FE",
-        "last_change": null,
-        "connector_present": null,
-        "oper_status": "Down",
-        "description": "53716",
-        "admin_state": "Auto",
-        "nway_status": "Down",
-        "address_learning": "Enabled"
-    },
-    {
-        "port": "25",
+        "interface": {
+            "id": "25",
+            "name": "1\/25",
+            "_key": "25"
+        },
         "medium_type": "Cooper",
         "type": "GE",
         "last_change": null,
@@ -15737,7 +16785,11 @@ true
         "address_learning": "Enabled"
     },
     {
-        "port": "25",
+        "interface": {
+            "id": "25",
+            "name": "1\/25",
+            "_key": "25"
+        },
         "medium_type": "Fiber",
         "type": "GE",
         "last_change": null,
@@ -15749,25 +16801,97 @@ true
         "address_learning": "Enabled"
     },
     {
-        "port": "26",
+        "interface": {
+            "id": "26",
+            "name": "1\/26",
+            "_key": "26"
+        },
         "medium_type": "Cooper",
         "type": "GE",
         "last_change": null,
         "connector_present": null,
-        "oper_status": "Up",
-        "description": "1404",
+        "oper_status": "Down",
+        "description": "58373",
         "admin_state": "Auto",
-        "nway_status": "100-Full",
+        "nway_status": "Down",
         "address_learning": "Enabled"
     },
     {
-        "port": "26",
+        "interface": {
+            "id": "26",
+            "name": "1\/26",
+            "_key": "26"
+        },
         "medium_type": "Fiber",
         "type": "GE",
         "last_change": null,
         "connector_present": null,
         "oper_status": "Down",
-        "description": "1404",
+        "description": "58373",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "27",
+            "name": "1\/27",
+            "_key": "27"
+        },
+        "medium_type": "Cooper",
+        "type": "GE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "3002",
+        "admin_state": "Auto",
+        "nway_status": "1G-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "27",
+            "name": "1\/27",
+            "_key": "27"
+        },
+        "medium_type": "Fiber",
+        "type": "GE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "3002",
+        "admin_state": "Auto",
+        "nway_status": "Down",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "28",
+            "name": "1\/28",
+            "_key": "28"
+        },
+        "medium_type": "Cooper",
+        "type": "GE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Up",
+        "description": "3399",
+        "admin_state": "Auto",
+        "nway_status": "1G-Full",
+        "address_learning": "Enabled"
+    },
+    {
+        "interface": {
+            "id": "28",
+            "name": "1\/28",
+            "_key": "28"
+        },
+        "medium_type": "Fiber",
+        "type": "GE",
+        "last_change": null,
+        "connector_present": null,
+        "oper_status": "Down",
+        "description": "3399",
         "admin_state": "Auto",
         "nway_status": "Down",
         "address_learning": "Enabled"
@@ -15795,6 +16919,106 @@ true
       
     
     
+### [parse_interface](#parse_interface) - Returened parsed interface from input 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**, обязательный    
+      
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: **interface**=16779266         
+
+Ответ в JSON:          
+
+```json             
+{
+    "name": "pon0\/0\/2:2",
+    "parent": 16779264,
+    "id": 16779266,
+    "xid": 8,
+    "type": "ONU",
+    "onu_num": 2,
+    "uni": null
+}
+```             
+         
+        
+</p>
+</details>
+            
+    
+### [pon_count_registered_onts](#pon_count_registered_onts) - Count registered onts on pon 
+      
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "interface": {
+            "name": "pon0\/0\/1",
+            "id": 16779008,
+            "xid": 7,
+            "type": "PON",
+            "onu_num": null,
+            "onu_id": null,
+            "uni": null,
+            "parent": null
+        },
+        "count": "16"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2",
+            "id": 16779264,
+            "xid": 8,
+            "type": "PON",
+            "onu_num": null,
+            "onu_id": null,
+            "uni": null,
+            "parent": null
+        },
+        "count": "12"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3",
+            "id": 16779520,
+            "xid": 9,
+            "type": "PON",
+            "onu_num": null,
+            "onu_id": null,
+            "uni": null,
+            "parent": null
+        },
+        "count": "0"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4",
+            "id": 16779776,
+            "xid": 10,
+            "type": "PON",
+            "onu_num": null,
+            "onu_id": null,
+            "uni": null,
+            "parent": null
+        },
+        "count": "0"
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
+    
 ### [pon_fdb](#pon_fdb) - Returned FDB table on ONTs 
     
 **Аргументы:**    
@@ -15813,367 +17037,16 @@ true
 [
     {
         "interface": {
-            "name": "pon0\/0\/1:12",
-            "parent": 16779008,
-            "id": 16779020,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": "1"
-        },
-        "mac_address": "04:95:E6:17:04:10",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": "4"
-        },
-        "mac_address": "10:FE:ED:41:57:B3",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:11",
-            "parent": 16779008,
-            "id": 16779019,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": "1"
-        },
-        "mac_address": "10:FE:ED:7C:85:F9",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:9",
-            "parent": 16779008,
-            "id": 16779017,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": "1"
-        },
-        "mac_address": "14:4D:67:99:2F:6D",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:3",
-            "parent": 16779264,
-            "id": 16779267,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": "1"
-        },
-        "mac_address": "14:4D:67:B1:31:01",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:3",
-            "parent": 16779008,
-            "id": 16779011,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": "1"
-        },
-        "mac_address": "14:4D:67:B1:F0:0D",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:2",
-            "parent": 16779008,
-            "id": 16779010,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": "1"
-        },
-        "mac_address": "14:4D:67:CA:46:55",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": "2"
-        },
-        "mac_address": "14:4D:67:CA:61:91",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:7",
-            "parent": 16779008,
-            "id": 16779015,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": "1"
-        },
-        "mac_address": "24:4B:FE:92:0E:E0",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:14",
-            "parent": 16779008,
-            "id": 16779022,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 14,
-            "uni": "1"
-        },
-        "mac_address": "30:B5:C2:D3:7E:13",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:6",
-            "parent": 16779008,
-            "id": 16779014,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": "1"
-        },
-        "mac_address": "40:3F:8C:C1:35:77",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:7",
-            "parent": 16779264,
-            "id": 16779271,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": "1"
-        },
-        "mac_address": "50:0F:F5:91:8A:90",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:6",
-            "parent": 16779264,
-            "id": 16779270,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": "1"
-        },
-        "mac_address": "50:D4:F7:AF:DB:11",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:10",
-            "parent": 16779264,
-            "id": 16779274,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": "1"
-        },
-        "mac_address": "5C:92:5E:49:38:79",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:8",
-            "parent": 16779008,
-            "id": 16779016,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": "1"
-        },
-        "mac_address": "5C:92:5E:4B:10:CD",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:15",
-            "parent": 16779008,
-            "id": 16779023,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 15,
-            "uni": "1"
-        },
-        "mac_address": "5C:92:5E:6D:F8:C1",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:4",
-            "parent": 16779264,
-            "id": 16779268,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": "1"
-        },
-        "mac_address": "5C:92:5E:73:FB:21",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": "1"
-        },
-        "mac_address": "5C:92:5E:89:34:21",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:2",
-            "parent": 16779264,
-            "id": 16779266,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": "1"
-        },
-        "mac_address": "74:DA:88:D2:60:A7",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:12",
-            "parent": 16779264,
-            "id": 16779276,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": "1"
-        },
-        "mac_address": "90:9A:4A:76:A2:89",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": "3"
-        },
-        "mac_address": "90:B1:1C:88:77:93",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:16",
-            "parent": 16779008,
-            "id": 16779024,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 16,
-            "uni": "1"
-        },
-        "mac_address": "90:F6:52:58:D5:06",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:5",
-            "parent": 16779264,
-            "id": 16779269,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": "1"
-        },
-        "mac_address": "98:DE:D0:58:B6:19",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:9",
-            "parent": 16779264,
-            "id": 16779273,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": "1"
-        },
-        "mac_address": "B0:BE:76:56:49:A5",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:4",
-            "parent": 16779008,
-            "id": 16779012,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": "1"
-        },
-        "mac_address": "B0:BE:76:67:2F:9F",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": "1"
-        },
-        "mac_address": "CC:32:E5:AE:CA:53",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:13",
-            "parent": 16779008,
-            "id": 16779021,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 13,
-            "uni": "1"
-        },
-        "mac_address": "E8:94:F6:53:9F:A7",
-        "vlan_id": 811
-    },
-    {
-        "interface": {
             "name": "pon0\/0\/2:1",
-            "parent": 16779264,
-            "id": 16779265,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 1,
             "uni": "1"
         },
-        "mac_address": "F4:F2:6D:4B:55:47",
-        "vlan_id": 811
+        "mac_address": "40:16:7E:B3:91:98",
+        "vlan_id": 40
     }
 ]
 ```             
@@ -16191,7 +17064,7 @@ true
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **interface**=16779275         
+Параметры запроса: без параметров         
 
 Ответ в JSON:          
 
@@ -16200,16 +17073,16 @@ true
     {
         "status": "Up",
         "interface": {
-            "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
+            "name": "pon0\/0\/2:1",
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
             "type": "ONU",
-            "onu_num": 11,
+            "onu_num": 1,
             "uni": "1"
         },
         "admin_status": "Enabled",
-        "vlan_id": 811,
+        "vlan_id": 40,
         "vlan_mode": "Untagged",
         "stat_in_octets": "0",
         "stat_in_undersize_pkts": 0,
@@ -16225,6 +17098,375 @@ true
         "stat_out_crc_pkts": 0,
         "stat_out_drop_pkts": 0,
         "stat_out_jabber": 0
+    },
+    {
+        "status": "Down",
+        "interface": {
+            "name": "pon0\/0\/2:2",
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": "1"
+        },
+        "admin_status": "Enabled",
+        "vlan_id": 40,
+        "vlan_mode": "Untagged",
+        "stat_in_octets": "0",
+        "stat_in_undersize_pkts": 0,
+        "stat_in_oversize_pkts": 0,
+        "stat_in_fragments_pkts": 0,
+        "stat_in_crc_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_in_jabber_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_undersize_pkts": 0,
+        "stat_out_oversize_pkts": 0,
+        "stat_out_fragments_pkts": 0,
+        "stat_out_crc_pkts": 0,
+        "stat_out_drop_pkts": 0,
+        "stat_out_jabber": 0
+    },
+    {
+        "stat_in_octets": "1699265059",
+        "interface": {
+            "name": "ge0\/0\/1",
+            "parent": null,
+            "id": 16777472,
+            "xid": 1,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 12162,
+        "stat_out_octets": "45959056",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/2",
+            "parent": null,
+            "id": 16777728,
+            "xid": 2,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/3",
+            "parent": null,
+            "id": 16777984,
+            "xid": 3,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/4",
+            "parent": null,
+            "id": 16778240,
+            "xid": 4,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/5",
+            "parent": null,
+            "id": 16778496,
+            "xid": 5,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/6",
+            "parent": null,
+            "id": 16778752,
+            "xid": 6,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/7",
+            "parent": null,
+            "id": 16779008,
+            "xid": 7,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "ge0\/0\/8",
+            "parent": null,
+            "id": 16779264,
+            "xid": 8,
+            "type": "1G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "xge0\/0\/1",
+            "parent": null,
+            "id": 16779520,
+            "xid": 9,
+            "type": "10G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "xge0\/0\/2",
+            "parent": null,
+            "id": 16779776,
+            "xid": 10,
+            "type": "10G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "xge0\/0\/3",
+            "parent": null,
+            "id": 16780032,
+            "xid": 11,
+            "type": "10G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "xge0\/0\/4",
+            "parent": null,
+            "id": 16780288,
+            "xid": 12,
+            "type": "10G-SFP",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/1",
+            "parent": null,
+            "id": 16780544,
+            "xid": 13,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "45598565",
+        "interface": {
+            "name": "pon0\/0\/2",
+            "parent": null,
+            "id": 16780800,
+            "xid": 14,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 4,
+        "stat_out_octets": "1708219332",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/3",
+            "parent": null,
+            "id": 16781056,
+            "xid": 15,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/4",
+            "parent": null,
+            "id": 16781312,
+            "xid": 16,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/5",
+            "parent": null,
+            "id": 16781568,
+            "xid": 17,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/6",
+            "parent": null,
+            "id": 16781824,
+            "xid": 18,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/7",
+            "parent": null,
+            "id": 16782080,
+            "xid": 19,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
+    },
+    {
+        "stat_in_octets": "0",
+        "interface": {
+            "name": "pon0\/0\/8",
+            "parent": null,
+            "id": 16782336,
+            "xid": 20,
+            "type": "PON",
+            "onu_num": null,
+            "uni": null
+        },
+        "stat_in_oversize_pkts": 0,
+        "stat_in_drop_pkts": 0,
+        "stat_out_octets": "0",
+        "stat_out_oversize_pkts": 0,
+        "stat_out_drop_pkts": 0
     }
 ]
 ```             
@@ -16270,39 +17512,99 @@ true
         "type": "1G-SFP"
     },
     {
-        "name": "xge0\/0\/1",
-        "id": 16778240,
+        "name": "ge0\/0\/5",
+        "id": 16778496,
         "xid": 5,
+        "type": "1G-SFP"
+    },
+    {
+        "name": "ge0\/0\/6",
+        "id": 16778752,
+        "xid": 6,
+        "type": "1G-SFP"
+    },
+    {
+        "name": "ge0\/0\/7",
+        "id": 16779008,
+        "xid": 7,
+        "type": "1G-SFP"
+    },
+    {
+        "name": "ge0\/0\/8",
+        "id": 16779264,
+        "xid": 8,
+        "type": "1G-SFP"
+    },
+    {
+        "name": "xge0\/0\/1",
+        "id": 16779520,
+        "xid": 9,
         "type": "10G-SFP"
     },
     {
         "name": "xge0\/0\/2",
-        "id": 16778752,
-        "xid": 6,
+        "id": 16779776,
+        "xid": 10,
+        "type": "10G-SFP"
+    },
+    {
+        "name": "xge0\/0\/3",
+        "id": 16780032,
+        "xid": 11,
+        "type": "10G-SFP"
+    },
+    {
+        "name": "xge0\/0\/4",
+        "id": 16780288,
+        "xid": 12,
         "type": "10G-SFP"
     },
     {
         "name": "pon0\/0\/1",
-        "id": 16779008,
-        "xid": 7,
+        "id": 16780544,
+        "xid": 13,
         "type": "PON"
     },
     {
         "name": "pon0\/0\/2",
-        "id": 16779264,
-        "xid": 8,
+        "id": 16780800,
+        "xid": 14,
         "type": "PON"
     },
     {
         "name": "pon0\/0\/3",
-        "id": 16779520,
-        "xid": 9,
+        "id": 16781056,
+        "xid": 15,
         "type": "PON"
     },
     {
         "name": "pon0\/0\/4",
-        "id": 16779776,
-        "xid": 10,
+        "id": 16781312,
+        "xid": 16,
+        "type": "PON"
+    },
+    {
+        "name": "pon0\/0\/5",
+        "id": 16781568,
+        "xid": 17,
+        "type": "PON"
+    },
+    {
+        "name": "pon0\/0\/6",
+        "id": 16781824,
+        "xid": 18,
+        "type": "PON"
+    },
+    {
+        "name": "pon0\/0\/7",
+        "id": 16782080,
+        "xid": 19,
+        "type": "PON"
+    },
+    {
+        "name": "pon0\/0\/8",
+        "id": 16782336,
+        "xid": 20,
         "type": "PON"
     }
 ]
@@ -16373,9 +17675,53 @@ true
     },
     {
         "interface": {
-            "name": "xge0\/0\/1",
-            "id": 16778240,
+            "name": "ge0\/0\/5",
+            "id": 16778496,
             "xid": 5,
+            "type": "1G-SFP"
+        },
+        "parent": null,
+        "type": "1G-SFP",
+        "status": null
+    },
+    {
+        "interface": {
+            "name": "ge0\/0\/6",
+            "id": 16778752,
+            "xid": 6,
+            "type": "1G-SFP"
+        },
+        "parent": null,
+        "type": "1G-SFP",
+        "status": null
+    },
+    {
+        "interface": {
+            "name": "ge0\/0\/7",
+            "id": 16779008,
+            "xid": 7,
+            "type": "1G-SFP"
+        },
+        "parent": null,
+        "type": "1G-SFP",
+        "status": null
+    },
+    {
+        "interface": {
+            "name": "ge0\/0\/8",
+            "id": 16779264,
+            "xid": 8,
+            "type": "1G-SFP"
+        },
+        "parent": null,
+        "type": "1G-SFP",
+        "status": null
+    },
+    {
+        "interface": {
+            "name": "xge0\/0\/1",
+            "id": 16779520,
+            "xid": 9,
             "type": "10G-SFP"
         },
         "parent": null,
@@ -16385,8 +17731,30 @@ true
     {
         "interface": {
             "name": "xge0\/0\/2",
-            "id": 16778752,
-            "xid": 6,
+            "id": 16779776,
+            "xid": 10,
+            "type": "10G-SFP"
+        },
+        "parent": null,
+        "type": "10G-SFP",
+        "status": null
+    },
+    {
+        "interface": {
+            "name": "xge0\/0\/3",
+            "id": 16780032,
+            "xid": 11,
+            "type": "10G-SFP"
+        },
+        "parent": null,
+        "type": "10G-SFP",
+        "status": null
+    },
+    {
+        "interface": {
+            "name": "xge0\/0\/4",
+            "id": 16780288,
+            "xid": 12,
             "type": "10G-SFP"
         },
         "parent": null,
@@ -16396,8 +17764,8 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1",
-            "id": 16779008,
-            "xid": 7,
+            "id": 16780544,
+            "xid": 13,
             "type": "PON"
         },
         "parent": null,
@@ -16407,8 +17775,8 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2",
-            "id": 16779264,
-            "xid": 8,
+            "id": 16780800,
+            "xid": 14,
             "type": "PON"
         },
         "parent": null,
@@ -16418,8 +17786,8 @@ true
     {
         "interface": {
             "name": "pon0\/0\/3",
-            "id": 16779520,
-            "xid": 9,
+            "id": 16781056,
+            "xid": 15,
             "type": "PON"
         },
         "parent": null,
@@ -16429,8 +17797,8 @@ true
     {
         "interface": {
             "name": "pon0\/0\/4",
-            "id": 16779776,
-            "xid": 10,
+            "id": 16781312,
+            "xid": 16,
             "type": "PON"
         },
         "parent": null,
@@ -16439,393 +17807,73 @@ true
     },
     {
         "interface": {
-            "name": "pon0\/0\/1:1",
-            "parent": 16779008,
-            "id": 16779009,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null
+            "name": "pon0\/0\/5",
+            "id": 16781568,
+            "xid": 17,
+            "type": "PON"
         },
-        "parent": 16779009,
-        "type": "ONT",
-        "status": "Online"
+        "parent": null,
+        "type": "PON",
+        "status": null
     },
     {
         "interface": {
-            "name": "pon0\/0\/1:2",
-            "parent": 16779008,
-            "id": 16779010,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null
+            "name": "pon0\/0\/6",
+            "id": 16781824,
+            "xid": 18,
+            "type": "PON"
         },
-        "parent": 16779010,
-        "type": "ONT",
-        "status": "Online"
+        "parent": null,
+        "type": "PON",
+        "status": null
     },
     {
         "interface": {
-            "name": "pon0\/0\/1:3",
-            "parent": 16779008,
-            "id": 16779011,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null
+            "name": "pon0\/0\/7",
+            "id": 16782080,
+            "xid": 19,
+            "type": "PON"
         },
-        "parent": 16779011,
-        "type": "ONT",
-        "status": "Online"
+        "parent": null,
+        "type": "PON",
+        "status": null
     },
     {
         "interface": {
-            "name": "pon0\/0\/1:4",
-            "parent": 16779008,
-            "id": 16779012,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null
+            "name": "pon0\/0\/8",
+            "id": 16782336,
+            "xid": 20,
+            "type": "PON"
         },
-        "parent": 16779012,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:5",
-            "parent": 16779008,
-            "id": 16779013,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null
-        },
-        "parent": 16779013,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:6",
-            "parent": 16779008,
-            "id": 16779014,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null
-        },
-        "parent": 16779014,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:7",
-            "parent": 16779008,
-            "id": 16779015,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null
-        },
-        "parent": 16779015,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:8",
-            "parent": 16779008,
-            "id": 16779016,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null
-        },
-        "parent": 16779016,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:9",
-            "parent": 16779008,
-            "id": 16779017,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null
-        },
-        "parent": 16779017,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null
-        },
-        "parent": 16779018,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:11",
-            "parent": 16779008,
-            "id": 16779019,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null
-        },
-        "parent": 16779019,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:12",
-            "parent": 16779008,
-            "id": 16779020,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null
-        },
-        "parent": 16779020,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:13",
-            "parent": 16779008,
-            "id": 16779021,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 13,
-            "uni": null
-        },
-        "parent": 16779021,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:14",
-            "parent": 16779008,
-            "id": 16779022,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 14,
-            "uni": null
-        },
-        "parent": 16779022,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:15",
-            "parent": 16779008,
-            "id": 16779023,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 15,
-            "uni": null
-        },
-        "parent": 16779023,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:16",
-            "parent": 16779008,
-            "id": 16779024,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 16,
-            "uni": null
-        },
-        "parent": 16779024,
-        "type": "ONT",
-        "status": "Online"
+        "parent": null,
+        "type": "PON",
+        "status": null
     },
     {
         "interface": {
             "name": "pon0\/0\/2:1",
-            "parent": 16779264,
-            "id": 16779265,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 1,
             "uni": null
         },
-        "parent": 16779265,
+        "parent": 16780801,
         "type": "ONT",
         "status": "Online"
     },
     {
         "interface": {
             "name": "pon0\/0\/2:2",
-            "parent": 16779264,
-            "id": 16779266,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 2,
             "uni": null
         },
-        "parent": 16779266,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:3",
-            "parent": 16779264,
-            "id": 16779267,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null
-        },
-        "parent": 16779267,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:4",
-            "parent": 16779264,
-            "id": 16779268,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null
-        },
-        "parent": 16779268,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:5",
-            "parent": 16779264,
-            "id": 16779269,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null
-        },
-        "parent": 16779269,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:6",
-            "parent": 16779264,
-            "id": 16779270,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null
-        },
-        "parent": 16779270,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:7",
-            "parent": 16779264,
-            "id": 16779271,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null
-        },
-        "parent": 16779271,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:8",
-            "parent": 16779264,
-            "id": 16779272,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null
-        },
-        "parent": 16779272,
-        "type": "ONT",
-        "status": "Offline"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:9",
-            "parent": 16779264,
-            "id": 16779273,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null
-        },
-        "parent": 16779273,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:10",
-            "parent": 16779264,
-            "id": 16779274,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null
-        },
-        "parent": 16779274,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null
-        },
-        "parent": 16779275,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:12",
-            "parent": 16779264,
-            "id": 16779276,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null
-        },
-        "parent": 16779276,
+        "parent": 16780802,
         "type": "ONT",
         "status": "Online"
     }
@@ -16842,7 +17890,21 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: **interface**=16779014         
+
+Ответ в JSON:          
+
+```json             
+[]
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [pon_ont_delete](#pon_ont_delete) - Delete ont from system 
     
@@ -16887,116 +17949,34 @@ true
 ```json             
 [
     {
-        "_id": 16779009,
-        "interface": "pon0\/0\/1:1",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
+        "interface": {
+            "name": "pon0\/0\/2:1",
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "ver_software": "V1.2.3",
+        "ver_hardware": "F680.1A",
+        "vendor": "43 44 54 00 ",
+        "model": "110F"
     },
     {
-        "_id": 16779010,
-        "interface": "pon0\/0\/1:2",
-        "ver_software": "V2.1.5",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "xPON",
-        "model": "101Z"
-    },
-    {
-        "_id": 16779011,
-        "interface": "pon0\/0\/1:3",
-        "ver_software": "V2.1.3",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779012,
-        "interface": "pon0\/0\/1:4",
-        "ver_software": "V2.1.3",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779013,
-        "interface": "pon0\/0\/1:5",
-        "ver_software": "V2.1.3",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779014,
-        "interface": "pon0\/0\/1:6",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779015,
-        "interface": "pon0\/0\/1:7",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779016,
-        "interface": "pon0\/0\/1:8",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779017,
-        "interface": "pon0\/0\/1:9",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779018,
-        "interface": "pon0\/0\/1:10",
-        "ver_software": "V2.1.12",
-        "ver_hardware": "R310.1A",
-        "vendor": "HWTC",
-        "model": "15BR"
-    },
-    {
-        "_id": 16779019,
-        "interface": "pon0\/0\/1:11",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779020,
-        "interface": "pon0\/0\/1:12",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779021,
-        "interface": "pon0\/0\/1:13",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
-    },
-    {
-        "_id": 16779022,
-        "interface": "pon0\/0\/1:14",
-        "ver_software": "V3.0.6",
-        "ver_hardware": "HZ660.2A",
-        "vendor": "PICO",
-        "model": "E710"
+        "interface": {
+            "name": "pon0\/0\/2:2",
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "ver_software": "V1.2.2",
+        "ver_hardware": "F680.1A",
+        "vendor": "43 44 54 00 ",
+        "model": "110F"
     }
 ]
 ```             
@@ -17006,7 +17986,7 @@ true
 </details>
             
     
-### [pon_onts_mac_addr](#pon_onts_mac_addr) - Returned ONTs MAC addresses 
+### [pon_onts_mac_addr](#pon_onts_mac_addr) - Returned ONTs MAC addresses (for EPON) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -17022,367 +18002,29 @@ true
 [
     {
         "interface": {
-            "name": "pon0\/0\/1:1",
-            "parent": 16779008,
-            "id": 16779009,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null,
-            "onu_id": "16779009"
-        },
-        "mac_address": "E0:E8:E6:75:C9:EF"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:2",
-            "parent": 16779008,
-            "id": 16779010,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null,
-            "onu_id": "16779010"
-        },
-        "mac_address": "E0:67:B3:BF:8F:E0"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:3",
-            "parent": 16779008,
-            "id": 16779011,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null,
-            "onu_id": "16779011"
-        },
-        "mac_address": "E0:67:B3:AE:42:26"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:4",
-            "parent": 16779008,
-            "id": 16779012,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null,
-            "onu_id": "16779012"
-        },
-        "mac_address": "E0:67:B3:AD:CC:12"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:5",
-            "parent": 16779008,
-            "id": 16779013,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null,
-            "onu_id": "16779013"
-        },
-        "mac_address": "E0:67:B3:AD:CC:00"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:6",
-            "parent": 16779008,
-            "id": 16779014,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null,
-            "onu_id": "16779014"
-        },
-        "mac_address": "E0:E8:E6:75:C9:CF"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:7",
-            "parent": 16779008,
-            "id": 16779015,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null,
-            "onu_id": "16779015"
-        },
-        "mac_address": "E0:E8:E6:75:C9:B5"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:8",
-            "parent": 16779008,
-            "id": 16779016,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null,
-            "onu_id": "16779016"
-        },
-        "mac_address": "E0:E8:E6:75:C9:D5"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:9",
-            "parent": 16779008,
-            "id": 16779017,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null,
-            "onu_id": "16779017"
-        },
-        "mac_address": "E0:E8:E6:75:C9:E5"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null,
-            "onu_id": "16779018"
-        },
-        "mac_address": "E0:E8:E6:18:C4:E3"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:11",
-            "parent": 16779008,
-            "id": 16779019,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null,
-            "onu_id": "16779019"
-        },
-        "mac_address": "E0:E8:E6:75:AF:5F"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:12",
-            "parent": 16779008,
-            "id": 16779020,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null,
-            "onu_id": "16779020"
-        },
-        "mac_address": "E0:E8:E6:75:AF:41"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:13",
-            "parent": 16779008,
-            "id": 16779021,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 13,
-            "uni": null,
-            "onu_id": "16779021"
-        },
-        "mac_address": "E0:E8:E6:75:C9:B9"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:14",
-            "parent": 16779008,
-            "id": 16779022,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 14,
-            "uni": null,
-            "onu_id": "16779022"
-        },
-        "mac_address": "E0:E8:E6:78:9D:DB"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:15",
-            "parent": 16779008,
-            "id": 16779023,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 15,
-            "uni": null,
-            "onu_id": "16779023"
-        },
-        "mac_address": "E0:E8:E6:78:9D:C7"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:16",
-            "parent": 16779008,
-            "id": 16779024,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 16,
-            "uni": null,
-            "onu_id": "16779024"
-        },
-        "mac_address": "E0:E8:E6:78:9D:CF"
-    },
-    {
-        "interface": {
             "name": "pon0\/0\/2:1",
-            "parent": 16779264,
-            "id": 16779265,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 1,
             "uni": null,
-            "onu_id": "16779265"
+            "onu_id": "16780801"
         },
-        "mac_address": "E0:E8:E6:75:AF:55"
+        "mac_address": "E0:E8:E6:B9:57:99"
     },
     {
         "interface": {
             "name": "pon0\/0\/2:2",
-            "parent": 16779264,
-            "id": 16779266,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 2,
             "uni": null,
-            "onu_id": "16779266"
+            "onu_id": "16780802"
         },
-        "mac_address": "E0:E8:E6:78:9D:E3"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:3",
-            "parent": 16779264,
-            "id": 16779267,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null,
-            "onu_id": "16779267"
-        },
-        "mac_address": "E0:E8:E6:75:AF:4B"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:4",
-            "parent": 16779264,
-            "id": 16779268,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null,
-            "onu_id": "16779268"
-        },
-        "mac_address": "E0:E8:E6:75:C9:C9"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:5",
-            "parent": 16779264,
-            "id": 16779269,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null,
-            "onu_id": "16779269"
-        },
-        "mac_address": "E0:E8:E6:75:AF:49"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:6",
-            "parent": 16779264,
-            "id": 16779270,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null,
-            "onu_id": "16779270"
-        },
-        "mac_address": "E0:E8:E6:75:AF:4D"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:7",
-            "parent": 16779264,
-            "id": 16779271,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null,
-            "onu_id": "16779271"
-        },
-        "mac_address": "E0:E8:E6:75:AF:5D"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:8",
-            "parent": 16779264,
-            "id": 16779272,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null,
-            "onu_id": "16779272"
-        },
-        "mac_address": "E0:E8:E6:75:AF:39"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:9",
-            "parent": 16779264,
-            "id": 16779273,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null,
-            "onu_id": "16779273"
-        },
-        "mac_address": "E0:E8:E6:75:AF:47"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:10",
-            "parent": 16779264,
-            "id": 16779274,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null,
-            "onu_id": "16779274"
-        },
-        "mac_address": "E0:E8:E6:75:AF:3D"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null,
-            "onu_id": "16779275"
-        },
-        "mac_address": "E0:E8:E6:78:9D:E1"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:12",
-            "parent": 16779264,
-            "id": 16779276,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null,
-            "onu_id": "16779276"
-        },
-        "mac_address": "E0:E8:E6:78:9D:D9"
+        "mac_address": "E0:E8:E6:B9:57:9F"
     }
 ]
 ```             
@@ -17409,18 +18051,2085 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:1",
+            "parent": 16780544,
+            "id": 16780545,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "rx": -23.19,
+        "tx": 1.91,
+        "voltage": 3.34,
+        "temp": 31.85,
+        "distance": 2636
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:2",
+            "parent": 16780544,
+            "id": 16780546,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "rx": -21.8,
+        "tx": 1.79,
+        "voltage": 3.39,
+        "temp": 28.8,
+        "distance": 2874
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:3",
+            "parent": 16780544,
+            "id": 16780547,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "rx": -20.97,
+        "tx": 1.33,
+        "voltage": 3.34,
+        "temp": 32.53,
+        "distance": 3600
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:4",
+            "parent": 16780544,
+            "id": 16780548,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "rx": -21.61,
+        "tx": 1.36,
+        "voltage": 3.16,
+        "temp": 74.89,
+        "distance": 5759
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:5",
+            "parent": 16780544,
+            "id": 16780549,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "rx": -21.87,
+        "tx": 1.98,
+        "voltage": 3.34,
+        "temp": 32.86,
+        "distance": 3534
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:6",
+            "parent": 16780544,
+            "id": 16780550,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "rx": -25.09,
+        "tx": 1.77,
+        "voltage": 3.34,
+        "temp": 33.21,
+        "distance": 4098
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:7",
+            "parent": 16780544,
+            "id": 16780551,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "rx": -21.25,
+        "tx": 1.67,
+        "voltage": 3.33,
+        "temp": 73.86,
+        "distance": 5918
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:8",
+            "parent": 16780544,
+            "id": 16780552,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "rx": -22.6,
+        "tx": 1.61,
+        "voltage": 3.28,
+        "temp": 55.76,
+        "distance": 2856
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:9",
+            "parent": 16780544,
+            "id": 16780553,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "rx": -21.8,
+        "tx": 2.06,
+        "voltage": 3.3,
+        "temp": 53.87,
+        "distance": 3467
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:10",
+            "parent": 16780544,
+            "id": 16780554,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "rx": -23.87,
+        "tx": 1.82,
+        "voltage": 3.23,
+        "temp": 58.75,
+        "distance": 2857
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:11",
+            "parent": 16780544,
+            "id": 16780555,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "rx": -21.67,
+        "tx": 1.69,
+        "voltage": 3.2,
+        "temp": 47.75,
+        "distance": 2606
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:12",
+            "parent": 16780544,
+            "id": 16780556,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "rx": -23.1,
+        "tx": 1.72,
+        "voltage": 3.34,
+        "temp": 34.9,
+        "distance": 2644
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:13",
+            "parent": 16780544,
+            "id": 16780557,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null
+        },
+        "rx": -20.46,
+        "tx": 1.8,
+        "voltage": 3.34,
+        "temp": 29.48,
+        "distance": 3657
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:14",
+            "parent": 16780544,
+            "id": 16780558,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "rx": -22.76,
+        "tx": 1.78,
+        "voltage": 3.3,
+        "temp": 47.84,
+        "distance": 3170
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:15",
+            "parent": 16780544,
+            "id": 16780559,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "rx": -23.37,
+        "tx": 1.69,
+        "voltage": 3.28,
+        "temp": 60.25,
+        "distance": 2833
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:16",
+            "parent": 16780544,
+            "id": 16780560,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "rx": -19.71,
+        "tx": 1.74,
+        "voltage": 3.32,
+        "temp": 47.44,
+        "distance": 3706
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:17",
+            "parent": 16780544,
+            "id": 16780561,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "rx": -32.22,
+        "tx": 1.67,
+        "voltage": 3.36,
+        "temp": 30.83,
+        "distance": 3446
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:18",
+            "parent": 16780544,
+            "id": 16780562,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "rx": -23.37,
+        "tx": 1.83,
+        "voltage": 3.34,
+        "temp": 31.51,
+        "distance": 3933
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:19",
+            "parent": 16780544,
+            "id": 16780563,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "rx": -20.92,
+        "tx": 2.6,
+        "voltage": 3.28,
+        "temp": 65.83,
+        "distance": 2882
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:20",
+            "parent": 16780544,
+            "id": 16780564,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "rx": -22.08,
+        "tx": 1.77,
+        "voltage": 3.28,
+        "temp": 29.14,
+        "distance": 3369
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:21",
+            "parent": 16780544,
+            "id": 16780565,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "rx": -19.03,
+        "tx": 1.92,
+        "voltage": 3.3,
+        "temp": 76.38,
+        "distance": 3256
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:22",
+            "parent": 16780544,
+            "id": 16780566,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "rx": -20.46,
+        "tx": 8.16,
+        "voltage": 3.22,
+        "temp": 59.19,
+        "distance": 2957
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:23",
+            "parent": 16780544,
+            "id": 16780567,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "rx": -19.67,
+        "tx": 1.82,
+        "voltage": 3.28,
+        "temp": 58.35,
+        "distance": 3177
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:24",
+            "parent": 16780544,
+            "id": 16780568,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "rx": -20.18,
+        "tx": 1.82,
+        "voltage": 3.32,
+        "temp": 38.96,
+        "distance": 2901
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:25",
+            "parent": 16780544,
+            "id": 16780569,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null
+        },
+        "rx": -21.74,
+        "tx": 1.99,
+        "voltage": 3.35,
+        "temp": 53.32,
+        "distance": 3460
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:26",
+            "parent": 16780544,
+            "id": 16780570,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "rx": -20.81,
+        "tx": 2.21,
+        "voltage": 3.24,
+        "temp": 86.93,
+        "distance": 3531
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:27",
+            "parent": 16780544,
+            "id": 16780571,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null
+        },
+        "rx": -20.27,
+        "tx": 1.78,
+        "voltage": 3.37,
+        "temp": 33.54,
+        "distance": 3197
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:28",
+            "parent": 16780544,
+            "id": 16780572,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "rx": -21.49,
+        "tx": 1.73,
+        "voltage": 3.35,
+        "temp": 33.54,
+        "distance": 3265
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:29",
+            "parent": 16780544,
+            "id": 16780573,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "rx": -20.97,
+        "tx": 1.9,
+        "voltage": 3.3,
+        "temp": 75.11,
+        "distance": 3272
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:30",
+            "parent": 16780544,
+            "id": 16780574,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null
+        },
+        "rx": -24.2,
+        "tx": 1.74,
+        "voltage": 3.34,
+        "temp": 30.5,
+        "distance": 2793
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:32",
+            "parent": 16780544,
+            "id": 16780576,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "rx": -20.92,
+        "tx": 1.85,
+        "voltage": 3.33,
+        "temp": 32.86,
+        "distance": 3100
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:33",
+            "parent": 16780544,
+            "id": 16780577,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null
+        },
+        "rx": -27.45,
+        "tx": 1.84,
+        "voltage": 3.35,
+        "temp": 29.48,
+        "distance": 3908
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:34",
+            "parent": 16780544,
+            "id": 16780578,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 34,
+            "uni": null
+        },
+        "rx": -21.94,
+        "tx": 2.25,
+        "voltage": 3.34,
+        "temp": 28.13,
+        "distance": 3578
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:35",
+            "parent": 16780544,
+            "id": 16780579,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 35,
+            "uni": null
+        },
+        "rx": -21.31,
+        "tx": 1.33,
+        "voltage": 3.35,
+        "temp": 37.27,
+        "distance": 3587
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:36",
+            "parent": 16780544,
+            "id": 16780580,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 36,
+            "uni": null
+        },
+        "rx": -22.44,
+        "tx": 1.76,
+        "voltage": 3.3,
+        "temp": 35.24,
+        "distance": 3531
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:37",
+            "parent": 16780544,
+            "id": 16780581,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 37,
+            "uni": null
+        },
+        "rx": -20.46,
+        "tx": 1.44,
+        "voltage": 3.34,
+        "temp": 31.85,
+        "distance": 3329
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:38",
+            "parent": 16780544,
+            "id": 16780582,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 38,
+            "uni": null
+        },
+        "rx": -23.87,
+        "tx": 1.75,
+        "voltage": 3.32,
+        "temp": 31.17,
+        "distance": 3151
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:39",
+            "parent": 16780544,
+            "id": 16780583,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 39,
+            "uni": null
+        },
+        "rx": -23.37,
+        "tx": 1.7,
+        "voltage": 3.34,
+        "temp": 34.22,
+        "distance": 2552
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:40",
+            "parent": 16780544,
+            "id": 16780584,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 40,
+            "uni": null
+        },
+        "rx": -26.2,
+        "tx": 1.67,
+        "voltage": 3.37,
+        "temp": 32.19,
+        "distance": 3393
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:41",
+            "parent": 16780544,
+            "id": 16780585,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 41,
+            "uni": null
+        },
+        "rx": -22.22,
+        "tx": 2.34,
+        "voltage": 3.32,
+        "temp": 27.11,
+        "distance": 3215
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:43",
+            "parent": 16780544,
+            "id": 16780587,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 43,
+            "uni": null
+        },
+        "rx": -20.81,
+        "tx": 1.82,
+        "voltage": 3.3,
+        "temp": 41.65,
+        "distance": 3159
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:44",
+            "parent": 16780544,
+            "id": 16780588,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 44,
+            "uni": null
+        },
+        "rx": -22.44,
+        "tx": 1.34,
+        "voltage": 3.35,
+        "temp": 30.5,
+        "distance": 3293
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:46",
+            "parent": 16780544,
+            "id": 16780590,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 46,
+            "uni": null
+        },
+        "rx": -21.19,
+        "tx": 1.73,
+        "voltage": 3.2,
+        "temp": 73.02,
+        "distance": 5736
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:47",
+            "parent": 16780544,
+            "id": 16780591,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 47,
+            "uni": null
+        },
+        "rx": -21.37,
+        "tx": 2.25,
+        "voltage": 3.3,
+        "temp": 51.89,
+        "distance": 3310
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:48",
+            "parent": 16780544,
+            "id": 16780592,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 48,
+            "uni": null
+        },
+        "rx": -19.96,
+        "tx": 1.69,
+        "voltage": 3.34,
+        "temp": 26.43,
+        "distance": 2793
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:50",
+            "parent": 16780544,
+            "id": 16780594,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 50,
+            "uni": null
+        },
+        "rx": -21.67,
+        "tx": 1.38,
+        "voltage": 3.31,
+        "temp": 49.45,
+        "distance": 3605
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:51",
+            "parent": 16780544,
+            "id": 16780595,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 51,
+            "uni": null
+        },
+        "rx": -20.92,
+        "tx": 1.49,
+        "voltage": 3.31,
+        "temp": 49.92,
+        "distance": 3215
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:52",
+            "parent": 16780544,
+            "id": 16780596,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 52,
+            "uni": null
+        },
+        "rx": -21.02,
+        "tx": 1.35,
+        "voltage": 3.32,
+        "temp": 54.18,
+        "distance": 3603
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:1",
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "rx": -20.36,
+        "tx": 1.73,
+        "voltage": 3.15,
+        "temp": 49.86,
+        "distance": 4008
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:2",
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "rx": -20.04,
+        "tx": 1.52,
+        "voltage": 3.31,
+        "temp": 54.18,
+        "distance": 808
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:3",
+            "parent": 16780800,
+            "id": 16780803,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "rx": -21.49,
+        "tx": 1.75,
+        "voltage": 3.31,
+        "temp": 34.56,
+        "distance": 2059
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:4",
+            "parent": 16780800,
+            "id": 16780804,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "rx": -23.19,
+        "tx": 1.57,
+        "voltage": 3.31,
+        "temp": 30.83,
+        "distance": 4180
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:5",
+            "parent": 16780800,
+            "id": 16780805,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "rx": -21.49,
+        "tx": 1.63,
+        "voltage": 3.24,
+        "temp": 74.68,
+        "distance": 4169
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:6",
+            "parent": 16780800,
+            "id": 16780806,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "rx": -23.01,
+        "tx": 1.72,
+        "voltage": 3.36,
+        "temp": 25.41,
+        "distance": 2042
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:8",
+            "parent": 16780800,
+            "id": 16780808,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "rx": -22.08,
+        "tx": 1.44,
+        "voltage": 3.37,
+        "temp": 28.13,
+        "distance": 841
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:9",
+            "parent": 16780800,
+            "id": 16780809,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "rx": -21.94,
+        "tx": 1.31,
+        "voltage": 3.35,
+        "temp": 31.51,
+        "distance": 4778
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:10",
+            "parent": 16780800,
+            "id": 16780810,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "rx": -23.87,
+        "tx": 2.02,
+        "voltage": 3.31,
+        "temp": 26.77,
+        "distance": 4590
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:11",
+            "parent": 16780800,
+            "id": 16780811,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "rx": -21.19,
+        "tx": 1.61,
+        "voltage": 3.3,
+        "temp": 49.45,
+        "distance": 4919
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:12",
+            "parent": 16780800,
+            "id": 16780812,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "rx": -23.28,
+        "tx": 1.65,
+        "voltage": 3.31,
+        "temp": 36.25,
+        "distance": 6667
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:13",
+            "parent": 16780800,
+            "id": 16780813,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null
+        },
+        "rx": -23.19,
+        "tx": 1.77,
+        "voltage": 3.29,
+        "temp": 34.22,
+        "distance": 10573
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:14",
+            "parent": 16780800,
+            "id": 16780814,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "rx": -24.32,
+        "tx": 2.22,
+        "voltage": 3.31,
+        "temp": 26.43,
+        "distance": 1980
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:15",
+            "parent": 16780800,
+            "id": 16780815,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "rx": -21.08,
+        "tx": 1.74,
+        "voltage": 3.32,
+        "temp": 31.85,
+        "distance": 6583
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:16",
+            "parent": 16780800,
+            "id": 16780816,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "rx": -21.94,
+        "tx": 1.74,
+        "voltage": 3.11,
+        "temp": 68.59,
+        "distance": 4046
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:17",
+            "parent": 16780800,
+            "id": 16780817,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "rx": -19.36,
+        "tx": 1.69,
+        "voltage": 3.35,
+        "temp": 30.16,
+        "distance": 5708
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:18",
+            "parent": 16780800,
+            "id": 16780818,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "rx": -25.85,
+        "tx": 2.31,
+        "voltage": 3.31,
+        "temp": 25.75,
+        "distance": 13780
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:19",
+            "parent": 16780800,
+            "id": 16780819,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "rx": -25.85,
+        "tx": 2.14,
+        "voltage": 3.33,
+        "temp": 26.09,
+        "distance": 13737
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:20",
+            "parent": 16780800,
+            "id": 16780820,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "rx": -22.15,
+        "tx": 1.54,
+        "voltage": 3.34,
+        "temp": 49.99,
+        "distance": 4177
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:21",
+            "parent": 16780800,
+            "id": 16780821,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "rx": -16.84,
+        "tx": 1.64,
+        "voltage": 3.35,
+        "temp": 59.96,
+        "distance": 4421
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:22",
+            "parent": 16780800,
+            "id": 16780822,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "rx": -21.8,
+        "tx": 2.29,
+        "voltage": 3.28,
+        "temp": 29.14,
+        "distance": 13254
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:23",
+            "parent": 16780800,
+            "id": 16780823,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "rx": -21.8,
+        "tx": 1.58,
+        "voltage": 3.28,
+        "temp": 43.16,
+        "distance": 4582
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:24",
+            "parent": 16780800,
+            "id": 16780824,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "rx": -21.02,
+        "tx": 1.98,
+        "voltage": 3.2,
+        "temp": 50.25,
+        "distance": 4536
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:26",
+            "parent": 16780800,
+            "id": 16780826,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "rx": -22.44,
+        "tx": 1.81,
+        "voltage": 3.28,
+        "temp": 47.48,
+        "distance": 2224
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:28",
+            "parent": 16780800,
+            "id": 16780828,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "rx": -25.09,
+        "tx": 1.86,
+        "voltage": 3.28,
+        "temp": 48.91,
+        "distance": 13886
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:29",
+            "parent": 16780800,
+            "id": 16780829,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "rx": -8,
+        "tx": 1.98,
+        "voltage": 3.19,
+        "temp": 255.4,
+        "distance": 2103
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:31",
+            "parent": 16780800,
+            "id": 16780831,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 31,
+            "uni": null
+        },
+        "rx": -23.1,
+        "tx": 1.5,
+        "voltage": 3.31,
+        "temp": 44.23,
+        "distance": 13562
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:32",
+            "parent": 16780800,
+            "id": 16780832,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "rx": -22.6,
+        "tx": 1.55,
+        "voltage": 3.31,
+        "temp": 52.76,
+        "distance": 5926
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:33",
+            "parent": 16780800,
+            "id": 16780833,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null
+        },
+        "rx": -24.44,
+        "tx": 1.71,
+        "voltage": 3.32,
+        "temp": 46.6,
+        "distance": 10964
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:1",
+            "parent": 16781056,
+            "id": 16781057,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "rx": -21.49,
+        "tx": 1.81,
+        "voltage": 3.33,
+        "temp": 31.17,
+        "distance": 1597
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:2",
+            "parent": 16781056,
+            "id": 16781058,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "rx": -22.22,
+        "tx": 2.33,
+        "voltage": 3.29,
+        "temp": 29.14,
+        "distance": 3077
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:3",
+            "parent": 16781056,
+            "id": 16781059,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "rx": -19.87,
+        "tx": 1.92,
+        "voltage": 3.31,
+        "temp": 27.45,
+        "distance": 3057
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:4",
+            "parent": 16781056,
+            "id": 16781060,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "rx": -24.56,
+        "tx": 1.78,
+        "voltage": 3.34,
+        "temp": 33.21,
+        "distance": 4072
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:5",
+            "parent": 16781056,
+            "id": 16781061,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "rx": -22.44,
+        "tx": 2.34,
+        "voltage": 3.34,
+        "temp": 29.48,
+        "distance": 667
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:6",
+            "parent": 16781056,
+            "id": 16781062,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "rx": -22.15,
+        "tx": 1.72,
+        "voltage": 3.28,
+        "temp": 33.54,
+        "distance": 698
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:7",
+            "parent": 16781056,
+            "id": 16781063,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "rx": -26.78,
+        "tx": 1.84,
+        "voltage": 3.33,
+        "temp": 29.48,
+        "distance": 2095
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:8",
+            "parent": 16781056,
+            "id": 16781064,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "rx": -21.55,
+        "tx": 1.75,
+        "voltage": 3.27,
+        "temp": 23.72,
+        "distance": 2778
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:9",
+            "parent": 16781056,
+            "id": 16781065,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "rx": -21.67,
+        "tx": 1.47,
+        "voltage": 3.27,
+        "temp": 45.32,
+        "distance": 1095
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:10",
+            "parent": 16781056,
+            "id": 16781066,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "rx": -21.55,
+        "tx": 1.53,
+        "voltage": 3.33,
+        "temp": 47.12,
+        "distance": 1605
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:11",
+            "parent": 16781056,
+            "id": 16781067,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "rx": -21.25,
+        "tx": 1.74,
+        "voltage": 0.16,
+        "temp": 74.91,
+        "distance": 818
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:12",
+            "parent": 16781056,
+            "id": 16781068,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "rx": -23.01,
+        "tx": 1.41,
+        "voltage": 3.34,
+        "temp": 32.86,
+        "distance": 2813
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:13",
+            "parent": 16781056,
+            "id": 16781069,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null
+        },
+        "rx": -21.14,
+        "tx": 1.73,
+        "voltage": 3.3,
+        "temp": 34.9,
+        "distance": 603
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:14",
+            "parent": 16781056,
+            "id": 16781070,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "rx": -18.79,
+        "tx": 1.5,
+        "voltage": 3.35,
+        "temp": 48.2,
+        "distance": 1111
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:15",
+            "parent": 16781056,
+            "id": 16781071,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "rx": -20.22,
+        "tx": 2.12,
+        "voltage": 3.29,
+        "temp": 50.98,
+        "distance": 2905
+    },
+    {
+        "tx": 0,
+        "voltage": 0,
+        "distance": 3021
+    },
+    {
+        "tx": 1.78,
+        "voltage": 3.34,
+        "distance": 1013
+    },
+    {
+        "tx": 1.77,
+        "voltage": 3.3,
+        "distance": 1641
+    },
+    {
+        "tx": 1.88,
+        "voltage": 3.3,
+        "distance": 1246
+    },
+    {
+        "tx": 1.82,
+        "voltage": 3.33,
+        "distance": 1162
+    },
+    {
+        "tx": 2.54,
+        "voltage": 3.3,
+        "distance": 1649
+    },
+    {
+        "tx": 0.96,
+        "voltage": 3.33,
+        "distance": 1923
+    },
+    {
+        "tx": 1.79,
+        "voltage": 3.36,
+        "distance": 1742
+    },
+    {
+        "tx": 1.71,
+        "voltage": 3.34,
+        "distance": 2833
+    },
+    {
+        "tx": 2.29,
+        "voltage": 3.28,
+        "distance": 1260
+    },
+    {
+        "tx": 2.11,
+        "voltage": 0.16,
+        "distance": 1164
+    },
+    {
+        "tx": 2.35,
+        "voltage": 3.32,
+        "distance": 3669
+    },
+    {
+        "tx": 2.68,
+        "voltage": 3.23,
+        "distance": 1488
+    },
+    {
+        "tx": 1.87,
+        "voltage": 3.32,
+        "distance": 1082
+    },
+    {
+        "tx": 2.02,
+        "voltage": 3.29,
+        "distance": 1649
+    },
+    {
+        "tx": 1.99,
+        "voltage": 3.3,
+        "distance": 3505
+    },
+    {
+        "tx": 1.53,
+        "voltage": 3.21,
+        "distance": 4216
+    },
+    {
+        "tx": 1.7,
+        "voltage": 3.31,
+        "distance": 923
+    },
+    {
+        "tx": 2.15,
+        "voltage": 3.27,
+        "distance": 1623
+    },
+    {
+        "tx": 1.58,
+        "voltage": 3.14,
+        "distance": 3226
+    },
+    {
+        "tx": -1.97,
+        "voltage": 3.25,
+        "distance": 3300
+    },
+    {
+        "tx": 1.68,
+        "voltage": 3.34,
+        "distance": 2041
+    },
+    {
+        "tx": 2.06,
+        "voltage": 3.28,
+        "distance": 3029
+    },
+    {
+        "tx": 2.27,
+        "voltage": 3.1,
+        "distance": 3106
+    },
+    {
+        "tx": 2.25,
+        "voltage": 3.31,
+        "distance": 3234
+    },
+    {
+        "tx": 1.41,
+        "voltage": 3.37,
+        "distance": 1616
+    },
+    {
+        "tx": 1.86,
+        "voltage": 3.32,
+        "distance": 1793
+    },
+    {
+        "tx": 1.52,
+        "voltage": 3.27,
+        "distance": 1074
+    },
+    {
+        "tx": 1.79,
+        "voltage": 3.17,
+        "distance": 3239
+    },
+    {
+        "tx": 2.45,
+        "voltage": 3.22,
+        "distance": 3337
+    },
+    {
+        "tx": 2,
+        "voltage": 3.33,
+        "distance": 3560
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 2001
+    },
+    {
+        "distance": 3898
+    },
+    {
+        "distance": 5275
+    },
+    {
+        "distance": 1779
+    },
+    {
+        "distance": 3511
+    },
+    {
+        "distance": 4267
+    },
+    {
+        "distance": 4069
+    },
+    {
+        "distance": 5339
+    },
+    {
+        "distance": 2160
+    },
+    {
+        "distance": 2880
+    },
+    {
+        "distance": 2413
+    },
+    {
+        "distance": 2478
+    },
+    {
+        "distance": 3405
+    },
+    {
+        "distance": 3590
+    },
+    {
+        "distance": 3233
+    },
+    {
+        "distance": 3265
+    },
+    {
+        "distance": 2206
+    },
+    {
+        "distance": 3393
+    },
+    {
+        "distance": 726
+    },
+    {
+        "distance": 6283
+    },
+    {
+        "distance": 736
+    },
+    {
+        "distance": 800
+    },
+    {
+        "distance": 557
+    },
+    {
+        "distance": 275
+    },
+    {
+        "distance": 2249
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 233
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 83
+    },
+    {
+        "distance": 849
+    },
+    {
+        "distance": 952
+    },
+    {
+        "distance": 839
+    },
+    {
+        "distance": 93
+    },
+    {
+        "distance": 918
+    },
+    {
+        "distance": 444
+    },
+    {
+        "distance": 402
+    },
+    {
+        "distance": 129
+    },
+    {
+        "distance": 531
+    },
+    {
+        "distance": 2229
+    },
+    {
+        "distance": 2882
+    },
+    {
+        "distance": 1369
+    },
+    {
+        "distance": 1021
+    },
+    {
+        "distance": 515
+    },
+    {
+        "distance": 380
+    },
+    {
+        "distance": 182
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 1103
+    },
+    {
+        "distance": 2921
+    },
+    {
+        "distance": 3074
+    },
+    {
+        "distance": 434
+    },
+    {
+        "distance": 208
+    },
+    {
+        "distance": 1246
+    },
+    {
+        "distance": 142
+    },
+    {
+        "distance": 923
+    },
+    {
+        "distance": 910
+    },
+    {
+        "distance": 2636
+    },
+    {
+        "distance": 923
+    },
+    {
+        "distance": 2462
+    },
+    {
+        "distance": 352
+    },
+    {
+        "distance": 959
+    },
+    {
+        "distance": 959
+    },
+    {
+        "distance": 1008
+    },
+    {
+        "distance": 3195
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 3121
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 580
+    },
+    {
+        "distance": 467
+    },
+    {
+        "distance": 990
+    },
+    {
+        "distance": 580
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 529
+    },
+    {
+        "distance": 510
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 1369
+    },
+    {
+        "distance": 2097
+    },
+    {
+        "distance": 2224
+    },
+    {
+        "distance": 1662
+    },
+    {
+        "distance": 1895
+    },
+    {
+        "distance": 4424
+    },
+    {
+        "distance": 2372
+    },
+    {
+        "distance": 1624
+    },
+    {
+        "distance": 1754
+    },
+    {
+        "distance": 2406
+    },
+    {
+        "distance": 2215
+    },
+    {
+        "distance": 2451
+    },
+    {
+        "distance": 2636
+    },
+    {
+        "distance": 2383
+    },
+    {
+        "distance": 1870
+    },
+    {
+        "distance": 2636
+    },
+    {
+        "distance": 2105
+    },
+    {
+        "distance": 2447
+    },
+    {
+        "distance": 2121
+    },
+    {
+        "distance": 2352
+    },
+    {
+        "distance": 2992
+    },
+    {
+        "distance": 2451
+    },
+    {
+        "distance": 2421
+    },
+    {
+        "distance": 2598
+    },
+    {
+        "distance": 2387
+    },
+    {
+        "distance": 2487
+    },
+    {
+        "distance": 2311
+    },
+    {
+        "distance": 2034
+    },
+    {
+        "distance": 2260
+    },
+    {
+        "distance": 1992
+    },
+    {
+        "distance": 1808
+    },
+    {
+        "distance": 1959
+    },
+    {
+        "distance": 2310
+    },
+    {
+        "distance": 2051
+    },
+    {
+        "distance": 2060
+    },
+    {
+        "distance": 1982
+    },
+    {
+        "distance": 0
+    },
+    {
+        "distance": 1993
+    },
+    {
+        "distance": 2056
+    },
+    {
+        "distance": 2310
+    },
+    {
+        "distance": 1869
+    },
+    {
+        "distance": 7378
+    },
+    {
+        "distance": 6426
+    },
+    {
+        "distance": 6498
+    },
+    {
+        "distance": 6541
+    },
+    {
+        "distance": 6496
+    },
+    {
+        "distance": 6383
+    },
+    {
+        "distance": 6452
+    },
+    {
+        "distance": 6423
+    },
+    {
+        "distance": 7414
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
+    
+### [pon_onts_serial](#pon_onts_serial) - Returned ONTs serial number (for GPON) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "interface": {
+            "name": "pon0\/0\/1:1",
             "parent": 16779008,
             "id": 16779009,
             "xid": 7,
             "type": "ONU",
             "onu_num": 1,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779009"
         },
-        "rx": -19.03,
-        "tx": 1.31,
-        "voltage": 3.34,
-        "temp": 35.92,
-        "distance": 5
+        "serial": "48:57:54:43:E6:77:96:E8"
     },
     {
         "interface": {
@@ -17430,13 +20139,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 2,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779010"
         },
-        "rx": -22.44,
-        "tx": 1.59,
-        "voltage": 3.35,
-        "temp": 35.58,
-        "distance": 5
+        "serial": "48:57:54:43:E6:14:C8:80"
     },
     {
         "interface": {
@@ -17446,13 +20153,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 3,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779011"
         },
-        "rx": -19.67,
-        "tx": 1.8,
-        "voltage": 3.28,
-        "temp": 33.88,
-        "distance": 5
+        "serial": "48:57:54:43:E6:77:96:EA"
     },
     {
         "interface": {
@@ -17462,13 +20167,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 4,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779012"
         },
-        "rx": -22.01,
-        "tx": 1.89,
-        "voltage": 3.32,
-        "temp": 30.16,
-        "distance": 5
+        "serial": "48:57:54:43:E6:77:96:FC"
     },
     {
         "interface": {
@@ -17478,13 +20181,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 5,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779013"
         },
-        "rx": -23.98,
-        "tx": 1.75,
-        "voltage": 3.32,
-        "temp": 31.51,
-        "distance": 5
+        "serial": "48:57:54:43:E6:77:96:F0"
     },
     {
         "interface": {
@@ -17494,13 +20195,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 6,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779014"
         },
-        "rx": -18.82,
-        "tx": 1.36,
-        "voltage": 3.32,
-        "temp": 25.41,
-        "distance": 5
+        "serial": "48:57:54:43:E6:77:96:F4"
     },
     {
         "interface": {
@@ -17510,13 +20209,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 7,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779015"
         },
-        "rx": -18.89,
-        "tx": 1.42,
-        "voltage": 3.31,
-        "temp": 35.92,
-        "distance": 5
+        "serial": "48:57:54:43:E6:16:8F:BC"
     },
     {
         "interface": {
@@ -17526,13 +20223,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 8,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779016"
         },
-        "rx": -19.32,
-        "tx": 1.4,
-        "voltage": 3.33,
-        "temp": 31.51,
-        "distance": 5
+        "serial": "48:57:54:43:E6:14:A7:2C"
     },
     {
         "interface": {
@@ -17542,13 +20237,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 9,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779017"
         },
-        "rx": -20.36,
-        "tx": 1.49,
-        "voltage": 3.33,
-        "temp": 29.82,
-        "distance": 5
+        "serial": "48:57:54:43:E6:16:8F:B6"
     },
     {
         "interface": {
@@ -17558,13 +20251,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 10,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779018"
         },
-        "rx": -8.52,
-        "tx": 1.31,
-        "voltage": 3.27,
-        "temp": 34.57,
-        "distance": 6
+        "serial": "48:57:54:43:E6:16:8F:74"
     },
     {
         "interface": {
@@ -17574,13 +20265,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 11,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779019"
         },
-        "rx": -17.98,
-        "tx": 1.32,
-        "voltage": 3.31,
-        "temp": 31.85,
-        "distance": 5
+        "serial": "48:57:54:43:E6:16:90:24"
     },
     {
         "interface": {
@@ -17590,13 +20279,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 12,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779020"
         },
-        "rx": -17.98,
-        "tx": 1.53,
-        "voltage": 3.35,
-        "temp": 30.83,
-        "distance": 5
+        "serial": "48:57:54:43:36:00:6F:38"
     },
     {
         "interface": {
@@ -17606,13 +20293,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 13,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779021"
         },
-        "rx": -19,
-        "tx": 1.4,
-        "voltage": 3.34,
-        "temp": 36.93,
-        "distance": 5
+        "serial": "48:57:54:43:36:00:6F:14"
     },
     {
         "interface": {
@@ -17622,13 +20307,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 14,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779022"
         },
-        "rx": -21.61,
-        "tx": 1.43,
-        "voltage": 3.34,
-        "temp": 32.86,
-        "distance": 5
+        "serial": "48:57:54:43:36:00:4E:4E"
     },
     {
         "interface": {
@@ -17638,13 +20321,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 15,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779023"
         },
-        "rx": -18.82,
-        "tx": 1.36,
-        "voltage": 3.35,
-        "temp": 37.95,
-        "distance": 10
+        "serial": "48:57:54:43:E6:B7:F1:FE"
     },
     {
         "interface": {
@@ -17654,13 +20335,11 @@ true
             "xid": 7,
             "type": "ONU",
             "onu_num": 16,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779024"
         },
-        "rx": -18.57,
-        "tx": 1.33,
-        "voltage": 3.34,
-        "temp": 30.5,
-        "distance": 13
+        "serial": "48:57:54:43:E6:B7:F2:38"
     },
     {
         "interface": {
@@ -17670,13 +20349,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 1,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779265"
         },
-        "rx": -20.13,
-        "tx": 1.39,
-        "voltage": 3.34,
-        "temp": 33.54,
-        "distance": 467
+        "serial": "48:57:54:43:E6:14:A7:86"
     },
     {
         "interface": {
@@ -17686,13 +20363,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 2,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779266"
         },
-        "rx": -15.97,
-        "tx": 1.35,
-        "voltage": 3.33,
-        "temp": 34.9,
-        "distance": 492
+        "serial": "48:57:54:43:E6:B7:81:18"
     },
     {
         "interface": {
@@ -17702,13 +20377,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 3,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779267"
         },
-        "rx": -20.51,
-        "tx": 1.35,
-        "voltage": 3.33,
-        "temp": 32.53,
-        "distance": 490
+        "serial": "48:57:54:43:E6:16:90:08"
     },
     {
         "interface": {
@@ -17718,13 +20391,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 4,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779268"
         },
-        "rx": -17.89,
-        "tx": 1.35,
-        "voltage": 3.35,
-        "temp": 33.21,
-        "distance": 492
+        "serial": "48:57:54:43:E6:B7:83:60"
     },
     {
         "interface": {
@@ -17734,13 +20405,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 5,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779269"
         },
-        "rx": -18.63,
-        "tx": 1.33,
-        "voltage": 3.32,
-        "temp": 32.19,
-        "distance": 506
+        "serial": "48:57:54:43:E6:14:C8:98"
     },
     {
         "interface": {
@@ -17750,13 +20419,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 6,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779270"
         },
-        "rx": -17.93,
-        "tx": 1.39,
-        "voltage": 3.36,
-        "temp": 32.53,
-        "distance": 505
+        "serial": "48:57:54:43:E6:14:CE:4E"
     },
     {
         "interface": {
@@ -17766,13 +20433,25 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 7,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779271"
         },
-        "rx": -17.1,
-        "tx": 1.4,
-        "voltage": 3.34,
-        "temp": 33.21,
-        "distance": 495
+        "serial": "48:57:54:43:B3:DF:29:19"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:8",
+            "parent": 16779264,
+            "id": 16779272,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779272"
+        },
+        "serial": "48:57:54:43:E6:B7:81:14"
     },
     {
         "interface": {
@@ -17782,13 +20461,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 9,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779273"
         },
-        "rx": -17.77,
-        "tx": 1.41,
-        "voltage": 3.34,
-        "temp": 36.93,
-        "distance": 492
+        "serial": "48:57:54:43:E6:B7:81:00"
     },
     {
         "interface": {
@@ -17798,13 +20475,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 10,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779274"
         },
-        "rx": -22.15,
-        "tx": 1.34,
-        "voltage": 3.34,
-        "temp": 36.59,
-        "distance": 820
+        "serial": "48:57:54:43:E6:B7:8C:6C"
     },
     {
         "interface": {
@@ -17814,13 +20489,11 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 11,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779275"
         },
-        "rx": -17.42,
-        "tx": 1.5,
-        "voltage": 3.38,
-        "temp": 34.56,
-        "distance": 500
+        "serial": "48:57:54:43:E6:14:A7:6C"
     },
     {
         "interface": {
@@ -17830,16 +20503,543 @@ true
             "xid": 8,
             "type": "ONU",
             "onu_num": 12,
-            "uni": null
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779276"
         },
-        "rx": -19.17,
-        "tx": 1.41,
-        "voltage": 3.34,
-        "temp": 29.48,
-        "distance": 880
+        "serial": "48:57:54:43:E6:14:A7:34"
     },
     {
-        "distance": 0
+        "interface": {
+            "name": "pon0\/0\/2:13",
+            "parent": 16779264,
+            "id": 16779277,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779277"
+        },
+        "serial": "48:57:54:43:E6:B7:83:5E"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:14",
+            "parent": 16779264,
+            "id": 16779278,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779278"
+        },
+        "serial": "48:57:54:43:E6:B7:83:56"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:15",
+            "parent": 16779264,
+            "id": 16779279,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779279"
+        },
+        "serial": "48:57:54:43:E6:B7:82:CC"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:16",
+            "parent": 16779264,
+            "id": 16779280,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779280"
+        },
+        "serial": "48:57:54:43:E6:B7:81:80"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:17",
+            "parent": 16779264,
+            "id": 16779281,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779281"
+        },
+        "serial": "48:57:54:43:E6:B7:81:16"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:18",
+            "parent": 16779264,
+            "id": 16779282,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779282"
+        },
+        "serial": "48:57:54:43:E6:B7:83:62"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:19",
+            "parent": 16779264,
+            "id": 16779283,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779283"
+        },
+        "serial": "48:57:54:43:E6:B7:81:12"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:20",
+            "parent": 16779264,
+            "id": 16779284,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779284"
+        },
+        "serial": "48:57:54:43:E6:B7:83:58"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:21",
+            "parent": 16779264,
+            "id": 16779285,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779285"
+        },
+        "serial": "48:57:54:43:E6:B7:81:34"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:22",
+            "parent": 16779264,
+            "id": 16779286,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779286"
+        },
+        "serial": "48:57:54:43:E6:B7:81:2E"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:23",
+            "parent": 16779264,
+            "id": 16779287,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779287"
+        },
+        "serial": "48:57:54:43:E6:B7:80:F8"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:24",
+            "parent": 16779264,
+            "id": 16779288,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779288"
+        },
+        "serial": "48:57:54:43:E6:B7:80:EA"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:25",
+            "parent": 16779264,
+            "id": 16779289,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779289"
+        },
+        "serial": "48:57:54:43:E6:B7:81:1C"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:26",
+            "parent": 16779264,
+            "id": 16779290,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779290"
+        },
+        "serial": "48:57:54:43:E6:B7:80:FA"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:27",
+            "parent": 16779264,
+            "id": 16779291,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779291"
+        },
+        "serial": "48:57:54:43:E6:B7:81:1A"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:28",
+            "parent": 16779264,
+            "id": 16779292,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779292"
+        },
+        "serial": "48:57:54:43:E6:B7:81:36"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:29",
+            "parent": 16779264,
+            "id": 16779293,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779293"
+        },
+        "serial": "48:57:54:43:E6:B7:81:04"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:30",
+            "parent": 16779264,
+            "id": 16779294,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779294"
+        },
+        "serial": "48:57:54:43:E6:B7:80:F6"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:31",
+            "parent": 16779264,
+            "id": 16779295,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 31,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779295"
+        },
+        "serial": "48:57:54:43:E6:B7:81:20"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:32",
+            "parent": 16779264,
+            "id": 16779296,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779296"
+        },
+        "serial": "48:57:54:43:E6:B7:80:FE"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:33",
+            "parent": 16779264,
+            "id": 16779297,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779297"
+        },
+        "serial": "48:57:54:43:E6:B7:81:02"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:34",
+            "parent": 16779264,
+            "id": 16779298,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 34,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779298"
+        },
+        "serial": "48:57:54:43:E6:B7:80:FC"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:35",
+            "parent": 16779264,
+            "id": 16779299,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 35,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779299"
+        },
+        "serial": "48:57:54:43:36:00:6B:D8"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:36",
+            "parent": 16779264,
+            "id": 16779300,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 36,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779300"
+        },
+        "serial": "48:57:54:43:36:00:6F:12"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:37",
+            "parent": 16779264,
+            "id": 16779301,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 37,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779301"
+        },
+        "serial": "48:57:54:43:E6:14:CE:4C"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:38",
+            "parent": 16779264,
+            "id": 16779302,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 38,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779302"
+        },
+        "serial": "48:57:54:43:E6:16:8F:78"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:39",
+            "parent": 16779264,
+            "id": 16779303,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 39,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779303"
+        },
+        "serial": "48:57:54:43:E6:B7:8C:70"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:40",
+            "parent": 16779264,
+            "id": 16779304,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 40,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779304"
+        },
+        "serial": "48:57:54:43:E6:B7:80:F2"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:41",
+            "parent": 16779264,
+            "id": 16779305,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 41,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779305"
+        },
+        "serial": "48:57:54:43:E6:B7:81:24"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:42",
+            "parent": 16779264,
+            "id": 16779306,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 42,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779306"
+        },
+        "serial": "48:57:54:43:E6:B7:80:EE"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:43",
+            "parent": 16779264,
+            "id": 16779307,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 43,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779307"
+        },
+        "serial": "48:57:54:43:36:00:6F:3E"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:44",
+            "parent": 16779264,
+            "id": 16779308,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 44,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779308"
+        },
+        "serial": "48:57:54:43:E6:B7:81:26"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:45",
+            "parent": 16779264,
+            "id": 16779309,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 45,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779309"
+        },
+        "serial": "48:57:54:43:E6:B7:F2:34"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:46",
+            "parent": 16779264,
+            "id": 16779310,
+            "xid": 8,
+            "type": "ONU",
+            "onu_num": 46,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779310"
+        },
+        "serial": "48:57:54:43:E6:B7:F2:24"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:1",
+            "parent": 16779520,
+            "id": 16779521,
+            "xid": 9,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779521"
+        },
+        "serial": "48:57:54:43:E6:B7:F2:1C"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:2",
+            "parent": 16779520,
+            "id": 16779522,
+            "xid": 9,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779522"
+        },
+        "serial": "48:57:54:43:E6:14:C8:6A"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:3",
+            "parent": 16779520,
+            "id": 16779523,
+            "xid": 9,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779523"
+        },
+        "serial": "48:57:54:43:E6:B7:F2:08"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:4",
+            "parent": 16779520,
+            "id": 16779524,
+            "xid": 9,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null,
+            "pontype": "gpon",
+            "onu_id": "16779524"
+        },
+        "serial": "48:57:54:43:E6:B7:F2:06"
     }
 ]
 ```             
@@ -17863,9 +21063,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:1",
-            "parent": 16779008,
-            "id": 16779009,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780545,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 1,
             "uni": null
@@ -17875,9 +21075,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:2",
-            "parent": 16779008,
-            "id": 16779010,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780546,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 2,
             "uni": null
@@ -17887,9 +21087,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:3",
-            "parent": 16779008,
-            "id": 16779011,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780547,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 3,
             "uni": null
@@ -17899,9 +21099,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:4",
-            "parent": 16779008,
-            "id": 16779012,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780548,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 4,
             "uni": null
@@ -17911,9 +21111,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:5",
-            "parent": 16779008,
-            "id": 16779013,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780549,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 5,
             "uni": null
@@ -17923,9 +21123,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:6",
-            "parent": 16779008,
-            "id": 16779014,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780550,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 6,
             "uni": null
@@ -17935,9 +21135,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:7",
-            "parent": 16779008,
-            "id": 16779015,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780551,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 7,
             "uni": null
@@ -17947,9 +21147,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:8",
-            "parent": 16779008,
-            "id": 16779016,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780552,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 8,
             "uni": null
@@ -17959,9 +21159,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:9",
-            "parent": 16779008,
-            "id": 16779017,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780553,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 9,
             "uni": null
@@ -17971,9 +21171,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780554,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 10,
             "uni": null
@@ -17983,9 +21183,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:11",
-            "parent": 16779008,
-            "id": 16779019,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780555,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 11,
             "uni": null
@@ -17995,9 +21195,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:12",
-            "parent": 16779008,
-            "id": 16779020,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780556,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 12,
             "uni": null
@@ -18007,9 +21207,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:13",
-            "parent": 16779008,
-            "id": 16779021,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780557,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 13,
             "uni": null
@@ -18019,9 +21219,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:14",
-            "parent": 16779008,
-            "id": 16779022,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780558,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 14,
             "uni": null
@@ -18031,9 +21231,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:15",
-            "parent": 16779008,
-            "id": 16779023,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780559,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 15,
             "uni": null
@@ -18043,9 +21243,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/1:16",
-            "parent": 16779008,
-            "id": 16779024,
-            "xid": 7,
+            "parent": 16780544,
+            "id": 16780560,
+            "xid": 13,
             "type": "ONU",
             "onu_num": 16,
             "uni": null
@@ -18054,10 +21254,442 @@ true
     },
     {
         "interface": {
+            "name": "pon0\/0\/1:17",
+            "parent": 16780544,
+            "id": 16780561,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:18",
+            "parent": 16780544,
+            "id": 16780562,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:19",
+            "parent": 16780544,
+            "id": 16780563,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:20",
+            "parent": 16780544,
+            "id": 16780564,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:21",
+            "parent": 16780544,
+            "id": 16780565,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:22",
+            "parent": 16780544,
+            "id": 16780566,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:23",
+            "parent": 16780544,
+            "id": 16780567,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:24",
+            "parent": 16780544,
+            "id": 16780568,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:25",
+            "parent": 16780544,
+            "id": 16780569,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:26",
+            "parent": 16780544,
+            "id": 16780570,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:27",
+            "parent": 16780544,
+            "id": 16780571,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:28",
+            "parent": 16780544,
+            "id": 16780572,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:29",
+            "parent": 16780544,
+            "id": 16780573,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:30",
+            "parent": 16780544,
+            "id": 16780574,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:31",
+            "parent": 16780544,
+            "id": 16780575,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 31,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:32",
+            "parent": 16780544,
+            "id": 16780576,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:33",
+            "parent": 16780544,
+            "id": 16780577,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:34",
+            "parent": 16780544,
+            "id": 16780578,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 34,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:35",
+            "parent": 16780544,
+            "id": 16780579,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 35,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:36",
+            "parent": 16780544,
+            "id": 16780580,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 36,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:37",
+            "parent": 16780544,
+            "id": 16780581,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 37,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:38",
+            "parent": 16780544,
+            "id": 16780582,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 38,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:39",
+            "parent": 16780544,
+            "id": 16780583,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 39,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:40",
+            "parent": 16780544,
+            "id": 16780584,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 40,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:41",
+            "parent": 16780544,
+            "id": 16780585,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 41,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:42",
+            "parent": 16780544,
+            "id": 16780586,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 42,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:43",
+            "parent": 16780544,
+            "id": 16780587,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 43,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:44",
+            "parent": 16780544,
+            "id": 16780588,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 44,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:45",
+            "parent": 16780544,
+            "id": 16780589,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 45,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:46",
+            "parent": 16780544,
+            "id": 16780590,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 46,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:47",
+            "parent": 16780544,
+            "id": 16780591,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 47,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:48",
+            "parent": 16780544,
+            "id": 16780592,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 48,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:49",
+            "parent": 16780544,
+            "id": 16780593,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 49,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:50",
+            "parent": 16780544,
+            "id": 16780594,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 50,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:51",
+            "parent": 16780544,
+            "id": 16780595,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 51,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/1:52",
+            "parent": 16780544,
+            "id": 16780596,
+            "xid": 13,
+            "type": "ONU",
+            "onu_num": 52,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
             "name": "pon0\/0\/2:1",
-            "parent": 16779264,
-            "id": 16779265,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 1,
             "uni": null
@@ -18067,9 +21699,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:2",
-            "parent": 16779264,
-            "id": 16779266,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 2,
             "uni": null
@@ -18079,9 +21711,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:3",
-            "parent": 16779264,
-            "id": 16779267,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780803,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 3,
             "uni": null
@@ -18091,9 +21723,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:4",
-            "parent": 16779264,
-            "id": 16779268,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780804,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 4,
             "uni": null
@@ -18103,9 +21735,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:5",
-            "parent": 16779264,
-            "id": 16779269,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780805,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 5,
             "uni": null
@@ -18115,9 +21747,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:6",
-            "parent": 16779264,
-            "id": 16779270,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780806,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 6,
             "uni": null
@@ -18127,33 +21759,33 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:7",
-            "parent": 16779264,
-            "id": 16779271,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780807,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 7,
-            "uni": null
-        },
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:8",
-            "parent": 16779264,
-            "id": 16779272,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 8,
             "uni": null
         },
         "status": "Offline"
     },
     {
         "interface": {
+            "name": "pon0\/0\/2:8",
+            "parent": 16780800,
+            "id": 16780808,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
             "name": "pon0\/0\/2:9",
-            "parent": 16779264,
-            "id": 16779273,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780809,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 9,
             "uni": null
@@ -18163,9 +21795,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:10",
-            "parent": 16779264,
-            "id": 16779274,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780810,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 10,
             "uni": null
@@ -18175,9 +21807,9 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780811,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 11,
             "uni": null
@@ -18187,11 +21819,2399 @@ true
     {
         "interface": {
             "name": "pon0\/0\/2:12",
-            "parent": 16779264,
-            "id": 16779276,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780812,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 12,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:13",
+            "parent": 16780800,
+            "id": 16780813,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:14",
+            "parent": 16780800,
+            "id": 16780814,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:15",
+            "parent": 16780800,
+            "id": 16780815,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:16",
+            "parent": 16780800,
+            "id": 16780816,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:17",
+            "parent": 16780800,
+            "id": 16780817,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:18",
+            "parent": 16780800,
+            "id": 16780818,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:19",
+            "parent": 16780800,
+            "id": 16780819,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:20",
+            "parent": 16780800,
+            "id": 16780820,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:21",
+            "parent": 16780800,
+            "id": 16780821,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:22",
+            "parent": 16780800,
+            "id": 16780822,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:23",
+            "parent": 16780800,
+            "id": 16780823,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:24",
+            "parent": 16780800,
+            "id": 16780824,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:25",
+            "parent": 16780800,
+            "id": 16780825,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:26",
+            "parent": 16780800,
+            "id": 16780826,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:27",
+            "parent": 16780800,
+            "id": 16780827,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:28",
+            "parent": 16780800,
+            "id": 16780828,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:29",
+            "parent": 16780800,
+            "id": 16780829,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:30",
+            "parent": 16780800,
+            "id": 16780830,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:31",
+            "parent": 16780800,
+            "id": 16780831,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 31,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:32",
+            "parent": 16780800,
+            "id": 16780832,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/2:33",
+            "parent": 16780800,
+            "id": 16780833,
+            "xid": 14,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:1",
+            "parent": 16781056,
+            "id": 16781057,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:2",
+            "parent": 16781056,
+            "id": 16781058,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:3",
+            "parent": 16781056,
+            "id": 16781059,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:4",
+            "parent": 16781056,
+            "id": 16781060,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:5",
+            "parent": 16781056,
+            "id": 16781061,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:6",
+            "parent": 16781056,
+            "id": 16781062,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:7",
+            "parent": 16781056,
+            "id": 16781063,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:8",
+            "parent": 16781056,
+            "id": 16781064,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:9",
+            "parent": 16781056,
+            "id": 16781065,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:10",
+            "parent": 16781056,
+            "id": 16781066,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:11",
+            "parent": 16781056,
+            "id": 16781067,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:12",
+            "parent": 16781056,
+            "id": 16781068,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:13",
+            "parent": 16781056,
+            "id": 16781069,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:14",
+            "parent": 16781056,
+            "id": 16781070,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:15",
+            "parent": 16781056,
+            "id": 16781071,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:16",
+            "parent": 16781056,
+            "id": 16781072,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:17",
+            "parent": 16781056,
+            "id": 16781073,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:18",
+            "parent": 16781056,
+            "id": 16781074,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:19",
+            "parent": 16781056,
+            "id": 16781075,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:20",
+            "parent": 16781056,
+            "id": 16781076,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:21",
+            "parent": 16781056,
+            "id": 16781077,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:22",
+            "parent": 16781056,
+            "id": 16781078,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:23",
+            "parent": 16781056,
+            "id": 16781079,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:24",
+            "parent": 16781056,
+            "id": 16781080,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:25",
+            "parent": 16781056,
+            "id": 16781081,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:26",
+            "parent": 16781056,
+            "id": 16781082,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:27",
+            "parent": 16781056,
+            "id": 16781083,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:28",
+            "parent": 16781056,
+            "id": 16781084,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:29",
+            "parent": 16781056,
+            "id": 16781085,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:30",
+            "parent": 16781056,
+            "id": 16781086,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:31",
+            "parent": 16781056,
+            "id": 16781087,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 31,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:32",
+            "parent": 16781056,
+            "id": 16781088,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:33",
+            "parent": 16781056,
+            "id": 16781089,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:34",
+            "parent": 16781056,
+            "id": 16781090,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 34,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:35",
+            "parent": 16781056,
+            "id": 16781091,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 35,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:36",
+            "parent": 16781056,
+            "id": 16781092,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 36,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:37",
+            "parent": 16781056,
+            "id": 16781093,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 37,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:38",
+            "parent": 16781056,
+            "id": 16781094,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 38,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:39",
+            "parent": 16781056,
+            "id": 16781095,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 39,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:40",
+            "parent": 16781056,
+            "id": 16781096,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 40,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:41",
+            "parent": 16781056,
+            "id": 16781097,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 41,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:42",
+            "parent": 16781056,
+            "id": 16781098,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 42,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:43",
+            "parent": 16781056,
+            "id": 16781099,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 43,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:44",
+            "parent": 16781056,
+            "id": 16781100,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 44,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:45",
+            "parent": 16781056,
+            "id": 16781101,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 45,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:46",
+            "parent": 16781056,
+            "id": 16781102,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 46,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:47",
+            "parent": 16781056,
+            "id": 16781103,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 47,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:48",
+            "parent": 16781056,
+            "id": 16781104,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 48,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:49",
+            "parent": 16781056,
+            "id": 16781105,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 49,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:50",
+            "parent": 16781056,
+            "id": 16781106,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 50,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:51",
+            "parent": 16781056,
+            "id": 16781107,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 51,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:52",
+            "parent": 16781056,
+            "id": 16781108,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 52,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:53",
+            "parent": 16781056,
+            "id": 16781109,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 53,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:54",
+            "parent": 16781056,
+            "id": 16781110,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 54,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:55",
+            "parent": 16781056,
+            "id": 16781111,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 55,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:56",
+            "parent": 16781056,
+            "id": 16781112,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 56,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:57",
+            "parent": 16781056,
+            "id": 16781113,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 57,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:58",
+            "parent": 16781056,
+            "id": 16781114,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 58,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:59",
+            "parent": 16781056,
+            "id": 16781115,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 59,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:60",
+            "parent": 16781056,
+            "id": 16781116,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 60,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:61",
+            "parent": 16781056,
+            "id": 16781117,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 61,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:62",
+            "parent": 16781056,
+            "id": 16781118,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 62,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:63",
+            "parent": 16781056,
+            "id": 16781119,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 63,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/3:64",
+            "parent": 16781056,
+            "id": 16781120,
+            "xid": 15,
+            "type": "ONU",
+            "onu_num": 64,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:1",
+            "parent": 16781312,
+            "id": 16781313,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:2",
+            "parent": 16781312,
+            "id": 16781314,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:3",
+            "parent": 16781312,
+            "id": 16781315,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:4",
+            "parent": 16781312,
+            "id": 16781316,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:5",
+            "parent": 16781312,
+            "id": 16781317,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:6",
+            "parent": 16781312,
+            "id": 16781318,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:7",
+            "parent": 16781312,
+            "id": 16781319,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:8",
+            "parent": 16781312,
+            "id": 16781320,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:9",
+            "parent": 16781312,
+            "id": 16781321,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:10",
+            "parent": 16781312,
+            "id": 16781322,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:11",
+            "parent": 16781312,
+            "id": 16781323,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:12",
+            "parent": 16781312,
+            "id": 16781324,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:15",
+            "parent": 16781312,
+            "id": 16781327,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:16",
+            "parent": 16781312,
+            "id": 16781328,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:17",
+            "parent": 16781312,
+            "id": 16781329,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:18",
+            "parent": 16781312,
+            "id": 16781330,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:19",
+            "parent": 16781312,
+            "id": 16781331,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:20",
+            "parent": 16781312,
+            "id": 16781332,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:21",
+            "parent": 16781312,
+            "id": 16781333,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:22",
+            "parent": 16781312,
+            "id": 16781334,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:23",
+            "parent": 16781312,
+            "id": 16781335,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:24",
+            "parent": 16781312,
+            "id": 16781336,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:26",
+            "parent": 16781312,
+            "id": 16781338,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:32",
+            "parent": 16781312,
+            "id": 16781344,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:34",
+            "parent": 16781312,
+            "id": 16781346,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 34,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:38",
+            "parent": 16781312,
+            "id": 16781350,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 38,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:42",
+            "parent": 16781312,
+            "id": 16781354,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 42,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:46",
+            "parent": 16781312,
+            "id": 16781358,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 46,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:50",
+            "parent": 16781312,
+            "id": 16781362,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 50,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:52",
+            "parent": 16781312,
+            "id": 16781364,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 52,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:53",
+            "parent": 16781312,
+            "id": 16781365,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 53,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:56",
+            "parent": 16781312,
+            "id": 16781368,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 56,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:61",
+            "parent": 16781312,
+            "id": 16781373,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 61,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:62",
+            "parent": 16781312,
+            "id": 16781374,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 62,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/4:63",
+            "parent": 16781312,
+            "id": 16781375,
+            "xid": 16,
+            "type": "ONU",
+            "onu_num": 63,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:1",
+            "parent": 16781568,
+            "id": 16781569,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:2",
+            "parent": 16781568,
+            "id": 16781570,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:3",
+            "parent": 16781568,
+            "id": 16781571,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:4",
+            "parent": 16781568,
+            "id": 16781572,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:5",
+            "parent": 16781568,
+            "id": 16781573,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:6",
+            "parent": 16781568,
+            "id": 16781574,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:7",
+            "parent": 16781568,
+            "id": 16781575,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:8",
+            "parent": 16781568,
+            "id": 16781576,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:9",
+            "parent": 16781568,
+            "id": 16781577,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:10",
+            "parent": 16781568,
+            "id": 16781578,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:11",
+            "parent": 16781568,
+            "id": 16781579,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:12",
+            "parent": 16781568,
+            "id": 16781580,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:13",
+            "parent": 16781568,
+            "id": 16781581,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 13,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:14",
+            "parent": 16781568,
+            "id": 16781582,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:15",
+            "parent": 16781568,
+            "id": 16781583,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:16",
+            "parent": 16781568,
+            "id": 16781584,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:17",
+            "parent": 16781568,
+            "id": 16781585,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:18",
+            "parent": 16781568,
+            "id": 16781586,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:19",
+            "parent": 16781568,
+            "id": 16781587,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:20",
+            "parent": 16781568,
+            "id": 16781588,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:21",
+            "parent": 16781568,
+            "id": 16781589,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:22",
+            "parent": 16781568,
+            "id": 16781590,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:23",
+            "parent": 16781568,
+            "id": 16781591,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:24",
+            "parent": 16781568,
+            "id": 16781592,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:25",
+            "parent": 16781568,
+            "id": 16781593,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:26",
+            "parent": 16781568,
+            "id": 16781594,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:27",
+            "parent": 16781568,
+            "id": 16781595,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:28",
+            "parent": 16781568,
+            "id": 16781596,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:29",
+            "parent": 16781568,
+            "id": 16781597,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/5:30",
+            "parent": 16781568,
+            "id": 16781598,
+            "xid": 17,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:1",
+            "parent": 16781824,
+            "id": 16781825,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:2",
+            "parent": 16781824,
+            "id": 16781826,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:3",
+            "parent": 16781824,
+            "id": 16781827,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:4",
+            "parent": 16781824,
+            "id": 16781828,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:5",
+            "parent": 16781824,
+            "id": 16781829,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:6",
+            "parent": 16781824,
+            "id": 16781830,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:7",
+            "parent": 16781824,
+            "id": 16781831,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:8",
+            "parent": 16781824,
+            "id": 16781832,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:9",
+            "parent": 16781824,
+            "id": 16781833,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:10",
+            "parent": 16781824,
+            "id": 16781834,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 10,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:11",
+            "parent": 16781824,
+            "id": 16781835,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 11,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:12",
+            "parent": 16781824,
+            "id": 16781836,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 12,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:14",
+            "parent": 16781824,
+            "id": 16781838,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 14,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:15",
+            "parent": 16781824,
+            "id": 16781839,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 15,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:16",
+            "parent": 16781824,
+            "id": 16781840,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 16,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:17",
+            "parent": 16781824,
+            "id": 16781841,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 17,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:18",
+            "parent": 16781824,
+            "id": 16781842,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 18,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:19",
+            "parent": 16781824,
+            "id": 16781843,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 19,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:20",
+            "parent": 16781824,
+            "id": 16781844,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 20,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:21",
+            "parent": 16781824,
+            "id": 16781845,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 21,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:22",
+            "parent": 16781824,
+            "id": 16781846,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 22,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:23",
+            "parent": 16781824,
+            "id": 16781847,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 23,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:24",
+            "parent": 16781824,
+            "id": 16781848,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 24,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:25",
+            "parent": 16781824,
+            "id": 16781849,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 25,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:26",
+            "parent": 16781824,
+            "id": 16781850,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 26,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:27",
+            "parent": 16781824,
+            "id": 16781851,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 27,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:28",
+            "parent": 16781824,
+            "id": 16781852,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 28,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:29",
+            "parent": 16781824,
+            "id": 16781853,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 29,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:30",
+            "parent": 16781824,
+            "id": 16781854,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 30,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:31",
+            "parent": 16781824,
+            "id": 16781855,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 31,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:32",
+            "parent": 16781824,
+            "id": 16781856,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 32,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:33",
+            "parent": 16781824,
+            "id": 16781857,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 33,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:34",
+            "parent": 16781824,
+            "id": 16781858,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 34,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:35",
+            "parent": 16781824,
+            "id": 16781859,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 35,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:36",
+            "parent": 16781824,
+            "id": 16781860,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 36,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:37",
+            "parent": 16781824,
+            "id": 16781861,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 37,
+            "uni": null
+        },
+        "status": "Offline"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:38",
+            "parent": 16781824,
+            "id": 16781862,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 38,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:39",
+            "parent": 16781824,
+            "id": 16781863,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 39,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/6:40",
+            "parent": 16781824,
+            "id": 16781864,
+            "xid": 18,
+            "type": "ONU",
+            "onu_num": 40,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:1",
+            "parent": 16782336,
+            "id": 16782337,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 1,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:2",
+            "parent": 16782336,
+            "id": 16782338,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 2,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:3",
+            "parent": 16782336,
+            "id": 16782339,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 3,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:4",
+            "parent": 16782336,
+            "id": 16782340,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 4,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:5",
+            "parent": 16782336,
+            "id": 16782341,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 5,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:6",
+            "parent": 16782336,
+            "id": 16782342,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 6,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:7",
+            "parent": 16782336,
+            "id": 16782343,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 7,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:8",
+            "parent": 16782336,
+            "id": 16782344,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 8,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:9",
+            "parent": 16782336,
+            "id": 16782345,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 9,
+            "uni": null
+        },
+        "status": "Online"
+    },
+    {
+        "interface": {
+            "name": "pon0\/0\/8:10",
+            "parent": 16782336,
+            "id": 16782346,
+            "xid": 20,
+            "type": "ONU",
+            "onu_num": 10,
             "uni": null
         },
         "status": "Online"
@@ -18220,522 +24240,35 @@ true
 [
     {
         "interface": {
-            "name": "pon0\/0\/1:1",
-            "parent": 16779008,
-            "id": 16779009,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093871,
-        "last_reg_since": "6d 12h 17min 28sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:2",
-            "parent": 16779008,
-            "id": 16779010,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625497463,
-        "last_reg_since": "1d 20h 10min 56sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:3",
-            "parent": 16779008,
-            "id": 16779011,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093870,
-        "last_reg_since": "6d 12h 17min 29sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:4",
-            "parent": 16779008,
-            "id": 16779012,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625589675,
-        "last_reg_since": "0d 18h 34min 4sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:5",
-            "parent": 16779008,
-            "id": 16779013,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093863,
-        "last_reg_since": "6d 12h 17min 36sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:6",
-            "parent": 16779008,
-            "id": 16779014,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093870,
-        "last_reg_since": "6d 12h 17min 29sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:7",
-            "parent": 16779008,
-            "id": 16779015,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625411398,
-        "last_reg_since": "2d 20h 5min 21sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:8",
-            "parent": 16779008,
-            "id": 16779016,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625151564,
-        "last_reg_since": "5d 20h 15min 55sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:9",
-            "parent": 16779008,
-            "id": 16779017,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625485393,
-        "last_reg_since": "1d 23h 32min 6sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093859,
-        "last_reg_since": "6d 12h 17min 40sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:11",
-            "parent": 16779008,
-            "id": 16779019,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625600002,
-        "last_reg_since": "0d 15h 41min 57sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:12",
-            "parent": 16779008,
-            "id": 16779020,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625581895,
-        "last_reg_since": "0d 20h 43min 44sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:13",
-            "parent": 16779008,
-            "id": 16779021,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 13,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093883,
-        "last_reg_since": "6d 12h 17min 16sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:14",
-            "parent": 16779008,
-            "id": 16779022,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 14,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093864,
-        "last_reg_since": "6d 12h 17min 35sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:15",
-            "parent": 16779008,
-            "id": 16779023,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 15,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093863,
-        "last_reg_since": "6d 12h 17min 36sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:16",
-            "parent": 16779008,
-            "id": 16779024,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 16,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093883,
-        "last_reg_since": "6d 12h 17min 16sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
             "name": "pon0\/0\/2:1",
-            "parent": 16779264,
-            "id": 16779265,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780801,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 1,
             "uni": null
         },
         "status": "Online",
-        "last_reg": 1625543056,
-        "last_reg_since": "1d 7h 31min 3sec",
-        "last_down_reason": "Dying Gasp",
+        "last_reg": 1629316638,
+        "last_reg_since": "0d 0h 25min 12sec",
+        "last_down_reason": "Losi",
         "admin_status": "Enabled"
     },
     {
         "interface": {
             "name": "pon0\/0\/2:2",
-            "parent": 16779264,
-            "id": 16779266,
-            "xid": 8,
+            "parent": 16780800,
+            "id": 16780802,
+            "xid": 14,
             "type": "ONU",
             "onu_num": 2,
             "uni": null
         },
         "status": "Online",
-        "last_reg": 1625093877,
-        "last_reg_since": "6d 12h 17min 22sec",
-        "last_down_reason": "Dying Gasp",
+        "last_reg": 1629317253,
+        "last_reg_since": "0d 0h 14min 57sec",
+        "last_down_reason": "",
         "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:3",
-            "parent": 16779264,
-            "id": 16779267,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093871,
-        "last_reg_since": "6d 12h 17min 28sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:4",
-            "parent": 16779264,
-            "id": 16779268,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625582761,
-        "last_reg_since": "0d 20h 29min 18sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:5",
-            "parent": 16779264,
-            "id": 16779269,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625252406,
-        "last_reg_since": "4d 16h 15min 13sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:6",
-            "parent": 16779264,
-            "id": 16779270,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093886,
-        "last_reg_since": "6d 12h 17min 13sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:7",
-            "parent": 16779264,
-            "id": 16779271,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093865,
-        "last_reg_since": "6d 12h 17min 34sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:8",
-            "parent": 16779264,
-            "id": 16779272,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null
-        },
-        "status": "Offline",
-        "last_reg": 1624421842,
-        "last_reg_since": "14d 6h 57min 57sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:9",
-            "parent": 16779264,
-            "id": 16779273,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093864,
-        "last_reg_since": "6d 12h 17min 35sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:10",
-            "parent": 16779264,
-            "id": 16779274,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625233957,
-        "last_reg_since": "4d 21h 22min 42sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625580887,
-        "last_reg_since": "0d 21h 0min 32sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:12",
-            "parent": 16779264,
-            "id": 16779276,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1625093863,
-        "last_reg_since": "6d 12h 17min 36sec",
-        "last_down_reason": "Dying Gasp",
-        "admin_status": "Enabled"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
-    
-### [pon_registered_onts](#pon_registered_onts) - Count registered onts on pon 
-      
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "interface": {
-            "name": "pon0\/0\/1",
-            "id": 16779008,
-            "xid": 7,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "16"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2",
-            "id": 16779264,
-            "xid": 8,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "11"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3",
-            "id": 16779520,
-            "xid": 9,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "0"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/4",
-            "id": 16779776,
-            "xid": 10,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "0"
     }
 ]
 ```             
@@ -18748,7 +24281,7 @@ true
 ### [pvid](#pvid) - PVID таблица 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,3}$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
@@ -18778,17 +24311,410 @@ true
 ### [rmon](#rmon) - RMON статистика (более детальная инфа о ошибках) 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,3}$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
 <p>
-Параметры запроса: **port**=13         
+Параметры запроса: без параметров         
 
 Ответ в JSON:          
 
 ```json             
-[]
+[
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "1",
+        "interface": {
+            "id": "1",
+            "name": "1\/1"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "2",
+        "interface": {
+            "id": "2",
+            "name": "1\/2"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "3",
+        "interface": {
+            "id": "3",
+            "name": "1\/3"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "4",
+        "interface": {
+            "id": "4",
+            "name": "1\/4"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "5",
+        "interface": {
+            "id": "5",
+            "name": "1\/5"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "6",
+        "interface": {
+            "id": "6",
+            "name": "1\/6"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "7",
+        "interface": {
+            "id": "7",
+            "name": "1\/7"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "8",
+        "interface": {
+            "id": "8",
+            "name": "1\/8"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "9",
+        "interface": {
+            "id": "9",
+            "name": "1\/9"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "10",
+        "interface": {
+            "id": "10",
+            "name": "1\/10"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "11",
+        "interface": {
+            "id": "11",
+            "name": "1\/11"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "12",
+        "interface": {
+            "id": "12",
+            "name": "1\/12"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "13",
+        "interface": {
+            "id": "13",
+            "name": "1\/13"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "14",
+        "interface": {
+            "id": "14",
+            "name": "1\/14"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "15",
+        "interface": {
+            "id": "15",
+            "name": "1\/15"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "16",
+        "interface": {
+            "id": "16",
+            "name": "1\/16"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "17",
+        "interface": {
+            "id": "17",
+            "name": "1\/17"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "18",
+        "interface": {
+            "id": "18",
+            "name": "1\/18"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "19",
+        "interface": {
+            "id": "19",
+            "name": "1\/19"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "20",
+        "interface": {
+            "id": "20",
+            "name": "1\/20"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "21",
+        "interface": {
+            "id": "21",
+            "name": "1\/21"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "22",
+        "interface": {
+            "id": "22",
+            "name": "1\/22"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "23",
+        "interface": {
+            "id": "23",
+            "name": "1\/23"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "24",
+        "interface": {
+            "id": "24",
+            "name": "1\/24"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "25",
+        "interface": {
+            "id": "25",
+            "name": "1\/25"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "26",
+        "interface": {
+            "id": "26",
+            "name": "1\/26"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "27",
+        "interface": {
+            "id": "27",
+            "name": "1\/27"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    },
+    {
+        "ether_stats_crc_align_errors": "0",
+        "port": "28",
+        "interface": {
+            "id": "28",
+            "name": "1\/28"
+        },
+        "ether_stats_undersize_pkts": "0",
+        "ether_stats_oversize_pkts": "0",
+        "ether_stats_fragments": "0",
+        "ether_stats_jabber": "0",
+        "ether_stats_collisions": "0",
+        "ether_stats_drop_events": "0"
+    }
+]
 ```             
          
         
@@ -29849,15 +35775,15 @@ true
 ```json             
 {
     "descr": "EasyPath Ethernet-PON",
-    "uptime": "3752d 9h 58min 20sec",
-    "contact": "contact",
-    "name": "EasyPath Series PON Switch Access",
-    "location": "location",
-    "mac_addr": "E0:67:B3:7A:34:90",
+    "uptime": "1d 1h 3min 36sec",
+    "contact": "formatj@gmail.com",
+    "name": "sw-strelkovoe",
+    "location": "Strelkovoe",
+    "mac_addr": "E0:67:B3:7A:64:CA",
     "vendor_name": "C-Data",
-    "serial_num": "AF2703-1906000003",
-    "board_software_ver": "V1.4.1_190422",
-    "board_hardware_ver": "V2.0",
+    "serial_num": "AF2101-2010000002",
+    "board_software_ver": "V1.6.0_210601",
+    "board_hardware_ver": "V4.0",
     "meta": {
         "name": "C-Data FD1204",
         "detect": {
@@ -29948,7 +35874,8 @@ true
             "pon_ont_reboot",
             "pon_ont_reset",
             "pon_ont_delete",
-            "pon_ont_clear_counters"
+            "pon_ont_clear_counters",
+            "parse_interface"
         ]
     }
 }
@@ -29981,72 +35908,349 @@ true
 ```json             
 [
     {
+        "name": "default",
         "id": "1",
-        "name": "vlan1",
         "ports": {
-            "tagged": [],
+            "egress": [],
+            "untagged": [],
+            "forbidden": []
+        }
+    },
+    {
+        "name": "E2ext301",
+        "id": "301",
+        "ports": {
+            "egress": [
+                {
+                    "id": "1",
+                    "name": "1\/1",
+                    "_key": "1"
+                },
+                {
+                    "id": "2",
+                    "name": "1\/2",
+                    "_key": "2"
+                },
+                {
+                    "id": "3",
+                    "name": "1\/3",
+                    "_key": "3"
+                },
+                {
+                    "id": "4",
+                    "name": "1\/4",
+                    "_key": "4"
+                },
+                {
+                    "id": "5",
+                    "name": "1\/5",
+                    "_key": "5"
+                },
+                {
+                    "id": "6",
+                    "name": "1\/6",
+                    "_key": "6"
+                },
+                {
+                    "id": "7",
+                    "name": "1\/7",
+                    "_key": "7"
+                },
+                {
+                    "id": "8",
+                    "name": "1\/8",
+                    "_key": "8"
+                },
+                {
+                    "id": "9",
+                    "name": "1\/9",
+                    "_key": "9"
+                },
+                {
+                    "id": "10",
+                    "name": "1\/10",
+                    "_key": "10"
+                },
+                {
+                    "id": "11",
+                    "name": "1\/11",
+                    "_key": "11"
+                },
+                {
+                    "id": "12",
+                    "name": "1\/12",
+                    "_key": "12"
+                },
+                {
+                    "id": "13",
+                    "name": "1\/13",
+                    "_key": "13"
+                },
+                {
+                    "id": "14",
+                    "name": "1\/14",
+                    "_key": "14"
+                },
+                {
+                    "id": "15",
+                    "name": "1\/15",
+                    "_key": "15"
+                },
+                {
+                    "id": "16",
+                    "name": "1\/16",
+                    "_key": "16"
+                },
+                {
+                    "id": "17",
+                    "name": "1\/17",
+                    "_key": "17"
+                },
+                {
+                    "id": "18",
+                    "name": "1\/18",
+                    "_key": "18"
+                },
+                {
+                    "id": "19",
+                    "name": "1\/19",
+                    "_key": "19"
+                },
+                {
+                    "id": "20",
+                    "name": "1\/20",
+                    "_key": "20"
+                },
+                {
+                    "id": "21",
+                    "name": "1\/21",
+                    "_key": "21"
+                },
+                {
+                    "id": "22",
+                    "name": "1\/22",
+                    "_key": "22"
+                },
+                {
+                    "id": "23",
+                    "name": "1\/23",
+                    "_key": "23"
+                },
+                {
+                    "id": "25",
+                    "name": "1\/25",
+                    "_key": "25"
+                },
+                {
+                    "id": "26",
+                    "name": "1\/26",
+                    "_key": "26"
+                },
+                {
+                    "id": "27",
+                    "name": "1\/27",
+                    "_key": "27"
+                },
+                {
+                    "id": "28",
+                    "name": "1\/28",
+                    "_key": "28"
+                }
+            ],
             "untagged": [
-                "ge0\/0\/1",
-                "ge0\/0\/2",
-                "ge0\/0\/3",
-                "ge0\/0\/4",
-                "xge0\/0\/1",
-                "xge0\/0\/2",
-                "pon0\/0\/1",
-                "pon0\/0\/2",
-                "pon0\/0\/3",
-                "pon0\/0\/4"
+                {
+                    "id": "1",
+                    "name": "1\/1",
+                    "_key": "1"
+                },
+                {
+                    "id": "2",
+                    "name": "1\/2",
+                    "_key": "2"
+                },
+                {
+                    "id": "3",
+                    "name": "1\/3",
+                    "_key": "3"
+                },
+                {
+                    "id": "4",
+                    "name": "1\/4",
+                    "_key": "4"
+                },
+                {
+                    "id": "5",
+                    "name": "1\/5",
+                    "_key": "5"
+                },
+                {
+                    "id": "6",
+                    "name": "1\/6",
+                    "_key": "6"
+                },
+                {
+                    "id": "7",
+                    "name": "1\/7",
+                    "_key": "7"
+                },
+                {
+                    "id": "8",
+                    "name": "1\/8",
+                    "_key": "8"
+                },
+                {
+                    "id": "9",
+                    "name": "1\/9",
+                    "_key": "9"
+                },
+                {
+                    "id": "10",
+                    "name": "1\/10",
+                    "_key": "10"
+                },
+                {
+                    "id": "11",
+                    "name": "1\/11",
+                    "_key": "11"
+                },
+                {
+                    "id": "12",
+                    "name": "1\/12",
+                    "_key": "12"
+                },
+                {
+                    "id": "13",
+                    "name": "1\/13",
+                    "_key": "13"
+                },
+                {
+                    "id": "14",
+                    "name": "1\/14",
+                    "_key": "14"
+                },
+                {
+                    "id": "15",
+                    "name": "1\/15",
+                    "_key": "15"
+                },
+                {
+                    "id": "16",
+                    "name": "1\/16",
+                    "_key": "16"
+                },
+                {
+                    "id": "17",
+                    "name": "1\/17",
+                    "_key": "17"
+                },
+                {
+                    "id": "18",
+                    "name": "1\/18",
+                    "_key": "18"
+                },
+                {
+                    "id": "19",
+                    "name": "1\/19",
+                    "_key": "19"
+                },
+                {
+                    "id": "20",
+                    "name": "1\/20",
+                    "_key": "20"
+                },
+                {
+                    "id": "21",
+                    "name": "1\/21",
+                    "_key": "21"
+                },
+                {
+                    "id": "22",
+                    "name": "1\/22",
+                    "_key": "22"
+                },
+                {
+                    "id": "23",
+                    "name": "1\/23",
+                    "_key": "23"
+                },
+                {
+                    "id": "26",
+                    "name": "1\/26",
+                    "_key": "26"
+                },
+                {
+                    "id": "27",
+                    "name": "1\/27",
+                    "_key": "27"
+                },
+                {
+                    "id": "28",
+                    "name": "1\/28",
+                    "_key": "28"
+                }
             ],
             "forbidden": [],
-            "egress": [
-                "ge0\/0\/1",
-                "ge0\/0\/2",
-                "ge0\/0\/3",
-                "ge0\/0\/4",
-                "xge0\/0\/1",
-                "xge0\/0\/2",
-                "pon0\/0\/1",
-                "pon0\/0\/2",
-                "pon0\/0\/3",
-                "pon0\/0\/4"
+            "tagged": [
+                {
+                    "id": "25",
+                    "name": "1\/25",
+                    "_key": "25"
+                }
             ]
         }
     },
     {
-        "id": "810",
-        "name": "vlan810",
+        "name": "E2sw501",
+        "id": "501",
         "ports": {
-            "tagged": [
-                "ge0\/0\/1",
-                "ge0\/0\/2",
-                "pon0\/0\/1"
+            "egress": [
+                {
+                    "id": "25",
+                    "name": "1\/25",
+                    "_key": "25"
+                }
             ],
             "untagged": [],
             "forbidden": [],
-            "egress": [
-                "ge0\/0\/1",
-                "ge0\/0\/2",
-                "pon0\/0\/1"
+            "tagged": [
+                {
+                    "id": "25",
+                    "name": "1\/25",
+                    "_key": "25"
+                }
             ]
         }
     },
     {
-        "id": "811",
-        "name": "vlan811",
+        "name": "OmoVlan",
+        "id": "800",
         "ports": {
-            "tagged": [
-                "ge0\/0\/1",
-                "ge0\/0\/2",
-                "pon0\/0\/1",
-                "pon0\/0\/2"
-            ],
-            "untagged": [],
-            "forbidden": [],
             "egress": [
-                "ge0\/0\/1",
-                "ge0\/0\/2",
-                "pon0\/0\/1",
-                "pon0\/0\/2"
+                {
+                    "id": "24",
+                    "name": "1\/24",
+                    "_key": "24"
+                },
+                {
+                    "id": "25",
+                    "name": "1\/25",
+                    "_key": "25"
+                }
+            ],
+            "untagged": [
+                {
+                    "id": "24",
+                    "name": "1\/24",
+                    "_key": "24"
+                }
+            ],
+            "forbidden": [],
+            "tagged": [
+                {
+                    "id": "25",
+                    "name": "1\/25",
+                    "_key": "25"
+                }
             ]
         }
     }
@@ -30061,7 +36265,7 @@ true
 ### [vlans_by_port](#vlans_by_port) - Информация о вланах на портах 
     
 **Аргументы:**    
-- **port**, проверка выражением: *^[0-9]{1,3}$*    
+- **interface**, проверка выражением: *^.*$*    
       
 <details>
 <summary>Пример ответа</summary>
@@ -30073,485 +36277,605 @@ true
 ```json             
 [
     {
-        "port": "1",
+        "interface": {
+            "id": "1",
+            "name": "1\/1",
+            "_key": "1"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "2",
+        "interface": {
+            "id": "2",
+            "name": "1\/2",
+            "_key": "2"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "3",
+        "interface": {
+            "id": "3",
+            "name": "1\/3",
+            "_key": "3"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "4",
+        "interface": {
+            "id": "4",
+            "name": "1\/4",
+            "_key": "4"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "5",
+        "interface": {
+            "id": "5",
+            "name": "1\/5",
+            "_key": "5"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "6",
+        "interface": {
+            "id": "6",
+            "name": "1\/6",
+            "_key": "6"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "7",
+        "interface": {
+            "id": "7",
+            "name": "1\/7",
+            "_key": "7"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "8",
+        "interface": {
+            "id": "8",
+            "name": "1\/8",
+            "_key": "8"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "9",
+        "interface": {
+            "id": "9",
+            "name": "1\/9",
+            "_key": "9"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "10",
+        "interface": {
+            "id": "10",
+            "name": "1\/10",
+            "_key": "10"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "11",
+        "interface": {
+            "id": "11",
+            "name": "1\/11",
+            "_key": "11"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "12",
+        "interface": {
+            "id": "12",
+            "name": "1\/12",
+            "_key": "12"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "13",
+        "interface": {
+            "id": "13",
+            "name": "1\/13",
+            "_key": "13"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "14",
+        "interface": {
+            "id": "14",
+            "name": "1\/14",
+            "_key": "14"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "15",
+        "interface": {
+            "id": "15",
+            "name": "1\/15",
+            "_key": "15"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "16",
+        "interface": {
+            "id": "16",
+            "name": "1\/16",
+            "_key": "16"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "17",
+        "interface": {
+            "id": "17",
+            "name": "1\/17",
+            "_key": "17"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "18",
+        "interface": {
+            "id": "18",
+            "name": "1\/18",
+            "_key": "18"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "19",
+        "interface": {
+            "id": "19",
+            "name": "1\/19",
+            "_key": "19"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "20",
+        "interface": {
+            "id": "20",
+            "name": "1\/20",
+            "_key": "20"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "21",
+        "interface": {
+            "id": "21",
+            "name": "1\/21",
+            "_key": "21"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "22",
+        "interface": {
+            "id": "22",
+            "name": "1\/22",
+            "_key": "22"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "23",
+        "interface": {
+            "id": "23",
+            "name": "1\/23",
+            "_key": "23"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "24",
+        "interface": {
+            "id": "24",
+            "name": "1\/24",
+            "_key": "24"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "OmoVlan",
+                "id": "800"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "OmoVlan",
+                "id": "800"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "25",
+        "interface": {
+            "id": "25",
+            "name": "1\/25",
+            "_key": "25"
+        },
         "untagged": [],
         "tagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             },
             {
-                "name": "J1sw502",
-                "id": "502"
-            }
-        ],
-        "egress": [
-            {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2sw501",
+                "id": "501"
             },
             {
-                "name": "J1sw502",
-                "id": "502"
+                "name": "OmoVlan",
+                "id": "800"
+            }
+        ],
+        "egress": [
+            {
+                "name": "E2ext301",
+                "id": "301"
+            },
+            {
+                "name": "E2sw501",
+                "id": "501"
+            },
+            {
+                "name": "OmoVlan",
+                "id": "800"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "26",
+        "interface": {
+            "id": "26",
+            "name": "1\/26",
+            "_key": "26"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "27",
+        "interface": {
+            "id": "27",
+            "name": "1\/27",
+            "_key": "27"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
     },
     {
-        "port": "28",
+        "interface": {
+            "id": "28",
+            "name": "1\/28",
+            "_key": "28"
+        },
         "untagged": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "tagged": [],
         "egress": [
             {
-                "name": "J1ext302",
-                "id": "302"
+                "name": "E2ext301",
+                "id": "301"
             }
         ],
         "forbidden": []
