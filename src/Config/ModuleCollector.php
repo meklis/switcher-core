@@ -12,6 +12,9 @@ use SwitcherCore\Config\Objects\Module;
 
 class ModuleCollector extends Collector
 {
+    /**
+     * @var SwitcherCore\Config\Objects\Module[]
+     */
     protected $modules;
 
     /**
@@ -41,7 +44,9 @@ class ModuleCollector extends Collector
         throw new Exception("Module configuration with name $name not found");
     }
 
-
+    /**
+     * @return SwitcherCore\Config\Objects\Module[]
+     */
     function getAll() {
         return $this->modules;
     }
