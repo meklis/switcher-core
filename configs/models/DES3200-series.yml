@@ -7,7 +7,7 @@
 ############################################################################################################################
 models:
  - name: D-link DES-3200-10/A1
-   key: d_link_des_3200_10
+   key: dlink_des_3200_10_a1
    ports: 10
    device_type: SWITCH
    inputs:
@@ -43,7 +43,7 @@ models:
 
 
  - name: D-link DES-3200-10/C1
-   key: d_link_des_3200_10_c1
+   key: dlink_des_3200_10_c1
    ports: 10
    device_type: SWITCH
    inputs:
@@ -78,7 +78,7 @@ models:
 
 
  - name: D-link DES-3200-18/C1
-   key: d_link_des_3200_18_c1
+   key: dlink_des_3200_18_c1
    ports: 18
    device_type: SWITCH
    inputs:
@@ -113,7 +113,7 @@ models:
 
 
  - name: D-link DES-3200-26/C1
-   key: d_link_des_3200_26_c1
+   key: dlink_des_3200_26_c1
    ports: 26
    device_type: SWITCH
    inputs:
@@ -149,7 +149,7 @@ models:
 
 
  - name: D-link DES-3200-28/C1
-   key: d_link_des_3200_28_c1
+   key: dlink_des_3200_28_c1
    ports: 28
    device_type: SWITCH
    inputs:
@@ -185,7 +185,7 @@ models:
 
 
  - name: D-link DES-3200-28F/C1
-   key: d_link_des_3200_28f_c1
+   key: dlink_des_3200_28f_c1
    ports: 28
    device_type: SWITCH
    inputs:
@@ -221,7 +221,7 @@ models:
 
 
  - name: D-link DES-3200-18/A1
-   key: d_link_des_3200_18_a1
+   key: dlink_des_3200_18_a1
    ports: 18
    device_type: SWITCH
    inputs:
@@ -256,7 +256,7 @@ models:
 
 
  - name: D-link DES-3200-26/A1
-   key: d_link_des_3200_26_a1
+   key: dlink_des_3200_26_a1
    ports: 26
    device_type: SWITCH
    inputs:
@@ -291,7 +291,7 @@ models:
 
 
  - name: D-link DES-3200-28/A1
-   key: d_link_des_3200_28_a1
+   key: dlink_des_3200_28_a1
    ports: 28
    device_type: SWITCH
    inputs:
@@ -326,7 +326,7 @@ models:
 
 
  - name: D-link DES-3200-28F/A1
-   key: d_link_des_3200_28f_a1
+   key: dlink_des_3200_28f_a1
    ports: 28
    device_type: SWITCH
    inputs:

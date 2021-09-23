@@ -40,7 +40,7 @@ models:
         - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: epon}
 
   - name: C-Data FD1208S
-    key: c_data_fd12008s
+    key: c_data_fd1208s
     inputs:
       - snmp
       - telnet

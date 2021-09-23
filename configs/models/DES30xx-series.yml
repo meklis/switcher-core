@@ -8,7 +8,7 @@
 
 models:
  - name: D-link DES-3028
-   key: d_link_des_3028
+   key: dlink_des_3028
    ports: 28
    device_type: SWITCH
    inputs:
@@ -43,7 +43,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
 
  - name: D-link DES-3052
-   key: d_link_des_3052
+   key: dlink_des_3052g
    ports: 52
    device_type: SWITCH
    inputs:
@@ -79,7 +79,7 @@ models:
 
 
  - name: D-link DES-3028G
-   key: d_link_des_3028g
+   key: dlink_des_3028g
    ports: 28
    device_type: SWITCH
    inputs:

@@ -8,7 +8,7 @@
 
 models:
   - name: D-link DES-1228/ME
-    key: d_link_des_1228_me
+    key: dlink_des_1228_me
     ports: 28
     device_type: SWITCH
     inputs:
