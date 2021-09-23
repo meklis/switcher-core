@@ -41,4 +41,9 @@ class ModuleCollector extends Collector
         throw new Exception("Module configuration with name $name not found");
     }
 
+
+    function getAll() {
+        return $this->modules;
+    }
+
 }

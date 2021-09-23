@@ -303,24 +303,6 @@ class Model
     }
 
     /**
-     * @return AbstractModule[]
-     */
-    public function getModules(): array
-    {
-        return $this->modules;
-    }
-
-    /**
-     * @param AbstractModule[] $modules
-     * @return Model
-     */
-    public function setModules(array $modules): Model
-    {
-        $this->modules = $modules;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getKey(): string
