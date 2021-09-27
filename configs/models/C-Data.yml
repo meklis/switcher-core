@@ -17,7 +17,7 @@ models:
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
-      pon_fdb: \SwitcherCore\Modules\CData\OntFDBTable
+      fdb: \SwitcherCore\Modules\CData\OntFDBTable
       pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
       pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
@@ -59,7 +59,7 @@ models:
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
-      pon_fdb: \SwitcherCore\Modules\CData\FdbTableTelnet
+      fdb: \SwitcherCore\Modules\CData\FdbTableTelnet
       pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
       pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
@@ -109,7 +109,7 @@ models:
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
-      pon_fdb: \SwitcherCore\Modules\CData\GponOntFdbTable
+      fdb: \SwitcherCore\Modules\CData\GponOntFdbTable
       pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
       pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
