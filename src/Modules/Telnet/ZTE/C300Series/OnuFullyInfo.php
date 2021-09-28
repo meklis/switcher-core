@@ -21,7 +21,7 @@ class OnuFullyInfo extends C300ModuleAbstract
         } else {
             $etherInfo = null;
         }
-        $fdb = $this->getModule('zte_fdb')->run(['interface' => $interface['name']])->getPretty();
+        $fdb = $this->getModule('fdb')->run(['interface' => $interface['name']])->getPretty();
         $signal = $this->getModule('zte_pon_power_attenuation')->run(['interface' => $interface['name']])->getPretty();
         foreach ($fdb as $k=>$_) {
             unset($fdb[$k]['interface']);
