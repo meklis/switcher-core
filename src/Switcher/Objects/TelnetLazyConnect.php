@@ -85,7 +85,7 @@ class TelnetLazyConnect extends Telnet
                         parent::exec("logout");
                         break;
                     case 'ios':
-                        parent::exec("exit");
+                        parent::write("exit");
                         break;
                     case 'cdata':
                         parent::write("logout");
