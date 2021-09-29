@@ -35,6 +35,7 @@ class DefaultParser extends SwitchesPortAbstractModule
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
             'meta' =>  [
+                'key' => $this->model->getKey(),
                 'type' => $this->model->getDeviceType(),
                 'name' => $this->model->getName(),
                 'detect' => $this->model->getDetect(),

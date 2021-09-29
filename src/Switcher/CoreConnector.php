@@ -68,6 +68,7 @@ class CoreConnector
 
     public function setWalker(MultiWalkerInterface $walker) {
         $this->walker = $walker;
+        return $this;
     }
 
     public function setCache(CacheInterface $cache) {
