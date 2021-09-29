@@ -10,6 +10,7 @@ use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Exception;
+use Monolog\Logger;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
@@ -52,6 +53,12 @@ abstract class AbstractModule
      */
     private $container;
 
+
+    /**
+     * @Inject
+     * @var Logger
+     */
+    protected $logger;
 
     /**
      * @Inject
@@ -159,6 +166,7 @@ abstract class AbstractModule
      */
     protected function setCache($key, $value, $timeout = -1) {
         if(!$this->container->has(CacheInterface::class)) {
+            $this->logger->notice("Cache interface not setted");
             return false;
         }
         $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;

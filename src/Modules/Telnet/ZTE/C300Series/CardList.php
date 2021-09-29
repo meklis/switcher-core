@@ -6,15 +6,24 @@ namespace SwitcherCore\Modules\Telnet\ZTE\C300Series;
 
 
 use Exception;
+use Monolog\Logger;
 
 class CardList extends C300ModuleAbstract
 {
+    /**
+     * @Inject
+     * @var Logger
+     */
+    protected $logger;
+
     public function run($params = [])
     {
         $cache = $this->getCache('card_list');
         if($cache) {
             $this->response = $cache;
             return  $this;
+        } else {
+            $this->logger->notice("Cache by key 'card_list' not found");
         }
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");

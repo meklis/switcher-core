@@ -58,7 +58,7 @@ class Core
 
     public function setCache(CacheInterface $cache)
     {
-        $this->container->injectOn($cache);
+        $this->container->set(CacheInterface::class, $cache);
         $this->cache = $cache;
         return $this;
     }
@@ -66,7 +66,7 @@ class Core
 
     public function setLogger(Logger $logger)
     {
-        $this->container->injectOn($logger);
+        $this->container->set(Logger::class, $logger);
         $this->logger = $logger;
         return $this;
     }
@@ -88,18 +88,18 @@ class Core
     {
         $container = $this->buildContainer();
 
-        if($logger === null) {
-            $logger = new \Monolog\Logger('switcher-core');
-            $processor = new UidProcessor();
-            $logger->pushProcessor($processor);
-            $handler = new NullHandler();
-            $logger->pushHandler($handler);
-        }
+        $logger = new \Monolog\Logger('switcher-core');
+        $processor = new UidProcessor();
+        $logger->pushProcessor($processor);
+        $handler = new NullHandler();
+        $logger->pushHandler($handler);
         $this->logger = $logger;
+        $container->set(Logger::class, $logger);
         if ($cache !== null) {
             $this->cache = $cache;
             $container->set(CacheInterface::class, $cache);
         }
+
         $this->container = $container;
     }
 
