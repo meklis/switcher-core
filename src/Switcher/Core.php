@@ -231,7 +231,7 @@ class Core
      */
     function init()
     {
-
+        $this->logger->info("Start initialization Core for device {$this->device->getIp()}");
         if (!$this->container->has(MultiWalkerInterface::class)) {
             throw new Exception("Snmp walker not setted. You must set walker before connect");
         }
@@ -275,7 +275,26 @@ class Core
          */
         $module = $this->container->get("module.{$moduleName}");
         $this->container->get(ModuleCollector::class)->getByName($moduleName)->validate($arguments);
-        return $module->run($arguments)->getPrettyFiltered($arguments);
+
+        try {
+            $this->logger->info("Run module {$moduleName}", [
+                'arguments' => $arguments,
+                'module' => $moduleName,
+            ]);
+            $data = $module->run($arguments)->getPrettyFiltered($arguments);
+        } catch (\Throwable $e) {
+            $this->logger->error("error execute module {$moduleName} - {$e->getMessage()}", [
+                'arguments' => $arguments,
+                'module' => $moduleName,
+                'error' => [
+                    'message' => $e->getMessage(),
+                    'file' => "{$e->getFile()}:{$e->getLine()}",
+                    'trace' => $e->getTraceAsString(),
+                ]
+            ]);
+            throw $e;
+        }
+        return  $data;
     }
 
     /**
