@@ -23,7 +23,7 @@ class MultiRawTelnetCommand extends C300ModuleAbstract
         foreach ($commands as $command) {
             $resp = $this->getModule('telnet_command')->run(['command' => trim($command)])->getPretty();
             $response[] = $resp;
-            if(!$resp['success'] && $params['break_on_error'] == 'true') {
+            if(!$resp['success'] && $params['break_on_error'] == 'yes') {
                 break;
             }
         }

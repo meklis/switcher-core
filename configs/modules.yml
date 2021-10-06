@@ -452,7 +452,7 @@
   description: Allow run commands as array or multi string
   arguments:
     - {name: commands, pattern: '.*', required: true}
-    - {name: break_on_error, pattern: '(true|false|yes|no)', required: false}
+    - {name: break_on_error, pattern: '(yes|no)', required: false}
 
 - name: parse_interface
   descr: Returened parsed interface from input
