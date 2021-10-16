@@ -43,6 +43,7 @@ class SystemInformation extends AbstractModule
             'board_software_ver' => $this->getResponseByName('sys.boardSoftwareVer')->fetchOne()->getValue(),
             'board_hardware_ver' => $this->getResponseByName('sys.boardHardwareVer')->fetchOne()->getValue(),
             'meta' =>  [
+                'key' => $this->model->getKey(),
                 'name' => $this->model->getName(),
                 'detect' => $this->model->getDetect(),
                 'ports' => $this->model->getPorts(),
