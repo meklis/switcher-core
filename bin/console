@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+
+function conf($propertyName) {
+    $config = yaml_parse_file(__DIR__ . '/connection.conf.yml');
+    $elements = explode(".", $propertyName);
+    $arrayKey = join('', array_map(function ($e) {
+        return "['{$e}']";
+    }, $elements));
+    $return = null;
+    $evalArrayBlock = "if(isset(\$config{$arrayKey})) {\$return = \$config{$arrayKey}; }";
+    eval($evalArrayBlock);
+    return $return;
+}
+
+
+$app = new \Symfony\Component\Console\Application();
+$app->setName("SwitcherCore dev console");
+
+$app->add(new \SwitcherCore\Dev\ListOfSupportedModules());
+$app->add(new \SwitcherCore\Dev\CallOneModule());
+$app->add(new \SwitcherCore\Dev\CycleCalling());
+
+
+$app->run();

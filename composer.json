@@ -26,12 +26,16 @@
         "ocramius/proxy-manager": "^2.2",
         "doctrine/annotations": "1.11.x-dev",
         "ext-yaml": "*",
-        "monolog/monolog": "2.x-dev"
+        "monolog/monolog": "2.x-dev",
+        "ext-json": "*"
     },
     "minimum-stability": "dev",
     "config": {
         "platform": {
             "php": "7.2"
         }
+    },
+    "require-dev": {
+        "symfony/console": "4.4.x-dev"
     }
 }

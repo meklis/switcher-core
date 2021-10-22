@@ -1,0 +1,10 @@
+telnet:
+  port: 23
+  timeout: 50
+
+snmp:
+  repeats: 2
+  timeout: 3
+
+miktotik_api:
+  port: 55055
