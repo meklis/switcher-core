@@ -53,6 +53,13 @@ class OntFDBTable extends CDataAbstractModule
         $response = $this->formatResponse($this->snmp->walk($oids));
 
         $return = [];
+        /**
+         * @var $fdb WrappedResponse
+         */
+        $fdb = $this->getResponseByName('pon.fdbWithInterface', $response);
+        if($fdb->error()) {
+            throw new \SNMPException($fdb->error());
+        }
         foreach ($this->getResponseByName('pon.fdbWithInterface', $response)->fetchAll() as $r) {
             $interface = $this->parseInterface($r->getValue());
             $vlanId = Helper::getIndexByOid($r->getOid());
