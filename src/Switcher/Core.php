@@ -110,7 +110,7 @@ class Core
         $builder->useAutowiring(true);
         $builder->useAnnotations(true);
         $container = $builder->build();
-        $container->set(Device::class, $this);
+        $container->set(ContainerInterface::class, $this);
         return $container;
     }
 
