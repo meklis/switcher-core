@@ -165,6 +165,9 @@ abstract class AbstractModule
      * @throws NotFoundException
      */
     protected function setCache($key, $value, $timeout = -1) {
+        if(!$this->device->getIp()) {
+            throw new NotFoundException("Incorrect injected device, without device");
+        }
         if(!$this->container->has(CacheInterface::class)) {
             $this->logger->notice("Cache interface not setted");
             return false;

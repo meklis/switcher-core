@@ -110,7 +110,7 @@ class Core
         $builder->useAutowiring(true);
         $builder->useAnnotations(true);
         $container = $builder->build();
-        $container->injectOn($this);
+        $container->set(Device::class, $this);
         return $container;
     }
 
@@ -121,7 +121,7 @@ class Core
             $device->getObject()
         ]);
         $this->device = $device;
-        $this->container->injectOn($device);
+        $this->container->set(Device::class, $device);
         return $this;
     }
 
@@ -271,9 +271,11 @@ class Core
             throw new ModuleNotFoundException("Module with name $moduleName not found");
         }
         /**
-         * @var AbstractModule
+         * @var $module AbstractModule
          */
         $module = $this->container->get("module.{$moduleName}");
+
+
         $this->container->get(ModuleCollector::class)->getByName($moduleName)->validate($arguments);
 
         try {
