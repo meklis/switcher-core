@@ -3,6 +3,90 @@
 ############################################################################################################################
 
 models:
+ - name: Mikrotik CCR1036
+   key: mikrotik_ccr1036
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS CCR1036.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+ - name: Mikrotik CCR1009
+   key: mikrotik_ccr1009
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS CCR1009.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+ - name: Mikrotik RB4011
+   key: mikrotik_rb4011
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS RB4011.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+ - name: Mikrotik CCR1016
+   key: mikrotik_ccr1016
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS CCR1016.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
  - name: Mikrotik RouterOS
    key: mikrotik_router_os
    ports: 0
