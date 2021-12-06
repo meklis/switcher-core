@@ -45,6 +45,7 @@ class Core
      * @var Device
      */
     protected $device;
+
     /**
      * @var CacheInterface
      */
@@ -116,7 +117,6 @@ class Core
 
     function setDevice(Device $device)
     {
-
         $this->logger->info("Device setted", [
             $device->getObject()
         ]);

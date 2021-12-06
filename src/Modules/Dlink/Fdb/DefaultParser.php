@@ -94,8 +94,6 @@ class DefaultParser extends SwitchesPortAbstractModule
        if($filter['vlan_id'] && $filter['mac']) {
             $fdb_port .= "." . Helper::mac2oid($filter['mac']);
             $fdb_status .= "." .   Helper::mac2oid($filter['mac']);
-       } elseif ($filter['mac']) {
-           throw new Exception("VlanID must be setted for mac filtering");
        }
        $this->response = $this->formatResponse($this->snmp->walkBulk([
             Oid::init($fdb_status), Oid::init($fdb_port),
