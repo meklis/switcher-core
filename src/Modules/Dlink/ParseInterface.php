@@ -6,7 +6,7 @@ class ParseInterface extends SwitchesPortAbstractModule
 {
     public function run($params = [])
     {
-        // TODO: Implement run() method.
+       return $this;
     }
 
     public function getPretty()
@@ -16,6 +16,7 @@ class ParseInterface extends SwitchesPortAbstractModule
 
     public function getPrettyFiltered($filter = [])
     {
+
         return $this->parseInterface($filter['interface']);
     }
 

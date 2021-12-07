@@ -33,6 +33,7 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
                     'id' =>  Helper::getIndexByOid($resp->getOid()),
                     'name' => $resp->getValue(),
                     '_key' => Helper::getIndexByOid($resp->getOid()),
+                    'type' => $types[Helper::getIndexByOid($resp->getOid())],
                 ];
             }
         }
