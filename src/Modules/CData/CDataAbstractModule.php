@@ -117,7 +117,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 return $response;
             }
         }
-       return null;
+       throw new \InvalidArgumentException("Error parse interface by ident='{$input}'");
     }
 
     private function findInterface($findValue, $findKey)
