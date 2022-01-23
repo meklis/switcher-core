@@ -15,6 +15,7 @@ models:
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
      dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
      lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
@@ -24,6 +25,7 @@ models:
      address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
      simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
  - name: Mikrotik CCR1009
    key: mikrotik_ccr1009
    ports: 0
@@ -36,6 +38,7 @@ models:
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
      dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
      lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
@@ -45,6 +48,7 @@ models:
      address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
      simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
  - name: Mikrotik RB4011
    key: mikrotik_rb4011
    ports: 0
@@ -57,6 +61,7 @@ models:
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
      dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
      lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
@@ -66,6 +71,7 @@ models:
      address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
      simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
  - name: Mikrotik CCR1016
    key: mikrotik_ccr1016
    ports: 0
@@ -78,6 +84,7 @@ models:
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
      dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
      lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
@@ -87,6 +94,7 @@ models:
      address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
      simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
  - name: Mikrotik RouterOS
    key: mikrotik_router_os
    ports: 0
@@ -99,6 +107,7 @@ models:
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
      dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
      lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
@@ -108,6 +117,7 @@ models:
      address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
      simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
 
 
 

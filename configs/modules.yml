@@ -161,9 +161,20 @@
 #Action Get arp info with filters
 - name: interface_vlan_info
   arguments:
-    - {name: name, pattern: '^[0-9a-zA-Z_]{1,16}$', required: no}
+    - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
   descr: Информация по интерфейсам (vlans on L3 devices)
+
+- name: interface_info
+  arguments:
+    - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
+  descr: Информация по интерфейсам (on L3 devices)
+
+- name: bgp_sessions
+  arguments:
+    - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
+  descr: Информация о BGP
+
 #Action Get arp info with filters
 - name: arp_ping
   arguments:
