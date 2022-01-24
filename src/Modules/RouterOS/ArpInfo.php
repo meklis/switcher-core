@@ -40,6 +40,9 @@ class ArpInfo extends ExecCommand
         if(isset($params['vlan_name']) && $params['vlan_name']) {
             $filter['?interface'] = $params['vlan_name'];
         }
+        if(isset($params['interface']) && $params['interface']) {
+            $filter['?interface'] = $params['interface'];
+        }
         if(isset($params['vlan_id']) && $params['vlan_id']) {
             $interface = "";
             foreach ($vlans as $vlan) {
