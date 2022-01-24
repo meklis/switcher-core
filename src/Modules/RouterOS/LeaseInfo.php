@@ -26,8 +26,14 @@ class LeaseInfo extends ExecCommand
         }
         return $this->response;
     }
+
+    protected $dhcpServers = [];
     private function getDhcpServerByParam($params) {
+        if(isset($this->dhcpServers[json_encode($params)])) {
+            return  $this->dhcpServers[json_encode($params)];
+        }
         foreach ($this->getModule('dhcp_server_info')->run($params)->getPrettyFiltered() as $vl) {
+                $this->dhcpServers[json_encode($params)] = $vl;
                 return $vl;
         }
         throw new Exception("Dhcp server not found");
