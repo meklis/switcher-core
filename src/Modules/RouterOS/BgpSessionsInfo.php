@@ -68,7 +68,7 @@ class BgpSessionsInfo extends ExecCommand
                 'prefix_count' =>  isset($session['prefix-count']) ? $session['prefix-count'] : null,
                 'updates_sent' =>  isset($session['updates-sent']) ? $session['updates-sent'] : null,
                 'updates_received' =>  isset($session['updates-received']) ? $session['updates-received'] : null,
-                'state' =>  isset($session['state']) ? $session['state'] : ($session['disabled'] == 'true' ? 'disabled' : null),
+                'state' =>  isset($session['state']) ? $session['state'] : ($session['disabled'] == 'true' ? 'disabled' : 'down'),
                 'established' =>  isset($session['established']) ? $session['established'] == 'true' : null,
                 'disabled' =>  isset($session['disabled']) ? $session['disabled'] == 'true' : null,
                 'remote_hold_time' =>  isset($session['remote-hold-time']) ? $session['remote-hold-time'] : null,
