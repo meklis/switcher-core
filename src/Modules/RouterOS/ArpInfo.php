@@ -55,6 +55,8 @@ class ArpInfo extends ExecCommand
             if($a['invalid'] == 'true') $status='invalid';
             if($a['disabled'] == 'true') $status='disabled';
             $arps[] = [
+                '_id' => $a['.id'],
+                'interface' => $a['interface'],
                 'ip' => $a['address'],
                 'mac' => isset($a['mac-address']) ? $a['mac-address'] : null,
                 'dynamic' => $a['dynamic'],

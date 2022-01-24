@@ -129,6 +129,7 @@
     - {name: vlan_name, pattern: '^.*$', required: no}
     - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
     - {name: dhcp_server, pattern: '^.*$', required: no}
+    - {name: hide_server_detail, pattern: '^(yes|no)$', required: no, values: ['yes', 'no']}
   depends:
     - dhcp_server_info
   descr: Lease таблица

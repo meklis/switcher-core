@@ -72,7 +72,7 @@ class LeaseInfo extends ExecCommand
                 'extra' => [
                     'id' => $a['.id'],
                     'client_id' => isset($a['client-id']) ? $a['client-id'] : null,
-                    'server' => $this->getDhcpServerByParam(['name' => $a['server']])
+                    'server' => isset($params['hide_server_detail']) && $params['hide_server_detail'] == 'yes' ? null : $this->getDhcpServerByParam(['name' => $a['server']]),
                 ]
             ];
         }
