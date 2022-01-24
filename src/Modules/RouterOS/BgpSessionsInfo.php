@@ -42,7 +42,7 @@ class BgpSessionsInfo extends ExecCommand
             $request['?disabled'] = $params['disabled'] ? 'true' : 'false';
         }
         if(isset($params['_id']) && $params['_id']) {
-            $request['?numbers'] = $params['_id'];
+            $request['?.id'] = $params['_id'];
         }
         foreach ($this->execComm('/routing/bgp/peer/print', $request) as $session) {
             $resp[] = [

@@ -172,6 +172,7 @@
 
 - name: bgp_sessions
   arguments:
+    - {name: _id, pattern: '.*', required: no}
     - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
   descr: Информация о BGP
 
@@ -201,6 +202,7 @@
 
 - name: address_list_info
   arguments:
+    - {name: _id, pattern: .*, required: no}
     - {name: name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
     - {name: address, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
   descr: Информация по адрес-листам (Router OS)
