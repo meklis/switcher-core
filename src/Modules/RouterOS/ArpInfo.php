@@ -62,7 +62,7 @@ class ArpInfo extends ExecCommand
                 'interface' => $a['interface'],
                 'ip' => $a['address'],
                 'mac' => isset($a['mac-address']) ? $a['mac-address'] : null,
-                'dynamic' => $a['dynamic'],
+                'dynamic' => $a['dynamic'] == 'true',
                 'comment' => isset($a['comment']) ? $a['comment'] : "",
                 'vlan_id' => isset($vlans[$a['interface']]['vlan_id']) ? $vlans[$a['interface']]['vlan_id']: -1,
                 'status' => $status,
