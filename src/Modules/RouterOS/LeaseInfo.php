@@ -67,6 +67,12 @@ class LeaseInfo extends ExecCommand
                 'ip' => $a['address'],
                 'mac' => $a['mac-address'],
                 'status' => $a['status'],
+                'radius' => $a['radius'] == 'true',
+                'dynamic' => $a['dynamic'] == 'true',
+                'blocked' => $a['blocked'] == 'true',
+                'disabled' => $a['disabled'] == 'true',
+                'lease_time' => isset($a['lease-time']) ? $a['lease-time'] : null ,
+                'last_seen' => $a['last-seen'],
                 'expires_at' => isset($a['expires-after']) ? (new Duration($a['expires-after']))->toSeconds() + time() : "-1",
                 'server' => $a['server'],
                 'extra' => [
