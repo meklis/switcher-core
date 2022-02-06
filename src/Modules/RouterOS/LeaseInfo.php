@@ -75,7 +75,7 @@ class LeaseInfo extends ExecCommand
                 'lease_time' => isset($a['lease-time']) ? $a['lease-time'] : null ,
                 'last_seen' => $a['last-seen'],
                 'expires_at' => isset($a['expires-after']) ? (new Duration($a['expires-after']))->toSeconds() + time() : "-1",
-                'server' => $a['server'],
+                'server' => isset($a['server']) ? $a['server'] : null,
                 'extra' => [
                     'id' => $a['.id'],
                     'client_id' => isset($a['client-id']) ? $a['client-id'] : null,
