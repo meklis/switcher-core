@@ -319,6 +319,21 @@ class Core
         return $modules;
     }
 
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function isModuleExist($module)
+    {
+        $model = $this->container->get(Model::class);
+        foreach ($model->getModulesList() as $moduleName) {
+           if($moduleName === $module) {
+               return  true;
+           }
+        }
+        return false;
+    }
+
     public function getDeviceMetaData()
     {
         $model = $this->container->get(Model::class);
