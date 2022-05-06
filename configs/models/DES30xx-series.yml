@@ -17,6 +17,7 @@ models:
    oids:
      - ./oids/dlink/des-3028.yml
      - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/common-agent-info.yml
    detect: {description: ^D-Link DES-3028 Fast Ethernet Switch,  objid: .* }
    extra:
      telnet_conn_type: dlink
@@ -41,6 +42,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
 
  - name: D-link DES-3052
    key: dlink_des_3052g
@@ -52,6 +54,7 @@ models:
    oids:
      - ./oids/dlink/des-3052.yml
      - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/common-agent-info.yml
    detect: {description: ^D-Link DES-3052 Fast Ethernet Switch,  objid: .* }
    extra:
      diag_linkup: true
@@ -76,6 +79,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
 
 
  - name: D-link DES-3028G
@@ -88,6 +92,7 @@ models:
    oids:
      - ./oids/dlink/des-3028G.yml
      - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/common-agent-info.yml
    detect: {description: ^D-Link DES-3028G Fast Ethernet Switch,  objid: ^.*171\.10\.63\.11$ }
    extra:
      diag_linkup: yes
@@ -112,3 +117,4 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources

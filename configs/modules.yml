@@ -1,6 +1,13 @@
 #Module for get system info + meta
 - name: system
   descr: Системная информация о устройстве
+
+#Sys dashboard statistic
+- name: sys_resources
+  descr: External system information (CPU/Memory/Temperature)
+  arguments:
+    - {name: load_only, pattern: '^.*', required: no }
+
 #Module for get link info
 - name: link_info
   arguments:

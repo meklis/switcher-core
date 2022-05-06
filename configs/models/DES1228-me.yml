@@ -17,6 +17,7 @@ models:
     oids:
       - ./oids/dlink/des-1228me.yml
       - ./oids/dlink/common-diag-cable.yml
+      - ./oids/dlink/common-agent-info.yml
     detect: {description: ^D-Link DES-1228\/ME Metro Ethernet Switch$, hardware: .*, objid: 171\.10\.116\.2$ }
     extra:
       diag_linkup: false
@@ -41,3 +42,4 @@ models:
       ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
       ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
       ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources

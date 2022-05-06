@@ -24,7 +24,7 @@ use SwitcherCore\Switcher\Objects\WrappedResponse;
 abstract class AbstractModule
 {
     /**
-     * @var WrappedResponse[]
+     * @var array | WrappedResponse[]
      */
     protected $response;
 

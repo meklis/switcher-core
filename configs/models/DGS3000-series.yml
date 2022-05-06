@@ -17,6 +17,7 @@ models:
    oids:
      - ./oids/dlink/dgs-3000-26tc.yml
      - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/common-agent-info.yml
    detect: {description: ^DGS-3000-26TC Gigabit Ethernet Switch$,  objid: .* }
    extra:
      telnet_conn_type: dlink
@@ -41,6 +42,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
 
  - name: D-link DGS-3000-28L
    key: dlink_dgs_3000_28l_b1
@@ -52,6 +54,7 @@ models:
    oids:
      - ./oids/dlink/dgs-3000-28l.yml
      - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/common-agent-info.yml
    detect: {description: ^DGS-3000-28L Gigabit Ethernet Switch$,  objid: .* }
    extra:
      telnet_conn_type: dlink
@@ -77,3 +80,4 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources

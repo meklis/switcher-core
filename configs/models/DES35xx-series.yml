@@ -17,6 +17,7 @@ models:
    oids:
     - ./oids/dlink/des-3526.yml
     - ./oids/dlink/common-diag-cable.yml
+    - ./oids/dlink/common-agent-info.yml
    detect: {description: ^DES-3526 Fast-Ethernet Switch$,  objid: 171\.10\.64\.1$ }
    extra:
      diag_linkup: false
@@ -41,3 +42,4 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources

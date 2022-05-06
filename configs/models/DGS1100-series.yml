@@ -41,6 +41,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
 
 
  - name: D-link DGS-1100-10/ME
@@ -77,4 +78,5 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
 
