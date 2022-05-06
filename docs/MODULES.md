@@ -15,6 +15,7 @@
 ### [address_list_info](#address_list_info) - Информация по адрес-листам (Router OS) 
     
 **Аргументы:**    
+- **_id**, проверка выражением: *.**    
 - **name**, проверка выражением: *^[0-9a-zA-Z_\-]{1,}$*    
 - **address**, проверка выражением: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$*    
       
@@ -1825,6 +1826,7 @@
 - **ip**, проверка выражением: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*    
 - **vlan_id**, проверка выражением: *^[0-9]{1,4}$*    
 - **vlan_name**, проверка выражением: *^.*$*    
+- **interface**, проверка выражением: *^.*$*    
 - **mac**, проверка выражением: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*    
 - **status**, проверка выражением: *^(disabled|invalid|OK)$*    
       
@@ -15006,6 +15008,14 @@
 </details>
             
     
+### [bgp_sessions](#bgp_sessions) - Информация о BGP 
+    
+**Аргументы:**    
+- **_id**, проверка выражением: *.**    
+- **name**, проверка выражением: *^[0-9a-zA-Z_-]{1,16}$*    
+      
+    
+    
 ### [cable_diag](#cable_diag) - Диагностика кабеля (длина и состояние пары) 
     
 **Аргументы:**    
@@ -16219,10 +16229,17 @@ true
 </details>
             
     
+### [interface_info](#interface_info) - Информация по интерфейсам (on L3 devices) 
+    
+**Аргументы:**    
+- **name**, проверка выражением: *^[0-9a-zA-Z_-]{1,16}$*    
+      
+    
+    
 ### [interface_vlan_info](#interface_vlan_info) - Информация по интерфейсам (vlans on L3 devices) 
     
 **Аргументы:**    
-- **name**, проверка выражением: *^[0-9a-zA-Z_]{1,16}$*    
+- **name**, проверка выражением: *^[0-9a-zA-Z_-]{1,16}$*    
 - **vlan_id**, проверка выражением: *^[0-9]{1,4}$*    
       
 <details>
@@ -16255,7 +16272,362 @@ true
 - **parent**, проверка выражением: *.**    
 - **root**, проверка выражением: *.**    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "id": 1201000,
+        "name": "gpon-olt_1\/2\/1",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/1",
+            "id": 1201000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 1,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1202000,
+        "name": "gpon-olt_1\/2\/2",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/2",
+            "id": 1202000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 2,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1203000,
+        "name": "gpon-olt_1\/2\/3",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/3",
+            "id": 1203000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 3,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1204000,
+        "name": "gpon-olt_1\/2\/4",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/4",
+            "id": 1204000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 4,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1205000,
+        "name": "gpon-olt_1\/2\/5",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/5",
+            "id": 1205000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 5,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1206000,
+        "name": "gpon-olt_1\/2\/6",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/6",
+            "id": 1206000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 6,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1207000,
+        "name": "gpon-olt_1\/2\/7",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/7",
+            "id": 1207000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 7,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1208000,
+        "name": "gpon-olt_1\/2\/8",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/8",
+            "id": 1208000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 8,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1209000,
+        "name": "gpon-olt_1\/2\/9",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/9",
+            "id": 1209000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 9,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1210000,
+        "name": "gpon-olt_1\/2\/10",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/10",
+            "id": 1210000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 10,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1211000,
+        "name": "gpon-olt_1\/2\/11",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/11",
+            "id": 1211000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 11,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1212000,
+        "name": "gpon-olt_1\/2\/12",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/12",
+            "id": 1212000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 12,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1213000,
+        "name": "gpon-olt_1\/2\/13",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/13",
+            "id": 1213000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 13,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1214000,
+        "name": "gpon-olt_1\/2\/14",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/14",
+            "id": 1214000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 14,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1215000,
+        "name": "gpon-olt_1\/2\/15",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/15",
+            "id": 1215000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 15,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1216000,
+        "name": "gpon-olt_1\/2\/16",
+        "parent": 0,
+        "type": "PON",
+        "meta": {
+            "name": "gpon-olt_1\/2\/16",
+            "id": 1216000,
+            "type": "PON",
+            "parent": 0,
+            "technology": "gpon",
+            "is_onu": false,
+            "is_port": true,
+            "shelf": 1,
+            "slot": 2,
+            "port": 16,
+            "onu_num": 0
+        }
+    },
+    {
+        "id": 1201001,
+        "name": "gpon-onu_1\/2\/1:1",
+        "parent": 1201000,
+        "type": "ONU",
+        "meta": {
+            "admin_state": "enable",
+            "state": "",
+            "phase": "LOS",
+            "technology": "gpon"
+        }
+    },
+    {
+        "id": 1201003,
+        "name": "gpon-onu_1\/2\/1:3",
+        "parent": 1201000,
+        "type": "ONU",
+        "meta": {
+            "admin_state": "enable",
+            "state": "",
+            "phase": "LOS",
+            "technology": "gpon"
+        }
+    },
+    {
+        "id": 1201004,
+        "name": "gpon-onu_1\/2\/1:4",
+        "parent": 1201000,
+        "type": "ONU",
+        "meta": {
+            "admin_state": "enable",
+            "state": "",
+            "phase": "LOS",
+            "technology": "gpon"
+        }
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [interfaces_status](#interfaces_status) -  
     
@@ -16264,7 +16636,586 @@ true
 - **parent**, проверка выражением: *.**    
 - **root**, проверка выражением: *.**    
       
-    
+<details>
+<summary>Пример ответа</summary>
+<p>
+Параметры запроса: без параметров         
+
+Ответ в JSON:          
+
+```json             
+[
+    {
+        "interface": {
+            "id": 1201000,
+            "name": "gpon-olt_1\/2\/1",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/1",
+                "id": 1201000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 1,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1202000,
+            "name": "gpon-olt_1\/2\/2",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/2",
+                "id": 1202000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 2,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1203000,
+            "name": "gpon-olt_1\/2\/3",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/3",
+                "id": 1203000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 3,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1204000,
+            "name": "gpon-olt_1\/2\/4",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/4",
+                "id": 1204000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 4,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1205000,
+            "name": "gpon-olt_1\/2\/5",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/5",
+                "id": 1205000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 5,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1206000,
+            "name": "gpon-olt_1\/2\/6",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/6",
+                "id": 1206000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 6,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1207000,
+            "name": "gpon-olt_1\/2\/7",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/7",
+                "id": 1207000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 7,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1208000,
+            "name": "gpon-olt_1\/2\/8",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/8",
+                "id": 1208000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 8,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1209000,
+            "name": "gpon-olt_1\/2\/9",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/9",
+                "id": 1209000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 9,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1210000,
+            "name": "gpon-olt_1\/2\/10",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/10",
+                "id": 1210000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 10,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1211000,
+            "name": "gpon-olt_1\/2\/11",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/11",
+                "id": 1211000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 11,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1212000,
+            "name": "gpon-olt_1\/2\/12",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/12",
+                "id": 1212000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 12,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1213000,
+            "name": "gpon-olt_1\/2\/13",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/13",
+                "id": 1213000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 13,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1214000,
+            "name": "gpon-olt_1\/2\/14",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/14",
+                "id": 1214000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 14,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1215000,
+            "name": "gpon-olt_1\/2\/15",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/15",
+                "id": 1215000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 15,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1216000,
+            "name": "gpon-olt_1\/2\/16",
+            "parent": 0,
+            "type": "PON",
+            "meta": {
+                "name": "gpon-olt_1\/2\/16",
+                "id": 1216000,
+                "type": "PON",
+                "parent": 0,
+                "technology": "gpon",
+                "is_onu": false,
+                "is_port": true,
+                "shelf": 1,
+                "slot": 2,
+                "port": 16,
+                "onu_num": 0
+            }
+        },
+        "meta": {
+            "shelf": 1,
+            "slot": 2,
+            "technology": "gpon"
+        },
+        "status": null,
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1201001,
+            "name": "gpon-onu_1\/2\/1:1",
+            "parent": 1201000,
+            "type": "ONU",
+            "meta": {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "OffLine",
+                "channel": "1(GPON)",
+                "technology": "gpon"
+            }
+        },
+        "meta": {
+            "type": "F601",
+            "serial": "ZTEGC14A1898",
+            "profile_line": "100mb",
+            "profile_remote": "F601",
+            "mac": null,
+            "phase_state": "OffLine",
+            "technology": "gpon"
+        },
+        "status": "Offline",
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1201003,
+            "name": "gpon-onu_1\/2\/1:3",
+            "parent": 1201000,
+            "type": "ONU",
+            "meta": {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "OffLine",
+                "channel": "1(GPON)",
+                "technology": "gpon"
+            }
+        },
+        "meta": {
+            "type": "F670",
+            "serial": "ZTEGC8538009",
+            "profile_line": "100mb",
+            "profile_remote": "F670",
+            "mac": null,
+            "phase_state": "OffLine",
+            "technology": "gpon"
+        },
+        "status": "Offline",
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    },
+    {
+        "interface": {
+            "id": 1201004,
+            "name": "gpon-onu_1\/2\/1:4",
+            "parent": 1201000,
+            "type": "ONU",
+            "meta": {
+                "admin_state": "enable",
+                "state": "disable",
+                "phase_state": "OffLine",
+                "channel": "1(GPON)",
+                "technology": "gpon"
+            }
+        },
+        "meta": {
+            "type": "F670",
+            "serial": "ZTEGC8346D02",
+            "profile_line": "100mb",
+            "profile_remote": "F670",
+            "mac": null,
+            "phase_state": "OffLine",
+            "technology": "gpon"
+        },
+        "status": "Offline",
+        "address_learning": null,
+        "nway_status": null,
+        "nway_state": null
+    }
+]
+```             
+         
+        
+</p>
+</details>
+            
     
 ### [lease_info](#lease_info) - Lease таблица 
     
@@ -16274,6 +17225,7 @@ true
 - **vlan_name**, проверка выражением: *^.*$*    
 - **mac**, проверка выражением: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*    
 - **dhcp_server**, проверка выражением: *^.*$*    
+- **hide_server_detail**, проверка выражением: *^(yes|no)$*    
       
 <details>
 <summary>Пример ответа</summary>
@@ -16908,7 +17860,7 @@ true
     
 **Аргументы:**    
 - **commands**, проверка выражением: *.**, обязательный    
-- **break_on_error**, проверка выражением: *(true|false)*    
+- **break_on_error**, проверка выражением: *(yes|no)*    
       
     
     
@@ -16924,100 +17876,11 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**, обязательный    
       
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: **interface**=16779266         
-
-Ответ в JSON:          
-
-```json             
-{
-    "name": "pon0\/0\/2:2",
-    "parent": 16779264,
-    "id": 16779266,
-    "xid": 8,
-    "type": "ONU",
-    "onu_num": 2,
-    "uni": null
-}
-```             
-         
-        
-</p>
-</details>
-            
+    
     
 ### [pon_count_registered_onts](#pon_count_registered_onts) - Count registered onts on pon 
       
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "interface": {
-            "name": "pon0\/0\/1",
-            "id": 16779008,
-            "xid": 7,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "16"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2",
-            "id": 16779264,
-            "xid": 8,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "12"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3",
-            "id": 16779520,
-            "xid": 9,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "0"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/4",
-            "id": 16779776,
-            "xid": 10,
-            "type": "PON",
-            "onu_num": null,
-            "onu_id": null,
-            "uni": null,
-            "parent": null
-        },
-        "count": "0"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
+    
     
 ### [pon_fdb](#pon_fdb) - Returned FDB table on ONTs 
     
@@ -17890,21 +18753,7 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: **interface**=16779014         
-
-Ответ в JSON:          
-
-```json             
-[]
-```             
-         
-        
-</p>
-</details>
-            
+    
     
 ### [pon_ont_delete](#pon_ont_delete) - Delete ont from system 
     
@@ -20108,946 +20957,7 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "interface": {
-            "name": "pon0\/0\/1:1",
-            "parent": 16779008,
-            "id": 16779009,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779009"
-        },
-        "serial": "48:57:54:43:E6:77:96:E8"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:2",
-            "parent": 16779008,
-            "id": 16779010,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779010"
-        },
-        "serial": "48:57:54:43:E6:14:C8:80"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:3",
-            "parent": 16779008,
-            "id": 16779011,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779011"
-        },
-        "serial": "48:57:54:43:E6:77:96:EA"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:4",
-            "parent": 16779008,
-            "id": 16779012,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779012"
-        },
-        "serial": "48:57:54:43:E6:77:96:FC"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:5",
-            "parent": 16779008,
-            "id": 16779013,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779013"
-        },
-        "serial": "48:57:54:43:E6:77:96:F0"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:6",
-            "parent": 16779008,
-            "id": 16779014,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779014"
-        },
-        "serial": "48:57:54:43:E6:77:96:F4"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:7",
-            "parent": 16779008,
-            "id": 16779015,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779015"
-        },
-        "serial": "48:57:54:43:E6:16:8F:BC"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:8",
-            "parent": 16779008,
-            "id": 16779016,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779016"
-        },
-        "serial": "48:57:54:43:E6:14:A7:2C"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:9",
-            "parent": 16779008,
-            "id": 16779017,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779017"
-        },
-        "serial": "48:57:54:43:E6:16:8F:B6"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:10",
-            "parent": 16779008,
-            "id": 16779018,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779018"
-        },
-        "serial": "48:57:54:43:E6:16:8F:74"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:11",
-            "parent": 16779008,
-            "id": 16779019,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779019"
-        },
-        "serial": "48:57:54:43:E6:16:90:24"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:12",
-            "parent": 16779008,
-            "id": 16779020,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779020"
-        },
-        "serial": "48:57:54:43:36:00:6F:38"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:13",
-            "parent": 16779008,
-            "id": 16779021,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 13,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779021"
-        },
-        "serial": "48:57:54:43:36:00:6F:14"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:14",
-            "parent": 16779008,
-            "id": 16779022,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 14,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779022"
-        },
-        "serial": "48:57:54:43:36:00:4E:4E"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:15",
-            "parent": 16779008,
-            "id": 16779023,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 15,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779023"
-        },
-        "serial": "48:57:54:43:E6:B7:F1:FE"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1:16",
-            "parent": 16779008,
-            "id": 16779024,
-            "xid": 7,
-            "type": "ONU",
-            "onu_num": 16,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779024"
-        },
-        "serial": "48:57:54:43:E6:B7:F2:38"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:1",
-            "parent": 16779264,
-            "id": 16779265,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779265"
-        },
-        "serial": "48:57:54:43:E6:14:A7:86"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:2",
-            "parent": 16779264,
-            "id": 16779266,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779266"
-        },
-        "serial": "48:57:54:43:E6:B7:81:18"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:3",
-            "parent": 16779264,
-            "id": 16779267,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779267"
-        },
-        "serial": "48:57:54:43:E6:16:90:08"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:4",
-            "parent": 16779264,
-            "id": 16779268,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779268"
-        },
-        "serial": "48:57:54:43:E6:B7:83:60"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:5",
-            "parent": 16779264,
-            "id": 16779269,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 5,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779269"
-        },
-        "serial": "48:57:54:43:E6:14:C8:98"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:6",
-            "parent": 16779264,
-            "id": 16779270,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 6,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779270"
-        },
-        "serial": "48:57:54:43:E6:14:CE:4E"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:7",
-            "parent": 16779264,
-            "id": 16779271,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 7,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779271"
-        },
-        "serial": "48:57:54:43:B3:DF:29:19"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:8",
-            "parent": 16779264,
-            "id": 16779272,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 8,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779272"
-        },
-        "serial": "48:57:54:43:E6:B7:81:14"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:9",
-            "parent": 16779264,
-            "id": 16779273,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 9,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779273"
-        },
-        "serial": "48:57:54:43:E6:B7:81:00"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:10",
-            "parent": 16779264,
-            "id": 16779274,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 10,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779274"
-        },
-        "serial": "48:57:54:43:E6:B7:8C:6C"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:11",
-            "parent": 16779264,
-            "id": 16779275,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 11,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779275"
-        },
-        "serial": "48:57:54:43:E6:14:A7:6C"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:12",
-            "parent": 16779264,
-            "id": 16779276,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 12,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779276"
-        },
-        "serial": "48:57:54:43:E6:14:A7:34"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:13",
-            "parent": 16779264,
-            "id": 16779277,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 13,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779277"
-        },
-        "serial": "48:57:54:43:E6:B7:83:5E"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:14",
-            "parent": 16779264,
-            "id": 16779278,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 14,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779278"
-        },
-        "serial": "48:57:54:43:E6:B7:83:56"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:15",
-            "parent": 16779264,
-            "id": 16779279,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 15,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779279"
-        },
-        "serial": "48:57:54:43:E6:B7:82:CC"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:16",
-            "parent": 16779264,
-            "id": 16779280,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 16,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779280"
-        },
-        "serial": "48:57:54:43:E6:B7:81:80"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:17",
-            "parent": 16779264,
-            "id": 16779281,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 17,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779281"
-        },
-        "serial": "48:57:54:43:E6:B7:81:16"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:18",
-            "parent": 16779264,
-            "id": 16779282,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 18,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779282"
-        },
-        "serial": "48:57:54:43:E6:B7:83:62"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:19",
-            "parent": 16779264,
-            "id": 16779283,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 19,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779283"
-        },
-        "serial": "48:57:54:43:E6:B7:81:12"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:20",
-            "parent": 16779264,
-            "id": 16779284,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 20,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779284"
-        },
-        "serial": "48:57:54:43:E6:B7:83:58"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:21",
-            "parent": 16779264,
-            "id": 16779285,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 21,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779285"
-        },
-        "serial": "48:57:54:43:E6:B7:81:34"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:22",
-            "parent": 16779264,
-            "id": 16779286,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 22,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779286"
-        },
-        "serial": "48:57:54:43:E6:B7:81:2E"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:23",
-            "parent": 16779264,
-            "id": 16779287,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 23,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779287"
-        },
-        "serial": "48:57:54:43:E6:B7:80:F8"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:24",
-            "parent": 16779264,
-            "id": 16779288,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 24,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779288"
-        },
-        "serial": "48:57:54:43:E6:B7:80:EA"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:25",
-            "parent": 16779264,
-            "id": 16779289,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 25,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779289"
-        },
-        "serial": "48:57:54:43:E6:B7:81:1C"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:26",
-            "parent": 16779264,
-            "id": 16779290,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 26,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779290"
-        },
-        "serial": "48:57:54:43:E6:B7:80:FA"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:27",
-            "parent": 16779264,
-            "id": 16779291,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 27,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779291"
-        },
-        "serial": "48:57:54:43:E6:B7:81:1A"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:28",
-            "parent": 16779264,
-            "id": 16779292,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 28,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779292"
-        },
-        "serial": "48:57:54:43:E6:B7:81:36"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:29",
-            "parent": 16779264,
-            "id": 16779293,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 29,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779293"
-        },
-        "serial": "48:57:54:43:E6:B7:81:04"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:30",
-            "parent": 16779264,
-            "id": 16779294,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 30,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779294"
-        },
-        "serial": "48:57:54:43:E6:B7:80:F6"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:31",
-            "parent": 16779264,
-            "id": 16779295,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 31,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779295"
-        },
-        "serial": "48:57:54:43:E6:B7:81:20"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:32",
-            "parent": 16779264,
-            "id": 16779296,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 32,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779296"
-        },
-        "serial": "48:57:54:43:E6:B7:80:FE"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:33",
-            "parent": 16779264,
-            "id": 16779297,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 33,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779297"
-        },
-        "serial": "48:57:54:43:E6:B7:81:02"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:34",
-            "parent": 16779264,
-            "id": 16779298,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 34,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779298"
-        },
-        "serial": "48:57:54:43:E6:B7:80:FC"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:35",
-            "parent": 16779264,
-            "id": 16779299,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 35,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779299"
-        },
-        "serial": "48:57:54:43:36:00:6B:D8"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:36",
-            "parent": 16779264,
-            "id": 16779300,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 36,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779300"
-        },
-        "serial": "48:57:54:43:36:00:6F:12"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:37",
-            "parent": 16779264,
-            "id": 16779301,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 37,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779301"
-        },
-        "serial": "48:57:54:43:E6:14:CE:4C"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:38",
-            "parent": 16779264,
-            "id": 16779302,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 38,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779302"
-        },
-        "serial": "48:57:54:43:E6:16:8F:78"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:39",
-            "parent": 16779264,
-            "id": 16779303,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 39,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779303"
-        },
-        "serial": "48:57:54:43:E6:B7:8C:70"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:40",
-            "parent": 16779264,
-            "id": 16779304,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 40,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779304"
-        },
-        "serial": "48:57:54:43:E6:B7:80:F2"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:41",
-            "parent": 16779264,
-            "id": 16779305,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 41,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779305"
-        },
-        "serial": "48:57:54:43:E6:B7:81:24"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:42",
-            "parent": 16779264,
-            "id": 16779306,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 42,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779306"
-        },
-        "serial": "48:57:54:43:E6:B7:80:EE"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:43",
-            "parent": 16779264,
-            "id": 16779307,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 43,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779307"
-        },
-        "serial": "48:57:54:43:36:00:6F:3E"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:44",
-            "parent": 16779264,
-            "id": 16779308,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 44,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779308"
-        },
-        "serial": "48:57:54:43:E6:B7:81:26"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:45",
-            "parent": 16779264,
-            "id": 16779309,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 45,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779309"
-        },
-        "serial": "48:57:54:43:E6:B7:F2:34"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:46",
-            "parent": 16779264,
-            "id": 16779310,
-            "xid": 8,
-            "type": "ONU",
-            "onu_num": 46,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779310"
-        },
-        "serial": "48:57:54:43:E6:B7:F2:24"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3:1",
-            "parent": 16779520,
-            "id": 16779521,
-            "xid": 9,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779521"
-        },
-        "serial": "48:57:54:43:E6:B7:F2:1C"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3:2",
-            "parent": 16779520,
-            "id": 16779522,
-            "xid": 9,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779522"
-        },
-        "serial": "48:57:54:43:E6:14:C8:6A"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3:3",
-            "parent": 16779520,
-            "id": 16779523,
-            "xid": 9,
-            "type": "ONU",
-            "onu_num": 3,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779523"
-        },
-        "serial": "48:57:54:43:E6:B7:F2:08"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3:4",
-            "parent": 16779520,
-            "id": 16779524,
-            "xid": 9,
-            "type": "ONU",
-            "onu_num": 4,
-            "uni": null,
-            "pontype": "gpon",
-            "onu_id": "16779524"
-        },
-        "serial": "48:57:54:43:E6:B7:F2:06"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
+    
     
 ### [pon_onts_status](#pon_onts_status) - Returned onts statuses 
       
@@ -35760,6 +35670,13 @@ true
     
 **Аргументы:**    
 - **slot_num**, проверка выражением: *^[0-9]{1,4}$*    
+      
+    
+    
+### [sys_resources](#sys_resources) - External system information (CPU/Memory/Temperature) 
+    
+**Аргументы:**    
+- **load_only**, проверка выражением: *^.**    
       
     
     
