@@ -38,7 +38,7 @@ class SystemResources extends AbstractModule
             'interfaces' => null,
             'cards' => null,
             'memory' => [
-                'util' => round((int)$this->getResponseByName('resources.memFreeSize')->fetchAll()[0]->getValue() / (int)$this->getResponseByName('resources.memTotalSize')->fetchAll()[0]->getValue() * 100, 2),
+                'util' =>  round(100-((int)$this->getResponseByName('resources.memFreeSize')->fetchAll()[0]->getValue() / (int)$this->getResponseByName('resources.memTotalSize')->fetchAll()[0]->getValue() * 100), 2),
                 '_free' =>  $this->getResponseByName('resources.memFreeSize')->fetchAll()[0]->getValue(),
                 '_total' => $this->getResponseByName('resources.memTotalSize')->fetchAll()[0]->getValue(),
             ],

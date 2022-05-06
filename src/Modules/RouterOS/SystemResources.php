@@ -20,12 +20,12 @@ class SystemResources extends ExecCommand
                 '_frequency' => $this->response['cpu-frequency'],
             ],
             'memory' => [
-                'util' => round($this->response['free-memory'] / $this->response['total-memory'] * 100, 2),
+                'util' => round(100-($this->response['free-memory'] / $this->response['total-memory'] * 100), 2),
                 '_free' => $this->response['free-memory'],
                 '_total' => $this->response['total-memory'],
             ],
             'disk' => [
-                'util' => round($this->response['free-hdd-space'] / $this->response['total-hdd-space'] * 100, 2),
+                'util' => round(100-($this->response['free-hdd-space'] / $this->response['total-hdd-space'] * 100), 2),
                 '_free' => $this->response['free-hdd-space'],
                 '_total' => $this->response['total-hdd-space'],
             ],
