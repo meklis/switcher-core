@@ -40,7 +40,7 @@ class SystemResources extends SwitchesPortAbstractModule
 
         try {
             $response['cpu'] = [
-                'util' => $this->getResponseByName('agent.CpuUtilization5sec')->fetchAll()[0]->getValue(),
+                'util' => $this->getResponseByName('agent.CpuUtilization1min')->fetchAll()[0]->getValue(),
                 '_util5sec' => $this->getResponseByName('agent.CpuUtilization5sec')->fetchAll()[0]->getValue(),
                 '_util1min' => $this->getResponseByName('agent.CpuUtilization1min')->fetchAll()[0]->getValue(),
                 '_util5min' => $this->getResponseByName('agent.CpuUtilization5min')->fetchAll()[0]->getValue(),
