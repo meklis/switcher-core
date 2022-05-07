@@ -20,7 +20,33 @@ class DGS1100SystemResources extends SwitchesPortAbstractModule
 
     function getPrettyFiltered($filter = [])
     {
-        return $this->getPretty();
+        $response = [
+            'cpu' => null,
+            'memory' => null,
+            'disk' => null,
+            'interfaces' => null,
+            'cards' => null,
+        ];
+
+        if (!$filter['load_only'] || str_contains($filter['load_only'], 'cpu')) {
+            $response['cpu'] = [
+                'util' => $this->getResponseByName('agent.CpuUtilization5sec')->fetchAll()[0]->getValue(),
+                '_util5sec' => $this->getResponseByName('agent.CpuUtilization5sec')->fetchAll()[0]->getValue(),
+                '_util1min' => $this->getResponseByName('agent.CpuUtilization1min')->fetchAll()[0]->getValue(),
+                '_util5min' => $this->getResponseByName('agent.CpuUtilization5min')->fetchAll()[0]->getValue(),
+            ];
+        }
+
+        if (!$filter['load_only'] || str_contains($filter['load_only'], 'memory')) {
+            $response['memory'] = [
+                'util' => $this->getResponseByName('agent.DramUtilization5sec')->fetchAll()[0]->getValue(),
+                '_util5sec' => $this->getResponseByName('agent.DramUtilization5sec')->fetchAll()[0]->getValue(),
+                '_util1min' => $this->getResponseByName('agent.DramUtilization1min')->fetchAll()[0]->getValue(),
+                '_util5min' => $this->getResponseByName('agent.DramUtilization5min')->fetchAll()[0]->getValue(),
+            ];
+        }
+
+        return $response;
     }
 
     function getRaw()
@@ -30,37 +56,7 @@ class DGS1100SystemResources extends SwitchesPortAbstractModule
 
     function getPretty()
     {
-        $response = [
-            'cpu' => null,
-            'memory' => null,
-            'disk' => null,
-            'interfaces' => null,
-            'cards' => null,
-        ];
-
-        try {
-            $response['cpu'] = [
-                'util' => $this->getResponseByName('agent.CpuUtilization5sec')->fetchAll()[0]->getValue(),
-                '_util5sec' => $this->getResponseByName('agent.CpuUtilization5sec')->fetchAll()[0]->getValue(),
-                '_util1min' => $this->getResponseByName('agent.CpuUtilization1min')->fetchAll()[0]->getValue(),
-                '_util5min' => $this->getResponseByName('agent.CpuUtilization5min')->fetchAll()[0]->getValue(),
-            ];
-        } catch (\Throwable $e) {
-            $this->logger->warning($e);
-        }
-
-        try {
-            $response['memory'] = [
-                'util' => $this->getResponseByName('agent.DramUtilization5sec')->fetchAll()[0]->getValue(),
-                '_util5sec' => $this->getResponseByName('agent.DramUtilization5sec')->fetchAll()[0]->getValue(),
-                '_util1min' => $this->getResponseByName('agent.DramUtilization1min')->fetchAll()[0]->getValue(),
-                '_util5min' => $this->getResponseByName('agent.DramUtilization5min')->fetchAll()[0]->getValue(),
-            ];
-        } catch (\Throwable $e) {
-            $this->logger->warning($e);
-        }
-
-        return $response;
+        return $this->response;
     }
 
     /**
