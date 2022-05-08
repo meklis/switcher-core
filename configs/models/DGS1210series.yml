@@ -184,6 +184,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
      ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1210SystemResources
 
 
  - name: D-link DGS-1210-28XS/ME/B1
