@@ -26,6 +26,7 @@ models:
       pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
       pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
+      sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
