@@ -17,7 +17,7 @@ class SshLazyConnect implements ConsoleInterface
     protected $password;
     protected $isConnected;
     protected $afterLoginCommands = [];
-
+    protected $global_buffer;
 
     protected $buffer = '';
 
@@ -64,6 +64,9 @@ class SshLazyConnect implements ConsoleInterface
         $this->host = $host;
         $this->port = $port;
 
+    }
+    public function getGlobalBuffer() {
+        return $this->global_buffer;
     }
 
     function isConnected() {
@@ -144,6 +147,7 @@ class SshLazyConnect implements ConsoleInterface
                 break;
             }
         }
+        $this->global_buffer .= $buffer;
         if($strict && !$found) return null;
         $lines = explode("\n", $buffer);
         return join("\n", array_slice($lines, 1, -1));
