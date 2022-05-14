@@ -1,6 +1,7 @@
 console:
-  port: 23
-  timeout: 40
+  port: 22
+  timeout: 30
+  type: ssh
 
 snmp:
   repeats: 2

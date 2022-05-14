@@ -21,6 +21,8 @@ models:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -58,6 +60,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser

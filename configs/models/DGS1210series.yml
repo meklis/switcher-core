@@ -20,6 +20,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -56,6 +58,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -92,6 +96,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -128,6 +134,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -164,6 +172,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -201,6 +211,8 @@ models:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser

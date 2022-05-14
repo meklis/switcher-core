@@ -21,6 +21,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -59,6 +61,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -97,6 +101,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -136,6 +142,8 @@ models:
      diag_linkup: false
      ge_ports: [25,26]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -175,6 +183,8 @@ models:
      diag_linkup: false
      ge_ports: [25,26,27,28]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -214,6 +224,8 @@ models:
      diag_linkup: false
      ge_ports: [25,26,27,28]
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -252,6 +264,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -290,6 +304,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -328,6 +344,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -366,6 +384,8 @@ models:
    extra:
      diag_linkup: false
      console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser

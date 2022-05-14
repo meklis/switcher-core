@@ -29,6 +29,11 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
+      console_conn_type: cdata
+      console_commands_after_connect:
+        - enable
+        - config
+        - vty output show-all
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
         - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}
@@ -73,6 +78,10 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
       console_conn_type: cdata
+      console_commands_after_connect:
+        - enable
+        - config
+        - vty output show-all
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
         - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}
@@ -123,6 +132,10 @@ models:
       #pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
     extra:
+      console_commands_after_connect:
+        - enable
+        - config
+        - vty output show-all
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
         - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}

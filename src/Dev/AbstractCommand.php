@@ -118,6 +118,7 @@ abstract class AbstractCommand extends Command
             $this->input->getArgument('login'),
             $this->input->getArgument('password')
         )
+            ->set('consoleConnectionType', conf('console.type'))
             ->set('consoleTimeout', conf('console.timeout'))
             ->set('consolePort', conf('console.port'))
             ->set('snmpRepeats', conf('snmp.repeats'))

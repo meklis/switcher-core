@@ -30,7 +30,7 @@ class TelnetLazyConnect extends Telnet implements ConsoleInterface
         }
         parent::__construct($host, $port, $timeout, $stream_timeout);
     }
-    function login($username, $password, $host_type="")
+    function setAccess($username, $password, $host_type="")
     {
         $this->username = $username;
         $this->password = $password;
@@ -53,17 +53,6 @@ class TelnetLazyConnect extends Telnet implements ConsoleInterface
             }
             parent::login($this->username, $this->password, $this->host_type);
             $this->setStreamTimeout(10.0);
-            switch ($this->host_type) {
-                case "dlink":
-                    parent::exec("disa clip");
-                    break;
-                case "cdata":
-                    parent::enableMagicControl();
-                    parent::exec("enable");
-                    parent::exec("config");
-                    parent::exec("vty output show-all");
-                    break;
-            }
             if($this->afterLoginCommands) {
                 foreach ($this->afterLoginCommands as $comm) {
                      mb_convert_encoding(parent::exec($comm, true, $prompt), 'UTF-8', 'UTF-8');

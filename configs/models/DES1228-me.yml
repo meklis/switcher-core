@@ -22,6 +22,8 @@ models:
     extra:
       diag_linkup: false
       console_conn_type: dlink
+      console_commands_after_connect:
+        - disa clip
     modules:
       parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
       fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser

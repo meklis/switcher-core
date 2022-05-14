@@ -15,6 +15,7 @@ use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Console\SshLazyConnect;
 use SwitcherCore\Switcher\Console\TelnetLazyConnect;
 use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
 
@@ -170,9 +171,12 @@ class CoreConnector
         );
     }
     private function initConsole(\SwitcherCore\Switcher\Device $device) {
-        if(!$device->get('consoleType') || $device->get('consoleType') == 'telnet') {
+        if(!$device->get('consoleConnectionType') || $device->get('consoleConnectionType') == 'telnet') {
             return (new TelnetLazyConnect($device->getIp(), $device->consolePort, $device->consoleTimeout, 15))
-                ->login($device->getLogin(), $device->getPassword());
+                ->setAccess($device->getLogin(), $device->getPassword());
+        } else if ($device->get('consoleConnectionType') == 'ssh') {
+            return (new SshLazyConnect($device->getIp(), $device->consolePort, $device->consoleTimeout))
+                ->setAccess($device->getLogin(), $device->getPassword());
         } else {
             throw new \Exception("Another console not implemented");
         }

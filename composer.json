@@ -27,7 +27,10 @@
         "doctrine/annotations": "1.11.x-dev",
         "ext-yaml": "*",
         "monolog/monolog": "2.x-dev",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-ssh2": "*",
+        "spatie/ssh": "v2.x-dev",
+        "phpseclib/phpseclib": "~3.0"
     },
     "minimum-stability": "dev",
     "require-dev": {
