@@ -12,14 +12,14 @@ models:
    device_type: SWITCH
    inputs:
      - snmp
-     - telnet
+     - console
    oids:
      - ./oids/dlink/des-1210-28-me-b2.yml
    detect: {description: ^DES-1210-28\/ME\/B2$,  objid: ^.*171.10.75.15.2$ }
    extra:
      ge_ports: [25,26,27,28]
      diag_linkup: false
-     telnet_conn_type: dlink
+     console_conn_type: dlink
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -31,13 +31,13 @@ models:
      errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
      rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
      pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
-     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
-     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
-     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
-     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
-     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
-     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
-     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
-     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
 

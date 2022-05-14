@@ -1,6 +1,6 @@
-telnet:
+console:
   port: 23
-  timeout: 50
+  timeout: 40
 
 snmp:
   repeats: 2

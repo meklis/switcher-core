@@ -3,6 +3,7 @@ models:
     key: c_data_fd1204sn
     inputs:
       - snmp
+      - console
     detect: {description: EasyPath Ethernet-PON,  objid: ^.1.3.6.1.4.1.17409$, ifacesCount: 10}
     device_type: OLT
     oids:
@@ -44,7 +45,7 @@ models:
     key: c_data_fd1208s
     inputs:
       - snmp
-      - telnet
+      - console
     detect: {description: EasyPath Ethernet-PON,  objid: ^.1.3.6.1.4.1.17409$, ifacesCount: 20}
     device_type: OLT
     oids:
@@ -60,7 +61,7 @@ models:
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
       pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
-      fdb: \SwitcherCore\Modules\CData\FdbTableTelnet
+      fdb: \SwitcherCore\Modules\CData\FdbTableConsole
       pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
       pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
@@ -71,7 +72,7 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
-      telnet_conn_type: cdata
+      console_conn_type: cdata
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
         - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}
@@ -98,6 +99,7 @@ models:
     key: c_data_fd1616sn_r1
     inputs:
       - snmp
+      - console
     detect: {description: ^FD1616SN-R1$,  objid: ^.1.3.6.1.4.1.17409$}
     device_type: OLT
     oids:

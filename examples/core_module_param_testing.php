@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
 
-use \SwitcherCore\Modules\Helper;
-use \SwitcherCore\Switcher\CoreConnector;
+use SwitcherCore\Modules\Helper;
+use SwitcherCore\Switcher\CoreConnector;
 use SwitcherCore\Switcher\Device;
 use SwitcherCore\Switcher\PhpCache;
 
@@ -70,9 +70,9 @@ if ($module['arguments']) {
         $response = $core->action($module['name'], $params);
     } catch (\Throwable $e) {
         /**
-         * @var \SwitcherCore\Switcher\Objects\TelnetLazyConnect $telnet
+         * @var \SwitcherCore\Switcher\Console\TelnetLazyConnect $telnet
          */
-        $telnet = $core->getContainer()->get(\SwitcherCore\Switcher\Objects\TelnetLazyConnect::class);
+        $telnet = $core->getContainer()->get(\SwitcherCore\Switcher\Console\TelnetLazyConnect::class);
         echo "Global telnet buffer: \n";
         echo $telnet->getGlobalBuffer();
         echo "==================================\n";

@@ -76,8 +76,8 @@ class Model
      * @return mixed
      * @throws Exception
      */
-    public function getTelnetConnType() {
-       return $this->getExtraParamByName('telnet_conn_type');
+    public function getConsoleConnType() {
+       return $this->getExtraParamByName('console_conn_type');
     }
 
     /**

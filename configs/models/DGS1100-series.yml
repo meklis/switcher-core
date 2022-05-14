@@ -13,14 +13,14 @@ models:
    device_type: SWITCH
    inputs:
      - snmp
-     - telnet
+     - console
    oids:
      - ./oids/dlink/dgs-1100-06-me-a1.yml
    detect: {description: ^DGS-1100-06\/ME\/A1$,  objid: ^.*.171.10.134.1$ }
    extra:
      diag_linkup: true
      ge_ports: [1,2,3,4,5,6]
-     telnet_conn_type: dlink
+     console_conn_type: dlink
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -32,15 +32,15 @@ models:
      errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
      rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
      pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
-     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
-     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
-     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
-     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
-     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
-     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
-     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
-     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
 
 
@@ -50,14 +50,14 @@ models:
    device_type: SWITCH
    inputs:
      - snmp
-     - telnet
+     - console
    oids:
      - ./oids/dlink/dgs-1100-10-me.yml
    detect: {description: ^DGS-1100-10\/ME,  objid: ^.*.171.10.134.2.1$ }
    extra:
      diag_linkup: false
      ge_ports: [1,2,3,4,5,6,7,8,9,10]
-     telnet_conn_type: dlink
+     console_conn_type: dlink
    modules:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
@@ -69,14 +69,14 @@ models:
      errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
      rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
      pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
-     clear_counters: \SwitcherCore\Modules\Telnet\Dlink\ClearCounters
-     save_config: \SwitcherCore\Modules\Telnet\Dlink\SaveConfig
-     reboot: \SwitcherCore\Modules\Telnet\Dlink\Reboot
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
-     ctrl_port_state: \SwitcherCore\Modules\Telnet\Dlink\StatePortControl
-     ctrl_port_speed: \SwitcherCore\Modules\Telnet\Dlink\SpeedPortControl
-     ctrl_port_descr: \SwitcherCore\Modules\Telnet\Dlink\DescriptionPortControl
-     ctrl_vlan_state: \SwitcherCore\Modules\Telnet\Dlink\VlanStateControl
-     ctrl_vlan_port: \SwitcherCore\Modules\Telnet\Dlink\VlanPortControl
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
 
