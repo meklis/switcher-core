@@ -1,6 +1,7 @@
 telnet:
   port: 23
   timeout: 50
+  type: ssh
 
 snmp:
   repeats: 2
