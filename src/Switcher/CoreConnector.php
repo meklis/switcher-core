@@ -6,7 +6,6 @@ namespace SwitcherCore\Switcher;
 
 use ErrorException;
 use Exception;
-use Psr\Container\ContainerInterface;
 use SnmpWrapper\Device;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\NoProxy\MultiWalker;
@@ -16,8 +15,9 @@ use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Console\SshLazyConnect;
+use SwitcherCore\Switcher\Console\TelnetLazyConnect;
 use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
-use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 
 class CoreConnector
 {
@@ -146,9 +146,9 @@ class CoreConnector
 
         $core->init();
         $inputs_list = $core->getNeedInputs();
-        if(in_array('telnet', $inputs_list)) {
-            $telnet = $this->initTelnet($device);
-            $core->addInput($telnet);
+        if(in_array('console', $inputs_list)) {
+            $console = $this->initConsole($device);
+            $core->addInput($console);
         }
 
         if(in_array('routeros_api', $inputs_list)) {
@@ -158,7 +158,6 @@ class CoreConnector
         $this->instances[$device->getIp()] = $core;
         return $core;
     }
-
 
     private function initWalker(\SwitcherCore\Switcher\Device $device) {
         $walker = clone $this->walker;
@@ -171,9 +170,16 @@ class CoreConnector
             )
         );
     }
-    private function initTelnet(\SwitcherCore\Switcher\Device $device) {
-        return (new TelnetLazyConnect($device->getIp(), $device->telnetPort , $device->telnetTimeout, 15))
-            ->login($device->getLogin(), $device->getPassword());
+    private function initConsole(\SwitcherCore\Switcher\Device $device) {
+        if(!$device->get('consoleConnectionType') || $device->get('consoleConnectionType') == 'telnet') {
+            return (new TelnetLazyConnect($device->getIp(), $device->consolePort, $device->consoleTimeout, 15))
+                ->setAccess($device->getLogin(), $device->getPassword());
+        } else if ($device->get('consoleConnectionType') == 'ssh') {
+            return (new SshLazyConnect($device->getIp(), $device->consolePort, $device->consoleTimeout))
+                ->setAccess($device->getLogin(), $device->getPassword());
+        } else {
+            throw new \Exception("Another console not implemented");
+        }
     }
     private function initMikrotikApi(\SwitcherCore\Switcher\Device $device) {
         return (new RouterOsLazyConnect())

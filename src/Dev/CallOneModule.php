@@ -15,7 +15,7 @@ class CallOneModule extends AbstractCommand
         $this->setName('sc:action')
             ->addArgument('module', InputArgument::REQUIRED, "Call some module")
             ->addDefaultArguments()
-            ->addArgument("arguments", InputArgument::OPTIONAL, "Arguments")
+            ->addArgument("arguments", InputArgument::IS_ARRAY, "Arguments")
             ->setDescription("Return list of modules by device");
     }
 

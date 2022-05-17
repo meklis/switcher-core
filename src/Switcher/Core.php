@@ -8,23 +8,20 @@ use ErrorException;
 use Exception;
 use meklis\network\Telnet;
 use Monolog\Handler\NullHandler;
-use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use RouterosAPI;
 use SnmpWrapper\MultiWalkerInterface;
+use SnmpWrapper\Oid as O;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
 use SwitcherCore\Config\Objects\Model;
-use SnmpWrapper\Oid as O;
 use SwitcherCore\Config\OidCollector;
-use SwitcherCore\Config\Reader;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
-use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 use function DI\autowire;
 
 
@@ -130,21 +127,21 @@ class Core
         if ($input instanceof MultiWalkerInterface) {
             $this->logger->info("Added walker interface - " . get_class($input));
             $this->container->set(MultiWalkerInterface::class, $input);
-        } elseif ($input instanceof TelnetLazyConnect) {
+        } elseif ($input instanceof ConsoleInterface) {
             if (!$this->container->has(Model::class)) {
                 $this->logger->info("Error: Model not setted. You must call init() first");
                 throw new Exception("Model not setted. You must call init() first");
             }
-            $this->logger->info("Added telnet interface - " . get_class($input));
+            $this->logger->info("Added console interface - " . get_class($input));
             $model = $this->container->get(Model::class);
-            $input->setHostType($model->getTelnetConnType());
+            $input->setHostType($model->getConsoleConnType());
             try {
-                foreach ($model->getExtraParamByName('telnet_commands_after_connect') as $comm) {
+                foreach ($model->getExtraParamByName('console_commands_after_connect') as $comm) {
                     $input->addCommandAfterLogin($comm);
                 }
             } catch (Exception $e) {
             }
-            $this->container->set(TelnetLazyConnect::class, $input);
+            $this->container->set(ConsoleInterface::class, $input);
         } elseif ($input instanceof RouterosAPI) {
             if (!$this->container->has(Model::class)) {
                 throw new Exception("Model not setted. You must call init() first");

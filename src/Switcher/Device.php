@@ -8,14 +8,19 @@ namespace SwitcherCore\Switcher;
  * @property int $snmpRepeats
  * @property int $snmpTimeoutSec
  * @property int $mikrotikApiPort
- * @property int $telnetPort
- * @property int $telnetTimeout
+ * @property int $consolePort
+ * @property int $consoleTimeout
+ * @property string $consoleConnectionType
  *
  * @package SwitcherCore\Switcher
  */
 
 class Device
 {
+
+    const CONSOLE_SSH = 'ssh';
+    const CONSOLE_TELNET = 'telnet';
+
     protected $ip;
     protected $community;
     protected $login;

@@ -6,7 +6,7 @@ use DI\DependencyException;
 use DI\NotFoundException;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 abstract class CDataAbstractModule extends AbstractModule
 {
@@ -14,9 +14,9 @@ abstract class CDataAbstractModule extends AbstractModule
 
     /**
      * @Inject
-     * @var TelnetLazyConnect
+     * @var \SwitcherCore\Switcher\Console\ConsoleInterface
      */
-    protected $telnet;
+    protected $console;
 
     function getPretty()
     {

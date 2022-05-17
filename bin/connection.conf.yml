@@ -1,6 +1,6 @@
-telnet:
-  port: 23
-  timeout: 50
+console:
+  port: 22
+  timeout: 30
   type: ssh
 
 snmp:

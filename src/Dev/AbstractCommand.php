@@ -118,8 +118,9 @@ abstract class AbstractCommand extends Command
             $this->input->getArgument('login'),
             $this->input->getArgument('password')
         )
-            ->set('telnetTimeout', conf('telnet.timeout'))
-            ->set('telnetPort', conf('telnet.port'))
+            ->set('consoleConnectionType', conf('console.type'))
+            ->set('consoleTimeout', conf('console.timeout'))
+            ->set('consolePort', conf('console.port'))
             ->set('snmpRepeats', conf('snmp.repeats'))
             ->set('snmpTimeoutSec', conf('snmp.timeout'))
             ->set('mikrotikApiPort', conf('miktotik_api.port'))

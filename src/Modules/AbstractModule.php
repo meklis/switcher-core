@@ -5,7 +5,6 @@ namespace SwitcherCore\Modules;
 
 
 
-use DI\Annotation\Inject;
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -18,7 +17,6 @@ use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Switcher\CacheInterface;
 use SwitcherCore\Switcher\Device;
-use SwitcherCore\Switcher\Objects\TelnetLazyConnect;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 abstract class AbstractModule
