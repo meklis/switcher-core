@@ -18,8 +18,117 @@ abstract class C300ModuleAbstract extends AbstractModule
      */
     protected $telnet;
 
+
+    function encodeSnmpOid($value) {
+        $type = '';
+        $shelf = 0;
+        $slot = 0;
+        $port = 0;
+        $onuNum = 0;
+        $fillData = function ($val, $size) {
+            $decoded = decbin($val);
+            while (strlen($decoded) < $size) {
+                $decoded = "0" . $decoded;
+            }
+            return $decoded;
+        };
+
+        if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})(:([0-9]{1,}))?$/', $value, $matches)) {
+            $type = $matches[1];
+            $shelf = (int)$matches[3];
+            $slot = (int)$matches[4];
+            $port = (int)$matches[5];
+            $onuNum = isset($matches[7]) ? (int)$matches[7] : 0;
+        }
+        switch ($type) {
+            case 'gpon':
+                $binary = "0001" .
+                    $fillData($shelf - 1, 4) .
+                    $fillData($slot, 8) .
+                    $fillData($port, 8) .
+                    $fillData(0, 8)
+                ;
+                $data = bindec($binary);
+                if($onuNum) {
+                    return  "{$data}.$onuNum";
+                }
+                return  $data;
+            case 'epon':
+                $binary = "0011" .
+                    $fillData($shelf - 1, 4) .
+                    $fillData($slot, 5) .
+                    $fillData($port - 1, 3) .
+                    $fillData($onuNum,8) .
+                    $fillData(0, 8);
+                ;
+                return bindec($binary);
+            default:
+                throw new \Exception("Error parse interface $value");
+        }
+
+    }
+
+
+    function decodeSnmpOid($oid)
+    {
+        $onuNum = 0;
+        if(preg_match('/^([0-9]{1,})\.([0-9]){1,}$/', $oid, $matches)) {
+            $onuNum = $matches[2];
+            $oid = $matches[1];
+        }
+        $binary = decbin($oid);
+        while (strlen($binary) < 32) {
+            $binary = "0" . $binary;
+        }
+        $type = bindec(substr($binary, 0, 4));
+        $data = substr($binary, 4);
+        $shelf = 0;
+        $slot = 0;
+        $portOlt = 0;
+        $vPort = 0;
+        $decodeType = '';
+        switch ($type) {
+            case 1:
+                $shelf = bindec(substr($data, 0, 4)) + 1;
+                $slot = bindec(substr($data, 4, 8));
+                $portOlt = bindec(substr($data, 12, 8));
+                $decodeType = 'gpon';
+                break;
+            case 3:
+            case 4:
+                $decodeType = 'epon';
+                $shelf = bindec(substr($data, 0, 4)) + 1;
+                $slot = bindec(substr($data, 4, 5));
+                $portOlt = bindec(substr($data, 9, 3)) + 1;
+                $onuNum = bindec(substr($data, 12, 8));
+                $vPort = bindec(substr($data, 20, 8));
+                break;
+        }
+        return [
+            'type' => $decodeType,
+            'shelf' => $shelf,
+            'slot' => $slot,
+            'port' => $portOlt,
+            'onu_number' => $onuNum,
+            'v_port' => $vPort,
+        ];
+    }
+
+
     public function parseInterface($name)
     {
+        //Это ID из snmp
+        $oidID = 0;
+        if((is_numeric($name) && $name > 9999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
+            $oidID = $name;
+            $result = $this->decodeSnmpOid($name);
+            if($result['onu_number']) {
+                $name = "{$result['type']}-onu_{$result['shelf']}/{$result['slot']}/{$result['port']}:{$result['onu_number']}";
+            } else {
+                $name = "{$result['type']}-olt_{$result['shelf']}/{$result['slot']}/{$result['port']}";
+            }
+        }
+
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})/', $name, $matches)) {
             $onu = null;
             $type = 'PON';
@@ -34,7 +143,6 @@ abstract class C300ModuleAbstract extends AbstractModule
                 $parent = $id;
                 $id += $onu;
             }
-
             return [
                 'name' => $name,
                 'id' => (int)$id,
@@ -47,8 +155,10 @@ abstract class C300ModuleAbstract extends AbstractModule
                 'slot' => (int)$matches[4],
                 'port' => (int)$matches[5],
                 'onu_num' => (int)$onu,
+                '_oid_id' => $oidID ? $oidID : $this->encodeSnmpOid($name),
             ];
         }
+
         if(is_numeric($name)) {
             $shelf = floor($name / 1000000);
             $slot = floor(($name - ($shelf * 1000000)) / 100000);
@@ -86,6 +196,7 @@ abstract class C300ModuleAbstract extends AbstractModule
                 'slot' => $slot,
                 'port' => $port,
                 'onu_num' => (int)$onu,
+                '_oid_id' => $this->encodeSnmpOid($interface),
             ];
         }
         throw new InvalidArgumentException("Error parse port with name '$name'");

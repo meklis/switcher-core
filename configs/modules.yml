@@ -480,3 +480,8 @@
   descr: Returened parsed interface from input
   arguments:
     - {name: interface, pattern: '.*', required: yes}
+
+- name: interface_descriptions
+  descr: Return interface description
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
