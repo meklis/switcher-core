@@ -29,6 +29,7 @@
   # 1 - device index (default=1)
   # 0 - card number (default=1)
   # 9 - number of port (stored in xid value in model extra parameters)
+- {name: ont.description, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
 - {name: pon.portOperStatus, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.5, values: {1: Up, 2: Down, 3: Testing}}
 - {name: pon.portAdminStatus, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.6, values: {1: Enabled, 2: Disabled}} #SNMPSET
 - {name: pon.portMaxOnuNumSupport, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.7}

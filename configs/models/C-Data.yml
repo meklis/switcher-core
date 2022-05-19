@@ -28,6 +28,7 @@ models:
       pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:
       console_conn_type: cdata
       console_commands_after_connect:
@@ -76,6 +77,7 @@ models:
       pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:
       console_conn_type: cdata
       console_commands_after_connect:
@@ -131,6 +133,7 @@ models:
       #pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
       #pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:
       console_commands_after_connect:
         - enable
