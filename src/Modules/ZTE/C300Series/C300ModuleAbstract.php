@@ -138,6 +138,7 @@ abstract class C300ModuleAbstract extends AbstractModule
         $symbolBlock = array_fill(0, $width, true);
         foreach ($rows as $row) {
             if(preg_match('/^[-]{1,}$/', $row)) continue;
+            if(str_contains($row, "---")) continue;
             foreach (str_split($row) as $num=>$symbol) {
                 if($symbol === ' ' || $symbol === '\t') continue;
                 $symbolBlock[$num] = false;

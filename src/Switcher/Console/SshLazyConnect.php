@@ -76,8 +76,8 @@ class SshLazyConnect implements ConsoleInterface
     function connect()
     {
         $ssh = (new SSH2($this->host, $this->port, $this->timeout));
-        $ssh->setWindowSize(512, 240);
-        $ssh->disableSmartMFA();
+        $ssh->setWindowSize(255, 150);
+     //   $ssh->disableSmartMFA();
         if (!$ssh->login($this->username, $this->password)) {
             throw new \Exception('Login failed');
         }
@@ -139,7 +139,7 @@ class SshLazyConnect implements ConsoleInterface
         $buffer = "";
         $found = false;
         while(true) {
-            $line = $this->conn->read("", SSH2::READ_NEXT);
+            $line = mb_convert_encoding($this->conn->read("", SSH2::READ_NEXT), 'UTF-8', 'UTF-8');
             if(!is_string($line)) break;
             $buffer .= $line;
             if(preg_match("/$prompt/", $line)) {
@@ -156,19 +156,19 @@ class SshLazyConnect implements ConsoleInterface
     function __destruct()
     {
         try {
-            if ($this->isConnected()) {
-                switch ($this->host_type) {
-                    case 'dlink':
-                        $this->exec("logout");
-                        break;
-                    case 'ios':
-                        $this->exec("exit");
-                        break;
-                    case 'cdata':
-                        $this->exec("logout");
-                        break;
-                }
-            }
+//            if ($this->isConnected()) {
+//                switch ($this->host_type) {
+//                    case 'dlink':
+//                        $this->exec("logout");
+//                        break;
+//                    case 'ios':
+//                        $this->exec("exit");
+//                        break;
+//                    case 'cdata':
+//                        $this->exec("logout");
+//                        break;
+//                }
+//            }
         } catch (\Throwable $e) { }
 
     }

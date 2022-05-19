@@ -465,12 +465,12 @@
   arguments:
     - { name: interface, pattern: '.*', required: true }
 
-- name: telnet_command
+- name: console_command
   description: Allow run command
   arguments:
     - {name: command, pattern: '.*', required: true}
 
-- name: multi_telnet_command
+- name: multi_console_command
   description: Allow run commands as array or multi string
   arguments:
     - {name: commands, pattern: '.*', required: true}

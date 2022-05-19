@@ -7,7 +7,7 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 use Exception;
 
-class MultiRawTelnetCommand extends C300ModuleAbstract
+class MultiRawConsoleCommand extends C300ModuleAbstract
 {
     public function run($params = [])
     {
