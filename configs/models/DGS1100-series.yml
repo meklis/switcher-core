@@ -44,6 +44,7 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
+     interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
 
 
  - name: D-link DGS-1100-10/ME
@@ -83,4 +84,5 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
+     interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
 

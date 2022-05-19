@@ -128,10 +128,6 @@ models:
       pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
       pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
-      #pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
-      #pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
-      #pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-      #pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:

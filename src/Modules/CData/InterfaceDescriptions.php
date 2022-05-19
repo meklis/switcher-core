@@ -34,7 +34,7 @@ class InterfaceDescriptions extends CDataAbstractModule
         $data = [];
         foreach ($this->response as $resp) {
             $data[] = [
-              'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
+                'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
                 'description' => $resp->getValue(),
             ];
         }

@@ -29,7 +29,6 @@ class DefaultParser extends SwitchesPortAbstractModule
               $indexes[$index]['oper_status'] = null;
               $indexes[$index]['nway_status'] = null;
               $indexes[$index]['admin_state'] = null;
-              $indexes[$index]['admin_state'] = null;
               $indexes[$index]['last_change'] = null;
               $indexes[$index]['connector_present'] = null;
               $indexes[$index]['id'] = $port;
