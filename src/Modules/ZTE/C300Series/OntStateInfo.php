@@ -16,12 +16,17 @@ class OntStateInfo extends C300ModuleAbstract
         }
         $this->response = [];
         $interface = $this->parseInterface($params['interface']);
+        if($cached = $this->getCache("iface-{$interface['id']}")) {
+            $this->response = $cached;
+            return $this;
+        }
         $type = $interface['technology'];
         switch ($type) {
             case 'gpon': $this->response = $this->getStateGPON($params['interface']); break;
             case 'epon': $this->response = $this->getStateEPON($params['interface']); break;
             default: throw new Exception("Unknown type of interface - '$type'");
         }
+        $this->setCache("iface-{$interface['id']}", $this->response, 10);
         return $this;
     }
 
