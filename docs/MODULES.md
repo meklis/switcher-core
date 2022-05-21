@@ -17919,7 +17919,7 @@ true
 </details>
             
     
-### [pon_interface_info](#pon_interface_info) - Returned FDB table on ONTs 
+### [pon_interface_counters](#pon_interface_counters) - Returned FDB table on ONTs 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -18776,14 +18776,14 @@ true
       
     
     
-### [pon_onts_fully_info](#pon_onts_fully_info) - Солянка из методов pon_onts_optical, pon_onts_status_detailed,  pon_onts_general_info, pon_onts_mac_addr, pon_fdb 
+### [pon_onts_fully_info](#pon_onts_fully_info) - Солянка из методов pon_onts_optical, pon_onts_reasons,  pon_onts_vendor, pon_onts_mac_addr, pon_fdb 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
     
     
-### [pon_onts_general_info](#pon_onts_general_info) - Returned ONTs MAC addresses 
+### [pon_onts_vendor](#pon_onts_vendor) - Returned ONTs MAC addresses 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -24134,7 +24134,7 @@ true
 </details>
             
     
-### [pon_onts_status_detailed](#pon_onts_status_detailed) - Returned ONTs MAC addresses 
+### [pon_onts_reasons](#pon_onts_reasons) - Returned ONTs MAC addresses 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -35782,10 +35782,10 @@ true
             "pon_onts_status",
             "pon_onts_mac_addr",
             "pon_onts_optical",
-            "pon_onts_status_detailed",
-            "pon_onts_general_info",
+            "pon_onts_reasons",
+            "pon_onts_vendor",
             "pon_fdb",
-            "pon_interface_info",
+            "pon_interface_counters",
             "pon_interfaces_tree",
             "save_config",
             "pon_ont_reboot",

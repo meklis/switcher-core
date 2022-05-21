@@ -64,6 +64,10 @@ class InterfaceDescriptions extends CDataAbstractModule
                 )
             );
         }
+        $resp = $this->getResponseByName('ont.description', $data);
+        if($resp->error()) {
+            throw new \Exception($resp->error());
+        }
         $this->response = $this->getResponseByName('ont.description', $data)->fetchAll();
         return $this;
     }

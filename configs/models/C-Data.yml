@@ -16,11 +16,10 @@ models:
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
-      pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
-      pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
+      pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\OntFDBTable
-      pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
-      pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
+      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -65,11 +64,10 @@ models:
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
-      pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
-      pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
+      pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
-      pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
-      pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
+      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -122,15 +120,16 @@ models:
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\CData\GponOntSerial
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
-      pon_onts_status_detailed: \SwitcherCore\Modules\CData\OntStatusDetailedInfo
-      pon_onts_general_info: \SwitcherCore\Modules\CData\OntGeneralInfo
+      pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\GponOntFdbTable
-      pon_interface_info: \SwitcherCore\Modules\CData\OntUniInterfaceInformation
-      pon_interfaces_tree: \SwitcherCore\Modules\CData\PonInterfacesTree
+      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
+      console_conn_type: cdata
       console_commands_after_connect:
         - enable
         - config

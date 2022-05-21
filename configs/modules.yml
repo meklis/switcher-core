@@ -371,10 +371,6 @@
 - name: pon_interfaces_list
   descr: Information of PON interfaces
 
-- name: pon_interfaces_tree
-  descr: Information of PON interfaces with onu and parent Ids
-  arguments:
-    - {name: as_tree, pattern: 'yes|no', required: no }
 - name: pon_count_registered_onts
   descr: Count registered onts on pon
 
@@ -396,12 +392,12 @@
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
-- name: pon_onts_status_detailed
+- name: pon_onts_reasons
   descr: Returned ONTs MAC addresses
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
-- name: pon_onts_general_info
+- name: pon_onts_vendor
   descr: Returned ONTs MAC addresses
   arguments:
     - {name: interface, pattern: '.*', required: no}
@@ -413,7 +409,7 @@
     - {name: vlan_id, pattern: '[0-9]{1,4}', required: no}
     - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
 
-- name: pon_interface_info
+- name: pon_interface_counters
   descr: Returned FDB table on ONTs
   arguments:
     - {name: interface, pattern: '.*', required: no}
@@ -440,7 +436,7 @@
 
 
 - name: pon_onts_fully_info
-  descr: Солянка из методов pon_onts_optical, pon_onts_status_detailed,  pon_onts_general_info, pon_onts_mac_addr, pon_fdb
+  descr: Солянка из методов pon_onts_optical, pon_onts_reasons,  pon_onts_vendor, pon_onts_mac_addr, pon_fdb
   arguments:
     - {name: interface, pattern: '.*', true}
 

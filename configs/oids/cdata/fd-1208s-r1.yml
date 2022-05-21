@@ -5,4 +5,3 @@
 - {name: pon.portOpBias, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.6}
 - {name: pon.portOpTxPower, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.7} # value / 100
 - {name: pon.portOpRxPower, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.8} # value / 100
-

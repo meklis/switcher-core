@@ -12,7 +12,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OntStatusDetailedInfo extends CDataAbstractModule
+class OntVendorInfo extends CDataAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -26,21 +26,25 @@ class OntStatusDetailedInfo extends CDataAbstractModule
     private function processNoInterface($response) {
         $return = [];
         foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
+            unset($onts['status']);
             $return[$onts['interface']['id']] = $onts;
         }
 
-        foreach ($this->getResponseByName('ont.lastRegSince', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid(),0);
-            $return[$onuId]['last_reg'] = time() - $r->getValue();
-            $return[$onuId]['last_reg_since'] = $r->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
-        }
-        foreach ($this->getResponseByName('ont.lastDownReason', $response)->fetchAll() as $r) {
+        foreach ($this->getResponseByName('ont.verSoftware', $response)->fetchAll() as $r) {
             $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['last_down_reason'] = $r->getParsedValue();
+            $return[$onuId]['ver_software'] = $r->getValue();
         }
-        foreach ($this->getResponseByName('ont.adminStatus', $response)->fetchAll() as $r) {
+        foreach ($this->getResponseByName('ont.verHardware', $response)->fetchAll() as $r) {
             $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['admin_status'] = $r->getParsedValue();
+            $return[$onuId]['ver_hardware'] = $r->getValue();
+        }
+        foreach ($this->getResponseByName('ont.vendor', $response)->fetchAll() as $r) {
+            $onuId = Helper::getIndexByOid($r->getOid());
+            $return[$onuId]['vendor'] = $r->getValue();
+        }
+        foreach ($this->getResponseByName('ont.model', $response)->fetchAll() as $r) {
+            $onuId = Helper::getIndexByOid($r->getOid());
+            $return[$onuId]['model'] = $r->getValue();
         }
         return array_values($return);
     }
@@ -68,16 +72,15 @@ class OntStatusDetailedInfo extends CDataAbstractModule
             $onuId = Helper::getIndexByOid($wr->getOid());
             $issetIds[$onuId] = true;
             switch ($oid->getName()) {
-                case 'ont.lastRegSince': $return[$onuId]['last_reg'] = time() - $wr->getValue();
-                                         $return[$onuId]['last_reg_since'] = $wr->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
-                                         break;
-                case 'ont.lastDownReason': $return[$onuId]['last_down_reason'] = $wr->getParsedValue(); break;
-                case 'ont.adminStatus': $return[$onuId]['admin_status'] = $wr->getParsedValue(); break;
+                case 'ont.verSoftware': $return[$onuId]['ver_software'] = $wr->getValue(); break;
+                case 'ont.verHardware': $return[$onuId]['ver_hardware'] = $wr->getValue(); break;
+                case 'ont.vendor': $return[$onuId]['vendor'] = $wr->getValue(); break;
+                case 'ont.model': $return[$onuId]['model'] = $wr->getValue(); break;
             }
         }
         $ids = array_keys($issetIds);
         $return = array_filter($return, function ($e) use ($ids) {
-          return in_array($e['interface']['id'], $ids);
+            return in_array($e['interface']['id'], $ids);
         });
         return array_values($return);
     }
@@ -95,10 +98,10 @@ class OntStatusDetailedInfo extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        $optical[] = $this->oids->getOidByName('ont.lastRegSince');
-        $optical[] = $this->oids->getOidByName('ont.lastDownReason');
-        $optical[] = $this->oids->getOidByName('ont.adminStatus');
-
+        $optical[] = $this->oids->getOidByName('ont.verSoftware');
+        $optical[] = $this->oids->getOidByName('ont.verHardware');
+        $optical[] = $this->oids->getOidByName('ont.vendor');
+        $optical[] = $this->oids->getOidByName('ont.model');
         if(!$filter['interface']) {
             $oids = [];
             foreach ($optical as $opt) {
@@ -108,8 +111,8 @@ class OntStatusDetailedInfo extends CDataAbstractModule
         } else {
             $oids = [];
             foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
-                foreach ($optical as $oid) {
-                    $oids[] = Oid::init("{$oid->getOid()}.$id");
+                foreach ($optical as $optId) {
+                   $oids[] = Oid::init("{$optId->getOid()}.$id");
                 }
             }
             $this->response = $this->processWithInterface($this->snmp->get($oids));
