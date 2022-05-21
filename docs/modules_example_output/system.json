@@ -86,7 +86,7 @@
             "modules": [
                 "system",
                 "vlans",
-                "pon_interfaces_list",
+                "pon_ports_list",
                 "pon_registered_onts",
                 "pon_onts_status",
                 "pon_onts_mac_addr",

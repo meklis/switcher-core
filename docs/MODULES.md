@@ -18339,7 +18339,7 @@ true
 </details>
             
     
-### [pon_interfaces_list](#pon_interfaces_list) - Information of PON interfaces 
+### [pon_ports_list](#pon_ports_list) - Information of PON interfaces 
       
 <details>
 <summary>Пример ответа</summary>
@@ -35777,7 +35777,7 @@ true
         "modules": [
             "system",
             "vlans",
-            "pon_interfaces_list",
+            "pon_ports_list",
             "pon_registered_onts",
             "pon_onts_status",
             "pon_onts_mac_addr",

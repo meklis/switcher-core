@@ -11,7 +11,7 @@ models:
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
       vlans: \SwitcherCore\Modules\CData\Vlans
-      pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
+      pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
       pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
@@ -59,7 +59,7 @@ models:
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
       vlans: \SwitcherCore\Modules\CData\Vlans
-      pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
+      pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
       pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
@@ -116,7 +116,7 @@ models:
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
       vlans: \SwitcherCore\Modules\CData\Vlans
-      pon_interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
+      pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\CData\GponOntSerial
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo

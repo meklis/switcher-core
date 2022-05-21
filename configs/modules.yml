@@ -368,7 +368,7 @@
 - name: zte_interfaces
   descr: Build interfaces list by card info
 
-- name: pon_interfaces_list
+- name: pon_ports_list
   descr: Information of PON interfaces
 
 - name: pon_count_registered_onts

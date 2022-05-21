@@ -8,7 +8,7 @@ use Exception;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class InterfacesList extends AbstractModule
+class PonPortsList extends AbstractModule
 {
     /**
      * @var WrappedResponse[]

@@ -56,7 +56,7 @@ class FdbTableConsole extends CDataAbstractModule
         if ($filter['interface']) {
             $ifaces[] = $this->parseInterface($filter['interface']);
         } else {
-            $ifaces = $this->getModule('pon_interfaces_list')->run()->getPretty();
+            $ifaces = $this->getModule('pon_ports_list')->run()->getPretty();
         }
         $this->response = $this->executeByInterfaces($ifaces);
         return $this;
