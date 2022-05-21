@@ -26,7 +26,7 @@ class InterfaceDescriptions extends C300ModuleAbstract
             $response = $this->formatResponse($this->snmp->get($oids));
         } else {
             $oids[] = Oid::init($this->oids->getOidByName('zx.ont.GponDescription')->getOid());
-           // $oids[] = Oid::init($this->oids->getOidByName('zx.ont.EponDescription')->getOid());
+            $oids[] = Oid::init($this->oids->getOidByName('zx.ont.EponDescription')->getOid());
             $response = $this->formatResponse($this->snmp->walk($oids));
         }
         $data = [];
