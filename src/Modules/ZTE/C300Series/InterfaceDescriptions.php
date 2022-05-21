@@ -35,7 +35,7 @@ class InterfaceDescriptions extends C300ModuleAbstract
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
                 $data[] = [
                     'interface' => $iface,
-                    'description' => $resp->getValue(),
+                    'description' => $this->prettyDescription($resp->getValue()),
                 ];
             }
         }
@@ -44,12 +44,20 @@ class InterfaceDescriptions extends C300ModuleAbstract
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
                 $data[] = [
                     'interface' => $iface,
-                    'description' => $resp->getValue(),
+                    'description' => $this->prettyDescription($resp->getValue()),
                 ];
             }
         }
         $this->response = $data;
         return  $this;
+    }
+    private function prettyDescription($descr) {
+        if(str_contains( $descr, '$$')) {
+            $blocks = explode("$$", $descr);
+            return $blocks[count($blocks) - 1];
+        } else {
+            return $descr;
+        }
     }
     public function getPretty()
     {
