@@ -72,7 +72,7 @@ abstract class C300ModuleAbstract extends AbstractModule
     function decodeSnmpOid($oid)
     {
         $onuNum = 0;
-        if(preg_match('/^([0-9]{1,})\.([0-9]){1,}$/', $oid, $matches)) {
+        if(preg_match('/^([0-9]{1,}?)\.([0-9]{1,})$/', $oid, $matches)) {
             $onuNum = $matches[2];
             $oid = $matches[1];
         }
