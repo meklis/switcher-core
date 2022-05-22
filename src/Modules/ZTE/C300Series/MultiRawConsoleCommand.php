@@ -21,7 +21,7 @@ class MultiRawConsoleCommand extends C300ModuleAbstract
         }
         $response = [];
         foreach ($commands as $command) {
-            $resp = $this->getModule('telnet_command')->run(['command' => trim($command)])->getPretty();
+            $resp = $this->getModule('console_command')->run(['command' => trim($command)])->getPretty();
             $response[] = $resp;
             if(!$resp['success'] && $params['break_on_error'] == 'yes') {
                 break;
