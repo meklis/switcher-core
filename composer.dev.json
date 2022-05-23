@@ -1,0 +1,44 @@
+{
+  "name": "meklis/switcher-core",
+  "description": "SNMP switcher core module",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Max Boyar",
+      "email": "max.boyar.a@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SwitcherCore\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.2.0",
+    "meklis/snmp-wrapper": "*",
+    "meklis/routeros-api": "dev-master",
+    "meklis/telnet": "dev-master",
+    "meklis/ipv4-subnet-calculator": "3.*",
+    "meklis/php-duration": "^1.2",
+    "php-di/php-di": "^6.1",
+    "composer/package-versions-deprecated": "1.x-dev",
+    "ocramius/proxy-manager": "^2.2",
+    "doctrine/annotations": "1.11.x-dev",
+    "ext-yaml": "*",
+    "monolog/monolog": "2.x-dev",
+    "ext-json": "*",
+    "phpseclib/phpseclib": "~3.0"
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+    "symfony/console": "4.4.x-dev"
+  },
+  "repositories": [
+    {
+      "package": "meklis/snmp-wrapper",
+      "type": "path",
+      "url": "../snmp-wrapper"
+    }
+  ]
+}

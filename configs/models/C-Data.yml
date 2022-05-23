@@ -10,7 +10,6 @@ models:
       - ./oids/cdata/fd-epon-series.yml
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
-      vlans: \SwitcherCore\Modules\CData\Vlans
       pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
       pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
@@ -58,7 +57,6 @@ models:
       - ./oids/cdata/fd-1208s-r1.yml
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
-      vlans: \SwitcherCore\Modules\CData\Vlans
       pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
       pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
@@ -115,7 +113,6 @@ models:
       - ./oids/cdata/fd-gpon-series.yml
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
-      vlans: \SwitcherCore\Modules\CData\Vlans
       pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\CData\GponOntSerial
