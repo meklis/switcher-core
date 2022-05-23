@@ -8,7 +8,7 @@ use ErrorException;
 use Exception;
 use SnmpWrapper\Device;
 use SnmpWrapper\MultiWalkerInterface;
-use SnmpWrapper\SnmpT\MultiWalker;
+use SnmpWrapper\NoProxy\MultiWalker;
 use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
 use SwitcherCore\Config\OidCollector;
