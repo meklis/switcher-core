@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=7.2.0",
-        "meklis/snmp-wrapper": "1.1.1",
+        "meklis/snmp-wrapper": "dev-master",
         "meklis/routeros-api": "dev-master",
         "meklis/telnet": "dev-master",
         "meklis/ipv4-subnet-calculator": "3.*",
