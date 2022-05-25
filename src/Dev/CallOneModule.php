@@ -30,6 +30,7 @@ class CallOneModule extends AbstractCommand
         }
         $data = $core->action($input->getArgument('module'), $arguments);
         $output->writeln(json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        return 0;
     }
 
 }

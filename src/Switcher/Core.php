@@ -6,6 +6,7 @@ use DI\Container;
 use DI\ContainerBuilder;
 use ErrorException;
 use Exception;
+use Meklis\Network\Console\Helpers\Helpers;
 use meklis\network\Telnet;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
@@ -134,10 +135,12 @@ class Core
             }
             $this->logger->info("Added console interface - " . get_class($input));
             $model = $this->container->get(Model::class);
-            $input->setHostType($model->getConsoleConnType());
+            $helper = Helpers::getByName($model->getConsoleConnType());
+            $input->setDeviceHelper($helper);
             try {
+                $helper->setAfterLoginCommands([]);
                 foreach ($model->getExtraParamByName('console_commands_after_connect') as $comm) {
-                    $input->addCommandAfterLogin($comm);
+                    $helper->addAfterLoginCommand($comm);
                 }
             } catch (Exception $e) {
             }

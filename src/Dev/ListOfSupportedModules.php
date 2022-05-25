@@ -42,6 +42,7 @@ class ListOfSupportedModules extends AbstractCommand
             ]);
         }
         $table->render();
+        return 0;
     }
 
 }
