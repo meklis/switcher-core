@@ -172,10 +172,12 @@ class CoreConnector
     }
     private function initConsole(\SwitcherCore\Switcher\Device $device) {
         if(!$device->get('consoleConnectionType') || $device->get('consoleConnectionType') == 'telnet') {
-            return (new TelnetLazyConnect($device->getIp(), $device->consolePort, $device->consoleTimeout, 15))
+            return (new TelnetLazyConnect($device->consoleTimeout, 10))
+                ->setHost($device->getIp(), $device->consolePort)
                 ->setAccess($device->getLogin(), $device->getPassword());
         } else if ($device->get('consoleConnectionType') == 'ssh') {
-            return (new SshLazyConnect($device->getIp(), $device->consolePort, $device->consoleTimeout))
+            return (new SshLazyConnect($device->consoleTimeout, 10))
+                ->setHost($device->getIp(), $device->consolePort)
                 ->setAccess($device->getLogin(), $device->getPassword());
         } else {
             throw new \Exception("Another console not implemented");

@@ -40,6 +40,7 @@ abstract class AbstractCommand extends Command
     {
         $this->input = $input;
         $this->exec($input,$output);
+        return 0;
     }
 
     function toYaml($data) {

@@ -18,7 +18,7 @@
         "php": ">=7.2.0",
         "meklis/snmp-wrapper": "dev-master",
         "meklis/routeros-api": "dev-master",
-        "meklis/telnet": "dev-master",
+        "meklis/console-client": "dev-master",
         "meklis/ipv4-subnet-calculator": "3.*",
         "meklis/php-duration": "^1.2",
         "php-di/php-di": "^6.1",
