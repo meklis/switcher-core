@@ -67,8 +67,9 @@ $core = $connector->init(
     //Метод init возвращает экземпляр класса Device
     Device::init($deviceIp, $deviceCommunity, $deviceLogin, $devicePassword)
         //Установка параметров для подключений, необязательно (в примере указаны дефолтные параметры)
-        ->set('telnetTimeout', 10) 
-        ->set('telnetPort', 23)
+        ->set('consoleConnectionType', Device::CONSOLE_TELNET) 
+        ->set('consoleTimeout', 10) 
+        ->set('consolePort', 23)
         ->set('snmpRepeats', 3)
         ->set('snmpTimeoutSec', 2)
         ->set('mikrotikApiPort', 8728)
