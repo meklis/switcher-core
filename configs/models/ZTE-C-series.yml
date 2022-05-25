@@ -35,7 +35,7 @@ models:
       zte_interface_parser: \SwitcherCore\Modules\ZTE\C300Series\InterfaceParser
       interface_descriptions: \SwitcherCore\Modules\ZTE\C300Series\InterfaceDescriptions
     extra:
-      console_conn_type: ios
+      console_conn_type: zte
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
