@@ -375,6 +375,8 @@
   descr: Count registered onts on pon
 
 - name: pon_onts_status
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
   descr: Returned onts statuses
 
 - name: pon_onts_mac_addr
@@ -410,6 +412,11 @@
     - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
 
 - name: pon_interface_counters
+  descr: Returned FDB table on ONTs
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: interface_counters
   descr: Returned FDB table on ONTs
   arguments:
     - {name: interface, pattern: '.*', required: no}
