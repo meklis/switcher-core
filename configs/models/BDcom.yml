@@ -27,6 +27,9 @@ models:
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
+      uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
+      uni_interfaces_counters: \SwitcherCore\Modules\BDcom\UniInterfacesCounters
+      uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
       console_conn_type: bdcom
       console_commands_after_connect:

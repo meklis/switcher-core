@@ -95,7 +95,7 @@ class OntOpticalInfo extends BDcomAbstractModule
             $oids[] = $oid->getOid();
         }
         if($filter['interface']) {
-            $iface = $this->getInterfacesIds();
+            $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['xid'];
             }, $oids);

@@ -488,3 +488,18 @@
   descr: Return interface description
   arguments:
     - {name: interface, pattern: '.*', required: no}
+
+- name: uni_interfaces_status
+  descr: Return UNI interfaces status by ONU
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: uni_interfaces_vlans
+  descr: Return UNI interfaces PVID/Vlans info
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: uni_interfaces_counters
+  descr: Return UNI interfaces Counters info
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
