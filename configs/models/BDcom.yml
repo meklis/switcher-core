@@ -35,17 +35,6 @@ models:
       console_commands_after_connect:
         - enable
         - terminal length 0
-      interfaces:
-        - {name: g0/1, id: 1, xid: 9, type: GE}
-        - {name: g0/2, id: 2, xid: 10, type: GE}
-        - {name: g0/3, id: 3, xid: 11, type: GE}
-        - {name: g0/4, id: 4, xid: 12, type: GE}
-        - {name: g0/5, id: 5, xid: 13, type: GE}
-        - {name: g0/6, id: 6, xid: 14, type: GE}
-        - {name: epon0/1, id: 10100000, xid: 15, type: PON, pontype: epon}
-        - {name: epon0/2, id: 10200000, xid: 16, type: PON, pontype: epon}
-        - {name: epon0/3, id: 10300000, xid: 17, type: PON, pontype: epon}
-        - {name: epon0/4, id: 10400000, xid: 18, type: PON, pontype: epon}
 
   - name: BDCOM P3310D
     key: bdcom_p3310d
@@ -83,18 +72,6 @@ models:
       console_commands_after_connect:
         - enable
         - terminal length 0
-      interfaces:
-        - {name: g0/1, id: 1, xid: 9, type: GE}
-        - {name: g0/2, id: 2, xid: 10, type: GE}
-        - {name: g0/3, id: 3, xid: 11, type: GE}
-        - {name: g0/4, id: 4, xid: 12, type: GE}
-        - {name: g0/5, id: 5, xid: 13, type: GE}
-        - {name: g0/6, id: 6, xid: 14, type: GE}
-        - {name: epon0/1, id: 10100000, xid: 15, type: PON, pontype: epon}
-        - {name: epon0/2, id: 10200000, xid: 16, type: PON, pontype: epon}
-        - {name: epon0/3, id: 10300000, xid: 17, type: PON, pontype: epon}
-        - {name: epon0/4, id: 10400000, xid: 18, type: PON, pontype: epon}
-
 
   - name: BDCOM P3310B
     key: bdcom_p3310b
@@ -132,14 +109,3 @@ models:
       console_commands_after_connect:
         - enable
         - terminal length 0
-      interfaces:
-        - {name: g0/1, id: 1, xid: 5, type: GE}
-        - {name: g0/2, id: 2, xid: 6, type: GE}
-        - {name: g0/3, id: 3, xid: 1, type: GE}
-        - {name: g0/4, id: 4, xid: 2, type: GE}
-        - {name: g0/5, id: 5, xid: 3, type: GE}
-        - {name: g0/6, id: 6, xid: 4, type: GE}
-        - {name: epon0/1, id: 10100000, xid: 8, type: PON, pontype: epon}
-        - {name: epon0/2, id: 10200000, xid: 9, type: PON, pontype: epon}
-        - {name: epon0/3, id: 10300000, xid: 10, type: PON, pontype: epon}
-        - {name: epon0/4, id: 10400000, xid: 11, type: PON, pontype: epon}

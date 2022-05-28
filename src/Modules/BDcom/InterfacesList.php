@@ -34,7 +34,7 @@ class InterfacesList extends BDcomAbstractModule
 
     function getPretty()
     {
-        return $this->response;
+        return $this->getPhysicalInterfaces();
     }
 
 

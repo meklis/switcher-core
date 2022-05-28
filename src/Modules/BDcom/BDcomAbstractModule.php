@@ -17,13 +17,14 @@ use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 abstract class BDcomAbstractModule extends AbstractModule
 {
-    private $interfaces;
-
     /**
      * @Inject
      * @var \SwitcherCore\Switcher\Console\ConsoleInterface
      */
     protected $console;
+
+    private $physicalInterfaces = [];
+    private $interfacesIds = [];
 
     function getPretty()
     {
@@ -31,7 +32,6 @@ abstract class BDcomAbstractModule extends AbstractModule
     }
 
     function __construct(Model $model) {
-        $this->interfaces = $model->getExtraParamByName('interfaces');
     }
 
     function getPrettyFiltered($filter = [], $fromCache = false)
@@ -79,25 +79,58 @@ abstract class BDcomAbstractModule extends AbstractModule
        throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
-    protected $_ifaces;
     function getInterfacesIds() {
-        if($this->_ifaces) {
-            return  $this->_ifaces;
+        if(!$this->interfacesIds) {
+            $this->loadInterfaces();
         }
-        $ifacesList = $this->getCache("interfaces_list", true);
-        if($ifacesList) {
-            $this->_ifaces = $ifacesList;
-            return  $ifacesList;
+        return $this->interfacesIds;
+    }
+    protected function getPhysicalInterfaces() {
+        if(!$this->physicalInterfaces) {
+            $this->loadInterfaces();
         }
+        return $this->physicalInterfaces;
+    }
+    private function loadInterfaces() {
+        $data = $this->getCache("interfaces_list", true);
+        if($data) {
+            $this->interfacesIds = $data['ifaces_list'];
+            $this->physicalInterfaces = $data['ifaces_physical'];
+            return $this;
+        }
+
         $data = $this->formatResponse($this->snmp->walk([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Descr')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.llidSeqNumber')->getOid())
         ]));
+        //Build physical interfaces list
+        $this->physicalInterfaces = [];
+        foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
+            $xid = Helper::getIndexByOid($iface->getOid());
+            if (preg_match('/^GigaEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "g{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'GE',
+                ];
+            }
+            if (preg_match('/^EPON([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "epon{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'PON',
+                ];
+            }
+        }
         $ifaces = [];
         $llidSeqs = [];
         foreach($this->getResponseByName('ont.llidSeqNumber', $data)->fetchAll() as $item) {
             $xid = Helper::getIndexByOid($item->getOid(), 6);
-            $parentIface = $this->findInterface($xid, 'xid');
+            $parentIface = $this->findPhysicalInterface($xid, 'xid');
             $llidSeqs["{$parentIface['name']}:{$item->getValue()}"] = "." .
                 Helper::getIndexByOid($item->getOid(), 6) . "." .
                 Helper::getIndexByOid($item->getOid(), 5) . "." .
@@ -109,7 +142,7 @@ abstract class BDcomAbstractModule extends AbstractModule
         }
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
-            $parentIface = $this->findInterface($xid, 'xid');
+            $parentIface = $this->findPhysicalInterface($xid, 'xid');
             $type =  $parentIface ? $parentIface['type'] : 'ONU';
             //Fucking telnet - need to rename port
             $name = strtolower($iface->getValue());
@@ -130,9 +163,13 @@ abstract class BDcomAbstractModule extends AbstractModule
             ];
         }
         ksort($ifaces);
-        $this->_ifaces = $ifaces;
-        $this->setCache("interfaces_list", $ifaces, 60, true);
-        return $ifaces;
+        sort($this->physicalInterfaces);
+        $this->interfacesIds = $ifaces;
+        $this->setCache("interfaces_list", [
+            'ifaces_physical' => $this->interfacesIds,
+            'ifaces_list' => $this->physicalInterfaces,
+        ], 60, true);
+        return $this;
     }
 
     private function findParentByName($name) {
@@ -162,9 +199,9 @@ abstract class BDcomAbstractModule extends AbstractModule
         }
         return null;
     }
-    private function findInterface($findValue, $findKey)
+    private function findPhysicalInterface($findValue, $findKey)
     {
-        $filtered = array_values(array_filter($this->interfaces, function ($val) use ($findValue, $findKey) {
+        $filtered = array_values(array_filter($this->physicalInterfaces, function ($val) use ($findValue, $findKey) {
             return isset($val[$findKey]) && $val[$findKey] == $findValue;
         }));
         if (count($filtered) > 0) {
