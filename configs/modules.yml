@@ -393,6 +393,7 @@
   descr: Returned ONTs MAC addresses
   arguments:
     - {name: interface, pattern: '.*', required: no}
+    - {name: load_only, pattern: '^.*', required: no }
 
 - name: pon_onts_reasons
   descr: Returned ONTs MAC addresses

@@ -58,14 +58,15 @@ class OntReasons extends BDcomAbstractModule
                 $ifaces[$llid]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
             }
         }
-        $data = $this->getResponseByName('ont.llidLastDeregTime');
+        $data = $this->getResponseByName('ont.llidLastDeregReason');
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
+                $llid = $this->getLLidFromOid($r->getOid());
                 if(!isset($ifaces[$llid])) continue;
                 $ifaces[$llid]['last_down_reason'] = $r->getParsedValue();
             }
         }
-        return $ifaces;
+        return array_values($ifaces);
     }
 
 
