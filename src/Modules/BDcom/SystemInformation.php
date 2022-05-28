@@ -33,6 +33,7 @@ class SystemInformation extends AbstractModule
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
             'serial_num' => $this->getResponseByName('sys.serialNum')->fetchOne()->getValue(),
+            'mac_addr' => $this->getResponseByName('sys.macAddress')->fetchOne()->getHexValue(),
             'board_software_ver' => $this->getResponseByName('sys.boardSoftwareVer')->fetchOne()->getValue(),
             'board_hardware_ver' => $this->getResponseByName('sys.boardHardwareVer')->fetchOne()->getValue(),
             'meta' =>  [

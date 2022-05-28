@@ -141,12 +141,16 @@ abstract class AbstractModule
      * @throws DependencyException
      * @throws NotFoundException
      */
-    protected function getCache($key) {
+    protected function getCache($key, $withoutClass = false) {
         if(!$this->container->has(CacheInterface::class)) {
             return null;
         }
         $cache = $this->container->get(CacheInterface::class);
-        $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+        if($withoutClass) {
+            $key = "_" . $this->device->getIp() . ":" . $key;
+        } else {
+            $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+        }
         return $cache->get($key);
     }
 
@@ -162,7 +166,7 @@ abstract class AbstractModule
      * @throws DependencyException
      * @throws NotFoundException
      */
-    protected function setCache($key, $value, $timeout = -1) {
+    protected function setCache($key, $value, $timeout = -1, $withoutClass = false) {
         if(!$this->device->getIp()) {
             throw new NotFoundException("Incorrect injected device, without device");
         }
@@ -170,7 +174,11 @@ abstract class AbstractModule
             $this->logger->notice("Cache interface not setted");
             return false;
         }
-        $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+        if($withoutClass) {
+            $key = "_" . $this->device->getIp() . ":" . $key;
+        } else {
+            $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+        }
         $this->container->get(CacheInterface::class)->set($key, $value, $timeout);
         return  true;
     }

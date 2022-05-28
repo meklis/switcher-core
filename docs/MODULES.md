@@ -15360,6 +15360,13 @@ true
 </details>
             
     
+### [console_command](#console_command) -  
+    
+**Аргументы:**    
+- **command**, проверка выражением: *.**, обязательный    
+      
+    
+    
 ### [counters](#counters) - Счетчики на портах 
     
 **Аргументы:**    
@@ -16228,6 +16235,20 @@ true
 </p>
 </details>
             
+    
+### [interface_counters](#interface_counters) - Returned FDB table on ONTs 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [interface_descriptions](#interface_descriptions) - Return interface description 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
     
 ### [interface_info](#interface_info) - Информация по интерфейсам (on L3 devices) 
     
@@ -17856,7 +17877,7 @@ true
 </details>
             
     
-### [multi_telnet_command](#multi_telnet_command) -  
+### [multi_console_command](#multi_console_command) -  
     
 **Аргументы:**    
 - **commands**, проверка выражением: *.**, обязательный    
@@ -17924,829 +17945,7 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "status": "Up",
-        "interface": {
-            "name": "pon0\/0\/2:1",
-            "parent": 16780800,
-            "id": 16780801,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": "1"
-        },
-        "admin_status": "Enabled",
-        "vlan_id": 40,
-        "vlan_mode": "Untagged",
-        "stat_in_octets": "0",
-        "stat_in_undersize_pkts": 0,
-        "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 0,
-        "stat_in_crc_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_undersize_pkts": 0,
-        "stat_out_oversize_pkts": 0,
-        "stat_out_fragments_pkts": 0,
-        "stat_out_crc_pkts": 0,
-        "stat_out_drop_pkts": 0,
-        "stat_out_jabber": 0
-    },
-    {
-        "status": "Down",
-        "interface": {
-            "name": "pon0\/0\/2:2",
-            "parent": 16780800,
-            "id": 16780802,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": "1"
-        },
-        "admin_status": "Enabled",
-        "vlan_id": 40,
-        "vlan_mode": "Untagged",
-        "stat_in_octets": "0",
-        "stat_in_undersize_pkts": 0,
-        "stat_in_oversize_pkts": 0,
-        "stat_in_fragments_pkts": 0,
-        "stat_in_crc_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_in_jabber_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_undersize_pkts": 0,
-        "stat_out_oversize_pkts": 0,
-        "stat_out_fragments_pkts": 0,
-        "stat_out_crc_pkts": 0,
-        "stat_out_drop_pkts": 0,
-        "stat_out_jabber": 0
-    },
-    {
-        "stat_in_octets": "1699265059",
-        "interface": {
-            "name": "ge0\/0\/1",
-            "parent": null,
-            "id": 16777472,
-            "xid": 1,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 12162,
-        "stat_out_octets": "45959056",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/2",
-            "parent": null,
-            "id": 16777728,
-            "xid": 2,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/3",
-            "parent": null,
-            "id": 16777984,
-            "xid": 3,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/4",
-            "parent": null,
-            "id": 16778240,
-            "xid": 4,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/5",
-            "parent": null,
-            "id": 16778496,
-            "xid": 5,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/6",
-            "parent": null,
-            "id": 16778752,
-            "xid": 6,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/7",
-            "parent": null,
-            "id": 16779008,
-            "xid": 7,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "ge0\/0\/8",
-            "parent": null,
-            "id": 16779264,
-            "xid": 8,
-            "type": "1G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "xge0\/0\/1",
-            "parent": null,
-            "id": 16779520,
-            "xid": 9,
-            "type": "10G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "xge0\/0\/2",
-            "parent": null,
-            "id": 16779776,
-            "xid": 10,
-            "type": "10G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "xge0\/0\/3",
-            "parent": null,
-            "id": 16780032,
-            "xid": 11,
-            "type": "10G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "xge0\/0\/4",
-            "parent": null,
-            "id": 16780288,
-            "xid": 12,
-            "type": "10G-SFP",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/1",
-            "parent": null,
-            "id": 16780544,
-            "xid": 13,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "45598565",
-        "interface": {
-            "name": "pon0\/0\/2",
-            "parent": null,
-            "id": 16780800,
-            "xid": 14,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 4,
-        "stat_out_octets": "1708219332",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/3",
-            "parent": null,
-            "id": 16781056,
-            "xid": 15,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/4",
-            "parent": null,
-            "id": 16781312,
-            "xid": 16,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/5",
-            "parent": null,
-            "id": 16781568,
-            "xid": 17,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/6",
-            "parent": null,
-            "id": 16781824,
-            "xid": 18,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/7",
-            "parent": null,
-            "id": 16782080,
-            "xid": 19,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    },
-    {
-        "stat_in_octets": "0",
-        "interface": {
-            "name": "pon0\/0\/8",
-            "parent": null,
-            "id": 16782336,
-            "xid": 20,
-            "type": "PON",
-            "onu_num": null,
-            "uni": null
-        },
-        "stat_in_oversize_pkts": 0,
-        "stat_in_drop_pkts": 0,
-        "stat_out_octets": "0",
-        "stat_out_oversize_pkts": 0,
-        "stat_out_drop_pkts": 0
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
     
-### [pon_ports_list](#pon_ports_list) - Information of PON interfaces 
-      
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "name": "ge0\/0\/1",
-        "id": 16777472,
-        "xid": 1,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/2",
-        "id": 16777728,
-        "xid": 2,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/3",
-        "id": 16777984,
-        "xid": 3,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/4",
-        "id": 16778240,
-        "xid": 4,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/5",
-        "id": 16778496,
-        "xid": 5,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/6",
-        "id": 16778752,
-        "xid": 6,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/7",
-        "id": 16779008,
-        "xid": 7,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "ge0\/0\/8",
-        "id": 16779264,
-        "xid": 8,
-        "type": "1G-SFP"
-    },
-    {
-        "name": "xge0\/0\/1",
-        "id": 16779520,
-        "xid": 9,
-        "type": "10G-SFP"
-    },
-    {
-        "name": "xge0\/0\/2",
-        "id": 16779776,
-        "xid": 10,
-        "type": "10G-SFP"
-    },
-    {
-        "name": "xge0\/0\/3",
-        "id": 16780032,
-        "xid": 11,
-        "type": "10G-SFP"
-    },
-    {
-        "name": "xge0\/0\/4",
-        "id": 16780288,
-        "xid": 12,
-        "type": "10G-SFP"
-    },
-    {
-        "name": "pon0\/0\/1",
-        "id": 16780544,
-        "xid": 13,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/2",
-        "id": 16780800,
-        "xid": 14,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/3",
-        "id": 16781056,
-        "xid": 15,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/4",
-        "id": 16781312,
-        "xid": 16,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/5",
-        "id": 16781568,
-        "xid": 17,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/6",
-        "id": 16781824,
-        "xid": 18,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/7",
-        "id": 16782080,
-        "xid": 19,
-        "type": "PON"
-    },
-    {
-        "name": "pon0\/0\/8",
-        "id": 16782336,
-        "xid": 20,
-        "type": "PON"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
-    
-### [pon_interfaces_tree](#pon_interfaces_tree) - Information of PON interfaces with onu and parent Ids 
-    
-**Аргументы:**    
-- **as_tree**, проверка выражением: *yes|no*    
-      
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "interface": {
-            "name": "ge0\/0\/1",
-            "id": 16777472,
-            "xid": 1,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/2",
-            "id": 16777728,
-            "xid": 2,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/3",
-            "id": 16777984,
-            "xid": 3,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/4",
-            "id": 16778240,
-            "xid": 4,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/5",
-            "id": 16778496,
-            "xid": 5,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/6",
-            "id": 16778752,
-            "xid": 6,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/7",
-            "id": 16779008,
-            "xid": 7,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "ge0\/0\/8",
-            "id": 16779264,
-            "xid": 8,
-            "type": "1G-SFP"
-        },
-        "parent": null,
-        "type": "1G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "xge0\/0\/1",
-            "id": 16779520,
-            "xid": 9,
-            "type": "10G-SFP"
-        },
-        "parent": null,
-        "type": "10G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "xge0\/0\/2",
-            "id": 16779776,
-            "xid": 10,
-            "type": "10G-SFP"
-        },
-        "parent": null,
-        "type": "10G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "xge0\/0\/3",
-            "id": 16780032,
-            "xid": 11,
-            "type": "10G-SFP"
-        },
-        "parent": null,
-        "type": "10G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "xge0\/0\/4",
-            "id": 16780288,
-            "xid": 12,
-            "type": "10G-SFP"
-        },
-        "parent": null,
-        "type": "10G-SFP",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/1",
-            "id": 16780544,
-            "xid": 13,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2",
-            "id": 16780800,
-            "xid": 14,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/3",
-            "id": 16781056,
-            "xid": 15,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/4",
-            "id": 16781312,
-            "xid": 16,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/5",
-            "id": 16781568,
-            "xid": 17,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/6",
-            "id": 16781824,
-            "xid": 18,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/7",
-            "id": 16782080,
-            "xid": 19,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/8",
-            "id": 16782336,
-            "xid": 20,
-            "type": "PON"
-        },
-        "parent": null,
-        "type": "PON",
-        "status": null
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:1",
-            "parent": 16780800,
-            "id": 16780801,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null
-        },
-        "parent": 16780801,
-        "type": "ONT",
-        "status": "Online"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:2",
-            "parent": 16780800,
-            "id": 16780802,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null
-        },
-        "parent": 16780802,
-        "type": "ONT",
-        "status": "Online"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
     
 ### [pon_ont_clear_counters](#pon_ont_clear_counters) - Clear counters on ONT (uni port) 
     
@@ -18782,58 +17981,6 @@ true
 - **interface**, проверка выражением: *.**    
       
     
-    
-### [pon_onts_vendor](#pon_onts_vendor) - Returned ONTs MAC addresses 
-    
-**Аргументы:**    
-- **interface**, проверка выражением: *.**    
-      
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "interface": {
-            "name": "pon0\/0\/2:1",
-            "parent": 16780800,
-            "id": 16780801,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null
-        },
-        "ver_software": "V1.2.3",
-        "ver_hardware": "F680.1A",
-        "vendor": "43 44 54 00 ",
-        "model": "110F"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:2",
-            "parent": 16780800,
-            "id": 16780802,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null
-        },
-        "ver_software": "V1.2.2",
-        "ver_hardware": "F680.1A",
-        "vendor": "43 44 54 00 ",
-        "model": "110F"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
     
 ### [pon_onts_mac_addr](#pon_onts_mac_addr) - Returned ONTs MAC addresses (for EPON) 
     
@@ -18887,6 +18034,7 @@ true
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
+- **load_only**, проверка выражением: *^.**    
       
 <details>
 <summary>Пример ответа</summary>
@@ -20952,6 +20100,13 @@ true
 </details>
             
     
+### [pon_onts_reasons](#pon_onts_reasons) - Returned ONTs MAC addresses 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
 ### [pon_onts_serial](#pon_onts_serial) - Returned ONTs serial number (for GPON) 
     
 **Аргументы:**    
@@ -20960,6 +20115,9 @@ true
     
     
 ### [pon_onts_status](#pon_onts_status) - Returned onts statuses 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
       
 <details>
 <summary>Пример ответа</summary>
@@ -24134,59 +23292,24 @@ true
 </details>
             
     
-### [pon_onts_reasons](#pon_onts_reasons) - Returned ONTs MAC addresses 
+### [pon_onts_vendor](#pon_onts_vendor) - Returned ONTs MAC addresses 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[
-    {
-        "interface": {
-            "name": "pon0\/0\/2:1",
-            "parent": 16780800,
-            "id": 16780801,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 1,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1629316638,
-        "last_reg_since": "0d 0h 25min 12sec",
-        "last_down_reason": "Losi",
-        "admin_status": "Enabled"
-    },
-    {
-        "interface": {
-            "name": "pon0\/0\/2:2",
-            "parent": 16780800,
-            "id": 16780802,
-            "xid": 14,
-            "type": "ONU",
-            "onu_num": 2,
-            "uni": null
-        },
-        "status": "Online",
-        "last_reg": 1629317253,
-        "last_reg_since": "0d 0h 14min 57sec",
-        "last_down_reason": "",
-        "admin_status": "Enabled"
-    }
-]
-```             
-         
-        
-</p>
-</details>
-            
+    
+    
+### [pon_ports_list](#pon_ports_list) - Information of PON interfaces 
+      
+    
+    
+### [pon_ports_optical](#pon_ports_optical) - Return optical information from PON-SFP 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+- **load_only**, проверка выражением: *.**    
+      
+    
     
 ### [pvid](#pvid) - PVID таблица 
     
@@ -35803,10 +34926,24 @@ true
 </details>
             
     
-### [telnet_command](#telnet_command) -  
+### [uni_interfaces_counters](#uni_interfaces_counters) - Return UNI interfaces Counters info 
     
 **Аргументы:**    
-- **command**, проверка выражением: *.**, обязательный    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [uni_interfaces_status](#uni_interfaces_status) - Return UNI interfaces status by ONU 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [uni_interfaces_vlans](#uni_interfaces_vlans) - Return UNI interfaces PVID/Vlans info 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
       
     
     

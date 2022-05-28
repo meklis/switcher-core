@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\BDcom;
+namespace SwitcherCore\Modules\BDcom\P3310B;
 
 
 use Exception;
@@ -9,6 +9,7 @@ use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
 use SnmpWrapper\Response\SnmpResponse;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\BDcom\BDcomAbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
@@ -44,7 +45,7 @@ class OntVendorInfo extends BDcomAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $xid = Helper::getIndexByOid($r->getOid());
                 $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['model'] = $this->convertHexToString($r->getHexValue());
+                $ifaces[$xid]['model'] = $r->getValue();
             }
         }
         $data = $this->getResponseByName('ont.verSoftware');
@@ -52,7 +53,7 @@ class OntVendorInfo extends BDcomAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $xid = Helper::getIndexByOid($r->getOid());
                 $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['ver_software'] = $this->convertBytesToVersion($r->getHexValue());
+                $ifaces[$xid]['ver_software'] = $this->convertHexToString($r->getHexValue());
             }
         }
         $data = $this->getResponseByName('ont.verHardware');
@@ -110,6 +111,9 @@ class OntVendorInfo extends BDcomAbstractModule
         foreach ($symbols as $symbol) {
             $str .= hexdec($symbol) . ".";
         }
+        foreach (["%", "/", "\\", "(", ")"] as $symbol) {
+            $str = str_replace($symbol, "", $str);
+        }
         return trim($str, ".");
     }
 
@@ -122,7 +126,9 @@ class OntVendorInfo extends BDcomAbstractModule
             if(!mb_detect_encoding($char, 'ASCII', true)) {
                 continue;
             }
-
+            if(in_array($char, ["%", "/", "\\", "(", ")"])) {
+                continue;
+            }
             $str .= $char;
         }
         return $str;

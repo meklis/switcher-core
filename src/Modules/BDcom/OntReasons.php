@@ -27,23 +27,12 @@ class OntReasons extends BDcomAbstractModule
     function getPretty()
     {
         $ifaces = [];
-        foreach ($this->getInterfacesIds() as $v) {
-            if(!$v['_llid_id']) continue;
-            $ifaces[$v['_llid_id']] = [
-                'interface' => $v,
-                'last_reg' => null,
-                'last_dereg' => null,
-                'last_reg_since' => null,
-                'last_dereg_since' => null,
-                'last_down_reason' => null,
-            ];
-        }
         $data = $this->getResponseByName('ont.llidLastRegTime');
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $llid = $this->getLLidFromOid($r->getOid());
                 $time = $this->parseReasonTime($r->getHexValue());
-                if(!isset($ifaces[$llid])) continue;
+                $ifaces[$llid]['interface'] = $this->parseInterface($llid);
                 $ifaces[$llid]['last_reg'] = $time;
                 $ifaces[$llid]['last_reg_since'] =  $time == null ? null :$this->getSince($time);
             }
@@ -53,7 +42,7 @@ class OntReasons extends BDcomAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $llid = $this->getLLidFromOid($r->getOid());
                 $time = $this->parseReasonTime($r->getHexValue());
-                if(!isset($ifaces[$llid])) continue;
+                $ifaces[$llid]['interface'] = $this->parseInterface($llid);
                 $ifaces[$llid]['last_dereg'] = $time;
                 $ifaces[$llid]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
             }
@@ -62,11 +51,18 @@ class OntReasons extends BDcomAbstractModule
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $llid = $this->getLLidFromOid($r->getOid());
-                if(!isset($ifaces[$llid])) continue;
+                $ifaces[$llid]['interface'] = $this->parseInterface($llid);
                 $ifaces[$llid]['last_down_reason'] = $r->getParsedValue();
             }
         }
-        return array_values($ifaces);
+        return array_values(array_map(function ($e) {
+            if(!isset($e['last_down_reason'])) $e['last_down_reason'] = null;
+            if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
+            if(!isset($e['last_dereg'])) $e['last_dereg'] = null;
+            if(!isset($e['last_reg'])) $e['last_reg'] = null;
+            if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
+            return $e;
+        }, $ifaces));
     }
 
 
@@ -90,9 +86,12 @@ class OntReasons extends BDcomAbstractModule
             $oids = array_map(function ($e) use ($iface) {
                 return $e . $iface['_llid_id'];
             }, $oids);
+            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $this->response = $this->formatResponse($this->snmp->get($oids));
+        } else {
+            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $this->response = $this->formatResponse($this->snmp->walk($oids));
         }
-        $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
-        $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }
 

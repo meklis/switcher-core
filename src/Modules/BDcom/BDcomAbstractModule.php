@@ -79,9 +79,14 @@ abstract class BDcomAbstractModule extends AbstractModule
        throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
+    protected $_ifaces;
     function getInterfacesIds() {
-        $ifacesList = $this->getCache("interfaces_list");
+        if($this->_ifaces) {
+            return  $this->_ifaces;
+        }
+        $ifacesList = $this->getCache("interfaces_list", true);
         if($ifacesList) {
+            $this->_ifaces = $ifacesList;
             return  $ifacesList;
         }
         $data = $this->formatResponse($this->snmp->walk([
@@ -101,7 +106,6 @@ abstract class BDcomAbstractModule extends AbstractModule
                 Helper::getIndexByOid($item->getOid(), 2) . "." .
                 Helper::getIndexByOid($item->getOid(), 1) . "." .
                 Helper::getIndexByOid($item->getOid());
-
         }
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
@@ -126,7 +130,8 @@ abstract class BDcomAbstractModule extends AbstractModule
             ];
         }
         ksort($ifaces);
-        $this->setCache("interfaces_list", $ifaces, 30);
+        $this->_ifaces = $ifaces;
+        $this->setCache("interfaces_list", $ifaces, 60, true);
         return $ifaces;
     }
 

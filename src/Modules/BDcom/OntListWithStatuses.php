@@ -98,11 +98,17 @@ class OntListWithStatuses extends BDcomAbstractModule
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['xid'];
             }, $oids);
+            $oids = array_map(function ($e) {return \SnmpWrapper\Oid::init($e); }, $oids);
+            $this->response = $this->formate($this->formatResponse(
+                $this->snmp->get($oids)
+            ));
+        } else {
+            $oids = array_map(function ($e) {return \SnmpWrapper\Oid::init($e); }, $oids);
+            $this->response = $this->formate($this->formatResponse(
+                $this->snmp->walk($oids)
+            ));
+
         }
-        $oids = array_map(function ($e) {return \SnmpWrapper\Oid::init($e); }, $oids);
-        $this->response = $this->formate($this->formatResponse(
-            $this->snmp->walk($oids)
-        ));
         return $this;
     }
 }

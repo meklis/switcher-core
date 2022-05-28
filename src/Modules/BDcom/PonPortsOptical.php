@@ -11,7 +11,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OntOpticalInfo extends BDcomAbstractModule
+class PonPortsOptical extends BDcomAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -27,38 +27,21 @@ class OntOpticalInfo extends BDcomAbstractModule
     {
         $response = [];
         $ifaces = [];
+
         try {
-            $data = $this->getResponseByName('ont.opticalRx');
+            $data = $this->getResponseByName('pon.portOpTemperature');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
                     $xid = Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['rx'] = round($r->getValue() / 10, 2);
+                    $ifaces[$xid]['temp'] = round($r->getValue() / 256, 2);
                 }
             }
         } catch (\Exception $e) {
+
         }
         try {
-            $data = $this->getResponseByName('ont.opticalTx');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['tx'] = round($r->getValue() / 10, 2);
-                }
-            }
-        } catch (\Exception $e) {
-        }
-        $data = $this->getResponseByName('ont.opticalTemp');
-        if (!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['temp'] = round($r->getValue() / 256, 2);
-            }
-        }
-        try {
-            $data = $this->getResponseByName('ont.opticalVoltage');
+            $data = $this->getResponseByName('pon.portOpVcc');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
                     $xid = Helper::getIndexByOid($r->getOid());
@@ -68,37 +51,36 @@ class OntOpticalInfo extends BDcomAbstractModule
             }
         } catch (\Exception $e) {
         }
+
         try {
-            $data = $this->getResponseByName('ont.distance');
+            $data = $this->getResponseByName('pon.portOpBias');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
                     $xid = Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    if((int)$r->getValue() == 0) continue;
-                    $ifaces[$xid]['distance'] = (int)$r->getValue();
+                    $ifaces[$xid]['bias'] = (int)$r->getValue();
                 }
             }
         } catch (\Exception $e) {
         }
+
         try {
-            $data = $this->getResponseByName('pon.opticalOltRx');
+            $data = $this->getResponseByName('pon.portOpTxPower');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
                     $xid = Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    if($r->getValue() < -1000) continue;
-                    $ifaces[$xid]['olt_rx'] =  round($r->getValue() / 10, 2);
+                    $ifaces[$xid]['tx'] = round($r->getValue() / 10, 2);
                 }
             }
         } catch (\Exception $e) {
         }
+
         return array_values(array_map(function ($e) {
-            if (!isset($e['distance'])) $e['distance'] = null;
+            if (!isset($e['bias'])) $e['bias'] = null;
             if (!isset($e['voltage'])) $e['voltage'] = null;
             if (!isset($e['temp'])) $e['temp'] = null;
-            if (!isset($e['rx'])) $e['rx'] = null;
             if (!isset($e['tx'])) $e['tx'] = null;
-            if (!isset($e['olt_rx'])) $e['olt_rx'] = null;
             return $e;
         }, $ifaces));
     }
@@ -116,23 +98,17 @@ class OntOpticalInfo extends BDcomAbstractModule
         if($filter['load_only']) {
             $loadOnly = explode(",", $filter['load_only']);
         }
-        if (!$loadOnly || in_array("rx", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalRx');
-        }
-        if (!$loadOnly || in_array("tx", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalTx');
+        if (!$loadOnly || in_array("temp", $loadOnly)) {
+            $info[] = $this->oids->getOidByName('pon.portOpTemperature');
         }
         if (!$loadOnly || in_array("voltage", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalVoltage');
+            $info[] = $this->oids->getOidByName('pon.portOpVcc');
         }
-        if (!$loadOnly || in_array("temp", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalTemp');
+        if (!$loadOnly || in_array("bias", $loadOnly)) {
+            $info[] = $this->oids->getOidByName('pon.portOpBias');
         }
-        if (!$loadOnly || in_array("distance", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.distance');
-        }
-        if ($filter['interface'] && (!$loadOnly || in_array("olt_rx", $loadOnly))) {
-            $info[] = $this->oids->getOidByName('pon.opticalOltRx');
+        if (!$loadOnly || in_array("tx", $loadOnly)) {
+            $info[] = $this->oids->getOidByName('pon.portOpTxPower');
         }
         $oids = [];
         foreach ($info as $oid) {
@@ -140,6 +116,9 @@ class OntOpticalInfo extends BDcomAbstractModule
         }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
+            if($iface['type'] != 'PON') {
+                throw new \Exception("Allow only for PON ports");
+            }
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['xid'];
             }, $oids);

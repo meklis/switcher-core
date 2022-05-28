@@ -1,4 +1,5 @@
 #ONT BLOCK
+- {name: pon.opticalOltRx, oid: .1.3.6.1.4.1.3320.101.108.1.3 }
 - {name: ont.opticalRx, oid: .1.3.6.1.4.1.3320.101.10.5.1.5 } # ONU PON port optical receive power. Unit is 0.1dB.
 - {name: ont.opticalTx, oid: .1.3.6.1.4.1.3320.101.10.5.1.6 } # ONU PON port optical send power. Unit is 0.1dB.
 - {name: ont.opticalVoltage, oid: .1.3.6.1.4.1.3320.101.10.5.1.3 } #ONU PON port optical module volt. Unit is 100uV.
@@ -35,7 +36,7 @@
 # b[6] - секунда
 - {name: ont.llidLastRegTime, oid: .1.3.6.1.4.1.3320.101.11.1.1.9}
 - {name: ont.llidLastDeregTime, oid: .1.3.6.1.4.1.3320.101.11.1.1.10}
-- {name: ont.llidLastDeregReason, oid: .1.3.6.1.4.1.3320.101.11.1.1.11, values: {2: Normal, 3: MpcpDown, 4: OamDown, 5: FirmwareDownload, 6: IllegalMAC, 7: AdminDown, 8: WireDown, 9: PowerOff}}
+- {name: ont.llidLastDeregReason, oid: .1.3.6.1.4.1.3320.101.11.1.1.11, values: {2: normal, 3: mpcp-down, 4: oam-down, 5: firmware-download, 6: illegal-mac, 7: admin-down, 8: wire-down, 9: power-off}}
 
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.3320.3.6.10.1.11}
 #- {name: resources.cpuUsage5sec, oid: .1.3.6.1.4.1.3320.9.109.1.1.1.1.3}
@@ -47,10 +48,11 @@
 - {name: resources.fanStatus, oid: .1.3.6.1.4.1.3320.9.187.4.1.2, values: {1: Normal, 2: Stop, 3: Unused}}
 #- {name: resources.fanSpeed, oid: .1.3.6.1.4.1.3320.9.187.4.1.3}
 
-- {name: sys.boardDescr, oid: .1.3.6.1.4.1.3320.3.6.10.1.3} #Not used
-- {name: sys.serialNum, oid: .1.3.6.1.4.1.3320.3.6.10.1.4}
-- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.3320.3.6.10.1.5}
-- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.3320.3.6.10.1.6}
+#- {name: sys.boardDescr, oid: .1.3.6.1.4.1.3320.3.6.10.1.3} #Not used
+- {name: sys.serialNum, oid: .1.3.6.1.4.1.3320.9.225.1.2.0}
+- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.3320.9.225.1.7.0}
+- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.3320.9.225.1.8.0}
+- {name: sys.macAddress, oid: .1.3.6.1.4.1.3320.9.225.1.9.0}
 
 - {name: vlan.list, oid: .1.3.6.1.2.1.17.7.1.4.2.1.2.0}
 - {name: vlan.tagged, oid: .1.3.6.1.2.1.17.7.1.4.2.1.4}
@@ -65,7 +67,6 @@
 - {name: pon.portOpVcc, oid: .1.3.6.1.4.1.3320.101.107.1.7 } # Optical module volt. The unit is 0.1mV.
 - {name: pon.portOpBias, oid: .1.3.6.1.4.1.3320.101.107.1.8 } # Optical module bias current. The unit is 2mA.
 - {name: pon.portOpTxPower, oid: .1.3.6.1.4.1.3320.101.107.1.3 }
-- {name: pon.portOpRxOfOnuPower, oid: .1.3.6.1.4.1.3320.101.108.1.3 }
 - {name: pon.portUpOnuNum, oid: .1.3.6.1.4.1.3320.101.6.1.1.21}
 - {name: pon.portDownOnuNum, oid: .1.3.6.1.4.1.3320.101.6.1.1.22}
 - {name: pon.llIdIndexString, oid: .1.3.6.1.4.1.3320.101.6.1.1.23}
