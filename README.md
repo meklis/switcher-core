@@ -16,7 +16,7 @@
 - [x] D-link switches (snmp/telnet)
 - [x] Mikrotik routers (snmp/RouterOS api)
 - [ ] EdgeCore switches 
-- [ ] BDcom OLTs
+- [x] BDcom OLTs
 - [ ] Xtreme routers
 - [ ] Huawei switches
 - [x] ZTE OLTs
