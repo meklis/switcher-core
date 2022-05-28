@@ -8,16 +8,13 @@ use Exception;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class PonPortsList extends AbstractModule
+class PonPortsList extends BDcomAbstractModule
 {
     /**
      * @var WrappedResponse[]
      */
     protected $response = null ;
-    function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
-    }
+
     function getRaw()
     {
         return $this->response;
@@ -30,7 +27,7 @@ class PonPortsList extends AbstractModule
                 $e['pontype'] = null;
             }
             return $e;
-        },$this->model->getExtraParamByName('interfaces'));
+        },$this->getPhysicalInterfaces());
     }
 
     /**

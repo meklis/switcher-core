@@ -98,7 +98,6 @@ abstract class BDcomAbstractModule extends AbstractModule
             $this->physicalInterfaces = $data['ifaces_physical'];
             return $this;
         }
-
         $data = $this->formatResponse($this->snmp->walk([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Descr')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.llidSeqNumber')->getOid())
@@ -166,8 +165,8 @@ abstract class BDcomAbstractModule extends AbstractModule
         sort($this->physicalInterfaces);
         $this->interfacesIds = $ifaces;
         $this->setCache("interfaces_list", [
-            'ifaces_physical' => $this->interfacesIds,
-            'ifaces_list' => $this->physicalInterfaces,
+            'ifaces_physical' => $this->physicalInterfaces,
+            'ifaces_list' => $this->interfacesIds,
         ], 60, true);
         return $this;
     }
