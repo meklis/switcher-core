@@ -33,12 +33,16 @@ class InterfaceDescriptions extends BDcomAbstractModule
     {
         $data = [];
         foreach ($this->response as $resp) {
-            $d = [
-                'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
-                'description' => $resp->getValue(),
-            ];
-            if(!$d['interface']['id']) continue;
-            $data[] = $d;
+            try {
+                $d = [
+                    'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
+                    'description' => $resp->getValue(),
+                ];
+                if (!$d['interface']['id']) continue;
+                $data[] = $d;
+            } catch (\Exception $e) {
+                $this->logger->error("Error get interface description for interface:" . $e->getMessage());
+            }
         }
         return $data;
     }
