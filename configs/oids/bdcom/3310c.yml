@@ -36,7 +36,7 @@
 # b[6] - секунда
 - {name: ont.llidLastRegTime, oid: .1.3.6.1.4.1.3320.101.11.1.1.9}
 - {name: ont.llidLastDeregTime, oid: .1.3.6.1.4.1.3320.101.11.1.1.10}
-- {name: ont.llidLastDeregReason, oid: .1.3.6.1.4.1.3320.101.11.1.1.11, values: {2: normal, 3: mpcp-down, 4: oam-down, 5: firmware-download, 6: illegal-mac, 7: admin-down, 8: wire-down, 9: power-off}}
+- {name: ont.llidLastDeregReason, oid: .1.3.6.1.4.1.3320.101.11.1.1.11, values: {0: unknown, 2: normal, 3: mpcp-down, 4: oam-down, 5: firmware-download, 6: illegal-mac, 7: admin-down, 8: wire-down, 9: power-off}}
 
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.3320.3.6.10.1.11}
 #- {name: resources.cpuUsage5sec, oid: .1.3.6.1.4.1.3320.9.109.1.1.1.1.3}
