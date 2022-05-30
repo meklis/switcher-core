@@ -377,6 +377,7 @@
 - name: pon_onts_status
   arguments:
     - {name: interface, pattern: '.*', required: no}
+    - {name: load_only, pattern: '.*', required: no}
   descr: Returned onts statuses
 
 - name: pon_onts_mac_addr

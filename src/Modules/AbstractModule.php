@@ -93,7 +93,11 @@ abstract class AbstractModule
         $formated = [];
         foreach ($response as $resp) {
             $oid = $this->oids->findOidById($resp->getOid());
-            $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
+            if(isset($formated[$oid->getName()])) {
+                $formated[$oid->getName()]->addElements($resp);
+            } else {
+                $formated[$oid->getName()] = WrappedResponse::init($resp, $oid->getValues());
+            }
         }
 
         return $formated;

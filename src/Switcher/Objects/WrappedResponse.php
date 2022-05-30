@@ -106,4 +106,34 @@ class WrappedResponse {
         $this->data = $data;
         $this->counter = 0;
     }
+
+    /**
+     * @param PoollerResponse
+     * @return void
+     * @throws Exception
+     */
+    function addElements($data) {
+        if($data->error == '') {
+            $wrapped = [];
+            foreach ($data->getResponse() as $num=>$resp) {
+                if($resp->getType() == 'NoSuchInstance' || $resp->getType() == 'NoSuchObject') {
+                    throw new Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
+                }
+                $wrapperValue =  (new Resp())
+                    ->setOid($resp->getOid())
+                    ->setHexValue($resp->getHexValue())
+                    ->setType($resp->getType())
+                    ->setValue($resp->getValue());
+                if(isset($wrapValues[$resp->getValue()])) {
+                    $wrapperValue->setParsed($wrapValues[$resp->getValue()]);
+                } else {
+                    $wrapperValue->setParsed($resp->getValue());
+                }
+                $wrapped[] = $wrapperValue;
+            }
+            $data->response = $wrapped;
+        }
+        $this->data->setResponse(array_merge($this->data->getResponse(),$data->response));
+        $this->counter = 0;
+    }
 }

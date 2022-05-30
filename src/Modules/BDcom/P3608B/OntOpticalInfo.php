@@ -1,13 +1,14 @@
 <?php
 
 
-namespace SwitcherCore\Modules\BDcom;
+namespace SwitcherCore\Modules\BDcom\P3608B;
 
 
 use Exception;
 use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\BDcom\BDcomAbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
@@ -58,7 +59,9 @@ class OntOpticalInfo extends BDcomAbstractModule
                     $ifaces[$xid]['temp'] = round($r->getValue() / 256, 2);
                 }
             }
-        } catch (\Exception $e){}
+        } catch (\Exception $e) {
+
+        }
         try {
             $data = $this->getResponseByName('ont.opticalVoltage');
             if (!$data->error()) {
@@ -76,7 +79,7 @@ class OntOpticalInfo extends BDcomAbstractModule
                 foreach ($data->fetchAll() as $r) {
                     $xid = Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    if((int)$r->getValue() == 0) continue;
+                    if ((int)$r->getValue() == 0) continue;
                     $ifaces[$xid]['distance'] = (int)$r->getValue();
                 }
             }
@@ -88,8 +91,8 @@ class OntOpticalInfo extends BDcomAbstractModule
                 foreach ($data->fetchAll() as $r) {
                     $xid = Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    if($r->getValue() < -1000) continue;
-                    $ifaces[$xid]['olt_rx'] =  round($r->getValue() / 10, 2);
+                    if ($r->getValue() < -1000) continue;
+                    $ifaces[$xid]['olt_rx'] = round($r->getValue() / 10, 2);
                 }
             }
         } catch (\Exception $e) {
@@ -115,7 +118,7 @@ class OntOpticalInfo extends BDcomAbstractModule
     {
         $info = [];
         $loadOnly = [];
-        if($filter['load_only']) {
+        if ($filter['load_only']) {
             $loadOnly = explode(",", $filter['load_only']);
         }
         if (!$loadOnly || in_array("rx", $loadOnly)) {
@@ -140,6 +143,8 @@ class OntOpticalInfo extends BDcomAbstractModule
         foreach ($info as $oid) {
             $oids[] = $oid->getOid();
         }
+
+
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
@@ -148,13 +153,21 @@ class OntOpticalInfo extends BDcomAbstractModule
             $oids = array_map(function ($e) {
                 return Oid::init($e);
             }, $oids);
-            $this->response = $this->formatResponse($this->snmp->get($oids));
-
+            $this->response = $this->formatResponse($this->snmp->get($oids, 7, 3));
         } else {
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            //Load only active onts
+            $responses = [];
+            foreach ($this->getModule('pon_onts_status')->run(['interface'=> null, 'load_only'=>'status'])->getPrettyFiltered() as $status) {
+                if($status['status'] !== 'Online') continue;
+                $reqOids = array_map(function ($oid) use ($status) {
+                    return Oid::init("{$oid}.{$status['interface']['xid']}");
+                }, $oids);
+                $resp = $this->snmp->get($reqOids, 7, 2);
+                foreach ($resp as $r) {
+                   $responses[] = $r;
+                }
+            }
+            $this->response = $this->formatResponse($responses);
         }
         return $this;
     }

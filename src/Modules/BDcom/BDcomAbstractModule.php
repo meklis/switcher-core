@@ -59,7 +59,7 @@ abstract class BDcomAbstractModule extends AbstractModule
            }
        }
        if (is_string($input)) {
-           $input = strtolower($input);
+           $input = strtolower(str_replace("t", "", $input));
            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
                return $input == strtolower($iface['name']);
            }));
