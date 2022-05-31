@@ -56,7 +56,7 @@ class OntInfo extends C300ModuleAbstract
         $ont_logs = [];
         foreach (explode("\n", $logs) as $line) {
             if(preg_match('/^([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})(.*)/', trim($line), $m)) {
-                if(strpos('0000/00/00', $m[1]) !== false) continue;
+                if(strpos( $m[1],"0000") !== false) continue;
                 $ont_logs[] = [
                     'reg_time' => str_replace("/", "-", trim($m[1])),
                     'authpath_time' => str_replace("/", "-", trim($m[2])),
