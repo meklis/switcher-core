@@ -9,6 +9,7 @@
 
 ### Поддерживаемые интерфейсы 
 * Telnet
+* SSH 
 * SNMP
 * RouterOS API
 
@@ -27,7 +28,7 @@
 
 ### Необходимо для начала работы   
 PHP >= 7.2    
-Модули PHP: yaml, zip, curl, json, mbstring, snmp, sockets    
+Модули PHP: yaml, zip, curl, json, mbstring, snmp, sockets, ssl  
 
 
 *больше нет необходимости в использовании прокси(возможность работы через прокси убрана с версии 2.0)*
