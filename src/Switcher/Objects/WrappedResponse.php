@@ -15,9 +15,6 @@ class WrappedResponse {
     private $data;
     private $counter;
 
-    /**
-     * @return string
-     */
     public function error() {
         return $this->data->error;
     }
@@ -39,6 +36,9 @@ class WrappedResponse {
         if(isset($this->data->getResponse()[$counter])) {
             return $this->data->getResponse()[$counter];
         }
+        if(!$this->data->getResponse() && $this->data->getError()) {
+            throw new \SNMPException($this->data->getError());
+        }
         return null;
     }
 
@@ -57,6 +57,9 @@ class WrappedResponse {
      * @return Resp[]
      */
     public function fetchAll() {
+        if(!$this->data->getResponse() && $this->data->getError()) {
+            throw new \SNMPException($this->data->getError());
+        }
         return $this->data->getResponse();
     }
 

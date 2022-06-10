@@ -126,12 +126,12 @@ class DlinkParser extends SwitchesPortAbstractModule
     }
     protected function getPortList($filter) {
         $this->response = $this->formatResponse($this->snmp->walk([
-            Oid::init($this->oids->getOidByName('if.Type')->getOid(), true),
+            Oid::init($this->oids->getOidByName('dlink.CableDiagPortType')->getOid(), true),
             Oid::init($this->oids->getOidByName('if.OperStatus')->getOid()),
             Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true),
         ]));
         $ports_list = [];
-        foreach ($this->getResponseByName('if.Type')->fetchAll() as $ident) {
+        foreach ($this->getResponseByName('dlink.CableDiagPortType')->fetchAll() as $ident) {
             if(!in_array($ident->getParsedValue(), ['GE', 'FE'])) {
                 continue;
             }

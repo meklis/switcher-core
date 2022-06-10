@@ -1,12 +1,12 @@
-- {name: agent.CpuUtilization5sec, oid: .1.3.6.1.4.1.171.12.1.1.6.1.0 }
-- {name: agent.CpuUtilization1min, oid: .1.3.6.1.4.1.171.12.1.1.6.2.0 }
-- {name: agent.CpuUtilization5min, oid: .1.3.6.1.4.1.171.12.1.1.6.3.0 }
+- {name: agent.CpuUtilization5sec, oid: .1.3.6.1.4.1.171.12.1.1.6.1 }
+- {name: agent.CpuUtilization1min, oid: .1.3.6.1.4.1.171.12.1.1.6.2 }
+- {name: agent.CpuUtilization5min, oid: .1.3.6.1.4.1.171.12.1.1.6.3 }
 
-- {name: agent.DramUtilizationTotalDRAM, oid: .1.3.6.1.4.1.171.12.1.1.9.1.2.0 }
-- {name: agent.DramUtilizationUsedDRAM, oid: .1.3.6.1.4.1.171.12.1.1.9.1.3.0 }
-- {name: agent.DramUtilization, oid: .1.3.6.1.4.1.171.12.1.1.9.1.4.0 }
+- {name: agent.DramUtilizationTotalDRAM, oid: .1.3.6.1.4.1.171.12.1.1.9.1.2 }
+- {name: agent.DramUtilizationUsedDRAM, oid: .1.3.6.1.4.1.171.12.1.1.9.1.3 }
+- {name: agent.DramUtilization, oid: .1.3.6.1.4.1.171.12.1.1.9.1.4 }
 
-- {name: agent.SerialNumber, oid: .1.3.6.1.4.1.171.12.1.1.12.0 }
+- {name: agent.SerialNumber, oid: .1.3.6.1.4.1.171.12.1.1.12 }
 
 - {name: agent.PortUtilizationTx, oid: .1.3.6.1.4.1.171.12.1.1.8.1.2 }
 - {name: agent.PortUtilizationRx, oid: .1.3.6.1.4.1.171.12.1.1.8.1.3 }

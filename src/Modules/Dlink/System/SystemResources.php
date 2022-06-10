@@ -104,7 +104,7 @@ class SystemResources extends SwitchesPortAbstractModule
             }
         }
         if ($oArray) {
-            $returnedGets = $this->snmp->get($oArray);
+            $returnedGets = $this->snmp->walk($oArray);
         } else {
             $returnedGets = [];
         }
