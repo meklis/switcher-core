@@ -22,6 +22,7 @@ $app->setName("SwitcherCore dev console");
 
 $app->add(new \SwitcherCore\Dev\ListOfSupportedModules());
 $app->add(new \SwitcherCore\Dev\CallOneModule());
+$app->add(new \SwitcherCore\Dev\GetDescrByNetwork());
 $app->add(new \SwitcherCore\Dev\CycleCalling());
 
 

@@ -20,6 +20,7 @@
 - [x] BDcom OLTs
 - [ ] Xtreme routers
 - [ ] Huawei switches
+- [ ] Huawei OLTs
 - [x] ZTE OLTs
 - [x] C-Data OLts
 
