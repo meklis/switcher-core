@@ -484,7 +484,7 @@
 - name: parse_interface
   descr: Returened parsed interface from input
   arguments:
-    - {name: interface, pattern: '.*', required: yes}
+    - {name: interface, pattern: '.*', required: no}
 
 - name: interface_descriptions
   descr: Return interface description

@@ -49,7 +49,7 @@ abstract class AbstractModule
      * @Inject
      * @var Container
      */
-    private $container;
+    protected $container;
 
 
     /**
