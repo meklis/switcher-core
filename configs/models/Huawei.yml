@@ -22,8 +22,8 @@ models:
      interface_descriptions: \SwitcherCore\Modules\Huawei\Descriptions
      sys_resources: \SwitcherCore\Modules\Huawei\SysResources
      rmon: \SwitcherCore\Modules\Huawei\Rmon
+     pvid: \SwitcherCore\Modules\Huawei\PvidDot1q
 #     cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
-#     pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
 #     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
 #     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
 #     reboot: \SwitcherCore\Modules\Dlink\Reboot
