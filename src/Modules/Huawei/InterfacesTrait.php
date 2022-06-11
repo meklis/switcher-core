@@ -61,7 +61,16 @@ trait InterfacesTrait
         if(is_numeric($iface) && isset($ifaces[$iface])) {
             return $ifaces[$iface];
         }
-        print_r($ifaces);
+        if(is_numeric($iface)) {
+            $ifaces = array_filter($ifaces, function ($e) use ($iface) {
+                return $iface == $e['id'];
+            });
+            if(count($ifaces) != 0) {
+                return array_values($ifaces)[0];
+            } else {
+                throw new \Exception("Interface with name {$iface} not found");
+            }
+        }
         if(preg_match('/^(Ge|eth)[0-9]{1,4}$/', $iface)) {
             $ifaces = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == $e['name'];
@@ -107,19 +116,25 @@ trait InterfacesTrait
             throw new \Exception($response->getError());
         }
         $ifaces = [];
+
+        $lastEthNum = 0;
         foreach ($response->getResponse() as $r) {
             if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $name = "eth{$m[5]}";
                 $id = $m[5];
+                if($m[1] == "Ethernet") {
+                    $lastEthNum  = $m[5];
+                }
                 if ($m[1] == 'GigabitEthernet') {
                     $name = "Ge{$m[5]}";
-                    $id += 100;
+                    $id = $lastEthNum + $m[5];
                 }
 
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'xid' => Helper::getIndexByOid($r->getOid()),
-                    'id' => $id,
+                    'id' => $id + 1000,
                     'name' => $name,
+                    '_num' => $id,
+                    '_if_id' => Helper::getIndexByOid($r->getOid()),
                     '_type' => $m[1],
                     '_shelf' => $m[3],
                     '_slot' => $m[4],
