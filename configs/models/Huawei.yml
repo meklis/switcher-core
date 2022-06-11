@@ -9,10 +9,12 @@ models:
    detect: {description: ^S2326TP-EI.*,  objid: .1.3.6.1.4.1.2011.2.23.92 }
    extra:
      console_conn_type: huawei
+   oids:
+     - ./oids/huawei/s2326tp.yml
    modules:
      system: \SwitcherCore\Modules\Huawei\System
      parse_interface: \SwitcherCore\Modules\Huawei\ParseInterface
-#     fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
+     fdb: \SwitcherCore\Modules\Huawei\Fdb
 #     link_info: \SwitcherCore\Modules\Dlink\Link\DlinkDgs3420Parser
 #     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
 #     vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser

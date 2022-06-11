@@ -62,13 +62,11 @@ trait InterfacesTrait
             return $ifaces[$iface];
         }
         if(is_numeric($iface)) {
-            $ifaces = array_filter($ifaces, function ($e) use ($iface) {
+            $filteredList = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == $e['id'];
             });
-            if(count($ifaces) != 0) {
-                return array_values($ifaces)[0];
-            } else {
-                throw new \Exception("Interface with name {$iface} not found");
+            if(count($filteredList) != 0) {
+                return array_values($filteredList)[0];
             }
         }
         if(preg_match('/^(Ge|eth)[0-9]{1,4}$/', $iface)) {
@@ -130,11 +128,10 @@ trait InterfacesTrait
                     $id = $lastEthNum + $m[5];
                 }
 
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => $id + 1000,
+                $ifaces[Helper::getIndexByOid($r->getOid()) + 1000] = [
+                    'id' => $id ,
                     'name' => $name,
-                    '_num' => $id,
-                    '_if_id' => Helper::getIndexByOid($r->getOid()),
+                    '_if_id' => Helper::getIndexByOid($r->getOid()) + 1000,
                     '_type' => $m[1],
                     '_shelf' => $m[3],
                     '_slot' => $m[4],
