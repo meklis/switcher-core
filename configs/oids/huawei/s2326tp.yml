@@ -1,4 +1,7 @@
-# .1.3.6.1.2.1.17.7.1.2.2.1.2.[VLAN ID].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET] = [PORT]
 - {name: dot1q.FdbPort, oid: .1.3.6.1.2.1.17.4.3.1.2, access: read}
-# .1.3.6.1.2.1.17.7.1.2.2.1.3.[VLAN ID].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET] = [STATUS]
 - {name: dot1q.FdbStatus, oid: .1.3.6.1.2.1.17.4.3.1.3, access: read, values: {1: OTHER, 2: INVALID, 3: LEARNED, 4: SELF, 5: MGMT}}
+
+- {name: resources.cpuUtil, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.1.1.5 }
+- {name: resources.memUtil, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.1.1.7 }
+- {name: resources.temperature, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.1.1.11 }
+- {name: resources.temperatureThreshold, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.1.1.12 }
