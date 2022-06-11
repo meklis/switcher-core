@@ -23,7 +23,7 @@ abstract class Rmon extends AbstractInterfaces
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
                 if(!isset($indexes[$port_index])) continue;
-                $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();
+                $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = (float)$resp->getValue();
                 $response[$port_index]['interface'] = $indexes[$port_index];
             }
         }

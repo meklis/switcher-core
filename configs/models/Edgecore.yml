@@ -18,7 +18,7 @@ models:
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
       interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
-      sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
+#      sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
       rmon: \SwitcherCore\Modules\Edgecore\Rmon
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
 #     cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser

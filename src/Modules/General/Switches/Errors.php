@@ -25,25 +25,25 @@ abstract class Errors extends AbstractInterfaces
             $index = Helper::getIndexByOid($i->getOid());
             if(!isset($indexes[$index])) continue;
             $errors[$index]['interface'] = $indexes[$index];
-            $errors[$index]['in_errors'] = $i->getValue();
+            $errors[$index]['in_errors'] = (float)$i->getValue();
         }
         foreach ($out_err as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
             $errors[$index]['interface'] = $indexes[$index];
-            $errors[$index]['out_errors'] = $o->getValue();
+            $errors[$index]['out_errors'] = (float)$o->getValue();
         }
         foreach ($in_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
             $errors[$index]['interface'] = $indexes[$index];
-            $errors[$index]['in_discards'] = $o->getValue();
+            $errors[$index]['in_discards'] = (float)$o->getValue();
         }
         foreach ($out_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
             $errors[$index]['interface'] = $indexes[$index];
-            $errors[$index]['out_discards'] = $o->getValue();
+            $errors[$index]['out_discards'] = (float)$o->getValue();
         }
         return array_values($errors);
     }

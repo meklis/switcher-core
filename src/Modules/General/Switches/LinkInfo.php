@@ -21,12 +21,10 @@ abstract class LinkInfo extends AbstractInterfaces
           $indexes = [];
           foreach ($this->getInterfacesIds() as $index=>$port) {
               $indexes[$index]['interface'] = $port;
-              $indexes[$index]['address_learning'] = null;
               $indexes[$index]['oper_status'] = null;
               $indexes[$index]['nway_status'] = null;
               $indexes[$index]['admin_state'] = null;
               $indexes[$index]['last_change'] = null;
-              $indexes[$index]['extra'] = [];
           }
 
         foreach ($snmp_oper_status as $index) {
@@ -36,14 +34,14 @@ abstract class LinkInfo extends AbstractInterfaces
 
         foreach ($snmp_high_speed as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down') {
+            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown' ) {
                 $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  'Down';
                 continue;
             }
             $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
         }
         foreach ($snmp_duplex as $index) {
-            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down') {
+            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down'  || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown') {
                 $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  'Down';
                 continue;
             }
