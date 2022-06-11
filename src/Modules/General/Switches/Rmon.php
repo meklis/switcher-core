@@ -13,7 +13,7 @@ abstract class Rmon extends AbstractInterfaces
 
         $indexes = [];
         foreach ($this->getInterfacesIds() as $id) {
-            $indexes[$id['id']] = $id;
+            $indexes[$id['_snmp_id']] = $id;
         }
         $response = [];
         foreach ($this->response as $oid_name => $wrappedResponse) {
@@ -22,6 +22,7 @@ abstract class Rmon extends AbstractInterfaces
             }
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
+                if(!isset($indexes[$port_index])) continue;
                 $response[$port_index][str_replace('rmon_', '', Helper::fromCamelCase($oid_name))] = $resp->getValue();
                 $response[$port_index]['interface'] = $indexes[$port_index];
             }
@@ -56,7 +57,7 @@ abstract class Rmon extends AbstractInterfaces
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$iface['id']}";
+                $oids[$num] .= ".{$iface['_snmp_id']}";
             }
         }
         $oidObjects = [];
