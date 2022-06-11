@@ -55,13 +55,13 @@ trait InterfacesTrait
     protected $device;
 
 
-    function parseInterface($iface)
+    function parseInterface($iface, $parseBy = 'id')
     {
         $ifaces = $this->getInterfacesIds();
-        if(is_numeric($iface) && isset($ifaces[$iface])) {
+        if($parseBy == '_snmp_id' && is_numeric($iface) && isset($ifaces[$iface])) {
             return $ifaces[$iface];
         }
-        if(is_numeric($iface)) {
+        if($parseBy == 'id' &&  is_numeric($iface)) {
             $filteredList = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == $e['id'];
             });
@@ -128,10 +128,10 @@ trait InterfacesTrait
                     $id = $lastEthNum + $m[5];
                 }
 
-                $ifaces[Helper::getIndexByOid($r->getOid()) + 1000] = [
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => $id ,
                     'name' => $name,
-                    '_if_id' => Helper::getIndexByOid($r->getOid()) + 1000,
+                    '_snmp_id' => Helper::getIndexByOid($r->getOid()),
                     '_type' => $m[1],
                     '_shelf' => $m[3],
                     '_slot' => $m[4],

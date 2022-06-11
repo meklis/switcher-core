@@ -15,9 +15,10 @@ models:
      system: \SwitcherCore\Modules\Huawei\System
      parse_interface: \SwitcherCore\Modules\Huawei\ParseInterface
      fdb: \SwitcherCore\Modules\Huawei\Fdb
-#     link_info: \SwitcherCore\Modules\Dlink\Link\DlinkDgs3420Parser
-#     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
-#     vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
+     link_info: \SwitcherCore\Modules\Huawei\LinkInfo
+     counters: \SwitcherCore\Modules\Huawei\Counters
+     vlans: \SwitcherCore\Modules\Huawei\VlansDot1q
+     vlans_by_port: \SwitcherCore\Modules\Huawei\VlanByPorts
 #     cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
 #     errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
 #     rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
@@ -25,4 +26,3 @@ models:
 #     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
 #     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
 #     reboot: \SwitcherCore\Modules\Dlink\Reboot
-#     vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts

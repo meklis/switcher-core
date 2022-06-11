@@ -3,25 +3,22 @@
 
 namespace SwitcherCore\Modules\General\Switches;
 
+
 use SnmpWrapper\Oid;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
-
-abstract class Counters extends AbstractInterfaces
+abstract class PvidParser extends AbstractInterfaces
 {
     protected function formate() {
+        $indexes = $this->getInterfacesIds();
         $response = [];
-        foreach ($this->getInterfacesIds() as $key => $iface) {
-            $response[$key] = [
-               'interface' => $iface,
-            ];
-        }
         foreach ($this->response as $oid_name => $wrappedResponse) {
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
-                if(!isset($response[$port_index])) continue;
-                $metric_name = str_replace(['if_hc_'], '', Helper::fromCamelCase($oid_name));
-                $response[$port_index][$metric_name] = (float)$resp->getValue();
+                $metric_name = str_replace(['dot1q_'], '', Helper::fromCamelCase($oid_name));
+                $response[$port_index][$metric_name] = $resp->getValue();
+                $response[$port_index]['interface'] = $this->parseInterface($port_index);
             }
         }
         return array_values($response);
@@ -33,11 +30,12 @@ abstract class Counters extends AbstractInterfaces
 
     function getPrettyFiltered($filter = [])
     {
+        Helper::prepareFilter($filter);
         $formated = $this->formate();
         if($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             foreach ($formated as $num=>$val) {
-                if($interface['id'] != $val['interface']['id']) {
+                if($interface['id'] != $val['port']) {
                     unset($formated[$num]);
                 }
             }
@@ -45,25 +43,27 @@ abstract class Counters extends AbstractInterfaces
         return array_values($formated);
     }
 
-    public function run($params = [])
+    public function run($filter = [])
     {
         $oids = [];
-        foreach ($this->oids->getOidsByRegex('if\.HC.*') as $oid) {
+        foreach ($this->oids->getOidsByRegex('dot1q.Pvid') as $oid) {
             $oids[] = $oid->getOid();
         }
 
-        if($params['interface']) {
-            $interface = $this->parseInterface($params['interface']);
+        if($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
+            $indexes = [];
+            foreach ($this->getInterfacesIds() as $index=>$port) {
+                $indexes[$port] = $index;
+            }
             foreach ($oids as $num=>$oid) {
-                $oids[$num] .= ".{$interface['_snmp_id']}";
+                $oids[$num] .= ".{$indexes[$interface['_snmp_id']]}";
             }
         }
-
         $oidObjects = [];
         foreach ($oids as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-
         $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
         return $this;
     }
