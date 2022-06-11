@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\Huawei;
+namespace SwitcherCore\Modules\Edgecore;
 
 use DI\Container;
 use DI\DependencyException;
@@ -58,18 +58,10 @@ trait InterfacesTrait
     function parseInterface($iface, $parseBy = 'id')
     {
         $ifaces = $this->getInterfacesIds();
-        if($parseBy == '_snmp_id' && is_numeric($iface) && isset($ifaces[$iface])) {
+        if(is_numeric($iface) && isset($ifaces[$iface])) {
             return $ifaces[$iface];
         }
-        if($parseBy == 'id' &&  is_numeric($iface)) {
-            $filteredList = array_filter($ifaces, function ($e) use ($iface) {
-                return $iface == $e['id'];
-            });
-            if(count($filteredList) != 0) {
-                return array_values($filteredList)[0];
-            }
-        }
-        if(preg_match('/^(Ge|eth)[0-9]{1,4}$/', $iface)) {
+        if(preg_match('/^([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
             $ifaces = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == $e['name'];
             });
@@ -79,20 +71,7 @@ trait InterfacesTrait
                 throw new \Exception("Interface with name {$iface} not found");
             }
         }
-        if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $iface, $m)) {
-            $name = "eth{$m[5]}";
-            if ($m[1] == 'GigabitEthernet') {
-                $name = "Ge{$m[5]}";
-            }
-            $ifaces = array_filter($ifaces, function ($e) use ($name) {
-                return $name == $e['name'];
-            });
-            if(count($ifaces) != 0) {
-                return array_values($ifaces)[0];
-            } else {
-                throw new \Exception("Interface with name {$iface} not found");
-            }
-        }
+
         throw new \Exception("Interface with name {$iface} not found");
     }
 
@@ -108,34 +87,22 @@ trait InterfacesTrait
             return $info;
         }
         $response = $this->snmp->walk([
-            Oid::init($this->oids->getOidByName('if.Name')->getOid())
+            Oid::init($this->oids->getOidByName('if.Descr')->getOid())
         ])[0];
         if ($response->getError()) {
             throw new \Exception($response->getError());
         }
         $ifaces = [];
 
-        $lastEthNum = 0;
         foreach ($response->getResponse() as $r) {
-            if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
-                $name = "eth{$m[5]}";
-                $id = $m[5];
-                if($m[1] == "Ethernet") {
-                    $lastEthNum  = $m[5];
-                }
-                if ($m[1] == 'GigabitEthernet') {
-                    $name = "Ge{$m[5]}";
-                    $id = $lastEthNum + $m[5];
-                }
-
+            if (preg_match('/^Ethernet Port on unit ([0-9]{1,2}), port ([0-9]{1,4})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id ,
-                    'name' => $name,
-                    '_snmp_id' => Helper::getIndexByOid($r->getOid()),
-                    '_type' => $m[1],
-                    '_shelf' => $m[3],
-                    '_slot' => $m[4],
-                    '_port' => $m[5],
+                    'id' => (int)$id,
+                    'name' => "{$m[1]}/{$m[2]}",
+                    '_snmp_id' => $id,
+                    '_unit' => $m[1],
+                    '_port' => $m[2],
                 ];
             }
         }
