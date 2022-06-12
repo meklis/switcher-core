@@ -108,15 +108,37 @@ trait InterfacesTrait
             return $info;
         }
         $response = $this->snmp->walk([
-            Oid::init($this->oids->getOidByName('if.Name')->getOid())
-        ])[0];
-        if ($response->getError()) {
-            throw new \Exception($response->getError());
+            Oid::init($this->oids->getOidByName('if.Name')->getOid()),
+            Oid::init($this->oids->getOidByName('ent.physicalName')->getOid())
+        ]);
+        $responses = [];
+        foreach ($response as $resp) {
+            $name = $this->oids->findOidById($resp->getOid());
+            if($resp->getError()) {
+                throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
+            }
+            $responses[$name->getName()] = $resp->getResponse();
         }
-        $ifaces = [];
 
+        $entPhysical = [];
         $lastEthNum = 0;
-        foreach ($response->getResponse() as $r) {
+        foreach ($responses['ent.physicalName'] as $r) {
+            if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
+                $id = $m[5];
+                if($m[1] == "Ethernet") {
+                    $lastEthNum  = $m[5];
+                }
+                if ($m[1] == 'GigabitEthernet') {
+                    $id = $lastEthNum + $m[5];
+                }
+
+                $entPhysical[$id] = Helper::getIndexByOid($r->getOid());
+            }
+        }
+
+        $ifaces = [];
+        $lastEthNum = 0;
+        foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $name = "eth{$m[5]}";
                 $id = $m[5];
@@ -131,6 +153,7 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id ,
                     'name' => $name,
+                    '_physical_id' => isset($entPhysical[$id]) ? $entPhysical[$id] : null,
                     '_snmp_id' => Helper::getIndexByOid($r->getOid()),
                     '_type' => $m[1],
                     '_shelf' => $m[3],

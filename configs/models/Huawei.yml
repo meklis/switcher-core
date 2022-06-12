@@ -8,6 +8,9 @@ models:
    detect: {description: ^S2326TP-EI.*,  objid: .1.3.6.1.4.1.2011.2.23.92 }
    extra:
      sys_resources_id: 67108873
+     sfp_ports:
+       - 67240014
+       - 67240078
      diag_linkup: false
    oids:
      - ./oids/huawei/s2326tp.yml
