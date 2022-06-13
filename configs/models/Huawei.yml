@@ -17,6 +17,7 @@ models:
    modules:
      system: \SwitcherCore\Modules\Huawei\System
      parse_interface: \SwitcherCore\Modules\Huawei\ParseInterface
+     interfaces_list: \SwitcherCore\Modules\Huawei\InterfacesList
      fdb: \SwitcherCore\Modules\Huawei\Fdb
      link_info: \SwitcherCore\Modules\Huawei\LinkInfo
      counters: \SwitcherCore\Modules\Huawei\Counters

@@ -11,6 +11,7 @@ models:
     modules:
       system: \SwitcherCore\Modules\Edgecore\System
       parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
       counters: \SwitcherCore\Modules\Edgecore\Counters
