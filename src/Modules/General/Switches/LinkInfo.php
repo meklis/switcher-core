@@ -25,6 +25,7 @@ abstract class LinkInfo extends AbstractInterfaces
               $indexes[$index]['nway_status'] = null;
               $indexes[$index]['admin_state'] = null;
               $indexes[$index]['last_change'] = null;
+              $indexes[$index]['medium_type'] = null;
           }
 
         foreach ($snmp_oper_status as $index) {
@@ -62,7 +63,9 @@ abstract class LinkInfo extends AbstractInterfaces
         }
         foreach ($snmp_last_change as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            $indexes[Helper::getIndexByOid($index->getOid())]['last_change'] =  $index->getValueAsTimeTicks();
+            if($index->getValue()) {
+                $indexes[Helper::getIndexByOid($index->getOid())]['last_change'] =  $index->getValueAsTimeTicks();
+            }
         }
           return $indexes;
     }
@@ -102,7 +105,6 @@ abstract class LinkInfo extends AbstractInterfaces
     }
     public function run($filter = [])
     {
-
         $data = [
             $this->oids->getOidByName('if.HighSpeed')->getOid() ,
             $this->oids->getOidByName('if.Type')->getOid(),
