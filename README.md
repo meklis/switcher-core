@@ -14,9 +14,9 @@
 * RouterOS API
 
 ### Поддерживаемые вендоры
-- [x] D-link switches (snmp/telnet)
-- [x] Mikrotik routers (snmp/RouterOS api)
-- [x] EdgeCore switches (ES4120)
+- [x] D-link switches 
+- [x] Mikrotik routers  
+- [x] EdgeCore switches 
 - [x] BDcom OLTs
 - [ ] Xtreme routers
 - [x] Huawei switches

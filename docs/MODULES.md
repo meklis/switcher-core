@@ -15016,7 +15016,7 @@
       
     
     
-### [cable_diag](#cable_diag) - Диагностика кабеля (длина и состояние пары) 
+### [cable_diag](#cable_diag) -  
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -17895,7 +17895,7 @@ true
 ### [parse_interface](#parse_interface) - Returened parsed interface from input 
     
 **Аргументы:**    
-- **interface**, проверка выражением: *.**, обязательный    
+- **interface**, проверка выражением: *.**    
       
     
     
@@ -23774,10 +23774,31 @@ true
 </details>
             
     
+### [sfp_diag](#sfp_diag) - SFP information and diagnostic 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *^.*$*    
+      
+    
+    
 ### [sfp_info](#sfp_info) - Информация о SFP-модулях 
     
 **Аргументы:**    
 - **port**, проверка выражением: *.**    
+      
+    
+    
+### [sfp_media](#sfp_media) - SFP media information (vendor, model, eth.) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *^.*$*    
+      
+    
+    
+### [sfp_optical](#sfp_optical) - SFP optical information (RX, TX, Vcc, Bias, distance, etc.) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *^.*$*    
       
     
     
