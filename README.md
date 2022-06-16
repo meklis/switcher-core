@@ -16,10 +16,10 @@
 ### Поддерживаемые вендоры
 - [x] D-link switches (snmp/telnet)
 - [x] Mikrotik routers (snmp/RouterOS api)
-- [ ] EdgeCore switches 
+- [x] EdgeCore switches (ES4120)
 - [x] BDcom OLTs
 - [ ] Xtreme routers
-- [ ] Huawei switches
+- [x] Huawei switches
 - [ ] Huawei OLTs
 - [x] ZTE OLTs
 - [x] C-Data OLts
