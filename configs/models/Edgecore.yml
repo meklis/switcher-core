@@ -26,6 +26,33 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
 
+  - name: Edgecore ECS4120-28Fv2
+    key: edgecore_ecs4120_28fv2
+    ports: 26
+    device_type: SWITCH
+    inputs:
+      - snmp
+    detect: {description: ^ECS4120-28Fv2,  objid: .1.3.6.1.4.1.259.10.1.45.105 }
+    oids:
+      - ./oids/edgecore/ecs4120.yml
+    modules:
+      system: \SwitcherCore\Modules\Edgecore\System
+      parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+      fdb: \SwitcherCore\Modules\Edgecore\Fdb
+      link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+      counters: \SwitcherCore\Modules\Edgecore\Counters
+      vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+      errors: \SwitcherCore\Modules\Edgecore\Errors
+      interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+      sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
+      rmon: \SwitcherCore\Modules\Edgecore\Rmon
+      pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+      sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+
   - name: Edgecore ES3552M
     key: edgecore_es3552m
     ports: 52
@@ -37,6 +64,70 @@ models:
       diag_linkup: false
       count_pairs: 2
       overwrite_pairs: {ports: [49,50,51,52], count_pairs: 4}
+    oids:
+      - ./oids/edgecore/es35xx_series.yml
+    modules:
+      system: \SwitcherCore\Modules\Edgecore\System
+      parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+      fdb: \SwitcherCore\Modules\Edgecore\Fdb
+      link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+      counters: \SwitcherCore\Modules\Edgecore\Counters
+      vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+      errors: \SwitcherCore\Modules\Edgecore\Errors
+      interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+      sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
+      rmon: \SwitcherCore\Modules\Edgecore\Rmon
+      pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+      sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+      cable_diag: \SwitcherCore\Modules\Edgecore\CableDiag
+
+  - name: Edgecore ES3528M
+    key: edgecore_es3528m
+    ports: 52
+    device_type: SWITCH
+    inputs:
+      - snmp
+    detect: {description: .*ES3528M,  objid: .1.3.6.1.4.1.259.6.10.94 }
+    extra:
+      diag_linkup: false
+      count_pairs: 2
+      overwrite_pairs: {ports: [25,26,27,28], count_pairs: 4}
+    oids:
+      - ./oids/edgecore/es35xx_series.yml
+    modules:
+      system: \SwitcherCore\Modules\Edgecore\System
+      parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+      fdb: \SwitcherCore\Modules\Edgecore\Fdb
+      link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+      counters: \SwitcherCore\Modules\Edgecore\Counters
+      vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+      errors: \SwitcherCore\Modules\Edgecore\Errors
+      interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+      sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
+      rmon: \SwitcherCore\Modules\Edgecore\Rmon
+      pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+      sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+      cable_diag: \SwitcherCore\Modules\Edgecore\CableDiag
+
+  - name: Edgecore ES3510MAv2
+    key: edgecore_es3510ma_v2
+    ports: 52
+    device_type: SWITCH
+    inputs:
+      - snmp
+    detect: {description: ES3510MAv2,  objid: .1.3.6.1.4.1.259.8.1.11.105 }
+    extra:
+      diag_linkup: false
+      count_pairs: 2
+      overwrite_pairs: {ports: [9,10], count_pairs: 4}
     oids:
       - ./oids/edgecore/es35xx_series.yml
     modules:
