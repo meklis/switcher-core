@@ -2,7 +2,7 @@
 
 namespace SwitcherCore\Modules\Dlink;
 
-class ParseInterface extends SwitchesPortAbstractModule
+class InterfacesList extends SwitchesPortAbstractModule
 {
     public function run($params = [])
     {
@@ -16,7 +16,11 @@ class ParseInterface extends SwitchesPortAbstractModule
 
     public function getPrettyFiltered($filter = [])
     {
-        return $this->parseInterface($filter['interface']);
+        if($filter['interface'])  {
+            return [$this->parseInterface($filter['interface'])];
+        } else {
+            return array_values($this->getIndexes());
+        }
     }
 
 

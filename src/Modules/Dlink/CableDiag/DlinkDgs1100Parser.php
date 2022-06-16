@@ -3,17 +3,34 @@
 
 namespace SwitcherCore\Modules\Dlink\CableDiag;
 
+use SnmpWrapper\Oid;
 use SnmpWrapper\Request\PoollerRequest;
 use SnmpWrapper\Oid as O;
+use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
 
-class DlinkDgs1100Parser extends DlinkParser
+class DlinkDgs1100Parser extends SwitchesPortAbstractModule
 {
     public function run($filter = [])
     {
-        Helper::prepareFilter($filter) ;
-        $ports_list = $this->getPortList($filter);
+        $ports_list = [];
+        if($filter['interface']) {
+            $ports_list[] = $this->parseInterface($filter['interface']);
+        } else {
+            $ports_list = $this->getIndexes();
+            if($nonDiag = $this->model->getExtraParamByName('non_diag_ports')) {
+                $ports_list = array_values(array_filter($ports_list, function ($e) use ($nonDiag){
+                   return !in_array($e['id'], $nonDiag);
+                }));
+            }
+            if(!$this->model->getExtraParamByName('diag_linkup')) {
+                $upIds = $this->getUpInterfaceIds();
+                $ports_list = array_filter($ports_list, function ($e) use ($upIds) {
+                   return !in_array($e['id'], $upIds);
+                });
+            }
+        }
 
         $ports_diag_result = [];
         $oidsDiag = [
@@ -26,17 +43,18 @@ class DlinkDgs1100Parser extends DlinkParser
             O::init($this->oids->getOidByName('dlink.cableDiagPair4TestResult')->getOid()),
             O::init($this->oids->getOidByName('dlink.cableDiagPair4FaultDistance')->getOid()),
         ];
-        foreach ($ports_list as $port=>$count_pairs) {
+        foreach ($ports_list as $interface) {
+
             $triggerResult  = $this->formatResponse($this->snmp->set(
                 O::init($this->oids->getOidByName('dlink.cableDiagTriggerIndex')->getOid(),
                 false,
                 PoollerRequest::TypeIntegerValue,
-                $port
+                $interface['id']
             )))['dlink.cableDiagTriggerIndex']->fetchOne();
 
             $this->response = $this->formatResponse($this->snmp->get($oidsDiag));
             $ports_diag_result[] = [
-                'interface' => $this->parseInterface($port),
+                'interface' => $interface,
                 'pairs' => [
                     [
                        'number' => 1,
@@ -64,6 +82,23 @@ class DlinkDgs1100Parser extends DlinkParser
         $this->formatedResponse = $ports_diag_result;
 
         return $this;
+    }
+
+    protected function getUpInterfaceIds() {
+        $responses = $this->formatResponse($this->snmp->walk([
+            Oid::init($this->oids->getOidByName('if.OperStatus')->getOid())
+        ]));
+        $response = $this->getResponseByName('if.OperStatus', $responses);
+        if($response->error()) {
+            throw new \SNMPException($response->error());
+        }
+        $RETURN = [];
+        foreach ($response->fetchAll() as $resp) {
+            if($resp->getParsedValue() == 'Up') {
+                $RETURN[] = Helper::getIndexByOid($resp->getOid());
+            }
+        }
+        return $RETURN;
     }
 
     /**
