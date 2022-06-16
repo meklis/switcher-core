@@ -16,8 +16,8 @@ class SfpDiag extends AbstractInterfaces
 
     public function run($params = [])
     {
-        $media = $this->getModule('sfp_media')->run($params)->getPrettyFiltered($params);
-        $optical = $this->getModule('sfp_optical')->run($params)->getPrettyFiltered($params);
+        $media = $this->getModule('sfp_media')->run($params)->getPretty();
+        $optical = $this->getModule('sfp_optical')->run($params)->getPretty();
         $RESP = [];
         foreach ($media as $m) {
             $iface = $m['interface'];
@@ -46,13 +46,6 @@ class SfpDiag extends AbstractInterfaces
 
     public function getPrettyFiltered($filter = [])
     {
-        if($filter['interface']) {
-            if(count($this->response) == 1) {
-                return $this->response[0];
-            } else  {
-                return  null;
-            }
-        }
         return $this->response;
     }
 }

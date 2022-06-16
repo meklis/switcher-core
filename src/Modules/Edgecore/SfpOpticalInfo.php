@@ -52,13 +52,6 @@ class SfpOpticalInfo extends AbstractInterfaces
 
     public function getPrettyFiltered($filter = [])
     {
-        if($filter['interface']) {
-            if(count($this->response) == 1) {
-                return $this->response[0];
-            } else  {
-                return  null;
-            }
-        }
         return $this->response;
     }
 }
