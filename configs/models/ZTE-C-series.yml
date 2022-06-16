@@ -46,4 +46,49 @@ models:
       console_commands_after_connect:
         - terminal length 0
 
-
+  - name: ZTE ZXPON C320
+    key: zte_c320_fw_1_2
+    ports: 0
+    device_type: OLT
+    oids:
+      - ./oids/zte/ZTE-C300.yml
+    inputs:
+      - snmp
+      - console
+    detect: {description: .*C320.*,  objid: .1.3.6.1.4.1.3902.1015.320.1.2 }
+    modules:
+      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+      onu_reboot: \SwitcherCore\Modules\ZTE\C300Series\RebootOnu
+      zte_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OntInfo
+      zte_onu_ether_iface_info: \SwitcherCore\Modules\ZTE\C300Series\OnuEtherPortInfo
+      fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
+      zte_onu_signal_strength: \SwitcherCore\Modules\ZTE\C300Series\OnuSignalStrengthInfo
+      zte_onu_state_by_interface: \SwitcherCore\Modules\ZTE\C300Series\OntStateInfoFW12
+      zte_onu_dereg: \SwitcherCore\Modules\ZTE\C300Series\DeregOnt
+      zte_unregistered_onu: \SwitcherCore\Modules\ZTE\C300Series\UnregisteredOntList
+      zte_gpon_onu_profile_list: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
+      zte_onu_interface_console: \SwitcherCore\Modules\ZTE\C300Series\OntInterfaceConfCommand
+      zte_onu_registration_gpon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationGPON
+      zte_onu_registration_epon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationEPON
+      save_config: \SwitcherCore\Modules\ZTE\C300Series\SaveConfig
+      zte_card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
+      interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\InterfacesStatus
+      zte_interface_running_config: \SwitcherCore\Modules\ZTE\C300Series\InterfaceRunningConfig
+      zte_fully_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OnuFullyInfo
+      zte_pon_power_attenuation: \SwitcherCore\Modules\ZTE\C300Series\PonPowerAttenuation
+      console_command: \SwitcherCore\Modules\ZTE\C300Series\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\ZTE\C300Series\MultiRawConsoleCommand
+      zte_interface_parser: \SwitcherCore\Modules\ZTE\C300Series\InterfaceParser
+      interface_descriptions: \SwitcherCore\Modules\ZTE\C300Series\InterfaceDescriptions
+    extra:
+      console_conn_type: zte
+      card_types:
+        - {name: ETGOD, interface_type: epon, count_ports: 8}
+        - {name: GTGOG, interface_type: gpon, count_ports: 8}
+        - {name: GTGHG, interface_type: gpon, count_ports: 16}
+        - {name: GTGH, interface_type: gpon, count_ports: 16}
+        - {name: GTGHK, interface_type: gpon, count_ports: 16}
+        - {name: GFBH, interface_type: gpon, count_ports: 16}
+      console_commands_after_connect:
+        - terminal length 0

@@ -15,12 +15,10 @@ class InterfacesStatus extends C300ModuleAbstract
         $runningConfigs = [];
 
         $parents = [];
-        $checked = [];
         foreach ($interfaces as $interface) {
             if($interface['parent']) $parents[] = $interface['parent'];
             if($interface['type'] !== 'PON') {continue;}
             $runningConfig = $this->getModule('zte_interface_running_config')->run(['interface' => $interface['name']])->getPretty();
-            $checked[] = $interface['id'];
             foreach ($runningConfig as $conf) {
                 $iFaceId = $conf['interface']['id'];
                 unset($conf['interface']);
