@@ -8,9 +8,9 @@ $reader = new \SwitcherCore\Config\Reader(__DIR__ . "/../configs");
 $devices = $reader->readModels();
 $supportDevices = [];
 foreach ($devices as $dev) {
-    $supportDevices[$dev->getName()]['name'] = $dev->getName();
-    $supportDevices[$dev->getName()]['key'] = $dev->getKey();
-    $supportDevices[$dev->getName()]['modules'] = $dev->getModulesList();
+    $supportDevices[$dev->getKey()]['name'] = $dev->getName();
+    $supportDevices[$dev->getKey()]['key'] = $dev->getKey();
+    $supportDevices[$dev->getKey()]['modules'] = $dev->getModulesList();
 }
 
 
