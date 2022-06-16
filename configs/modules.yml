@@ -62,7 +62,21 @@
 - name: cable_diag
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: Диагностика кабеля (длина и состояние пары)
+
+- name: sfp_diag
+  arguments:
+    - { name: interface, pattern: '^.*$', required: no }
+  descr: SFP information and diagnostic
+- name: sfp_optical
+  arguments:
+    - {name: interface, pattern: '^.*$', required: no}
+  descr: SFP optical information (RX, TX, Vcc, Bias, distance, etc.)
+- name: sfp_media
+  arguments:
+    - {name: interface, pattern: '^.*$', required: no}
+  descr: SFP media information (vendor, model, eth.)
+
+
 #Action clear counters
 - name: clear_counters
   descr: Очистка счетчиков (во всей системе)

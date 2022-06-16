@@ -12,24 +12,21 @@ class SysResources extends AbstractModule
 
     public function run($params = [])
     {
-        $id = $this->model->getExtraParamByName('sys_resources_id');
         $oids = [];
         foreach ($this->oids->getOidsByRegex('resources\..*') as $oid) {
-            $oids[] = Oid::init($oid->getOid() . ".{$id}");
+            $oids[] = Oid::init($oid->getOid());
         }
-        $response = $this->formatResponse($this->snmp->get($oids));
+        $response = $this->formatResponse($this->snmp->walk($oids));
         $this->response = [
             'cpu' => [
                 'util' => (int)$this->getResponseByName('resources.cpuUtil', $response)->fetchAll()[0]->getValue(),
-                '_temperature' => (float)($this->getResponseByName('resources.temperature', $response)->fetchAll()[0]->getValue()),
-                '_temperature_threshold' => (float)($this->getResponseByName('resources.temperatureThreshold', $response)->fetchAll()[0]->getValue()),
             ],
             'disk' => null,
             'interfaces' => null,
             'cards' => null,
             'fans' => null,
             'memory' => [
-                'util' =>  (int)$this->getResponseByName('resources.memUtil', $response)->fetchAll()[0]->getValue(),
+                'util' =>  100 - (int)$this->getResponseByName('resources.memFreePrc', $response)->fetchAll()[0]->getValue(),
             ],
         ];
         return $this;
