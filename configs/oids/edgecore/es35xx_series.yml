@@ -1,0 +1,63 @@
+- {name: sys.serialNum, oid: .1.3.6.1.4.1.259.6.10.94.1.1.3.1.10, access: read}
+- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.259.6.10.94.1.1.3.1.2, access: read}
+- {name: sys.boardLoaderVer, oid: .1.3.6.1.4.1.259.6.10.94.1.1.3.1.4, access: read}
+- {name: sys.boardOpcodeVer, oid: .1.3.6.1.4.1.259.6.10.94.1.1.3.1.6, access: read}
+
+- {name: resources.cpuUtil, oid: .1.3.6.1.4.1.259.6.10.94.1.39.2.1 }
+#For utilization must calculate as  100 - value = %
+- {name: resources.memFreePrc, oid: .1.3.6.1.4.1.259.6.10.94.1.39.3.4 }
+#- {name: resources.temperature, oid: .1.3.6.1.4.1.259.6.10.94.1.1.11.1.3 }
+
+# Unknown values
+- {name: port.type, oid: .1.3.6.1.4.1.259.6.10.94.1.2.1.1.3}
+
+- {name: port.comboMode, oid: .1.3.6.1.4.1.259.6.10.94.1.2.1.1.12, values: {1: None, 2: Copper-Forced, 3: Copper-PreferredAuto, 4: SFP-Forced, 5: SFP-PreferredAuto}}
+
+- {name: sfp.mediaSerialNum, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.10 }
+- {name: sfp.mediaConnectorType, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.2 }
+- {name: sfp.mediaFiberType, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.3 }
+- {name: sfp.mediaEthComplianceCodes, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.4 }
+- {name: sfp.mediaBaudRate, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.5 }
+- {name: sfp.mediaVendorName, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.7 }
+- {name: sfp.mediaPartNumber, oid: .1.3.6.1.4.1.259.6.10.94.1.2.10.1.8 }
+
+- {name: sfp.opticalTemp, oid: .1.3.6.1.4.1.259.6.10.94.1.2.11.1.2 }
+- {name: sfp.opticalVcc, oid: .1.3.6.1.4.1.259.6.10.94.1.2.11.1.3 }
+- {name: sfp.opticalTxBias, oid: .1.3.6.1.4.1.259.6.10.94.1.2.11.1.4 }
+- {name: sfp.opticalTxPower, oid: .1.3.6.1.4.1.259.6.10.94.1.2.11.1.5 }
+- {name: sfp.opticalRxPower, oid: .1.3.6.1.4.1.259.6.10.94.1.2.11.1.6 }
+
+#To execute cable diagnostics on a port, assign
+#cableDiagCtlAction to the value of ifIndex defined
+#by the ifIndex in the IF-MIB. When read, this object
+#always returns 0.
+- {name: cable_diag.action, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.1.0}
+- {name: cable_diag.resultDistanceAccurary, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.10, values: {1: action}}
+- {name: cable_diag.resultTime, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.11 }
+
+#The result of cable diagnostics. If there is no fault
+#on the cable, the value is ok(2). Value notTestedYet(1)
+#means the pair is not tested yet. Value ok(2) means the
+#pair works well. Value open(3) means there is a lack of
+#continuity between pins at each end of the pair. Value
+#short(4) means conductors are short-circuited together on
+#the pair. Value openShort(5) means the pair has open
+#and short issues. Value crosstalk(6) means the pair is
+#incorrectly connected at one end. Value unknown(7) means
+#pair has an error matching none of the above. Value
+#impedanceMismatch(8) means different quality cables
+#connected together. Value failed(9) means test failed.
+#Value notSupported(10) means cable diagnostics is not
+#supported. Value noCable(11) means there is no connected
+#cable. If the port is 10/100 type, value of the
+#node should be ignored.
+- {name: cable_diag.resultPair1Status, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.2, values: {1: NotTested, 2: OK, 3: Open, 4: Short, 5: OpenShort, 6: CrossTalk, 7: Unknown, 8: ImpedanceMismatch, 9: Failed, 10: NotSupported, 11: NoCable}}
+- {name: cable_diag.resultPair2Status, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.3, values: {1: NotTested, 2: OK, 3: Open, 4: Short, 5: OpenShort, 6: CrossTalk, 7: Unknown, 8: ImpedanceMismatch, 9: Failed, 10: NotSupported, 11: NoCable}}
+- {name: cable_diag.resultPair3Status, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.4, values: {1: NotTested, 2: OK, 3: Open, 4: Short, 5: OpenShort, 6: CrossTalk, 7: Unknown, 8: ImpedanceMismatch, 9: Failed, 10: NotSupported, 11: NoCable}}
+- {name: cable_diag.resultPair4Status, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.5, values: {1: NotTested, 2: OK, 3: Open, 4: Short, 5: OpenShort, 6: CrossTalk, 7: Unknown, 8: ImpedanceMismatch, 9: Failed, 10: NotSupported, 11: NoCable}}
+- {name: cable_diag.resultPair1Length, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.6}
+- {name: cable_diag.resultPair2Length, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.7}
+- {name: cable_diag.resultPair3Length, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.8}
+- {name: cable_diag.resultPair4Length, oid: .1.3.6.1.4.1.259.6.10.94.1.2.3.2.1.9}
+
+
