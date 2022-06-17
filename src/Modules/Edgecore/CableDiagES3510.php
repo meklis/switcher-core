@@ -10,7 +10,7 @@ use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
-class CableDiag extends AbstractInterfaces
+class CableDiagES3510 extends AbstractInterfaces
 {
     use InterfacesTrait;
 
@@ -20,10 +20,11 @@ class CableDiag extends AbstractInterfaces
         $interfaces = $this->getInterfacesIds();
         $RESPONSES = [];
         $actionOid = $this->oids->getOidByName('cable_diag.action')->getOid();
-        foreach ($diagPorts as $snmpId => $countPairs) {
+        if($params['interface']) {
+            foreach ($diagPorts as $snmpId => $countPairs) {
                 //Start diag
                 $response = $this->formatResponse($this->snmp->set(
-                    Oid::init($actionOid ,
+                    Oid::init($actionOid,
                         false,
                         PoollerRequest::TypeIntegerValue,
                         $snmpId
@@ -33,9 +34,11 @@ class CableDiag extends AbstractInterfaces
                 } elseif ($response['cable_diag.action']->error()) {
                     throw new \SNMPException($response['cable_diag.action']->error());
                 }
+            }
         }
-        sleep(2);
         foreach ($diagPorts as $snmpId => $countPairs) {
+            //Prepare oids
+            RETRY_TEST:
             if(!$countPairs == 4) {
                 $oids = [
                     Oid::init($this->oids->getOidByName('cable_diag.resultTime')->getOid().".{$snmpId}"),
@@ -58,6 +61,15 @@ class CableDiag extends AbstractInterfaces
                 ];
             }
             $response = $this->formatResponse($this->snmp->get($oids));
+
+            $status = $this->getResponseByName('cable_diag.resultPair1Status', $response);
+            if(!$status->error() ) {
+                $result = $status->fetchAll();
+                if(count($result) > 0 && $result[0]->getParsedValue() == 'UnderTesing') {
+                    sleep(1);
+                    goto RETRY_TEST;
+                }
+            }
 
             $pairs = [];
             $resultTime = null;
@@ -122,13 +134,7 @@ class CableDiag extends AbstractInterfaces
 
     public function getPretty()
     {
-        if(count($this->response) == 1) {
-            return $this->response[0];
-        } else if(count($this->response) == 0) {
-            return  null;
-        } else {
             return  $this->response;
-        }
     }
 
     public function getPrettyFiltered($filter = [])
