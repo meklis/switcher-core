@@ -31,7 +31,7 @@
 #cableDiagCtlAction to the value of ifIndex defined
 #by the ifIndex in the IF-MIB. When read, this object
 #always returns 0.
-- {name: cable_diag.action, oid: .1.3.6.1.4.1.259.10.1.45.1.2.3.1, values: {1: action}}
+- {name: cable_diag.action, oid: .1.3.6.1.4.1.259.10.1.45.1.2.3.1.0, values: {1: action}}
 - {name: cable_diag.resultDistanceAccurary, oid: .1.3.6.1.4.1.259.10.1.45.1.2.3.2.1.10, values: {1: action}}
 - {name: cable_diag.resultTime, oid: .1.3.6.1.4.1.259.10.1.45.1.2.3.2.1.11 }
 
