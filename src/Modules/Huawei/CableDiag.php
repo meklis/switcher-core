@@ -22,6 +22,13 @@ class CableDiag extends AbstractInterfaces
         $actionOid = $this->oids->getOidByName('cable_diag.action')->getOid();
         $statusOid = $this->oids->getOidByName('cable_diag.status')->getOid();
         $lengthOid = $this->oids->getOidByName('cable_diag.length')->getOid();
+
+        if($this->model->getExtraParamByName('only_manual_diag') && !$params['interface']) {
+            $this->response = [];
+            return  $this;
+        }
+
+
         foreach ($diagPorts as $snmpId) {
                 //Start diag
                 $response = $this->formatResponse($this->snmp->set(
