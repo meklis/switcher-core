@@ -62,7 +62,7 @@ models:
       zte_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OntInfo
       zte_onu_ether_iface_info: \SwitcherCore\Modules\ZTE\C300Series\OnuEtherPortInfo
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
-      zte_onu_signal_strength: \SwitcherCore\Modules\ZTE\C300Series\OnuSignalStrengthInfo
+      zte_onu_signal_strength: \SwitcherCore\Modules\ZTE\C300Series\OnuSignalStrengthInfoFW12
       zte_onu_state_by_interface: \SwitcherCore\Modules\ZTE\C300Series\OntStateInfoFW12
       zte_onu_dereg: \SwitcherCore\Modules\ZTE\C300Series\DeregOnt
       zte_unregistered_onu: \SwitcherCore\Modules\ZTE\C300Series\UnregisteredOntList
