@@ -36,7 +36,7 @@ models:
 
  - name: Huawei S2320-28TP-EI
    key: huawei_s2320_28tp_ei
-   ports: 26
+   ports: 28
    device_type: SWITCH
    inputs:
      - snmp
