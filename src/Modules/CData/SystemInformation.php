@@ -28,7 +28,8 @@ class SystemInformation extends AbstractModule
     {
         $data = [
             'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
-            'uptime' => $this->getResponseByName('sys.Uptime')->fetchOne()->getValueAsTimeTicks(),
+            'uptime' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValueAsTimeTicks(),
+            'uptime_sec' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValue(),
             'contact' => $this->getResponseByName('sys.Contact')->fetchOne()->getValue(),
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
