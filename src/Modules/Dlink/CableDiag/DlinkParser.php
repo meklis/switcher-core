@@ -132,9 +132,6 @@ class DlinkParser extends SwitchesPortAbstractModule
         ]));
         $ports_list = [];
         foreach ($this->getResponseByName('dlink.CableDiagPortType')->fetchAll() as $ident) {
-            if(!in_array($ident->getParsedValue(), ['GE', 'FE'])) {
-                continue;
-            }
             $port = Helper::getIndexByOid($ident->getOid());
             if(isset($this->model->getExtra()['ge_ports']) && in_array($port, $this->model->getExtra()['ge_ports'])) {
                 $ident->setParsed('GE');
