@@ -95,7 +95,7 @@ trait InterfacesTrait
         $ifaces = [];
 
         foreach ($response->getResponse() as $r) {
-            if (preg_match('/^Ethernet Port on unit ([0-9]{1,2}), port ([0-9]{1,4})$/', $r->getValue(), $m)) {
+            if (preg_match('/^Ether[Nn]et Port on unit ([0-9]{1,2}), port[ :]([0-9]{1,4})$/', $r->getValue(), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,

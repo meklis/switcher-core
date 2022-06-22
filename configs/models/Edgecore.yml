@@ -1,5 +1,5 @@
 models:
-  - name: Edgecore ECS4120-28F
+  - name: Edge-core ECS4120-28F
     key: edgecore_ecs4120_28f
     ports: 26
     device_type: SWITCH
@@ -26,7 +26,7 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
 
-  - name: Edgecore ECS4120-28Fv2
+  - name: Edge-core ECS4120-28Fv2
     key: edgecore_ecs4120_28fv2
     ports: 26
     device_type: SWITCH
@@ -53,7 +53,7 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
 
-  - name: Edgecore ECS4510-28F
+  - name: Edge-core ECS4510-28F
     key: edgecore_ecs4510_28f
     ports: 26
     device_type: SWITCH
@@ -80,7 +80,33 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
 
-  - name: Edgecore ES3552M
+  - name: Edge-core ES4612
+    key: edgecore_es4612
+    ports: 12
+    device_type: SWITCH
+    inputs:
+      - snmp
+    detect: {description: ^8 SFP ports \+ 4 Gigabit,  objid: .1.3.6.1.4.1.259.6.10.57 }
+    oids:
+      - ./oids/edgecore/es4612.yml
+    modules:
+      system: \SwitcherCore\Modules\Edgecore\System
+      parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+      fdb: \SwitcherCore\Modules\Edgecore\Fdb
+      link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+      counters: \SwitcherCore\Modules\Edgecore\Counters
+      vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+      errors: \SwitcherCore\Modules\Edgecore\Errors
+      interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+      rmon: \SwitcherCore\Modules\Edgecore\Rmon
+      pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+      sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+
+  - name: Edge-core ES3552M
     key: edgecore_es3552m
     ports: 52
     device_type: SWITCH
@@ -109,7 +135,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
 
-  - name: Edgecore ECS3510-28T
+  - name: Edge-core ECS3510-28T
     key: edgecore_ecs3510_28t
     ports: 28
     device_type: SWITCH
@@ -138,7 +164,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
 
-  - name: Edgecore ES3528M
+  - name: Edge-core ES3528M
     key: edgecore_es3528m
     ports: 52
     device_type: SWITCH
@@ -167,7 +193,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
 
-  - name: Edgecore ES3510MAv2
+  - name: Edge-core ES3510MAv2
     key: edgecore_es3510ma_v2
     ports: 52
     device_type: SWITCH
@@ -196,7 +222,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagES3510
 
-  - name: Edgecore ES3510
+  - name: Edge-core ES3510
     key: edgecore_es3510
     ports: 52
     device_type: SWITCH
