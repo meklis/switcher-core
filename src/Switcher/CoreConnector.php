@@ -57,13 +57,27 @@ class CoreConnector
      * @var Core[]
      */
     protected $instances = [];
-    public function __construct($configPath)
+    public function __construct($configPath, $buildCachePath = null)
     {
+        if($buildCachePath) {
+            if(file_exists($buildCachePath) && time() - filemtime($buildCachePath) < 300) {
+                $obj = unserialize( file_get_contents($buildCachePath));
+                $this->walker = $obj->walker;
+                $this->oidCollector = $obj->oidCollector;
+                $this->modelCollector = $obj->modelCollector;
+                $this->moduleCollector = $obj->moduleCollector;
+                return;
+            }
+        }
         $this->walker = new MultiWalker();
         $reader = new Reader($configPath);
         $this->oidCollector = OidCollector::init($reader);
         $this->modelCollector = ModelCollector::init($reader);
         $this->moduleCollector = ModuleCollector::init($reader);
+
+        if($buildCachePath) {
+            file_put_contents($buildCachePath, serialize($this));
+        }
     }
 
     public function setWalker(MultiWalkerInterface $walker) {
