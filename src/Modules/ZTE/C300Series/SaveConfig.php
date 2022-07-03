@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class SaveConfig extends C300ModuleAbstract
+class SaveConfig extends ModuleAbstract
 {
     public function run($params = [])
     {

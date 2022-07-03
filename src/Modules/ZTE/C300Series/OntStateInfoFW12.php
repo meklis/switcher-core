@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OntStateInfoFW12 extends C300ModuleAbstract
+class OntStateInfoFW12 extends ModuleAbstract
 {
     public function run($params = [])
     {

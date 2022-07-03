@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\ZTE\C300Series;
+namespace SwitcherCore\Modules\ZTE\C200Series;
 
 
 
@@ -36,7 +36,7 @@ class InterfaceDescriptions extends ModuleAbstract
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
                 $data[] = [
                     'interface' => $iface,
-                    'description' => $this->prettyDescription($resp->getValue()),
+                    'description' => $this->prettyDescription($resp->getHexValue()),
                 ];
             }
         }
@@ -45,7 +45,7 @@ class InterfaceDescriptions extends ModuleAbstract
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
                 $data[] = [
                     'interface' => $iface,
-                    'description' => $this->prettyDescription($resp->getValue()),
+                    'description' => $this->prettyDescription($resp->getHexValue()),
                 ];
             }
         }
@@ -53,11 +53,19 @@ class InterfaceDescriptions extends ModuleAbstract
         return  $this;
     }
     private function prettyDescription($descr) {
-        if(str_contains( $descr, '$$')) {
-            $blocks = explode("$$", $descr);
-            return $blocks[count($blocks) - 1];
+        $description = "";
+        foreach (explode(":", $descr) as $desc) {
+            $char = Helper::hexToStr($desc);
+            if(!mb_detect_encoding($char, 'ASCII', true)) {
+                continue;
+            }
+            $description .= $char;
+        }
+        if(str_contains( $description, '$$')) {
+            $blocks = explode("$$", $description);
+            return $blocks[count($blocks) - 2];
         } else {
-            return $descr;
+            return $description;
         }
     }
     public function getPretty()

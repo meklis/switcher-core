@@ -6,7 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 
-class InterfacesList extends C300ModuleAbstract
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
+
+class InterfacesList extends ModuleAbstract
 {
     public function run($params = [])
     {

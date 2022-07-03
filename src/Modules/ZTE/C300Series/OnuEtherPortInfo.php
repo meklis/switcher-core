@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use InvalidArgumentException;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OnuEtherPortInfo extends C300ModuleAbstract
+class OnuEtherPortInfo extends ModuleAbstract
 {
     public function run($params = [])
     {

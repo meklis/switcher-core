@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OnuSignalStrengthInfo extends C300ModuleAbstract
+class OnuSignalStrengthInfo extends ModuleAbstract
 {
     public function run($params = [])
     {

@@ -5,9 +5,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 
-use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OnuFullyInfo extends C300ModuleAbstract
+class OnuFullyInfo extends ModuleAbstract
 {
     public function run($params = [])
     {

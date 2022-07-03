@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class UnregisteredOntList extends C300ModuleAbstract
+class UnregisteredOntList extends ModuleAbstract
 {
     public function run($params = [])
     {

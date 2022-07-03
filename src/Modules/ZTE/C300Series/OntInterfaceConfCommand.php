@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OntInterfaceConfCommand extends C300ModuleAbstract
+class OntInterfaceConfCommand extends ModuleAbstract
 {
     public function run($params = [])
     {
