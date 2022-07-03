@@ -7,8 +7,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 use Exception;
 use Monolog\Logger;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class CardList extends C300ModuleAbstract
+class CardList extends ModuleAbstract
 {
     /**
      * @Inject

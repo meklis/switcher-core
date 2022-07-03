@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class DeregOnt extends C300ModuleAbstract
+class DeregOnt extends ModuleAbstract
 {
     public function run($params = [])
     {

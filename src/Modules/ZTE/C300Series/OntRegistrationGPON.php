@@ -6,8 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OntRegistrationGPON extends C300ModuleAbstract
+class OntRegistrationGPON extends ModuleAbstract
 {
     public function run($params = [])
     {

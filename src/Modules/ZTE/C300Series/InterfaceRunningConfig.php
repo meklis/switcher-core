@@ -6,9 +6,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
-use InvalidArgumentException;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class InterfaceRunningConfig extends C300ModuleAbstract
+class InterfaceRunningConfig extends ModuleAbstract
 {
     public function run($params = [])
     {

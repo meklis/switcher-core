@@ -5,9 +5,9 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 
-use Exception;
+use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class MultiRawConsoleCommand extends C300ModuleAbstract
+class MultiRawConsoleCommand extends ModuleAbstract
 {
     public function run($params = [])
     {

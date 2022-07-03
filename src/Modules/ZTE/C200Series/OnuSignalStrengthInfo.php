@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SwitcherCore\Modules\ZTE\C300Series;
+namespace SwitcherCore\Modules\ZTE\C200Series;
 
 
 
 use Exception;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-class OnuSignalStrengthInfoFW12 extends ModuleAbstract
+class OnuSignalStrengthInfo extends ModuleAbstract
 {
     public function run($params = [])
     {
@@ -16,22 +16,23 @@ class OnuSignalStrengthInfoFW12 extends ModuleAbstract
             throw new Exception("Module required telnet connection");
         }
         $interface = $this->parseInterface($params['interface']);
-        $onuRx = [];
-        $raw = explode("\n",$this->telnet->exec("show pon power onu-rx {$interface['name']}"));
-        foreach ($raw as $line) {
-            if(preg_match('/^(gpon-onu|epon-onu)(.*?)[ ]{1,}(.*)$/', $line, $matches)) {
-                 $onuRx["{$matches[1]}{$matches[2]}"] = str_replace('(dbm)', '', $matches[3]);
-            }
-        }
+
+        $onuRx = $this->telnet->exec("show pon power onu-rx {$interface['name']}");
+        $oltRx = $this->telnet->exec("show pon power olt-rx {$interface['name']}");
+
         $response = [];
-        foreach ($onuRx as $onu=>$v) {
+        foreach ($oltRx as $onu=>$v) {
             $iface = $this->parseInterface($onu);
             $response[$iface['id']]['interface'] = $iface;
             if(!is_numeric($v)) {
                 $v = null;
             }
-            $response[$iface['id']]['onu_rx'] = $v;
-            $response[$iface['id']]['olt_rx'] = null;
+            $response[$iface['id']]['olt_rx'] = $v;
+            if(isset($onuRx[$onu]) && is_numeric($onuRx[$onu])) {
+                $response[$iface['id']]['onu_rx'] = $onuRx[$onu];
+            } else {
+                $response[$iface['id']]['onu_rx'] = null;
+            }
         }
         $this->response = array_values($response);
         return $this;

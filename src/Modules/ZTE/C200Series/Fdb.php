@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\ZTE\C300Series;
+namespace SwitcherCore\Modules\ZTE\C200Series;
 
 
 
@@ -17,10 +17,11 @@ class Fdb extends ModuleAbstract
             throw new Exception("Module required telnet connection");
         }
         $this->response = [];
+
         if($interface['type'] !== 'ONU') {
-            $command = "show mac-real-time {$interface['technology']} olt {$interface['name']}";
+            $command = "show mac {$interface['technology']} olt {$interface['name']}";
         } else {
-            $command = "show mac-real-time {$interface['technology']} onu {$interface['name']}";
+            $command = "show mac {$interface['technology']} onu {$interface['name']}";
         }
 
         $lines = explode("\n",$this->telnet->exec($command));

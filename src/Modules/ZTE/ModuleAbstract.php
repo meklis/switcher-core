@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\ZTE\C300Series;
+namespace SwitcherCore\Modules\ZTE;
 
 
 use Exception;
@@ -9,7 +9,7 @@ use InvalidArgumentException;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-abstract class C300ModuleAbstract extends AbstractModule
+abstract class ModuleAbstract extends AbstractModule
 {
 
     /**
@@ -43,7 +43,7 @@ abstract class C300ModuleAbstract extends AbstractModule
         switch ($type) {
             case 'gpon':
                 $binary = "0001" .
-                    $fillData($shelf - 1, 4) .
+                    $fillData($shelf - $this->model->getExtraParamByName('port_offset'), 4) .
                     $fillData($slot, 8) .
                     $fillData($port, 8) .
                     $fillData(0, 8)
@@ -55,7 +55,7 @@ abstract class C300ModuleAbstract extends AbstractModule
                 return  $data;
             case 'epon':
                 $binary = "0011" .
-                    $fillData($shelf - 1, 4) .
+                    $fillData($shelf - $this->model->getExtraParamByName('port_offset'), 4) .
                     $fillData($slot, 5) .
                     $fillData($port - 1, 3) .
                     $fillData($onuNum,8) .
@@ -89,7 +89,7 @@ abstract class C300ModuleAbstract extends AbstractModule
         $decodeType = '';
         switch ($type) {
             case 1:
-                $shelf = bindec(substr($data, 0, 4)) + 1;
+                $shelf = bindec(substr($data, 0, 4)) + $this->model->getExtraParamByName('port_offset');
                 $slot = bindec(substr($data, 4, 8));
                 $portOlt = bindec(substr($data, 12, 8));
                 $decodeType = 'gpon';
@@ -97,7 +97,7 @@ abstract class C300ModuleAbstract extends AbstractModule
             case 3:
             case 4:
                 $decodeType = 'epon';
-                $shelf = bindec(substr($data, 0, 4)) + 1;
+                $shelf = bindec(substr($data, 0, 4))  + $this->model->getExtraParamByName('port_offset');
                 $slot = bindec(substr($data, 4, 5));
                 $portOlt = bindec(substr($data, 9, 3)) + 1;
                 $onuNum = bindec(substr($data, 12, 8));
