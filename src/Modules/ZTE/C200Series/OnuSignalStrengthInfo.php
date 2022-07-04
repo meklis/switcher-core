@@ -12,30 +12,46 @@ class OnuSignalStrengthInfo extends ModuleAbstract
 {
     public function run($params = [])
     {
+        $this->response = [];
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
         $interface = $this->parseInterface($params['interface']);
-
-        $onuRx = $this->telnet->exec("show pon power onu-rx {$interface['name']}");
-        $oltRx = $this->telnet->exec("show pon power olt-rx {$interface['name']}");
-
-        $response = [];
-        foreach ($oltRx as $onu=>$v) {
-            $iface = $this->parseInterface($onu);
-            $response[$iface['id']]['interface'] = $iface;
-            if(!is_numeric($v)) {
-                $v = null;
-            }
-            $response[$iface['id']]['olt_rx'] = $v;
-            if(isset($onuRx[$onu]) && is_numeric($onuRx[$onu])) {
-                $response[$iface['id']]['onu_rx'] = $onuRx[$onu];
-            } else {
-                $response[$iface['id']]['onu_rx'] = null;
-            }
+        if($interface['type'] == 'ONU') {
+            $ret = $this->getSignalsByInterface($interface['name']);
+            $ret['interface'] = $interface;
+            $this->response[] = $ret;
+            return $this;
         }
-        $this->response = array_values($response);
+        $interfaces = $this->getModule('interfaces_list')->run(['interface' => null, 'parent' => $interface['id']])->getPrettyFiltered(['interface' => null, 'parent' => $interface['id']]);
+        foreach ($interfaces as $iface) {
+            if($iface['meta']['online_status'] !== 'Online') {
+                $ret = [
+                    'olt_rx' => null,
+                    'onu_rx' => null,
+                ];
+            } else {
+                $ret = $this->getSignalsByInterface($iface['name']);
+            }
+            $ret['interface'] = $iface;
+            $this->response[] = $ret;
+        }
         return $this;
+    }
+    public function getSignalsByInterface($interfaceName) {
+        $onuRx = $this->telnet->exec("show pon power onu-rx {$interfaceName}");
+        $oltRx = $this->telnet->exec("show pon power olt-rx {$interfaceName}");
+        $ret = [
+            'olt_rx' => null,
+            'onu_rx' => null,
+        ];
+        if(preg_match('/.*: (.*?)\(dbm\)/', trim($onuRx), $m)) {
+            $ret['onu_rx'] = (float)$m[1];
+        }
+        if(preg_match('/.*: (.*?)\(dbm\)/', trim($oltRx), $m)) {
+            $ret['olt_rx'] =  (float)$m[1];
+        }
+        return $ret;
     }
 
     public function getPretty()
