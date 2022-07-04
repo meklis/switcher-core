@@ -125,7 +125,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\ZTE\C300Series\InterfaceDescriptions
     extra:
       console_conn_type: zte
-      port_offset: 0
+      port_offset: 1
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
@@ -173,7 +173,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\ZTE\C300Series\InterfaceDescriptions
     extra:
       console_conn_type: zte
-      port_offset: 0
+      port_offset: 1
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
