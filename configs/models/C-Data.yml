@@ -119,7 +119,8 @@ models:
       pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
-      fdb: \SwitcherCore\Modules\CData\GponOntFdbTable
+      fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
+
       pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
     #  pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
     #  pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -134,7 +135,7 @@ models:
       console_commands_after_connect:
         - enable
         - config
-        - vty output show-all
+
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
         - {name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP}
