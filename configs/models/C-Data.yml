@@ -122,8 +122,8 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
 
       pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
-    #  pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
-    #  pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
+      pon_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
+      pon_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
     #  pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
     #  pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings

@@ -152,5 +152,11 @@ abstract class CDataAbstractModule extends AbstractModule
         }
         return  $ontIds;
     }
-
+    protected function _exe($command) {
+        $resp = $this->console->exec($command);
+        if(strpos($resp, "Unknown command") !== false) {
+            throw new \Exception($resp);
+        }
+        return true;
+    }
 }
