@@ -81,6 +81,7 @@ models:
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
+        - {name: GTGOE, interface_type: gpon, count_ports: 8}
         - {name: GTGHG, interface_type: gpon, count_ports: 16}
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
@@ -129,6 +130,7 @@ models:
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
+        - {name: GTGOE, interface_type: gpon, count_ports: 8}
         - {name: GTGHG, interface_type: gpon, count_ports: 16}
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
@@ -177,6 +179,7 @@ models:
       card_types:
         - {name: ETGOD, interface_type: epon, count_ports: 8}
         - {name: GTGOG, interface_type: gpon, count_ports: 8}
+        - {name: GTGOE, interface_type: gpon, count_ports: 8}
         - {name: GTGHG, interface_type: gpon, count_ports: 16}
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
