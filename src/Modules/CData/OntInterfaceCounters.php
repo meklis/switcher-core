@@ -54,6 +54,9 @@ class OntInterfaceCounters extends CDataAbstractModule
                 if($uni) {
                     $interface['uni'] = $uni;
                 }
+                if(!$uni) {
+                    continue;
+                }
                 $val = $resp->getValue();
                 if(is_numeric($val)) {
                     $val = (int) $val;
