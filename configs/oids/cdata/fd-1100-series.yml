@@ -1,21 +1,12 @@
-- {name: resources.cpuUsage, oid: .1.3.6.1.4.1.34592.1.3.1.1.8}
-- {name: resources.memTotalSize, oid: .1.3.6.1.4.1.34592.1.3.100.1.8.2}
-- {name: resources.memFreeSize, oid: .1.3.6.1.4.1.34592.1.3.100.1.8.3}
-- {name: resources.temperature, oid: .1.3.6.1.4.1.34592.1.3.1.3.4} # val / 100
+- {name: resources.cpuUtil, oid: .1.3.6.1.4.1.34592.1.3.1.1.8}
+- {name: resources.temperature, oid: .1.3.6.1.4.1.34592.1.3.1.3.4}
 
-
-- {name: sys.macAddr, oid: .1.3.6.1.4.1.34592.1.3.3.1.1.}
 - {name: sys.serialNum, oid: .1.3.6.1.4.1.34592.1.3.1.3.2}
 - {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.34592.1.3.1.5.1.3}
 - {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.34592.1.3.1.5.1.4}
-- {name: pon.countRegisteredOnts, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.8}
-- {name: vlan.list, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.3}
-- {name: vlan.tagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.4}
-- {name: vlan.untagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.5}
 
 #FDB INFO
-- {name: pon.fdbWithInterface, oid: .1.3.6.1.4.1.34592.1.3.100.12.2.1.1.3}
-- {name: pon.fdbWithUni, oid: 1.3.6.1.4.1.34592.1.3.100.13.1.1.5}
+- {name: pon.fdbWithUni, oid: .1.3.6.1.4.1.34592.1.3.4.10.2.1.2.1}
 
 # PON PORT BLOCK
   # OpTemp ..1.3.6.1.4.1.34592.1.3.100.2.2.1.4.1.0.9
@@ -23,63 +14,45 @@
   # 1 - device index (default=1)
   # 0 - card number (default=1)
   # 9 - number of port (stored in xid value in model extra parameters)
-- {name: pon.portOperStatus, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.5, values: {1: Up, 2: Down, 3: Testing}}
-- {name: pon.portAdminStatus, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.6, values: {1: Enabled, 2: Disabled}} #SNMPSET
-- {name: pon.portMaxOnuNumSupport, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.7}
-- {name: pon.portUpOnuNum, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.8}
-- {name: pon.portMaxDsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.12}
-- {name: pon.portActualDsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.13}
-- {name: pon.portRemainDsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.14}
-- {name: pon.portMaxUsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.18}
-- {name: pon.portActualUsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.19}
-- {name: pon.portRemainUsBandwidth, oid: .1.3.6.1.4.1.17409.2.3.3.1.1.20}
-- {name: pon.portOpticalRxOfOnu, oid: .1.3.6.1.4.1.17409.2.3.3.6.1.2}
+- {name: pon.portDmTemp, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.1}
+- {name: pon.portDmVoltage, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.2}
+- {name: pon.portDmTxBias, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.3}
+- {name: pon.portDmTxPower, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.4}
+#- {name: pon.portDmRxPower, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.5}
+- {name: pon.portDmVendor, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.6}
+- {name: pon.portDmProductName, oid: .1.3.6.1.4.1.34592.1.3.3.4.5.1.7}
+- {name: pon.portOperStatus, oid: .1.3.6.1.4.1.34592.1.3.3.1.1.3, values: {1: Unknown, 2: Down, 3: Up}}
+- {name: pon.countRegisteredOnts, oid: .1.3.6.1.4.1.34592.1.3.3.1.1.6}
+- {name: pon.portMaxOnuNumSupport, oid: .1.3.6.1.4.1.34592.1.3.3.1.1.5}
 
 #SNMP ACTIONS
-- {name: ont.action.reboot, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17, values: {1: Action}}
 - {name: olt.save, oid: .1.3.6.1.4.1.34592.1.3.1.2.12.0, values: {1: Action}}
-- {name: ont.action.delete, oid: .1.3.6.1.4.1.17409.2.3.4.5.2.1.4, values: {6: Delete}}
-#- {name: ont.action.setVlan, oid: .1.3.6.1.4.1.17409.2.3.7.3.1.1.7}
-- {name: ont.action.resetOnu, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.17, values: {1: Reset}}
-- {name: ont.action.clear_counters, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.48}
 
 #ONT BLOCK
-- {name: ont.operation, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.32, values: {}}
-- {name: ont.description, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
+- {name: ont.operation, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.32, values: {7: Dereg, }}
 - {name: ont.opticalRx, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.36}
 - {name: ont.opticalTx, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.37}
 - {name: ont.opticalVoltage, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.38}
-- {name: ont.opticalTemp, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.40}
-- {name: ont.macAddr, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.7}
-- {name: ont.distance, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.15}
-- {name: ont.name, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
-- {name: ont.opStatus, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.8, values: {1: Up, 2: Down}}
-- {name: ont.adminStatus, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.9, values: {1: Enabled, 2: Disabled}}
+#- {name: ont.opticalTemp, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.40}
+- {name: ont.macAddr, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.7}
+- {name: ont.mgmtType, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.35, values: {1: TK, 2: CTC}}
+- {name: ont.distance, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.13}
+- {name: ont.name, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.4}
 - {name: ont.verSoftware, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.6}
 - {name: ont.verHardware, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.5}
 - {name: ont.vendor, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.41}
-- {name: ont.model, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.26}
-- {name: ont.lastRegSince, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.18}
-- {name: ont.lastDownReason, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.7, values: {'dying-gasp': Dying Gasp, 'losi': Losi, '': Unknown}}
-- {name: ont.lastDownSince, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.6}
-- {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.11}
+- {name: ont.serial, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.3}
+- {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.3.14.1.1}
+
+# LLID Block (Extendend info about ONU)
+- {name: ont.llidAssociatedOnuId, oid: .1.3.6.1.4.1.34592.1.3.3.12.1.1.3}
+- {name: ont.llidOperations, oid: .1.3.6.1.4.1.34592.1.3.3.12.1.1.10, values: {3: dereg, 4: breakCrossLink, 5: restoreConfig, 6: deleteLink}}
 
 #UNI Block
-- {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.17409.2.3.5.1.1.5, values: {1: Up, 2: Down}}
-- {name: ont.uni.adminStatus, oid:  .1.3.6.1.4.1.17409.2.3.5.1.1.4, values: {1: Enabled, 2: Disabled}}
-- {name: ont.uni.vlanId, oid: .1.3.6.1.4.1.17409.2.3.7.3.1.1.7 }
-- {name: ont.uni.vlanMode, oid: .1.3.6.1.4.1.17409.2.3.7.3.1.1.8, values: {0: Unknown, 1: Untagged, 2: Tagged }}
-- {name: ont.uni.statInOctets, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.4 }
-- {name: ont.uni.statInUndersizePkts, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.15 }
-- {name: ont.uni.statInOversizePkts, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.16 }
-- {name: ont.uni.statInFragmentsPkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.17}
-- {name: ont.uni.statInCrcPkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.22 }
-- {name: ont.uni.statInDropPkts, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.23 }
-- {name: ont.uni.statInJabberPkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.24 }
-- {name: ont.uni.statOutOctets, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.26 }
-- {name: ont.uni.statOutUndersizePkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.37 }
-- {name: ont.uni.statOutOversizePkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.38 }
-- {name: ont.uni.statOutFragmentsPkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.39 }
-- {name: ont.uni.statOutCrcPkts, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.44 }
-- {name: ont.uni.statOutDropPkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.45 }
-- {name: ont.uni.statOutJabber, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.46 }
+- {name: ont.uni.description, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.2 }
+- {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.3, values: {1: Up, 2: Down}}
+- {name: ont.uni.speed, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.5, values: {1: 10M, 2: 100M, 3: 1G}}
+- {name: ont.uni.duplex, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.6, values: {1: Full, 2: Half}}
+- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.11, values: {1: Enabled, 2: Disabled}}
+- {name: ont.uni.name, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.13}
+- {name: ont.uni.type, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.14, values: {1: Fe, 2: Ge, 3: PON}}
