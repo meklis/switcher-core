@@ -7,8 +7,8 @@ namespace SwitcherCore\Modules\CData\FD11XX;
 use Exception;
 use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
-use SnmpWrapper\Response\SnmpResponse;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\CData\FD11XX\CDataAbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
@@ -17,70 +17,14 @@ class OntReasons extends CDataAbstractModule
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = null;
+
     function getRaw()
     {
         return $this->response;
     }
 
-    private function processNoInterface($response) {
-        $return = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            $return[$onts['interface']['id']] = $onts;
-        }
 
-        foreach ($this->getResponseByName('ont.lastRegSince', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid(),0);
-            $return[$onuId]['last_reg'] = time() - $r->getValue();
-            $return[$onuId]['last_reg_since'] = $r->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
-        }
-        foreach ($this->getResponseByName('ont.lastDownReason', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['last_down_reason'] = $r->getParsedValue();
-        }
-        foreach ($this->getResponseByName('ont.adminStatus', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['admin_status'] = $r->getParsedValue();
-        }
-        return array_values($return);
-    }
-
-    /**
-     * @param PoollerResponse[] $response
-     * @return array
-     * @throws \SwitcherCore\Exceptions\IncompleteResponseException
-     */
-    private function processWithInterface($response) {
-        $return = [];
-        $responses = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            $return[$onts['interface']['id']] = $onts;
-        }
-        $issetIds = [];
-        foreach ($response as $poolerResponse) {
-            if($poolerResponse->error) continue;
-            $oid = $this->oids->findOidById($poolerResponse->getOid());
-            $responses[] = WrappedResponse::init($poolerResponse, $oid->getValues());
-        }
-        foreach ($responses as $r) {
-            $wr = $r->fetchAll()[0];
-            $oid = $this->oids->findOidById($wr->getOid());
-            $onuId = Helper::getIndexByOid($wr->getOid());
-            $issetIds[$onuId] = true;
-            switch ($oid->getName()) {
-                case 'ont.lastRegSince': $return[$onuId]['last_reg'] = time() - $wr->getValue();
-                                         $return[$onuId]['last_reg_since'] = $wr->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
-                                         break;
-                case 'ont.lastDownReason': $return[$onuId]['last_down_reason'] = $wr->getParsedValue(); break;
-                case 'ont.adminStatus': $return[$onuId]['admin_status'] = $wr->getParsedValue(); break;
-            }
-        }
-        $ids = array_keys($issetIds);
-        $return = array_filter($return, function ($e) use ($ids) {
-          return in_array($e['interface']['id'], $ids);
-        });
-        return array_values($return);
-    }
 
     function getPretty()
     {
@@ -95,26 +39,47 @@ class OntReasons extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        $optical[] = $this->oids->getOidByName('ont.lastRegSince');
-        $optical[] = $this->oids->getOidByName('ont.lastDownReason');
-        $optical[] = $this->oids->getOidByName('ont.adminStatus');
-
-        if(!$filter['interface']) {
-            $oids = [];
-            foreach ($optical as $opt) {
-                $oids[] = Oid::init($opt->getOid());
+        $optical = $this->oids->getOidsByRegex('ont.downReason');
+        $oids = [];
+        if ($filter['interface']) {
+            $interface = $this->parseInterface($filter['interface']);
+            if($interface['type'] !== 'ONU') {
+                throw new \Exception("Only ONTs supported");
             }
-            $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk($oids)));
+            foreach ($optical as $optOid) {
+                $oids[] = Oid::init("{$optOid->getOid()}.{$interface['_snmp_id']}");
+            }
         } else {
-            $oids = [];
-            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
-                foreach ($optical as $oid) {
-                    $oids[] = Oid::init("{$oid->getOid()}.$id");
+            foreach ($optical as $optOid) {
+                $oids[] = Oid::init("{$optOid->getOid()}");
+            }
+        }
+        $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)));
+        return $this;
+    }
+
+    /**
+     * @param WrappedResponse[] $response
+     * @return array
+     * @throws Exception
+     */
+    function process($response) {
+        $RETURN = [];
+        foreach ($response as $oidName => $resp) {
+            if($resp->error()) {
+                throw new \Exception($resp->error());
+            }
+            foreach ($resp->fetchAll() as $data) {
+                $interface = $this->parseInterface((Helper::getIndexByOid($data->getOid(), 1) * 1000) + Helper::getIndexByOid($data->getOid()));
+                $RETURN[$interface['id']]['interface'] = $interface;
+                switch ($oidName) {
+                    case 'ont.downReason':
+                        $RETURN[$interface['id']]['last_down_reason'] = trim($data->getValue()) ? trim($data->getValue()) : null;
+                        break;
                 }
             }
-            $this->response = $this->processWithInterface($this->snmp->get($oids));
         }
-        return $this;
+        return array_values($RETURN);
     }
 }
 
