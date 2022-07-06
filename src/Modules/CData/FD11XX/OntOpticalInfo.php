@@ -68,37 +68,32 @@ class OntOpticalInfo extends CDataAbstractModule
     }
 
     /**
-     * @param PoollerResponse[] $response
+     * @param WrappedResponse[] $response
      * @return array
      * @throws \SwitcherCore\Exceptions\IncompleteResponseException
      */
     private function processWithInterface($response, $iface = null)
     {
         $return = [];
-        $responses = [];
-        foreach ($response as $poolerResponse) {
-            if ($poolerResponse->error) continue;
-            $responses[] = $poolerResponse->getResponse()[0];
-        }
-        foreach ($responses as $r) {
-            $oid = $this->oids->findOidById($r->getOid());
+        foreach ($response as $name => $r) {
             $return['interface'] = $iface;
-            switch ($oid->getName()) {
+            $dt = $r->fetchOne();
+            switch ($name) {
                 case 'ont.opticalRx':
-                    $return['rx'] = round((float)$r->getValue() / 100, 2);
+                    $return['rx'] =  (int)$dt->getValue() ? round(10 * log10($dt->getValue()) - 40, 2) : null;
                     break;
                 case 'ont.opticalTx':
-                    $return['tx'] = round((float)$r->getValue() / 100, 2);
+                    $return['tx'] = (int)$dt->getValue() ? round(10 * log10($dt->getValue()) - 40, 2) : null;
                     break;
                 case 'ont.opticalVoltage':
-                    $return['voltage'] = round((float)$r->getValue() / 100000, 2);
+                    $return['voltage'] =  round((float)$dt->getValue() / 10000, 2);
                     break;
                 case 'ont.distance':
-                    $return['distance'] = (int)$r->getValue();
+                    $return['distance'] = (int)$dt->getValue();
                     break;
             }
         }
-        return array_values($return);
+        return array_values([$return]);
     }
 
     function getPretty()
@@ -128,7 +123,7 @@ class OntOpticalInfo extends CDataAbstractModule
             foreach ($optical as $optId) {
                     $oids[] = Oid::init("{$optId->getOid()}.{$iface['_snmp_id']}");
             }
-            $this->response = $this->processWithInterface($this->snmp->get($oids), $iface);
+            $this->response = $this->processWithInterface($this->formatResponse($this->snmp->get($oids)), $iface);
         }
         return $this;
     }

@@ -27,7 +27,7 @@ class OntListWithStatuses extends CDataAbstractModule
         return  $this->response;
     }
 
-    protected function formate($resp) {
+    protected function formate($resp, $filter) {
         $data = $this->getResponseByName('pon.ontStatus', $resp);
         if($data->error()) {
             throw new \Exception($data->error());
@@ -54,11 +54,11 @@ class OntListWithStatuses extends CDataAbstractModule
                         $statusText = 'Alarm';
                         break;
                 }
-                $interfaces[] = [
+                $interfaces[($interface['xid'] * 1000) + $ontNum] = [
                     'interface' => [
                         'name' => $interface['name'] . ":" . $ontNum,
                         'parent' => $interface['id'],
-                        'id' =>  ($interface['id'] * 1000) + $ontNum,
+                        'id' =>  ($interface['xid'] * 1000) + $ontNum,
                         'xid' => $interface['xid'],
                         '_snmp_id' => "{$interface['xid']}.{$ontNum}",
                         'type' => 'ONU',
@@ -67,6 +67,15 @@ class OntListWithStatuses extends CDataAbstractModule
                     'status' => $statusText,
                 ];
             }
+        }
+        if(isset($filter['interface']) && $filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
+            if(isset($interfaces[$iface['id']])) {
+                return [
+                    $interfaces[$iface['id']]
+                ];
+            }
+            throw new \Exception("Interface {$iface['id']} ({$iface['name']}) not found");
         }
         return $interfaces;
     }
@@ -79,7 +88,7 @@ class OntListWithStatuses extends CDataAbstractModule
     public function run($filter = [])
     {
         $oid = $this->oids->getOidByName('pon.ontStatus');
-        $this->response = $this->formate($this->formatResponse($this->snmp->walkNext([Oid::init($oid->getOid())])));
+        $this->response = $this->formate($this->formatResponse($this->snmp->walkNext([Oid::init($oid->getOid())])), $filter);
         return $this;
     }
 }

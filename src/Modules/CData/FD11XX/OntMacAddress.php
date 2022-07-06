@@ -40,19 +40,21 @@ class OntMacAddress extends CDataAbstractModule
         return $return;
     }
 
+
     /**
-     * @param PoollerResponse[] $response
+     * @param WrappedResponse[] $response
      * @return array
-     * @throws \SwitcherCore\Exceptions\IncompleteResponseException
+     * @throws Exception
      */
-    private function processWithInterface($response) {
+    private function processWithInterface($response, $interface) {
         $return = [];
-        $responses = [];
-        foreach ($response as $poolerResponse) {
-            if($poolerResponse->error) continue;
-            $responses[] = $poolerResponse->getResponse()[0];
+        if(!isset($response['ont.macAddr'])) {
+            throw new \Exception("Not found response for ont.macAddr");
         }
-        foreach ($responses as $r) {
+        if($response['ont.macAddr']->error()) {
+            throw new \Exception($response['ont.macAddr']->error());
+        }
+        foreach ($response['ont.macAddr']->fetchAll() as $r) {
             $onuNum = Helper::getIndexByOid($r->getOid());
             $ponNum = Helper::getIndexByOid($r->getOid(), 1);
             $interface = $this->parseInterface(($ponNum * 1000) + $onuNum);
@@ -84,7 +86,7 @@ class OntMacAddress extends CDataAbstractModule
             $oidId = $oid->getOid();
             $interface = $this->parseInterface($filter['interface']);
             $oids = Oid::init("{$oidId}.{$interface['_snmp_id']}");
-            $this->response = $this->processWithInterface($this->snmp->get([$oids]));
+            $this->response = $this->processWithInterface($this->formatResponse($this->snmp->get([$oids])), $interface);
         }
 
         return $this;

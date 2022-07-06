@@ -38,10 +38,6 @@ class OntReasons extends CDataAbstractModule
             $onuId = Helper::getIndexByOid($r->getOid());
             $return[$onuId]['last_down_reason'] = $r->getParsedValue();
         }
-        foreach ($this->getResponseByName('ont.adminStatus', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['admin_status'] = $r->getParsedValue();
-        }
         return array_values($return);
     }
 
@@ -72,7 +68,6 @@ class OntReasons extends CDataAbstractModule
                                          $return[$onuId]['last_reg_since'] = $wr->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
                                          break;
                 case 'ont.lastDownReason': $return[$onuId]['last_down_reason'] = $wr->getParsedValue(); break;
-                case 'ont.adminStatus': $return[$onuId]['admin_status'] = $wr->getParsedValue(); break;
             }
         }
         $ids = array_keys($issetIds);
@@ -97,7 +92,6 @@ class OntReasons extends CDataAbstractModule
     {
         $optical[] = $this->oids->getOidByName('ont.lastRegSince');
         $optical[] = $this->oids->getOidByName('ont.lastDownReason');
-        $optical[] = $this->oids->getOidByName('ont.adminStatus');
 
         if(!$filter['interface']) {
             $oids = [];

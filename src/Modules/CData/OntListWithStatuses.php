@@ -54,7 +54,7 @@ class OntListWithStatuses extends CDataAbstractModule
                         $statusText = 'Alarm';
                         break;
                 }
-                $interfaces[] = [
+                $interfaces[$interface['id'] + $ontNum] = [
                     'interface' => [
                         'name' => $interface['name'] . ":" . $ontNum,
                         'parent' => $interface['id'],
@@ -65,6 +65,7 @@ class OntListWithStatuses extends CDataAbstractModule
                         'uni' => null,
                     ],
                     'status' => $statusText,
+                    'admin_status' => null,
                 ];
             }
         }
@@ -79,7 +80,39 @@ class OntListWithStatuses extends CDataAbstractModule
     public function run($filter = [])
     {
         $oid = $this->oids->getOidByName('pon.ontStatus');
-        $this->response = $this->formate($this->formatResponse($this->snmp->walkNext([Oid::init($oid->getOid())])));
+        $data = $this->formate($this->formatResponse($this->snmp->walkNext([Oid::init($oid->getOid())])));
+        if(isset($filter['interface']) && $filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
+            /**
+             * @var WrappedResponse[] $resp
+             */
+            $resp = $this->formatResponse(
+                $this->snmp->walk(
+                    [Oid::init($this->oids->getOidByName('ont.adminStatus')->getOid() . ".{$iface['id']}")]
+                )
+            );
+            if(!$resp || !isset($resp['ont.adminStatus'])) throw new \Exception("Error load admin_status");
+            $data[$iface['id']]['admin_status'] = $resp['ont.adminStatus']->fetchOne()->getParsedValue();
+            $this->response = [
+                $data[$iface['id']]
+            ];
+        } else {
+            $resp = $this->formatResponse(
+                $this->snmp->walk(
+                    [Oid::init($this->oids->getOidByName('ont.adminStatus')->getOid())]
+                )
+            );
+            if($resp['ont.adminStatus']->error()) {
+                throw new \Exception($resp['ont.adminStatus']->error());
+            }
+            foreach ($resp['ont.adminStatus']->fetchAll() as $status) {
+                $index = Helper::getIndexByOid($status->getOid());
+                if(!isset($data[$index])) continue;
+                $data[$index]['admin_status'] = $status->getParsedValue();
+            }
+            $this->response = array_values($data);
+        }
+
         return $this;
     }
 }

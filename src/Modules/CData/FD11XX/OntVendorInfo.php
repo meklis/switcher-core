@@ -51,22 +51,23 @@ class OntVendorInfo extends CDataAbstractModule
     }
 
     /**
-     * @param PoollerResponse[] $response
+     * @param WrappedResponse[] $response
      * @return array
      * @throws \SwitcherCore\Exceptions\IncompleteResponseException
      */
     private function processWithInterface($response, $interface) {
-        $return = [];
-        $responses = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            $return[$onts['interface']['id']] = $onts;
-        }
-        foreach ($response as $poolerResponse) {
-            if($poolerResponse->error) continue;
-            $oid = $this->oids->findOidById($poolerResponse->getOid());
-            $responses[] = WrappedResponse::init($poolerResponse, $oid->getValues());
-        }
-        foreach ($responses as $r) {
+        $return = [
+            'interface' => $interface,
+            'ver_software' => null,
+            'ver_hardware' => null,
+            'model' => null,
+            'vendor' => null,
+        ];
+
+        foreach ($response as $r) {
+            if($r->error()) {
+                continue;
+            };
             $wr = $r->fetchAll()[0];
             $oid = $this->oids->findOidById($wr->getOid());
             switch ($oid->getName()) {
@@ -75,9 +76,6 @@ class OntVendorInfo extends CDataAbstractModule
                 case 'ont.serial': $return['serial'] = $this->convertHexToString($wr->getHexValue()); break;
             }
         }
-        $return['interface'] = $interface;
-        $return['model']  = null;
-        $return['vendor'] = null;
         return array_values([$return]);
     }
 
@@ -109,7 +107,7 @@ class OntVendorInfo extends CDataAbstractModule
             foreach ($optical as $optId) {
                $oids[] = Oid::init("{$optId->getOid()}.{$interface['_snmp_id']}");
             }
-            $this->response = $this->processWithInterface($this->snmp->get($oids), $interface);
+            $this->response = $this->processWithInterface($this->formatResponse($this->snmp->get($oids)), $interface);
         }
         return $this;
     }

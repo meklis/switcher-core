@@ -90,6 +90,7 @@ class PonPortsOptical extends CDataAbstractModule
                         break;
                 }
             }
+
         }
         return array_values($RETURN);
     }

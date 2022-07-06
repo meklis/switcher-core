@@ -38,7 +38,7 @@ class InterfaceDescriptions extends CDataAbstractModule
             $interface = $this->parseInterface(($ponNum * 1000) + $onuNum);
             $data[] = [
                 'interface' => $interface,
-                'description' => $resp->getValue(),
+                'description' => $this->convertHexToString($resp->getHexValue()),
             ];
         }
         return $data;
@@ -60,7 +60,7 @@ class InterfaceDescriptions extends CDataAbstractModule
             );
         } else {
             $data = $this->formatResponse(
-                $this->snmp->walk(
+                $this->snmp->walkNext(
                     [
                         \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.name')->getOid()),
                     ]

@@ -29,21 +29,19 @@
 - {name: olt.save, oid: .1.3.6.1.4.1.34592.1.3.1.2.12.0, values: {1: Action}}
 
 #ONT BLOCK
-- {name: ont.operation, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.32, values: {7: Dereg, }}
-- {name: ont.opticalRx, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.36}
-- {name: ont.opticalTx, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.37}
-- {name: ont.opticalVoltage, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.38}
-#- {name: ont.opticalTemp, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.40}
-- {name: ont.macAddr, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.7}
-- {name: ont.mgmtType, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.35, values: {1: TK, 2: CTC}}
-- {name: ont.distance, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.13}
-- {name: ont.name, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.4}
-- {name: ont.verSoftware, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.6}
-- {name: ont.verHardware, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.5}
-- {name: ont.vendor, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.41}
-- {name: ont.serial, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.3}
-- {name: ont.downReason, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.45}
-
+- {name: ont.operation, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.32.1, values: {7: Dereg, }}
+- {name: ont.opticalRx, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.36.1}
+- {name: ont.opticalTx, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.37.1}
+- {name: ont.opticalVoltage, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.38.1}
+- {name: ont.macAddr, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.7.1}
+- {name: ont.mgmtType, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.35.1, values: {1: TK, 2: CTC}}
+- {name: ont.distance, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.13.1}
+- {name: ont.name, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.4.1}
+- {name: ont.verSoftware, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.6.1}
+- {name: ont.verHardware, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.5.1}
+- {name: ont.vendor, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.41.1}
+- {name: ont.serial, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.3.1}
+- {name: ont.downReason, oid: .1.3.6.1.4.1.34592.1.3.4.1.1.45.1}
 - {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.3.14.1.1}
 
 
@@ -53,9 +51,9 @@
 
 #UNI Block
 - {name: ont.uni.description, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.2 }
-- {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.3, values: {1: Up, 2: Down}}
-- {name: ont.uni.speed, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.5, values: {1: 10M, 2: 100M, 3: 1G}}
-- {name: ont.uni.duplex, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.6, values: {1: Full, 2: Half}}
-- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.11, values: {1: Enabled, 2: Disabled}}
-- {name: ont.uni.name, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.13}
-- {name: ont.uni.type, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.14, values: {1: Fe, 2: Ge, 3: PON}}
+- {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.3.1, values: {1: Up, 2: Down}}
+- {name: ont.uni.speed, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.5.1, values: {1: 10M, 2: 100M, 3: 1G}}
+- {name: ont.uni.duplex, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.6.1, values: {1: Full, 2: Half}}
+- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.11.1, values: {1: Enabled, 2: Disabled}}
+- {name: ont.uni.name, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.13.1}
+- {name: ont.uni.type, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.14.1, values: {1: Fe, 2: Ge, 3: PON}}

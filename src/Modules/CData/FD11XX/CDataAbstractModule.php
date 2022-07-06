@@ -75,7 +75,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 return [
                     'name' => $interface['name'] . ":" . $onuNum,
                     'parent' => $interface['id'],
-                    'id' => ($interface['id'] * 1000) + $onuNum,
+                    'id' => ($interface['xid'] * 1000) + $onuNum,
                     'xid' => null,
                     'type' => 'ONU',
                     'onu_num' => $onuNum,
@@ -101,7 +101,7 @@ abstract class CDataAbstractModule extends AbstractModule
                         $response['onu_num'] = (int)$m[2];
                         $response['type'] = 'ONU';
                         $response['_snmp_id'] = "{$response['xid']}.{$m[2]}";
-                        $response['id'] = ((int)$response['id'] * 1000) + $m[2];
+                        $response['id'] = ((int)$response['xid'] * 1000) + $m[2];
                         break;
                 }
                 return $response;
