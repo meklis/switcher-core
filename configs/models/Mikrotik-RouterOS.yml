@@ -99,11 +99,12 @@ models:
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
      bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
      sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
- - name: Mikrotik RouterOS
-   key: mikrotik_router_os
+
+ - name: Mikrotik RB750Gr3
+   key: mikrotik_rb750gr3
    ports: 0
    device_type: ROUTER
-   detect: {description: ^RouterOS.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   detect: {description: ^RouterOS RB750Gr3.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
    inputs:
      - snmp
      - routeros_api
@@ -124,5 +125,79 @@ models:
      bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
      sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
 
+ - name: Mikrotik RB2011UiAS-2HnD
+   key: mikrotik_rb2011uias_2hnd
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS RB2011UiAS-2HnD.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
+     sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
+
+ - name: Mikrotik CRS317-1G-16S+
+   key: mikrotik_crs317_1g_16s
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS CRS317-1G-16S.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
+     sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
+
+ - name: Mikrotik CRS328-4C-20S-4S+
+   key: mikrotik_crs328_4c_20s_4s
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^RouterOS CRS328-4C-20S-4S.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   inputs:
+     - snmp
+     - routeros_api
+   modules:
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
+     interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
+     interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
+     dhcp_server_info: \SwitcherCore\Modules\RouterOS\DhcpServerInfo
+     lease_info: \SwitcherCore\Modules\RouterOS\LeaseInfo
+     ctrl_static_arp: \SwitcherCore\Modules\RouterOS\StaticArpControl
+     ctrl_static_lease: \SwitcherCore\Modules\RouterOS\StaticLeaseControl
+     address_list_ctrl: \SwitcherCore\Modules\RouterOS\AddressListControl
+     address_list_info: \SwitcherCore\Modules\RouterOS\AddressListInfo
+     simple_queue_info: \SwitcherCore\Modules\RouterOS\SimpleQueuesInfo
+     simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
+     bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
+     sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
 
 
