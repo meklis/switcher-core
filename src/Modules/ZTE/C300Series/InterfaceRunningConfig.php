@@ -20,6 +20,11 @@ class InterfaceRunningConfig extends ModuleAbstract
         if($interface['type'] !== 'PON') {
             throw new \Exception("Allow only PON-Port interfaces");
         }
+        $cached = $this->getCache("SWC:running-config.{$this->device->getIp()}.{$interface['id']}", true);
+        if($cached) {
+            $this->response =  $cached;
+            return  $this;
+        }
         $lines = explode("\n",$this->telnet->exec("show running-config interface {$interface['name']}"));
         $data = [];
         foreach ($lines as $line) {
@@ -52,6 +57,7 @@ class InterfaceRunningConfig extends ModuleAbstract
         }
 
         $this->response = $response;
+        $this->setCache("SWC:running-config.{$this->device->getIp()}.{$interface['id']}", $response, 10, true);
         return  $this;
     }
     public function getPretty()
