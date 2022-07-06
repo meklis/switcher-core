@@ -42,17 +42,17 @@ class InterfaceDescriptions extends ModuleAbstract
                 ];
             }
         }
-        if(isset($response['zx.ont.GponName']) && !$response['zx.ont.GponName']->error()) {
-            foreach ($response['zx.ont.GponName']->fetchAll() as $resp) {
-                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
-                if(strpos($this->prettyDescription($resp->getValue()), "ONU-") !== false) {
-                    $data[$iface['id']] = [
-                        'interface' => $iface,
-                        'description' => $this->prettyDescription($resp->getValue()),
-                    ];
-                }
-            }
-        }
+//        if(isset($response['zx.ont.GponName']) && !$response['zx.ont.GponName']->error()) {
+//            foreach ($response['zx.ont.GponName']->fetchAll() as $resp) {
+//                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
+//                if(strpos($this->prettyDescription($resp->getValue()), "ONU-") !== false) {
+//                    $data[$iface['id']] = [
+//                        'interface' => $iface,
+//                        'description' => $this->prettyDescription($resp->getValue()),
+//                    ];
+//                }
+//            }
+//        }
         if(isset($response['zx.ont.EponDescription']) && !$response['zx.ont.EponDescription']->error()) {
             foreach ($response['zx.ont.EponDescription']->fetchAll() as $resp) {
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
