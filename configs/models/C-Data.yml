@@ -4,7 +4,7 @@ models:
     inputs:
       - snmp
       - console
-    detect: {description: (GEPON OLT)|(FD1104SN),  objid: ^.1.3.6.1.4.1.34592$}
+    detect: {description: (GEPON OLT)|(FD1104SN),  objid: ^.1.3.6.1.4.1.34592$, ifacesCount: 8}
     device_type: OLT
     oids:
       - ./oids/cdata/fd-1100-series.yml
@@ -43,7 +43,7 @@ models:
     inputs:
       - snmp
       - console
-    detect: {description: (FD1108S)|(OLT1-8),  objid: ^.1.3.6.1.4.1.34592$}
+    detect: {description: (GEPON OLT)|(FD1108S)|(OLT1-8),  objid: ^.1.3.6.1.4.1.34592$, ifacesCount: 16}
     device_type: OLT
     oids:
       - ./oids/cdata/fd-1100-series.yml
