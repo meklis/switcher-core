@@ -23,61 +23,12 @@ class OntOpticalInfo extends CDataAbstractModule
         return $this->response;
     }
 
-    private function processNoInterface($response)
-    {
-        $return = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPretty() as $iface) {
-            $return[$iface['interface']['id']] = [
-                'interface' => $iface['interface'],
-                'rx' => null,
-                'tx' => null,
-                'voltage' => null,
-                'temp' => null,
-                'distance' => null,
-            ];
-        }
-
-        if (!$this->getResponseByName('ont.opticalRx', $response)->error()) {
-            foreach ($this->getResponseByName('ont.opticalRx', $response)->fetchAll() as $r) {
-                $onuId = Helper::getIndexByOid($r->getOid(), 2);
-                $interface = $this->parseInterface($onuId);
-                $return[$onuId]['interface'] = $interface;
-                $return[$onuId]['rx'] = round((float)$r->getValue() / 100, 2);
-            }
-        }
-        if(!$this->getResponseByName('ont.opticalTx', $response)->error()) {
-            foreach ($this->getResponseByName('ont.opticalTx', $response)->fetchAll() as $r) {
-                $onuId = Helper::getIndexByOid($r->getOid(), 2);
-                $return[$onuId]['tx'] = round((float)$r->getValue() / 100, 2);
-            }
-        }
-        if(!$this->getResponseByName('ont.opticalVoltage', $response)->error()) {
-            foreach ($this->getResponseByName('ont.opticalVoltage', $response)->fetchAll() as $r) {
-                $onuId = Helper::getIndexByOid($r->getOid(), 2);
-                $return[$onuId]['voltage'] = round((float)$r->getValue() / 100000, 2);
-            }
-        }
-        if(!$this->getResponseByName('ont.opticalTemp', $response)->error()) {
-            foreach ($this->getResponseByName('ont.opticalTemp', $response)->fetchAll() as $r) {
-                $onuId = Helper::getIndexByOid($r->getOid(), 2);
-                $return[$onuId]['temp'] = round((float)$r->getValue() / 100, 2);
-            }
-        }
-        if(!$this->getResponseByName('ont.distance', $response)->error()) {
-            foreach ($this->getResponseByName('ont.distance', $response)->fetchAll() as $r) {
-                $onuId = Helper::getIndexByOid($r->getOid());
-                $return[$onuId]['distance'] = (int)$r->getValue();
-            }
-        }
-        return array_values($return);
-    }
-
     /**
      * @param PoollerResponse[] $response
      * @return array
      * @throws \SwitcherCore\Exceptions\IncompleteResponseException
      */
-    private function processWithInterface($response)
+    private function process($response)
     {
         $return = [];
         $responses = [];
@@ -128,17 +79,29 @@ class OntOpticalInfo extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        $optical = $this->oids->getOidsByRegex('ont.optical*');
-        $optical[] = $this->oids->getOidByName('ont.distance');
+        $loadOnly = null;
+        if($filter['load_only']) {
+            $loadOnly = explode(",", $filter['load_only']);
+        }
+        $optical = [];
+        if($loadOnly === null || in_array('tx', $loadOnly)) {
+            $optical[] = $this->oids->getOidByName('ont.opticalTx');
+        }
+        if($loadOnly === null || in_array('rx', $loadOnly)) {
+            $optical[] = $this->oids->getOidByName('ont.opticalRx');
+        }
+        if($loadOnly === null || in_array('temp', $loadOnly)) {
+            $optical[] = $this->oids->getOidByName('ont.opticalTemp');
+        }
+        if($loadOnly === null || in_array('voltage', $loadOnly)) {
+            $optical[] = $this->oids->getOidByName('ont.opticalVoltage');
+        }
+        if($loadOnly === null || in_array('distance', $loadOnly)) {
+            $optical[] = $this->oids->getOidByName('ont.distance');
+        }
         if (!$filter['interface']) {
             $oids = [];
-            foreach ($optical as $opt) {
-                $oids[] = Oid::init($opt->getOid());
-            }
-            $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk($oids)));
-        } else {
-            $oids = [];
-            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
+            foreach ($this->getAllOntsIds(true) as $id) {
                 foreach ($optical as $optId) {
                     if ($optId->getName() === 'ont.distance') {
                         $oids[] = Oid::init("{$optId->getOid()}.$id");
@@ -147,7 +110,19 @@ class OntOpticalInfo extends CDataAbstractModule
                     }
                 }
             }
-            $this->response = $this->processWithInterface($this->snmp->get($oids));
+            $this->response = $this->process($this->snmp->get($oids));
+        } else {
+            $oids = [];
+            foreach ($this->getOntIdsByInterface($filter['interface'], true) as $id) {
+                foreach ($optical as $optId) {
+                    if ($optId->getName() === 'ont.distance') {
+                        $oids[] = Oid::init("{$optId->getOid()}.$id");
+                    } else {
+                        $oids[] = Oid::init("{$optId->getOid()}.$id.0.0");
+                    }
+                }
+            }
+            $this->response = $this->process($this->snmp->get($oids));
         }
         return $this;
     }

@@ -26,7 +26,7 @@ class OntReasons extends CDataAbstractModule
     private function processNoInterface($response) {
         $return = [];
         foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            $return[$onts['interface']['id']] = $onts;
+            $return[$onts['interface']['id']]['interface'] = $onts['interface'];
         }
 
         foreach ($this->getResponseByName('ont.lastRegSince', $response)->fetchAll() as $r) {

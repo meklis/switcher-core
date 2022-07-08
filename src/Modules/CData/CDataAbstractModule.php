@@ -23,13 +23,14 @@ abstract class CDataAbstractModule extends AbstractModule
         return [];
     }
 
-    function __construct(Model $model) {
+    function __construct(Model $model)
+    {
         $this->interfaces = $model->getExtraParamByName('interfaces');
     }
 
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
-        if($fromCache && $ret = $this->getCache(json_encode($filter))) {
+        if ($fromCache && $ret = $this->getCache(json_encode($filter))) {
             return $ret;
         }
         $resp = $this->getPretty();
@@ -42,7 +43,7 @@ abstract class CDataAbstractModule extends AbstractModule
 
         if (is_numeric($input) && $input < 100) {
             $interface = $this->findInterface($input, 'xid');
-            if($interface === null) {
+            if ($interface === null) {
                 throw new \Exception("Interface with xid=$input not found");
             }
             return [
@@ -54,7 +55,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 'onu_id' => null,
                 'uni' => null,
                 'parent' => null,
-                'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
+                'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
             ];
         } elseif (is_numeric($input) && $input > 10000) {
             //Check is port
@@ -67,7 +68,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => $interface['type'],
                     'onu_num' => null,
                     'uni' => null,
-                    'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
+                    'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
             }
             //Find ont number
@@ -83,7 +84,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => 'ONU',
                     'onu_num' => $onuNum,
                     'uni' => null,
-                    'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
+                    'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
             }
         } elseif (!is_numeric($input)) {
@@ -97,7 +98,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => $interface['type'],
                     'onu_num' => null,
                     'uni' => null,
-                    'pontype' => isset($interface['pontype']) ?  $interface['pontype'] : null,
+                    'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
                 switch (count($m)) {
                     case 7:
@@ -117,7 +118,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 return $response;
             }
         }
-       throw new \InvalidArgumentException("Error parse interface by ident='{$input}'");
+        throw new \InvalidArgumentException("Error parse interface by ident='{$input}'");
     }
 
     private function findInterface($findValue, $findKey)
@@ -136,9 +137,10 @@ abstract class CDataAbstractModule extends AbstractModule
      * @throws DependencyException
      * @throws NotFoundException
      */
-    function getOntIdsByInterface($interface) {
+    function getOntIdsByInterface($interface, $onlyOnline = false)
+    {
         $interface = $this->parseInterface($interface);
-        if($interface['type'] !== 'PON') {
+        if ($interface['type'] !== 'PON') {
             return [(int)$interface['id']];
         }
         $min = $interface['id'];
@@ -146,15 +148,37 @@ abstract class CDataAbstractModule extends AbstractModule
         $ontIds = [];
         $onts = $this->getModule('pon_onts_status')->run()->getPretty();
         foreach ($onts as $ont) {
-            if($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
+            if ($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
+                if ($onlyOnline && $ont['status'] !== 'Online') {
+                    continue;
+                }
                 $ontIds[] = (int)$ont['interface']['id'];
             }
         }
-        return  $ontIds;
+        return $ontIds;
     }
-    protected function _exe($command) {
+
+    /**
+     * @param $interface
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    function getAllOntsIds($onlyOnline = false)
+    {
+        $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+        foreach ($onts as $ont) {
+            if ($onlyOnline && $ont['status'] !== 'Online') {
+                continue;
+            }
+            $ontIds[] = (int)$ont['interface']['id'];
+        }
+        return $ontIds;
+    }
+
+    protected function _exe($command)
+    {
         $resp = $this->console->exec($command);
-        if(strpos($resp, "Unknown command") !== false) {
+        if (strpos($resp, "Unknown command") !== false) {
             throw new \Exception($resp);
         }
         return true;

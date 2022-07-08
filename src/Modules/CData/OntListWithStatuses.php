@@ -97,6 +97,10 @@ class OntListWithStatuses extends CDataAbstractModule
                 $data[$iface['id']]
             ];
         } else {
+            if($cached = $this->getCache("onts_status", true)) {
+                $this->response = $cached;
+                return  $this;
+            }
             $resp = $this->formatResponse(
                 $this->snmp->walk(
                     [Oid::init($this->oids->getOidByName('ont.adminStatus')->getOid())]
@@ -110,6 +114,7 @@ class OntListWithStatuses extends CDataAbstractModule
                 if(!isset($data[$index])) continue;
                 $data[$index]['admin_status'] = $status->getParsedValue();
             }
+            $this->setCache("onts_status", array_values($data), 10, true);
             $this->response = array_values($data);
         }
 
