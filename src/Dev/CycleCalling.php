@@ -30,6 +30,7 @@ class CycleCalling extends AbstractCommand
         $modules = $this->getModulesList($core);
         $callback = function (string $userInput) use ($modules) {
             return array_filter($modules, function ($e) use ($userInput) {
+                if($userInput == "?") return true;
                 return preg_match("#^" . addslashes($userInput) . "#", $e);
             });
         };
