@@ -141,13 +141,26 @@ class OntOpticalInfo extends HuaweiOLTAbstractModule
         }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
-            $this->response = $this->formatResponse($this->snmp->get($oids));
+            if($iface['type'] == 'ONU') {
+                $oids = array_map(function ($e) use ($iface) {
+                    return $e . "." . $iface['xid'];
+                }, $oids);
+                $oids = array_map(function ($e) {
+                    return Oid::init($e);
+                }, $oids);
+                $this->response = $this->formatResponse($this->snmp->get($oids));
+            } else {
+                $reqOids = [];
+                $ifaces = $this->getModule('pon_onts_status')->run(['interface' =>  null, 'load_only'=>'status'])->getPrettyFiltered(['interface'=>null, 'load_only'=>'status']);
+                foreach ($ifaces as $i) {
+                    if($i['interface']['parent'] != $iface['id']) continue;
+                    if($i['status'] !== 'Online') continue;
+                    $reqOids = array_merge($reqOids,array_map(function ($e) use ($i) {
+                        return Oid::init($e . "." . $i['interface']['xid']);
+                    }, $oids));
+                }
+                $this->response = $this->formatResponse($this->snmp->get($reqOids));
+            }
         } else {
             $ifaces = $this->getModule('pon_onts_status')->run(['interface' =>  null, 'load_only'=>'status'])->getPrettyFiltered(['interface'=>null, 'load_only'=>'status']);
             $oidList = [];

@@ -84,7 +84,7 @@ class OntReasons extends HuaweiOLTAbstractModule
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
-                return $e . $iface['xid'];
+                return $e . "." . $iface['xid'];
             }, $oids);
             $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
             $this->response = $this->formatResponse($this->snmp->get($oids));
