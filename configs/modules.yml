@@ -509,6 +509,9 @@
   arguments:
     - { name: interface, pattern: '.*', required: true }
 
+- name: unregistered_onts
+  description: Allow run command
+
 - name: console_command
   description: Allow run command
   arguments:
