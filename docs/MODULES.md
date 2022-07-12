@@ -16236,6 +16236,10 @@ true
 </details>
             
     
+### [gpon_profiles](#gpon_profiles) - List ONU profiles for GPON 
+      
+    
+    
 ### [interface_counters](#interface_counters) - Returned FDB table on ONTs 
     
 **Аргументы:**    
@@ -17969,6 +17973,35 @@ true
     
     
 ### [pon_ont_reset](#pon_ont_reset) - Reset ONT configuration 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [pon_ont_reset_counters](#pon_ont_reset_counters) - Reset counters on ONT 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [pon_ont_state](#pon_ont_state) - Returned onts statuses 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [pon_onts_configuration](#pon_onts_configuration) - Returned onts statuses 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+- **load_only**, проверка выражением: *.**    
+      
+    
+    
+### [pon_onts_down_history](#pon_onts_down_history) - Return table of down history (down, up, down reason) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
