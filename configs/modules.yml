@@ -346,6 +346,10 @@
   arguments:
       - {name: type, pattern: '^(remote|line)$', required: yes, values: [ remote,line ] }
 
+#Get ONU state by interface
+- name: gpon_profiles
+  descr: List ONU profiles for GPON
+
 - name: zte_onu_registration_gpon
   descr: ONU registration for GPON
   arguments:
@@ -394,6 +398,22 @@
     - {name: load_only, pattern: '.*', required: no}
   descr: Returned onts statuses
 
+- name: pon_ont_state
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+  descr: Returned onts statuses
+
+- name: pon_ont_reset_counters
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+  descr: Reset counters on ONT
+
+- name: pon_onts_configuration
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+    - {name: load_only, pattern: '.*', required: no}
+  descr: Returned onts statuses
+
 - name: pon_onts_mac_addr
   descr: Returned ONTs MAC addresses (for EPON)
   arguments:
@@ -412,6 +432,11 @@
 
 - name: pon_onts_reasons
   descr: Returned ONTs MAC addresses
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: pon_onts_down_history
+  descr: Return table of down history (down, up, down reason)
   arguments:
     - {name: interface, pattern: '.*', required: no}
 

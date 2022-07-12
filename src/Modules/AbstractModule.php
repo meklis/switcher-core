@@ -187,4 +187,18 @@ abstract class AbstractModule
         return  true;
     }
 
+    function convertHexToString($string) {
+        $symbols = explode(":", $string);
+        $str = '';
+        foreach ($symbols as $symbol) {
+            if(!hexdec($symbol)) continue;
+            $char = Helper::hexToStr($symbol);
+            if(!mb_detect_encoding($char, 'ASCII', true)) {
+                continue;
+            }
+
+            $str .= $char;
+        }
+        return $str;
+    }
 }

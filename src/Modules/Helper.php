@@ -92,12 +92,12 @@ class Helper
         }
         return "{$m[0]}{$m[1]}:{$m[2]}{$m[3]}:{$m[4]}{$m[5]}:{$m[6]}{$m[7]}:{$m[8]}{$m[9]}:{$m[10]}{$m[11]}";
     }
-    static function formatMac3Blocks($macStr) {
+    static function formatMac3Blocks($macStr, $delim = '.') {
         $m = str_split(strtolower(str_replace(['-', ':', '.', ','], '',$macStr)));
         if(count($m) < 12) {
             throw new InvalidArgumentException("Incorrect mac address - $macStr");
         }
-        return "{$m[0]}{$m[1]}{$m[2]}{$m[3]}.{$m[4]}{$m[5]}{$m[6]}{$m[7]}.{$m[8]}{$m[9]}.{$m[10]}{$m[11]}";
+        return "{$m[0]}{$m[1]}{$m[2]}{$m[3]}{$delim}{$m[4]}{$m[5]}{$m[6]}{$m[7]}{$delim}{$m[8]}{$m[9]}{$m[10]}{$m[11]}";
     }
     static function hexToBinStr($hex) {
         $oktets = explode(":", str_replace([' ', '-', '.'], ":", $hex));
