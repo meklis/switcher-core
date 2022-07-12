@@ -116,8 +116,8 @@ class WrappedResponse {
      * @throws Exception
      */
     function addElements($data) {
+        $wrapped = [];
         if($data->error == '') {
-            $wrapped = [];
             foreach ($data->getResponse() as $num=>$resp) {
                 if($resp->getType() == 'NoSuchInstance' || $resp->getType() == 'NoSuchObject') {
                     throw new Exception("NoSuchInstance response from device - {$data->getIp()} for oid {$resp->getOid()}");
@@ -136,7 +136,11 @@ class WrappedResponse {
             }
             $data->response = $wrapped;
         }
-        $this->data->setResponse(array_merge($this->data->getResponse(),$data->response));
+        $resp = $this->data->getResponse();
+        if(!is_array($resp)) {
+            $resp = [];
+        }
+        $this->data->setResponse(array_merge($resp,$wrapped));
         $this->counter = 0;
     }
 }
