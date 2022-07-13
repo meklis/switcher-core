@@ -92,7 +92,6 @@ class DlinkVlanParser extends SwitchesPortAbstractModule
         $oids[] = $this->oids->getOidByName('dot1q.VlanStaticEgressPorts')->getOid();
         $oids[] = $this->oids->getOidByName('dot1q.VlanStaticForbiddenEgressPorts')->getOid();
         $oids[] = $this->oids->getOidByName('dot1q.VlanStaticUntaggedPorts')->getOid();
-        $oids[] = $this->oids->getOidByName('dot1q.VlanStaticRowStatus')->getOid();
 
         if($filter['vlan_id']) {
             foreach ($oids as $num=>$oid) {
@@ -103,7 +102,7 @@ class DlinkVlanParser extends SwitchesPortAbstractModule
         foreach ($oids as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-        $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
+        $this->response = $this->formatResponse($this->snmp->walkNext($oidObjects));
         return $this;
     }
 }

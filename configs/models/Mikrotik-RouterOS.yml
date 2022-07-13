@@ -125,11 +125,11 @@ models:
      bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
      sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
 
- - name: Mikrotik RB2011UiAS-2HnD
+ - name: Mikrotik RB2011UiAS
    key: mikrotik_rb2011uias_2hnd
    ports: 0
    device_type: ROUTER
-   detect: {description: ^RouterOS RB2011UiAS-2HnD.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
+   detect: {description: ^RouterOS RB2011UiAS.*,  objid: ^.1.3.6.1.4.1.14988.1$ }
    inputs:
      - snmp
      - routeros_api
