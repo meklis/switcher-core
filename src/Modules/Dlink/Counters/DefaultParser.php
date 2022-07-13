@@ -17,7 +17,7 @@ class DefaultParser extends SwitchesPortAbstractModule
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());
                 if(!isset($indexes[$port_index])) continue;
-                $metric_name = str_replace(['if_'], '', Helper::fromCamelCase($oid_name));
+                $metric_name = str_replace(['if_', 'hc_'], '', Helper::fromCamelCase($oid_name));
                 $response[$port_index][$metric_name] = $resp->getValue();
                 $response[$port_index]['interface'] = $indexes[$port_index];
             }
