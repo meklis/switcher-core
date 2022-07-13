@@ -30,7 +30,7 @@ class OntReset extends CDataAbstractModule
         if(!$interface['id']) {
             throw new \Exception("Incorrect ONU number");
         }
-        $oid = $this->oids->getOidByName('ont.action.reset')->getOid();
+        $oid = $this->oids->getOidByName('ont.action.resetOnu')->getOid();
         $resp = $this->snmp->set(Oid::init($oid . ".{$interface['id']}", false, 'Integer', 1));
         if($resp[0]->error) {
             throw new \Exception("Returned error from device: {$resp[0]->error}");
