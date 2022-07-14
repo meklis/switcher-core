@@ -46,7 +46,7 @@ class OntUniPortsStatus extends CDataAbstractModule
             }
         }
 
-        foreach ($this->formatResponse($this->snmp->walk($oids)) as $resp) {
+        foreach ($this->formatResponse($this->snmp->walkNext($oids)) as $resp) {
             if($resp->error()) {
                 continue;
             }
@@ -87,7 +87,7 @@ class OntUniPortsStatus extends CDataAbstractModule
                       'description' => isset($uni['description']) ? $uni['description'] : null,
                       'admin_status' => isset($uni['admin_status']) ? $uni['admin_status'] : null,
                       'status' => $status,
-                      'type' => $uni['type'],
+                      'type' => isset($uni['type']) ? $uni['type'] : 'Unknown' ,
                       'number' => $uni['number'],
                     ];
                 }, $onu['unis']);
