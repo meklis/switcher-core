@@ -46,7 +46,7 @@ class OntUniPortsStatus extends CDataAbstractModule
             }
         }
 
-        foreach ($this->formatResponse($this->snmp->walkNext($oids)) as $resp) {
+        foreach ($this->formatResponse($this->snmp->walk($oids)) as $resp) {
             if($resp->error()) {
                 $this->logger->error("Error loading UNI: {$resp->error()}");
                 continue;
