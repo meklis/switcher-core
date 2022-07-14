@@ -48,6 +48,7 @@ class OntUniPortsStatus extends CDataAbstractModule
 
         foreach ($this->formatResponse($this->snmp->walkNext($oids)) as $resp) {
             if($resp->error()) {
+                $this->logger->error("Error loading UNI: {$resp->error()}");
                 continue;
             }
             foreach ($resp->fetchAll() as $r) {
@@ -94,7 +95,6 @@ class OntUniPortsStatus extends CDataAbstractModule
                 $onu['unis'] = array_values($unis);
                 return $onu;
         }, $RETURN));
-
     }
 
     function getPretty()
