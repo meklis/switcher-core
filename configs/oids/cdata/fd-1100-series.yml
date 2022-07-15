@@ -50,7 +50,7 @@
 - {name: ont.llidOperations, oid: .1.3.6.1.4.1.34592.1.3.3.12.1.1.10, values: {3: dereg, 4: breakCrossLink, 5: restoreConfig, 6: deleteLink}}
 
 #UNI Block
-- {name: ont.uni.description, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.2 }
+- {name: ont.uni.description, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.2.1 }
 - {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.3.1, values: {1: Up, 2: Down}}
 - {name: ont.uni.speed, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.5.1, values: {1: 10M, 2: 100M, 3: 1G}}
 - {name: ont.uni.duplex, oid: .1.3.6.1.4.1.34592.1.3.4.3.1.6.1, values: {1: Full, 2: Half}}
