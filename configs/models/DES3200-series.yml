@@ -99,7 +99,7 @@ models:
      - ./oids/dlink/des-3200-18-c1.yml
      - ./oids/dlink/des-3200-c1-diag.yml
      - ./oids/dlink/common-agent-info.yml
-   detect: {description: ^DES-3200-18\/C1 Fast Ethernet Switch$,  objid: ^.*113\.3\.1$ }
+   detect: {description: ^DES-3200-18$,  objid: ^.*113\.3\.1$ }
    extra:
      diag_linkup: false
      console_conn_type: dlink
