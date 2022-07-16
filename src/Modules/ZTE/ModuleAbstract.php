@@ -284,6 +284,20 @@ abstract class ModuleAbstract extends AbstractModule
         return $response;
     }
 
+    function convertHexToString($string) {
+        $symbols = explode(":", $string);
+        $str = '';
+        foreach ($symbols as $symbol) {
+            if(!hexdec($symbol)) continue;
+            $char = chr(hexdec($symbol));
+            if(!mb_detect_encoding($char, 'Windows-1251', true) && !mb_detect_encoding($char, 'ASCII', true)) {
+                continue;
+            }
+            $str .= $char;
+        }
+        return iconv("WINDOWS-1251", "UTF-8", $str,);
+    }
+
     function parseExpandedTable($input) {
         $responses = [];
         $r  = [];

@@ -36,7 +36,7 @@ class InterfaceDescriptions extends ModuleAbstract
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
                 $data[$iface['id']] = [
                     'interface' => $iface,
-                    'description' => $this->prettyDescription($resp->getValue()),
+                    'description' => $this->prettyDescription($resp->getHexValue()),
                 ];
             }
         }
@@ -46,7 +46,7 @@ class InterfaceDescriptions extends ModuleAbstract
                     $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
                     $data[$iface['id']] = [
                         'interface' => $iface,
-                        'description' => $this->prettyDescription($resp->getValue()),
+                        'description' => $this->prettyDescription($resp->getHexValue()),
                     ];
                 }
             }
@@ -56,7 +56,7 @@ class InterfaceDescriptions extends ModuleAbstract
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
                 $data[$iface['id']] = [
                     'interface' => $iface,
-                    'description' => $this->prettyDescription($resp->getValue()),
+                    'description' => $this->prettyDescription($resp->getHexValue()),
                 ];
             }
         }
@@ -66,6 +66,7 @@ class InterfaceDescriptions extends ModuleAbstract
 
     private function prettyDescription($descr)
     {
+        $descr = $this->convertHexToString($descr);
         if (str_contains($descr, '$$')) {
             $blocks = explode("$$", $descr);
             return $blocks[count($blocks) - 1];
