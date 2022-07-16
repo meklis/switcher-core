@@ -42,7 +42,7 @@ class InterfaceDescriptions extends ModuleAbstract
         }
         if (isset($response['zx.ont.GponName']) && !$response['zx.ont.GponName']->error()) {
             foreach ($response['zx.ont.GponName']->fetchAll() as $resp) {
-                if (strpos($this->prettyDescription($resp->getValue()), "ONU-") === false) {
+                if (strpos($this->prettyDescription($resp->getHexValue()), "ONU-") === false) {
                     $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
                     $data[$iface['id']] = [
                         'interface' => $iface,
