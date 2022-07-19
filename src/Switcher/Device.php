@@ -25,6 +25,7 @@ class Device
     protected $community;
     protected $login;
     protected $password;
+    protected $modelKey;
     protected $meta = [];
 
     function __construct()
@@ -147,4 +148,22 @@ class Device
     public function getObject() {
         return $this;
     }
+
+    /**
+     * @return null | string
+     */
+    public function getModelKey()
+    {
+        return $this->modelKey;
+    }
+
+    /**
+     * @param mixed $modelKey
+     */
+    public function setModelKey($modelKey)
+    {
+        $this->modelKey = $modelKey;
+        return $this;
+    }
+
 }

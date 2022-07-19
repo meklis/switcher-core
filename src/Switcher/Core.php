@@ -235,10 +235,17 @@ class Core
         if (!$this->container->has(MultiWalkerInterface::class)) {
             throw new Exception("Snmp walker not setted. You must set walker before connect");
         }
+        /**
+         * @var ModelCollector $modelCollector
+         */
         $modelCollector = $this->container->get(ModelCollector::class);
         $oidCollector = $this->container->get(OidCollector::class);
-        $devInfo = $this->getDetectDevInfo();
-        $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
+        if($mk = $this->device->getModelKey()) {
+            $model = $modelCollector->getModelByKey($mk);
+        } else {
+            $devInfo = $this->getDetectDevInfo();
+            $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
+        }
         $this->container->set(Model::class, $model);
         $oidCollector->readEnterpriceOids($model);
         $this->declareModules($model);
