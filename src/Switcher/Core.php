@@ -241,6 +241,12 @@ class Core
         $modelCollector = $this->container->get(ModelCollector::class);
         $oidCollector = $this->container->get(OidCollector::class);
         if($mk = $this->device->getModelKey()) {
+            //Check device is alive before getting info from cache
+            $multiwalker = $this->container->get(MultiWalkerInterface::class);
+            $response = $multiwalker->get([O::init($oidCollector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
+            if($response[0]->error) {
+                throw new \SNMPException($response[0]->error);
+            }
             $model = $modelCollector->getModelByKey($mk);
         } else {
             $devInfo = $this->getDetectDevInfo();
