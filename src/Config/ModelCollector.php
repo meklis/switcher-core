@@ -38,7 +38,7 @@ class ModelCollector extends Collector
             }
             return $model;
         }
-        throw new Exception("Model not found by detects with parameters descr='{$descr}', oidId='{$oidId}'");
+        throw new Exception("Device {$descr} not supported by system");
     }
 
     /**
