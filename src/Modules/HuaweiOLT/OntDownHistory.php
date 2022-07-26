@@ -35,6 +35,8 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                 $time = null;
                 if($ts = \DateTime::createFromFormat("Y-m-d H:i:s", trim($r->getValue(), "Z"))) {
                     $time = $ts->getTimestamp();
+                }elseif ($ts = \DateTime::createFromFormat("d.m.Y H:i:s", trim($r->getValue(), "Z"))) {
+                    $time = $ts->getTimestamp();
                 }
                 $ifaces[$iface['id']]['interface'] = $iface;
                 $ifaces[$iface['id']]['logs'][$id]['last_reg'] = $time;
@@ -47,6 +49,8 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($r->getOid(), 1);
                 $time = null;
                 if($ts = \DateTime::createFromFormat("Y-m-d H:i:s", trim($r->getValue(), "Z"))) {
+                    $time = $ts->getTimestamp();
+                } elseif ($ts = \DateTime::createFromFormat("d.m.Y H:i:s", trim($r->getValue(), "Z"))) {
                     $time = $ts->getTimestamp();
                 }
                 $id = Helper::getIndexByOid($r->getOid());
