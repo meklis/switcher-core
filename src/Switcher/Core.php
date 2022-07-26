@@ -177,7 +177,6 @@ class Core
         }
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 2, 2));
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.IfacesCount')->getOid() . '.0')], 2, 2));
-
         $descr = "";
         $objId = "";
         $ifacesCount = 0;
