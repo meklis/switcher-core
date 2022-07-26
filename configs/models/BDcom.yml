@@ -1,4 +1,78 @@
 models:
+  - name: BDCOM P3612-2TE
+    key: bdcom_p3612_2te
+    inputs:
+      - snmp
+      - console
+    detect: {description: ^BDCOM.*P3612-2TE.*,  objid: ^.1.3.6.1.4.1.3320.1.2010.0 }
+    device_type: OLT
+    oids:
+      - ./oids/bdcom/3310c.yml
+    modules:
+      system: \SwitcherCore\Modules\BDcom\SystemInformation
+      pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
+      pon_count_registered_onts: \SwitcherCore\Modules\BDcom\PortCountRegisteredOnts
+      pon_onts_status: \SwitcherCore\Modules\BDcom\OntListWithStatuses
+      pon_onts_mac_addr: \SwitcherCore\Modules\BDcom\OntMacAddress
+      pon_onts_optical: \SwitcherCore\Modules\BDcom\P3608B\OntOpticalInfo
+      pon_ports_optical: \SwitcherCore\Modules\BDcom\PonPortsOptical
+      pon_onts_reasons: \SwitcherCore\Modules\BDcom\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
+      fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
+      save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
+      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
+      sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
+      interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
+      uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
+      uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+    extra:
+      console_conn_type: bdcom
+      console_commands_after_connect:
+        - enable
+        - terminal length 0
+
+  - name: BDCOM P3616-2TE
+    key: bdcom_p3616_2te
+    inputs:
+      - snmp
+      - console
+    detect: {description: ^BDCOM.*P3616-2TE.*,  objid: .1.3.6.1.4.1.3320.1.2011.0 }
+    device_type: OLT
+    oids:
+      - ./oids/bdcom/3310c.yml
+    modules:
+      system: \SwitcherCore\Modules\BDcom\SystemInformation
+      pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
+      pon_count_registered_onts: \SwitcherCore\Modules\BDcom\PortCountRegisteredOnts
+      pon_onts_status: \SwitcherCore\Modules\BDcom\OntListWithStatuses
+      pon_onts_mac_addr: \SwitcherCore\Modules\BDcom\OntMacAddress
+      pon_onts_optical: \SwitcherCore\Modules\BDcom\P3608B\OntOpticalInfo
+      pon_ports_optical: \SwitcherCore\Modules\BDcom\PonPortsOptical
+      pon_onts_reasons: \SwitcherCore\Modules\BDcom\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
+      fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
+      save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
+      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
+      sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
+      interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
+      uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
+      uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+    extra:
+      console_conn_type: bdcom
+      console_commands_after_connect:
+        - enable
+        - terminal length 0
+
   - name: BDCOM P3608B
     key: bdcom_p3608b
     inputs:
