@@ -27,9 +27,13 @@ class OntDelete extends BDcomAbstractModule
     public function run($filter = [])
     {
         $iface = $this->parseInterface($filter['interface']);
+        if(!preg_match('/^.*([0-9])\/([0-9]{1,4}):([0-9]{1,3})$/', $iface['name'], $match)) {
+            throw new \InvalidArgumentException("Error parse ONT interface");
+        }
         $this->console->exec("config");
-        $this->console->exec("no epon bind-onu sequence {$iface['name']}", true, "Are|\?");
-        $this->console->exec("y");
+        $this->console->exec("interface EPON {$match[0]}/{$match[1]}");
+        $this->console->exec("no epon bind-onu sequence {$match[2]}");
+        $this->console->exec("exit");
         $this->console->exec("exit");
         return $this;
     }
