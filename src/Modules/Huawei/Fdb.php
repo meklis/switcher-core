@@ -36,12 +36,14 @@ class Fdb extends FdbDot1Bridge
                     continue;
                 }
                 if(!(int)$ports[$mac])  continue;
-                $pretties[] = [
-                    'interface' => $this->parseInterface($ports[$mac], 'id'),
-                    'vlan_id' => null,
-                    'mac' => $mac,
-                    'status' => $status,
-                ];
+                try {
+                    $pretties[] = [
+                        'interface' => $this->parseInterface($ports[$mac], 'id'),
+                        'vlan_id' => null,
+                        'mac' => $mac,
+                        'status' => $status,
+                    ];
+                } catch (\Throwable $e) {}
             }
             return $pretties;
         } else {
