@@ -31,10 +31,11 @@ class OntDelete extends BDcomAbstractModule
             throw new \InvalidArgumentException("Error parse ONT interface");
         }
         $this->console->exec("config");
-        $this->console->exec("interface EPON {$match[0]}/{$match[1]}");
-        $this->console->exec("no epon bind-onu sequence {$match[2]}");
+        $this->console->exec("interface EPON {$match[1]}/{$match[2]}");
+        $this->console->exec("no epon bind-onu sequence {$match[3]}");
         $this->console->exec("exit");
         $this->console->exec("exit");
+
         return $this;
     }
 }
