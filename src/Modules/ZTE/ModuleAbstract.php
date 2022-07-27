@@ -296,7 +296,7 @@ abstract class ModuleAbstract extends AbstractModule
             $str .= $char;
         }
         if(mb_detect_encoding($char, 'ASCII', true)) {
-            return  $str;
+            return iconv("ASCII", "UTF-8//IGNORE", $str,);;
         }
         if(mb_detect_encoding($char, 'Windows-1251', true)) {
             return iconv("Windows-1251", "UTF-8//IGNORE", $str,);
