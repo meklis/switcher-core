@@ -295,7 +295,7 @@ abstract class ModuleAbstract extends AbstractModule
             }
             $str .= $char;
         }
-        return iconv("WINDOWS-1251", "UTF-8", $str,);
+        return iconv("WINDOWS-1251", "UTF-8//IGNORE", $str,);
     }
 
     function parseExpandedTable($input) {
