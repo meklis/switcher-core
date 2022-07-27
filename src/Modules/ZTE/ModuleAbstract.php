@@ -287,23 +287,21 @@ abstract class ModuleAbstract extends AbstractModule
     function convertHexToString($string) {
         $symbols = explode(":", $string);
         $str = '';
-        $cp1251Detected = false;
         foreach ($symbols as $symbol) {
             if(!hexdec($symbol)) continue;
             $char = chr(hexdec($symbol));
-            if(mb_detect_encoding($char, 'ASCII', true)) {
-
-            } elseif (mb_detect_encoding($char, 'Windows-1251', true)) {
-                $cp1251Detected = true;
-            } else {
+            if(!mb_detect_encoding($char, 'Windows-1251', true) && !mb_detect_encoding($char, 'ASCII', true)) {
                 continue;
             }
             $str .= $char;
         }
-        if($cp1251Detected) {
-            return iconv("WINDOWS-1251", "UTF-8//IGNORE", $str,);
+        if(mb_detect_encoding($char, 'ASCII', true)) {
+            return  $str;
         }
-        return  $str;
+        if(mb_detect_encoding($char, 'Windows-1251', true)) {
+            return iconv("Windows-1251", "UTF-8//IGNORE", $str,);
+        }
+        return  '';
     }
 
     function parseExpandedTable($input) {
