@@ -38,6 +38,12 @@ class SshLazyConnect extends SSH implements ConsoleInterface
        $this->port = $port;
        return $this;
     }
-
+    /**
+     * @return \Meklis\Network\Console\Helpers\DefaultHelper|HelperInterface
+     */
+    function getDeviceHelper()
+    {
+        return $this->helper;
+    }
 
 }

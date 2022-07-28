@@ -40,4 +40,12 @@ class TelnetLazyConnect extends Telnet implements ConsoleInterface
         return $this;
     }
 
+    /**
+     * @return \Meklis\Network\Console\Helpers\DefaultHelper|HelperInterface
+     */
+    function getDeviceHelper()
+    {
+        return $this->helper;
+    }
+
 }

@@ -49,7 +49,7 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($sn->getOid());
                 $data[$iface['id']] =  [
                    'serial' => str_replace(":", "", $sn->getHexValue()),
-                   'iface' => $iface,
+                   'interface' => $iface,
                    'password' => null,
                    'version' => null,
                    'equipment_id' => null,

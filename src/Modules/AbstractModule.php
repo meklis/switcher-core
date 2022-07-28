@@ -150,10 +150,11 @@ abstract class AbstractModule
             return null;
         }
         $cache = $this->container->get(CacheInterface::class);
+        $md5 = md5($key);
         if($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $key;
+            $key = "_" . $this->device->getIp() . ":" . $md5;
         } else {
-            $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+            $key = get_class($this) . ":" . $this->device->getIp() . ":" . $md5;
         }
         return $cache->get($key);
     }
@@ -178,10 +179,11 @@ abstract class AbstractModule
             $this->logger->notice("Cache interface not setted");
             return false;
         }
+        $md5 = md5($key);
         if($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $key;
+            $key = "_" . $this->device->getIp() . ":" . $md5;
         } else {
-            $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
+            $key = get_class($this) . ":" . $this->device->getIp() . ":" . $md5;
         }
         $this->container->get(CacheInterface::class)->set($key, $value, $timeout);
         return  true;
