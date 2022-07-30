@@ -97,7 +97,12 @@ class UniInterfacesStatus extends HuaweiOLTAbstractModule
         }
         return array_values(array_map(function ($e){
             if(isset($e['unis'])) {
-                $e['unis'] = array_values($e['unis']);
+                $e['unis'] = array_values(array_filter($e['unis'], function ($e) {
+                    if($e['type'] == '-1' || (int)$e['type'] == -1) {
+                        return false;
+                    }
+                    return true;
+                }));
             }
             return $e;
         }, $ifaces));
