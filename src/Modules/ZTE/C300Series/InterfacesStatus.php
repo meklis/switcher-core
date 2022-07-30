@@ -59,7 +59,7 @@ class InterfacesStatus extends ModuleAbstract
                     $status = $interface['meta']['online_status'];
                 } else if (isset($interface['meta']['phase_state'])) {
                     $meta['phase_state'] = $interface['meta']['phase_state'];
-                    $status = $interface['meta']['state'] === 'enable' ? 'Online' : $interface['meta']['state'];
+                    $status = $interface['meta']['phase_state'] === 'working' ? 'Online' : $interface['meta']['phase_state'];
                 }
                 $meta['technology'] = $interface['meta']['technology'];
             }

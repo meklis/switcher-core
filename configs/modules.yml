@@ -333,13 +333,6 @@
   arguments:
     - {name: onu, pattern: '.*', required: yes}
 
-
-#Show Unregistered ONU
-- name: zte_unregistered_onu
-  arguments:
-    - {name: type, pattern: '^(all|gpon|epon)$', required: no, values: [all,gpon,epon]}
-  descr: List unregistered ONU
-
 #Get ONU state by interface
 - name: zte_gpon_onu_profile_list
   descr: List ONU profiles for GPON
@@ -511,6 +504,8 @@
 
 - name: unregistered_onts
   description: Allow run command
+  arguments:
+    - { name: type, pattern: '^(all|gpon|epon)$', required: no, values: [ all,gpon,epon ] }
 
 - name: console_command
   description: Allow run command
