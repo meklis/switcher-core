@@ -193,6 +193,35 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
 
+  - name: Edge-core ES3510MA
+    key: edgecore_es3510ma
+    ports: 10
+    device_type: SWITCH
+    inputs:
+      - snmp
+    detect: {description: ES3510MA,  objid: .1.3.6.1.4.1.259.8.1.11.101}
+    extra:
+      diag_linkup: false
+      count_pairs: 2
+      overwrite_pairs: {ports: [], count_pairs: 4}
+    oids:
+      - ./oids/edgecore/es3510mav2.yml
+    modules:
+      system: \SwitcherCore\Modules\Edgecore\System
+      parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+      fdb: \SwitcherCore\Modules\Edgecore\Fdb
+      link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+      counters: \SwitcherCore\Modules\Edgecore\Counters
+      vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+      errors: \SwitcherCore\Modules\Edgecore\Errors
+      interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+      sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
+      rmon: \SwitcherCore\Modules\Edgecore\Rmon
+      pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+      cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagES3510
+
   - name: Edge-core ES3510MAv2
     key: edgecore_es3510ma_v2
     ports: 52
