@@ -39,6 +39,7 @@ class InterfacesStatus extends ModuleAbstract
         }
         foreach ($interfaces as $interface) {
             $meta=[];
+            $meta['serial'] = null;
             $status = null;
             if(isset($interface['meta']['shelf'])) {
                 $meta['shelf'] = $interface['meta']['shelf'];
