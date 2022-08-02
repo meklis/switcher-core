@@ -84,8 +84,8 @@ class OntStateInfoFW12 extends ModuleAbstract
                   'onu_index' => $match[1],
                   'admin_state' => $match[2],
                   'state' => $match[3],
-                  'phase_state' => $match[4],
-                  'channel' => $match[5],
+                  'phase_state' => $match[5],
+                  'channel' => null,
                 ];
             }
         }
