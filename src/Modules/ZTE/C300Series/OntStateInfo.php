@@ -38,7 +38,7 @@ class OntStateInfo extends ModuleAbstract
         $lines = explode("\n", $input);
         $response = [];
         foreach (array_splice($lines, 2) as $line) {
-            if(preg_match('/^(.*)[ ]{1,}(Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
+            if(preg_match('/^(.*)[ ]{1,}(Offline|Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
                 $interface = $this->parseInterface(trim($matches[1]));
                 $response[] = [
                     'interface' => $interface,
