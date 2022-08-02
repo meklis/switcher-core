@@ -175,6 +175,9 @@ abstract class ModuleAbstract extends AbstractModule
                     $technology = $cardTypes[$card['real_type']]['interface_type'];
                 }
             }
+            if(!$technology) {
+                throw new \Exception("Error get technology");
+            }
             if($onu) {
                 $parent = (int)$name - $onu;
                 $type = 'ONU';
