@@ -51,6 +51,16 @@ class ModelCollector extends Collector
             if($model->getKey() === $key) {
                 return $model;
             }
+            if($model->getRewrites() && isset($model->getRewrites()['mapping'])) {
+                foreach ($model->getRewrites()['mapping'] as $rewrite) {
+                    if(isset($rewrite['rewrite']['key']) && $rewrite['rewrite']['key'] == $key) {
+                        foreach ($rewrite['rewrite'] as $key=>$value) {
+                            $model->{$key} = $value;
+                        }
+                        return  $model;
+                    }
+                }
+            }
         }
         throw new \Exception("Model not found by key $key");
     }

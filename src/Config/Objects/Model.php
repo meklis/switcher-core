@@ -27,10 +27,13 @@ class Model
      */
     protected $deviceType = '';
 
+
+    protected $rewrites = null;
+
     /**
      * @var Oid[]
      */
-    protected $oids  = [];
+    protected $oids = [];
 
     /**
      * @var array
@@ -64,11 +67,13 @@ class Model
     protected $inputs = [];
 
 
-    public function getInputs() {
+    public function getInputs()
+    {
         return $this->inputs;
     }
 
-    public function getDeviceType() {
+    public function getDeviceType()
+    {
         return $this->deviceType;
     }
 
@@ -76,64 +81,73 @@ class Model
      * @return mixed
      * @throws Exception
      */
-    public function getConsoleConnType() {
-       return $this->getExtraParamByName('console_conn_type');
+    public function getConsoleConnType()
+    {
+        return $this->getExtraParamByName('console_conn_type');
     }
 
     /**
      * @return string[]
      */
-    function getModulesList() {
+    function getModulesList()
+    {
         $modules = [];
-        foreach ($this->modulesNames as $name=>$_) {
+        foreach ($this->modulesNames as $name => $_) {
             $modules[] = $name;
         }
         return $modules;
     }
+
     /**
      * @return string[]
      */
-    function getModulesListAssoc() {
+    function getModulesListAssoc()
+    {
         return $this->modulesNames;
     }
 
-    public static  function init($arr) : Model {
+    public static function init($arr): Model
+    {
         $model = new Model();
-        if(isset($arr['name']) && $arr['name']) {
+        if (isset($arr['name']) && $arr['name']) {
             $model->setName($arr['name']);
         } else {
             throw new InvalidArgumentException("Array for initialize oid must have 'name' element");
         }
-        if(isset($arr['ports'])) {
+        if (isset($arr['ports'])) {
             $model->setPorts($arr['ports']);
         } else {
             $model->setPorts(0);
         }
-        if(isset($arr['key'])) {
+        if (isset($arr['key'])) {
             $model->setKey($arr['key']);
         } else {
             throw new InvalidArgumentException("Model with name '{$arr['name']}' must contain unique key");
         }
-        if(isset($arr['detect']) && isset($arr['detect']['description'])) {
+        if (isset($arr['detect']) && isset($arr['detect']['description'])) {
             $model->setDetect($arr['detect']);
         } else {
             throw new InvalidArgumentException("Array for initialize oid must have 'detect.description' element");
         }
-        if(isset($arr['extra']) && is_array($arr['extra'])) {
+        if (isset($arr['extra']) && is_array($arr['extra'])) {
             $model->setExtra($arr['extra']);
         }
-        if(isset($arr['oids']) && is_array($arr['oids'])) {
+        if (isset($arr['oids']) && is_array($arr['oids'])) {
             $model->setOidPatches($arr['oids']);
         }
-        if(isset($arr['inputs'])) {
+        if (isset($arr['inputs'])) {
             $model->inputs = $arr['inputs'];
         }
-        if(isset($arr['device_type'])) {
+        if (isset($arr['device_type'])) {
             $model->deviceType = $arr['device_type'];
         }
 
-        if(isset($arr['modules'])) {
+        if (isset($arr['modules'])) {
             $model->modulesNames = $arr['modules'];
+        }
+
+        if (isset($arr['rewrites'])) {
+            $model->rewrites = $arr['rewrites'];
         }
         return $model;
     }
@@ -142,51 +156,63 @@ class Model
      * @param string $name
      * @return bool|mixed
      */
-    public function getExtraParamByName($name = "") {
-        if(isset($this->extra[$name])) {
+    public function getExtraParamByName($name = "")
+    {
+        if (isset($this->extra[$name])) {
             return $this->extra[$name];
         }
         throw new Exception("Extra param with name $name not found in model configuration");
     }
-    public function detectByDescription($description) {
-        if(!$description) return true;
-        if(preg_match("/{$this->detect['description']}/", $description)) {
+
+    public function detectByDescription($description)
+    {
+        if (!$description) return true;
+        if (preg_match("/{$this->detect['description']}/", $description)) {
             return true;
         } else {
             return false;
         }
     }
-    public function detectByHardWare($hardware) {
-        if(!$hardware) return true;
-        if(preg_match("/{$this->detect['hardware']}/", $hardware)) {
+
+    public function detectByHardWare($hardware)
+    {
+        if (!$hardware) return true;
+        if (preg_match("/{$this->detect['hardware']}/", $hardware)) {
             return true;
         } else {
             return false;
         }
     }
-    public function detectByObjId($objOid) {
-        if(!$objOid) return true;
-        if(preg_match("/{$this->detect['objid']}/", $objOid)) {
+
+    public function detectByObjId($objOid)
+    {
+        if (!$objOid) return true;
+        if (preg_match("/{$this->detect['objid']}/", $objOid)) {
             return true;
         } else {
             return false;
         }
     }
-    public function detectByIfacesCount($ifacesCount) {
-        if(!$ifacesCount) return true;
-        if(!isset($this->detect['ifacesCount'])) return  true;
+
+    public function detectByIfacesCount($ifacesCount)
+    {
+        if (!$ifacesCount) return true;
+        if (!isset($this->detect['ifacesCount'])) return true;
         return $ifacesCount == $this->detect['ifacesCount'];
     }
 
-    public function getOidByName($name) {
-        if(isset($this->oids[$name])) {
+    public function getOidByName($name)
+    {
+        if (isset($this->oids[$name])) {
             return $this->oids[$name];
         } else {
             throw new InvalidArgumentException("Oid by name '$name' not found in model '{$this->name}'");
         }
     }
-    public function getOidById($name) {
-        if(isset($this->oids[$name])) {
+
+    public function getOidById($name)
+    {
+        if (isset($this->oids[$name])) {
             return $this->oids[$name];
         } else {
             throw new InvalidArgumentException("Oid by name '$name' not found in model '{$this->name}'");
@@ -321,7 +347,54 @@ class Model
     }
 
 
+    protected function __construct()
+    {
+    }
 
-    protected function __construct(){}
+    /**
+     * @return null | string
+     */
+    public function getRewrites()
+    {
+        return $this->rewrites;
+    }
+
+    /**
+     * @param null $rewrites
+     */
+    public function setRewrites($rewrites): void
+    {
+        $this->rewrites = $rewrites;
+    }
+
+    /**
+     * @return AbstractModule[]
+     */
+    public function getModules(): array
+    {
+        return $this->modules;
+    }
+
+    /**
+     * @param AbstractModule[] $modules
+     */
+    public function setModules(array $modules): void
+    {
+        $this->modules = $modules;
+    }
+
+    public function rewriteModelByValue($value)
+    {
+        if (!isset($this->getRewrites()['mapping'])) return $this;
+        foreach ($this->getRewrites()['mapping'] as $rewrite) {
+            if ($value != $rewrite['value']) continue;
+            if (isset($rewrite['rewrite'])) {
+                foreach ($rewrite['rewrite'] as $key => $value) {
+                    $this->{$key} = $value;
+                }
+            }
+        }
+        return $this;
+    }
 
 }
