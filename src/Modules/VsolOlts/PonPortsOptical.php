@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\BDcom;
+namespace SwitcherCore\Modules\VsolOlts;
 
 
 use Exception;
@@ -11,7 +11,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class PonPortsOptical extends BDcomAbstractModule
+class PonPortsOptical extends VsolOltsAbstractModule
 {
     /**
      * @var WrappedResponse[]

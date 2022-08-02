@@ -1,7 +1,7 @@
 
 # PON port block
-- {name: pon.portOpTemperature, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.4} # value / 100 = temp in C
-- {name: pon.portOpVcc, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.5} # value / 100000 = voltage
-- {name: pon.portOpBias, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.6}
-- {name: pon.portOpTxPower, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.7} # value / 100
+- {name: pon.port.optical.temp, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.4} # value / 100 = temp in C
+- {name: pon.port.optical.voltage, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.5} # value / 100000 = voltage
+- {name: pon.port.optical.bias, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.6}
+- {name: pon.port.optical.txPower, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.7} # value / 100
 - {name: pon.portOpRxPower, oid: .1.3.6.1.4.1.34592.1.3.100.2.2.1.8} # value / 100
