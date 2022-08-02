@@ -81,10 +81,10 @@ class OntStateInfoFW12 extends ModuleAbstract
         foreach ($rows as $row) {
             if(preg_match('/^(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*)$/', $row, $match)) {
                 $response[] = [
-                  'onu_index' => $match[1],
-                  'admin_state' => $match[2],
-                  'state' => $match[3],
-                  'phase_state' => $match[5],
+                  'onu_index' => trim($match[1]),
+                  'admin_state' => trim($match[2]),
+                  'state' => trim($match[3]),
+                  'phase_state' => trim($match[5]),
                   'channel' => null,
                 ];
             }
