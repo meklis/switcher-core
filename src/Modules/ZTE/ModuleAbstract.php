@@ -119,7 +119,7 @@ abstract class ModuleAbstract extends AbstractModule
     {
         //Это ID из snmp
         $oidID = 0;
-        if((is_numeric($name) && $name > 9999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
+        if((is_numeric($name) && $name > 19999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
             $oidID = $name;
             $result = $this->decodeSnmpOid($name);
             if($result['onu_number']) {
@@ -133,7 +133,7 @@ abstract class ModuleAbstract extends AbstractModule
             $onu = null;
             $type = 'PON';
             $id =
-                ($matches[3] * 1000000) +
+                ($matches[3] * 10000000) +
                 ($matches[4] * 100000) +
                 ($matches[5] * 1000);
             $parent = null;
@@ -160,10 +160,10 @@ abstract class ModuleAbstract extends AbstractModule
         }
 
         if(is_numeric($name)) {
-            $shelf = floor($name / 1000000);
-            $slot = floor(($name - ($shelf * 1000000)) / 100000);
-            $port = floor(($name - (($slot * 100000) + ($shelf * 1000000))) / 1000);
-            $onu = floor(($name - (($port * 1000) + ($slot * 100000) + ($shelf * 1000000))));
+            $shelf = floor($name / 10000000);
+            $slot = floor(($name - ($shelf * 10000000)) / 100000);
+            $port = floor(($name - (($slot * 100000) + ($shelf * 10000000))) / 1000);
+            $onu = floor(($name - (($port * 1000) + ($slot * 100000) + ($shelf * 10000000))));
             $technology = '';
             $cards = $this->getModule('zte_card_list')->run()->getPretty();
             $cardTypes = [];
