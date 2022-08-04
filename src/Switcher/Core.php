@@ -7,7 +7,6 @@ use DI\ContainerBuilder;
 use ErrorException;
 use Exception;
 use Meklis\Network\Console\Helpers\Helpers;
-use meklis\network\Telnet;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
@@ -239,9 +238,13 @@ class Core
          */
         $modelCollector = $this->container->get(ModelCollector::class);
         $oidCollector = $this->container->get(OidCollector::class);
+
+        /**
+         * @var $multiwalker MultiWalkerInterface
+         */
+        $multiwalker = $this->container->get(MultiWalkerInterface::class);
         if($mk = $this->device->getModelKey()) {
             //Check device is alive before getting info from cache
-            $multiwalker = $this->container->get(MultiWalkerInterface::class);
             $response = $multiwalker->get([O::init($oidCollector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
             if($response[0]->error) {
                 throw new \SNMPException($response[0]->error);
@@ -250,6 +253,13 @@ class Core
         } else {
             $devInfo = $this->getDetectDevInfo();
             $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
+            if($model->getRewrites()) {
+                $response = $multiwalker->get([O::init($model->getRewrites()['oid'])], 1, 1);
+                if($response[0]->error) {
+                    throw new \SNMPException("Error rewrites detect - " .$response[0]->error);
+                }
+                $model->rewriteModelByValue($response[0]->getResponse()[0]->getValue());
+            }
         }
         $this->container->set(Model::class, $model);
         $oidCollector->readEnterpriceOids($model);

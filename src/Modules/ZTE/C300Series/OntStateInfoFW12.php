@@ -10,6 +10,7 @@ use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
 class OntStateInfoFW12 extends ModuleAbstract
 {
+    public $cached = [];
     public function run($params = [])
     {
         if (!$this->telnet) {
@@ -17,8 +18,8 @@ class OntStateInfoFW12 extends ModuleAbstract
         }
         $this->response = [];
         $interface = $this->parseInterface($params['interface']);
-        if($cached = $this->getCache("iface-{$interface['id']}")) {
-            $this->response = $cached;
+        if(isset($this->cached[$interface['id']])) {
+            $this->response = $this->cached[$interface['id']];
             return $this;
         }
         $type = $interface['technology'];
@@ -27,7 +28,7 @@ class OntStateInfoFW12 extends ModuleAbstract
             case 'epon': $this->response = $this->getStateEPON($params['interface']); break;
             default: throw new Exception("Unknown type of interface - '$type'");
         }
-        $this->setCache("iface-{$interface['id']}", $this->response, 10);
+        $this->cached[$interface['id']] = $this->response;
         return $this;
     }
 
