@@ -52,14 +52,50 @@ class FdbTable extends VsolOltsAbstractModule
 
     public function run($filter = [])
     {
+        if ($filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
+            if ($iface['type'] != 'ONU') {
+                throw new \InvalidArgumentException("Only ONU allowed to set interface");
+            }
+            $this->response = $this->byOnu($iface);
+        } else {
+            $this->response = $this->allFdb();
+        }
+        return $this;
+    }
 
-        if($cached = $this->getCache('all_fdb_table', true)) {
-            $this->response =  $cached;
-            return $this;
+    public function byOnu($iface)
+    {
+        $this->console->exec("enable", true, "^Password: ");
+        if (strpos($this->console->exec($this->device->getPassword()), "password") !== false) {
+            throw new \Exception("Error enable command");
+        }
+        $this->console->exec("conf t");
+        $this->console->exec("interface epon {$iface['_slot']}/{$iface['_port']}");
+        $lines = $this->console->exec("show onu {$iface['_onu']} mac-address-table");
+        $fdb = [];
+        foreach (explode("\n", $lines) as $line) {
+            $line = trim($line);
+            if (preg_match('/^[0-9]{1,4}[ ]{1,}([0-9]{1,4})[ ]{1,}(\S*)[ ]{1,}(EPON0\/[0-9]{1,3})[ ]{1,}([0-9]{1,4})[ ]{1,}[0-9]{1,20}$/', $line, $m)) {
+                $fdb[] = [
+                    'vlan_id' => (int)$m[1],
+                    'mac_address' => strtoupper($m[2]),
+                    'interface' => $iface,
+                    'is_dynamic' => null,
+                ];
+            }
+        }
+        return $fdb;
+    }
+
+    public function allFdb()
+    {
+        if ($cached = $this->getCache('all_fdb_table', true)) {
+            return $cached;
         }
         $data = $this->snmp->walkNext(
             [
-              \SnmpWrapper\Oid::init($this->oids->getOidByName('pon.fdbAsStr')->getOid()),
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('pon.fdbAsStr')->getOid()),
             ]
         );
         if ($data[0]->error) {
@@ -72,9 +108,9 @@ class FdbTable extends VsolOltsAbstractModule
         $fdb = [];
         foreach (explode(";", $str) as $line) {
             $line = trim($line);
-            if(!$line) continue;
+            if (!$line) continue;
             list($vlanId, $macAddr, $type, $ifaceName) = explode(",", $line);
-            if(strpos($ifaceName, "EPON") === false) {
+            if (strpos($ifaceName, "EPON") === false) {
                 continue;
             }
             $fdb[] = [
@@ -84,9 +120,8 @@ class FdbTable extends VsolOltsAbstractModule
                 'mac_address' => $macAddr,
             ];
         }
-        $this->setCache('all_fdb_table', $fdb, 10);
-        $this->response = $fdb;
-        return $this;
+        $this->setCache('all_fdb_table', $fdb, 30);
+        return $fdb;
     }
 }
 

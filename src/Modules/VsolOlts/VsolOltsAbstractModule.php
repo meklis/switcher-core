@@ -139,7 +139,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
             }
         }
         $this->_interfaces = $interfaces;
-        $this->setCache("interfaces_list", $interfaces, 60, true);
+        $this->setCache("interfaces_list", $interfaces, 120, true);
         return $interfaces;
     }
 
