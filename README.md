@@ -15,14 +15,15 @@
 
 ### Поддерживаемые вендоры
 - [x] D-link switches 
-- [x] Mikrotik routers  
-- [x] EdgeCore switches 
-- [x] BDcom OLTs
+- [x] Huawei switches  
+- [x] EdgeCore switches
 - [ ] Xtreme routers
-- [x] Huawei switches
-- [ ] Huawei OLTs
+- [x] Huawei OLTs
+- [x] BDcom OLTs
 - [x] ZTE OLTs
-- [x] C-Data OLts
+- [x] C-Data OLTs
+- [x] V-Solution OLTs
+- [x] Mikrotik routers
 
 ### [Полный список поддерживаемого оборудования и их модулей](docs/DEVICES.md)     
 ### [Список модулей](docs/MODULES.md)    

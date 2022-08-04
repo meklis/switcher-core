@@ -34851,6 +34851,15 @@ true
       
     
     
+### [snooping_info](#snooping_info) - Return information about DHCP snooping 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+- **mac_address**, проверка выражением: *.**    
+- **vlan_id**, проверка выражением: *.**    
+      
+    
+    
 ### [sys_resources](#sys_resources) - External system information (CPU/Memory/Temperature) 
     
 **Аргументы:**    
@@ -34988,6 +34997,13 @@ true
       
     
     
+### [uni_interfaces_info](#uni_interfaces_info) - Return info about UNIs (vlans and status) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
 ### [uni_interfaces_status](#uni_interfaces_status) - Return UNI interfaces status by ONU 
     
 **Аргументы:**    
@@ -35003,6 +35019,9 @@ true
     
     
 ### [unregistered_onts](#unregistered_onts) -  
+    
+**Аргументы:**    
+- **type**, проверка выражением: *^(all|gpon|epon)$*    
       
     
     
@@ -38862,25 +38881,3 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**, обязательный    
       
-    
-    
-### [zte_unregistered_onu](#zte_unregistered_onu) - List unregistered ONU 
-    
-**Аргументы:**    
-- **type**, проверка выражением: *^(all|gpon|epon)$*    
-      
-<details>
-<summary>Пример ответа</summary>
-<p>
-Параметры запроса: без параметров         
-
-Ответ в JSON:          
-
-```json             
-[]
-```             
-         
-        
-</p>
-</details>
-        
