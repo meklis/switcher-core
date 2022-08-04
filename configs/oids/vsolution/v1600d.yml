@@ -1,8 +1,8 @@
-- {name: sys.serialNum, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.11.0}
-- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.5.0}
-- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.4.0}
-- {name: sys.macAddress, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.7.0}
-- {name: sys.hostName, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.1.0}
+- {name: sys.serialNum, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.11}
+- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.5}
+- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.4}
+- {name: sys.macAddress, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.7}
+- {name: sys.hostName, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.1}
 
 
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.3.0}
