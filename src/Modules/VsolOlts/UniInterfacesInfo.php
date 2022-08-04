@@ -114,8 +114,6 @@ class UniInterfacesInfo extends VsolOltsAbstractModule
             throw new \Exception($resp[0]->error);
         }
         $line = $resp[0]->getResponse()[0]->getValue();
-        print_r($line);
-
         $countIfaces = 0;
         foreach (explode(";", $line) as $elem) {
             if(preg_match('/^(FE|GE)\(([0-9]{1,2})\)$/', trim($elem), $m)) {
