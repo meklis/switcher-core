@@ -41,7 +41,6 @@ class UniInterfacesInfo extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
-        $filter['interface'] = "EPON0/1:2";
         if(!$filter['interface']) {
             throw new \Exception("Interface is required");
         }
@@ -107,6 +106,7 @@ class UniInterfacesInfo extends VsolOltsAbstractModule
     }
 
     function getCountInterfaces($iface) {
+        return 1;
         $resp = $this->snmp->get([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.interfaceTypePorts')->getOid() . $iface['_snmp_id'])
         ]);
@@ -114,6 +114,8 @@ class UniInterfacesInfo extends VsolOltsAbstractModule
             throw new \Exception($resp[0]->error);
         }
         $line = $resp[0]->getResponse()[0]->getValue();
+        print_r($line);
+
         $countIfaces = 0;
         foreach (explode(";", $line) as $elem) {
             if(preg_match('/^(FE|GE)\(([0-9]{1,2})\)$/', trim($elem), $m)) {
