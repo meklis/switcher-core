@@ -539,6 +539,11 @@
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
+- name: uni_interfaces_info
+  descr: Return info about UNIs (vlans and status)
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
 - name: uni_interfaces_vlans
   descr: Return UNI interfaces PVID/Vlans info
   arguments:
@@ -548,3 +553,10 @@
   descr: Return UNI interfaces Counters info
   arguments:
     - {name: interface, pattern: '.*', required: no}
+
+- name: snooping_info
+  descr: Return information about DHCP snooping
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+    - {name: mac_address, pattern: '.*', required: no}
+    - {name: vlan_id, pattern: '.*', required: no}

@@ -12,12 +12,12 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OntReboot extends VsolOltsAbstractModule
+class OltReboot extends VsolOltsAbstractModule
 {
     /**
      * @var WrappedResponse[]
      */
-    protected $response = true ;
+    protected $response = null ;
 
     /**
      * @param array $filter
@@ -26,9 +26,11 @@ class OntReboot extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
-        $iface = $this->parseInterface($filter['interface']);
-        $this->console->exec("epon reboot onu interface {$iface['name']}", true, "Are you sure");
-        $this->console->exec("y");
+        $oid = $this->oids->getOidByName('action.reboot')->getOid();
+        $resp = $this->snmp->set(Oid::init($oid, false, 'Integer', 1));
+        if($resp[0]->error) {
+            throw new \Exception("Returned error from device: {$resp[0]->error}");
+        }
         return $this;
     }
 }

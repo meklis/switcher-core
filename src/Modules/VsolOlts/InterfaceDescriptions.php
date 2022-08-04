@@ -35,8 +35,8 @@ class InterfaceDescriptions extends VsolOltsAbstractModule
         foreach ($this->response as $resp) {
             try {
                 $d = [
-                    'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
-                    'description' => $resp->getValue(),
+                    'interface' => $this->parseInterface(".". Helper::getIndexByOid($resp->getOid(), 1) . "." .Helper::getIndexByOid($resp->getOid())),
+                    'description' => $resp->getValue() == "NULL" ? '' : $resp->getValue(),
                 ];
                 if (!$d['interface']['id']) continue;
                 $data[] = $d;
@@ -58,23 +58,23 @@ class InterfaceDescriptions extends VsolOltsAbstractModule
             $interface = $this->parseInterface($filter['interface']);
             $data = $this->formatResponse(
                 $this->snmp->get([
-                    \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$interface['xid']}"),
+                    \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . "{$interface['_snmp_id']}"),
                 ])
             );
         } else {
             $data = $this->formatResponse(
                 $this->snmp->walk(
                     [
-                        \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()),
+                        \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid()),
                     ]
                 )
             );
         }
-        $resp = $this->getResponseByName('if.Alias', $data);
+        $resp = $this->getResponseByName('ont.description', $data);
         if($resp->error()) {
             throw new \Exception($resp->error());
         }
-        $this->response = $this->getResponseByName('if.Alias', $data)->fetchAll();
+        $this->response = $this->getResponseByName('ont.description', $data)->fetchAll();
         return $this;
     }
 }

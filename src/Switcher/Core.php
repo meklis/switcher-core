@@ -7,7 +7,6 @@ use DI\ContainerBuilder;
 use ErrorException;
 use Exception;
 use Meklis\Network\Console\Helpers\Helpers;
-use meklis\network\Telnet;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;

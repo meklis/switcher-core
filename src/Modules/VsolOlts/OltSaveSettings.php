@@ -26,7 +26,7 @@ class OltSaveSettings extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
-        $oid = $this->oids->getOidByName('olt.save')->getOid();
+        $oid = $this->oids->getOidByName('action.save')->getOid();
         $resp = $this->snmp->set(Oid::init($oid, false, 'Integer', 1));
         if($resp[0]->error) {
             throw new \Exception("Returned error from device: {$resp[0]->error}");

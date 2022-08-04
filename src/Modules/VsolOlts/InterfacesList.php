@@ -34,13 +34,13 @@ class InterfacesList extends VsolOltsAbstractModule
 
     function getPretty()
     {
-        return $this->getPhysicalInterfaces();
+        return $this->response;
     }
 
 
     public function run($filter = [])
     {
-        $this->response = array_values($this->getInterfacesIds());
+        $this->response = array_values($this->getInterfaces());
         return $this;
     }
 

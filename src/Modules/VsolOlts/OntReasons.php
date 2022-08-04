@@ -27,32 +27,44 @@ class OntReasons extends VsolOltsAbstractModule
     function getPretty()
     {
         $ifaces = [];
-        $data = $this->getResponseByName('ont.llidLastRegTime');
+        $data = $this->getResponseByName('ont.lastDeregReason');
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
-                $llid = $this->getLLidFromOid($r->getOid());
-                $time = $this->parseReasonTime($r->getHexValue());
-                $ifaces[$llid]['interface'] = $this->parseInterface($llid);
-                $ifaces[$llid]['last_reg'] = $time;
-                $ifaces[$llid]['last_reg_since'] =  $time == null ? null :$this->getSince($time);
+                $snmpId = ".". Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                $ifaces[$snmpId]['last_down_reason'] = $r->getParsedValue();
             }
         }
-        $data = $this->getResponseByName('ont.llidLastDeregTime');
+        $data = $this->getResponseByName('ont.lastRegTime');
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
-                $llid = $this->getLLidFromOid($r->getOid());
-                $time = $this->parseReasonTime($r->getHexValue());
-                $ifaces[$llid]['interface'] = $this->parseInterface($llid);
-                $ifaces[$llid]['last_dereg'] = $time;
-                $ifaces[$llid]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
+                if($r->getValue() == 'N/A') continue;
+                $snmpId = ".". Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                $time = $this->parseTime($r->getValue());
+                $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                $ifaces[$snmpId]['last_reg'] = $time;
+                $ifaces[$snmpId]['last_reg_since'] = !$time ? null : $this->getSince($time);
             }
         }
-        $data = $this->getResponseByName('ont.llidLastDeregReason');
+        $data = $this->getResponseByName('ont.lastDeregTime');
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
-                $llid = $this->getLLidFromOid($r->getOid());
-                $ifaces[$llid]['interface'] = $this->parseInterface($llid);
-                $ifaces[$llid]['last_down_reason'] = $r->getParsedValue();
+                if($r->getValue() == 'N/A') continue;
+                $snmpId = ".". Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                $time = $this->parseTime($r->getValue());
+                $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                $ifaces[$snmpId]['last_dereg'] = $time;
+                $ifaces[$snmpId]['last_dereg_since'] = !$time ? null : $this->getSince($time);
+            }
+        }
+
+        $data = $this->getResponseByName('ont.aliveTime');
+        if(!$data->error()) {
+            foreach ($data->fetchAll() as $r) {
+                if($r->getValue() == 'N/A') continue;
+                $snmpId = ".". Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                $ifaces[$snmpId]['alive_time'] = $r->getValue();
             }
         }
         return array_values(array_map(function ($e) {
@@ -60,7 +72,8 @@ class OntReasons extends VsolOltsAbstractModule
             if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
             if(!isset($e['last_dereg'])) $e['last_dereg'] = null;
             if(!isset($e['last_reg'])) $e['last_reg'] = null;
-            if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
+            if(!isset($e['last_reg_since'])) $e['last_reg_since'] = null;
+            if(!isset($e['alive_time'])) $e['alive_time'] = null;
             return $e;
         }, $ifaces));
     }
@@ -73,9 +86,10 @@ class OntReasons extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
-        $reasons[] = $this->oids->getOidByName('ont.llidLastRegTime');
-        $reasons[] = $this->oids->getOidByName('ont.llidLastDeregTime');
-        $reasons[] = $this->oids->getOidByName('ont.llidLastDeregReason');
+        $reasons[] = $this->oids->getOidByName('ont.lastDeregReason');
+        $reasons[] = $this->oids->getOidByName('ont.lastDeregTime');
+        $reasons[] = $this->oids->getOidByName('ont.lastRegTime');
+        $reasons[] = $this->oids->getOidByName('ont.aliveTime');
 
         $oids = [];
         foreach ($reasons as $oid) {
@@ -83,10 +97,7 @@ class OntReasons extends VsolOltsAbstractModule
         }
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                return $e . $iface['_llid_id'];
-            }, $oids);
-            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $oids = array_map(function ($e) use ($iface) {return Oid::init($e . $iface['_snmp_id']); }, $oids);
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
             $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
@@ -95,30 +106,13 @@ class OntReasons extends VsolOltsAbstractModule
         return $this;
     }
 
-    private function parseReasonTime($hex) {
-        $elements = explode(":", $hex);
-        $date =  hexdec($elements[0] . $elements[1]) . "-" .
-            hexdec($elements[2]) . '-' .
-            hexdec($elements[3]) . ' '  .
-            hexdec($elements[4]) . ':'  .
-            hexdec($elements[5]) . ':'  .
-            hexdec($elements[6]);
-        $time = \DateTime::createFromFormat("Y-m-d h:i:s", $date);
+    private function parseTime($date) {
+        $time = \DateTime::createFromFormat("Y/m/d H:i:s", trim($date));
         if($time) {
             return $time->getTimestamp();
         } else {
             return null;
         }
-    }
-    private function getLLidFromOid($oid) {
-        return "." .
-        Helper::getIndexByOid($oid, 6) . "." .
-        Helper::getIndexByOid($oid, 5) . "." .
-        Helper::getIndexByOid($oid, 4) . "." .
-        Helper::getIndexByOid($oid, 3) . "." .
-        Helper::getIndexByOid($oid, 2) . "." .
-        Helper::getIndexByOid($oid, 1) . "." .
-        Helper::getIndexByOid($oid);
     }
     private function getSince($time) {
         $timetrics = time() - $time;

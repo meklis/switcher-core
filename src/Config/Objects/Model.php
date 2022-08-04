@@ -67,6 +67,11 @@ class Model
     protected $inputs = [];
 
 
+    function __set($name, $value) {
+        $this->{$name} = $value;
+    }
+
+
     public function getInputs()
     {
         return $this->inputs;

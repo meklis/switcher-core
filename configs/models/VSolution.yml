@@ -23,6 +23,7 @@ models:
       - ./oids/vsolution/v1600d.yml
     modules:
       system: \SwitcherCore\Modules\VsolOlts\SystemInformation
+      interfaces_list: \SwitcherCore\Modules\VsolOlts\InterfacesList
       pon_ports_list: \SwitcherCore\Modules\VsolOlts\PonPortsList
       pon_count_registered_onts: \SwitcherCore\Modules\VsolOlts\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\VsolOlts\OntListWithStatuses
@@ -31,18 +32,16 @@ models:
       pon_ports_optical: \SwitcherCore\Modules\VsolOlts\PonPortsOptical
       pon_onts_reasons: \SwitcherCore\Modules\VsolOlts\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\VsolOlts\OntVendorInfo
-      fdb: \SwitcherCore\Modules\VsolOlts\FdbTableConsole
+      fdb: \SwitcherCore\Modules\VsolOlts\FdbTable
+      interface_counters: \SwitcherCore\Modules\VsolOlts\InterfaceCounters
+      interface_descriptions: \SwitcherCore\Modules\VsolOlts\InterfaceDescriptions
+      reboot: \SwitcherCore\Modules\VsolOlts\OltReboot
       save_config: \SwitcherCore\Modules\VsolOlts\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\VsolOlts\OntReboot
       pon_ont_reset: \SwitcherCore\Modules\VsolOlts\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\VsolOlts\OntDelete
       parse_interface: \SwitcherCore\Modules\VsolOlts\ParseInterface
       sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
-      interface_counters: \SwitcherCore\Modules\VsolOlts\InterfaceCounters
-      interfaces_list: \SwitcherCore\Modules\VsolOlts\InterfacesList
-      interface_descriptions: \SwitcherCore\Modules\VsolOlts\InterfaceDescriptions
-      uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\UniInterfacesStatus
-      uni_interfaces_vlans: \SwitcherCore\Modules\VsolOlts\UniInterfacesVlans
+      uni_interfaces_info: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo
+      snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
     extra:
       console_conn_type: vsolution
       console_commands_after_connect:

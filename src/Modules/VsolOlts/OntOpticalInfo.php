@@ -25,75 +25,70 @@ class OntOpticalInfo extends VsolOltsAbstractModule
 
     function getPretty()
     {
-        $response = [];
         $ifaces = [];
         try {
-            $data = $this->getResponseByName('ont.opticalRx');
+            $data = $this->getResponseByName('ont.optical.rxPower');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['rx'] = round($r->getValue() / 10, 2);
+                    if(preg_match('/^(.*?) mW \((.*?) dBm\)$/', trim($r->getValue()), $m)) {
+                        $snmpId = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                        $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                        $ifaces[$snmpId]['rx'] = (float)$m[2];
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+
+        }
+        try {
+            $data = $this->getResponseByName('ont.optical.txPower');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    if(preg_match('/^(.*?) mW \((.*?) dBm\)$/', trim($r->getValue()), $m)) {
+                        $snmpId = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                        $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                        $ifaces[$snmpId]['tx'] = (float)$m[2];
+                    }
                 }
             }
         } catch (\Exception $e) {
         }
         try {
-            $data = $this->getResponseByName('ont.opticalTx');
+            $data = $this->getResponseByName('ont.optical.temp');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['tx'] = round($r->getValue() / 10, 2);
-                }
-            }
-        } catch (\Exception $e) {
-        }
-        try {
-            $data = $this->getResponseByName('ont.opticalTemp');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['temp'] = round($r->getValue() / 256, 2);
+                    if(!trim($r->getValue())) continue;
+                    $snmpId = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                    $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                    $ifaces[$snmpId]['temp'] = (float)trim(str_replace("C", "", $r->getValue()));
                 }
             }
         } catch (\Exception $e){}
         try {
-            $data = $this->getResponseByName('ont.opticalVoltage');
+            $data = $this->getResponseByName('ont.optical.voltage');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['voltage'] = round($r->getValue() / 10000, 2);
+                    if(!trim($r->getValue())) continue;
+                    $snmpId = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                    $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
+                    $ifaces[$snmpId]['voltage'] = (float)trim(str_replace("V", "", $r->getValue()));
                 }
             }
         } catch (\Exception $e) {
         }
         try {
-            $data = $this->getResponseByName('ont.distance');
+            $data = $this->getResponseByName('ont.optical.distance');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
+                    $snmpId = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
+                    $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
                     if((int)$r->getValue() == 0) continue;
-                    $ifaces[$xid]['distance'] = (int)$r->getValue();
+                    $ifaces[$snmpId]['distance'] = (int)$r->getValue();
                 }
             }
         } catch (\Exception $e) {
         }
-        try {
-            $data = $this->getResponseByName('pon.opticalOltRx');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    if($r->getValue() < -1000) continue;
-                    $ifaces[$xid]['olt_rx'] =  round($r->getValue() / 10, 2);
-                }
-            }
-        } catch (\Exception $e) {
-        }
+
         return array_values(array_map(function ($e) {
             if (!isset($e['distance'])) $e['distance'] = null;
             if (!isset($e['voltage'])) $e['voltage'] = null;
@@ -119,23 +114,21 @@ class OntOpticalInfo extends VsolOltsAbstractModule
             $loadOnly = explode(",", $filter['load_only']);
         }
         if (!$loadOnly || in_array("rx", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalRx');
+            $info[] = $this->oids->getOidByName('ont.optical.rxPower');
         }
         if (!$loadOnly || in_array("tx", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalTx');
+            $info[] = $this->oids->getOidByName('ont.optical.txPower');
         }
         if (!$loadOnly || in_array("voltage", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalVoltage');
+            $info[] = $this->oids->getOidByName('ont.optical.voltage');
         }
         if (!$loadOnly || in_array("temp", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalTemp');
+            $info[] = $this->oids->getOidByName('ont.optical.temp');
         }
         if (!$loadOnly || in_array("distance", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.distance');
+            $info[] = $this->oids->getOidByName('ont.optical.distance');
         }
-        if ($filter['interface'] && (!$loadOnly || in_array("olt_rx", $loadOnly))) {
-            $info[] = $this->oids->getOidByName('pon.opticalOltRx');
-        }
+
         $oids = [];
         foreach ($info as $oid) {
             $oids[] = $oid->getOid();
@@ -143,7 +136,7 @@ class OntOpticalInfo extends VsolOltsAbstractModule
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
+                return $e . $iface['_snmp_id'];
             }, $oids);
             $oids = array_map(function ($e) {
                 return Oid::init($e);

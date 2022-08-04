@@ -44,7 +44,7 @@ class InterfaceCounters extends VsolOltsAbstractModule
                'out_broadcast_pkts' => null,
            ];
         } else {
-            foreach ($this->getInterfacesIds() as $iface) {
+            foreach ($this->getInterfaces() as $iface) {
                 $ifaces[$iface['xid']] = [
                     'interface' => $iface,
                     'in_errors' => null,

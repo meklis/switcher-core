@@ -26,11 +26,44 @@ class OntReset extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
-        $oid = $this->oids->getOidByName('ont.action.resetOnu')->getOid();
-        $resp = $this->snmp->set(Oid::init($oid, false, 'Integer', 0));
+        $iface = $this->parseInterface($filter['interface']);
+        if($iface['type'] !== 'ONU') {
+            throw new \InvalidArgumentException("Only onu allow to reset");
+        }
+        $resp = $this->snmp->set(
+            Oid::init(
+                $this->oids->getOidByName('action.ont.reset.ponNo')->getOid(),
+                false,
+                'Integer',
+                $iface['_port']
+            )
+        );
         if($resp[0]->error) {
             throw new \Exception("Returned error from device: {$resp[0]->error}");
         }
+        $resp = $this->snmp->set(
+            Oid::init(
+                $this->oids->getOidByName('action.ont.reset.onuNo')->getOid(),
+                false,
+                'Integer',
+                $iface['_onu']
+            )
+        );
+        if($resp[0]->error) {
+            throw new \Exception("Returned error from device: {$resp[0]->error}");
+        }
+        $resp = $this->snmp->set(
+            Oid::init(
+                $this->oids->getOidByName('action.ont.reset.action')->getOid(),
+                false,
+                'Integer',
+                1
+            )
+        );
+        if($resp[0]->error) {
+            throw new \Exception("Returned error from device: {$resp[0]->error}");
+        }
+
         return $this;
     }
 }

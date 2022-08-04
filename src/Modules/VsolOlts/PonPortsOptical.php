@@ -32,9 +32,10 @@ class PonPortsOptical extends VsolOltsAbstractModule
             $data = $this->getResponseByName('pon.port.optical.temp');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
+                    if($r->getValue() == 'N/A') continue;
+                    $xid = "." .Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['temp'] = round($r->getValue() / 256, 2);
+                    $ifaces[$xid]['temp'] = (float)trim(str_replace(".C", "", $r->getValue()));
                 }
             }
         } catch (\Exception $e) {
@@ -44,21 +45,10 @@ class PonPortsOptical extends VsolOltsAbstractModule
             $data = $this->getResponseByName('pon.port.optical.voltage');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
+                    if($r->getValue() == 'N/A') continue;
+                    $xid = "." .Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['voltage'] = round($r->getValue() / 10000, 2);
-                }
-            }
-        } catch (\Exception $e) {
-        }
-
-        try {
-            $data = $this->getResponseByName('pon.port.optical.bias');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
-                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['bias'] = (int)$r->getValue();
+                    $ifaces[$xid]['voltage'] = (float)trim(str_replace("V", "", $r->getValue()));
                 }
             }
         } catch (\Exception $e) {
@@ -68,9 +58,10 @@ class PonPortsOptical extends VsolOltsAbstractModule
             $data = $this->getResponseByName('pon.port.optical.txPower');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $xid = Helper::getIndexByOid($r->getOid());
+                    if($r->getValue() == 'N/A') continue;
+                    $xid = "." .Helper::getIndexByOid($r->getOid());
                     $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                    $ifaces[$xid]['tx'] = round($r->getValue() / 10, 2);
+                    $ifaces[$xid]['tx'] = (float)trim(str_replace("dbm", "", $r->getValue()));
                 }
             }
         } catch (\Exception $e) {
@@ -103,9 +94,6 @@ class PonPortsOptical extends VsolOltsAbstractModule
         }
         if (!$loadOnly || in_array("voltage", $loadOnly)) {
             $info[] = $this->oids->getOidByName('pon.port.optical.voltage');
-        }
-        if (!$loadOnly || in_array("bias", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('pon.port.optical.bias');
         }
         if (!$loadOnly || in_array("tx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('pon.port.optical.txPower');

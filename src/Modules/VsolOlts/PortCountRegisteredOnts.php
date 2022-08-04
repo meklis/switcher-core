@@ -30,10 +30,10 @@ class PortCountRegisteredOnts extends VsolOltsAbstractModule
         $response = $this->getResponseByName('pon.portCountOnu')->fetchAll();
         $return = [];
         foreach ($response as $resp) {
-            $interface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+            $interface = $this->parseInterface("." . Helper::getIndexByOid($resp->getOid()));
             $return[] = [
                 'interface' => $interface,
-                'count' => $resp->getValue(),
+                'count' => (int)$resp->getValue(),
             ];
         }
         return $return;

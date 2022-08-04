@@ -24,38 +24,23 @@ class OntMacAddress extends VsolOltsAbstractModule
 
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
-
-        if($filter['interface']) {
-            $iface = $this->parseInterface($filter['interface']);
-            $mac = Helper::oid2macArray([
-              Helper::getIndexByOid($iface['_llid_id'], 5),
-              Helper::getIndexByOid($iface['_llid_id'], 4),
-              Helper::getIndexByOid($iface['_llid_id'], 3),
-              Helper::getIndexByOid($iface['_llid_id'], 2),
-              Helper::getIndexByOid($iface['_llid_id'], 1),
-              Helper::getIndexByOid($iface['_llid_id'], ),
-            ]);
-            return [
-                ['interface'=>$iface, 'mac_address' => $mac]
-            ];
-        } else {
-            $response = [];
-            foreach ($this->getInterfacesIds() as $iface) {
-                if(!$iface['_llid_id']) continue;
-                $response[] = [
-                  'interface' => $iface,
-                  'mac_address' =>  Helper::oid2macArray([
-                      Helper::getIndexByOid($iface['_llid_id'], 5),
-                      Helper::getIndexByOid($iface['_llid_id'], 4),
-                      Helper::getIndexByOid($iface['_llid_id'], 3),
-                      Helper::getIndexByOid($iface['_llid_id'], 2),
-                      Helper::getIndexByOid($iface['_llid_id'], 1),
-                      Helper::getIndexByOid($iface['_llid_id'], ),
-                  ])
-                ];
+        $data = [];
+        foreach ($this->response as $resp) {
+            if($resp->error()) {
+                throw new \Exception($resp->error());
             }
-            return  $response;
+            foreach ($resp->fetchAll() as $o) {
+                try {
+                    $iface = $this->parseInterface(Helper::getIndexByOid($o->getOid()));
+                    if($iface['type'] !== 'ONU') continue;
+                    $data[] = [
+                        'interface' => $iface,
+                        'mac_address' => $o->getHexValue(),
+                    ];
+                } catch (\Exception $e) {}
+            }
         }
+        return $data;
     }
 
 
@@ -66,6 +51,18 @@ class OntMacAddress extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
+        //if.PhysAddr
+        $oid  = $this->oids->getOidByName('if.PhysAddr')->getOid();
+        if ($filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
+            $this->response = $this->formatResponse(
+                $this->snmp->get([Oid::init($oid . "." . $iface['xid'])])
+            );
+        } else {
+            $this->response = $this->formatResponse(
+                $this->snmp->walk([Oid::init($oid )])
+            );
+        }
         return $this;
     }
 }

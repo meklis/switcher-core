@@ -31,14 +31,14 @@ class SystemResources extends AbstractModule
         return [
             'cpu' => [
                 'util' => (int)$this->getResponseByName('resources.cpuUtil')->fetchAll()[0]->getValue(),
-                '_temperature' => (float)($this->getResponseByName('resources.temperature')->fetchAll()[0]->getValue()),
+            ],
+            'temperature' => [
+                'main_board' => (float)($this->getResponseByName('resources.temperature')->fetchAll()[0]->getValue()),
             ],
             'disk' => null,
             'interfaces' => null,
             'cards' => null,
-            'fans' => [
-                 'status' => $this->getResponseByName('resources.fanStatus')->fetchAll()[0]->getParsedValue()
-            ],
+            'fans' => null,
             'memory' => [
                 'util' =>  (int)$this->getResponseByName('resources.memUtil')->fetchAll()[0]->getValue(),
             ],

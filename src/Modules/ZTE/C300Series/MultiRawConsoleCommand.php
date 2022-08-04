@@ -28,6 +28,7 @@ class MultiRawConsoleCommand extends ModuleAbstract
             }
         }
         $this->response = $response;
+        $this->getModule('zte_onu_state_by_interface')->cached = [];
         return $this;
     }
 
