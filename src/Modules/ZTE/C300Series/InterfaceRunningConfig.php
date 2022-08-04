@@ -4,12 +4,13 @@
 namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
-
 use Exception;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
 class InterfaceRunningConfig extends ModuleAbstract
 {
+    public $cached = [];
+
     public function run($params = [])
     {
         if (!$this->telnet) {
@@ -17,15 +18,14 @@ class InterfaceRunningConfig extends ModuleAbstract
         }
         $this->response = [];
         $interface = $this->parseInterface($params['interface']);
-        if($interface['type'] !== 'PON') {
+        if ($interface['type'] !== 'PON') {
             throw new \Exception("Allow only PON-Port interfaces");
         }
-        $cached = $this->getCache("SWC:running-config.{$this->device->getIp()}.{$interface['id']}", true);
-        if($cached) {
-            $this->response =  $cached;
-            return  $this;
+        if (isset($this->cached[$interface['id']])) {
+            $this->response = $this->cached[$interface['id']];
+            return $this;
         }
-        $lines = explode("\n",$this->telnet->exec("show running-config interface {$interface['name']}"));
+        $lines = explode("\n", $this->telnet->exec("show running-config interface {$interface['name']}"));
         $data = [];
         foreach ($lines as $line) {
             if (preg_match('/^onu ([0-9]{1,}) type (.*?) sn (.*)$/', trim($line), $matches)) {
@@ -43,7 +43,7 @@ class InterfaceRunningConfig extends ModuleAbstract
         }
         $response = [];
 
-        foreach ($data as $onuNum=>$d) {
+        foreach ($data as $onuNum => $d) {
 
             $iface = $this->parseInterface($interface['id'] + $onuNum);
             $response[] = [
@@ -57,9 +57,10 @@ class InterfaceRunningConfig extends ModuleAbstract
         }
 
         $this->response = $response;
-        $this->setCache("SWC:running-config.{$this->device->getIp()}.{$interface['id']}", $response, 10, true);
-        return  $this;
+        $this->cached[$interface['id']] = $response;
+        return $this;
     }
+
     public function getPretty()
     {
         return $this->response;

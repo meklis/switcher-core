@@ -29,6 +29,8 @@ class MultiRawConsoleCommand extends ModuleAbstract
         }
         $this->response = $response;
         $this->getModule('zte_onu_state_by_interface')->cached = [];
+        $this->getModule('zte_interface_running_config')->cached = [];
+        
         return $this;
     }
 
