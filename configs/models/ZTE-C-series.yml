@@ -200,7 +200,7 @@ models:
     modules:
       system: \SwitcherCore\Modules\Dlink\System\DefaultParser
       onu_reboot: \SwitcherCore\Modules\ZTE\C300Series\RebootOnu
-      zte_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OntInfo
+      zte_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OntInfoC300Fw12
       zte_onu_ether_iface_info: \SwitcherCore\Modules\ZTE\C300Series\OnuEtherPortInfo
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
       zte_onu_signal_strength: \SwitcherCore\Modules\ZTE\C300Series\OnuSignalStrengthInfoFW12
