@@ -28,7 +28,7 @@ class DefaultParser extends SwitchesPortAbstractModule
     function getPretty()
     {
 
-        return [
+        $data = [
             'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
             'uptime' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValueAsTimeTicks(),
             'uptime_sec' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValue(),
@@ -45,6 +45,11 @@ class DefaultParser extends SwitchesPortAbstractModule
                 'modules' => $this->model->getModulesList(),
             ]
         ];
+        try {
+            $data['mac_address'] = $this->getResponseByName('sys.macAddr')->fetchOne()->getHexValue();
+        } catch (\Exception $e) {}
+
+        return $data;
     }
 
     /**
@@ -57,9 +62,9 @@ class DefaultParser extends SwitchesPortAbstractModule
         $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid(),true);
+            $oArray[] = Oid::init($oid->getOid() . ".0",true);
         }
-        $this->response = $this->formatResponse($this->snmp->walk($oArray));
+        $this->response = $this->formatResponse($this->snmp->get($oArray));
         return $this;
     }
 }

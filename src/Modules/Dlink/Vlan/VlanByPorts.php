@@ -28,6 +28,7 @@ class VlanByPorts extends SwitchesPortAbstractModule
         $indexes = $parser->getIndexes();
         $response = [];
         foreach ($indexes as $index=>$interface) {
+            if(strpos($interface['name'], 'ch') !== false) continue;
             if($filter['interface']) {
                 $iface = $this->parseInterface($filter['interface']);
                 if($iface['id'] !== $interface['id']) continue;

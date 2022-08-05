@@ -20,24 +20,30 @@ class DefaultParser extends SwitchesPortAbstractModule
         foreach ($in_err as $i) {
             $index = Helper::getIndexByOid($i->getOid());
             if(!isset($indexes[$index])) continue;
+            if(strpos($indexes[$index]['name'], 'ch') !== false) continue;
+
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['in_errors'] = $i->getValue();
         }
         foreach ($out_err as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
+            if(strpos($indexes[$index]['name'], 'ch') !== false) continue;
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['out_errors'] = $o->getValue();
         }
         foreach ($in_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
+            if(strpos($indexes[$index]['name'], 'ch') !== false) continue;
+
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['in_discards'] = $o->getValue();
         }
         foreach ($out_disc as $o) {
             $index = Helper::getIndexByOid($o->getOid());
             if(!isset($indexes[$index])) continue;
+            if(strpos($indexes[$index]['name'], 'ch') !== false) continue;
             $errors[$index]['interface'] = $indexes[$index];
             $errors[$index]['out_discards'] = $o->getValue();
         }

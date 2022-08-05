@@ -14,6 +14,7 @@ class Descriptions extends SwitchesPortAbstractModule
 
           $indexes = [];
           foreach ($this->getIndexes() as $index=>$port) {
+              if(strpos($port['name'], 'ch') !== false) continue;
               $indexes[$index]['interface'] = $port;
               $indexes[$index]['description'] = null;
           }

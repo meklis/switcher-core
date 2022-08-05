@@ -11,6 +11,15 @@ foreach ($devices as $dev) {
     $supportDevices[$dev->getKey()]['name'] = $dev->getName();
     $supportDevices[$dev->getKey()]['key'] = $dev->getKey();
     $supportDevices[$dev->getKey()]['modules'] = $dev->getModulesList();
+    if($dev->getRewrites() && isset($dev->getRewrites()['mapping'])) {
+        foreach ($dev->getRewrites()['mapping'] as $mapping) {
+            if(!isset($mapping['key'])) continue;
+            if(!isset($mapping['name'])) continue;
+            $supportDevices[$mapping['key']]['name'] = $mapping['name'];
+            $supportDevices[$mapping['key']]['key'] = $mapping['key'];
+            $supportDevices[$mapping['key']]['modules'] = $mapping['modules'];
+        }
+    }
 }
 
 

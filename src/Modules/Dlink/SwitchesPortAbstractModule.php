@@ -10,13 +10,14 @@ use SwitcherCore\Modules\Helper;
 
 abstract class SwitchesPortAbstractModule extends AbstractModule
 {
-
-    protected $indexesPort;
-
+    protected $indexesPort =[];
     function getIndexes($ethernetOnly = true) {
         $indexes = [];
         if($this->indexesPort) {
             return $this->indexesPort;
+        }
+        if($cached = $this->getCache('port_indexes')) {
+            return $cached;
         }
         $response = $this->formatResponse($this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
@@ -38,6 +39,7 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
             }
         }
         $this->indexesPort = $indexes;
+        $this->setCache('port_indexes', $indexes, 600);
         return $indexes;
     }
 
