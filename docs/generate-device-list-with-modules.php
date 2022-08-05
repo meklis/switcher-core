@@ -13,12 +13,13 @@ foreach ($devices as $dev) {
     $supportDevices[$dev->getKey()]['modules'] = $dev->getModulesList();
     if($dev->getRewrites() && isset($dev->getRewrites()['mapping'])) {
         foreach ($dev->getRewrites()['mapping'] as $mapping) {
-            if(!isset($mapping['key'])) continue;
-            if(!isset($mapping['name'])) continue;
-            $supportDevices[$mapping['key']]['name'] = $mapping['name'];
-            $supportDevices[$mapping['key']]['key'] = $mapping['key'];
-            $supportDevices[$mapping['key']]['modules'] = $mapping['modules'];
+            if(!isset($mapping['rewrite']['key'])) continue;
+            if(!isset($mapping['rewrite']['name'])) continue;
+            $supportDevices[$mapping['rewrite']['key']]['name'] = $mapping['rewrite']['name'];
+            $supportDevices[$mapping['rewrite']['key']]['key'] = $mapping['rewrite']['key'];
+            $supportDevices[$mapping['rewrite']['key']]['modules'] = $dev->getModulesList();
         }
+
     }
 }
 
