@@ -51,16 +51,16 @@ class UnregisteredOntList extends ModuleAbstract
                 continue;
             }
             if(preg_match('/^(.*?):(.*)$/', $line, $matches)) {
-                $key = trim($matches[1]);
+                $key = strtolower(trim($matches[1]));
                 $value = trim($matches[2]);
                 switch ($key) {
-                    case 'Onu interface': $block['interface'] = $value; break;
-                    case 'Onu Model': $block['onu_model'] = $value; break;
-                    case 'Extended Model': $block['onu_extended_model'] = $value; break;
-                    case 'MAC address': $block['mac'] = $value; break;
-                    case 'SN': $block['serial'] = $value; break;
-                    case 'Online State': $block['online_state'] = $value; break;
-                    case 'RegTime': $block['reg_time'] = $value; break;
+                    case 'onu interface': $block['interface'] = $value; break;
+                    case 'onu model': $block['onu_model'] = $value; break;
+                    case 'extended model': $block['onu_extended_model'] = $value; break;
+                    case 'mac address': $block['mac'] = $value; break;
+                    case 'sn': $block['serial'] = $value; break;
+                    case 'online state': $block['online_state'] = $value; break;
+                    case 'regtime': $block['reg_time'] = $value; break;
                 }
                 $block['type'] = 'epon';
             }
