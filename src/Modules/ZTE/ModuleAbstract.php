@@ -290,6 +290,7 @@ abstract class ModuleAbstract extends AbstractModule
     function convertHexToString($string) {
         $symbols = explode(":", $string);
         $str = '';
+        $char = '';
         foreach ($symbols as $symbol) {
             if(!hexdec($symbol)) continue;
             $char = chr(hexdec($symbol));
