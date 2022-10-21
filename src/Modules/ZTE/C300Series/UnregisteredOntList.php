@@ -89,6 +89,14 @@ class UnregisteredOntList extends ModuleAbstract
                     'type' => 'gpon',
                     'mac' => null,
                 ];
+            } else if (preg_match('/^(\S*)\s*(\S*)\s*(\S*)\s*(.*)$/', trim($line), $matches)) {
+                $result[] = [
+                    'interface' => $matches[1],
+                    'serial' => $matches[2],
+                    'status' => $matches[3],
+                    'type' => 'gpon',
+                    'mac' => null,
+                ];
             }
         }
         return  $result;
