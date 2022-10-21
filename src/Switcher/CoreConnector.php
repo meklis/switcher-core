@@ -143,6 +143,7 @@ class CoreConnector
 
     public function init(\SwitcherCore\Switcher\Device  $device) {
 
+
         $walker = $this->initWalker($device);
 
         $core = (new Core)->setDevice($device)

@@ -26,6 +26,7 @@ class Device
     protected $login;
     protected $password;
     protected $modelKey;
+    protected $checkAlive = true;
     protected $meta = [];
 
     function __construct()
@@ -46,6 +47,25 @@ class Device
     function get($key) {
         return $this->__get($key);
     }
+
+    /**
+     * @return bool
+     */
+    public function isCheckAlive(): bool
+    {
+        return $this->checkAlive;
+    }
+
+    /**
+     * @param bool $checkAlive
+     * @return Device
+     */
+    public function setCheckAlive(bool $checkAlive): Device
+    {
+        $this->checkAlive = $checkAlive;
+        return $this;
+    }
+
 
     /**
      * @return mixed

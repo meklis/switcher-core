@@ -24,6 +24,7 @@ $app->add(new \SwitcherCore\Dev\ListOfSupportedModules());
 $app->add(new \SwitcherCore\Dev\CallOneModule());
 $app->add(new \SwitcherCore\Dev\GetDescrByNetwork());
 $app->add(new \SwitcherCore\Dev\CycleCalling());
+$app->add(new \SwitcherCore\Dev\CallOneModuleWithModule());
 
 
 $app->run();

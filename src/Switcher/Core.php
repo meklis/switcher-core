@@ -69,15 +69,20 @@ class Core
         return $this;
     }
 
-    function setOidCollector(OidCollector $collector) {
+    function setOidCollector(OidCollector $collector)
+    {
         $this->container->set(OidCollector::class, $collector);
         return $this;
     }
-    function setModuleCollector(ModuleCollector $collector) {
+
+    function setModuleCollector(ModuleCollector $collector)
+    {
         $this->container->set(ModuleCollector::class, $collector);
         return $this;
     }
-    function setModelCollector(ModelCollector $collector) {
+
+    function setModelCollector(ModelCollector $collector)
+    {
         $this->container->set(ModelCollector::class, $collector);
         return $this;
     }
@@ -167,12 +172,12 @@ class Core
 
         //Check device is alive before getting info from cache
         $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
-        if($response[0]->error) {
+        if ($response[0]->error) {
             throw new \SNMPException($response[0]->error);
         }
-        if($this->cache && $resp = $this->cache->get("SW_CORE_MODEL_DETECT:{$this->device->getIp()}")) {
-            $this->logger->info("Returned detecting from cache", $resp );
-            return  $resp;
+        if ($this->cache && $resp = $this->cache->get("SW_CORE_MODEL_DETECT:{$this->device->getIp()}")) {
+            $this->logger->info("Returned detecting from cache", $resp);
+            return $resp;
         }
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.ObjId')->getOid() . '.0')], 2, 2));
         $response = array_merge($response, $multiwalker->get([O::init($collector->getOidByName('sys.IfacesCount')->getOid() . '.0')], 2, 2));
@@ -197,8 +202,8 @@ class Core
         }
         if ($descr || $objId) {
             $this->logger->info("Detected model by descr and objId", [$descr, $objId]);
-            if($this->cache) {
-                $this->cache->set("SW_CORE_MODEL_DETECT:{$this->device->getIp()}",  [
+            if ($this->cache) {
+                $this->cache->set("SW_CORE_MODEL_DETECT:{$this->device->getIp()}", [
                     'descr' => $descr,
                     'objid' => $objId,
                     'ifacesCount' => $ifacesCount,
@@ -243,20 +248,22 @@ class Core
          * @var $multiwalker MultiWalkerInterface
          */
         $multiwalker = $this->container->get(MultiWalkerInterface::class);
-        if($mk = $this->device->getModelKey()) {
+        if ($mk = $this->device->getModelKey()) {
             //Check device is alive before getting info from cache
-            $response = $multiwalker->get([O::init($oidCollector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
-            if($response[0]->error) {
-                throw new \SNMPException($response[0]->error);
+            if ($this->device->isCheckAlive()) {
+                $response = $multiwalker->get([O::init($oidCollector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
+                if ($response[0]->error) {
+                    throw new \SNMPException($response[0]->error);
+                }
             }
             $model = $modelCollector->getModelByKey($mk);
         } else {
             $devInfo = $this->getDetectDevInfo();
             $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
-            if($model->getRewrites()) {
+            if ($model->getRewrites()) {
                 $response = $multiwalker->get([O::init($model->getRewrites()['oid'])], 1, 1);
-                if($response[0]->error) {
-                    throw new \SNMPException("Error rewrites detect - " .$response[0]->error);
+                if ($response[0]->error) {
+                    throw new \SNMPException("Error rewrites detect - " . $response[0]->error);
                 }
                 $model->rewriteModelByValue($response[0]->getResponse()[0]->getValue());
             }
@@ -318,7 +325,7 @@ class Core
             ]);
             throw $e;
         }
-        return  $data;
+        return $data;
     }
 
     /**
@@ -349,9 +356,9 @@ class Core
     {
         $model = $this->container->get(Model::class);
         foreach ($model->getModulesList() as $moduleName) {
-           if($moduleName === $module) {
-               return  true;
-           }
+            if ($moduleName === $module) {
+                return true;
+            }
         }
         return false;
     }
@@ -384,7 +391,8 @@ class Core
         return $meta;
     }
 
-    public function getContainer() {
+    public function getContainer()
+    {
         return $this->container;
     }
 }

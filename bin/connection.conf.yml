@@ -1,5 +1,5 @@
 console:
-  port: 23
+  port: 2323
   timeout: 30
   type: telnet
 
