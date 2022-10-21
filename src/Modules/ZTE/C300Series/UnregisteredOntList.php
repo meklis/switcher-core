@@ -73,7 +73,10 @@ class UnregisteredOntList extends ModuleAbstract
 
     private function getUnregisteredGPON()
     {
+        $helper = $this->telnet->getDeviceHelper();
+        $helper->setStripPrompt(false);
         $list = $this->telnet->exec("show gpon onu uncfg");
+        $helper->setStripPrompt(true);
         if (!$list) throw new Exception("Empty response on command 'show gpon onu uncfg'");
         //Parsing block
         $lines = explode("\n", $list);
