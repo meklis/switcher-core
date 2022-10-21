@@ -35,10 +35,6 @@ class CardList extends ModuleAbstract
             $types[$type['name']] = $type;
         }
         foreach ($this->response as $k=>$resp) {
-            if(!isset($resp['real_type']) || !$resp['real_type']) {
-                unset($this->response[$k]);
-                continue;
-            }
             if(isset($types[$resp['real_type']])) {
                 $this->response[$k]['technology'] = $types[$resp['real_type']]['interface_type'];
             } else {
