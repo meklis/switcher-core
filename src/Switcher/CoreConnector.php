@@ -181,7 +181,8 @@ class CoreConnector
                 $device->getIp(),
                 $device->getCommunity(),
                 $device->snmpTimeoutSec,
-                $device->snmpRepeats
+                $device->snmpRepeats,
+                $device->snmpPort,
             )
         );
     }

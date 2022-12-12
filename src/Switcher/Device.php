@@ -10,6 +10,7 @@ namespace SwitcherCore\Switcher;
  * @property int $mikrotikApiPort
  * @property int $consolePort
  * @property int $consoleTimeout
+ * @property int $snmpPort
  * @property string $consoleConnectionType
  *
  * @package SwitcherCore\Switcher
