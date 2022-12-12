@@ -208,6 +208,7 @@ abstract class ModuleAbstract extends AbstractModule
         $response = $this->telnet->exec($command);
         if(!trim($response)) return true;
         if(preg_match('/^\%Info/', $response)) return  true;
+        if(preg_match('/^Enter configuration commands/', $response)) return  true;
         if(preg_match('/\[Successful\]/', $response)) return  true;
         if(preg_match('/\[OK\]/', $response)) return  true;
         if(preg_match('/Invalid input detected/', $response)) throw new Exception("Invalid input detected for command '$command'");
