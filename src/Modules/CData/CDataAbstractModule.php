@@ -88,7 +88,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 ];
             }
         } elseif (!is_numeric($input)) {
-            if (preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $input, $m)) {
+            if (preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]{1,3})\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $input, $m)) {
                 $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}", 'name');
                 $response = [
                     'name' => $interface['name'],
