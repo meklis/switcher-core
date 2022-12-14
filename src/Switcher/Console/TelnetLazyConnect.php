@@ -20,6 +20,7 @@ class TelnetLazyConnect extends Telnet implements ConsoleInterface
     {
         if(!$this->isLogined) {
             $this->isLogined = true;
+            $this->setStreamTimeout(5);
             $this->connect($this->host, $this->port);
             $this->login($this->username, $this->password);
         }
