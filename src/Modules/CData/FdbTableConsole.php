@@ -58,6 +58,7 @@ class FdbTableConsole extends CDataAbstractModule
         } else {
             $ifaces = $this->getModule('pon_ports_list')->run()->getPretty();
         }
+
         $this->response = $this->executeByInterfaces($ifaces);
         return $this;
     }
@@ -66,7 +67,7 @@ class FdbTableConsole extends CDataAbstractModule
     {
         $responses = [];
         foreach ($ifaces as $iface) {
-            if (!preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $iface['name'], $m)) {
+            if (!preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]{1,3})\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $iface['name'], $m)) {
                 continue;
             }
             if($iface['pontype']) {
