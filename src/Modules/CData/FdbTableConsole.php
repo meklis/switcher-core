@@ -76,7 +76,7 @@ class FdbTableConsole extends CDataAbstractModule
             $telnetIdent = "{$m[1]} {$m[2]}/{$m[3]}/{$m[4]}";
 
             if ($iface['type'] === 'ONU') {
-                $resp = $this->console->exec("show mac-address ont {$m[2]}/{$m[3]}/{$m[4]} {$m[5]}\t\n");
+                $resp = $this->console->exec("show mac-address ont {$m[2]}/{$m[3]}/{$m[4]} {$m[5]}");
                 foreach (explode("\n", $resp) as $line) {
                     if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*([0-9]{1,3})\s*(\S*)$/', trim($line), $match)) {
                         $responses[] = [
@@ -87,7 +87,8 @@ class FdbTableConsole extends CDataAbstractModule
                     }
                 }
             } elseif ($iface['type'] === 'PON') {
-                $resp = $this->console->exec("show mac-address port {$telnetIdent}  with-ont-location\t\n");
+                sleep(0.1);
+                $resp = $this->console->exec("show mac-address port {$telnetIdent}  with-ont-location");
                 foreach (explode("\n", $resp) as $line) {
                     if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*([0-9]{1,3})\s*(\S*)$/', trim($line), $match)) {
                         $responses[] = [
