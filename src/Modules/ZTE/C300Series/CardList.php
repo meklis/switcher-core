@@ -41,7 +41,7 @@ class CardList extends ModuleAbstract
                 $this->response[$k]['technology'] = null;
             }
         }
-        $this->setCache('card_list', $this->response, 3600);
+        $this->setCache('card_list', $this->response, 60);
         return  $this;
     }
     public function getPretty()
