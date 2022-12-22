@@ -20,20 +20,18 @@ class CableDiagES3510 extends AbstractInterfaces
         $interfaces = $this->getInterfacesIds();
         $RESPONSES = [];
         $actionOid = $this->oids->getOidByName('cable_diag.action')->getOid();
-        if($params['interface']) {
-            foreach ($diagPorts as $snmpId => $countPairs) {
-                //Start diag
-                $response = $this->formatResponse($this->snmp->set(
-                    Oid::init($actionOid,
-                        false,
-                        PoollerRequest::TypeIntegerValue,
-                        $snmpId
-                    )));
-                if (!isset($response['cable_diag.action'])) {
-                    throw new \SNMPException("No response from device");
-                } elseif ($response['cable_diag.action']->error()) {
-                    throw new \SNMPException($response['cable_diag.action']->error());
-                }
+        foreach ($diagPorts as $snmpId => $countPairs) {
+            //Start diag
+            $response = $this->formatResponse($this->snmp->set(
+                Oid::init($actionOid,
+                    false,
+                    PoollerRequest::TypeIntegerValue,
+                    $snmpId
+                )));
+            if (!isset($response['cable_diag.action'])) {
+                throw new \SNMPException("No response from device");
+            } elseif ($response['cable_diag.action']->error()) {
+                throw new \SNMPException($response['cable_diag.action']->error());
             }
         }
         foreach ($diagPorts as $snmpId => $countPairs) {
@@ -114,20 +112,20 @@ class CableDiagES3510 extends AbstractInterfaces
             $interface = $this->parseInterface($params['interface']);
             $forDiagPorts[$interface['_snmp_id']] = $this->getCountPairsByPort($interface['_snmp_id']);
         } else {
-            $interfaces = $this->getInterfacesIds();
-            if (!$this->model->getExtraParamByName('diag_linkup')) {
-                $oid = Oid::init($this->oids->getOidByName('if.OperStatus')->getOid());
-                $response = $this->formatResponse($this->snmp->walk([$oid]));
-                $operStatus = $this->getResponseByName('if.OperStatus', $response);
-                if($operStatus->error()) {
-                    throw new \Exception($operStatus->error());
-                }
-                foreach ($operStatus->fetchAll() as $status) {
-                    if(!isset($interfaces[Helper::getIndexByOid($status->getOid())])) continue;
-                    if($status->getParsedValue() == 'Up') continue;
-                    $forDiagPorts[Helper::getIndexByOid($status->getOid())] = $this->getCountPairsByPort(Helper::getIndexByOid($status->getOid()));
-                }
-            }
+//            $interfaces = $this->getInterfacesIds();
+//            if (!$this->model->getExtraParamByName('diag_linkup')) {
+//                $oid = Oid::init($this->oids->getOidByName('if.OperStatus')->getOid());
+//                $response = $this->formatResponse($this->snmp->walk([$oid]));
+//                $operStatus = $this->getResponseByName('if.OperStatus', $response);
+//                if($operStatus->error()) {
+//                    throw new \Exception($operStatus->error());
+//                }
+//                foreach ($operStatus->fetchAll() as $status) {
+//                    if(!isset($interfaces[Helper::getIndexByOid($status->getOid())])) continue;
+//                    if($status->getParsedValue() == 'Up') continue;
+//                    $forDiagPorts[Helper::getIndexByOid($status->getOid())] = $this->getCountPairsByPort(Helper::getIndexByOid($status->getOid()));
+//                }
+//            }
         }
         return $forDiagPorts;
     }
