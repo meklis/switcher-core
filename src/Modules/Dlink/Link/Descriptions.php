@@ -20,7 +20,7 @@ class Descriptions extends SwitchesPortAbstractModule
           }
           foreach ($descr as $index) {
               if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-              $indexes[Helper::getIndexByOid($index->getOid())]['description'] =  $index->getValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['description'] =  trim($index->getValue(), '"');
           }
           return $indexes;
     }
