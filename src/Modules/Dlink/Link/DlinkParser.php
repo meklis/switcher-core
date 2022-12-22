@@ -93,8 +93,8 @@ class DlinkParser extends SwitchesPortAbstractModule
 
         foreach ($description->fetchAll() as $d) {
             $port = Helper::getIndexByOid($d->getOid());
-            if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['description'] =   $d->getValue();
-            if(isset($response["{$port}-Fiber"])) $response["{$port}-Fiber"]['description'] =   $d->getValue();
+            if(isset($response["{$port}-Cooper"])) $response["{$port}-Cooper"]['description'] =  trim($d->getValue(), '\"');
+            if(isset($response["{$port}-Fiber"])) $response["{$port}-Fiber"]['description'] =  trim($d->getValue(), '\"');
         }
         foreach ($types->fetchAll() as $d) {
             $port = Helper::getIndexByOid($d->getOid());
