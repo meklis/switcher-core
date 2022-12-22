@@ -11,6 +11,11 @@ class DescriptionPortControl extends ExecLineCtrl
     function getCommandLine($params = [])
     {
         $interface = $this->parseInterface($params['interface']);
-        return "config ports {$interface['_key']} description \"{$params['description']}\"";
+        $description = str_replace([" "], '_', $params['description']);
+        if(trim($description)) {
+            return "config ports {$interface['_key']} description {$description}";
+        } else {
+            return "config ports {$interface['_key']} description \"\"";
+        }
     }
 }
