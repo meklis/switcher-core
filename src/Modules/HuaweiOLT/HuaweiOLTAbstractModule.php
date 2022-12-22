@@ -92,7 +92,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                return  $filtered[0];
            }
        }
-       if (is_numeric($input) && $input > 200000000) {
+       if (is_numeric($input) && $input >= 200000000) {
            $ponPortId = floor($input / 1000);
            $onuNum = $input - ($ponPortId * 1000);
            if(isset($ifaces[$ponPortId])) {
