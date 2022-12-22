@@ -80,15 +80,14 @@ class DlinkDgs1100Parser extends SwitchesPortAbstractModule
     {
         Helper::prepareFilter($filter);
         $response = $this->formate();
-
         if($filter['interface']) {
             $iface  = $this->parseInterface($filter['interface']);
             foreach ($response as $num=>$resp) {
-                if(!isset($resp['port']))  {
+                if(!isset($resp['interface']))  {
                     unset($response[$num]);
                     continue;
                 }
-                if($iface['interface']['id'] != $resp['interface']['id']) {
+                if($iface['id'] != $resp['interface']['id']) {
                     unset($response[$num]);
                 }
             }
