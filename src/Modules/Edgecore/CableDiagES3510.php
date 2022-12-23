@@ -111,21 +111,6 @@ class CableDiagES3510 extends AbstractInterfaces
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
             $forDiagPorts[$interface['_snmp_id']] = $this->getCountPairsByPort($interface['_snmp_id']);
-        } else {
-//            $interfaces = $this->getInterfacesIds();
-//            if (!$this->model->getExtraParamByName('diag_linkup')) {
-//                $oid = Oid::init($this->oids->getOidByName('if.OperStatus')->getOid());
-//                $response = $this->formatResponse($this->snmp->walk([$oid]));
-//                $operStatus = $this->getResponseByName('if.OperStatus', $response);
-//                if($operStatus->error()) {
-//                    throw new \Exception($operStatus->error());
-//                }
-//                foreach ($operStatus->fetchAll() as $status) {
-//                    if(!isset($interfaces[Helper::getIndexByOid($status->getOid())])) continue;
-//                    if($status->getParsedValue() == 'Up') continue;
-//                    $forDiagPorts[Helper::getIndexByOid($status->getOid())] = $this->getCountPairsByPort(Helper::getIndexByOid($status->getOid()));
-//                }
-//            }
         }
         return $forDiagPorts;
     }
