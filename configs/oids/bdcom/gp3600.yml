@@ -1,0 +1,79 @@
+#ONT BLOCK
+- {name: ont.deactiveReason, oid: .1.3.6.1.4.1.3320.10.3.1.1.35, values: {0: none, 1: dying-gasp, 2: laser-always-on, 3: admin-control, 4: temp-omcc-problem, 5: unknown, 6: pon-los, 7: lcdg, 8: wire-down, 9: omci-mismatch, 10: omci-linkdown, 11: password-mismatch, 12: reboot, 13: ranging-failed, 14: disable-onu, 15: ack-timeout, 16: sfi, 17: tiwi, 18: onu-alarm, 19: loki} }
+- {name: ont.serial, oid: .1.3.6.1.4.1.3320.10.3.3.1.2}
+
+- {name: pon.port.optical.temp, oid: .1.3.6.1.4.1.3320.10.2.2.1.2 } # Optical module temperature. The unit is 1/256 degree.
+- {name: pon.port.optical.voltage, oid: .1.3.6.1.4.1.3320.10.2.2.1.3 } # Optical module volt. The unit is 0.1mV.
+- {name: pon.port.optical.bias, oid: .1.3.6.1.4.1.3320.10.2.2.1.4 } # Optical module bias current. The unit is 2mA.
+- {name: pon.port.optical.txPower, oid: .1.3.6.1.4.1.3320.10.2.2.1.5 }
+- {name: pon.port.optical.rxPower, oid: .1.3.6.1.4.1.3320.10.2.3.1.3 }
+
+- {name: ont.vendor, oid: .1.3.6.1.4.1.3320.10.3.1.1.2 }
+- {name: ont.model, oid: .1.3.6.1.4.1.3320.10.3.1.1.3 }
+- {name: ont.modelId, oid: .1.3.6.1.4.1.3320.10.3.1.1.9 }
+- {name: ont.omccVersion, oid: .1.3.6.1.4.1.3320.10.3.1.1.10 }
+
+- {name: ont.fwVer0version, oid: .1.3.6.1.4.1.3320.10.3.1.1.20}
+- {name: ont.fwVer0valid, oid: .1.3.6.1.4.1.3320.10.3.1.1.21, values: {1: yes, 2: no} }
+- {name: ont.fwVer0active, oid: .1.3.6.1.4.1.3320.10.3.1.1.22, values: {1: yes, 2: no} }
+- {name: ont.fwVer0committed, oid: .1.3.6.1.4.1.3320.10.3.1.1.23, values: {1: yes, 2: no} }
+- {name: ont.fwVer1version, oid: .1.3.6.1.4.1.3320.10.3.1.1.24 }
+- {name: ont.fwVer1valid, oid: .1.3.6.1.4.1.3320.10.3.1.1.25, values: {1: yes, 2: no} }
+- {name: ont.fwVer1active, oid: .1.3.6.1.4.1.3320.10.3.1.1.26, values: {1: yes, 2: no} }
+- {name: ont.fwVer1committed, oid: .1.3.6.1.4.1.3320.10.3.1.1.27, values: {1: yes, 2: no} }
+
+- {name: ont.opticalRx, oid: .1.3.6.1.4.1.3320.10.3.4.1.2 } # ONU PON port optical receive power. Unit is 0.1dB.
+- {name: ont.opticalTx, oid: .1.3.6.1.4.1.3320.10.3.4.1.3 } # ONU PON port optical send power. Unit is 0.1dB.
+- {name: ont.distance, oid: .1.3.6.1.4.1.3320.10.3.1.1.33 }
+
+- {name: fdb.setIfIndex, oid: .1.3.6.1.4.1.3320.10.15.6.0}
+- {name: fdb.setVid, oid: .1.3.6.1.4.1.3320.10.15.5.0}
+- {name: fdb.setMac, oid: .1.3.6.1.4.1.3320.10.15.4.0}
+- {name: fdb.actionSearch, oid: .1.3.6.1.4.1.3320.10.15.2.0, values: {1: mac, 2: macVid, 3: ifIndex, 4: vid}}
+- {name: fdb.getResultIf, oid: .1.3.6.1.4.1.3320.10.15.1.1.2}
+- {name: fdb.getResultVp, oid: .1.3.6.1.4.1.3320.10.15.1.1.3}
+- {name: fdb.getResultVlan, oid: .1.3.6.1.4.1.3320.10.15.1.1.4}
+- {name: fdb.getResultMacAddr, oid: .1.3.6.1.4.1.3320.10.15.1.1.5}
+
+- {name: resources.cpuUtil, oid: .1.3.6.1.4.1.3320.3.6.10.1.11}
+- {name: resources.memUtil, oid: .1.3.6.1.4.1.3320.3.6.10.1.12}
+- {name: resources.temperature, oid: .1.3.6.1.4.1.3320.3.6.10.1.13}
+- {name: resources.fanStatus, oid: .1.3.6.1.4.1.3320.9.187.4.1.2, values: {1: Normal, 2: Stop, 3: Unused}}
+
+- {name: sys.serialNum, oid: .1.3.6.1.4.1.3320.9.225.1.2.0}
+- {name: sys.boardHardwareVer, oid: .1.3.6.1.4.1.3320.9.225.1.7.0}
+- {name: sys.boardSoftwareVer, oid: .1.3.6.1.4.1.3320.9.225.1.8.0}
+- {name: sys.macAddress, oid: .1.3.6.1.4.1.3320.9.225.1.9.0}
+
+- {name: vlan.list, oid: .1.3.6.1.2.1.17.7.1.4.2.1.2.0}
+- {name: vlan.tagged, oid: .1.3.6.1.2.1.17.7.1.4.2.1.4}
+- {name: vlan.untagged, oid: .1.3.6.1.2.1.17.7.1.4.2.1.5}
+
+
+
+#SNMP ACTIONS
+- {name: olt.save, oid: .1.3.6.1.4.1.3320.20.15.1.1.0, values: {1: action}}
+- {name: ont.action.reboot, oid: .1.3.6.1.4.1.3320.10.3.2.1.4, values: {1: reboot}}
+- {name: ont.action.disable, oid: .1.3.6.1.4.1.3320.10.3.2.1.3, values: {1: enable, 2: disable}}
+- {name: ont.action.description, oid: .1.3.6.1.4.1.3320.10.3.2.1.21 }
+#UNI Block
+- {name: ont.uni.opStatus, oid: .1.3.6.1.4.1.3320.10.4.1.1.4, values: {1: Up, 2: Down}}
+- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.3320.10.4.1.1.3, values: {1: Enabled, 2: Disabled}}
+- {name: ont.uni.statInOctets, oid: .1.3.6.1.4.1.3320.10.4.2.1.38}
+- {name: ont.uni.statInCRC, oid: .1.3.6.1.4.1.3320.10.4.2.1.36}
+- {name: ont.uni.statOutOctets, oid: .1.3.6.1.4.1.3320.10.4.2.1.39}
+- {name: ont.uni.vlanProfileId, oid: .1.3.6.1.4.1.3320.10.4.1.1.6}
+
+# OLT GPON profiles
+- {name: profile.onu.vlan.name, oid: .1.3.6.1.4.1.3320.10.6.1.1.1.2}
+- {name: profile.onu.vlan.mode, oid: .1.3.6.1.4.1.3320.10.6.1.1.1.3, values: {1: transparent, 2: tag, 3: translation, 4: vlan-stacking, 5: aggregation, 6: trunk}}
+- {name: profile.onu.vlan.pvid, oid: .1.3.6.1.4.1.3320.10.6.1.1.1.4}
+- {name: profile.onu.vlan.trunk_vlans, oid: .1.3.6.1.4.1.3320.10.6.1.1.1.5}
+
+- {name: profile.onu.tcont.name, oid: .1.3.6.1.4.1.3320.10.6.2.1.2}
+- {name: profile.onu.tcont.type, oid: .1.3.6.1.4.1.3320.10.6.2.1.3 }
+
+- {name: profile.onu.flow.name, oid: .1.3.6.1.4.1.3320.10.6.6.1.3}
+- {name: profile.onu.flow.uni_type, oid: .1.3.6.1.4.1.3320.10.6.2.1.3, values: {1: ethernet-uni, 2: pots-uni, 3: t1, 4: e1, 5: hpna, 6: ip-host} }
+
+- {name: profile.onu.uniport.name, oid: .1.3.6.1.4.1.3320.10.6.8.1.2}

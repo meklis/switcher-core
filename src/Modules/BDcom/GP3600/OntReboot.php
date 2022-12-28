@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\BDcom;
+namespace SwitcherCore\Modules\BDcom\GP3600;
 
 
 use Exception;
@@ -12,12 +12,12 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OltSaveSettings extends BDcomAbstractModule
+class OntReboot extends BDcomAbstractModule
 {
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = true ;
 
     /**
      * @param array $filter
@@ -26,11 +26,15 @@ class OltSaveSettings extends BDcomAbstractModule
      */
     public function run($filter = [])
     {
-        $oid = $this->oids->getOidByName('olt.save')->getOid();
-        $resp = $this->snmp->set(Oid::init($oid, false, 'Integer', 1));
-        if($resp[0]->error) {
-            throw new \Exception("Returned error from device: {$resp[0]->error}");
+        $iface = $this->parseInterface($filter['interface']);
+        if(!preg_match('/^.*([0-9])\/([0-9]{1,4}):([0-9]{1,3})$/', $iface['name'], $match)) {
+            throw new \InvalidArgumentException("Error parse ONT interface");
         }
+        $this->checkSnmpRespError($this->snmp->set(
+            Oid::init($this->oids->getOidByName('ont.action.reboot')->getOid() . ".{$iface['xid']}")
+                ->setType('Integer')
+                ->setValue(1)
+        ));
         return $this;
     }
 

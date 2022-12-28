@@ -1,4 +1,43 @@
 models:
+  - name: BDCOM GP3600-08B
+    key: bdcom_gp3600_08b
+    inputs:
+      - snmp
+      - console
+    detect: {description: .*GP3600-08B.*,  objid: ^.1.3.6.1.4.1.3320 }
+    device_type: OLT
+    oids:
+      - ./oids/bdcom/gp3600.yml
+    modules:
+      system: \SwitcherCore\Modules\BDcom\SystemInformation
+      pon_ports_list: \SwitcherCore\Modules\BDcom\GP3600\PonPortsList
+      pon_count_registered_onts: \SwitcherCore\Modules\BDcom\GP3600\PortCountRegisteredOnts
+      parse_interface: \SwitcherCore\Modules\BDcom\GP3600\ParseInterface
+      pon_onts_status: \SwitcherCore\Modules\BDcom\GP3600\OntListWithStatuses
+      pon_onts_serial: \SwitcherCore\Modules\BDcom\GP3600\OntSerial
+      pon_onts_optical: \SwitcherCore\Modules\BDcom\GP3600\OntOpticalInfo
+      pon_ports_optical: \SwitcherCore\Modules\BDcom\GP3600\PonPortsOptical
+      pon_onts_reasons: \SwitcherCore\Modules\BDcom\GP3600\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\BDcom\GP3600\OntVendorInfo
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      fdb: \SwitcherCore\Modules\BDcom\GP3600\FdbTable
+      interface_descriptions: \SwitcherCore\Modules\BDcom\GP3600\InterfaceDescriptions
+      sys_resources: \SwitcherCore\Modules\BDcom\GP3600\SystemResources
+      interface_counters: \SwitcherCore\Modules\BDcom\GP3600\InterfaceCounters
+      interfaces_list: \SwitcherCore\Modules\BDcom\GP3600\InterfacesList
+      uni_interfaces_status: \SwitcherCore\Modules\BDcom\GP3600\UniInterfacesStatus
+      gpon_profiles: \SwitcherCore\Modules\BDcom\GP3600\GponProfiles
+      uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\GP3600\UniInterfacesVlans
+      pon_ont_reboot: \SwitcherCore\Modules\BDcom\GP3600\OntReboot
+      ctrl_ont_disable: \SwitcherCore\Modules\BDcom\GP3600\CtrlOntDisable
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\GP3600\CtrlOntDescription
+      save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
+    extra:
+      console_conn_type: bdcom
+      console_commands_after_connect:
+        - enable
+        - terminal length 0
+
   - name: BDCOM P3612-2TE
     key: bdcom_p3612_2te
     inputs:

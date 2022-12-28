@@ -189,7 +189,10 @@ abstract class AbstractModule
         return  true;
     }
 
-    function convertHexToString($string) {
+    function convertHexToString($string, $trimNulls = false) {
+        if($trimNulls) {
+            $string = rtrim($string, "0");
+        }
         $symbols = explode(":", $string);
         $str = '';
         foreach ($symbols as $symbol) {

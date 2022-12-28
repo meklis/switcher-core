@@ -98,6 +98,20 @@
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: state, pattern: '^(disable|enable)$', required: yes, values: [disable, enable]}
   descr: Установка административного состояния порта(включение/отключение)
+#Action port state control
+- name: ctrl_ont_disable
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
+    - {name: state, pattern: '^(disable|enable)$', required: yes, values: [disable, enable]}
+  descr: Включение/отключение ОНУ
+
+#Action port state desciption
+- name: ctrl_ont_descr
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
+    - {name: description, pattern: '^[0-9a-zA-Z_]{0,}$', required: yes}
+  descr: Установка описания ОНУ
+
 #Action port state speed
 - name: ctrl_port_speed
   arguments:
