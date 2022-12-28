@@ -392,7 +392,7 @@ class Model
     {
         if (!isset($this->getRewrites()['mapping'])) return $this;
         foreach ($this->getRewrites()['mapping'] as $rewrite) {
-            if ($value != $rewrite['value']) continue;
+            if (!preg_match("/{$rewrite['value']}/", $value)) continue;
             if (isset($rewrite['rewrite'])) {
                 foreach ($rewrite['rewrite'] as $key => $value) {
                     $this->{$key} = $value;

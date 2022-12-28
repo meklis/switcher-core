@@ -39,6 +39,17 @@ class OntOpticalInfo extends BDcomAbstractModule
         } catch (\Exception $e) {
         }
         try {
+            $data = $this->getResponseByName('pon.port.optical.rxPower');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $xid = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$xid]['interface'] = $this->parseInterface($xid);
+                    $ifaces[$xid]['olt_rx'] = round($r->getValue() / 10, 2);
+                }
+            }
+        } catch (\Exception $e) {
+        }
+        try {
             $data = $this->getResponseByName('ont.opticalTx');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
@@ -88,6 +99,9 @@ class OntOpticalInfo extends BDcomAbstractModule
         }
         if (!$loadOnly || in_array("rx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.opticalRx');
+        }
+        if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
+            $info[] = $this->oids->getOidByName('pon.port.optical.rxPower');
         }
         if (!$loadOnly || in_array("tx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.opticalTx');
