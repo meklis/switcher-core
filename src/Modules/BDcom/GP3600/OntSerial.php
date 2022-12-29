@@ -26,15 +26,15 @@ class OntSerial extends BDcomAbstractModule
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
 
+        $DATA = [];
         $resp = $this->getResponseByName('ont.serial');
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            return [
+            $DATA[] = [
               'interface' => $iface,
               'serial' => $resp->fetchOne()->getParsedValue(),
             ];
         }
-        $DATA = [];
         foreach ($resp->fetchAll() as $resp) {
             $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
             $DATA[] = [
