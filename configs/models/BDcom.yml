@@ -9,15 +9,19 @@ models:
     rewrites:
       oid: .1.3.6.1.4.1.3320.9.181.1.1.2.0
       mapping:
-        - value: GP3600-04B
+        - value: ^GP3600-04B
           rewrite:
             key: bdcom_gp3600_04b
             name: BDCOM GP3600-04B
-        - value: GP3600-08B
+        - value: ^GP3600-08B
           rewrite:
             key: bdcom_gp3600_08b
             name: BDCOM GP3600-08B
-        - value: GP3600-16B
+        - value: ^GP3600-08
+          rewrite:
+            key: bdcom_gp3600_08
+            name: BDCOM GP3600-08
+        - value: ^GP3600-16B
           rewrite:
             key: bdcom_gp3600_16b
             name: BDCOM GP3600-16B

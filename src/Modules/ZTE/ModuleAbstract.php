@@ -288,7 +288,10 @@ abstract class ModuleAbstract extends AbstractModule
         return $response;
     }
 
-    function convertHexToString($string) {
+    function convertHexToString($string, $trimNulls = false) {
+        if($trimNulls) {
+            $string = rtrim($string, "0");
+        }
         $symbols = explode(":", $string);
         $str = '';
         $char = '';
