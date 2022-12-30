@@ -62,7 +62,7 @@ class OntListWithStatuses extends BDcomAbstractModule
                 foreach ($data->fetchAll() as $d) {
                     $xid = Helper::getIndexByOid($d->getOid());
                     if (isset($ifaces[$xid])) {
-                        $ifaces[$xid]['_onu_disabled'] = $d->getParsedValue() == 'Disable';
+                        $ifaces[$xid]['_onu_disabled'] = $d->getParsedValue() == 'disable';
                     }
                 }
             }
