@@ -10,8 +10,8 @@
 ### Поддерживаемые интерфейсы 
 * Telnet
 * SSH 
-* SNMP
-* RouterOS API
+* SNMP(v2c only)
+* RouterOS API(without SSL)
 
 ### Поддерживаемые вендоры
 - [x] D-link switches 
@@ -24,6 +24,10 @@
 - [x] C-Data OLTs
 - [x] V-Solution OLTs
 - [x] Mikrotik routers
+- [ ] Cisco switches
+- [ ] Cisco routers
+- [ ] GCOM OLTs
+- [ ] Alcatel switches
 
 ### [Полный список поддерживаемого оборудования и их модулей](docs/DEVICES.md)     
 ### [Список модулей](docs/MODULES.md)    
@@ -31,10 +35,6 @@
 ### Необходимо для начала работы   
 PHP >= 7.2    
 Модули PHP: yaml, zip, curl, json, mbstring, snmp, sockets, ssl  
-
-
-*больше нет необходимости в использовании прокси(возможность работы через прокси убрана с версии 2.0)*
-
 
 
 ### Подключение к вашему проекту
@@ -111,3 +111,44 @@ echo json_encode($core->action('system'), JSON_PRETTY_PRINT);
 */
 
 ```
+
+
+### Разработка
+#### Основные файлы и каталоги
+* **configs/oids/** - содержит yaml файлы списков оидов snmp (пути к файлам указываются в модели устройства)
+* **configs/modules.yml** - список модулей (с описанием аргументов)
+* **configs/models/** - список моделей устройств
+* **src/Modules/** - реализация модулей 
+
+
+#### Описание файла из configs/models(на примере Edge-core ECS4120-28F)
+```yaml
+- name: Edge-core ECS4120-28F  
+  key: edgecore_ecs4120_28f # ключ модели(он должен быть уникален для всей системы)
+  ports: 26 # количество портов(необязательный параметр)
+  device_type: SWITCH # тип устройства(необязательный параметр)
+  inputs: # используемые интерфейсы работы с оборудованием (важный параметр. может быть еще console, routeros_api).
+    - snmp
+  detect: {description: ^ECS4120-28F,  objid: .1.3.6.1.4.1.259.10.1.45.103 } # параметры опредления устройства
+  oids: # список оидов, которые нужно добавить
+    - ./oids/edgecore/ecs4120.yml
+  modules: #Имя модуля - его реализация
+    system: \SwitcherCore\Modules\Edgecore\System
+    parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+    interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+    fdb: \SwitcherCore\Modules\Edgecore\Fdb
+    link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+    counters: \SwitcherCore\Modules\Edgecore\Counters
+    vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+    vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+    errors: \SwitcherCore\Modules\Edgecore\Errors
+    interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+    sys_resources: \SwitcherCore\Modules\Edgecore\SysResources
+    rmon: \SwitcherCore\Modules\Edgecore\Rmon
+    pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+    sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
+    sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
+    sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+```
+
+
