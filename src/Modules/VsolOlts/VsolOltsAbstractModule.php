@@ -97,7 +97,21 @@ abstract class VsolOltsAbstractModule extends AbstractModule
             if(!$id) {
                 continue;
             }
-            if(preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $iface->getValue(), $matches)) {
+            if(preg_match('/^EPON([0-9]{1,3})ONU([0-9]{1,3})$/', $iface->getValue(), $matches)) {
+                $port = (int)$matches[1];
+                $interfaces[$id] = [
+                    'id' => $id,
+                    'xid' => $xid,
+                    '_snmp_id' => "." .$port . "." . $matches[2],
+                    'name' => "EPON0/{$port}:{$matches[2]}",
+                    'type' => 'ONU',
+                    'technology' => 'epon',
+                    'parent' => floor($id / 1000) * 1000,
+                    '_slot' => 0,
+                    '_port' => $port,
+                    '_onu' => (int)$matches[2],
+                ];
+            } elseif(preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $iface->getValue(), $matches)) {
                 $interfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
@@ -149,6 +163,13 @@ abstract class VsolOltsAbstractModule extends AbstractModule
             $id += $matches[1] * 100000;
             $id += $matches[2] * 1000;
             $id += $matches[3];
+            return $id;
+        }
+        if(preg_match('/^EPON([0-9]{1,3})ONU([0-9]{1,3})$/', $name, $matches)) {
+            $id = 10000000;
+            $id += 0 * 100000;
+            $id += $matches[1] * 1000;
+            $id += $matches[2];
             return $id;
         }
         if(preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3})$/', $name, $matches)) {
