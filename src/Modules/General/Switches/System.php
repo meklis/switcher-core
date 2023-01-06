@@ -27,7 +27,7 @@ abstract class System extends AbstractInterfaces
     function getPretty()
     {
 
-        return [
+        $data = [
             'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
             'uptime' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValueAsTimeTicks(),
             'uptime_sec' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValue(),
@@ -42,8 +42,21 @@ abstract class System extends AbstractInterfaces
                 'ports' => $this->model->getPorts(),
                 'extra' => $this->model->getExtra(),
                 'modules' => $this->model->getModulesList(),
-            ]
+            ],
+            'serial_num' => '',
+            'mac_addr' => '',
         ];
+
+        try {
+            $data['mac_addr'] = $this->getResponseByName('sys.macAddr')->fetchOne()->getHexValue();
+        } catch (\Exception $e) {
+        }
+
+        try {
+            $data['serial_num'] = $this->getResponseByName('sys.serialNum')->fetchOne()->getValue();
+        } catch (\Exception $e) {
+        }
+        return $data;
     }
 
     /**

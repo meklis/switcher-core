@@ -6,6 +6,7 @@
   - {name: sys.Contact, oid: .1.3.6.1.2.1.1.4, access: write, type: string }
   - {name: sys.Name, oid: .1.3.6.1.2.1.1.5, access: write, type: string }
   - {name: sys.Location, oid: .1.3.6.1.2.1.1.6, access: write, type: string }
+  - {name: sys.macAddr, oid: .1.3.6.1.2.1.17.1.1, access: read, type: string }
 
 # Not all device supported
 #  - {name: sys.Revision, oid: .1.3.6.1.2.1.47.1.1.1.1.8.1, type: string }

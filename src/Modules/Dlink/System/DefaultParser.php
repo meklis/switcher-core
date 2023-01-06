@@ -15,11 +15,13 @@ class DefaultParser extends SwitchesPortAbstractModule
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = null;
+
     function getPrettyFiltered($filter = [])
     {
         return $this->getPretty();
     }
+
     function getRaw()
     {
         return $this->response;
@@ -35,7 +37,7 @@ class DefaultParser extends SwitchesPortAbstractModule
             'contact' => $this->getResponseByName('sys.Contact')->fetchOne()->getValue(),
             'name' => $this->getResponseByName('sys.Name')->fetchOne()->getValue(),
             'location' => $this->getResponseByName('sys.Location')->fetchOne()->getValue(),
-            'meta' =>  [
+            'meta' => [
                 'key' => $this->model->getKey(),
                 'type' => $this->model->getDeviceType(),
                 'name' => $this->model->getName(),
@@ -43,11 +45,19 @@ class DefaultParser extends SwitchesPortAbstractModule
                 'ports' => $this->model->getPorts(),
                 'extra' => $this->model->getExtra(),
                 'modules' => $this->model->getModulesList(),
-            ]
+            ],
+            'mac_addr' => '',
+            'serial_num' => '',
         ];
         try {
-            $data['mac_address'] = $this->getResponseByName('sys.macAddr')->fetchOne()->getHexValue();
-        } catch (\Exception $e) {}
+            $data['mac_addr'] = $this->getResponseByName('sys.macAddr')->fetchOne()->getHexValue();
+        } catch (\Exception $e) {
+        }
+
+        try {
+            $data['serial_num'] = $this->getResponseByName('sys.serialNum')->fetchOne()->getValue();
+        } catch (\Exception $e) {
+        }
 
         return $data;
     }
@@ -62,7 +72,7 @@ class DefaultParser extends SwitchesPortAbstractModule
         $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid() . ".0",true);
+            $oArray[] = Oid::init($oid->getOid() . ".0", true);
         }
         $this->response = $this->formatResponse($this->snmp->get($oArray));
         return $this;

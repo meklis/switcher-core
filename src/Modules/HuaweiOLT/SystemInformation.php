@@ -40,7 +40,9 @@ class SystemInformation extends AbstractModule
                 'ports' => $this->model->getPorts(),
                 'extra' => $this->model->getExtra(),
                 'modules' => $this->model->getModulesList(),
-                ]
+                ],
+            'serial_num' => '',
+            'mac_addr' => '',
         ];
 
         return $data;
