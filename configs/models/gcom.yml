@@ -1,0 +1,44 @@
+models:
+  - name: GCOM EPON series
+    key: gcom_epon_series
+    inputs:
+      - snmp
+      - console
+    detect: {description: .*GCOM EPON,  objid: ^.1.3.6.1.4.1.13464.1.10.5.3 }
+    device_type: OLT
+    rewrites:
+      oid: .1.3.6.1.2.1.1.5.0
+      mapping:
+        - value: EL5610-16P
+          rewrite:
+            key: gcom_el5610_16p
+            name: GCOM EL5610-16P
+    modules:
+      system: \SwitcherCore\Modules\GCOM\SystemInformation
+      pon_ports_list: \SwitcherCore\Modules\GCOM\GP3600\PonPortsList
+      pon_count_registered_onts: \SwitcherCore\Modules\GCOM\GP3600\PortCountRegisteredOnts
+      parse_interface: \SwitcherCore\Modules\GCOM\GP3600\ParseInterface
+      pon_onts_status: \SwitcherCore\Modules\GCOM\GP3600\OntListWithStatuses
+      pon_onts_serial: \SwitcherCore\Modules\GCOM\GP3600\OntSerial
+      pon_onts_optical: \SwitcherCore\Modules\GCOM\GP3600\OntOpticalInfo
+      pon_ports_optical: \SwitcherCore\Modules\GCOM\GP3600\PonPortsOptical
+      pon_onts_reasons: \SwitcherCore\Modules\GCOM\GP3600\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\GCOM\GP3600\OntVendorInfo
+      vlans: \SwitcherCore\Modules\GCOM\GP3600\VlanList
+      fdb: \SwitcherCore\Modules\GCOM\GP3600\FdbTable
+      interface_descriptions: \SwitcherCore\Modules\GCOM\GP3600\InterfaceDescriptions
+      sys_resources: \SwitcherCore\Modules\GCOM\GP3600\SystemResources
+      interface_counters: \SwitcherCore\Modules\GCOM\GP3600\InterfaceCounters
+      interfaces_list: \SwitcherCore\Modules\GCOM\GP3600\InterfacesList
+      uni_interfaces_status: \SwitcherCore\Modules\GCOM\GP3600\UniInterfacesStatus
+      gpon_profiles: \SwitcherCore\Modules\GCOM\GP3600\GponProfiles
+      uni_interfaces_vlans: \SwitcherCore\Modules\GCOM\GP3600\UniInterfacesVlans
+      pon_ont_reboot: \SwitcherCore\Modules\GCOM\GP3600\OntReboot
+      ctrl_ont_disable: \SwitcherCore\Modules\GCOM\GP3600\CtrlOntDisable
+      ctrl_ont_descr: \SwitcherCore\Modules\GCOM\GP3600\CtrlOntDescription
+      save_config: \SwitcherCore\Modules\GCOM\OltSaveSettings
+    extra:
+      console_conn_type: bdcom
+      console_commands_after_connect:
+        - enable
+        - terminal length 0
