@@ -27,7 +27,7 @@ models:
     modules:
       parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
       fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
-      counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+      interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
       system: \SwitcherCore\Modules\Dlink\System\DefaultParser
       cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
       errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser

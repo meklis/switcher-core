@@ -27,7 +27,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -68,7 +68,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -109,7 +109,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -151,7 +151,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -193,7 +193,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -234,7 +234,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -276,7 +276,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -317,7 +317,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -358,7 +358,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -399,7 +399,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
@@ -440,7 +440,7 @@ models:
      parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
      fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
      link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
-     counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
      cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser

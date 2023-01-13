@@ -21,7 +21,7 @@ models:
      interfaces_list: \SwitcherCore\Modules\Huawei\InterfacesList
      fdb: \SwitcherCore\Modules\Huawei\Fdb
      link_info: \SwitcherCore\Modules\Huawei\LinkInfo
-     counters: \SwitcherCore\Modules\Huawei\Counters
+     interface_counters: \SwitcherCore\Modules\Huawei\Counters
      vlans: \SwitcherCore\Modules\Huawei\VlansDot1q
      vlans_by_port: \SwitcherCore\Modules\Huawei\VlanByPorts
      errors: \SwitcherCore\Modules\Huawei\Errors
@@ -56,7 +56,7 @@ models:
      interfaces_list: \SwitcherCore\Modules\Huawei\InterfacesList
      fdb: \SwitcherCore\Modules\Huawei\Fdb
      link_info: \SwitcherCore\Modules\Huawei\LinkInfo
-     counters: \SwitcherCore\Modules\Huawei\Counters
+     interface_counters: \SwitcherCore\Modules\Huawei\Counters
      vlans: \SwitcherCore\Modules\Huawei\VlansDot1q
      vlans_by_port: \SwitcherCore\Modules\Huawei\VlanByPorts
      errors: \SwitcherCore\Modules\Huawei\Errors

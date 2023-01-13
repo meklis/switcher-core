@@ -105,7 +105,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
       fdb: \SwitcherCore\Modules\CData\OntFDBTable
-      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
+      interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -153,7 +153,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
-      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
+      interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -211,7 +211,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
-      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
+      interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -273,7 +273,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
-      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
+      interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
       pon_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
     #  pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
@@ -331,7 +331,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
-      pon_interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
+      interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       pon_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
       pon_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
       #  pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
