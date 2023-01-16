@@ -5,147 +5,56 @@ namespace SwitcherCore\Modules\GCOM;
 
 
 use Exception;
-use SnmpWrapper\Oid;
-use SnmpWrapper\Response\PoollerResponse;
-use SnmpWrapper\Response\SnmpResponse;
+use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
+use SwitcherCore\Switcher\Objects\SnmpResponse;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-
-/**
- * Class OntUniInformation
- * @package SwitcherCore\Modules\BDcom
- */
 class InterfaceCounters extends GCOMAbstractModule
 {
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = null;
+
     function getRaw()
     {
         return $this->response;
     }
+
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
-        $ifaces = [];
-        if($filter['interface']) {
-           $iface = $this->parseInterface($filter['interface']);
-           $ifaces[$iface['xid']] = [
-               'interface' => $iface,
-               'in_errors' => null,
-               'out_errors' => null,
-               'in_octets' => null,
-               'out_octets' => null,
-               'in_multicast_pkts' => null,
-               'out_multicast_pkts' => null,
-               'in_broadcast_pkts' => null,
-               'out_broadcast_pkts' => null,
-           ];
-        } else {
-            foreach ($this->getInterfacesIds() as $iface) {
-                $ifaces[$iface['xid']] = [
-                    'interface' => $iface,
-                    'in_errors' => null,
-                    'out_errors' => null,
-                    'in_discards' => null,
-                    'out_discards' => null,
-                    'in_octets' => null,
-                    'out_octets' => null,
-                    'in_multicast_pkts' => null,
-                    'out_multicast_pkts' => null,
-                    'in_broadcast_pkts' => null,
-                    'out_broadcast_pkts' => null,
-                ];
-            }
-        }
-        $data = $this->getResponseByName('if.InErrors');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['in_errors'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.OutErrors');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['out_errors'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.InDiscards');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['in_discards'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.OutDiscards');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['out_discards'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.HCInOctets');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['in_octets'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.HCOutOctets');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['out_octets'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.HCInMulticastPkts');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['in_multicast_pkts'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.HCOutMulticastPkts');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['out_multicast_pkts'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.HCInBroadcastPkts');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['in_broadcast_pkts'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('if.HCOutBroadcastPkts');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['out_broadcast_pkts'] = (float)$r->getValue();
-            }
-        }
-        return array_values($ifaces);
+        return parent::getPrettyFiltered($filter, $fromCache); // TODO: Change the autogenerated stub
     }
+
 
     function getPretty()
     {
-       return null;
+        $data = [];
+        foreach ($this->response as $name=>$resp) {
+            if($resp->error()) {
+                throw new \SNMPException($resp->error());
+            }
+            foreach ($resp->fetchAll() as $r) {
+                $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                $data[$iface['id']]['interface'] = $iface;
+                $value = (int)$r->getValue();
+                if($value < 0) {
+                    $value = + (2147483648 * 2);
+                }
+                switch ($name) {
+                    case 'ont.stat.inOctets': $data[$iface['id']]['in_octets'] = $value; break;
+                    case 'ont.stat.outOctets': $data[$iface['id']]['out_octets'] = $value; break;
+                    case 'ont.stat.inCrcErrors': $data[$iface['id']]['crc_errors'] = $value; break;
+                    case 'ont.stat.inMcast': $data[$iface['id']]['in_multicast_pkts'] = $value; break;
+                    case 'ont.stat.inBcast': $data[$iface['id']]['in_broadcast_pkts'] = $value; break;
+                    case 'ont.stat.outMcast': $data[$iface['id']]['out_multicast_pkts'] = $value; break;
+                    case 'ont.stat.outBcast': $data[$iface['id']]['out_broadcast_pkts'] = $value; break;
+                }
+            }
+        }
+        return array_values($data);
     }
 
     /**
@@ -155,34 +64,27 @@ class InterfaceCounters extends GCOMAbstractModule
      */
     public function run($filter = [])
     {
-        $oidsLoc = [
-            $this->oids->getOidByName('if.InErrors'),
-            $this->oids->getOidByName('if.OutErrors'),
-            $this->oids->getOidByName('if.InDiscards'),
-            $this->oids->getOidByName('if.OutDiscards'),
-            $this->oids->getOidByName('if.HCInOctets'),
-            $this->oids->getOidByName('if.HCOutOctets'),
-            $this->oids->getOidByName('if.HCInMulticastPkts'),
-            $this->oids->getOidByName('if.HCOutMulticastPkts'),
-            $this->oids->getOidByName('if.HCInBroadcastPkts'),
-            $this->oids->getOidByName('if.HCOutBroadcastPkts'),
-        ];
-        $suffix = '';
-        if($filter['interface']) {
+        $filter['interface'] = '0.16.64';
+        $oids = $this->oids->getOidsByRegex('^ont.stat\..*');
+        if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            $suffix = '.'.$interface['xid'];
-            $oids = [];
-            foreach ($oidsLoc as $oid) {
-                $oids[] = Oid::init($oid->getOid() . $suffix);
-            }
-            $this->response = $this->formatResponse($this->snmp->get($oids));
+            $data = $this->formatResponse(
+                $this->snmp->get(
+                    array_map(function ($o) use ($interface) {
+                        return \SnmpWrapper\Oid::init($o->getOid() . ".{$interface['xid']}");
+                    }, $oids)
+                )
+            );
         } else {
-            $oids = [];
-            foreach ($oidsLoc as $oid) {
-                $oids[] = Oid::init($oid->getOid() . $suffix);
-            }
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            $data = $this->formatResponse(
+                $this->snmp->walk(
+                    array_map(function ($o)  {
+                        return \SnmpWrapper\Oid::init($o->getOid());
+                    }, $oids)
+                )
+            );
         }
+        $this->response = $data;
         return $this;
     }
 }

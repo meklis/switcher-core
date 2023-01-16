@@ -9,17 +9,13 @@ use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class SystemResources extends AbstractModule
+class SystemResources extends GCOMAbstractModule
 {
     /**
      * @var WrappedResponse[]
      */
     protected $response = null;
 
-    function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
-    }
 
     function getRaw()
     {
@@ -30,13 +26,12 @@ class SystemResources extends AbstractModule
     {
         return [
             'cpu' => [
-                'util' => $this->getResponseByName('resources.cpuUsage')->fetchAll()[0]->getValue(),
-                '_temperature' => (float)($this->getResponseByName('resources.temperature')->fetchAll()[0]->getValue()) / 10,
-                '_temperature_trashhold' => (float)($this->getResponseByName('resources.temperatureTreshhold')->fetchAll()[0]->getValue()) / 10,
+                'util' => 100 - (int)$this->getResponseByName('resources.cpuIdle')->fetchAll()[0]->getValue(),
             ],
             'disk' => null,
             'interfaces' => null,
             'cards' => null,
+            'fans' =>null,
             'memory' => [
                 'util' =>  round(100-((int)$this->getResponseByName('resources.memFreeSize')->fetchAll()[0]->getValue() / (int)$this->getResponseByName('resources.memTotalSize')->fetchAll()[0]->getValue() * 100), 2),
                 '_free' =>  $this->getResponseByName('resources.memFreeSize')->fetchAll()[0]->getValue(),
@@ -55,9 +50,9 @@ class SystemResources extends AbstractModule
         $oids = $this->oids->getOidsByRegex('^resources\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid() . ".0", false);
+            $oArray[] = Oid::init($oid->getOid(), false);
         }
-        $this->response = $this->formatResponse($this->snmp->get($oArray));
+        $this->response = $this->formatResponse($this->snmp->walk($oArray));
         return $this;
     }
 }

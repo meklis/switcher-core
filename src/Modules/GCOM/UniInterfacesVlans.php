@@ -7,7 +7,6 @@ namespace SwitcherCore\Modules\GCOM;
 use Exception;
 use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\GCOM\GCOMAbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\SnmpResponse;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
@@ -32,31 +31,35 @@ class UniInterfacesVlans extends GCOMAbstractModule
 
     function getPretty()
     {
-        $data = [];
+        $data = $this->getResponseByName('ont.uni.vlanPvid');
+        if ($data->error()) {
+            throw new \SNMPException($data->error());
+        }
         $ifaces = [];
-        $data = $this->getResponseByName('ont.uni.pvid');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                if(!$r->getValue()) continue;
-                $xid = Helper::getIndexByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$xid]['unis'][$uni]['pvid'] =  $r->getParsedValue();
-            }
+        foreach ($data->fetchAll() as $r) {
+            $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid(), 1));
+            $uni = Helper::getIndexByOid($r->getOid());
+            $ifaces[$iface['id']]['interface'] = $iface;
+
+            $ifaces[$iface['id']]['unis'][$uni] = [
+                'num' => (int)$uni,
+                'pvid' => (int)$r->getParsedValue() ? (int)$r->getParsedValue() : null,
+            ];
         }
-        $data = $this->getResponseByName('ont.uni.pvidMode');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$xid]['unis'][$uni]['pvid_mode'] =  $r->getParsedValue();
-            }
+
+        $data = $this->getResponseByName('ont.uni.vlanMode');
+        if ($data->error()) {
+            throw new \SNMPException($data->error());
         }
-        return array_values(array_map(function ($e){
-            if(isset($e['unis'])) {
+        foreach ($data->fetchAll() as $r) {
+            $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid(), 1));
+            $uni = Helper::getIndexByOid($r->getOid());
+            $ifaces[$iface['id']]['interface'] = $iface;
+            $ifaces[$iface['id']]['unis'][$uni]['ctc_vlan_mode'] = $r->getParsedValue();
+        }
+
+        return array_values(array_map(function ($e) {
+            if (isset($e['unis'])) {
                 $e['unis'] = array_values($e['unis']);
             }
             return $e;
@@ -70,19 +73,21 @@ class UniInterfacesVlans extends GCOMAbstractModule
      */
     public function run($filter = [])
     {
-        $oidList[] = $this->oids->getOidByName('ont.uni.pvid');
-        $oidList[] = $this->oids->getOidByName('ont.uni.pvidMode');
+        $oidList[] = $this->oids->getOidByName('ont.uni.vlanPvid');
+        $oidList[] = $this->oids->getOidByName('ont.uni.vlanMode');
         $oids = [];
         foreach ($oidList as $oid) {
             $oids[] = $oid->getOid();
         }
-        if($filter['interface']) {
+        if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['xid'];
             }, $oids);
         }
-        $oids = array_map(function ($e) {return \SnmpWrapper\Oid::init($e); }, $oids);
+        $oids = array_map(function ($e) {
+            return \SnmpWrapper\Oid::init($e);
+        }, $oids);
         $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }

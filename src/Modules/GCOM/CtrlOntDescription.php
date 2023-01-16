@@ -33,7 +33,7 @@ class CtrlOntDescription extends GCOMAbstractModule
         }
         $description = str_replace(' ', '_', $filter['description']);
         $this->checkSnmpRespError($this->snmp->set(
-            Oid::init($this->oids->getOidByName('ont.action.description')->getOid() . ".{$iface['xid']}")
+            Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$iface['xid']}")
                 ->setType('StringValue')
                 ->setValue($description)
         ));

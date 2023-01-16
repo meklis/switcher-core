@@ -33,12 +33,18 @@ class InterfaceDescriptions extends GCOMAbstractModule
     {
         $data = [];
         foreach ($this->response as $resp) {
-            $data[] = [
-                'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
-                'description' => $resp->getValue(),
-            ];
+            try {
+                $d = [
+                    'interface' => $this->parseInterface($this->getOnuXidByOid($resp->getOid())),
+                    'description' => strtolower($resp->getValue()) != 'epon' ? $resp->getValue() : null,
+                ];
+                if (!$d['interface']['id']) continue;
+                $data[] = $d;
+            } catch (\Exception $e) {
+                $this->logger->error("Error get interface description for interface:" . $e->getMessage());
+            }
         }
-        return $data;
+        return $this->sortResponseByInterface($data);
     }
 
     /**
@@ -52,7 +58,7 @@ class InterfaceDescriptions extends GCOMAbstractModule
             $interface = $this->parseInterface($filter['interface']);
             $data = $this->formatResponse(
                 $this->snmp->get([
-                    \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$interface['id']}"),
+                    \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$interface['xid']}"),
                 ])
             );
         } else {

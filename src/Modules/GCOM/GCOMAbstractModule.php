@@ -250,10 +250,10 @@ abstract class GCOMAbstractModule extends AbstractModule
         return;
     }
 
-    function getOnuXidByOid($oid) {
+    function getOnuXidByOid($oid, $offset = 0) {
         return
-            Helper::getIndexByOid($oid, 2) . "." .
-            Helper::getIndexByOid($oid, 1) . "." .
-            Helper::getIndexByOid($oid);
+            Helper::getIndexByOid($oid, 2 + $offset) . "." .
+            Helper::getIndexByOid($oid, 1 + $offset) . "." .
+            Helper::getIndexByOid($oid, $offset);
     }
 }

@@ -4,6 +4,9 @@
 namespace SwitcherCore\Modules\GCOM;
 
 
+use SnmpWrapper\Response\PoollerResponse;
+use SwitcherCore\Config\Objects\Oid;
+use SwitcherCore\Modules\BDcom\GP3600\BDcomAbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
@@ -24,95 +27,58 @@ class FdbTable extends GCOMAbstractModule
 
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
-        $data = $this->getPretty();
-        if($filter['interface']) {
-            $interface = $this->parseInterface($filter['interface']);
-            $data = array_filter($data, function ($e) use ($interface) {
-               return $e['interface']['id'] == $interface['id'];
-            });
-        }
-        if($filter['mac']) {
-            $data = array_filter($data, function ($e) use ($filter) {
-                return $e['mac_address'] == Helper::formatMac($filter['mac']);
-            });
-        }
-        if($filter['vlan_id']) {
-            $data = array_filter($data, function ($e) use ($filter) {
-                return $e['vlan_id'] == $filter['vlan_id'];
-            });
-        }
-        return $data;
+        return $this->getPretty();
     }
 
     function getPretty()
     {
-        return $this->response;
+        $response = [];
+        $data = $this->getResponseByName('fdb.macAddress');
+        if($data->error()) {
+           throw new \SNMPException($data->error());
+        }
+        foreach ($data->fetchAll() as $d) {
+            $iface = $this->parseInterface($this->getOnuXidByOid($d->getOid(), 1));
+            $id = Helper::getIndexByOid($d->getOid());
+            $response["{$iface['id']}.{$id}"] = [
+                'interface' => $iface,
+                'mac_address' => $d->getHexValue(),
+            ];
+        }
+
+        $data = $this->getResponseByName('fdb.vlanId');
+        if($data->error()) {
+           throw new \SNMPException($data->error());
+        }
+        foreach ($data->fetchAll() as $d) {
+            $iface = $this->parseInterface($this->getOnuXidByOid($d->getOid(), 1));
+            $id = Helper::getIndexByOid($d->getOid());
+            $response["{$iface['id']}.{$id}"]['vlan_id'] = (int)$d->getValue();
+        }
+        return array_values(array_filter($response, function ($mac) {
+            if(!isset($mac['mac_address'])) return false;
+            if(!isset($mac['vlan_id'])) return  false;
+            if($mac['vlan_id'] > 4096) return  false;
+            return true;
+        }));
     }
 
 
     public function run($filter = [])
     {
-        $ifaces = [];
-        if ($filter['interface']) {
-            $ifaces[] = $this->parseInterface($filter['interface']);
-        } else {
-            $ifaces = $this->getModule('pon_ports_list')->run()->getPretty();
-        }
+       $oids = array_map(function ($o) {return $o->getOid();}, $this->oids->getOidsByRegex('^fdb\..*'));
+       if($filter['interface']) {
+           $iface = $this->parseInterface($filter['interface']);
+           $oids = array_map(function ($o) use ($iface) {return $o . "." . $iface['xid']; }, $oids);
+       } elseif ($filter['mac']) {
+           throw new \Exception("Searching by mac-address not supported yet.");
+       } elseif ($filter['vlan_id']) {
+           throw new \Exception("Searching by vlan_id not supported yet.");
+       }
 
-        $this->response = $this->executeByInterfaces($ifaces);
-        return $this;
-    }
-
-    protected function executeByInterfaces($ifaces)
-    {
-        $responses = [];
-        foreach ($ifaces as $iface) {
-            if (!preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]{1,3})\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $iface['name'], $m)) {
-                continue;
-            }
-            if($iface['pontype']) {
-                $m[1] = $iface['pontype'];
-            }
-            $telnetIdent = "{$m[1]} {$m[2]}/{$m[3]}/{$m[4]}";
-
-            if ($iface['type'] === 'ONU') {
-                $resp = $this->console->exec("show mac-address ont {$m[2]}/{$m[3]}/{$m[4]} {$m[5]}");
-                foreach (explode("\n", $resp) as $line) {
-                    if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*([0-9]{1,3})\s*(\S*)$/', trim($line), $match)) {
-                        $responses[] = [
-                            'mac_address' => $match[1],
-                            'vlan_id' => $match[2],
-                            'interface' => $this->parseInterface($match['3'] . ":" . $match[4])
-                        ];
-                    }
-                }
-            } elseif ($iface['type'] === 'PON') {
-                sleep(0.1);
-                $resp = $this->console->exec("show mac-address port {$telnetIdent}  with-ont-location");
-                foreach (explode("\n", $resp) as $line) {
-                    if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*([0-9]{1,3})\s*(\S*)$/', trim($line), $match)) {
-                        $responses[] = [
-                            'mac_address' => $match[1],
-                            'vlan_id' => $match[2],
-                            'interface' => $this->parseInterface($match['3'] . ":" . $match[4])
-                        ];
-                    }
-                }
-            } else {
-                $resp = $this->console->exec("show mac-address port {$telnetIdent}");
-                foreach (explode("\n", $resp) as $line) {
-                    $line = str_replace("--More ( Press 'Q' to quit )--", "", $line);
-                    if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*(\S*)$/', trim($line), $match)) {
-                       $responses[] = [
-                            'mac_address' => $match[1],
-                            'vlan_id' => $match[2],
-                            'interface' => $this->parseInterface($match['3'])
-                        ];
-                    }
-                }
-            }
-        }
-        return $responses;
+       $oids = array_map(function ($o) { return \SnmpWrapper\Oid::init($o);}, $oids);
+       $this->response = $this->formatResponse($this->snmp->walk($oids));
+       return $this;
     }
 }
 
