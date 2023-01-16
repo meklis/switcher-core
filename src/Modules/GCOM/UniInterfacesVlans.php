@@ -55,7 +55,7 @@ class UniInterfacesVlans extends GCOMAbstractModule
             $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid(), 1));
             $uni = Helper::getIndexByOid($r->getOid());
             $ifaces[$iface['id']]['interface'] = $iface;
-            $ifaces[$iface['id']]['unis'][$uni]['ctc_vlan_mode'] = $r->getParsedValue();
+            $ifaces[$iface['id']]['unis'][$uni]['mode'] = $r->getParsedValue();
         }
 
         return array_values(array_map(function ($e) {

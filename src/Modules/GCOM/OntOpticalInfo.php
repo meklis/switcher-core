@@ -136,7 +136,6 @@ class OntOpticalInfo extends GCOMAbstractModule
                 return Oid::init($e);
             }, $oids);
             $this->response = $this->formatResponse($this->snmp->get($oids));
-            print_r($this->response);
         } else {
             $oids = array_map(function ($e) {
                 return Oid::init($e);

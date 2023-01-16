@@ -99,7 +99,6 @@ class PonPortsOptical extends GCOMAbstractModule
         foreach ($info as $oid) {
             $oids[] = $oid->getOid();
         }
-        $filter['interface'] = 1006000;
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             if($iface['type'] != 'PON') {

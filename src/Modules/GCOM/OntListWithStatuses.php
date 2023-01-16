@@ -70,8 +70,6 @@ class OntListWithStatuses extends GCOMAbstractModule
         }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            print_r($iface);
-            exit;
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['xid'];
             }, $oids);

@@ -36,7 +36,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\GCOM\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\GCOM\SystemResources
       interfaces_list: \SwitcherCore\Modules\GCOM\InterfacesList
-      interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
+     # interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
       uni_interfaces_status: \SwitcherCore\Modules\GCOM\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\GCOM\UniInterfacesVlans
       pon_ont_reset: \SwitcherCore\Modules\GCOM\OntReset

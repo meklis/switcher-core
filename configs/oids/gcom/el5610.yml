@@ -30,15 +30,17 @@
 - {name: ont.model, oid: .1.3.6.1.4.1.13464.1.13.3.1.1.8 }
 - {name: ont.lastReg, oid: .1.3.6.1.4.1.13464.1.13.3.1.1.19}
 
-- {name: ont.stat.inOctets, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.4}
-- {name: ont.stat.outOctets, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.11}
-- {name: ont.stat.inCrcErrors, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.16}
+
+# NOT WORKING
+#- {name: ont.stat.inOctets, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.4}
+#- {name: ont.stat.outOctets, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.11}
+#- {name: ont.stat.inCrcErrors, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.16}
 #- {name: ont.stat.inUcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.5}
-- {name: ont.stat.inMcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.6}
-- {name: ont.stat.inBcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.7}
+#- {name: ont.stat.inMcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.6}
+#- {name: ont.stat.inBcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.7}
 #- {name: ont.stat.outUcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.12}
-- {name: ont.stat.outMcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.13}
-- {name: ont.stat.outBcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.14}
+#- {name: ont.stat.outMcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.13}
+#- {name: ont.stat.outBcast, oid: .1.3.6.1.4.1.13464.1.13.3.17.1.14}
 
 #UNI Block
 - {name: ont.uni.vlanMode, oid: .1.3.6.1.4.1.13464.1.13.4.2.1.1.9, values: {0: transparent, 1: tag, 4: trunk}}
