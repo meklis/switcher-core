@@ -46,7 +46,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -73,7 +73,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -100,7 +100,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -130,7 +130,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -159,7 +159,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -188,7 +188,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -217,7 +217,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -246,7 +246,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
@@ -273,7 +273,7 @@ models:
       interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
       fdb: \SwitcherCore\Modules\Edgecore\Fdb
       link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
-      counters: \SwitcherCore\Modules\Edgecore\Counters
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
       vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
       vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
       errors: \SwitcherCore\Modules\Edgecore\Errors
