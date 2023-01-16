@@ -26,7 +26,7 @@
 - [x] Mikrotik routers
 - [ ] Cisco switches
 - [ ] Cisco routers
-- [ ] GCOM OLTs
+- [x] GCOM OLTs
 - [ ] Alcatel switches
 
 ### [Полный список поддерживаемого оборудования и их модулей](docs/DEVICES.md)     
