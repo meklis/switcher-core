@@ -11,7 +11,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OntOpticalInfo extends GCOMAbstractModule
+class PonPortsOptical extends GCOMAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -27,72 +27,50 @@ class OntOpticalInfo extends GCOMAbstractModule
     {
         $response = [];
         $ifaces = [];
+
         try {
-            $data = $this->getResponseByName('ont.opticalRx');
+            $data = $this->getResponseByName('pon.port.optical.temp');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
-                    $ifaces[$iface['id']]['interface'] = $iface;
-                    $ifaces[$iface['id']]['rx'] = (float)$r->getValue() ;
-                }
-            }
-        } catch (\Exception $e) {
-        }
-        try {
-            $data = $this->getResponseByName('ont.opticalTx');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
-                    $ifaces[$iface['id']]['interface'] = $iface;
-                    $ifaces[$iface['id']]['tx'] = (float)$r->getValue();
-                }
-            }
-        } catch (\Exception $e) {
-        }
-        try {
-            $data = $this->getResponseByName('ont.distance');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
-                    $ifaces[$iface['id']]['interface'] = $iface;
-                    $ifaces[$iface['id']]['distance'] = (float)$r->getValue() ;
-                }
-            }
-        } catch (\Exception $e) {
-        }
-        try {
-            $data = $this->getResponseByName('ont.opticalTemp');
-            if (!$data->error()) {
-                foreach ($data->fetchAll() as $r) {
-                    $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                    $iface = $this->parseInterface("0." . Helper::getIndexByOid($r->getOid()));
                     $ifaces[$iface['id']]['interface'] = $iface;
                     $ifaces[$iface['id']]['temp'] = (float)$r->getValue() ;
                 }
             }
         } catch (\Exception $e) {
+
         }
         try {
-            $data = $this->getResponseByName('ont.opticalVoltage');
+            $data = $this->getResponseByName('pon.port.optical.voltage');
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $r) {
-                    $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                    $iface = $this->parseInterface("0." .  Helper::getIndexByOid($r->getOid()));
                     $ifaces[$iface['id']]['interface'] = $iface;
                     $ifaces[$iface['id']]['voltage'] = (float)$r->getValue() ;
                 }
             }
         } catch (\Exception $e) {
         }
-        return $this->sortResponseByInterface(array_values(array_map(function ($e) {
-            if (!isset($e['distance'])) $e['distance'] = null;
+
+        try {
+            $data = $this->getResponseByName('pon.port.optical.txPower');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->parseInterface("0." . Helper::getIndexByOid($r->getOid()));
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['tx'] = (float)$r->getValue();
+                }
+            }
+        } catch (\Exception $e) {
+        }
+
+        return array_values(array_map(function ($e) {
+            if (!isset($e['bias'])) $e['bias'] = null;
             if (!isset($e['voltage'])) $e['voltage'] = null;
             if (!isset($e['temp'])) $e['temp'] = null;
-            if (!isset($e['rx'])) $e['rx'] = null;
             if (!isset($e['tx'])) $e['tx'] = null;
-            if (!isset($e['olt_rx'])) $e['olt_rx'] = null;
-            if (!isset($e['olt_tx'])) $e['olt_tx'] = null;
             return $e;
-        }, $ifaces)));
-
+        }, $ifaces));
     }
 
 
@@ -108,27 +86,25 @@ class OntOpticalInfo extends GCOMAbstractModule
         if($filter['load_only']) {
             $loadOnly = explode(",", $filter['load_only']);
         }
-        if (!$loadOnly || in_array("rx", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalRx');
-        }
-        if (!$loadOnly || in_array("tx", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalTx');
-        }
-        if (!$loadOnly || in_array("distance", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.distance');
-        }
         if (!$loadOnly || in_array("temp", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalTemp');
+            $info[] = $this->oids->getOidByName('pon.port.optical.temp');
         }
         if (!$loadOnly || in_array("voltage", $loadOnly)) {
-            $info[] = $this->oids->getOidByName('ont.opticalVoltage');
+            $info[] = $this->oids->getOidByName('pon.port.optical.voltage');
+        }
+        if (!$loadOnly || in_array("tx", $loadOnly)) {
+            $info[] = $this->oids->getOidByName('pon.port.optical.txPower');
         }
         $oids = [];
         foreach ($info as $oid) {
             $oids[] = $oid->getOid();
         }
+        $filter['interface'] = 1006000;
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
+            if($iface['type'] != 'PON') {
+                throw new \Exception("Allow only for PON ports");
+            }
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['xid'];
             }, $oids);
@@ -136,7 +112,6 @@ class OntOpticalInfo extends GCOMAbstractModule
                 return Oid::init($e);
             }, $oids);
             $this->response = $this->formatResponse($this->snmp->get($oids));
-            print_r($this->response);
         } else {
             $oids = array_map(function ($e) {
                 return Oid::init($e);

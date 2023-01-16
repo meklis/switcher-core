@@ -29,9 +29,7 @@ class OntMacAddress extends GCOMAbstractModule
             throw new \Exception($responses->error());
         }
         foreach ($responses->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $interface = $this->parseInterface($onuId);
-            $interface['onu_id'] = $onuId;
+            $interface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
             $return[] = [
                 'interface' => $interface,
                 'mac_address' => $r->getHexValue(),
@@ -53,9 +51,7 @@ class OntMacAddress extends GCOMAbstractModule
             $responses[] = $poolerResponse->getResponse()[0];
         }
         foreach ($responses as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $interface = $this->parseInterface($onuId);
-            $interface['onu_id'] = $onuId;
+            $interface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
             $return[] = [
                 'interface' => $interface,
                 'mac_address' => $r->getHexValue(),
@@ -81,12 +77,11 @@ class OntMacAddress extends GCOMAbstractModule
         if(!$filter['interface']) {
             $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk([Oid::init($oid->getOid())])));
         } else {
+            $iface = $this->parseInterface($filter['interface']);
             $oidId = $oid->getOid();
-            $oids = [];
-            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
-                $oids[] = Oid::init("{$oidId}.$id");
-            }
-            $this->response = $this->processWithInterface($this->snmp->get($oids));
+            $this->response = $this->processWithInterface($this->snmp->get(
+                [Oid::init("{$oidId}.{$iface['xid']}")]
+            ));
         }
 
         return $this;

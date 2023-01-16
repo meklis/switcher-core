@@ -23,71 +23,57 @@ class OntVendorInfo extends GCOMAbstractModule
         return $this->response;
     }
 
-    private function processNoInterface($response) {
-        $return = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            unset($onts['status']);
-            $return[$onts['interface']['id']] = $onts;
-        }
-
-        foreach ($this->getResponseByName('ont.verSoftware', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['ver_software'] = $r->getValue();
-        }
-        foreach ($this->getResponseByName('ont.verHardware', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['ver_hardware'] = $r->getValue();
-        }
-        foreach ($this->getResponseByName('ont.vendor', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['vendor'] = $r->getValue();
-        }
-        foreach ($this->getResponseByName('ont.model', $response)->fetchAll() as $r) {
-            $onuId = Helper::getIndexByOid($r->getOid());
-            $return[$onuId]['model'] = $r->getValue();
-        }
-        return array_values($return);
-    }
-
-    /**
-     * @param PoollerResponse[] $response
-     * @return array
-     * @throws \SwitcherCore\Exceptions\IncompleteResponseException
-     */
-    private function processWithInterface($response) {
-        $return = [];
-        $responses = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
-            $return[$onts['interface']['id']] = $onts;
-        }
-        $issetIds = [];
-        foreach ($response as $poolerResponse) {
-            if($poolerResponse->error) continue;
-            $oid = $this->oids->findOidById($poolerResponse->getOid());
-            $responses[] = WrappedResponse::init($poolerResponse, $oid->getValues());
-        }
-        foreach ($responses as $r) {
-            $wr = $r->fetchAll()[0];
-            $oid = $this->oids->findOidById($wr->getOid());
-            $onuId = Helper::getIndexByOid($wr->getOid());
-            $issetIds[$onuId] = true;
-            switch ($oid->getName()) {
-                case 'ont.verSoftware': $return[$onuId]['ver_software'] = $wr->getValue(); break;
-                case 'ont.verHardware': $return[$onuId]['ver_hardware'] = $wr->getValue(); break;
-                case 'ont.vendor': $return[$onuId]['vendor'] = $wr->getValue(); break;
-                case 'ont.model': $return[$onuId]['model'] = $wr->getValue(); break;
-            }
-        }
-        $ids = array_keys($issetIds);
-        $return = array_filter($return, function ($e) use ($ids) {
-            return in_array($e['interface']['id'], $ids);
-        });
-        return array_values($return);
+    function getPrettyFiltered($filter = [], $fromCache = false)
+    {
+        return $this->getPretty();
     }
 
     function getPretty()
     {
-        return $this->response;
+        $ifaces = [];
+        $data = $this->getResponseByName('ont.vendor');
+        if(!$data->error()) {
+            foreach ($data->fetchAll() as $r) {
+                $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                $ifaces[$iface['id']]['interface'] = $iface;
+                if(!$r->getValue()) continue;
+                $ifaces[$iface['id']]['vendor'] = $r->getParsedValue();
+            }
+        }
+        $data = $this->getResponseByName('ont.model');
+        if(!$data->error()) {
+            foreach ($data->fetchAll() as $r) {
+                $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                $ifaces[$iface['id']]['interface'] = $iface;
+                if(!$r->getValue()) continue;
+                $ifaces[$iface['id']]['model'] = $r->getParsedValue();;
+            }
+        }
+        $data = $this->getResponseByName('ont.verSoftware');
+        if(!$data->error()) {
+            foreach ($data->fetchAll() as $r) {
+                $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                $ifaces[$iface['id']]['interface'] = $iface;
+                if(!$r->getValue()) continue;
+                $ifaces[$iface['id']]['ver_software'] = $r->getParsedValue();;
+            }
+        }
+        $data = $this->getResponseByName('ont.verHardware');
+        if(!$data->error()) {
+            foreach ($data->fetchAll() as $r) {
+                $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
+                $ifaces[$iface['id']]['interface'] = $iface;
+                if(!$r->getValue()) continue;
+                $ifaces[$iface['id']]['ver_hardware'] = $r->getParsedValue();;
+            }
+        }
+        return array_values(array_map(function ($e){
+            if(!isset($e['vendor'])) $e['vendor'] = null;
+            if(!isset($e['model'])) $e['model'] = null;
+            if(!isset($e['ver_software'])) $e['ver_software'] = null;
+            if(!isset($e['ver_hardware'])) $e['ver_hardware'] = null;
+            return $e;
+        },$ifaces));
     }
 
 
@@ -98,26 +84,28 @@ class OntVendorInfo extends GCOMAbstractModule
      */
     public function run($filter = [])
     {
-        $optical[] = $this->oids->getOidByName('ont.verSoftware');
-        $optical[] = $this->oids->getOidByName('ont.verHardware');
-        $optical[] = $this->oids->getOidByName('ont.vendor');
-        $optical[] = $this->oids->getOidByName('ont.model');
-        if(!$filter['interface']) {
-            $oids = [];
-            foreach ($optical as $opt) {
-                $oids[] = Oid::init($opt->getOid());
-            }
-            $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk($oids)));
+        $vendorInfo[] = $this->oids->getOidByName('ont.vendor');
+        $vendorInfo[] = $this->oids->getOidByName('ont.model');
+        $vendorInfo[] = $this->oids->getOidByName('ont.verSoftware');
+        $vendorInfo[] = $this->oids->getOidByName('ont.verHardware');
+
+        $oids = [];
+        foreach ($vendorInfo as $oid) {
+            $oids[] = $oid->getOid();
+        }
+        if($filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
+            $oids = array_map(function ($e) use ($iface) {
+                return $e . "." . $iface['xid'];
+            }, $oids);
+            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
-            $oids = [];
-            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
-                foreach ($optical as $optId) {
-                   $oids[] = Oid::init("{$optId->getOid()}.$id");
-                }
-            }
-            $this->response = $this->processWithInterface($this->snmp->get($oids));
+            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $this->response = $this->formatResponse($this->snmp->walk($oids));
         }
         return $this;
     }
+
 }
 

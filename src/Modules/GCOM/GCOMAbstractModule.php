@@ -4,126 +4,216 @@ namespace SwitcherCore\Modules\GCOM;
 
 use DI\DependencyException;
 use DI\NotFoundException;
+use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 abstract class GCOMAbstractModule extends AbstractModule
 {
-    private $interfaces;
-
     /**
      * @Inject
      * @var \SwitcherCore\Switcher\Console\ConsoleInterface
      */
     protected $console;
 
+    private $physicalInterfaces = [];
+
     function getPretty()
     {
         return [];
     }
 
-    function __construct(Model $model)
-    {
-        $this->interfaces = $model->getExtraParamByName('interfaces');
+    function __construct(Model $model) {
     }
 
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
-        if ($fromCache && $ret = $this->getCache(json_encode($filter))) {
-            return $ret;
-        }
         $resp = $this->getPretty();
-        $this->setCache(json_encode($filter), $resp, 15);
         return $resp;
     }
 
     protected function parseInterface($input)
     {
-
-        if (is_numeric($input) && $input < 100) {
-            $interface = $this->findInterface($input, 'xid');
-            if ($interface === null) {
-                throw new \Exception("Interface with xid=$input not found");
-            }
-            return [
-                'name' => $interface['name'],
-                'id' => $interface['id'],
-                'xid' => $interface['xid'],
-                'type' => $interface['type'],
-                'onu_num' => null,
-                'onu_id' => null,
-                'uni' => null,
-                'parent' => null,
-                'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
+        if(is_string($input) && preg_match('/^p?([0-9])\/([0-9]{1,2})[:\/]([0-9]{1,3})$/', $input, $m)) {
+            $id = $this->getIdByName("{$m[1]}/{$m[2]}/{$m[3]}");
+            return  [
+               'id' => $id,
+               'parent' => ((int) ($id / 1000) * 1000),
+               'name' => "{$m[1]}/{$m[2]}:{$m[3]}",
+               'xid' =>  "{$m[1]}.{$m[2]}.{$m[3]}",
+               'type' => 'ONU',
             ];
-        } elseif (is_numeric($input) && $input > 10000) {
-            //Check is port
-            if ($interface = $this->findInterface($input, 'id')) {
-                return [
-                    'name' => $interface['name'],
-                    'parent' => null,
-                    'id' => $interface['id'],
-                    'xid' => $interface['xid'],
-                    'type' => $interface['type'],
-                    'onu_num' => null,
-                    'uni' => null,
-                    'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
-                ];
-            }
-            //Find ont number
-            $arr = str_split(dechex($input));
-            $xid = hexdec("{$arr[3]}{$arr[4]}");
-            $onuNum = hexdec("{$arr[5]}{$arr[6]}");
-            if ($interface = $this->findInterface($xid, 'xid')) {
-                return [
-                    'name' => $interface['name'] . ":{$onuNum}",
-                    'parent' => $interface['id'],
-                    'id' => $interface['id'] + $onuNum,
-                    'xid' => $interface['xid'],
+        }
+        if(is_string($input) && preg_match('/([0-9])\.([0-9]{1,2})\.([0-9]{1,3})$/', $input, $m)) {
+            $id = $this->getIdByName("{$m[1]}/{$m[2]}/{$m[3]}");
+            return  [
+               'id' => $id,
+               'parent' => ((int) ($id / 100) * 100),
+               'name' => "{$m[1]}/{$m[2]}:{$m[3]}",
+               'xid' =>  "{$m[1]}.{$m[2]}.{$m[3]}",
+               'type' => 'ONU',
+            ];
+        }
+        if(is_string($input) && preg_match('/([0-9]{1,2})\.([0-9]{1,3})$/', $input, $m)) {
+            $id = $this->getIdByName("{$m[1]}/{$m[2]}");
+            return  [
+               'id' => $id,
+               'parent' => null,
+               'name' => "{$m[1]}/{$m[2]}",
+               'xid' =>  "{$m[1]}.{$m[2]}",
+               'type' => 'PON',
+            ];
+        }
+
+        if(is_numeric($input) && $input > 1000000) {
+            $input = (string)$input;
+            $slot = (int)$input[1];
+            $port = (int)($input[2] . $input[3]);
+            $onuNum = (int)($input[4] . $input[5] . $input[6]);
+            if($onuNum) {
+                return  [
+                    'id' => $this->getIdByName("{$slot}/{$port}:{$onuNum}"),
+                    'parent' => 1000000 + ($slot * 100000) + ($port * 1000),
+                    'name' => "{$slot}/{$port}:{$onuNum}",
+                    'xid' =>  "{$slot}.{$port}.{$onuNum}",
                     'type' => 'ONU',
-                    'onu_num' => $onuNum,
-                    'uni' => null,
-                    'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
-            }
-        } elseif (!is_numeric($input)) {
-            if (preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]{1,3})\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $input, $m)) {
-                $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}", 'name');
-                $response = [
-                    'name' => $interface['name'],
-                    'id' => $interface['id'],
+            } else {
+                return  [
+                    'id' => $this->getIdByName("{$slot}/{$port}"),
                     'parent' => null,
-                    'xid' => $interface['xid'],
-                    'type' => $interface['type'],
-                    'onu_num' => null,
-                    'uni' => null,
-                    'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
+                    'name' => "p{$slot}/{$port}",
+                    'xid' =>  "{$slot}.{$port}",
+                    'type' => 'PON',
                 ];
-                switch (count($m)) {
-                    case 7:
-                        $response['name'] .= ":{$m[5]}";
-                        $response['uni'] = (int)$m[6];
-                        $response['onu_num'] = (int)$m[5];
-                        $response['type'] = 'UNI';
-                        $response['id'] = (int)$m[5] + $response['id'];
-                        break;
-                    case 6:
-                        $response['name'] .= ":{$m[5]}";
-                        $response['onu_num'] = (int)$m[5];
-                        $response['type'] = 'ONU';
-                        $response['id'] = (int)$m[5] + $response['id'];
-                        break;
-                }
-                return $response;
             }
         }
-        throw new \InvalidArgumentException("Error parse interface by ident='{$input}'");
+
+        foreach ($this->getPhysicalInterfaces() as $physicalInterface) {
+            $ifaces[$physicalInterface['id']] = $physicalInterface;
+        }
+        if(is_numeric($input) && isset($ifaces[$input])) {
+            return $ifaces[$input];
+        }
+        if (is_numeric($input)) {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == $iface['xid'];
+            }));
+            if(count($filtered) > 0) {
+                return  $filtered[0];
+            }
+        }
+        if (is_string($input)) {
+            $input = strtolower($input);
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == strtolower($iface['name']);
+            }));
+            if(count($filtered) > 0) {
+                return  $filtered[0];
+            }
+        }
+        if (is_string($input)) {
+            $input = strtolower($input);
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == strtolower($iface['name']);
+            }));
+            if(count($filtered) > 0) {
+                return  $filtered[0];
+            }
+        }
+
+        throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
+    }
+    protected function getPhysicalInterfaces() {
+        if(!$this->physicalInterfaces) {
+            $this->loadInterfaces();
+        }
+        return $this->physicalInterfaces;
+    }
+    private function loadInterfaces() {
+        $data = $this->getCache("interfaces_list", true);
+        if($data) {
+            $this->physicalInterfaces = $data['ifaces_physical'];
+            return $this;
+        }
+        $data = $this->formatResponse($this->snmp->walk([
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Descr')->getOid()),
+        ]));
+
+        //Build physical interfaces list
+        $this->physicalInterfaces = [];
+        foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
+            $xid = Helper::getIndexByOid($iface->getOid());
+            $id = $this->getIdByName($iface->getValue());
+            if (preg_match('/^e([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $this->physicalInterfaces[] = [
+                    'id' => $id,
+                    'xid' => $xid,
+                    'name' => $iface->getValue(),
+                    'type' => 'GE',
+                ];
+            } else if (preg_match('/^p([0-9]\/[0-9]{1,3})$/', strtolower($iface->getValue()), $m)) {
+                $this->physicalInterfaces[] = [
+                    'id' => $id,
+                    'xid' => $xid,
+                    'name' => $iface->getValue(),
+                    'type' => 'PON',
+                ];
+            }
+        }
+
+        sort($this->physicalInterfaces);
+        $this->setCache("interfaces_list", [
+            'ifaces_physical' => $this->physicalInterfaces,
+        ], 300, true);
+        return $this;
     }
 
-    private function findInterface($findValue, $findKey)
+    private function findParentByName($name) {
+        //EPON0/2:48
+        if(preg_match('/^([0-9]{1,2})\/([0-9]{1,2}):([0-9]{1,3})$/', strtolower($name), $matches)) {
+            $id =  1000000;
+            $id += 10000 *  $matches[1] ;
+            $id += 1000 * $matches[2];
+            return $id;
+        }
+        if(preg_match('/^p([0-9]{1,2})\/([0-9]{1,2})/', strtolower($name), $matches)) {
+            $id =  1000000;
+            $id += 10000 *  $matches[1] ;
+            $id += 1000 * $matches[2];
+            return $id;
+        }
+        return  null;
+    }
+    private function getIdByName($name) {
+        //EPON0/2:48
+        if(preg_match('/^p?([0-9]{1,2})\/([0-9]{1,2})[:\/]([0-9]{1,3})$/', strtolower($name), $matches)) {
+            $id =  1000000;
+            $id += 10000 *  $matches[1] ;
+            $id += 1000 * $matches[2];
+            $id +=  $matches[3];
+            return $id;
+        }
+        if(preg_match('/^p?([0-9]{1,2})\/([0-9]{1,2})$/', strtolower($name), $matches)) {
+            $id =  1000000;
+            $id += 10000 *  $matches[1] ;
+            $id += 1000 * $matches[2];
+            return $id;
+        }
+        if(preg_match('/^e([0-9])\/([0-9]{1,2})$/', $name, $matches)) {
+            $id = 1000;
+            $id += 100 *  $matches[1] ;
+            $id += $matches[2];
+            return $id;
+        }
+        return null;
+    }
+    private function findPhysicalInterface($findValue, $findKey)
     {
-        $filtered = array_values(array_filter($this->interfaces, function ($val) use ($findValue, $findKey) {
+        $filtered = array_values(array_filter($this->physicalInterfaces, function ($val) use ($findValue, $findKey) {
             return isset($val[$findKey]) && $val[$findKey] == $findValue;
         }));
         if (count($filtered) > 0) {
@@ -132,55 +222,38 @@ abstract class GCOMAbstractModule extends AbstractModule
         return null;
     }
 
-    /**
-     * @param $interface
-     * @throws DependencyException
-     * @throws NotFoundException
-     */
-    function getOntIdsByInterface($interface, $onlyOnline = false)
-    {
-        $interface = $this->parseInterface($interface);
-        if ($interface['type'] !== 'PON') {
-            return [(int)$interface['id']];
-        }
-        $min = $interface['id'];
-        $max = $min + 256;
-        $ontIds = [];
-        $onts = $this->getModule('pon_onts_status')->run()->getPretty();
-        foreach ($onts as $ont) {
-            if ($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
-                if ($onlyOnline && $ont['status'] !== 'Online') {
-                    continue;
-                }
-                $ontIds[] = (int)$ont['interface']['id'];
+    protected function sortResponseByInterface($response) {
+        $RESP = [];
+        foreach ($response as $resp) {
+            if(isset($resp['interface']['id'])) {
+                $RESP[$resp['interface']['id']] = $resp;
+            } else if(isset($resp['interface'])) {
+                $RESP[$resp['id']] = $resp;
+            } else {
+                throw new \Exception("Incorrect array for sorting by interface");
             }
         }
-        return $ontIds;
+        ksort($RESP);
+        return array_values($RESP);
     }
 
     /**
-     * @param $interface
-     * @throws DependencyException
-     * @throws NotFoundException
+     * @param PoollerResponse[] $responses
+     * @return void
      */
-    function getAllOntsIds($onlyOnline = false)
-    {
-        $onts = $this->getModule('pon_onts_status')->run()->getPretty();
-        foreach ($onts as $ont) {
-            if ($onlyOnline && $ont['status'] !== 'Online') {
-                continue;
+    protected function checkSnmpRespError($responses) {
+        foreach ($responses as $response) {
+            if($response->error) {
+                throw new \SNMPException($response->error);
             }
-            $ontIds[] = (int)$ont['interface']['id'];
         }
-        return $ontIds;
+        return;
     }
 
-    protected function _exe($command)
-    {
-        $resp = $this->console->exec($command);
-        if (strpos($resp, "Unknown command") !== false) {
-            throw new \Exception($resp);
-        }
-        return true;
+    function getOnuXidByOid($oid) {
+        return
+            Helper::getIndexByOid($oid, 2) . "." .
+            Helper::getIndexByOid($oid, 1) . "." .
+            Helper::getIndexByOid($oid);
     }
 }

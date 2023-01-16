@@ -7,7 +7,7 @@ namespace SwitcherCore\Modules\GCOM;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-class FdbTableConsole extends GCOMAbstractModule
+class FdbTable extends GCOMAbstractModule
 {
 
     /**
