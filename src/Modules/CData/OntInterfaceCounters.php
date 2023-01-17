@@ -33,49 +33,70 @@ class OntInterfaceCounters extends CDataAbstractModule
     }
 
     /**
-     * @param PoollerResponse[] $response
+     * @param WrappedResponse[] $response
      * @return array
      */
     private function process($response) {
-        $return = [];
-        foreach ($response as $raw) {
-            $oid = $this->oids->findOidById($raw->getOid());
-            $pool = WrappedResponse::init($raw, $oid->getValues());
-            $name = substr($oid->getName(), 8);
-            switch ($name) {
-                case 'opStatus': $name = 'status'; break;
+        if(!isset($response['if.Name'])) {
+            throw new \Exception("Not found response by if.Name");
+        }
+        if($response['if.Name']->error()) {
+            throw new \Exception($response['if.Name']->error());
+        }
+        $interfaces = [];
+        foreach ($response['if.Name']->fetchAll() as $iface) {
+            $id = Helper::getIndexByOid($iface->getOid());
+            try {
+                $if = $this->parseInterface($iface->getValue());
+                $interfaces[$id]['interface'] = $if;
+            } catch (\Exception $e) {}
+        }
+        unset($response['if.Name']);
+
+        foreach ($response as $name=>$data) {
+            if($data->error()) {
+                throw new \SNMPException($data->error());
             }
-            $key = Helper::fromCamelCase($name);
-            if($pool->error()) continue;
-            foreach ($pool->fetchAll() as $resp) {
-                $ifaceId = Helper::getIndexByOid($resp->getOid(), 2);
-                $interface = $this->parseInterface($ifaceId);
-                $uni = Helper::getIndexByOid($resp->getOid());
-                if($uni) {
-                    $interface['uni'] = $uni;
-                }
-                if(!$uni) {
-                    continue;
-                }
-                $val = $resp->getValue();
-                if(is_numeric($val)) {
-                    $val = (int) $val;
-                }
-                if($val == 9223372036854775807) {
-                   continue;
-                }
-                switch ($key) {
-                    case 'status': $val = $resp->getParsedValue(); break;
-                    case 'admin_status':
-                    case 'vlan_mode': $val = $resp->getParsedValue(); break;
-                    case 'stat_in_octets':
-                    case 'stat_out_octets': $val = $resp->getValue(); break;
-                }
-                $return["{$ifaceId}{$uni}"][$key] = $val;
-                $return["{$ifaceId}{$uni}"]['interface'] = $interface;
+            foreach ($data->fetchAll() as $r) {
+                $xid = Helper::getIndexByOid($r->getOid());
+                try {
+                    if(!isset($interfaces[$xid])) continue;
+                    switch ($name) {
+                        case 'if.InErrors':
+                            $interfaces[$xid]['in_errors'] = (int)$r->getValue();
+                            break;
+                        case 'if.OutErrors':
+                            $interfaces[$xid]['out_errors'] = (int)$r->getValue();
+                            break;
+                        case 'if.InDiscards':
+                            $interfaces[$xid]['in_discards'] = (int)$r->getValue();
+                            break;
+                        case 'if.OutDiscards':
+                            $interfaces[$xid]['out_discards'] = (int)$r->getValue();
+                            break;
+                        case 'if.HCInOctets':
+                            $interfaces[$xid]['in_octets'] = (int)$r->getValue();
+                            break;
+                        case 'if.HCOutOctets':
+                            $interfaces[$xid]['out_octets'] = (int)$r->getValue();
+                            break;
+                        case 'if.HCOutMulticastPkts':
+                            $interfaces[$xid]['out_multicast_pkts'] = (int)$r->getValue();
+                            break;
+                        case 'if.HCInMulticastPkts':
+                            $interfaces[$xid]['in_multicast_pkts'] = (int)$r->getValue();
+                            break;
+                        case 'if.HCOutBroadcastPkts':
+                            $interfaces[$xid]['out_broadcast_pkts'] = (int)$r->getValue();
+                            break;
+                        case 'if.HCInBroadcastPkts':
+                            $interfaces[$xid]['in_broadcast_pkts'] = (int)$r->getValue();
+                            break;
+                    }
+                } catch (\Exception $e) {}
             }
         }
-        return array_values($return);
+        return array_values($interfaces);
     }
 
 
@@ -92,17 +113,26 @@ class OntInterfaceCounters extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        $oids = [];
-        $oidsLoc = $this->oids->getOidsByRegex('^ont\.uni\..*');
+        $oids = [
+            $this->oids->getOidByName('if.Name'),
+            $this->oids->getOidByName('if.InErrors'),
+            $this->oids->getOidByName('if.InErrors'),
+            $this->oids->getOidByName('if.OutErrors'),
+            $this->oids->getOidByName('if.InDiscards'),
+            $this->oids->getOidByName('if.OutDiscards'),
+            $this->oids->getOidByName('if.HCInOctets'),
+            $this->oids->getOidByName('if.HCOutOctets'),
+        ];
         $suffix = '';
         if($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             $suffix = '.'.$interface['id'];
         }
-        foreach ($oidsLoc as $oid) {
-            $oids[] = Oid::init($oid->getOid() . $suffix);
-        }
-        $this->response = $this->process($this->snmp->walk($oids));
+        $oids = array_map(function ($o) use ($suffix) {
+            return  Oid::init($o->getOid() . $suffix);
+        }, $oids);
+
+        $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)));
 
         return $this;
     }
