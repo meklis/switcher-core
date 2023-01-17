@@ -37,22 +37,7 @@ class OntInterfaceCounters extends CDataAbstractModule
      * @return array
      */
     private function process($response) {
-        if(!isset($response['if.Name'])) {
-            throw new \Exception("Not found response by if.Name");
-        }
-        if($response['if.Name']->error()) {
-            throw new \Exception($response['if.Name']->error());
-        }
-        $interfaces = [];
-        foreach ($response['if.Name']->fetchAll() as $iface) {
-            $id = Helper::getIndexByOid($iface->getOid());
-            try {
-                $if = $this->parseInterface($iface->getValue());
-                $interfaces[$id]['interface'] = $if;
-            } catch (\Exception $e) {}
-        }
-        unset($response['if.Name']);
-
+        $interfaces = $this->getInterfacesWithIfHcIds();
         foreach ($response as $name=>$data) {
             if($data->error()) {
                 throw new \SNMPException($data->error());
@@ -96,7 +81,13 @@ class OntInterfaceCounters extends CDataAbstractModule
                 } catch (\Exception $e) {}
             }
         }
-        return array_values($interfaces);
+        return array_values(array_filter($interfaces, function ($iface) {
+           return
+               isset($iface['in_octets']) &&
+               isset($iface['out_octets']) &&
+               isset($iface['in_errors']) &&
+               isset($iface['out_errors']);
+        }));
     }
 
 
@@ -114,7 +105,6 @@ class OntInterfaceCounters extends CDataAbstractModule
     public function run($filter = [])
     {
         $oids = [
-            $this->oids->getOidByName('if.Name'),
             $this->oids->getOidByName('if.InErrors'),
             $this->oids->getOidByName('if.InErrors'),
             $this->oids->getOidByName('if.OutErrors'),
@@ -126,7 +116,14 @@ class OntInterfaceCounters extends CDataAbstractModule
         $suffix = '';
         if($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            $suffix = '.'.$interface['id'];
+            $ifaces = $this->getInterfacesWithIfHcIds();
+            $filteres = array_values(array_filter($ifaces, function ($i) use ($interface) {
+                return $i['interface']['name'] == $interface['name'];
+            }));
+            if(count($filteres) == 0) {
+                throw new \Exception("Not found interface id for HC mib");
+            }
+            $suffix = '.'.$filteres[0]['interface']['_hc_id'];
         }
         $oids = array_map(function ($o) use ($suffix) {
             return  Oid::init($o->getOid() . $suffix);
@@ -135,6 +132,31 @@ class OntInterfaceCounters extends CDataAbstractModule
         $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)));
 
         return $this;
+    }
+
+
+    protected $_ifacesHC = [];
+    protected function getInterfacesWithIfHcIds() {
+        if($this->_ifacesHC) return $this->_ifacesHC;
+        $oids = [Oid::init($this->oids->getOidByName('if.Name')->getOid())];
+        $response = $this->formatResponse($this->snmp->walk($oids));
+        if(!isset($response['if.Name'])) {
+            throw new \Exception("Not found response by if.Name");
+        }
+        if($response['if.Name']->error()) {
+            throw new \Exception($response['if.Name']->error());
+        }
+        $interfaces = [];
+        foreach ($response['if.Name']->fetchAll() as $iface) {
+            $id = Helper::getIndexByOid($iface->getOid());
+            try {
+                $if = $this->parseInterface($iface->getValue());
+                $interfaces[$id]['interface'] = $if;
+                $interfaces[$id]['interface']['_hc_id'] = $id;
+            } catch (\Exception $e) {}
+        }
+        $this->_ifacesHC = $interfaces;
+        return  $interfaces;
     }
 }
 
