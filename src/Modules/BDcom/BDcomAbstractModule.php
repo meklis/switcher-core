@@ -124,12 +124,40 @@ abstract class BDcomAbstractModule extends AbstractModule
                     'type' => 'PON',
                 ];
             }
+            if (preg_match('/^g([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "g{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'GE',
+                ];
+            }
+            if (preg_match('/^tg([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "g{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'TGE',
+                ];
+            }
+            if (preg_match('/^epon([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "epon{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'PON',
+                ];
+            }
         }
         $ifaces = [];
         $llidSeqs = [];
         foreach($this->getResponseByName('ont.llidSeqNumber', $data)->fetchAll() as $item) {
             $xid = Helper::getIndexByOid($item->getOid(), 6);
             $parentIface = $this->findPhysicalInterface($xid, 'xid');
+            if($parentIface) {
             $llidSeqs["{$parentIface['name']}:{$item->getValue()}"] = "." .
                 Helper::getIndexByOid($item->getOid(), 6) . "." .
                 Helper::getIndexByOid($item->getOid(), 5) . "." .
@@ -138,6 +166,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 Helper::getIndexByOid($item->getOid(), 2) . "." .
                 Helper::getIndexByOid($item->getOid(), 1) . "." .
                 Helper::getIndexByOid($item->getOid());
+            }
         }
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
@@ -147,6 +176,12 @@ abstract class BDcomAbstractModule extends AbstractModule
             $name = strtolower($iface->getValue());
             if (preg_match('/^GigaEthernet([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
+            }
+            if (preg_match('/^g([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
+                $name = "g{$m[1]}";
+            }
+            if (preg_match('/^tg([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
+                $name = "tg{$m[1]}";
             }
             if(strpos($iface->getValue(), "VLAN") !== false) {
                 $type = 'vlan';
