@@ -57,7 +57,7 @@ class OntUniPortsStatus extends CDataAbstractModule
                 $interface = $this->parseInterface(($ponNum * 1000) + $onuNum);
                 $name = $this->oids->findOidById($r->getOid())->getName();
                 $RETURN[$interface['id']]['interface'] = $interface;
-                $RETURN[$interface['id']]['unis'][$uniNum]['number'] = (int)$uniNum;
+                $RETURN[$interface['id']]['unis'][$uniNum]['num'] = (int)$uniNum;
                 switch ($name) {
                     case 'ont.uni.description':
                         $RETURN[$interface['id']]['unis'][$uniNum]['description'] = $this->convertHexToString($r->getHexValue());
