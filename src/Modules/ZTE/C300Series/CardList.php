@@ -7,6 +7,8 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 use Exception;
 use Monolog\Logger;
+use SwitcherCore\Config\Objects\Oid;
+use SwitcherCore\Modules\Helper;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
 class CardList extends ModuleAbstract
@@ -19,29 +21,75 @@ class CardList extends ModuleAbstract
 
     public function run($params = [])
     {
-        $cache = $this->getCache('card_list');
+
+        $cache = $this->getCache('zte_card_list', true);
         if($cache) {
             $this->response = $cache;
             return  $this;
         } else {
             $this->logger->notice("Cache by key 'card_list' not found");
         }
-        if (!$this->telnet) {
-            throw new Exception("Module required telnet connection");
-        }
-        $this->response = $this->parseTable(explode("\n", $this->telnet->exec("show card")));
-        $types = [];
-        foreach ($this->model->getExtra()['card_types'] as $type) {
-            $types[$type['name']] = $type;
-        }
-        foreach ($this->response as $k=>$resp) {
-            if(isset($types[$resp['real_type']])) {
-                $this->response[$k]['technology'] = $types[$resp['real_type']]['interface_type'];
-            } else {
-                $this->response[$k]['technology'] = null;
+
+        $response = $this->formatResponse($this->snmp->walk([
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.CfgType')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.RealType')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.NumPorts')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.HardwareVer')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.FirmwareVer')->getOid()),
+        ]));
+        $RESP = [];
+        //Validate not errors
+        foreach ($response as $k=>$data) {
+            if($data->error()) {
+                throw new \Exception("Error call {$k} with message: {$data->error()}");
             }
         }
-        $this->setCache('card_list', $this->response, 60);
+        foreach ($response['zx.slot.CfgType']->fetchAll() as $type) {
+            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
+            $slot = (int)Helper::getIndexByOid($type->getOid());
+            $technology = null;
+            if($type->getValue() === 'ETGO') {
+                $technology = 'epon';
+            } elseif ($type->getValue() === 'GTGO') {
+                $technology = 'gpon';
+            }
+            $RESP["{$rack}/{$shelf}/{$slot}"] = [
+                'rack' => $rack,
+                'shelf' => $shelf,
+                'slot' => $slot,
+                'cfg_type' => $type->getValue(),
+                'technology' => $technology,
+                'id' => (int)"10{$rack}{$shelf}{$slot}",
+            ];
+        }
+        foreach ($response['zx.slot.RealType']->fetchAll() as $type) {
+            $rack = Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = Helper::getIndexByOid($type->getOid(), 1);
+            $slot = Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['real_type'] = $type->getValue();
+        }
+        foreach ($response['zx.slot.NumPorts']->fetchAll() as $type) {
+            $rack = Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = Helper::getIndexByOid($type->getOid(), 1);
+            $slot = Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['num_ports'] = $type->getValue();
+        }
+        foreach ($response['zx.slot.HardwareVer']->fetchAll() as $type) {
+            $rack = Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = Helper::getIndexByOid($type->getOid(), 1);
+            $slot = Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['hard_ver'] = $type->getValue();
+        }
+        foreach ($response['zx.slot.FirmwareVer']->fetchAll() as $type) {
+            $rack = Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = Helper::getIndexByOid($type->getOid(), 1);
+            $slot = Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['soft_ver'] = $type->getValue();
+        }
+
+        $this->response = array_values($RESP);
+        $this->setCache('zte_card_list', $this->response, 60);
         return  $this;
     }
     public function getPretty()

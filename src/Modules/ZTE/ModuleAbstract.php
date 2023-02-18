@@ -6,12 +6,13 @@ namespace SwitcherCore\Modules\ZTE;
 
 use Exception;
 use InvalidArgumentException;
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 abstract class ModuleAbstract extends AbstractModule
 {
-
     /**
      * @Inject
      * @var ConsoleInterface
@@ -19,22 +20,20 @@ abstract class ModuleAbstract extends AbstractModule
     protected $telnet;
 
 
-    function encodeSnmpOid($value) {
+    function encodeSnmpOid($value, $type = null) {
         $type = '';
         $shelf = 0;
         $slot = 0;
         $port = 0;
         $onuNum = 0;
         $fillData = function ($val, $size) {
-            $decoded = decbin($val);
-            while (strlen($decoded) < $size) {
-                $decoded = "0" . $decoded;
-            }
-            return $decoded;
+            return str_pad(decbin($val), $size, '0', STR_PAD_LEFT);
         };
 
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})(:([0-9]{1,}))?$/', $value, $matches)) {
-            $type = $matches[1];
+            if(!$type) {
+                $type = $matches[1];
+            }
             $shelf = (int)$matches[3];
             $slot = (int)$matches[4];
             $port = (int)$matches[5];
@@ -53,6 +52,7 @@ abstract class ModuleAbstract extends AbstractModule
                     return  "{$data}.$onuNum";
                 }
                 return  $data;
+            case 'xpon':
             case 'epon':
                 $binary = "0011" .
                     $fillData($shelf - $this->model->getExtraParamByName('port_offset'), 4) .
@@ -68,7 +68,6 @@ abstract class ModuleAbstract extends AbstractModule
 
     }
 
-
     function decodeSnmpOid($oid)
     {
         $onuNum = 0;
@@ -76,12 +75,8 @@ abstract class ModuleAbstract extends AbstractModule
             $onuNum = $matches[2];
             $oid = $matches[1];
         }
-        $binary = decbin($oid);
-        while (strlen($binary) < 32) {
-            $binary = "0" . $binary;
-        }
+        $binary = str_pad(decbin($oid), 32, '0', STR_PAD_LEFT);
         $type = bindec(substr($binary, 0, 4));
-        $data = substr($binary, 4);
         $shelf = 0;
         $slot = 0;
         $portOlt = 0;
@@ -89,19 +84,19 @@ abstract class ModuleAbstract extends AbstractModule
         $decodeType = '';
         switch ($type) {
             case 1:
-                $shelf = bindec(substr($data, 0, 4)) + $this->model->getExtraParamByName('port_offset');
-                $slot = bindec(substr($data, 4, 8));
-                $portOlt = bindec(substr($data, 12, 8));
+                $shelf = bindec(substr($binary, 4, 4)) + 1;
+                $slot = bindec(substr($binary, 8, 8));
+                $portOlt = bindec(substr($binary, 16, 8));
                 $decodeType = 'gpon';
                 break;
             case 3:
             case 4:
                 $decodeType = 'epon';
-                $shelf = bindec(substr($data, 0, 4))  + $this->model->getExtraParamByName('port_offset');
-                $slot = bindec(substr($data, 4, 5));
-                $portOlt = bindec(substr($data, 9, 3)) + 1;
-                $onuNum = bindec(substr($data, 12, 8));
-                $vPort = bindec(substr($data, 20, 8));
+                $shelf = bindec(substr($binary, 4, 4))  + 1;
+                $slot = bindec(substr($binary, 8, 5));
+                $portOlt = bindec(substr($binary, 13, 3)) + 1;
+                $onuNum = bindec(substr($binary, 16, 8));
+                $vPort = bindec(substr($binary, 24, 8));
                 break;
         }
         return [
@@ -114,12 +109,48 @@ abstract class ModuleAbstract extends AbstractModule
         ];
     }
 
+    protected $_xidInterfaces;
+    function listInterfacesByXidNames() {
+        if($this->_xidInterfaces) {
+            return $this->_xidInterfaces;
+        }
+        if($ifaces = $this->getCache('xid_interfaces', true)) {
+            $this->_xidInterfaces = $ifaces;
+            return  $ifaces;
+        }
+        $resp = $this->formatResponse($this->snmp->walk([Oid::init($this->oids->getOidByName('if.Name')->getOid())]));
+        if($resp['if.Name']->error()) {
+            throw new \Exception($resp['if.Name']->error());
+        }
+        $response = [];
+        foreach ($resp['if.Name']->fetchAll() as $f) {
+            if(preg_match('/^(gpon|epon|gei|xgei)_([0-9])\/([0-9])\/([0-9]){1,3}$/',$f->getValue(), $m)) {
+                $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
+                    'id' => Helper::getIndexByOid($f->getOid()),
+                    'type' => $m[1],
+                    'shelf' => $m[2],
+                    'slot' => $m[3],
+                    'port' => $m[4],
+                    'name' => $f->getValue(),
+                    'parent' => null,
+                    '_technology' => null,
+                    '_oid_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
+                ];
+            }
+        }
+        $this->_xidInterfaces = $response;
+        $this->setCache('xid_interfaces', $response, 60, true);
+        return  $response;
+    }
 
-    public function parseInterface($name)
+
+    public function parseInterface($name, $parseBy = 'id')
     {
         //Это ID из snmp
         $oidID = 0;
-        if((is_numeric($name) && $name > 19999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
+        $xidList = $this->listInterfacesByXidNames();
+        //Попытка распарсить интерфейсы по ID ОЛТа ZTE. При этом переназначается переменная $name, которая будет содержать имя интерфейса
+        if(($parseBy == 'id' && is_numeric($name) && $name > 19999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
             $oidID = $name;
             $result = $this->decodeSnmpOid($name);
             if($result['onu_number']) {
@@ -127,8 +158,16 @@ abstract class ModuleAbstract extends AbstractModule
             } else {
                 $name = "{$result['type']}-olt_{$result['shelf']}/{$result['slot']}/{$result['port']}";
             }
+        } elseif ($parseBy == 'xid' && is_numeric($name)) {
+            $find = array_filter($xidList, function ($e) use ($name) {
+               return $e['id'] == $name;
+            });
+            if(count($find) > 0) {
+                return array_values($find)[0];
+            }
         }
 
+        //Попытка распарсить интерфейс PON по его имени
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})/', $name, $matches)) {
             $onu = null;
             $type = 'PON';
@@ -136,7 +175,7 @@ abstract class ModuleAbstract extends AbstractModule
                 ($matches[3] * 10000000) +
                 ($matches[4] * 100000) +
                 ($matches[5] * 1000);
-            $parent = null;
+            $parent = (int)"101{$matches['3']}{$matches['4']}";
             if ($matches[2] == 'onu' && preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})/', $name, $m)) {
                 $onu = $m[6];
                 $type = 'ONU';
@@ -148,14 +187,13 @@ abstract class ModuleAbstract extends AbstractModule
                 'id' => (int)$id,
                 'type' => $type,
                 'parent' => (int)$parent,
-                'technology' => $matches[1],
-                'is_onu' => $matches[2] === 'onu',
-                'is_port' => $matches[2] === 'olt',
-                'shelf' => (int)$matches[3],
-                'slot' => (int)$matches[4],
-                'port' => (int)$matches[5],
-                'onu_num' => (int)$onu,
+                '_technology' => $matches[1],
+                '_shelf' => (int)$matches[3],
+                '_slot' => (int)$matches[4],
+                '_port' => (int)$matches[5],
+                '_onu_num' => (int)$onu,
                 '_oid_id' => $oidID ? $oidID : $this->encodeSnmpOid($name),
+                '_xid_id' => 0,
             ];
         }
 
@@ -192,16 +230,26 @@ abstract class ModuleAbstract extends AbstractModule
                 'type' => $type,
                 'name' => $interface,
                 'parent' => $parent,
-                'technology' => $technology,
-                'is_onu' => $onu ? true : false,
-                'is_port' => $onu ? false : true,
-                'shelf' => $shelf,
-                'slot' => $slot,
-                'port' => $port,
-                'onu_num' => (int)$onu,
+                '_technology' => $technology,
+                '_shelf' => $shelf,
+                '_slot' => $slot,
+                '_port' => $port,
+                '_onu_num' => (int)$onu,
                 '_oid_id' => $this->encodeSnmpOid($interface),
+                '_xid_id' => 0,
+                '_xid_name' => '',
             ];
         }
+
+        if(is_string($name)) {
+            $find = array_filter($xidList, function ($e) use ($name) {
+                return $e['name'] == $name;
+            });
+            if(count($find) > 0) {
+                return array_values($find)[0];
+            }
+        }
+
         throw new InvalidArgumentException("Error parse port with name '$name'");
     }
     protected function exec($command) {

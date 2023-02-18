@@ -381,8 +381,11 @@
     - {name: onu, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
     - {name: command, pattern: '.*', required: yes}
 
-- name: zte_card_list
+- name: card_list
   descr: Listing of cards on OLT
+
+- name: card_status
+  descr: Returning card status
 
 - name: zte_interface_parser
   descr: Returened parsed interface from input
@@ -390,8 +393,6 @@
     - {name: interface, pattern: '.*', required: yes}
 
 
-- name: zte_interfaces
-  descr: Build interfaces list by card info
 
 - name: pon_ports_list
   descr: Information of PON interfaces

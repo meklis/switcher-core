@@ -66,19 +66,11 @@ class InterfacesList extends ModuleAbstract
     }
     protected function getRootInterfaces() {
         $response = [];
-        $cards = $this->getModule('zte_card_list')->run()->getPretty();
-        $cardTypes = $this->model->getExtra()['card_types'];
+        $cards = $this->getModule('card_list')->run()->getPretty();
         foreach ($cards as $card) {
-            $type = array_filter($cardTypes, function ($e) use ($card) {
-               if($card['real_type'] === $e['name']) return true;
-               return  false;
-            });
-            if(count($type) === 0) {
-                continue;
-            }
-            $prefix = array_values($type)[0]['interface_type'];
-            for ($i = 1; $i <= $card['port']; $i++) {
-                $interface = $this->parseInterface($prefix . "-olt_{$card['shelf']}/{$card['slot']}/$i");
+            if(!$card['technology']) continue;
+            for ($i = 1; $i <= $card['num_ports']; $i++) {
+                $interface = $this->parseInterface("{$card['technology']}-olt_{$card['shelf']}/{$card['slot']}/$i");
                 $response[] = [
                     'id' => $interface['id'],
                     'name' => $interface['name'],

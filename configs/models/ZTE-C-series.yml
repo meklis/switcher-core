@@ -24,7 +24,8 @@ models:
       zte_onu_registration_gpon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationGPON
       zte_onu_registration_epon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\ZTE\C300Series\SaveConfig
-      zte_card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_status: \SwitcherCore\Modules\ZTE\C300Series\CardStatus
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\InterfacesStatus
       zte_interface_running_config: \SwitcherCore\Modules\ZTE\C300Series\InterfaceRunningConfig
@@ -37,8 +38,6 @@ models:
     extra:
       console_conn_type: zte_с220
       port_offset: 0
-      card_types:
-        - {name: EPFCB, interface_type: epon, count_ports: 4}
 
   - name: ZTE ZXPON C300
     key: zte_c300
@@ -65,7 +64,8 @@ models:
       zte_onu_registration_gpon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationGPON
       zte_onu_registration_epon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\ZTE\C300Series\SaveConfig
-      zte_card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_status: \SwitcherCore\Modules\ZTE\C300Series\CardStatus
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\InterfacesStatus
       zte_interface_running_config: \SwitcherCore\Modules\ZTE\C300Series\InterfaceRunningConfig
@@ -78,14 +78,6 @@ models:
     extra:
       console_conn_type: zte
       port_offset: 0
-      card_types:
-        - {name: ETGOD, interface_type: epon, count_ports: 8}
-        - {name: GTGOG, interface_type: gpon, count_ports: 8}
-        - {name: GTGOE, interface_type: gpon, count_ports: 8}
-        - {name: GTGHG, interface_type: gpon, count_ports: 16}
-        - {name: GTGH, interface_type: gpon, count_ports: 16}
-        - {name: GTGHK, interface_type: gpon, count_ports: 16}
-        - {name: GFBH, interface_type: gpon, count_ports: 16}
       console_commands_after_connect:
         - terminal length 0
 
@@ -100,7 +92,11 @@ models:
       - console
     detect: {description: C320.*,  objid: .3902.1082.1001.320.2.1$ }
     modules:
+      card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_status: \SwitcherCore\Modules\ZTE\C300Series\CardStatus
       system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+      interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
+      pon_ports_list: \SwitcherCore\Modules\ZTE\C300Series\PonPortsList
       onu_reboot: \SwitcherCore\Modules\ZTE\C300Series\RebootOnu
       zte_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OntInfo
       zte_onu_ether_iface_info: \SwitcherCore\Modules\ZTE\C300Series\OnuEtherPortInfo
@@ -114,8 +110,6 @@ models:
       zte_onu_registration_gpon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationGPON
       zte_onu_registration_epon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\ZTE\C300Series\SaveConfig
-      zte_card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
-      interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\InterfacesStatus
       zte_interface_running_config: \SwitcherCore\Modules\ZTE\C300Series\InterfaceRunningConfig
       zte_fully_onu_info: \SwitcherCore\Modules\ZTE\C300Series\OnuFullyInfo
@@ -127,14 +121,6 @@ models:
     extra:
       console_conn_type: zte
       port_offset: 1
-      card_types:
-        - {name: ETGOD, interface_type: epon, count_ports: 8}
-        - {name: GTGOG, interface_type: gpon, count_ports: 8}
-        - {name: GTGOE, interface_type: gpon, count_ports: 8}
-        - {name: GTGHG, interface_type: gpon, count_ports: 16}
-        - {name: GTGH, interface_type: gpon, count_ports: 16}
-        - {name: GTGHK, interface_type: gpon, count_ports: 16}
-        - {name: GFBH, interface_type: gpon, count_ports: 16}
       console_commands_after_connect:
         - terminal length 0
 
@@ -163,7 +149,8 @@ models:
       zte_onu_registration_gpon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationGPON
       zte_onu_registration_epon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\ZTE\C300Series\SaveConfig
-      zte_card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_status: \SwitcherCore\Modules\ZTE\C300Series\CardStatus
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\InterfacesStatus
       zte_interface_running_config: \SwitcherCore\Modules\ZTE\C300Series\InterfaceRunningConfig
@@ -176,14 +163,6 @@ models:
     extra:
       console_conn_type: zte
       port_offset: 1
-      card_types:
-        - {name: ETGOD, interface_type: epon, count_ports: 8}
-        - {name: GTGOG, interface_type: gpon, count_ports: 8}
-        - {name: GTGOE, interface_type: gpon, count_ports: 8}
-        - {name: GTGHG, interface_type: gpon, count_ports: 16}
-        - {name: GTGH, interface_type: gpon, count_ports: 16}
-        - {name: GTGHK, interface_type: gpon, count_ports: 16}
-        - {name: GFBH, interface_type: gpon, count_ports: 16}
       console_commands_after_connect:
         - terminal length 0
 
@@ -212,7 +191,8 @@ models:
       zte_onu_registration_gpon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationGPON
       zte_onu_registration_epon: \SwitcherCore\Modules\ZTE\C300Series\OntRegistrationEPON
       save_config: \SwitcherCore\Modules\ZTE\C300Series\SaveConfig
-      zte_card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_list: \SwitcherCore\Modules\ZTE\C300Series\CardList
+      card_status: \SwitcherCore\Modules\ZTE\C300Series\CardStatus
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\InterfacesStatus
       zte_interface_running_config: \SwitcherCore\Modules\ZTE\C300Series\InterfaceRunningConfig
@@ -225,13 +205,5 @@ models:
     extra:
       console_conn_type: zte
       port_offset: 1
-      card_types:
-        - {name: ETGOD, interface_type: epon, count_ports: 8}
-        - {name: GTGOG, interface_type: gpon, count_ports: 8}
-        - {name: GTGOE, interface_type: gpon, count_ports: 8}
-        - {name: GTGHG, interface_type: gpon, count_ports: 16}
-        - {name: GTGH, interface_type: gpon, count_ports: 16}
-        - {name: GTGHK, interface_type: gpon, count_ports: 16}
-        - {name: GFBH, interface_type: gpon, count_ports: 16}
       console_commands_after_connect:
         - terminal length 0
