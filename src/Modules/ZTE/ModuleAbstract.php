@@ -127,13 +127,13 @@ abstract class ModuleAbstract extends AbstractModule
             if(preg_match('/^(gpon|epon|gei|xgei)_([0-9])\/([0-9])\/([0-9]){1,3}$/',$f->getValue(), $m)) {
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
                     'id' => Helper::getIndexByOid($f->getOid()),
-                    'type' => $m[1],
+                    'type' => in_array($m[1], ['epon', 'gpon']) ? 'PON' : $m[1],
                     'shelf' => $m[2],
                     'slot' => $m[3],
                     'port' => $m[4],
                     'name' => $f->getValue(),
                     'parent' => null,
-                    '_technology' => null,
+                    '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
                     '_oid_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
                 ];
             }
@@ -202,15 +202,11 @@ abstract class ModuleAbstract extends AbstractModule
             $slot = floor(($name - ($shelf * 10000000)) / 100000);
             $port = floor(($name - (($slot * 100000) + ($shelf * 10000000))) / 1000);
             $onu = floor(($name - (($port * 1000) + ($slot * 100000) + ($shelf * 10000000))));
-            $technology = '';
-            $cards = $this->getModule('zte_card_list')->run()->getPretty();
-            $cardTypes = [];
-            foreach ($this->model->getExtra()['card_types'] as $type) {
-                $cardTypes[$type['name']] = $type;
-            }
+            $cards = $this->getModule('card_list')->run()->getPretty();
+            $technology = null;
             foreach ($cards as $card) {
-                if($card['shelf'] == $shelf && $card['slot'] == $slot && isset($cardTypes[$card['real_type']])) {
-                    $technology = $cardTypes[$card['real_type']]['interface_type'];
+                if($card['shelf'] == $shelf && $card['slot'] == $slot) {
+                    $technology = $card['technology'];
                 }
             }
             if(!$technology) {

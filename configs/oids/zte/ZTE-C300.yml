@@ -38,7 +38,7 @@
 #GPON ONT BLOCK
 - {name: gpon.ont.GponName, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.2}
 - {name: gpon.ont.GponDescription, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.3}
-- {name: zx.ont.EponDescription, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.4.1.1}
+- {name: epon.ont.EponDescription, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.4.1.1}
 - {name: gpon.ont.distance, oid: .1.3.6.1.4.1.3902.1012.3.11.4.1.2}
 - {name: gpon.ont.RtdEqd, oid: .1.3.6.1.4.1.3902.1012.3.11.4.1.1}
 - {name: gpon.ont.DevMgmtTypeName, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.1}
