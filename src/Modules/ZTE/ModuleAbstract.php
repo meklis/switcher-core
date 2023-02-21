@@ -144,6 +144,23 @@ abstract class ModuleAbstract extends AbstractModule
     }
 
 
+    public function isGponCardsExist() {
+        $cards = $this->getModule('card_list')->run()->getPretty();
+        $gponCards = array_filter($cards, function ($c) {
+           return $c['technology'] == 'gpon';
+        });
+        return count($gponCards) > 0;
+    }
+
+    public function isEponCardsExist() {
+        $cards = $this->getModule('card_list')->run()->getPretty();
+        $gponCards = array_filter($cards, function ($c) {
+            return $c['technology'] == 'epon';
+        });
+        return count($gponCards) > 0;
+    }
+
+
     public function parseInterface($name, $parseBy = 'id')
     {
         //Это ID из snmp
