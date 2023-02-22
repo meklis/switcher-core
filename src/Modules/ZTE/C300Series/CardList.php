@@ -89,7 +89,7 @@ class CardList extends ModuleAbstract
         }
 
         $this->response = array_values($RESP);
-        $this->setCache('zte_card_list', $this->response, 60, true);
+        $this->setCache('zte_card_list', $this->response, 600, true);
         return  $this;
     }
     public function getPretty()

@@ -81,17 +81,14 @@ abstract class ModuleAbstract extends AbstractModule
         $slot = 0;
         $portOlt = 0;
         $vPort = 0;
-        $decodeType = '';
         switch ($type) {
             case 1:
                 $shelf = bindec(substr($binary, 4, 4)) + 1;
                 $slot = bindec(substr($binary, 8, 8));
                 $portOlt = bindec(substr($binary, 16, 8));
-                $decodeType = 'gpon';
                 break;
             case 3:
             case 4:
-                $decodeType = 'epon';
                 $shelf = bindec(substr($binary, 4, 4))  + 1;
                 $slot = bindec(substr($binary, 8, 5));
                 $portOlt = bindec(substr($binary, 13, 3)) + 1;
@@ -99,8 +96,17 @@ abstract class ModuleAbstract extends AbstractModule
                 $vPort = bindec(substr($binary, 24, 8));
                 break;
         }
+        $technology = null;
+        $cards = array_filter($this->getModule('card_list')->run([])->getPretty(), function ($e) use ($shelf, $slot) {
+              return $shelf == $e['shelf'] && $slot == $e['slot'];
+        });
+        if(count($cards) > 0) {
+            $technology = array_values($cards)[0]['technology'];
+        }
+
         return [
-            'type' => $decodeType,
+            '_decode_type' => $type,
+            'type' => $technology,
             'shelf' => $shelf,
             'slot' => $slot,
             'port' => $portOlt,
