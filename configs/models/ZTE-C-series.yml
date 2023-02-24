@@ -39,6 +39,7 @@ models:
       port_offset: 0
       card_types:
         - {name: EPFCB, interface_type: epon, count_ports: 4}
+        - {name: ETTOK, interface_type: epon, count_ports: 8}
 
   - name: ZTE ZXPON C300
     key: zte_c300
@@ -86,6 +87,7 @@ models:
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
         - {name: GFBH, interface_type: gpon, count_ports: 16}
+        - {name: ETTOK, interface_type: epon, count_ports: 8}
       console_commands_after_connect:
         - terminal length 0
 
@@ -135,6 +137,7 @@ models:
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
         - {name: GFBH, interface_type: gpon, count_ports: 16}
+        - {name: ETTOK, interface_type: epon, count_ports: 8}
       console_commands_after_connect:
         - terminal length 0
 
@@ -184,6 +187,7 @@ models:
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
         - {name: GFBH, interface_type: gpon, count_ports: 16}
+        - {name: ETTOK, interface_type: epon, count_ports: 8}
       console_commands_after_connect:
         - terminal length 0
 
@@ -233,5 +237,6 @@ models:
         - {name: GTGH, interface_type: gpon, count_ports: 16}
         - {name: GTGHK, interface_type: gpon, count_ports: 16}
         - {name: GFBH, interface_type: gpon, count_ports: 16}
+        - {name: ETTOK, interface_type: epon, count_ports: 8}
       console_commands_after_connect:
         - terminal length 0
