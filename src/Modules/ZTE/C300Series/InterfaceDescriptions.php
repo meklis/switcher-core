@@ -39,17 +39,17 @@ class InterfaceDescriptions extends ModuleAbstract
                 $data[$iface['id']] = [
                     'interface' => $iface,
                     'description' => $this->prettyDescription($resp->getHexValue()),
+                    '_description' => $this->prettyDescription($resp->getHexValue()),
                 ];
             }
         }
         if (isset($response['gpon.ont.GponName']) && !$response['gpon.ont.GponName']->error()) {
             foreach ($response['gpon.ont.GponName']->fetchAll() as $resp) {
+                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
+                $data[$iface['id']]['interface'] = $iface;
+                $data[$iface['id']]['_name'] = $this->prettyDescription($resp->getHexValue());
                 if (strpos($this->prettyDescription($resp->getHexValue()), "ONU-") === false) {
-                    $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
-                    $data[$iface['id']] = [
-                        'interface' => $iface,
-                        'description' => $this->prettyDescription($resp->getHexValue()),
-                    ];
+                    $data[$iface['id']]['description'] = $this->prettyDescription($resp->getHexValue());
                 }
             }
         }
@@ -59,6 +59,8 @@ class InterfaceDescriptions extends ModuleAbstract
                 $data[$iface['id']] = [
                     'interface' => $iface,
                     'description' => $this->prettyDescription($resp->getHexValue()),
+                    '_description' => $this->prettyDescription($resp->getHexValue()),
+                    '_name' => null,
                 ];
             }
         }

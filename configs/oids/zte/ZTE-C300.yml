@@ -24,6 +24,7 @@
 - {name: zx.olt.OpticalVendorPn, oid: .1.3.6.1.4.1.3902.1015.3.1.13.1.13}
 - {name: zx.olt.OpticalModuleType, oid: .1.3.6.1.4.1.3902.1015.3.1.13.1.62}
 
+- {name: zx.olt.saveConfig, oid: 1.3.6.1.4.1.3902.1082.20.1.2.10.1.1.0, values: {1: Save}}
 
 #GENERAL ONU BLOCK
 - {name: xpon.ont.VlanIfConfMode , oid: .1.3.6.1.4.1.3902.1015.20.3.1.2, values: { 1: access, 2: trunk, 3: hybrid, 4: transparent }}
@@ -49,6 +50,9 @@
 - {name: gpon.ont.LastOnlineTime, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.5}
 - {name: gpon.ont.LastOfflineTime, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.6}
 - {name: gpon.ont.LastOfflineReason, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.7, values: { 1: unknown, 2: los, 3: losi, 4: lofi, 5: sfi, 6: loai, 7: loami, 8: authFail, 9: dyingGasp, 10: deactiveSucc, 11: deactiveFail, 12: reboot, 13: shutdown }}
+
+- {name: gpon.ont.vendorId, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.1}
+- {name: gpon.ont.verFirmware, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.2}
 
 - {name: gpon.uncfg.serial, oid: .1.3.6.1.4.1.3902.1012.3.13.3.1.2}
 - {name: gpon.uncfg.psw, oid: .1.3.6.1.4.1.3902.1012.3.13.3.1.5}

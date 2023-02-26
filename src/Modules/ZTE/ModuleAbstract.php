@@ -21,7 +21,6 @@ abstract class ModuleAbstract extends AbstractModule
 
 
     function encodeSnmpOid($value, $type = null) {
-        $type = '';
         $shelf = 0;
         $slot = 0;
         $port = 0;
@@ -52,6 +51,18 @@ abstract class ModuleAbstract extends AbstractModule
                     return  "{$data}.$onuNum";
                 }
                 return  $data;
+            case 'gpon_eth':
+                $binary = "0001" .
+                    $fillData(1, 4) .
+                    $fillData($shelf, 8) .
+                    $fillData($slot, 8) .
+                    $fillData($port, 8)
+                ;
+                $data = (string)bindec($binary);
+                if($onuNum) {
+                    return  "{$data}.$onuNum";
+                }
+                return  $data;
             case 'xpon':
             case 'epon':
                 $binary = "0011" .
@@ -65,7 +76,6 @@ abstract class ModuleAbstract extends AbstractModule
             default:
                 throw new \Exception("Error parse interface $value");
         }
-
     }
 
     function decodeSnmpOid($oid)
@@ -88,7 +98,6 @@ abstract class ModuleAbstract extends AbstractModule
                 $portOlt = bindec(substr($binary, 16, 8));
                 break;
             case 3:
-            case 4:
                 $shelf = bindec(substr($binary, 4, 4))  + 1;
                 $slot = bindec(substr($binary, 8, 5));
                 $portOlt = bindec(substr($binary, 13, 3)) + 1;
@@ -134,13 +143,14 @@ abstract class ModuleAbstract extends AbstractModule
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
                     'id' => Helper::getIndexByOid($f->getOid()),
                     'type' => in_array($m[1], ['epon', 'gpon']) ? 'PON' : $m[1],
-                    'shelf' => $m[2],
-                    'slot' => $m[3],
-                    'port' => $m[4],
+                    '_shelf' => $m[2],
+                    '_slot' => $m[3],
+                    '_port' => $m[4],
                     'name' => $f->getValue(),
                     'parent' => null,
                     '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
                     '_oid_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
+                    '_oid_eth_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}", "gpon_eth") : null,
                 ];
             }
         }
@@ -172,6 +182,18 @@ abstract class ModuleAbstract extends AbstractModule
         //Это ID из snmp
         $oidID = 0;
         $xidList = $this->listInterfacesByXidNames();
+        if($parseBy == 'eth_id') {
+            [$id, $onuNum] = explode(".", $name);
+            $find = array_filter($xidList, function ($e) use ($id) {
+                return $e['_oid_eth_id'] == $id;
+            });
+            if(count($find) > 0) {
+                $iface = array_values($find)[0];
+                $name = "{$iface['_technology']}-onu_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}:{$onuNum}";
+            } else {
+                throw new \Exception("Error find interface by eth_id with id={$name}");
+            }
+        }
         //Попытка распарсить интерфейсы по ID ОЛТа ZTE. При этом переназначается переменная $name, которая будет содержать имя интерфейса
         if(($parseBy == 'id' && is_numeric($name) && $name > 19999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
             $oidID = $name;
@@ -217,6 +239,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_onu_num' => (int)$onu,
                 '_oid_id' => $oidID ? $oidID : $this->encodeSnmpOid($name),
                 '_xid_id' => 0,
+                '_oid_eth_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid($name, "gpon_eth") : null,
             ];
         }
 
@@ -257,6 +280,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_oid_id' => $this->encodeSnmpOid($interface),
                 '_xid_id' => 0,
                 '_xid_name' => '',
+                '_oid_eth_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}", "gpon_eth") : null,
             ];
         }
 

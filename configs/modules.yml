@@ -293,106 +293,20 @@
 
 
 #Action Get ont data
-- name: zte_onu_info
+- name: zte_ont_info
   arguments:
     - {name: interface, pattern: '.*', required: yes}
   descr: Информация о ОНУшке (детально)
-#Action Get ont data
-- name: zte_onu_pon_info
-  arguments:
-    - {name: interface, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
-  descr: Информация о всех онушках в порту PON
-
-#Action Get ont data
-- name: zte_onu_ether_iface_info
-  arguments:
-    - {name: interface, pattern: '.*', required: yes}
-  descr: Инфо о Ethernet портах на ONU (UNI ports)
-
-
-#Action Get ont data
-- name: zte_onu_signal_strength
-  arguments:
-    - {name: interface, pattern: '.*', required: yes}
-  descr: Инфо у уровне сигналов ОНУ
-
-
-#Action Get ont data
-- name: zte_pon_power_attenuation
-  arguments:
-    - {name: interface, pattern: '.*', required: yes}
-  descr: Инфо у уровне сигналов ОНУ
-
-#Action Get ont data
-- name: zte_fdb
-  arguments:
-    - {name: interface, pattern: '.*', required: true}
-  descr: FDB таблица с интерфейса/порта/ОНУ
-
-#Action Get ont data
-- name: zte_fully_onu_info
-  arguments:
-    - {name: interface, pattern: '.*', required: yes}
-  descr: Солянка из zte_fdb, zte_onu_signal_strength, zte_onu_ether_iface_info, zte_onu_info
-
-
-#Get ONU state by interface
-- name: zte_onu_state_by_interface
-  arguments:
-    - {name: interface, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
-  descr: List ONU state by interface
-
-- name: zte_onu_dereg
-  descr: Allow send configuration command to interface
-  arguments:
-    - {name: onu, pattern: '.*', required: yes}
-
-#Get ONU state by interface
-- name: zte_gpon_onu_profile_list
-  descr: List ONU profiles for GPON
-  arguments:
-      - {name: type, pattern: '^(remote|line)$', required: yes, values: [ remote,line ] }
 
 #Get ONU state by interface
 - name: gpon_profiles
   descr: List ONU profiles for GPON
-
-- name: zte_onu_registration_gpon
-  descr: ONU registration for GPON
-  arguments:
-    - {name: interface, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
-    - {name: type, pattern: '.*', required: yes}
-    - {name: serial, pattern: '.*', required: yes}
-    - {name: profile_line, pattern: '.*', required: yes}
-    - {name: profile_remote, pattern: '.*', required: yes}
-    - {name: number, pattern: '[0-9]{1,3}', required: yes}
-
-- name: zte_onu_registration_epon
-  descr: ONU registration for GPON
-  arguments:
-    - {name: interface, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})$', required: yes}
-    - {name: type, pattern: '.*', required: yes}
-    - {name: mac, pattern: '.*', required: yes}
-    - {name: number, pattern: '[0-9]{1,3}', required: yes}
-
-- name: zte_onu_interface_console
-  descr: Allow send configuration command to interface
-  arguments:
-    - {name: onu, pattern: '^(gpon|epon)-(olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):[0-9]{1,3}$', required: yes}
-    - {name: command, pattern: '.*', required: yes}
 
 - name: card_list
   descr: Listing of cards on OLT
 
 - name: card_status
   descr: Returning card status
-
-- name: zte_interface_parser
-  descr: Returened parsed interface from input
-  arguments:
-    - {name: interface, pattern: '.*', required: yes}
-
-
 
 - name: pon_ports_list
   descr: Information of PON interfaces
@@ -512,10 +426,6 @@
     - { name: parent, pattern: '.*', required: no }
     - { name: root, pattern: '.*', required: no }
 
-- name: zte_interface_running_config
-  description: Возвращает список профайлов и серийников
-  arguments:
-    - { name: interface, pattern: '.*', required: true }
 
 - name: unregistered_onts
   description: Allow run command

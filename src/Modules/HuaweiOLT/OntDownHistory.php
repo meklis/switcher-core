@@ -22,8 +22,6 @@ class OntDownHistory extends HuaweiOLTAbstractModule
     {
         return $this->response;
     }
-
-
     function getPretty()
     {
         $ifaces = [];
@@ -39,8 +37,8 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                     $time = $ts->getTimestamp();
                 }
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['logs'][$id]['last_reg'] = $time;
-                $ifaces[$iface['id']]['logs'][$id]['last_reg_since'] =  $time == null ? null :$this->getSince($time);
+                $ifaces[$iface['id']]['logs'][$id]['reg_time'] = $time;
+                $ifaces[$iface['id']]['logs'][$id]['reg_since'] =  $time == null ? null :$this->getSince($time);
             }
         }
         $data = $this->getResponseByName('ont.regTable.downTime');
@@ -55,8 +53,8 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                 }
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['logs'][$id]['last_dereg'] = $time;
-                $ifaces[$iface['id']]['logs'][$id]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
+                $ifaces[$iface['id']]['logs'][$id]['dereg_time'] = $time;
+                $ifaces[$iface['id']]['logs'][$id]['dereg_since'] = $time == null ? null : $this->getSince($time);
             }
         }
         $data = $this->getResponseByName('ont.regTable.downCause');
@@ -65,17 +63,17 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($r->getOid(), 1);
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['logs'][$id]['last_down_reason'] = $r->getParsedValue();
+                $ifaces[$iface['id']]['logs'][$id]['down_reason'] = $r->getParsedValue();
             }
         }
         return array_values(array_map(function ($iface) {
             $iface['logs'] = array_values(array_filter(array_map(function ($e) {
-                if(isset($e['last_down_reason']) && $e['last_down_reason'] == 'Invalid') return null;
-                if(!isset($e['last_down_reason'])) $e['last_down_reason'] = null;
-                if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
-                if(!isset($e['last_dereg'])) $e['last_dereg'] = null;
-                if(!isset($e['last_reg'])) $e['last_reg'] = null;
-                if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
+                if(isset($e['down_reason']) && $e['down_reason'] == 'Invalid') return null;
+                if(!isset($e['down_reason'])) $e['down_reason'] = null;
+                if(!isset($e['dereg_time'])) $e['dereg_time'] = null;
+                if(!isset($e['reg_time'])) $e['reg_time'] = null;
+                if(!isset($e['dereg_since'])) $e['dereg_since'] = null;
+                if(!isset($e['reg_since'])) $e['reg_since'] = null;
                 return $e;
             }, $iface['logs']), function ($e) {
                 return $e !== null;
