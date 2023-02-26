@@ -151,6 +151,7 @@ abstract class ModuleAbstract extends AbstractModule
                     '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
                     '_oid_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
                     '_oid_eth_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}", "gpon_eth") : null,
+                    '_xpon_id' =>  null,
                 ];
             }
         }
@@ -196,7 +197,6 @@ abstract class ModuleAbstract extends AbstractModule
         }
         //Попытка распарсить интерфейсы по ID ОЛТа ZTE. При этом переназначается переменная $name, которая будет содержать имя интерфейса
         if(($parseBy == 'id' && is_numeric($name) && $name > 19999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name) ) {
-            $oidID = $name;
             $result = $this->decodeSnmpOid($name);
             if($result['onu_number']) {
                 $name = "{$result['type']}-onu_{$result['shelf']}/{$result['slot']}/{$result['port']}:{$result['onu_number']}";
@@ -240,6 +240,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_oid_id' => $oidID ? $oidID : $this->encodeSnmpOid($name),
                 '_xid_id' => 0,
                 '_oid_eth_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid($name, "gpon_eth") : null,
+                '_xpon_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid($name, "xpon") : null,
             ];
         }
 

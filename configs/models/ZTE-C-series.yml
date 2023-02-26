@@ -59,6 +59,7 @@ models:
       system: \SwitcherCore\Modules\Dlink\System\DefaultParser
       pon_ports_list: \SwitcherCore\Modules\ZTE\C300Series\PonPortsList
       interface_descriptions: \SwitcherCore\Modules\ZTE\C300Series\InterfaceDescriptions
+      interface_counters: \SwitcherCore\Modules\ZTE\C300Series\InterfaceCounters
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       parse_interface: \SwitcherCore\Modules\ZTE\C300Series\InterfaceParser
       pon_onts_status: \SwitcherCore\Modules\ZTE\C300Series\OntListWithStatuses
