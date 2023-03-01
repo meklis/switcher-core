@@ -42,6 +42,7 @@ models:
       pon_ont_reset: \SwitcherCore\Modules\GCOM\OntReset
       ctrl_ont_descr: \SwitcherCore\Modules\GCOM\CtrlOntDescription
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable

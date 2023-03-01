@@ -40,9 +40,10 @@ models:
       pon_ont_reset: \SwitcherCore\Modules\VsolOlts\OntReset
       parse_interface: \SwitcherCore\Modules\VsolOlts\ParseInterface
       sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
-      uni_interfaces_info: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo
+      uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo
       snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
     extra:
+      pon_port_size: 64
       console_conn_type: vsolution
       console_commands_after_connect:
         - terminal length 0

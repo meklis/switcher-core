@@ -290,8 +290,6 @@
   descr: Информация о SFP-модулях
 
 
-
-
 #Action Get ont data
 - name: zte_ont_info
   arguments:
@@ -405,12 +403,6 @@
     - {name: interface, pattern: '.*', required: no}
 
 
-- name: pon_onts_fully_info
-  descr: Солянка из методов pon_onts_optical, pon_onts_reasons,  pon_onts_vendor, pon_onts_mac_addr, pon_fdb
-  arguments:
-    - {name: interface, pattern: '.*', true}
-
-
 
 - name: interfaces_list
   description: Возвращает список интерфейсов (Стандартизированный модуль)
@@ -461,11 +453,6 @@
 
 - name: uni_interfaces_status
   descr: Return UNI interfaces status by ONU
-  arguments:
-    - {name: interface, pattern: '.*', required: no}
-
-- name: uni_interfaces_info
-  descr: Return info about UNIs (vlans and status)
   arguments:
     - {name: interface, pattern: '.*', required: no}
 

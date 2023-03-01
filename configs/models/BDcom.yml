@@ -48,6 +48,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\GP3600\CtrlOntDescription
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
     extra:
+      pon_port_size: 128
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable
@@ -85,6 +86,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable
@@ -122,6 +124,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable
@@ -159,6 +162,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable
@@ -196,6 +200,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable
@@ -233,6 +238,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable
@@ -270,6 +276,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
     extra:
+      pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
         - enable

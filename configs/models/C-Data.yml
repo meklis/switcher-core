@@ -27,6 +27,7 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\FD11XX\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
     extra:
+      pon_port_size: 64
       console_conn_type: stels
       interfaces:
         - {name: ge1,  id: 1,  xid: null, type: 1G-SFP}
@@ -67,6 +68,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
     extra:
       console_conn_type: stels
+      pon_port_size: 64
       interfaces:
         - {name: ge1,  id: 1,  xid: null, type: 1G-SFP}
         - {name: ge2,  id: 2,  xid: null, type: 1G-SFP}
@@ -115,6 +117,7 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:
+      pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
         - enable
@@ -163,6 +166,7 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:
+      pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
         - enable
@@ -221,6 +225,7 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
     extra:
+      pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
         - enable
@@ -283,6 +288,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
+      pon_port_size: 128
       console_conn_type: cdata
       console_commands_after_connect:
         - enable
@@ -341,6 +347,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
     extra:
+      pon_port_size: 128
       console_conn_type: cdata
       console_commands_after_connect:
         - enable
