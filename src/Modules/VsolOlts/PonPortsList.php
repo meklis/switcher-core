@@ -23,7 +23,7 @@ class PonPortsList extends VsolOltsAbstractModule
     function getPretty()
     {
         return array_values(array_filter($this->getInterfaces(), function ($e) {
-            return $e['type'] == 'PON';
+            return  $e['type'] == 'PON';
         }));
     }
 

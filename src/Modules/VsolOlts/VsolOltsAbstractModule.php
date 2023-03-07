@@ -93,11 +93,12 @@ abstract class VsolOltsAbstractModule extends AbstractModule
         $interfaces = [];
         foreach ($this->getResponseByName('if.Name', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
-            $id = $this->getIdByName($iface->getValue());
+            [$name] = explode(" ", Helper::hexToStr($iface->getHexValue()));
+            $id = $this->getIdByName($name);
             if(!$id) {
                 continue;
             }
-            if(preg_match('/^EPON([0-9]{1,3})ONU([0-9]{1,3})$/', $iface->getValue(), $matches)) {
+            if(preg_match('/^EPON([0-9]{1,3})ONU([0-9]{1,3})$/', $name, $matches)) {
                 $port = (int)$matches[1];
                 $interfaces[$id] = [
                     'id' => $id,
@@ -111,12 +112,12 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                     '_port' => $port,
                     '_onu' => (int)$matches[2],
                 ];
-            } elseif(preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $iface->getValue(), $matches)) {
+            } elseif(preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $name, $matches)) {
                 $interfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
                     '_snmp_id' => "." .$matches[2] . "." . $matches[3],
-                    'name' => $iface->getValue(),
+                    'name' =>$name,
                     'type' => 'ONU',
                     'technology' => 'epon',
                     'parent' => floor($id / 1000) * 1000,
@@ -124,12 +125,12 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                     '_port' => (int)$matches[2],
                     '_onu' => (int)$matches[3],
                 ];
-            } elseif (preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3})$/', $iface->getValue(), $matches)) {
+            } elseif (preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3})$/', $name, $matches)) {
                 $interfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
                     '_snmp_id' => "." .$matches[2],
-                    'name' => $iface->getValue(),
+                    'name' => $name,
                     'type' => 'PON',
                     'technology' => 'epon',
                     'parent' => null,
@@ -137,12 +138,12 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                     '_port' => (int)$matches[2],
                     '_onu' => null,
                 ];
-            } elseif (preg_match('/^GE([0-9]{1,3})\/([0-9]{1,3})$/', $iface->getValue(), $matches)) {
+            } elseif (preg_match('/^GE([0-9]{1,3})\/([0-9]{1,3})$/', $name, $matches)) {
                 $interfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
                     '_snmp_id' => "." .$matches[2],
-                    'name' => $iface->getValue(),
+                    'name' => $name,
                     'type' => 'GE',
                     'technology' => null,
                     'parent' => null,
