@@ -37,7 +37,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\VsolOlts\InterfaceDescriptions
       reboot: \SwitcherCore\Modules\VsolOlts\OltReboot
       save_config: \SwitcherCore\Modules\VsolOlts\OltSaveSettings
-      pon_ont_reset: \SwitcherCore\Modules\VsolOlts\OntReset
+      ctrl_ont_reset: \SwitcherCore\Modules\VsolOlts\OntReset
       parse_interface: \SwitcherCore\Modules\VsolOlts\ParseInterface
       sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo

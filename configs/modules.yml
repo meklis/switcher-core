@@ -86,11 +86,6 @@
 #Action reboot
 - name: reboot
   descr: Перезагрузка устройства
-#Action reboot
-- name: onu_reboot
-  descr: Перезагрузка ОНУ
-  arguments:
-    - {name: interface, pattern: '.*', required: yes}
 
 #Action port state control
 - name: ctrl_port_state
@@ -111,6 +106,24 @@
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: description, pattern: '^[0-9a-zA-Z_]{0,}$', required: yes}
   descr: Установка описания ОНУ
+
+#Action port state desciption
+- name: ctrl_ont_reboot
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
+  descr: Ребут ОНУ
+
+#Action port state desciption
+- name: ctrl_ont_delete
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
+  descr: Удаление ОНУ
+
+#Action port state desciption
+- name: ctrl_ont_reset
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
+  descr: Сброс ОНУ
 
 #Action port state speed
 - name: ctrl_port_speed
@@ -323,10 +336,6 @@
     - {name: interface, pattern: '.*', required: no}
   descr: Returned onts statuses
 
-- name: pon_ont_reset_counters
-  arguments:
-    - {name: interface, pattern: '.*', required: no}
-  descr: Reset counters on ONT
 
 - name: pon_onts_configuration
   arguments:
@@ -381,27 +390,6 @@
   descr: Returned FDB table on ONTs
   arguments:
     - {name: interface, pattern: '.*', required: no}
-
-- name: pon_ont_reboot
-  descr: Reboot ONU by interface
-  arguments:
-    - {name: interface, pattern: '.*', required: no}
-
-- name: pon_ont_reset
-  descr: Reset ONT configuration
-  arguments:
-    - {name: interface, pattern: '.*', required: no}
-
-- name: pon_ont_delete
-  descr: Delete ont from system
-  arguments:
-    - {name: interface, pattern: '.*', required: no}
-
-- name: pon_ont_clear_counters
-  descr: Clear counters on ONT (uni port)
-  arguments:
-    - {name: interface, pattern: '.*', required: no}
-
 
 
 - name: interfaces_list

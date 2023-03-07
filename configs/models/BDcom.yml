@@ -43,7 +43,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\GP3600\UniInterfacesStatus
       gpon_profiles: \SwitcherCore\Modules\BDcom\GP3600\GponProfiles
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\GP3600\UniInterfacesVlans
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\GP3600\OntReboot
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\GP3600\OntReboot
       ctrl_ont_disable: \SwitcherCore\Modules\BDcom\GP3600\CtrlOntDisable
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\GP3600\CtrlOntDescription
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
@@ -75,9 +75,9 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
@@ -113,9 +113,9 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
@@ -151,9 +151,9 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
@@ -189,9 +189,9 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
@@ -227,9 +227,9 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
@@ -265,9 +265,9 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\P3310B\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\BDcom\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\BDcom\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters

@@ -27,8 +27,8 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
@@ -67,8 +67,8 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
@@ -107,8 +107,8 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
@@ -147,8 +147,8 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles

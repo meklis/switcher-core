@@ -20,9 +20,9 @@ models:
       fdb: \SwitcherCore\Modules\CData\FD11XX\OntFDBTable
       uni_interfaces_status: \SwitcherCore\Modules\CData\FD11XX\OntUniPortsStatus
       save_config: \SwitcherCore\Modules\CData\FD11XX\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\CData\FD11XX\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\CData\FD11XX\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\CData\FD11XX\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\FD11XX\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\FD11XX\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\FD11XX\OntDelete
       parse_interface: \SwitcherCore\Modules\CData\FD11XX\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\FD11XX\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
@@ -60,9 +60,9 @@ models:
       fdb: \SwitcherCore\Modules\CData\FD11XX\OntFDBTable
       uni_interfaces_status: \SwitcherCore\Modules\CData\FD11XX\OntUniPortsStatus
       save_config: \SwitcherCore\Modules\CData\FD11XX\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\CData\FD11XX\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\CData\FD11XX\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\CData\FD11XX\OntDelete
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\FD11XX\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\FD11XX\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\FD11XX\OntDelete
       parse_interface: \SwitcherCore\Modules\CData\FD11XX\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\FD11XX\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
@@ -109,10 +109,10 @@ models:
       fdb: \SwitcherCore\Modules\CData\OntFDBTable
       interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-      pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
@@ -158,10 +158,10 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
       interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-      pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
@@ -217,10 +217,10 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
       interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
-      pon_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
-      pon_ont_reset: \SwitcherCore\Modules\CData\OntReset
-      pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-      pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\OntReset
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
@@ -279,10 +279,10 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
       interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
-      pon_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
-      pon_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
-    #  pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-    #  pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
+    #  ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
+    #  ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
@@ -338,10 +338,10 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
       interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
-      pon_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
-      pon_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
-      #  pon_ont_delete: \SwitcherCore\Modules\CData\OntDelete
-      #  pon_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
+      #  ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
+      #  ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
