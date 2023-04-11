@@ -16,7 +16,7 @@ class OntDownHistory extends \SwitcherCore\Modules\ZTE\ModuleAbstract {
                 $data[] = [
                     'down_reason' => $log['reason'],
                     'dereg_time' => $log['dereg_time'],
-                    'reg_time' => $log['reg_time'],
+                    'reg_time' => isset($log['reg_time']) ? $log['reg_time'] : null,
                     'reg_since' => null,
                     'dereg_since' => null,
                 ];

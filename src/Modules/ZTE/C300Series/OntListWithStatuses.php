@@ -100,7 +100,6 @@ class OntListWithStatuses extends ModuleAbstract
                             'admin_state' => null,
                         ];
                     }
-                    echo $d->getParsedValue() . "\n";
                     $ifaces[$xid]['admin_state'] = $d->getParsedValue();
                 }
             }

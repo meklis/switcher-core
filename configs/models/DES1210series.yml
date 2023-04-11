@@ -43,4 +43,5 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 

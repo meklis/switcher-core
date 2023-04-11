@@ -7,6 +7,8 @@ namespace SwitcherCore\Switcher;
  * Class Device
  * @property int $snmpRepeats
  * @property int $snmpTimeoutSec
+ * @property int $snmpVersion
+ * @property int $consoleWaitByteSec
  * @property int $mikrotikApiPort
  * @property int $consolePort
  * @property int $consoleTimeout
@@ -23,7 +25,8 @@ class Device
     const CONSOLE_TELNET = 'telnet';
 
     protected $ip;
-    protected $community;
+    protected $publicCommunity;
+    protected $privateCommunity;
     protected $login;
     protected $password;
     protected $modelKey;
@@ -89,18 +92,18 @@ class Device
     /**
      * @return mixed
      */
-    public function getCommunity()
+    public function getPublicCommunity()
     {
-        return $this->community;
+        return $this->publicCommunity;
     }
 
     /**
-     * @param mixed $community
+     * @param mixed $publicCommunity
      * @return Device
      */
-    public function setCommunity($community)
+    public function setPublicCommunity($publicCommunity)
     {
-        $this->community = $community;
+        $this->publicCommunity = $publicCommunity;
         return $this;
     }
 
@@ -161,7 +164,7 @@ class Device
     public static function init($ip, $community, $login, $password) {
         return (new self())
             ->setIp($ip)
-            ->setCommunity($community)
+            ->setPublicCommunity($community)
             ->setLogin($login)
             ->setPassword($password);
     }
@@ -186,5 +189,24 @@ class Device
         $this->modelKey = $modelKey;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPrivateCommunity()
+    {
+        return $this->privateCommunity;
+    }
+
+    /**
+     * @param mixed $privateCommunity
+     * @return Device
+     */
+    public function setPrivateCommunity($privateCommunity)
+    {
+        $this->privateCommunity = $privateCommunity;
+        return $this;
+    }
+
 
 }

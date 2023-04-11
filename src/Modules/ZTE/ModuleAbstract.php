@@ -281,7 +281,8 @@ abstract class ModuleAbstract extends AbstractModule
                 '_oid_id' => $this->encodeSnmpOid($interface),
                 '_xid_id' => 0,
                 '_xid_name' => '',
-                '_oid_eth_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}", "gpon_eth") : null,
+                '_oid_eth_id' => in_array($technology, ['gpon', 'epon']) ? $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", "gpon_eth") : null,
+                '_xpon_id' => in_array($technology, ['gpon', 'epon']) ? $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", "xpon") : null,
             ];
         }
 

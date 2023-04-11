@@ -176,23 +176,26 @@ class CoreConnector
 
     private function initWalker(\SwitcherCore\Switcher\Device $device) {
         $walker = clone $this->walker;
+        $port = $device->snmpPort ? $device->snmpPort : 161;
+        $version = $device->snmpVersion ? $device->snmpVersion : '2c';
         return $walker->addDevice(
             Device::init(
                 $device->getIp(),
-                $device->getCommunity(),
+                $device->getPublicCommunity(),
+                $device->getPrivateCommunity(),
                 $device->snmpTimeoutSec,
                 $device->snmpRepeats,
-                $device->snmpPort,
-            )
+            )->setPort($port)->setVersion($version)
         );
     }
     private function initConsole(\SwitcherCore\Switcher\Device $device) {
+        $waitByteSec = $device->consoleWaitByteSec ?  $device->consoleWaitByteSec : 10;
         if(!$device->get('consoleConnectionType') || $device->get('consoleConnectionType') == 'telnet') {
-            return (new TelnetLazyConnect($device->consoleTimeout, 10))
+            return (new TelnetLazyConnect($device->consoleTimeout, $waitByteSec))
                 ->setHost($device->getIp(), $device->consolePort)
                 ->setAccess($device->getLogin(), $device->getPassword());
         } else if ($device->get('consoleConnectionType') == 'ssh') {
-            return (new SshLazyConnect($device->consoleTimeout, 10))
+            return (new SshLazyConnect($device->consoleTimeout, $waitByteSec))
                 ->setHost($device->getIp(), $device->consolePort)
                 ->setAccess($device->getLogin(), $device->getPassword());
         } else {

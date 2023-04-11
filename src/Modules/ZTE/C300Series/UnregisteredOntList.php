@@ -54,7 +54,7 @@ class UnregisteredOntList extends ModuleAbstract
             $interface = $this->parseInterface("epon-onu_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}:{$onuId}");
             $data["{$key}"] = [
                 'interface' => $interface,
-                'mac_addr' => $d->getHexValue(),
+                'mac_address' => $d->getHexValue(),
             ];
         }
         foreach ($this->getResponseByName('epon.uncfg.onuModel', $response)->fetchAll() as $d) {

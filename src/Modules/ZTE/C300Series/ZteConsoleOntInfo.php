@@ -15,7 +15,8 @@ class ZteConsoleOntInfo extends ModuleAbstract
     {
         $interface = $this->parseInterface($params['interface']);
         if(isset($this->RESP[$interface['id']])) {
-            return $this->RESP[$interface['id']];
+            $this->response = $this->RESP[$interface['id']];
+            return $this;
         }
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");

@@ -43,6 +43,7 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DGS-1210-20/ME/A1
@@ -82,6 +83,7 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DGS-1210-10/ME/A1
@@ -121,6 +123,7 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DGS-1210-20/ME/B1
@@ -160,6 +163,7 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DGS-1210-28/ME/B1
@@ -200,6 +204,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1210SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DGS-1210-28XS/ME/B1
@@ -238,4 +243,5 @@ models:
      ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 

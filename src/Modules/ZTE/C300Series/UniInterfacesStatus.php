@@ -57,17 +57,7 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
         }
         return array_values(array_map(function ($onu) {
             foreach ($onu['unis'] as $num=>$uni) {
-                if(isset($uni['duplex'])) {
-                    $uni['speed'] = "{$uni['speed']}-{$uni['duplex']}";
-                    unset($uni['duplex']);
-                }
                 $onu['unis'][$num] = $uni;
-
-                if($onu['unis'][$num]['status'] == 'Down') {
-                    $onu['unis'][$num]['actual_speed'] = 'Down';
-                } else {
-                    $onu['unis'][$num]['actual_speed'] = $onu['unis'][$num]['speed'];
-                }
             }
             $onu['unis'] = array_values($onu['unis']);
             return $onu;

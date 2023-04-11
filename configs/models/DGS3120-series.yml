@@ -38,6 +38,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
  - name: D-link DGS-3120-24SC/B
    key: dlink_dgs_3120_24sc_bx
    ports: 24
@@ -76,3 +77,4 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
