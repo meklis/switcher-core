@@ -84,7 +84,7 @@ class CableDiagES3510 extends AbstractInterfaces
                 }
                 $type = strtolower($match[2]);
                 $pair = strtolower($match[1]);
-                $pairs[$pair]['pair'] = (int)$pair;
+                $pairs[$pair]['number'] = (int)$pair;
                 $pairs[$pair][$type] = $type == 'length' ? (int)$resp->fetchOne()->getValue() : $resp->fetchOne()->getParsedValue();
             }
 
