@@ -23,7 +23,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
@@ -63,7 +63,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
@@ -103,7 +103,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
@@ -143,7 +143,7 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole

@@ -37,7 +37,7 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                     $time = $ts->getTimestamp();
                 }
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['logs'][$id]['reg_time'] = $time;
+                $ifaces[$iface['id']]['logs'][$id]['reg_time'] =  $time ? date("Y-m-d H:i:s", $time) : null;;
                 $ifaces[$iface['id']]['logs'][$id]['reg_since'] =  $time == null ? null :$this->getSince($time);
             }
         }
@@ -53,7 +53,7 @@ class OntDownHistory extends HuaweiOLTAbstractModule
                 }
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['logs'][$id]['dereg_time'] = $time;
+                $ifaces[$iface['id']]['logs'][$id]['dereg_time'] = $time ? date("Y-m-d H:i:s", $time) : null;
                 $ifaces[$iface['id']]['logs'][$id]['dereg_since'] = $time == null ? null : $this->getSince($time);
             }
         }

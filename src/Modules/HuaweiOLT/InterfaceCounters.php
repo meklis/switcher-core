@@ -35,7 +35,7 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $iface = $this->findIfaceByOid($r->getOid());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['in_bytes'] = (float)$r->getValue();
+                $ifaces[$iface['id']]['in_octets'] = (float)$r->getValue();
             }
         }
         $data = $this->getResponseByName('ont.stat.outBytes');
@@ -43,7 +43,7 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $iface = $this->findIfaceByOid($r->getOid());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['out_bytes'] = (float)$r->getValue();
+                $ifaces[$iface['id']]['out_octets'] = (float)$r->getValue();
             }
         }
         $data = $this->getResponseByName('ont.stat.inDropPkts');

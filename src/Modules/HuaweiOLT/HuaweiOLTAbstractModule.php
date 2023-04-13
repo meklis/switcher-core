@@ -61,6 +61,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                 $iface['name'] .= ":{$onuNum}";
                 $iface['parent'] = $iface['id'];
                 $iface['type'] = 'ONU';
+                $iface['_technology'] = 'gpon';
                 $iface['_onu'] = $onuNum;
                 $iface['id'] = ($iface['id'] * 1000) + $onuNum;
                 $iface['xid'] .= ".{$onuNum}";
@@ -77,6 +78,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                 $iface['name'] .= ":{$onuNum}";
                 $iface['parent'] = $iface['id'];
                 $iface['type'] = 'ONU';
+                $iface['_technology'] = 'gpon';
                 $iface['_onu'] = $onuNum;
                 $iface['id'] = ($iface['id'] * 1000) + $onuNum;
                 $iface['xid'] .= ".{$onuNum}";
@@ -100,6 +102,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                $iface['name'] .= ":{$onuNum}";
                $iface['parent'] = $iface['id'];
                $iface['type'] = 'ONU';
+               $iface['_technology'] = 'gpon';
                $iface['_onu'] = $onuNum;
                $iface['id'] = ($iface['id'] * 1000) + $onuNum;
                $iface['xid'] .= ".{$onuNum}";
