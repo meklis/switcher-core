@@ -1,0 +1,23 @@
+
+models:
+- name: Eltex switch
+  key: eltex_general_switch
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: ^MES.*,  objid: ^.1.3.6.1.4.1.35265.1 }
+  oids:
+    - ./oids/eltex/eltex-mes.yml
+  modules:
+    parse_interface: \SwitcherCore\Modules\EltexSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\EltexSwitch\Fdb
+    link_info: \SwitcherCore\Modules\EltexSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\EltexSwitch\Counters
+    system: \SwitcherCore\Modules\EltexSwitch\System
+    vlans: \SwitcherCore\Modules\EltexSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\EltexSwitch\Errors
+    rmon: \SwitcherCore\Modules\EltexSwitch\Rmon
+    pvid: \SwitcherCore\Modules\EltexSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\EltexSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\EltexSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\EltexSwitch\InterfacesList

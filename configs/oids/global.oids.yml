@@ -41,6 +41,10 @@
   - {name: if.ConnectorPresent, oid: .1.3.6.1.2.1.31.1.1.1.17, access: read, values: { 1: 'YES', 2: 'NO' } }
   - {name: if.Name, oid: .1.3.6.1.2.1.31.1.1.1.1, access: read }
   - {name: if.Alias, oid: .1.3.6.1.2.1.31.1.1.1.18, access: read }
+
+
+  - {name: ent.physicalName, oid: .1.3.6.1.2.1.47.1.1.1.1.7}
+
 #rmon mib
   - {name: rmon.EtherStatsCRCAlignErrors, oid: .1.3.6.1.2.1.16.1.1.1.8, access: read }
   - {name: rmon.EtherStatsUndersizePkts, oid: .1.3.6.1.2.1.16.1.1.1.9, access: read }
