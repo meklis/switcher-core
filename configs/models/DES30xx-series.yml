@@ -7,6 +7,48 @@
 ############################################################################################################################
 
 models:
+ - name: D-link DES-3026
+   key: dlink_des_3026
+   ports: 26
+   device_type: SWITCH
+   inputs:
+     - snmp
+     - console
+   oids:
+     - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/common-agent-info.yml
+     - ./oids/dlink/des-3026.yml
+   detect: {description: ^D-Link DES-3026 Fast Ethernet,  objid: .* }
+   extra:
+     console_conn_type: dlink
+     diag_linkup: true
+     medium_type: Cooper
+     console_commands_after_connect:
+       - disa clip
+   modules:
+     parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
+     fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Dlink\Link\NoMediumTypeParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\NoMediumType
+     errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
+     interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
+
  - name: D-link DES-3028
    key: dlink_des_3028
    ports: 28

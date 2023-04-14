@@ -1,0 +1,49 @@
+############################################## Parameters description  #####################################################
+## extra.ge_ports setted only if device response in cableDiag, link isn't correct. GE ports must detect automaticaly      ##
+## extra.diag_ports used in cableDiag for diag only cooper ports. Cooper ports not choose automaticaly in diagnostic.
+## extra.diag_linkup if setted false, links with operstatus=UP will be ignored, if port are not setted
+##
+##
+############################################################################################################################
+models:
+ - name: D-link DGS-1510-20L/ME
+   key: dlink_dgs_1510_20l_me
+   ports: 20
+   device_type: SWITCH
+   inputs:
+     - snmp
+     - console
+   oids:
+     - ./oids/dlink/common-agent-info.yml
+     - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/dgs-1510-20l-me.yml
+   detect: {description: ^DGS-1510-20L\/ME,  objid: ^.*171.10.141.2.1$ }
+   extra:
+     diag_linkup: false
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+     console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
+   modules:
+     parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
+     fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Dlink\Link\DlinkParser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
+     cable_diag: \SwitcherCore\Modules\Dlink\CableDiag\DlinkParser
+     errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
+     interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources

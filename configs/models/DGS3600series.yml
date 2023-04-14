@@ -1,0 +1,40 @@
+models:
+ - name: D-link DGS-3612G
+   key: dlink_dgs_3612g
+   ports: 8
+   device_type: SWITCH
+   inputs:
+     - snmp
+     - console
+   oids:
+     - ./oids/dlink/common-agent-info.yml
+     - ./oids/dlink/common-diag-cable.yml
+     - ./oids/dlink/dgs-3612g.yml
+   detect: {description: ^DGS-3612G.*,  objid: 171.10.70.9 }
+   extra:
+     console_conn_type: dlink
+     diag_linkup: true
+     console_commands_after_connect:
+       - disa clip
+   modules:
+     parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
+     fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Dlink\Link\DlinkDes3526Parser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
+     errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
+     sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
+     interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList

@@ -119,6 +119,7 @@ abstract class AbstractCommand extends Command
             $this->input->getArgument('login'),
             $this->input->getArgument('password')
         )
+            ->setPrivateCommunity($this->input->getArgument('community'))
             ->set('consoleConnectionType', conf('console.type'))
             ->set('consoleTimeout', conf('console.timeout'))
             ->set('consolePort', conf('console.port'))

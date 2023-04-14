@@ -165,6 +165,46 @@ models:
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
+ - name: D-link DGS-1210-12TS/ME/B1
+   key: dlink_dgs_1210_12ts_me_b1
+   ports: 20
+   device_type: SWITCH
+   inputs:
+     - snmp
+     - console
+   oids:
+     - ./oids/dlink/dgs-1210-12ts-me-b1.yml
+     - ./oids/dlink/common-agent-info.yml
+   detect: {description: ^DGS-1210-12TS\/ME\/B1$,  objid: .171.10.76.44.1$ }
+   extra:
+     diag_linkup: false
+     ge_ports: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+     console_conn_type: dlink
+     console_commands_after_connect:
+       - disa clip
+   modules:
+     parse_interface: \SwitcherCore\Modules\Dlink\ParseInterface
+     fdb: \SwitcherCore\Modules\Dlink\Fdb\DefaultParser
+     link_info: \SwitcherCore\Modules\Dlink\Link\DlinkDgs1210Parser
+     interface_counters: \SwitcherCore\Modules\Dlink\Counters\DefaultParser
+     system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+     vlans: \SwitcherCore\Modules\Dlink\Vlan\DlinkVlanParser
+     errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
+     rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
+     pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     save_config: \SwitcherCore\Modules\Dlink\SaveConfig
+     reboot: \SwitcherCore\Modules\Dlink\Reboot
+     vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
+     ctrl_port_state: \SwitcherCore\Modules\Dlink\StatePortControl
+     ctrl_port_speed: \SwitcherCore\Modules\Dlink\SpeedPortControl
+     ctrl_port_descr: \SwitcherCore\Modules\Dlink\DescriptionPortControl
+     ctrl_vlan_state: \SwitcherCore\Modules\Dlink\VlanStateControl
+     ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
+     interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
+
+
 
  - name: D-link DGS-1210-28/ME/B1
    key: dlink_dgs_1210_28_me_b1
