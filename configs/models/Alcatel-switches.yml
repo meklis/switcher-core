@@ -1,0 +1,21 @@
+
+models:
+- name: Alcatel Switch
+  key: alcatel_general_switch
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: .*,  objid: ^.1.3.6.1.4.1.6486 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\AlcatelSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\AlcatelSwitch\Fdb
+    link_info: \SwitcherCore\Modules\AlcatelSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\AlcatelSwitch\Counters
+    system: \SwitcherCore\Modules\AlcatelSwitch\System
+    vlans: \SwitcherCore\Modules\AlcatelSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\AlcatelSwitch\Errors
+    rmon: \SwitcherCore\Modules\AlcatelSwitch\Rmon
+    pvid: \SwitcherCore\Modules\AlcatelSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\AlcatelSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\AlcatelSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\AlcatelSwitch\InterfacesList
