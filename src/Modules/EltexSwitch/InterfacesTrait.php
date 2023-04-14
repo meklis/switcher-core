@@ -106,11 +106,10 @@ trait InterfacesTrait
         $ifaces = [];
         $stackSize = count($responses['rlStack.unitIdTable']);
 
-        $ifaces = [];
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^(te|gi)([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
-                if($slot >= $stackSize) {
+                if($shelf > $stackSize) {
                     continue;
                 }
                 $id = Helper::getIndexByOid($r->getOid());
