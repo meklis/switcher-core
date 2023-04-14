@@ -1,0 +1,43 @@
+
+models:
+- name: HP Switch
+  key: hp_general_switch
+  device_type: SWITCH
+  rewrites:
+    oid: .1.3.6.1.2.1.1.1.0
+    mapping:
+      - value: ^ProCurve J9085A Switch 2610-24
+        rewrite:
+          key: hp_procurve_j9085a_24
+          name: HP ProCurve J9085A Switch 2610-24
+
+      - value: ^ProCurve J9021A Switch 2810-24G
+        rewrite:
+          key: hp_procurve_j9021a_24
+          name: HP ProCurve J9021A Switch 2810-24G
+
+      - value: ^ProCurve j9020a Switch 2510-48
+        rewrite:
+          key: hp_procurve_j9090a_48
+          name: HP ProCurve J9020A Switch 2510-48
+
+      - value: ^HP J9626A 2620-48 Switch
+        rewrite:
+          key: hp_j9626a_48
+          name: HP J9626A 2620-48 Switch
+  inputs:
+    - snmp
+  detect: {description: .*,  objid: ^.1.3.6.1.4.1.11.2.3.7.11 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\HpSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\HpSwitch\Fdb
+    link_info: \SwitcherCore\Modules\HpSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\HpSwitch\Counters
+    system: \SwitcherCore\Modules\HpSwitch\System
+    vlans: \SwitcherCore\Modules\HpSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\HpSwitch\Errors
+    rmon: \SwitcherCore\Modules\HpSwitch\Rmon
+    pvid: \SwitcherCore\Modules\HpSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\HpSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\HpSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\HpSwitch\InterfacesList
