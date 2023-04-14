@@ -15,9 +15,9 @@ models:
      - snmp
      - console
    oids:
-    - ./oids/dlink/des-3526.yml
     - ./oids/dlink/common-diag-cable.yml
     - ./oids/dlink/common-agent-info.yml
+    - ./oids/dlink/des-3526.yml
    detect: {description: ^DES-3526 Fast-Ethernet Switch$,  objid: 171\.10\.64\.1$ }
    extra:
      diag_linkup: false
