@@ -27,7 +27,10 @@
 - [ ] Cisco switches
 - [ ] Cisco routers
 - [x] GCOM OLTs
-- [ ] Alcatel switches
+- [x] Alcatel switches (базово)
+- [x] Eltex switches (базово)
+- [x] HP switches (базово)
+- [x] Dell switches (базово)
 
 ### [Полный список поддерживаемого оборудования и их модулей](docs/DEVICES.md)     
 ### [Список модулей](docs/MODULES.md)    
