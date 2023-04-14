@@ -24,7 +24,7 @@
 - [x] C-Data OLTs
 - [x] V-Solution OLTs
 - [x] Mikrotik routers
-- [ ] Cisco switches
+- [x] Cisco switches (базово)
 - [ ] Cisco routers
 - [x] GCOM OLTs
 - [x] Alcatel switches (базово)

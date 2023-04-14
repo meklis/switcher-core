@@ -1,0 +1,21 @@
+
+models:
+- name: Cisco Switch (NX-OS)
+  key: cisco_general_switch
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: .*NX-OS.*,  objid: ^.1.3.6.1.4.1.9.12 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\CiscoSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\CiscoSwitch\Fdb
+    link_info: \SwitcherCore\Modules\CiscoSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\CiscoSwitch\Counters
+    system: \SwitcherCore\Modules\CiscoSwitch\System
+    vlans: \SwitcherCore\Modules\CiscoSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\CiscoSwitch\Errors
+    rmon: \SwitcherCore\Modules\CiscoSwitch\Rmon
+    pvid: \SwitcherCore\Modules\CiscoSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\CiscoSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\CiscoSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\CiscoSwitch\InterfacesList
