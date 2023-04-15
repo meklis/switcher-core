@@ -28,9 +28,16 @@ class OntDelete extends HuaweiOLTAbstractModule
     {
         $iface = $this->parseInterface($filter['interface']);
         $this->console->exec("config");
-        $this->console->exec("no epon bind-onu sequence {$iface['name']}", true, "Are|\?");
+
+        //Remove service port
+        $this->console->exec("undo service-port port {$iface['_frame']}/{$iface['_slot']}/{$iface['_port']} ont {$iface['_onu']}", true, "\<cr\>");
+        $this->console->exec("", true, "Are you sure to release service virtual port");
         $this->console->exec("y");
-        $this->console->exec("exit");
+
+        //Remove ONT
+        $this->console->exec("interface gpon {$iface['_frame']}/{$iface['_slot']}");
+        $this->console->exec("ont delete {$iface['_frame']} {$iface['_onu']}");
+
         return $this;
     }
 }

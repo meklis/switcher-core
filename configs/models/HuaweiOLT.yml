@@ -28,6 +28,7 @@ models:
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
       ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
@@ -73,6 +74,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -113,6 +115,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -153,6 +156,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
