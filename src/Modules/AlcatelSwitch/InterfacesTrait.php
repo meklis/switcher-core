@@ -60,7 +60,7 @@ trait InterfacesTrait
         $ifaces = $this->getInterfacesIds();
         if($parseBy == 'id') {
             if(!isset($ifaces[$iface])) {
-                throw new \Exception("Incorrect interface ID");
+                throw new \Exception("Incorrect interface ID - {$iface}");
             }
             return $ifaces[$iface];
         }
