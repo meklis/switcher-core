@@ -33,7 +33,7 @@ class OntReasons extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($r->getOid());
                 $time = $this->parseReasonTime($r->getHexValue());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['last_reg'] = $time;
+                $ifaces[$iface['id']]['last_reg'] = date("Y-m-d H:i:s", $time);
                 $ifaces[$iface['id']]['last_reg_since'] =  $time == null ? null :$this->getSince($time);
             }
         }
@@ -43,7 +43,7 @@ class OntReasons extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($r->getOid());
                 $time = $this->parseReasonTime($r->getHexValue());
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['last_dereg'] = $time;
+                $ifaces[$iface['id']]['last_dereg'] =  $time ? date("Y-m-d H:i:s", $time) : null;
                 $ifaces[$iface['id']]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
             }
         }

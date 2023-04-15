@@ -12,7 +12,6 @@ class DlinkVlanParser extends SwitchesPortAbstractModule
 {
     protected function formate() {
         $response = [];
-        $forbidden = $this->getResponseByName('dot1q.VlanStaticForbiddenEgressPorts');
         $untagged = $this->getResponseByName('dot1q.VlanStaticUntaggedPorts');
         $names = $this->getResponseByName('dot1q.VlanStaticName');
         $egress = $this->getResponseByName('dot1q.VlanStaticEgressPorts');
@@ -26,10 +25,6 @@ class DlinkVlanParser extends SwitchesPortAbstractModule
         if($untagged->error()) {
             throw new IncompleteResponseException($untagged->error());
         }
-        if($forbidden->error()) {
-            throw new IncompleteResponseException($forbidden->error());
-        }
-
         $indexes = $this->getIndexes();
         $formater = function ($resp) use ($indexes) {
             $dex = Helper::hexToBinStr($resp->getHexValue());
@@ -45,20 +40,15 @@ class DlinkVlanParser extends SwitchesPortAbstractModule
             $response[Helper::getIndexByOid($resp->getOid())]['name'] = $resp->getValue();
             $response[Helper::getIndexByOid($resp->getOid())]['id'] = Helper::getIndexByOid($resp->getOid());
         }
-
         foreach ($egress->fetchAll() as $resp) {
             $response[ Helper::getIndexByOid($resp->getOid())]['ports']['egress'] = $formater($resp);
         }
         foreach ($untagged->fetchAll() as $resp) {
             $response[ Helper::getIndexByOid($resp->getOid())]['ports']['untagged'] = $formater($resp);
         }
-        foreach ($forbidden->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['forbidden'] = $formater($resp);
-        }
         foreach ($response as $vlan_id => $resp) {
             foreach ($resp['ports']['egress'] as $port) {
-                if(in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
-                if(in_array($port, $response[$vlan_id]['ports']['forbidden'])) continue;
+                if(isset($response[$vlan_id]['ports']['untagged']) && in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
                 $response[$vlan_id]['ports']['tagged'][] = $port;
             }
         }
