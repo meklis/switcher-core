@@ -1,17 +1,26 @@
 models:
-  - name: ZTE ZXPON OLT C300 series
-    key: zte_olt_c300_series
+  - name: ZTE ZXPON OLT
+    key: zte_zxpon_olt_series
     device_type: OLT
     oids:
       - ./oids/zte/ZTE-C300.yml
-    detect: {description: ZTE.*,  objid: .3902.1082.1001 }
+    detect: {description: ZTE.*,  objid: .3902.1082.1001.(220|320|300) }
     inputs:
       - snmp
       - console
     rewrites:
-      oid:  .1.3.6.1.2.1.1.2
+      oid: .1.3.6.1.2.1.1.2.0
       mapping:
         # FW 1.2
+        - value: .*\1001\.220\.1\.2$
+          rewrite:
+            key: zte_c220_fw_1_2
+            name: ZTE C220 (FW 1.2)
+            extra:
+              console_conn_type: zte_с220
+              port_offset: 0
+              console_commands_after_connect:
+                - terminal length 0
         - value: .*\1001\.220\.1\.2$
           rewrite:
             key: zte_c220_fw_1_2
@@ -29,7 +38,6 @@ models:
           rewrite:
             key: zte_c320_fw_1_2
             name: ZTE C320 (FW 1.2)
-
         # FW 2.1
         - value: .*\.1001\.220\.2\.1$
           rewrite:
@@ -48,7 +56,7 @@ models:
               console_conn_type: zte
               port_offset: 0
               console_commands_after_connect:
-                - terminal length 0
+              - terminal length 0
         - value: .*\.1001\.320\.2\.1$
           rewrite:
             key: zte_c320
@@ -80,6 +88,59 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
+    extra:
+      console_conn_type: zte
+      port_offset: 1
+      console_commands_after_connect:
+        - terminal length 0
+
+  - name: ZTE ZXPON OLT
+    key: zte_zxpon_olt_series
+    device_type: OLT
+    oids:
+      - ./oids/zte/ZTE-C600.yml
+    detect: {description: ZTE.*,  objid: .3902.1082.1001.610 }
+    inputs:
+      - snmp
+      - console
+    rewrites:
+      oid: .1.3.6.1.2.1.1.2.0
+      mapping:
+        - value: .1001.610.1.1$
+          rewrite:
+            key: zte_c610_121
+            name: ZTE 610 (FW 1.2.1)
+            extra:
+              console_conn_type: zte
+              port_offset: 0
+              console_commands_after_connect:
+                - terminal length 0
+    modules:
+      card_list: \SwitcherCore\Modules\ZTE\C600Series\CardList
+      card_status: \SwitcherCore\Modules\ZTE\C600Series\CardStatus
+      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
+      pon_ports_list: \SwitcherCore\Modules\ZTE\C600Series\PonPortsList
+      interfaces_list: \SwitcherCore\Modules\ZTE\C600Series\InterfacesList
+      pon_onts_serial: \SwitcherCore\Modules\ZTE\C600Series\OntSerial
+      interface_descriptions: \SwitcherCore\Modules\ZTE\C600Series\InterfaceDescriptions
+      interface_counters: \SwitcherCore\Modules\ZTE\C600Series\InterfaceCounters
+      parse_interface: \SwitcherCore\Modules\ZTE\C600Series\InterfaceParser
+      pon_onts_status: \SwitcherCore\Modules\ZTE\C600Series\OntListWithStatuses
+      pon_onts_optical: \SwitcherCore\Modules\ZTE\C600Series\OntOpticalInfo
+      unregistered_onts: \SwitcherCore\Modules\ZTE\C600Series\UnregisteredOntList
+      ctrl_ont_delete: \SwitcherCore\Modules\ZTE\C600Series\DeregOnt
+      ctrl_ont_reboot: \SwitcherCore\Modules\ZTE\C600Series\RebootOnu
+      save_config: \SwitcherCore\Modules\ZTE\C600Series\SaveConfig
+      console_command: \SwitcherCore\Modules\ZTE\C600Series\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\ZTE\C600Series\MultiRawConsoleCommand
+      gpon_profiles: \SwitcherCore\Modules\ZTE\C600Series\GponOntProfileList
+      fdb: \SwitcherCore\Modules\ZTE\C600Series\Fdb
+      pon_onts_reasons: \SwitcherCore\Modules\ZTE\C600Series\OntReasons
+      pon_onts_configuration: \SwitcherCore\Modules\ZTE\C600Series\OntConfiguration
+      pon_onts_down_history: \SwitcherCore\Modules\ZTE\C600Series\OntDownHistory
+      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C600Series\OntVendorInfo
+      uni_interfaces_status: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesStatus
+      zte_ont_info: \SwitcherCore\Modules\ZTE\C600Series\ZteConsoleOntInfo
     extra:
       console_conn_type: zte
       port_offset: 1

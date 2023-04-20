@@ -252,6 +252,7 @@ class Core
             //Check device is alive before getting info from cache
             if ($this->device->isCheckAlive()) {
                 $response = $multiwalker->get([O::init($oidCollector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
+
                 if ($response[0]->error) {
                     throw new \SNMPException($response[0]->error);
                 }
@@ -261,9 +262,9 @@ class Core
             $devInfo = $this->getDetectDevInfo();
             $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
             if ($model->getRewrites()) {
-                $response = $multiwalker->get([O::init($model->getRewrites()['oid'])], 1, 1);
-                if ($response[0]->error) {
-                    throw new \SNMPException("Error rewrites detect - " . $response[0]->error);
+                $response = $multiwalker->get([O::init($model->getRewrites()['oid'])], 3, 3);
+                 if ($response[0]->error) {
+                    throw new \SNMPException("Error rewrites detect - " . $response[0]->error->getMessage());
                 }
                 $model->rewriteModelByValue($response[0]->getResponse()[0]->getValue());
             }

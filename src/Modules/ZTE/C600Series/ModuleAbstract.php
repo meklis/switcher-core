@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\ZTE;
+namespace SwitcherCore\Modules\ZTE\C600Series;
 
 
 use Exception;

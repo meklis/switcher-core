@@ -145,7 +145,6 @@ class CoreConnector
 
 
         $walker = $this->initWalker($device);
-
         $core = (new Core)->setDevice($device)
             ->addInput($walker)
             ->setModelCollector($this->modelCollector)
@@ -158,7 +157,6 @@ class CoreConnector
         if($this->logger) {
             $core->setLogger($this->logger);
         }
-
         $core->init();
         $inputs_list = $core->getNeedInputs();
         if(in_array('console', $inputs_list)) {
