@@ -12,10 +12,7 @@ models:
     link_info: \SwitcherCore\Modules\CiscoSwitch\LinkInfo
     interface_counters: \SwitcherCore\Modules\CiscoSwitch\Counters
     system: \SwitcherCore\Modules\CiscoSwitch\System
-    vlans: \SwitcherCore\Modules\CiscoSwitch\VlansDot1q
     errors: \SwitcherCore\Modules\CiscoSwitch\Errors
     rmon: \SwitcherCore\Modules\CiscoSwitch\Rmon
-    pvid: \SwitcherCore\Modules\CiscoSwitch\PvidDot1q
-    vlans_by_port: \SwitcherCore\Modules\CiscoSwitch\VlanByPorts
     interface_descriptions: \SwitcherCore\Modules\CiscoSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\CiscoSwitch\InterfacesList
