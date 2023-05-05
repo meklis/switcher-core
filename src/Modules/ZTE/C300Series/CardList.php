@@ -53,6 +53,8 @@ class CardList extends ModuleAbstract
                 $technology = 'epon';
             } elseif ($type->getValue() === 'GTGO') {
                 $technology = 'gpon';
+            } elseif ($type->getValue() === 'GTGH') {
+                $technology = 'gpon';
             }
             $RESP["{$rack}/{$shelf}/{$slot}"] = [
                 'rack' => $rack,
