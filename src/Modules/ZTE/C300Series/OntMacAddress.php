@@ -37,7 +37,7 @@ class OntMacAddress extends ModuleAbstract
                 $xid = Helper::getIndexByOid($d->getOid());
                 $ifaces[$xid] = [
                     'interface' => $this->parseInterface($xid),
-                    'mac_address' => $d->getHexValue(),
+                    'mac_address' => Helper::formatMac3Blocks($d->getHexValue()),
                 ];
             }
         }
