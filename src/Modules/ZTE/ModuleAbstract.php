@@ -139,7 +139,7 @@ abstract class ModuleAbstract extends AbstractModule
         }
         $response = [];
         foreach ($resp['if.Name']->fetchAll() as $f) {
-            if(preg_match('/^(gpon|epon|gei|xgei)-([0-9])\/([0-9])\/([0-9]){1,3}$/',trim($f->getValue()), $m)) {
+            if(preg_match('/^(gpon|epon|gei|xgei)[-_]([0-9]{1,3})\/([0-9]{1,3})\/([0-9]{1,3})$/',trim($f->getValue()), $m)) {
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
                     'id' => Helper::getIndexByOid($f->getOid()),
                     'type' => in_array($m[1], ['epon', 'gpon']) ? 'PON' : $m[1],
@@ -153,7 +153,7 @@ abstract class ModuleAbstract extends AbstractModule
                     '_oid_eth_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}", "gpon_eth") : null,
                     '_xpon_id' =>  null,
                 ];
-            } elseif (preg_match('/^(gpon|epon|gei|xgei)_olt-([0-9])\/([0-9])\/([0-9]){1,3}$/',trim($f->getValue()), $m)) {
+            } elseif (preg_match('/^(gpon|epon|gei|xgei)[-_]olt[-_]([0-9]{1,3})\/([0-9]{1,3})\/([0-9]{1,3})$/',trim($f->getValue()), $m)) {
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
                     'id' => Helper::getIndexByOid($f->getOid()),
                     'type' => in_array($m[1], ['epon', 'gpon']) ? 'PON' : $m[1],
@@ -198,13 +198,13 @@ abstract class ModuleAbstract extends AbstractModule
         $oidID = 0;
         $xidList = $this->listInterfacesByXidNames();
         if($parseBy == 'eth_id') {
-            [$id, $onuNum] = explode(".", $name);
-            $find = array_filter($xidList, function ($e) use ($id) {
-                return $e['_oid_eth_id'] == $id;
+            [$oidBlock, $onuId] = explode(".", $name);
+            $find = array_filter($xidList, function ($e) use ($oidBlock) {
+                return $e['_oid_eth_id'] == $oidBlock;
             });
             if(count($find) > 0) {
                 $iface = array_values($find)[0];
-                $name = "{$iface['_technology']}-onu_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}:{$onuNum}";
+                $name = "{$iface['_technology']}-onu_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}:{$onuId}";
             } else {
                 throw new \Exception("Error find interface by eth_id with id={$name}");
             }
