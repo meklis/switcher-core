@@ -104,7 +104,6 @@ class OntListWithStatuses extends ModuleAbstract
                 }
             }
         } catch (\Exception $e) {
-            throw new \Exception($e);
         }
         try {
             $data = $this->getResponseByName('epon.ont.adminState', $resp);
