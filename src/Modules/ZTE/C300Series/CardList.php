@@ -49,11 +49,9 @@ class CardList extends ModuleAbstract
             $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
             $slot = (int)Helper::getIndexByOid($type->getOid());
             $technology = null;
-            if($type->getValue() === 'ETGO') {
+            if(preg_match('/^ET/', $type->getValue())) {
                 $technology = 'epon';
-            } elseif ($type->getValue() === 'GTGO') {
-                $technology = 'gpon';
-            } elseif ($type->getValue() === 'GTGH') {
+            } elseif (preg_match('/^GT/', $type->getValue())) {
                 $technology = 'gpon';
             }
             $RESP["{$rack}/{$shelf}/{$slot}"] = [
