@@ -41,6 +41,21 @@ class OntOpticalInfo extends ModuleAbstract
             if(!isset($r['temp'])) $r['temp'] = null;
             if(!isset($r['voltage'])) $r['voltage'] = null;
             if(!isset($r['distance'])) $r['distance'] = null;
+
+            if($r['rx'] <= -70) {
+                $r['rx'] = null;
+            }
+            if($r['olt_rx'] <= -70) {
+                $r['olt_rx'] = null;
+            }
+
+            if($r['rx'] >= 30) {
+                $r['rx'] = null;
+            }
+            if($r['olt_rx'] >= 30) {
+                $r['olt_rx'] = null;
+            }
+
             return $r;
         }, $response);
     }
