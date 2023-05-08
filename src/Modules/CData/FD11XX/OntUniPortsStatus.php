@@ -78,17 +78,18 @@ class OntUniPortsStatus extends CDataAbstractModule
                     $status = null;
                     if(isset($uni['op_status']) && isset($uni['speed']) && isset($uni['duplex'])) {
                         if($uni['op_status'] == 'Up') {
-                            $status = "Up ({$uni['speed']}-{$uni['duplex']})";
+                            $status = "Up";
                         } else {
-                            $status = "Down ({$uni['speed']}-{$uni['duplex']})";
+                            $status = "Down";
                         }
                     }
                     return [
-                      'description' => isset($uni['description']) ? $uni['description'] : null,
-                      'admin_status' => isset($uni['admin_status']) ? $uni['admin_status'] : null,
+                      'admin_state' => isset($uni['admin_status']) ? $uni['admin_status'] : null,
                       'status' => $status,
+                      'speed' => isset($uni['speed']) ? $uni['speed'] : null,
+                      'duplex' => isset($uni['duplex']) ? $uni['duplex'] : null,
                       'type' => isset($uni['type']) ? $uni['type'] : 'Unknown' ,
-                      'number' => $uni['number'],
+                      'num' => $uni['num'],
                     ];
                 }, $onu['unis']);
                 $onu['unis'] = array_values($unis);

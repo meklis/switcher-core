@@ -65,6 +65,7 @@ class OntListWithStatuses extends CDataAbstractModule
                         'onu_num' => $ontNum,
                     ],
                     'status' => $statusText,
+                    'admin_state' => null,
                 ];
             }
         }
