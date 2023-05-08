@@ -269,6 +269,9 @@ class ZteConsoleOntInfo extends ModuleAbstract
         $ont_logs = [];
         foreach (explode("\n", $logs) as $line) {
             if(preg_match('/^([0-9]{1,3})[ ]{1,3}([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}(.*)/', trim($line), $m)) {
+                if(trim($m[2]) == '0000-00-00 00:00:00') {
+                    continue;
+                }
                 $ont_logs[] = [
                     '_id' => trim($m[1]),
                     'authpath_time' => trim($m[2]),
@@ -276,6 +279,9 @@ class ZteConsoleOntInfo extends ModuleAbstract
                     'reason' => trim($m[4]),
                 ];
             } elseif (preg_match('/^([0-9]{1,3})[ ]{1,3}([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})[ ]{1,}([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})/', trim($line), $m)) {
+                if(trim($m[2]) == '0000-00-00 00:00:00') {
+                    continue;
+                }
                 $ont_logs[] = [
                     '_id' => trim($m[1]),
                     'authpath_time' => trim($m[2]),

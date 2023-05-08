@@ -13,41 +13,63 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
             throw new \Exception("Interface is required, must be ONT");
         }
         $interface = $this->parseInterface($params['interface']);
-        $oids = array_map(function ($oid) use ($interface) {
-            if($interface['_technology'] == 'epon') {
-                return Oid::init("{$oid->getOid()}.{$interface['_oid_id']}");
-            } else {
-                return Oid::init("{$oid->getOid()}.{$interface['_oid_eth_id']}");
-            }
-        }, $this->oids->getOidsByRegex("^{$interface['_technology']}.uni.*"));
-        $this->response = $this->formatResponse($this->snmp->walkNext($oids));
+        switch ($interface['_technology']) {
+            case 'epon': $this->response = $this->getEponInfo($interface); break;
+            case 'gpon': $this->response = $this->getGponInfo($interface); break;
+        }
         return $this;
     }
 
-    public function getPretty()
-    {
+    public function getGponInfo($interface) {
+        $resp = $this->parseExpandedTable($this->telnet->exec("show gpon remote-onu interface eth {$interface['name']}"));
+        $response = [];
+        foreach ($resp as $num => $info) {
+            foreach ($info as $k => $v) {
+                switch ($k) {
+                    case 'speed_status':
+                        $response[$num]['speed'] = $v === 'auto' ? 'Down' : ucfirst($v);
+                        break;
+                    case 'operate_status':
+                        $response[$num]['status'] = $v === 'disable' ? 'Down' : 'Up';
+                        break;
+                    case 'admin_status':
+                        $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : ucfirst($v);
+                        break;
+                    case 'interface':
+                        $response[$num]['num'] = $v;
+                        break;
+                    case 'speed_config':
+                        $response[$num]['admin_speed'] = ucfirst($v);
+                        break;
+                    case 'ether_loop':
+                    case 'power_control':
+                        $response[$num][$k] = ucfirst($v);
+                        break;
+                }
+            }
+        }
+        return [['interface' => $interface, 'unis' => $response]];
+    }
+
+    public function getEponInfo($interface) {
+        $oids = array_map(function ($oid) use ($interface) {
+            return Oid::init("{$oid->getOid()}.{$interface['_oid_id']}");
+        }, $this->oids->getOidsByRegex("^epon.uni.*"));
+        $response = $this->formatResponse($this->snmp->walkNext($oids));
         $data = [];
-        foreach ($this->response as $oidName => $dt) {
+        foreach ($response as $oidName => $dt) {
             if ($dt->error()) {
                 continue;
             }
             foreach ($dt->fetchAll() as $resp) {
                 $uni = Helper::getIndexByOid($resp->getOid());
-                $name = str_replace(['gpon.uni.', 'epon.uni.'], '', $oidName);
+                $name = str_replace(['epon.uni.'], '', $oidName);
                 switch ($oidName) {
                     case 'epon.uni.status':
                     case 'epon.uni.admin_state':
                     case 'epon.uni.duplex':
                     case 'epon.uni.speed':
                         $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1));
-                        $data[$iface['id']]['interface'] = $iface;
-                        $data[$iface['id']]['unis'][$uni]['num'] = $uni;
-                        $data[$iface['id']]['unis'][$uni][$name] = $resp->getParsedValue();
-                        break;
-                    case 'gpon.uni.admin_state':
-                    case 'gpon.uni.speed':
-                    case 'gpon.uni.status':
-                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 2) . '.' . Helper::getIndexByOid($resp->getOid(), 1), 'eth_id');
                         $data[$iface['id']]['interface'] = $iface;
                         $data[$iface['id']]['unis'][$uni]['num'] = $uni;
                         $data[$iface['id']]['unis'][$uni][$name] = $resp->getParsedValue();
@@ -62,6 +84,11 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
             $onu['unis'] = array_values($onu['unis']);
             return $onu;
         }, $data));
+    }
+
+    public function getPretty()
+    {
+        return $this->response;
     }
 
     public function getPrettyFiltered($filter = [])

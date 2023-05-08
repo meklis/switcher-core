@@ -30,11 +30,9 @@ class CardList extends ModuleAbstract
             $this->logger->notice("Cache by key 'card_list' not found");
         }
 
-        $response = $this->formatResponse($this->snmp->walk([
+        $response = $this->formatResponse($this->snmp->walkNext([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.CfgType')->getOid()),
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.RealType')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.NumPorts')->getOid()),
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.HardwareVer')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.FirmwareVer')->getOid()),
         ]));
         $RESP = [];
@@ -63,23 +61,11 @@ class CardList extends ModuleAbstract
                 'id' => (int)"10{$rack}{$shelf}{$slot}",
             ];
         }
-        foreach ($response['zx.slot.RealType']->fetchAll() as $type) {
-            $rack = Helper::getIndexByOid($type->getOid(), 2);
-            $shelf = Helper::getIndexByOid($type->getOid(), 1);
-            $slot = Helper::getIndexByOid($type->getOid());
-            $RESP["{$rack}/{$shelf}/{$slot}"]['real_type'] = $type->getValue();
-        }
         foreach ($response['zx.slot.NumPorts']->fetchAll() as $type) {
             $rack = Helper::getIndexByOid($type->getOid(), 2);
             $shelf = Helper::getIndexByOid($type->getOid(), 1);
             $slot = Helper::getIndexByOid($type->getOid());
             $RESP["{$rack}/{$shelf}/{$slot}"]['num_ports'] = $type->getValue();
-        }
-        foreach ($response['zx.slot.HardwareVer']->fetchAll() as $type) {
-            $rack = Helper::getIndexByOid($type->getOid(), 2);
-            $shelf = Helper::getIndexByOid($type->getOid(), 1);
-            $slot = Helper::getIndexByOid($type->getOid());
-            $RESP["{$rack}/{$shelf}/{$slot}"]['hard_ver'] = $type->getValue();
         }
         foreach ($response['zx.slot.FirmwareVer']->fetchAll() as $type) {
             $rack = Helper::getIndexByOid($type->getOid(), 2);
