@@ -62,7 +62,7 @@ models:
       pon_onts_status: \SwitcherCore\Modules\ZTE\C300Series\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\ZTE\C300Series\OntMacAddress
       pon_onts_serial: \SwitcherCore\Modules\ZTE\C300Series\OntSerial
-      pon_onts_optical: \SwitcherCore\Modules\ZTE\C300Series\OntOpticalInfoFW12
+      pon_onts_optical: \SwitcherCore\Modules\ZTE\C300Series\OntOpticalInfo
       unregistered_onts: \SwitcherCore\Modules\ZTE\C300Series\UnregisteredOntList
       ctrl_ont_delete: \SwitcherCore\Modules\ZTE\C300Series\DeregOnt
       ctrl_ont_reboot: \SwitcherCore\Modules\ZTE\C300Series\RebootOnu

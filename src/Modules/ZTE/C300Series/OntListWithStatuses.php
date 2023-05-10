@@ -31,7 +31,7 @@ class OntListWithStatuses extends ModuleAbstract
     protected function formate($resp)
     {
         $ifaces = [];
-        try {
+        if (in_array('gpon.ont.phaseState', $this->_mustLoadOidNames)) {
             $data = $this->getResponseByName('gpon.ont.phaseState', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
@@ -48,9 +48,8 @@ class OntListWithStatuses extends ModuleAbstract
                     $ifaces[$xid]['bind_status'] = $d->getParsedValue();
                 }
             }
-        } catch (\Exception $e) {
         }
-        try {
+        if (in_array('epon.ont.mgmtOnlineStatus', $this->_mustLoadOidNames)) {
             $data = $this->getResponseByName('epon.ont.mgmtOnlineStatus', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
@@ -67,9 +66,8 @@ class OntListWithStatuses extends ModuleAbstract
                     $ifaces[$xid]['bind_status'] = $d->getParsedValue();
                 }
             }
-        } catch (\Exception $e) {
         }
-        try {
+        if (in_array('epon.ont.lastOfflineReason', $this->_mustLoadOidNames)) {
             $data = $this->getResponseByName('epon.ont.lastOfflineReason', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
@@ -85,9 +83,8 @@ class OntListWithStatuses extends ModuleAbstract
                     $ifaces[$xid]['bind_status'] = $ifaces[$xid]['status'] === 'Offline' ? $d->getParsedValue() : 'Online';
                 }
             }
-        } catch (\Exception $e) {
         }
-        try {
+        if (in_array('gpon.ont.adminState', $this->_mustLoadOidNames)) {
             $data = $this->getResponseByName('gpon.ont.adminState', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
@@ -103,9 +100,8 @@ class OntListWithStatuses extends ModuleAbstract
                     $ifaces[$xid]['admin_state'] = $d->getParsedValue();
                 }
             }
-        } catch (\Exception $e) {
         }
-        try {
+        if (in_array('epon.ont.adminState', $this->_mustLoadOidNames)) {
             $data = $this->getResponseByName('epon.ont.adminState', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
@@ -121,12 +117,13 @@ class OntListWithStatuses extends ModuleAbstract
                     $ifaces[$xid]['admin_state'] = $d->getParsedValue();
                 }
             }
-        } catch (\Exception $e) {
         }
         return array_values(array_filter($ifaces, function ($e) {
             return $e['status'] != null || $e['admin_state'] != null || $e['bind_status'] != null;
         }));
     }
+
+    protected $_mustLoadOidNames = [];
 
     /**
      * @param array $filter
@@ -137,28 +134,34 @@ class OntListWithStatuses extends ModuleAbstract
     {
 
         $oidRequests = [];
+        $loadingOidNames = [];
+        $addOid = function ($oidName) use (&$loadingOidNames, &$oidRequests) {
+            $oidRequests[] = $this->oids->getOidByName($oidName);
+            $loadingOidNames[] = $oidName;
+        };
         if ($filter['load_only']) {
             $loadOnly = array_map(function ($e) {
                 return trim($e);
             }, explode(",", $filter['load_only']));
             if (in_array('admin_state', $loadOnly)) {
-                if ($this->isGponCardsExist()) $oidRequests[] = $this->oids->getOidByName('gpon.ont.adminState');
-                if ($this->isEponCardsExist()) $oidRequests[] = $this->oids->getOidByName('epon.ont.adminState');
+                if ($this->isGponCardsExist()) $addOid('gpon.ont.adminState');
+                if ($this->isEponCardsExist()) $addOid('epon.ont.adminState');
             }
             if (in_array('status', $loadOnly)) {
-                if ($this->isGponCardsExist()) $oidRequests[] = $this->oids->getOidByName('gpon.ont.phaseState');
-                if ($this->isEponCardsExist()) $oidRequests[] = $this->oids->getOidByName('epon.ont.mgmtOnlineStatus');
+                if ($this->isGponCardsExist()) $addOid('gpon.ont.phaseState');
+                if ($this->isEponCardsExist()) $addOid('epon.ont.mgmtOnlineStatus');
             }
             if (in_array('bind_status', $loadOnly)) {
-                if ($this->isEponCardsExist()) $oidRequests[] = $this->oids->getOidByName('epon.ont.lastOfflineReason');
+                if ($this->isEponCardsExist()) $addOid('epon.ont.lastOfflineReason');
             }
         } else {
-            if ($this->isGponCardsExist()) $oidRequests[] = $this->oids->getOidByName('gpon.ont.adminState');
-            if ($this->isGponCardsExist()) $oidRequests[] = $this->oids->getOidByName('gpon.ont.phaseState');
-            if ($this->isEponCardsExist()) $oidRequests[] = $this->oids->getOidByName('epon.ont.mgmtOnlineStatus');
-            if ($this->isEponCardsExist()) $oidRequests[] = $this->oids->getOidByName('epon.ont.adminState');
-            if ($this->isEponCardsExist()) $oidRequests[] = $this->oids->getOidByName('epon.ont.lastOfflineReason');
+            if ($this->isGponCardsExist()) $addOid('gpon.ont.adminState');
+            if ($this->isGponCardsExist()) $addOid('gpon.ont.phaseState');
+            if ($this->isEponCardsExist()) $addOid('epon.ont.mgmtOnlineStatus');
+            if ($this->isEponCardsExist()) $addOid('epon.ont.adminState');
+            if ($this->isEponCardsExist()) $addOid('epon.ont.lastOfflineReason');
         }
+        $this->_mustLoadOidNames = $loadingOidNames;
         $oids = [];
         foreach ($oidRequests as $oid) {
             $oids[] = $oid->getOid();
