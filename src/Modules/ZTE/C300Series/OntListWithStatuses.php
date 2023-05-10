@@ -80,6 +80,9 @@ class OntListWithStatuses extends ModuleAbstract
                             'admin_state' => null,
                         ];
                     }
+                    if($d->getParsedValue() == 0) {
+                        continue;
+                    }
                     $ifaces[$xid]['bind_status'] = $ifaces[$xid]['status'] === 'Offline' ? $d->getParsedValue() : 'Online';
                 }
             }
