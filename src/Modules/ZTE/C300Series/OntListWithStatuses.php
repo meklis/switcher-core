@@ -158,7 +158,7 @@ class OntListWithStatuses extends ModuleAbstract
                 if ($this->isEponCardsExist()) $addOid('epon.ont.lastOfflineReason');
             }
         } else {
-            if ($this->isGponCardsExist()) $addOid('gpon.ont.adminState');
+         //   if ($this->isGponCardsExist()) $addOid('gpon.ont.adminState');
             if ($this->isGponCardsExist()) $addOid('gpon.ont.phaseState');
             if ($this->isEponCardsExist()) $addOid('epon.ont.mgmtOnlineStatus');
             if ($this->isEponCardsExist()) $addOid('epon.ont.adminState');
