@@ -21,6 +21,13 @@ class CardStatus extends ModuleAbstract
 
     public function run($params = [])
     {
+        if($this->response) {
+             return  $this;
+        }
+        if($cached = $this->getCache("CARD_STATUS", true)) {
+            $this->response = $cached;
+            return  $this;
+        }
         $response = $this->formatResponse($this->snmp->walk([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.OperStatus')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.AdminStatus')->getOid()),
@@ -74,6 +81,7 @@ class CardStatus extends ModuleAbstract
         }
 
         $this->response = array_values($RESP);
+        $this->setCache("CARD_STATUS", $this->response, 60, true);
         return  $this;
     }
     public function getPretty()

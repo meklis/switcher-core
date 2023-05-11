@@ -233,18 +233,33 @@ abstract class ModuleAbstract extends AbstractModule
 
     public function isGponCardsExist()
     {
-        $cards = $this->getModule('card_list')->run()->getPretty();
+        $cards = $this->getCardListWithStatuses();
         $gponCards = array_filter($cards, function ($c) {
-            return $c['technology'] == 'gpon';
+            return $c['technology'] == 'gpon' && $c['oper_status'] == 'inService';
         });
         return count($gponCards) > 0;
     }
 
+    protected function getCardListWithStatuses() {
+        $resp = [];
+        foreach ($this->getModule('card_list')->run()->getPretty() as $card) {
+            $resp["{$card['shelf']}-{$card['slot']}"] = $card;
+        }
+        foreach ($this->getModule('card_status')->run()->getPretty() as $card) {
+            $resp["{$card['shelf']}-{$card['slot']}"]['oper_status'] = $card['oper_status'];
+            $resp["{$card['shelf']}-{$card['slot']}"]['admin_status'] = $card['admin_status'];
+            $resp["{$card['shelf']}-{$card['slot']}"]['cpu_load'] = $card['cpu_load'];
+            $resp["{$card['shelf']}-{$card['slot']}"]['temperature'] = $card['temperature'];
+        }
+
+        return $resp;
+    }
+
     public function isEponCardsExist()
     {
-        $cards = $this->getModule('card_list')->run()->getPretty();
+        $cards = $this->getCardListWithStatuses();
         $gponCards = array_filter($cards, function ($c) {
-            return $c['technology'] == 'epon';
+            return $c['technology'] == 'epon' && $c['oper_status'] == 'inService';
         });
         return count($gponCards) > 0;
     }
