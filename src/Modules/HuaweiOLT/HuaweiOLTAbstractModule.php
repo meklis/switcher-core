@@ -148,6 +148,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                     'name' => $iface->getValue(),
                     'type' => 'PON',
                     '_technology' => 'gpon',
+                    '_pon_max_ont_size' => 128,
                     'parent' => null,
                     '_frame' => $matches[1],
                     '_slot' => $matches[2],

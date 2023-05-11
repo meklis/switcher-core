@@ -23,7 +23,6 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
     public function getGponInfo($interface) {
         $resp = $this->parseExpandedTable($this->telnet->exec("show gpon remote-onu interface eth {$interface['name']}"));
         $response = [];
-        print_r($resp);
         foreach ($resp as $num => $info) {
             foreach ($info as $k => $v) {
                 switch ($k) {
@@ -31,7 +30,9 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
                         $response[$num]['speed'] = $v === 'auto' ? 'Down' : ucfirst($v);
                         break;
                     case 'operate_status':
-                        $response[$num]['status'] = $v === 'enable' ? 'Up' : ucfirst($v);
+                        if($v === 'enable') $v = 'Up';
+                        if($v === 'disable') $v = 'Down';
+                        $response[$num]['status'] =   ucfirst($v);
                         break;
                     case 'admin_status':
                         $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : ucfirst($v);

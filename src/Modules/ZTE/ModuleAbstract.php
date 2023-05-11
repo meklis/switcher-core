@@ -300,6 +300,7 @@ abstract class ModuleAbstract extends AbstractModule
                 $id += $onu;
             }
             $xponId = null;
+            $maxOntSize = 0;
             if(in_array($matches[1], ['gpon', 'epon'])) {
                 $card = $this->getCardInfoBy((int)$matches[3], (int)$matches[4]);
                 if($card['num_ports'] > 8) {
@@ -307,12 +308,20 @@ abstract class ModuleAbstract extends AbstractModule
                 }  else {
                     $xponId = $this->encodeSnmpOid($name, 'xpon');
                 }
+                if(preg_match('/^ETTO/',$card['cfg_type'])) {
+                    $maxOntSize = 128;
+                } elseif($card['technology'] === 'epon') {
+                    $maxOntSize = 64;
+                } elseif($card['technology'] === 'gpon') {
+                    $maxOntSize = 128;
+                }
             }
             return [
                 'name' => $name,
                 'id' => (int)$id,
                 'type' => $type,
                 'parent' => (int)$parent,
+                '_pon_max_ont_size' => $maxOntSize,
                 '_technology' => $matches[1],
                 '_shelf' => (int)$matches[3],
                 '_slot' => (int)$matches[4],
@@ -352,12 +361,21 @@ abstract class ModuleAbstract extends AbstractModule
             }
 
             $xponId = null;
+            $maxOntSize = 0;
             if(in_array($technology, ['gpon', 'epon'])) {
                 $card = $this->getCardInfoBy($shelf,$slot);
                 if($card['num_ports'] > 8) {
                     $xponId = $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", '16_port');
                 }  else {
                     $xponId = $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", 'xpon');
+                }
+
+                if(preg_match('/^ETTO/',$card['cfg_type'])) {
+                    $maxOntSize = 128;
+                } elseif($card['technology'] === 'epon') {
+                    $maxOntSize = 64;
+                } elseif($card['technology'] === 'gpon') {
+                    $maxOntSize = 128;
                 }
             }
             return [
@@ -366,6 +384,7 @@ abstract class ModuleAbstract extends AbstractModule
                 'name' => $interface,
                 'parent' => $parent,
                 '_technology' => $technology,
+                '_pon_max_ont_size' => $maxOntSize,
                 '_shelf' => $shelf,
                 '_slot' => $slot,
                 '_port' => $port,
