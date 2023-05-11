@@ -17,7 +17,7 @@ models:
       interface_counters: \SwitcherCore\Modules\ZTE\C300Series\InterfaceCounters
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       parse_interface: \SwitcherCore\Modules\ZTE\C300Series\InterfaceParser
-      pon_onts_status: \SwitcherCore\Modules\ZTE\C300Series\OntListWithStatuses
+      pon_onts_status: \SwitcherCore\Modules\ZTE\C300Series\OntListWithStatusesV1
       pon_onts_mac_addr: \SwitcherCore\Modules\ZTE\C300Series\OntMacAddress
       pon_onts_serial: \SwitcherCore\Modules\ZTE\C300Series\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\ZTE\C300Series\OntOpticalInfo
@@ -59,10 +59,10 @@ models:
       interface_counters: \SwitcherCore\Modules\ZTE\C300Series\InterfaceCounters
       interfaces_list: \SwitcherCore\Modules\ZTE\C300Series\InterfacesList
       parse_interface: \SwitcherCore\Modules\ZTE\C300Series\InterfaceParser
-      pon_onts_status: \SwitcherCore\Modules\ZTE\C300Series\OntListWithStatuses
+      pon_onts_status: \SwitcherCore\Modules\ZTE\C300Series\OntListWithStatusesV1
       pon_onts_mac_addr: \SwitcherCore\Modules\ZTE\C300Series\OntMacAddress
       pon_onts_serial: \SwitcherCore\Modules\ZTE\C300Series\OntSerial
-      pon_onts_optical: \SwitcherCore\Modules\ZTE\C300Series\OntOpticalInfo
+      pon_onts_optical: \SwitcherCore\Modules\ZTE\C300Series\OntOpticalInfoV1
       unregistered_onts: \SwitcherCore\Modules\ZTE\C300Series\UnregisteredOntList
       ctrl_ont_delete: \SwitcherCore\Modules\ZTE\C300Series\DeregOnt
       ctrl_ont_reboot: \SwitcherCore\Modules\ZTE\C300Series\RebootOnu

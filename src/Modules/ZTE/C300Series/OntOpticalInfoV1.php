@@ -12,7 +12,7 @@ use SwitcherCore\Modules\Helper;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OntOpticalInfo extends ModuleAbstract
+class OntOpticalInfoV1 extends ModuleAbstract
 {
     /**
      * @var WrappedResponse[]
@@ -68,79 +68,95 @@ class OntOpticalInfo extends ModuleAbstract
      */
     public function run($filter = [])
     {
-        $info = [];
-        $loadOnly = [];
-        $type = ['epon', 'gpon'];
-        if ($filter['interface']) {
-            $type = [$this->parseInterface($filter['interface'])['_technology']];
+        $ifaces = $this->prepareInterfacesList($filter['interface']);
+
+        if (count($ifaces) == 0) {
+            $this->response = [];
+            return $this;
         }
+
+        $loadOnly = [];
         if ($filter['load_only']) {
             $loadOnly = explode(",", $filter['load_only']);
+        } elseif (!$filter['load_only'] && !$filter['interface']) {
+            $loadOnly = ['rx', 'olt_rx', 'distance'];
         }
+
         $loadingOidNames = [];
-        $addOid = function ($oidName) use (&$loadingOidNames, &$info) {
-            $info[] = $this->oids->getOidByName($oidName);
-            $loadingOidNames[] = $oidName;
+        $oids = [];
+        $addOid = function ($oidName, $iface) use (&$loadingOidNames, &$oids) {
+            $oid = $this->oids->getOidByName($oidName);
+            $blk = '';
+            if (in_array($oid->getName(), [
+                'gpon.optical.rx',
+                'gpon.optical.tx',
+                'gpon.optical.temp',
+                'gpon.optical.voltage',
+            ])) {
+                $blk .= ".1";
+            }
+            if ($oid->getName() === 'gpon.optical.olt_rx' && $iface['_technology'] === 'epon') {
+                $oids[] = Oid::init($oid->getOid() . "." . $iface['_gpon_format'] . $blk);
+            } else {
+                $oids[] = Oid::init($oid->getOid() . "." . $iface['_oid_id'] . $blk);
+            }
+            $loadingOidNames[$oidName] = true;
         };
-        if (!$loadOnly || in_array("rx", $loadOnly)) {
-            if (in_array('epon', $type) && $this->isEponCardsExist()) $addOid('epon.optical.rx');
-            if (in_array('gpon', $type) && $this->isGponCardsExist()) $addOid('gpon.optical.rx');
+
+        foreach ($ifaces as $iface) {
+            $type = $iface['_technology'];
+            if (!$loadOnly || in_array("rx", $loadOnly)) {
+                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.rx', $iface);
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.rx', $iface);
+            }
+            if (!$loadOnly || in_array("tx", $loadOnly)) {
+                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.tx', $iface);
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.tx', $iface);
+            }
+            if (!$loadOnly || in_array("voltage", $loadOnly)) {
+                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.voltage', $iface);
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.voltage', $iface);
+            }
+            if (!$loadOnly || in_array("temp", $loadOnly)) {
+                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.temp', $iface);
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.temp', $iface);
+            }
+            if (!$loadOnly || in_array("distance", $loadOnly)) {
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.distance', $iface);
+            }
+            if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
+                $addOid('gpon.optical.olt_rx', $iface);
+            }
         }
-        if (!$loadOnly || in_array("tx", $loadOnly)) {
-            if (in_array('epon', $type) && $this->isEponCardsExist()) $addOid('epon.optical.tx');
-            if (in_array('gpon', $type) && $this->isGponCardsExist()) $addOid('gpon.optical.tx');
-        }
-        if (!$loadOnly || in_array("voltage", $loadOnly)) {
-            if (in_array('epon', $type) && $this->isEponCardsExist()) $addOid('epon.optical.voltage');
-            if (in_array('gpon', $type) && $this->isGponCardsExist()) $addOid('gpon.optical.voltage');
-        }
-        if (!$loadOnly || in_array("temp", $loadOnly)) {
-            if (in_array('epon', $type) && $this->isEponCardsExist()) $addOid('epon.optical.temp');
-            if (in_array('gpon', $type) && $this->isGponCardsExist()) $addOid('gpon.optical.temp');
-        }
-        if (!$loadOnly || in_array("distance", $loadOnly)) {
-            if (in_array('gpon', $type) && $this->isGponCardsExist()) $addOid('gpon.optical.distance');
-        }
-        if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
-            $addOid('gpon.optical.olt_rx');
-        }
+
         $this->_mustLoadedOidNames = $loadingOidNames;
 
-        $oids = [];
-        if ($filter['interface']) {
-            $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                $blk = '';
-                if(in_array($e->getName(), [
-                    'gpon.optical.rx',
-                    'gpon.optical.tx',
-                    'gpon.optical.temp',
-                    'gpon.optical.voltage',
-                ])) {
-                    $blk .= ".1";
-                }
-                if($e->getName() === 'gpon.optical.olt_rx' && $iface['_technology'] === 'epon') {
-                    return  $e->getOid() . "." . $iface['_gpon_format'] . $blk;
-                }
-                return $e->getOid() . "." . $iface['_oid_id'] . $blk;
-            }, $info);
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
-            $this->response = $this->formatResponse($this->snmp->get($oids));
-        } else {
-            $oids = array_map(function ($e) {
-                return Oid::init($e->getOid());
-            }, $info);
-            $this->response = $this->formatResponse($this->snmp->walkNext($oids, 5, 5));
-        }
+        $this->response = $this->formatResponse($this->snmp->get($oids, 5, 3));
         return $this;
+    }
+
+    function prepareInterfacesList($interface = null)
+    {
+        $ifaces = [];
+        if ($interface) {
+            $ifaces = $this->getModule('pon_onts_status')->run(['load_only' => 'status', 'interface' => $interface])->getPrettyFiltered(['load_only' => 'status', 'interface' => $interface]);
+        } else {
+            $ifaces = $this->getModule('pon_onts_status')->run(['load_only' => 'status', 'interface' => null])->getPrettyFiltered(['load_only' => 'status', 'interface' => null]);
+        }
+        $returningIfaces = [];
+        foreach ($ifaces as $iface) {
+            if ($iface['status'] !== 'Online') {
+                continue;
+            }
+            $returningIfaces[$iface['interface']['_oid_id']] = $iface['interface'];
+        }
+        return $returningIfaces;
     }
 
     function parseOpticalResponse()
     {
         $ifaces = [];
-        if (in_array('epon.optical.temp', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['epon.optical.temp'])) {
             $responses = $this->getResponseByName('epon.optical.temp')->fetchAll();
             foreach ($responses as $resp) {
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
@@ -152,7 +168,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['temp'] = round($resp->getParsedValue(), 3);
             }
         }
-        if (in_array('epon.optical.voltage', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['epon.optical.voltage'])) {
             $responses = $this->getResponseByName('epon.optical.voltage')->fetchAll();
             foreach ($responses as $resp) {
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
@@ -164,7 +180,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['voltage'] = round($resp->getParsedValue(), 3);
             }
         }
-        if (in_array('epon.optical.tx', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['epon.optical.tx'])) {
             $responses = $this->getResponseByName('epon.optical.tx')->fetchAll();
             foreach ($responses as $resp) {
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
@@ -176,7 +192,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['tx'] = round($resp->getParsedValue(), 3);
             }
         }
-        if (in_array('epon.optical.rx', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['epon.optical.rx'])) {
             $responses = $this->getResponseByName('epon.optical.rx')->fetchAll();
             foreach ($responses as $resp) {
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
@@ -188,7 +204,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['rx'] = round($resp->getParsedValue(), 3);
             }
         }
-        if (in_array('gpon.optical.rx', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['gpon.optical.rx'])) {
             $responses = $this->getResponseByName('gpon.optical.rx')->fetchAll();
             foreach ($responses as $resp) {
                 $id = Helper::getIndexByOid($resp->getOid(), 2) . "." . Helper::getIndexByOid($resp->getOid(), 1);
@@ -202,7 +218,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['rx'] = round($val == 65535 ? null : (($val > 30000) ? ($val - 65536) * 0.002 - 30 : $val * 0.002 - 30), 3);
             }
         }
-        if (in_array('gpon.optical.tx', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['gpon.optical.tx'])) {
             $responses = $this->getResponseByName('gpon.optical.tx')->fetchAll();
             foreach ($responses as $resp) {
                 $id = Helper::getIndexByOid($resp->getOid(), 2) . "." . Helper::getIndexByOid($resp->getOid(), 1);
@@ -216,10 +232,10 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['tx'] = round($val == 65535 ? null : (($val > 30000) ? ($val - 65536) * 0.002 - 30 : $val * 0.002 - 30), 3);
             }
         }
-        if (in_array('gpon.optical.olt_rx', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['gpon.optical.olt_rx'])) {
             $responses = $this->getResponseByName('gpon.optical.olt_rx')->fetchAll();
             foreach ($responses as $resp) {
-                $id = Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid() );
+                $id = Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid());
                 $iface = $this->parseInterface($id);
                 if (!isset($ifaces[$iface['id']])) {
                     $ifaces[$iface['id']] = [
@@ -229,7 +245,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['olt_rx'] = round($resp->getParsedValue() / 1000, 3);
             }
         }
-        if (in_array('gpon.optical.temp', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['gpon.optical.temp'])) {
             $responses = $this->getResponseByName('gpon.optical.temp')->fetchAll();
             foreach ($responses as $resp) {
                 $id = Helper::getIndexByOid($resp->getOid(), 2) . "." . Helper::getIndexByOid($resp->getOid(), 1);
@@ -242,7 +258,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['temp'] = round($resp->getParsedValue() / 256, 3);
             }
         }
-        if (in_array('gpon.optical.voltage', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['gpon.optical.voltage'])) {
             $responses = $this->getResponseByName('gpon.optical.voltage')->fetchAll();
             foreach ($responses as $resp) {
                 $id = Helper::getIndexByOid($resp->getOid(), 2) . "." . Helper::getIndexByOid($resp->getOid(), 1);
@@ -255,7 +271,7 @@ class OntOpticalInfo extends ModuleAbstract
                 $ifaces[$iface['id']]['voltage'] = round($resp->getParsedValue() * 0.02, 3);
             }
         }
-        if (in_array('gpon.optical.distance', $this->_mustLoadedOidNames)) {
+        if (isset($this->_mustLoadedOidNames['gpon.optical.distance'])) {
             $responses = $this->getResponseByName('gpon.optical.distance')->fetchAll();
             foreach ($responses as $resp) {
                 $id = Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid());
