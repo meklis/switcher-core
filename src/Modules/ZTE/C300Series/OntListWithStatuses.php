@@ -121,9 +121,13 @@ class OntListWithStatuses extends ModuleAbstract
                 }
             }
         }
-        return array_values(array_filter($ifaces, function ($e) {
+        $c =  array_values(array_filter($ifaces, function ($e) {
             return $e['status'] != null || $e['admin_state'] != null || $e['bind_status'] != null;
         }));
+        if(count($c) == 0) {
+            throw new \Exception("Error get ONT status information, try repeat");
+        }
+        return $c;
     }
 
     protected $_mustLoadOidNames = [];
