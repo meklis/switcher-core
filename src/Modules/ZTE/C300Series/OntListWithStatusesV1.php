@@ -173,17 +173,17 @@ class OntListWithStatusesV1 extends ModuleAbstract
         }
         $this->_mustLoadOidNames = $loadingOidNames;
         $oids = [];
-        foreach ($oidRequests as $oid) {
-            $oids[] = $oid->getOid();
-        }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
+            $oidRequests = array_filter($oidRequests, function ($r) use ($iface) {
+                return preg_match("/^{$iface['_technology']}/", $r->getName());
+            });
+            $this->_mustLoadOidNames = array_filter($loadingOidNames, function ($name) use ($iface)  {
+                return preg_match("/^{$iface['_technology']}/", $name);
+            });
             $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['_oid_id'];
-            }, $oids);
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+                return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['_oid_id']);
+            }, $oidRequests);
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->get($oids)
             ));
