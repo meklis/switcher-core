@@ -78,8 +78,10 @@ class OntOpticalInfoV1 extends ModuleAbstract
         $loadOnly = [];
         if ($filter['load_only']) {
             $loadOnly = explode(",", $filter['load_only']);
-        } elseif (!$filter['load_only'] && !$filter['interface']) {
+        } elseif (!$filter['load_only'] && !$filter['interface'] && !preg_match('/fw_1_2$/', $this->model->getKey())) {
             $loadOnly = ['rx', 'olt_rx', 'distance'];
+        } elseif (!$filter['load_only'] && !$filter['interface'] && preg_match('/fw_1_2$/', $this->model->getKey())) {
+            $loadOnly = ['rx', 'olt_rx'];
         }
 
         $loadingOidNames = [];

@@ -80,6 +80,10 @@ class CardStatus extends ModuleAbstract
             $RESP["{$rack}/{$shelf}/{$slot}"]['memory_usage'] = $type->getParsedValue();
         }
 
+        $RESP = array_filter($RESP, function ($c) {
+           return isset($c['oper_status'])  && isset($c['admin_status']);
+        });
+
         $this->response = array_values($RESP);
         $this->setCache("CARD_STATUS", $this->response, 60, true);
         return  $this;

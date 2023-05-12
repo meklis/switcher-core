@@ -165,10 +165,10 @@ class OntListWithStatusesV1 extends ModuleAbstract
                 if ($this->isEponCardsExist()) $addOid('epon.ont.lastOfflineReason');
             }
         } else {
-            //   if ($this->isGponCardsExist()) $addOid('gpon.ont.adminState');
+            if ($this->isGponCardsExist() && !preg_match("/fw_1_2$/", $this->model->getKey())) $addOid('gpon.ont.adminState');
             if ($this->isGponCardsExist()) $addOid('gpon.ont.phaseState');
             if ($this->isEponCardsExist()) $addOid('epon.ont.mgmtOnlineStatus');
-            if ($this->isEponCardsExist()) $addOid('epon.ont.adminState');
+            if ($this->isEponCardsExist() && !preg_match("/fw_1_2$/", $this->model->getKey())) $addOid('epon.ont.adminState');
             if ($this->isEponCardsExist()) $addOid('epon.ont.lastOfflineReason');
         }
         $this->_mustLoadOidNames = $loadingOidNames;
