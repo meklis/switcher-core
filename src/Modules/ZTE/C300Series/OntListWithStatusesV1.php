@@ -172,7 +172,6 @@ class OntListWithStatusesV1 extends ModuleAbstract
             if ($this->isEponCardsExist()) $addOid('epon.ont.lastOfflineReason');
         }
         $this->_mustLoadOidNames = $loadingOidNames;
-        $oids = [];
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oidRequests = array_filter($oidRequests, function ($r) use ($iface) {
@@ -188,9 +187,9 @@ class OntListWithStatusesV1 extends ModuleAbstract
                 $this->snmp->get($oids)
             ));
         } else {
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+            $oids = array_map(function ($e)  {
+                return \SnmpWrapper\Oid::init($e->getOid()  );
+            }, $oidRequests);
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
             ));
