@@ -79,6 +79,9 @@ class GponOntProfileList extends ModuleAbstract
             if(preg_match('/^Name.*?:(.*)$/', trim($line), $m)) {
                 $profiles[] = trim($m[1]);
             }
+            if(preg_match('/^Profile name.*?:(.*)$/', trim($line), $m)) {
+                $profiles[] = trim($m[1]);
+            }
         }
         $this->setCache('gpon_traffic_profile', $profiles, 60);
         return $profiles;
