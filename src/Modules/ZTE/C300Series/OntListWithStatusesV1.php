@@ -187,9 +187,22 @@ class OntListWithStatusesV1 extends ModuleAbstract
                 $this->snmp->get($oids)
             ));
         } else {
-            $oids = array_map(function ($e)  {
-                return \SnmpWrapper\Oid::init($e->getOid()  );
-            }, $oidRequests);
+            $oids = [];
+            if(in_array("gpon.ont.phaseState", $loadingOidNames)) {
+                $ports = array_filter($this->getModule('pon_ports_list')->run([])->getPrettyFiltered([]), function ($e) {
+                    return $e['_technology'] === 'gpon';
+                });
+                foreach ($oidRequests as $oid) {
+                    if($oid->getName() == 'gpon.ont.phaseState') {
+                        foreach ($ports as $port) {
+                            $oids[] = \SnmpWrapper\Oid::init($oid->getOid() . "." . $port['_oid_id']);
+                        }
+                    } else {
+                        $oids[] = \SnmpWrapper\Oid::init($oid->getOid());
+                    }
+                }
+            }
+
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
             ));
