@@ -201,8 +201,11 @@ class OntListWithStatusesV1 extends ModuleAbstract
                         $oids[] = \SnmpWrapper\Oid::init($oid->getOid());
                     }
                 }
+            } else {
+                $oids = array_map(function ($oid) {
+                    return \SnmpWrapper\Oid::init($oid->getOid());
+                }, $oidRequests);
             }
-
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
             ));
