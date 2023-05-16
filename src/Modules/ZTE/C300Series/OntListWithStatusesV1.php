@@ -34,20 +34,21 @@ class OntListWithStatusesV1 extends ModuleAbstract
         if (in_array('gpon.ont.phaseState', $this->_mustLoadOidNames)) {
             $data = $this->getResponseByName('gpon.ont.phaseState', $resp);
             if($data->error()) {
-                throw new \Exception($data->error());
-            }
-            foreach ($data->fetchAll() as $d) {
-                $xid = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
-                if (!isset($ifaces[$xid])) {
-                    $ifaces[$xid] = [
-                        'interface' => $this->parseInterface($xid),
-                        'status' => null,
-                        'bind_status' => null,
-                        'admin_state' => null,
-                    ];
+                $this->logger->error($data->error());
+            } else {
+                foreach ($data->fetchAll() as $d) {
+                    $xid = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+                    if (!isset($ifaces[$xid])) {
+                        $ifaces[$xid] = [
+                            'interface' => $this->parseInterface($xid),
+                            'status' => null,
+                            'bind_status' => null,
+                            'admin_state' => null,
+                        ];
+                    }
+                    $ifaces[$xid]['status'] = $d->getParsedValue() == 'working' ? 'Online' : 'Offline';
+                    $ifaces[$xid]['bind_status'] = $d->getParsedValue();
                 }
-                $ifaces[$xid]['status'] = $d->getParsedValue() == 'working' ? 'Online' : 'Offline';
-                $ifaces[$xid]['bind_status'] = $d->getParsedValue();
             }
         }
         if (in_array('epon.ont.mgmtOnlineStatus', $this->_mustLoadOidNames)) {
