@@ -31,7 +31,7 @@ class OntReasons extends CDataAbstractModule
 
         foreach ($this->getResponseByName('ont.lastRegSince', $response)->fetchAll() as $r) {
             $onuId = Helper::getIndexByOid($r->getOid(),0);
-            $return[$onuId]['last_reg'] = time() - $r->getValue();
+            $return[$onuId]['last_reg'] = date("Y-m-d H:i:s", time() - $r->getValue());
             $return[$onuId]['last_reg_since'] = $r->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
         }
         foreach ($this->getResponseByName('ont.lastDownReason', $response)->fetchAll() as $r) {
@@ -64,7 +64,7 @@ class OntReasons extends CDataAbstractModule
             $onuId = Helper::getIndexByOid($wr->getOid());
             $issetIds[$onuId] = true;
             switch ($oid->getName()) {
-                case 'ont.lastRegSince': $return[$onuId]['last_reg'] = time() - $wr->getValue();
+                case 'ont.lastRegSince': $return[$onuId]['last_reg'] =  date("Y-m-d H:i:s", time() - $wr->getValue());
                                          $return[$onuId]['last_reg_since'] = $wr->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
                                          break;
                 case 'ont.lastDownReason': $return[$onuId]['last_down_reason'] = $wr->getParsedValue(); break;

@@ -112,6 +112,11 @@
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
   descr: Ребут ОНУ
+#Action clear counters
+- name: ctrl_ont_clear_counters
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
+  descr: Clear counters
 
 #Action port state desciption
 - name: ctrl_ont_delete
