@@ -88,6 +88,14 @@ class OntStateInfo extends ModuleAbstract
                   'phase_state' => $match[4],
                   'channel' => $match[5],
                 ];
+            } elseif (preg_match('/^(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*)$/', $row, $match)) {
+                $response[] = [
+                    'onu_index' => trim($match[1]),
+                    'admin_state' => trim($match[2]),
+                    'state' => trim($match[3]),
+                    'phase_state' => trim($match[5]),
+                    'channel' => null,
+                ];
             }
         }
         return $response;
