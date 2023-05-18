@@ -246,12 +246,12 @@ abstract class ModuleAbstract extends AbstractModule
             $resp["{$card['shelf']}-{$card['slot']}"] = $card;
         }
         foreach ($this->getModule('card_status')->run()->getPretty() as $card) {
+            if(!isset($resp["{$card['shelf']}-{$card['slot']}"])) continue;
             $resp["{$card['shelf']}-{$card['slot']}"]['oper_status'] = $card['oper_status'];
             $resp["{$card['shelf']}-{$card['slot']}"]['admin_status'] = $card['admin_status'];
             $resp["{$card['shelf']}-{$card['slot']}"]['cpu_load'] = $card['cpu_load'];
             $resp["{$card['shelf']}-{$card['slot']}"]['temperature'] = $card['temperature'];
         }
-
         return $resp;
     }
 

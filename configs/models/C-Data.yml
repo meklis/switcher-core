@@ -156,7 +156,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
-      interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       ctrl_ont_reset: \SwitcherCore\Modules\CData\OntReset
@@ -215,7 +215,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
-      interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
       ctrl_ont_reset: \SwitcherCore\Modules\CData\OntReset
