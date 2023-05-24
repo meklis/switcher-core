@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\TpLinkSwitch;
+namespace SwitcherCore\Modules\HpArubaOsSwitch;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\TpLinkSwitch;
+namespace SwitcherCore\Modules\HpArubaOsSwitch;
 
 use DI\Container;
 use DI\DependencyException;
@@ -63,6 +63,14 @@ trait InterfacesTrait
                 return $ifaces[$iface];
             }
         }
+        if($parseBy == 'physical_id') {
+            $filtered = array_filter($ifaces, function ($i) use ($iface, $parseBy) {
+                return isset($i['_physical_id']) && $i['_physical_id'] == $iface;
+            });
+            if(count($filtered) == 1) {
+                return array_values($filtered)[0];
+            }
+        }
         $filtered = array_filter($ifaces, function ($i) use ($iface, $parseBy) {
             return isset($i['_port_num']) && $i['_port_num'] == $iface;
         });
@@ -85,10 +93,10 @@ trait InterfacesTrait
         if ($this->_interfaces) {
             return $this->_interfaces;
         }
-        if ($info = $this->getCache('INTERFACES', true)) {
-            $this->_interfaces = $info;
-            return $info;
-        }
+//        if ($info = $this->getCache('INTERFACES', true)) {
+//            $this->_interfaces = $info;
+//            return $info;
+//        }
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
         ]);
@@ -103,25 +111,7 @@ trait InterfacesTrait
 
         $ifaces = [];
         foreach ($responses['if.Name'] as $r) {
-            if (preg_match('/^gigabitEthernet ([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})[ ]?: (.*)$/', $r->getValue(), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
-                [$shelf, $slot, $port] = explode("/", $m[1]);
-                $type = '';
-                if($m[2] == 'copper') {
-                    $type = ' (C)';
-                }
-                if($m[2] == 'fiber') {
-                    $type = ' (F)';
-                }
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
-                    'name' => "ge{$m[1]}$type",
-                    '_snmp_id' => $id,
-                    '_port_num' => (int)$port,
-                    '_slot' => (int)$slot,
-                    '_combo_num' => null,
-                ];
-            } elseif (preg_match('/^gigabitEthernet ([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
+            if (preg_match('/^gigabitethernet([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 [$shelf, $slot, $port] = explode("/", $m[1]);
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
@@ -130,16 +120,7 @@ trait InterfacesTrait
                     '_snmp_id' => $id,
                     '_port_num' => (int)$port,
                     '_slot' => (int)$slot,
-                    '_combo_num' => null,
-                ];
-            } elseif (preg_match('/^port ([0-9]{1,3}):.*/', $r->getValue(), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
-                    'name' => $r->getValue(),
-                    '_snmp_id' => $id,
-                    '_port_num' => (int)$m[1],
-                    '_combo_num' => null,
+                    '_physical_id' => $id + 32,
                 ];
             }
         }

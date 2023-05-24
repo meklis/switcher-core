@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\TpLinkSwitch;
+namespace SwitcherCore\Modules\HpArubaOsSwitch;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
@@ -8,8 +8,8 @@ use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
-class PvidDot1q extends \SwitcherCore\Modules\General\Switches\PvidDot1q
+class LinkInfo extends \SwitcherCore\Modules\General\Switches\LinkInfo
 {
     use InterfacesTrait;
- 
+
 }

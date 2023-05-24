@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\TpLinkSwitch;
+namespace SwitcherCore\Modules\HpArubaOsSwitch;
 
 class InterfacesList extends \SwitcherCore\Modules\General\Switches\InterfacesList
 {
