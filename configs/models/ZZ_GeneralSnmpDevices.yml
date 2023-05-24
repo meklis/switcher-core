@@ -10,7 +10,7 @@ models:
    oids:
      - ./oids/dlink/common-diag-cable.yml
      - ./oids/dlink/common-agent-info.yml
-   detect: {description: ^(DGS|DES).*,  objid: ^.1.3.6.1.4.1.171 }
+   detect: {description: (DGS|DES).*,  objid: ^.1.3.6.1.4.1.171 }
    extra:
      console_conn_type: dlink
      diag_linkup: true
