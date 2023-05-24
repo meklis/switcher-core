@@ -36,7 +36,7 @@ class DefaultParser extends SwitchesPortAbstractModule
           }
 
           foreach ($snmp_high_speed as $index) {
-              $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
           }
           foreach ($descr as $index) {
               $indexes[Helper::getIndexByOid($index->getOid())]['description'] =  $index->getValue();
