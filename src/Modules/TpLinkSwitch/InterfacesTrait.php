@@ -102,6 +102,7 @@ trait InterfacesTrait
         }
 
         $ifaces = [];
+        print_r($responses['if.Name']);
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^port ([0-9]{1,3}): (\S*?) (\S*?)$/', trim($r->getValue()), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
@@ -114,9 +115,38 @@ trait InterfacesTrait
                 }
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[1]} {$m[2]}{$type}",
+                    'name' => "ge{$m[1]} {$type}",
                     '_snmp_id' => $id,
                     '_port_num' => (int)$m[1],
+                    '_combo_num' => null,
+                ];
+            } elseif (preg_match('/^gigabitEthernet ([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})[ ]?: (.*)$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                [$shelf, $slot, $port] = explode("/", $m[1]);
+                $type = '';
+                if($m[2] == 'copper') {
+                    $type = ' (C)';
+                }
+                if($m[2] == 'fiber') {
+                    $type = ' (F)';
+                }
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => "ge{$m[1]}$type",
+                    '_snmp_id' => $id,
+                    '_port_num' => (int)$port,
+                    '_slot' => (int)$slot,
+                    '_combo_num' => null,
+                ];
+            } elseif (preg_match('/^gigabitEthernet ([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                [$shelf, $slot, $port] = explode("/", $m[1]);
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => "ge{$m[1]}",
+                    '_snmp_id' => $id,
+                    '_port_num' => (int)$port,
+                    '_slot' => (int)$slot,
                     '_combo_num' => null,
                 ];
             } elseif (preg_match('/^port ([0-9]{1,3}):.*/', $r->getValue(), $m)) {
