@@ -105,7 +105,6 @@ trait InterfacesTrait
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^Ethernet(.*)$/', $r->getValue(), $m)) {
                 $identies = explode("/", $m[1]);
-
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
@@ -113,6 +112,15 @@ trait InterfacesTrait
                     '_snmp_id' => $id,
                     '_port_num' => $identies[1],
                     '_combo_num' => isset($identies[2]) ? $identies[2] : null,
+                ];
+            } elseif (preg_match('/^gi(.*)$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => (int)$m[1],
+                    '_combo_num' => null,
                 ];
             }
         }
