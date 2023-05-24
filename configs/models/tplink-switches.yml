@@ -1,0 +1,20 @@
+
+models:
+- name: TP-Link Switch
+  key: tplink_general_switch
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: Switch,  objid: ^.1.3.6.1.4.1.11863 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\TpLinkSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\TpLinkSwitch\Fdb
+    link_info: \SwitcherCore\Modules\TpLinkSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\TpLinkSwitch\Counters
+    system: \SwitcherCore\Modules\TpLinkSwitch\System
+    errors: \SwitcherCore\Modules\TpLinkSwitch\Errors
+    rmon: \SwitcherCore\Modules\TpLinkSwitch\Rmon
+    interface_descriptions: \SwitcherCore\Modules\TpLinkSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\TpLinkSwitch\InterfacesList
+    vlans: \SwitcherCore\Modules\TpLinkSwitch\VlansDot1q
+    vlans_by_port: \SwitcherCore\Modules\TpLinkSwitch\VlanByPorts
