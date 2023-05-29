@@ -22,7 +22,7 @@ abstract class ModuleAbstract extends AbstractModule
 
     function getCardInfoBy($shelf, $slot)
     {
-        $cards = array_filter($this->getModule('card_list')->run([])->getPretty(), function ($e) use ($shelf, $slot) {
+        $cards = array_filter($this->getCardListWithStatuses(), function ($e) use ($shelf, $slot) {
             return $shelf == $e['shelf'] && $slot == $e['slot'];
         });
         if (count($cards) > 0) {
@@ -138,17 +138,13 @@ abstract class ModuleAbstract extends AbstractModule
                 $vPort = bindec(substr($binary, 24, 8));
                 break;
         }
-        $technology = null;
-        $cards = array_filter($this->getModule('card_list')->run([])->getPretty(), function ($e) use ($shelf, $slot) {
-            return $shelf == $e['shelf'] && $slot == $e['slot'];
-        });
-        if (count($cards) > 0) {
-            $technology = array_values($cards)[0]['technology'];
+        $card = $this->getCardInfoBy($shelf, $slot);
+        if($card['oper_status'] !== 'inService') {
+            throw new \Exception("Error decode port on not in service card. shelf={$shelf}, slot={$slot}");
         }
-
         $be = [
             '_decode_type' => $type,
-            'type' => $technology,
+            'type' => $card['technology'],
             'shelf' => $shelf,
             'slot' => $slot,
             'port' => $portOlt,
@@ -158,7 +154,7 @@ abstract class ModuleAbstract extends AbstractModule
         return $be;
     }
 
-    protected $_xidInterfaces;
+    private $_xidInterfaces;
 
     function listInterfacesByXidNames()
     {
@@ -240,7 +236,11 @@ abstract class ModuleAbstract extends AbstractModule
         return count($gponCards) > 0;
     }
 
+    private $_cardStatuses = [];
     protected function getCardListWithStatuses() {
+        if($this->_cardStatuses) {
+            return  $this->_cardStatuses;
+        }
         $resp = [];
         foreach ($this->getModule('card_list')->run()->getPretty() as $card) {
             $resp["{$card['shelf']}-{$card['slot']}"] = $card;
@@ -252,6 +252,7 @@ abstract class ModuleAbstract extends AbstractModule
             $resp["{$card['shelf']}-{$card['slot']}"]['cpu_load'] = $card['cpu_load'];
             $resp["{$card['shelf']}-{$card['slot']}"]['temperature'] = $card['temperature'];
         }
+        $this->_cardStatuses = $resp;
         return $resp;
     }
 
@@ -267,7 +268,6 @@ abstract class ModuleAbstract extends AbstractModule
 
     public function parseInterface($name, $parseBy = 'id')
     {
-        //Это ID из snmp
         $oidID = 0;
         $xidList = $this->listInterfacesByXidNames();
         if ($parseBy == 'eth_id') {
@@ -318,6 +318,9 @@ abstract class ModuleAbstract extends AbstractModule
             $maxOntSize = 0;
             if(in_array($matches[1], ['gpon', 'epon'])) {
                 $card = $this->getCardInfoBy((int)$matches[3], (int)$matches[4]);
+                if($card['oper_status'] !== 'inService') {
+                    throw new \Exception("Error parse port on not in service card. shelf={$matches[3]}, slot={$matches[4]}");
+                }
                 if($card['num_ports'] > 8) {
                     $xponId = $this->encodeSnmpOid($name, '16_port');
                 }  else {
@@ -355,13 +358,11 @@ abstract class ModuleAbstract extends AbstractModule
             $slot = floor(($name - ($shelf * 10000000)) / 100000);
             $port = floor(($name - (($slot * 100000) + ($shelf * 10000000))) / 1000);
             $onu = floor(($name - (($port * 1000) + ($slot * 100000) + ($shelf * 10000000))));
-            $cards = $this->getModule('card_list')->run()->getPretty();
-            $technology = null;
-            foreach ($cards as $card) {
-                if ($card['shelf'] == $shelf && $card['slot'] == $slot) {
-                    $technology = $card['technology'];
-                }
+            $card = $this->getCardInfoBy($shelf, $slot);
+            if($card['oper_status'] !== 'inService') {
+                throw new \Exception("Error parse port on not in service card. shelf={$matches[3]}, slot={$matches[4]}");
             }
+            $technology = $card['technology'];
             if (!$technology) {
                 throw new \Exception("Error get technology");
             }
@@ -379,6 +380,9 @@ abstract class ModuleAbstract extends AbstractModule
             $maxOntSize = 0;
             if(in_array($technology, ['gpon', 'epon'])) {
                 $card = $this->getCardInfoBy($shelf,$slot);
+                if($card['oper_status'] !== 'inService') {
+                    throw new \Exception("Error parse port on not in service card. shelf={$matches[3]}, slot={$matches[4]}");
+                }
                 if($card['num_ports'] > 8) {
                     $xponId = $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", '16_port');
                 }  else {
