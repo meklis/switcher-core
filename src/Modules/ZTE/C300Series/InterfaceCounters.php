@@ -36,9 +36,15 @@ class InterfaceCounters extends ModuleAbstract
             }
             $name = Helper::fromCamelCase(str_replace("xpon.ont.counters.", "", $oidName));
             foreach ($dt->fetchAll() as $resp) {
+                try {
                 $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
                 $data[$iface['id']]['interface'] = $iface;
                 $data[$iface['id']][$name] = $resp->getValue();
+                } catch (\Exception $e) {
+                    if (strpos($e->getMessage(), "not in service card") === false) {
+                        throw $e;
+                    }
+                }
             }
         }
         return array_values($data);
