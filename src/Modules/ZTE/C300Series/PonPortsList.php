@@ -17,7 +17,13 @@ class PonPortsList extends ModuleAbstract
         foreach ($cards as $card) {
             if(!$card['technology']) continue;
             for($port = 1; $port <= $card['num_ports']; $port++) {
-                $response[] = $this->parseInterface("{$card['technology']}-olt_{$card['shelf']}/{$card['slot']}/{$port}");
+                try {
+                    $response[] = $this->parseInterface("{$card['technology']}-olt_{$card['shelf']}/{$card['slot']}/{$port}");
+                } catch (\Exception $e) {
+                    if(strpos("not in service card", $e->getMessage()) === false) {
+                        throw $e;
+                    }
+                }
             }
         }
         $this->response = $response;
