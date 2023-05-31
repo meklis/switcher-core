@@ -17,7 +17,6 @@ class PonPortsList extends ModuleAbstract
             if (!$card['technology']) continue;
             for ($port = 1; $port <= $card['num_ports']; $port++) {
                 $response[] = $this->parseInterface("{$card['technology']}-olt_{$card['shelf']}/{$card['slot']}/{$port}");
-
             }
         }
         $this->response = $response;
