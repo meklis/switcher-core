@@ -95,7 +95,6 @@ trait InterfacesTrait
             }
             $responses[$name->getName()] = $resp->getResponse();
         }
-
         $ifaces = [];
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^(e|g)([0-9]{1,4})$/', $r->getValue(), $m)) {
@@ -104,6 +103,18 @@ trait InterfacesTrait
                     'id' => (int)$id,
                     'name' => $r->getValue(),
                     '_snmp_id' => $id,
+                    '_slot_num' => 1,
+                    '_port_num' => (int)$m[2],
+                ];
+            }
+            if (preg_match('/^([0-9]{1,4})\/([0-9]{1,4})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_slot_num' => (int)$m[1],
+                    '_port_num' => (int)$m[2],
                 ];
             }
         }
