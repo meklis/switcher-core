@@ -12,23 +12,24 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
 {
     use InterfacesTrait;
 
-    protected function formate() {
+    protected function formate()
+    {
         $response = [];
         $forbidden = $this->getResponseByName('dot1q.VlanStaticForbiddenEgressPorts');
         $untagged = $this->getResponseByName('dot1q.VlanStaticUntaggedPorts');
         $names = $this->getResponseByName('dot1q.VlanStaticName');
         $egress = $this->getResponseByName('dot1q.VlanStaticEgressPorts');
 
-        if($names->error()) {
+        if ($names->error()) {
             throw new IncompleteResponseException($names->error());
         }
-        if($egress->error()) {
+        if ($egress->error()) {
             throw new IncompleteResponseException($egress->error());
         }
-        if($untagged->error()) {
+        if ($untagged->error()) {
             throw new IncompleteResponseException($untagged->error());
         }
-        if($forbidden->error()) {
+        if ($forbidden->error()) {
             throw new IncompleteResponseException($forbidden->error());
         }
 
@@ -36,11 +37,11 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
         foreach ($this->getInterfacesIds() as $iface) {
             $indexes[$iface['id']] = $iface;
         }
-        $formater = function ($resp) use ($indexes) {
+        $formater = function ($resp, $offset = 0) use ($indexes) {
             $dex = Helper::hexToBinStr($resp->getHexValue());
             $ports = [];
-            for($port = 1; $port < strlen($dex) ; $port++) {
-                if($dex[$port] == '1' && isset($indexes[$port])) $ports[] = $indexes[$port];
+            for ($port = 1; $port < strlen($dex); $port++) {
+                if ($dex[$port] == '1' && isset($indexes[$port + $offset])) $ports[] = $indexes[$port + $offset];
             }
             return $ports;
         };
@@ -51,25 +52,25 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
             $response[Helper::getIndexByOid($resp->getOid())]['id'] = Helper::getIndexByOid($resp->getOid());
         }
 
+        $offset = 0;
+        if($this->model->getKey() == 'huawei_s2350_28tp') {
+            $offset = 1;
+        }
         foreach ($egress->fetchAll() as $resp) {
-            $response[Helper::getIndexByOid($resp->getOid())]['ports']['egress'] = $formater($resp);
+            $response[Helper::getIndexByOid($resp->getOid())]['ports']['egress'] = $formater($resp,$offset );
         }
 
         foreach ($untagged->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['untagged'] = $formater($resp);
+            $response[Helper::getIndexByOid($resp->getOid())]['ports']['untagged'] = $formater($resp);
         }
         foreach ($forbidden->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['forbidden'] = $formater($resp);
+            $response[Helper::getIndexByOid($resp->getOid())]['ports']['forbidden'] = $formater($resp);
         }
         foreach ($response as $vlan_id => $resp) {
             foreach ($resp['ports']['egress'] as $port) {
-                if(in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
-                if(in_array($port, $response[$vlan_id]['ports']['forbidden'])) continue;
-                if($this->model->getKey() == 'huawei_s2350_28tp') {
-                    $response[$vlan_id]['ports']['tagged'][] = $port + 1;
-                } else {
-                    $response[$vlan_id]['ports']['tagged'][] = $port;
-                }
+                if (in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
+                if (in_array($port, $response[$vlan_id]['ports']['forbidden'])) continue;
+                $response[$vlan_id]['ports']['tagged'][] = $port;
             }
         }
         return array_values($response);
