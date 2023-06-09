@@ -52,7 +52,7 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
         }
 
         foreach ($egress->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['egress'] = $formater($resp);
+            $response[Helper::getIndexByOid($resp->getOid())]['ports']['egress'] = $formater($resp);
         }
 
         foreach ($untagged->fetchAll() as $resp) {
@@ -65,7 +65,11 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
             foreach ($resp['ports']['egress'] as $port) {
                 if(in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
                 if(in_array($port, $response[$vlan_id]['ports']['forbidden'])) continue;
-                $response[$vlan_id]['ports']['tagged'][] = $port;
+                if($this->model->getKey() == 'huawei_s2350_28tp') {
+                    $response[$vlan_id]['ports']['tagged'][] = $port + 1;
+                } else {
+                    $response[$vlan_id]['ports']['tagged'][] = $port;
+                }
             }
         }
         return array_values($response);

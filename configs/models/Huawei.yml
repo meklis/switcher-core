@@ -37,6 +37,17 @@ models:
               - 67240078
             diag_linkup: false
             only_manual_diag: false
+        - value: ^S2350-28TP-EI-AC
+          rewrite:
+            key: huawei_s2350_28tp
+            name: Huawei S2350-28TP-EI-AC
+          extra:
+            sys_resources_id: 67108873
+            sfp_ports:
+              - 67240014
+              - 67240078
+            diag_linkup: false
+            only_manual_diag: true
     oids:
       - ./oids/huawei/s2326tp.yml
     modules:
