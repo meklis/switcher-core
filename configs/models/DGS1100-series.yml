@@ -35,7 +35,7 @@ models:
      errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
      rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
      pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
-     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCountersDGS1100
      save_config: \SwitcherCore\Modules\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
@@ -77,7 +77,7 @@ models:
      errors: \SwitcherCore\Modules\Dlink\Errors\DefaultParser
      rmon: \SwitcherCore\Modules\Dlink\Rmon\DefaultParser
      pvid: \SwitcherCore\Modules\Dlink\Vlan\PvidParser
-     clear_counters: \SwitcherCore\Modules\Dlink\ClearCounters
+     clear_counters: \SwitcherCore\Modules\Dlink\ClearCountersDGS1100
      save_config: \SwitcherCore\Modules\Dlink\SaveConfig
      reboot: \SwitcherCore\Modules\Dlink\Reboot
      vlans_by_port: \SwitcherCore\Modules\Dlink\Vlan\VlanByPorts
