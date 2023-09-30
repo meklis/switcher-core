@@ -84,6 +84,12 @@ class CardStatus extends ModuleAbstract
            return isset($c['oper_status'])  && isset($c['admin_status']);
         });
 
+        foreach ($RESP as $k=>$v) {
+            if(!isset($RESP[$k]['temperature'])) $RESP[$k]['temperature'] = null;
+            if(!isset($RESP[$k]['cpu_load'])) $RESP[$k]['cpu_load'] = null;
+            if(!isset($RESP[$k]['memory_usage'])) $RESP[$k]['memory_usage'] = null;
+        }
+
         $this->response = array_values($RESP);
         $this->setCache("CARD_STATUS", $this->response, 60, true);
         return  $this;
