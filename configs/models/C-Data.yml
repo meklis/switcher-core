@@ -99,6 +99,8 @@ models:
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
+      interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
+      link_info: \SwitcherCore\Modules\CData\LinkInfo
       pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
@@ -165,6 +167,8 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
+      link_info: \SwitcherCore\Modules\CData\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -224,6 +228,8 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
+      link_info: \SwitcherCore\Modules\CData\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -287,6 +293,8 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
+      interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
+      link_info: \SwitcherCore\Modules\CData\LinkInfo
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -346,6 +354,8 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
+      interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
+      link_info: \SwitcherCore\Modules\CData\LinkInfo
     extra:
       pon_port_size: 128
       console_conn_type: cdata

@@ -28,6 +28,15 @@ abstract class CDataAbstractModule extends AbstractModule
         $this->interfaces = $model->getExtraParamByName('interfaces');
     }
 
+    function getInterfacesIds()
+    {
+        $data = [];
+        foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
+            $data[$iface['xid']] = $iface;
+        }
+        return $data;
+    }
+
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
         if ($fromCache && $ret = $this->getCache(json_encode($filter))) {
