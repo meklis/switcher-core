@@ -1,9 +1,46 @@
 - {name: sys.boardName, oid: .1.3.6.1.4.1.2011.6.1.1.1.1.3}
 - {name: sys.version, oid: .1.3.6.1.4.1.2011.6.3.1.3.0}
+- {name: sys.slot.description, oid: .1.3.6.1.4.1.2011.6.3.3.2.1.3}
 - {name: sys.slot.typeName, oid: .1.3.6.1.4.1.2011.6.3.3.2.1.21}
 - {name: sys.slot.serial, oid: .1.3.6.1.4.1.2011.6.3.3.2.1.11}
-- {name: resources.slot.cpuUtil, oid: 1.3.6.1.4.1.2011.2.6.7.1.1.2.1.5 }
-- {name: resources.slot.temp, oid: 1.3.6.1.4.1.2011.6.3.3.2.1.13 }
+- {name: sys.slot.sub.countPorts, oid: .1.3.6.1.4.1.2011.6.3.3.3.1.3}
+- {name: sys.slot.operStatus, oid: .1.3.6.1.4.1.2011.6.3.3.2.1.8, values: {1: online,
+                                                                           2: normal,
+                                                                           3: fault,
+                                                                           4: forbidden,
+                                                                           5: autofind,
+                                                                           6: config,
+                                                                           7: offline,
+                                                                           8: abnormal,
+                                                                           9: versionerr,
+                                                                           10: autoload,
+                                                                           11: outofservice,
+                                                                           12: graceful,
+                                                                           13: shutdown,
+                                                                           14: energysavingshutdown,
+                                                                           15: hightempshutdown,
+                                                                           16: manualshutdown,
+                                                                           17: mismatch,
+                                                                           18: acoffshutdown,}}
+- {name: sys.slot.adminState, oid: .1.3.6.1.4.1.2011.6.3.3.2.1.9, values: {-1: nooperation,
+                                              1: disable,
+                                              2: enable,
+                                              3: reset,
+                                              4: test,
+                                              5: confirm,
+                                              6: switch,
+                                              7: delete,
+                                              8: forbidden,
+                                              9: unforbidden,
+                                              10: endservice,
+                                              11: startservice,
+                                              12: poweron,
+                                              13: poweroff,
+                                              14: is,
+                                              15: oos}}
+
+- {name: sys.slot.cpuUtil, oid: 1.3.6.1.4.1.2011.2.6.7.1.1.2.1.5 }
+- {name: sys.slot.temp, oid: 1.3.6.1.4.1.2011.6.3.3.2.1.13 }
 - {name: resources.temp, oid: .1.3.6.1.4.1.2011.6.1.1.5.1.7}
 - {name: fan.controlMode, oid: .1.3.6.1.4.1.2011.6.1.1.5.1.2, values: {1: Manual, 2: EmuAuto, 3: Fixed, 4: MainboardAuto}}
 - {name: fan.speed, oid: .1.3.6.1.4.1.2011.6.1.1.5.1.9}

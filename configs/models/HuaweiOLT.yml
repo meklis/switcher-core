@@ -35,6 +35,9 @@ models:
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -77,6 +80,9 @@ models:
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -119,6 +125,9 @@ models:
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -161,6 +170,9 @@ models:
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
