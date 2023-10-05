@@ -17,7 +17,7 @@ class InterfacesList extends ModuleAbstract
             $this->response[] = $this->parseInterface($params['interface']);
         } else {
             $this->response = array_values(array_map(function ($i) {
-                return $this->parseInterface($i['id'], 'xid');
+                return $this->parseInterface($i['_xid'], 'xid');
             }, $this->listInterfacesByXidNames()));
         }
         return  $this;
