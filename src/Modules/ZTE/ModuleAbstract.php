@@ -182,8 +182,13 @@ abstract class ModuleAbstract extends AbstractModule
                 if ($m[1] === 'xgei') {
                     $type = 'TGE';
                 }
+                $id =
+                    ($m[2] * 10000000) +
+                    ($m[3] * 100000) +
+                    ($m[4] * 1000);
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
-                    'id' => Helper::getIndexByOid($f->getOid()),
+                    'id' => $id,
+                    '_xid' => Helper::getIndexByOid($f->getOid()),
                     'type' => $type,
                     '_shelf' => $m[2],
                     '_slot' => $m[3],
@@ -206,8 +211,13 @@ abstract class ModuleAbstract extends AbstractModule
                 if ($m[1] === 'xgei') {
                     $type = 'TGE';
                 }
+                $id =
+                    ($m[2] * 10000000) +
+                    ($m[3] * 100000) +
+                    ($m[4] * 1000);
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
-                    'id' => Helper::getIndexByOid($f->getOid()),
+                    'id' => $id,
+                    '_xid' => Helper::getIndexByOid($f->getOid()),
                     'type' => $type,
                     '_shelf' => $m[2],
                     '_slot' => $m[3],
@@ -292,7 +302,7 @@ abstract class ModuleAbstract extends AbstractModule
             }
         } elseif ($parseBy == 'xid' && is_numeric($name)) {
             $find = array_filter($xidList, function ($e) use ($name) {
-                return $e['id'] == $name;
+                return $e['_xid'] == $name;
             });
             if (count($find) > 0) {
                 return array_values($find)[0];

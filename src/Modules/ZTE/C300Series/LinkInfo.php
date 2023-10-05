@@ -136,7 +136,7 @@ class LinkInfo extends ModuleAbstract
         $data = $this->listInterfacesByXidNames();
         $resp = [];
         foreach ($data as $dt) {
-            $resp[$dt['id']] = $dt;
+            $resp[$dt['_xid']] = $dt;
         }
         return $resp;
     }
