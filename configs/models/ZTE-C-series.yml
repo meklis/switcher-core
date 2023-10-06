@@ -36,6 +36,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
+      ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -79,6 +80,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
+      ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -122,6 +124,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
+      ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -165,6 +168,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
+      ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
     extra:
       console_conn_type: zte
       port_offset: 1

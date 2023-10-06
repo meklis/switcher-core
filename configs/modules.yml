@@ -465,3 +465,8 @@
     - {name: interface, pattern: '.*', required: no}
     - {name: mac_address, pattern: '.*', required: no}
     - {name: vlan_id, pattern: '.*', required: no}
+
+- name: ctrl_reset_port
+  descr: Reset physical port
+  arguments:
+    - {name: interface, pattern: '.*', required: yes}
