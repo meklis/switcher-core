@@ -15761,6 +15761,13 @@ true
 </details>
             
     
+### [ctrl_ont_clear_counters](#ctrl_ont_clear_counters) - Clear counters 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *^.*$*, обязательный    
+      
+    
+    
 ### [ctrl_ont_delete](#ctrl_ont_delete) - Удаление ОНУ 
     
 **Аргументы:**    
@@ -15833,6 +15840,13 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
 - **state**, проверка выражением: *^(disable|enable)$*, обязательный    
+      
+    
+    
+### [ctrl_reset_port](#ctrl_reset_port) - Reset physical port 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**, обязательный    
       
     
     
