@@ -74,7 +74,7 @@ class FdbTableConsoleFD1616 extends CDataAbstractModule
                     'interface' => $iface,
                     'status' => $match[8] == '-' ? null :  $match[8],
                     '_sport' => $match[3] == '-' ? null :  $match[3],
-                    '_gemid' => $match[7] == '-' ? null :  $match[7],
+                    'uni' => $match[7] == '-' ? null :  $match[7],
                 ];
             }
         }

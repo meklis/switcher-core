@@ -65,7 +65,7 @@ class OntListWithStatuses extends CDataAbstractModule
                         'uni' => null,
                     ],
                     'status' => $statusText,
-                    'admin_status' => null,
+                    'admin_state' => null,
                 ];
             }
         }
@@ -92,7 +92,7 @@ class OntListWithStatuses extends CDataAbstractModule
                 )
             );
             if(!$resp || !isset($resp['ont.adminStatus'])) throw new \Exception("Error load admin_status");
-            $data[$iface['id']]['admin_status'] = $resp['ont.adminStatus']->fetchOne()->getParsedValue();
+            $data[$iface['id']]['admin_state'] = $resp['ont.adminStatus']->fetchOne()->getParsedValue();
             $this->response = [
                 $data[$iface['id']]
             ];
@@ -112,7 +112,7 @@ class OntListWithStatuses extends CDataAbstractModule
             foreach ($resp['ont.adminStatus']->fetchAll() as $status) {
                 $index = Helper::getIndexByOid($status->getOid());
                 if(!isset($data[$index])) continue;
-                $data[$index]['admin_status'] = $status->getParsedValue();
+                $data[$index]['admin_state'] = $status->getParsedValue();
             }
             $this->setCache("onts_status", array_values($data), 10, true);
             $this->response = array_values($data);

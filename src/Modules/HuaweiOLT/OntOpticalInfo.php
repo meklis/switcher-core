@@ -94,12 +94,12 @@ class OntOpticalInfo extends HuaweiOLTAbstractModule
         } catch (\Exception $e) {
         }
         return array_values(array_map(function ($e) {
-            if (!isset($e['distance'])) $e['distance'] = null;
-            if (!isset($e['voltage'])) $e['voltage'] = null;
-            if (!isset($e['temp'])) $e['temp'] = null;
-            if (!isset($e['rx'])) $e['rx'] = null;
-            if (!isset($e['tx'])) $e['tx'] = null;
-            if (!isset($e['olt_rx'])) $e['olt_rx'] = null;
+            if (!isset($e['distance']) || $e['distance'] == -1) $e['distance'] = null;
+            if (!isset($e['voltage'])  || $e['voltage'] > 100) $e['voltage'] = null;
+            if (!isset($e['temp'])  || $e['temp'] > 100) $e['temp'] = null;
+            if (!isset($e['rx'])  || $e['rx'] > 100) $e['rx'] = null;
+            if (!isset($e['tx']) || $e['tx'] > 100) $e['tx'] = null;
+            if (!isset($e['olt_rx']) || $e['olt_rx'] > 100) $e['olt_rx'] = null;
             return $e;
         }, $ifaces));
     }

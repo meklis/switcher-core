@@ -115,7 +115,7 @@ class WrappedResponse {
      * @return void
      * @throws Exception
      */
-    function addElements($data) {
+    function addElements($data, $wrapValues = null) {
         $wrapped = [];
         if($data->error == '') {
             foreach ($data->getResponse() as $num=>$resp) {

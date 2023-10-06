@@ -45,6 +45,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-10/C1
@@ -86,6 +87,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-18/C1
@@ -127,6 +129,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-26/C1
@@ -169,6 +172,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-28/C1
@@ -211,6 +215,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
  - name: D-link DES-3200-52/C1
    key: dlink_des_3200_52_c1
@@ -252,6 +257,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-28F/C1
@@ -294,6 +300,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-18/A1
@@ -335,6 +342,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-26/A1
@@ -376,6 +384,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-28/A1
@@ -417,6 +426,7 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 
 
  - name: D-link DES-3200-28F/A1
@@ -458,4 +468,5 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
+     interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
 

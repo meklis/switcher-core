@@ -27,7 +27,6 @@ class RawConsoleCommand extends ModuleAbstract
         return $this;
     }
     protected function validResponse($response) {
-//        if(preg_match('/^\%Info/', $response)) return  false;
         if(preg_match('/\[Successful\]/', $response)) return  true;
         if(preg_match('/\[OK\]/', $response)) return  true;
         if(preg_match('/Invalid input detected/', $response)) return  false;

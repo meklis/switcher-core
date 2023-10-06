@@ -6,6 +6,8 @@ namespace SwitcherCore\Modules\ZTE\C300Series;
 
 
 use Exception;
+use SnmpWrapper\Oid;
+use SwitcherCore\Modules\Helper;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
 class UnregisteredOntList extends ModuleAbstract
@@ -28,86 +30,85 @@ class UnregisteredOntList extends ModuleAbstract
             case 'epon':
                 $result = array_merge($result, $this->getUnregisteredEPON());
         }
-        foreach ($result as $k=>$v) {
-            try {
-                $result[$k]['interface'] = $this->parseInterface($v['interface']);
-            } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
-                unset($result[$k]);
-            }
-        }
-        $this->response  = array_values($result);
+        $this->response  = $result;
         return $this;
     }
 
     private function getUnregisteredEPON()
     {
-        $input = $this->telnet->exec("show onu unauthentication");
-        if (!$input) throw new Exception("Empty response on command 'show gpon onu uncfg'");
-        $lines = explode("\n", $input);
-        $response = [];
-        $block = [];
-        foreach ($lines as $line) {
-            if(!trim($line)) {
-                if(count($block) > 3) {
-                    $response[] = $block;
-                }
-                $block = [];
-                continue;
-            }
-            if(preg_match('/^(.*?):(.*)$/', $line, $matches)) {
-                $key = strtolower(trim($matches[1]));
-                $value = trim($matches[2]);
-                switch ($key) {
-                    case 'onu interface': $block['interface'] = $value; break;
-                    case 'onu model': $block['onu_model'] = $value; break;
-                    case 'extended model': $block['onu_extended_model'] = $value; break;
-                    case 'mac address': $block['mac'] = $value; break;
-                    case 'sn': $block['serial'] = $value; break;
-                    case 'online state': $block['online_state'] = $value; break;
-                    case 'regtime': $block['reg_time'] = $value; break;
-                }
-                $block['type'] = 'epon';
-            }
+        $oids = [
+            Oid::init($this->oids->getOidByName('epon.uncfg.macAddr')->getOid()),
+            Oid::init($this->oids->getOidByName('epon.uncfg.onuModel')->getOid()),
+            Oid::init($this->oids->getOidByName('epon.uncfg.regTime')->getOid()),
+        ];
+        $response = $this->formatResponse($this->snmp->walkNext($oids));
+        if($this->getResponseByName('epon.uncfg.macAddr', $response)->error() && strpos($this->getResponseByName('epon.uncfg.macAddr', $response)->error(), "No Such Instance") !== false) {
+            return  [];
         }
-        if(count($block) > 3) {
-            $response[] = $block;
+        $data = [];
+        foreach ($this->getResponseByName('epon.uncfg.macAddr', $response)->fetchAll() as $d) {
+            $ifaceId = Helper::getIndexByOid($d->getOid(), 1);
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $onuId = Helper::getIndexByOid($d->getOid());
+            $iface  = $this->parseInterface($ifaceId);
+            $interface = $this->parseInterface("epon-onu_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}:{$onuId}");
+            $data["{$key}"] = [
+                'interface' => $interface,
+                'mac_address' => Helper::formatMac3Blocks($d->getHexValue()),
+            ];
         }
-        return $response;
+        foreach ($this->getResponseByName('epon.uncfg.onuModel', $response)->fetchAll() as $d) {
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $data["{$key}"]['model'] = $d->getParsedValue();
+        }
+        foreach ($this->getResponseByName('epon.uncfg.regTime', $response)->fetchAll() as $d) {
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $data["{$key}"]['reg_time'] = $d->getParsedValue();
+        }
+        return  array_values($data);
     }
 
     private function getUnregisteredGPON()
     {
-        $helper = $this->telnet->getDeviceHelper();
-        $helper->setStripPrompt(false);
-        $list = $this->telnet->exec("show gpon onu uncfg");
-        $helper->setStripPrompt(true);
-        if (!$list) throw new Exception("Empty response on command 'show gpon onu uncfg'");
-        //Parsing block
-        $lines = explode("\n", $list);
-        $lines = array_splice($lines, 2);
-        if (count($lines) === 0) return [];
-        $result = [];
-        foreach ($lines as $line) {
-            if (preg_match('/^(\S*)\s*(\S*)\s*(\S*)$/', trim($line), $matches)) {
-                $result[] = [
-                    'interface' => $matches[1],
-                    'serial' => $matches[2],
-                    'status' => $matches[3],
-                    'type' => 'gpon',
-                    'mac' => null,
-                ];
-            } else if (preg_match('/^(\S*)\s*(\S*)\s*(\S*)\s*(.*)$/', trim($line), $matches)) {
-                $result[] = [
-                    'interface' => $matches[1],
-                    'serial' => $matches[2],
-                    'status' => $matches[3],
-                    'type' => 'gpon',
-                    'mac' => null,
-                ];
-            }
+        $oids = [
+           Oid::init($this->oids->getOidByName('gpon.uncfg.serial')->getOid()),
+           Oid::init($this->oids->getOidByName('gpon.uncfg.psw')->getOid()),
+           Oid::init($this->oids->getOidByName('gpon.uncfg.type')->getOid()),
+           Oid::init($this->oids->getOidByName('gpon.uncfg.fwVersion')->getOid()),
+        ];
+        $response = $this->formatResponse($this->snmp->walkNext($oids));
+        if($this->getResponseByName('gpon.uncfg.serial', $response)->error() && strpos($this->getResponseByName('gpon.uncfg.serial', $response)->error(), "No Such Instance") !== false) {
+            return  [];
         }
-        return  $result;
+
+        $data = [];
+        foreach ($this->getResponseByName('gpon.uncfg.serial', $response)->fetchAll() as $d) {
+            $ifaceId = Helper::getIndexByOid($d->getOid(), 1);
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $onuId = Helper::getIndexByOid($d->getOid());
+            $iface  = $this->parseInterface($ifaceId);
+            $interface = $this->parseInterface("gpon-onu_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}:{$onuId}");
+            $blocks = explode(":", $d->getHexValue());
+            $data["{$key}"] = [
+                'interface' => $interface,
+                'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                    $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
+                ,
+            ];
+        }
+        foreach ($this->getResponseByName('gpon.uncfg.psw', $response)->fetchAll() as $d) {
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $data["{$key}"]['psw'] = $d->getParsedValue();
+        }
+        foreach ($this->getResponseByName('gpon.uncfg.type', $response)->fetchAll() as $d) {
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $data["{$key}"]['type'] = $d->getParsedValue();
+        }
+        foreach ($this->getResponseByName('gpon.uncfg.fwVersion', $response)->fetchAll() as $d) {
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $data["{$key}"]['fw_version'] = $d->getParsedValue();
+        }
+        return  array_values($data);
     }
 
     public function getPretty()

@@ -34,8 +34,7 @@ class OntDelete extends CDataAbstractModule
             throw new \Exception("Error parse named interface");
         }
         $this->console->exec("olt {$m[1]}");
-        $this->console->exec("onu {$m[2]}");
-        $this->console->exec("deregister");
+        $this->console->exec("no-bind onu-id {$m[2]}");
         return $this;
     }
 }

@@ -280,3 +280,28 @@ models:
       interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
       rmon: \SwitcherCore\Modules\Edgecore\Rmon
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
+
+  - name: Edge-core General switch
+    key: edgecore_general_switch
+    ports: 0
+    device_type: SWITCH
+    inputs:
+      - snmp
+    detect: {description: ^ES.*,  objid: .1.3.6.1.4.1.259 }
+    extra:
+      diag_linkup: false
+      count_pairs: 2
+      overwrite_pairs: {ports: [], count_pairs: 4}
+    modules:
+      system: \SwitcherCore\Modules\Edgecore\System
+      parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\Edgecore\InterfacesList
+      fdb: \SwitcherCore\Modules\Edgecore\Fdb
+      link_info: \SwitcherCore\Modules\Edgecore\LinkInfo
+      interface_counters: \SwitcherCore\Modules\Edgecore\Counters
+      vlans: \SwitcherCore\Modules\Edgecore\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\Edgecore\VlanByPorts
+      errors: \SwitcherCore\Modules\Edgecore\Errors
+      interface_descriptions: \SwitcherCore\Modules\Edgecore\Descriptions
+      rmon: \SwitcherCore\Modules\Edgecore\Rmon
+      pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q

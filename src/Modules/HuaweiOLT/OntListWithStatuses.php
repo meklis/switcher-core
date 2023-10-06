@@ -40,6 +40,8 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
                         'interface' => $iface,
                         'status' => $d->getParsedValue(),
                         'conf_status' => null,
+                        'admin_state' => null,
+                        'bind_status' => null,
                     ];
                 }
             }

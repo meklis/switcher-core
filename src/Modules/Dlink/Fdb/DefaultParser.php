@@ -41,7 +41,7 @@ class DefaultParser extends SwitchesPortAbstractModule
                 $pretties[] = [
                     'interface' => $this->parseInterface($ports[$key]),
                     'vlan_id' => $vlanId,
-                    'mac' => $macAddr,
+                    'mac_address' => $macAddr,
                     'status' => $status,
                 ];
             }
@@ -70,7 +70,7 @@ class DefaultParser extends SwitchesPortAbstractModule
         }
         if($filter['mac']) {
             foreach ($formated as $num=>$fdb) {
-                if($fdb['mac'] != $filter['mac']) {
+                if($fdb['mac_address'] != $filter['mac']) {
                     unset($formated[$num]);
                 }
             }
@@ -91,9 +91,9 @@ class DefaultParser extends SwitchesPortAbstractModule
            $fdb_port .= ".{$filter['vlan_id']}";
            $fdb_status .= ".{$filter['vlan_id']}";
        }
-       if($filter['vlan_id'] && $filter['mac']) {
-            $fdb_port .= "." . Helper::mac2oid($filter['mac']);
-            $fdb_status .= "." .   Helper::mac2oid($filter['mac']);
+       if($filter['vlan_id'] && $filter['mac_address']) {
+            $fdb_port .= "." . Helper::mac2oid($filter['mac_address']);
+            $fdb_status .= "." .   Helper::mac2oid($filter['mac_address']);
        }
        $this->response = $this->formatResponse($this->snmp->walkBulk([
             Oid::init($fdb_status), Oid::init($fdb_port),

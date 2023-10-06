@@ -39,7 +39,7 @@ class ByVlanParser extends SwitchesPortAbstractModule
                 $pretties[] = [
                     'interface' => $this->parseInterface($ports[$key]),
                     'vlan_id' => $vlanId,
-                    'mac' => $macAddr,
+                    'mac_address' => $macAddr,
                     'status' => $status,
                 ];
             }
@@ -66,9 +66,9 @@ class ByVlanParser extends SwitchesPortAbstractModule
                 }
             }
         }
-        if($filter['mac']) {
+        if($filter['mac_address']) {
             foreach ($formated as $num=>$fdb) {
-                if($fdb['mac'] != $filter['mac']) {
+                if($fdb['mac_address'] != $filter['mac_address']) {
                     unset($formated[$num]);
                 }
             }
@@ -108,10 +108,10 @@ class ByVlanParser extends SwitchesPortAbstractModule
                $oids[] = $old_oids[1] . ".{$vlan}";
            }
        }
-       if($filter['vlan_id'] && $filter['mac']) {
-            $oids[0] .= "." . Helper::mac2oid($filter['mac']);
-            $oids[1] .= "." .   Helper::mac2oid($filter['mac']);
-       } elseif ($filter['mac']) {
+       if($filter['vlan_id'] && $filter['mac_address']) {
+            $oids[0] .= "." . Helper::mac2oid($filter['mac_address']);
+            $oids[1] .= "." .   Helper::mac2oid($filter['mac_address']);
+       } elseif ($filter['mac_address']) {
            throw new Exception("VlanID must be setted for mac filtering");
        }
         $oidObjects = [];

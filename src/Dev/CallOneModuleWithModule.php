@@ -58,7 +58,7 @@ class CallOneModuleWithModule extends AbstractCommand
             $this->input->getOption('community'),
             $this->input->getOption('username'),
             $this->input->getOption('password'),
-        )
+        )   ->setPrivateCommunity($this->input->getOption('community'))
             ->setCheckAlive(!$this->input->getOption('no-check-alive'))
             ->setModelKey($this->input->getOption('model'))
             ->set('consoleConnectionType', conf('console.type'))

@@ -36,7 +36,6 @@ class VlanByPorts extends SwitchesPortAbstractModule
             $untagged_vlans = [];
             $tagged_vlans = [];
             $egress_vlans = [];
-            $forbidden_vlans = [];
             foreach ($data as $d) {
                 if(in_array($interface, $d['ports']['untagged'])) $untagged_vlans[] = [
                     'name' => $d['name'],
@@ -52,17 +51,12 @@ class VlanByPorts extends SwitchesPortAbstractModule
                         'id' => $d['id'],
                     ];
                 }
-                if(in_array($interface, $d['ports']['forbidden'])) $forbidden_vlans[] = [
-                    'name' => $d['name'],
-                    'id' => $d['id'],
-                ];
             }
             $response[] = [
                 'interface' => $interface,
                 'untagged' => $untagged_vlans,
                 'tagged' => $tagged_vlans,
                 'egress' => $egress_vlans,
-                'forbidden' => $forbidden_vlans,
             ];
         }
         $this->data = $response;

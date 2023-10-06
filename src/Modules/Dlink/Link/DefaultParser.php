@@ -36,7 +36,7 @@ class DefaultParser extends SwitchesPortAbstractModule
           }
 
           foreach ($snmp_high_speed as $index) {
-              $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getValue();
+              $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
           }
           foreach ($descr as $index) {
               $indexes[Helper::getIndexByOid($index->getOid())]['description'] =  $index->getValue();
@@ -74,6 +74,9 @@ class DefaultParser extends SwitchesPortAbstractModule
     {
         Helper::prepareFilter($filter);
         $response = $this->formate();
+        if(!$filter['type']) {
+            $filter['type'] = 'FE,GE';
+        }
         if($filter['type']) {
             $types = explode(",", $filter['type']);
             foreach ($response as $num => $resp) {

@@ -64,7 +64,6 @@ class InterfaceCounters extends GCOMAbstractModule
      */
     public function run($filter = [])
     {
-        $filter['interface'] = '0.16.64';
         $oids = $this->oids->getOidsByRegex('^ont.stat\..*');
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);

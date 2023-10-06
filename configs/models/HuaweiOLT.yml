@@ -23,16 +23,21 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -63,16 +68,21 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
+      ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -103,16 +113,21 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
+      ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -143,16 +158,21 @@ models:
       pon_onts_vendor: \SwitcherCore\Modules\HuaweiOLT\OntVendorInfo
       interface_descriptions: \SwitcherCore\Modules\HuaweiOLT\InterfaceDescriptions
       pon_onts_configuration: \SwitcherCore\Modules\HuaweiOLT\OntConfiguration
-      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
+#      sys_resources: \SwitcherCore\Modules\HuaweiOLT\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
-      pon_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      pon_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
+      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
+      ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
+      ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
+      link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
+      card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
+      card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:

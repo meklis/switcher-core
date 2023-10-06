@@ -59,9 +59,9 @@ class FdbTableConsole extends HuaweiOLTAbstractModule
         } elseif ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             if(in_array($this->model->getKey(), ['huawei_ma5680t','huawei_ma5608t', 'huawei_ma5683t']))  {
-                $commands[] = "display mac-address port {$iface['_frame']}/{$iface['_slot']}/{$iface['_port']}\r\n";
+                $commands[] = "display mac-address port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}\r\n";
             } else {
-                $commands[] = "display mac-address port {$iface['_frame']}/{$iface['_slot']}/{$iface['_port']}";
+                $commands[] = "display mac-address port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}";
             }
         } elseif ($filter['vlan_id']) {
             $commands[] = "show mac address-table vlan {$filter['vlan_id']}";
@@ -70,9 +70,9 @@ class FdbTableConsole extends HuaweiOLTAbstractModule
             foreach ($ifaces as $iface) {
                 if($iface['type'] != 'PON') continue;
                 if (in_array($this->model->getKey(), ['huawei_ma5680t','huawei_ma5608t', 'huawei_ma5683t'])) {
-                    $commands[] = "display mac-address port {$iface['_frame']}/{$iface['_slot']}/{$iface['_port']}\r\n";
+                    $commands[] = "display mac-address port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}\r\n";
                 } else {
-                    $commands[] = "display mac-address port {$iface['_frame']}/{$iface['_slot']}/{$iface['_port']}";
+                    $commands[] = "display mac-address port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}";
                 }
             }
         }

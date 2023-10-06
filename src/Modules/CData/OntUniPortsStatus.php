@@ -65,7 +65,7 @@ class OntUniPortsStatus extends CDataAbstractModule
                     case 'vlan_mode': $val = $resp->getParsedValue(); break;
                 }
                 $return[$interface['id']]['unis'][$uni][$key] = $val;
-                $return[$interface['id']]['unis'][$uni]['number'] = (int)$uni;
+                $return[$interface['id']]['unis'][$uni]['num'] = (int)$uni;
                 $return[$interface['id']]['interface'] = $interface;
             }
         }

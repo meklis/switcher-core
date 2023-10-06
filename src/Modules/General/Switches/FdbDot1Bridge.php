@@ -39,12 +39,14 @@ abstract class FdbDot1Bridge extends AbstractInterfaces
                     continue;
                 }
                 if(!(int)$ports[$key])  continue;
-                $pretties[] = [
-                    'interface' => $this->parseInterface($ports[$key]),
-                    'vlan_id' => (int)$vlanId,
-                    'mac' => $macAddr,
-                    'status' => $status,
-                ];
+                try {
+                    $pretties[] = [
+                        'interface' => $this->parseInterface($ports[$key]),
+                        'vlan_id' => (int)$vlanId,
+                        'mac_address' => $macAddr,
+                        'status' => $status,
+                    ];
+                } catch (\Throwable $e) {}
             }
             return $pretties;
         } else {

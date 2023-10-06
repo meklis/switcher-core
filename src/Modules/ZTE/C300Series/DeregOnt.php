@@ -15,11 +15,11 @@ class DeregOnt extends ModuleAbstract
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
-        $iface = $this->parseInterface($params['onu']);
-        $interface = "{$iface['technology']}-olt_{$iface['shelf']}/{$iface['slot']}/{$iface['port']}";
+        $iface = $this->parseInterface($params['interface']);
+        $interface = "{$iface['_technology']}-olt_{$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']}";
         $this->exec("conf t");
         $this->exec("interface {$interface}");
-        $this->exec("no onu {$iface['onu_num']}");
+        $this->exec("no onu {$iface['_onu_num']}");
         return $this;
     }
 

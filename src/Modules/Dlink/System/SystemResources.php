@@ -44,34 +44,6 @@ class SystemResources extends SwitchesPortAbstractModule
             ];
         }
 
-        if (!$filter['load_only'] || str_contains($filter['load_only'], 'interfaces')) {
-            $response['interfaces'] = [];
-            foreach ($this->getResponseByName('agent.PortUtilizationUtil')->fetchAll() as $resp) {
-                $index = Helper::getIndexByOid($resp->getOid());
-                $response['interfaces'][$index]['util'] = $resp->getValue();
-            }
-            foreach ($this->getResponseByName('agent.PortUtilizationTx')->fetchAll() as $resp) {
-                $index = Helper::getIndexByOid($resp->getOid());
-                $response['interfaces'][$index]['util_tx'] = $resp->getValue();
-            }
-            foreach ($this->getResponseByName('agent.PortUtilizationRx')->fetchAll() as $resp) {
-                $index = Helper::getIndexByOid($resp->getOid());
-                $response['interfaces'][$index]['util_rx'] = $resp->getValue();
-            }
-            if (count($response['interfaces']) > 0) {
-                $indexes = $this->getIndexes();
-                foreach ($response['interfaces'] as $index => $data) {
-                    if (!isset($indexes[$index])) {
-                        unset($response['interfaces'][$index]);
-                    } else {
-                        $response['interfaces'][$index]['interface'] = $indexes[$index];
-                    }
-                }
-                $response['interfaces'] = array_values($response['interfaces']);
-            } else {
-                $response['interfaces'] = null;
-            }
-        }
         return $response;
     }
 

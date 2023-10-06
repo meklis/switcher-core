@@ -53,9 +53,12 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
                    'password' => null,
                    'version' => null,
                    'equipment_id' => null,
-                   'software_ver' => null,
+                   'fw_version' => null,
                    'check_code' => null,
                    'loid' => null,
+                   'reg_time' => null,
+                   'model' => null,
+                   'type' => null,
                 ];
             }
         }
@@ -74,7 +77,7 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
         if (isset($response['ont.autofind.softwareVer'])) {
             foreach ($response['ont.autofind.softwareVer']->fetchAll() as $d) {
                 $iface = $this->findIfaceByOid($d->getOid());
-                $data[$iface['id']]['software_ver'] = $this->convertHexToString($d->getHexValue());
+                $data[$iface['id']]['fw_version'] = $this->convertHexToString($d->getHexValue());
             }
         }
         if (isset($response['ont.autofind.equipmentId'])) {

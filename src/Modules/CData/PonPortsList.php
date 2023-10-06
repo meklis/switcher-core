@@ -25,12 +25,12 @@ class PonPortsList extends AbstractModule
 
     function getPretty()
     {
-        return array_map(function($e){
+        return array_values(array_map(function($e){
             if(!isset($e['pontype'])) {
                 $e['pontype'] = null;
             }
             return $e;
-        },$this->model->getExtraParamByName('interfaces'));
+        },$this->model->getExtraParamByName('interfaces')));
     }
 
     /**

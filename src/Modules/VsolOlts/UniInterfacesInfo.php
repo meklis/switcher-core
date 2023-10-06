@@ -61,10 +61,10 @@ class UniInterfacesInfo extends VsolOltsAbstractModule
             $data['num'] = $num;
             $response[] = $data;
         }
-        $this->response = [
+        $this->response = [[
             'interface' => $iface,
             'unis' => $response,
-        ];
+        ]];
         return $this;
     }
 

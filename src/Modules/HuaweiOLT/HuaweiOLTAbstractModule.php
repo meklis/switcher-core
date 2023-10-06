@@ -61,6 +61,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                 $iface['name'] .= ":{$onuNum}";
                 $iface['parent'] = $iface['id'];
                 $iface['type'] = 'ONU';
+                $iface['_technology'] = 'gpon';
                 $iface['_onu'] = $onuNum;
                 $iface['id'] = ($iface['id'] * 1000) + $onuNum;
                 $iface['xid'] .= ".{$onuNum}";
@@ -77,6 +78,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                 $iface['name'] .= ":{$onuNum}";
                 $iface['parent'] = $iface['id'];
                 $iface['type'] = 'ONU';
+                $iface['_technology'] = 'gpon';
                 $iface['_onu'] = $onuNum;
                 $iface['id'] = ($iface['id'] * 1000) + $onuNum;
                 $iface['xid'] .= ".{$onuNum}";
@@ -100,6 +102,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                $iface['name'] .= ":{$onuNum}";
                $iface['parent'] = $iface['id'];
                $iface['type'] = 'ONU';
+               $iface['_technology'] = 'gpon';
                $iface['_onu'] = $onuNum;
                $iface['id'] = ($iface['id'] * 1000) + $onuNum;
                $iface['xid'] .= ".{$onuNum}";
@@ -144,9 +147,10 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                     'xid' => $xid,
                     'name' => $iface->getValue(),
                     'type' => 'PON',
-                    'technology' => 'gpon',
+                    '_technology' => 'gpon',
+                    '_pon_max_ont_size' => 128,
                     'parent' => null,
-                    '_frame' => $matches[1],
+                    '_shelf' => $matches[1],
                     '_slot' => $matches[2],
                     '_port' => $matches[3],
                     '_onu' => null,
@@ -160,8 +164,8 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                     'name' => $iface->getValue(),
                     'type' => 'ETH',
                     'parent' => null,
-                    'technology' => null,
-                    '_frame' => $matches[1],
+                    '_technology' => null,
+                    '_shelf' => $matches[1],
                     '_slot' => $matches[2],
                     '_port' => $matches[3],
                     '_onu' => null,

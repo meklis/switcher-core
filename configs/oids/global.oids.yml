@@ -22,7 +22,7 @@
   - {name: if.AdminStatus, oid: .1.3.6.1.2.1.2.2.1.7, access: write, type: integer, values: {1: Enabled, 2: Disabled, 3: TESTING} }
   #Текущее состояние интерфейса
   # 1-UP/2-DOWN/6-NOT PRESENT
-  - {name: if.OperStatus, oid: .1.3.6.1.2.1.2.2.1.8, access: read, values: {1: Up, 2: Down, 6: NOT_PRESENT, 7: LLDown} }
+  - {name: if.OperStatus, oid: .1.3.6.1.2.1.2.2.1.8, access: read, values: {1: Up, 2: Down, 6: NotPresent, 7: LLDown} }
   #The value of sysUpTime at the time the interface entered its current operational state.  If the current state was entered prior to the last re-initialization of the local network management subsystem, then this object contains a zero value.
   - {name: if.LastChange, oid: .1.3.6.1.2.1.2.2.1.9, access: read }
   - {name: if.PhysAddr, oid: .1.3.6.1.2.1.2.2.1.6, access: read }
@@ -37,10 +37,13 @@
   - {name: if.HCOutBroadcastPkts, oid: .1.3.6.1.2.1.31.1.1.1.13, access: read }
   - {name: if.HCInBroadcastPkts, oid: .1.3.6.1.2.1.31.1.1.1.9, access: read }
 
-  - {name: if.HighSpeed, oid: .1.3.6.1.2.1.31.1.1.1.15, access: read, values: {1000: 1G, 10000: 10G} }
+  - {name: if.HighSpeed, oid: .1.3.6.1.2.1.31.1.1.1.15, access: read, values: {1000: 1G, 2488: 2.5G, 10000: 10G} }
   - {name: if.ConnectorPresent, oid: .1.3.6.1.2.1.31.1.1.1.17, access: read, values: { 1: 'YES', 2: 'NO' } }
   - {name: if.Name, oid: .1.3.6.1.2.1.31.1.1.1.1, access: read }
   - {name: if.Alias, oid: .1.3.6.1.2.1.31.1.1.1.18, access: read }
+
+  - {name: ent.physicalName, oid: .1.3.6.1.2.1.47.1.1.1.1.7}
+
 #rmon mib
   - {name: rmon.EtherStatsCRCAlignErrors, oid: .1.3.6.1.2.1.16.1.1.1.8, access: read }
   - {name: rmon.EtherStatsUndersizePkts, oid: .1.3.6.1.2.1.16.1.1.1.9, access: read }
