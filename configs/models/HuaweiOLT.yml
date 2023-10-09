@@ -29,7 +29,7 @@ models:
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
       ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
-      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
@@ -73,7 +73,7 @@ models:
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
       ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
@@ -118,7 +118,7 @@ models:
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
       ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
@@ -163,7 +163,7 @@ models:
       interface_counters: \SwitcherCore\Modules\HuaweiOLT\InterfaceCounters
       fdb: \SwitcherCore\Modules\HuaweiOLT\FdbTableConsole
       ctrl_ont_reboot: \SwitcherCore\Modules\HuaweiOLT\OntReboot
-      ctrl_ont_reset_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
+      ctrl_ont_clear_counters: \SwitcherCore\Modules\HuaweiOLT\OntResetCounters
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
