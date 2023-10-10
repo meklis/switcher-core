@@ -65,4 +65,5 @@ models:
       rmon: \SwitcherCore\Modules\Huawei\Rmon
       pvid: \SwitcherCore\Modules\Huawei\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Huawei\CableDiag
+      ctrl_port_descr: \SwitcherCore\Modules\Huawei\SetPortDescription
 

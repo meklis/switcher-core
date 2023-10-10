@@ -21,3 +21,4 @@ models:
     vlans_by_port: \SwitcherCore\Modules\EltexSwitch\VlanByPorts
     interface_descriptions: \SwitcherCore\Modules\EltexSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\EltexSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\EltexSwitch\SetPortDescription

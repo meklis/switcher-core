@@ -19,3 +19,4 @@ models:
     vlans_by_port: \SwitcherCore\Modules\AlcatelSwitch\VlanByPorts
     interface_descriptions: \SwitcherCore\Modules\AlcatelSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\AlcatelSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\AlcatelSwitch\SetPortDescription
