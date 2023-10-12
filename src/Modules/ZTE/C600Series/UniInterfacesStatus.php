@@ -5,7 +5,7 @@ namespace SwitcherCore\Modules\ZTE\C600Series;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Helper;
 
-class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
+class UniInterfacesStatus extends ModuleAbstract
 {
     public function run($params = [])
     {
@@ -13,55 +13,91 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
             throw new \Exception("Interface is required, must be ONT");
         }
         $interface = $this->parseInterface($params['interface']);
-        $oids = array_map(function ($oid) use ($interface) {
-            if($interface['_technology'] == 'epon') {
-                return Oid::init("{$oid->getOid()}.{$interface['_oid_id']}");
-            } else {
-                return Oid::init("{$oid->getOid()}.{$interface['_oid_eth_id']}");
-            }
-        }, $this->oids->getOidsByRegex("^{$interface['_technology']}.uni.*"));
-        $this->response = $this->formatResponse($this->snmp->walkNext($oids));
+        if($this->model->getKey() === 'zte_c610_fw_12') {
+            $this->response = $this->getGponInfoC610($interface);
+        } else {
+            $this->response = $this->getGponInfo($interface);
+        }
+
         return $this;
     }
 
-    public function getPretty()
-    {
-        $data = [];
-        foreach ($this->response as $oidName => $dt) {
-            if ($dt->error()) {
-                continue;
-            }
-            foreach ($dt->fetchAll() as $resp) {
-                $uni = Helper::getIndexByOid($resp->getOid());
-                $name = str_replace(['gpon.uni.', 'epon.uni.'], '', $oidName);
-                switch ($oidName) {
-                    case 'epon.uni.status':
-                    case 'epon.uni.admin_state':
-                    case 'epon.uni.duplex':
-                    case 'epon.uni.speed':
-                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1));
-                        $data[$iface['id']]['interface'] = $iface;
-                        $data[$iface['id']]['unis'][$uni]['num'] = $uni;
-                        $data[$iface['id']]['unis'][$uni][$name] = $resp->getParsedValue();
+    public function getGponInfo($interface) {
+        $resp = $this->parseExpandedTable($this->telnet->exec("show gpon remote-onu interface eth {$interface['name']}"));
+        $response = [];
+        foreach ($resp as $num => $info) {
+            foreach ($info as $k => $v) {
+                switch ($k) {
+                    case 'speed_status':
+                        $response[$num]['speed'] = $v === 'auto' ? 'Down' : ucfirst($v);
                         break;
-                    case 'gpon.uni.admin_state':
-                    case 'gpon.uni.speed':
-                    case 'gpon.uni.status':
-                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 2) . '.' . Helper::getIndexByOid($resp->getOid(), 1), 'eth_id');
-                        $data[$iface['id']]['interface'] = $iface;
-                        $data[$iface['id']]['unis'][$uni]['num'] = $uni;
-                        $data[$iface['id']]['unis'][$uni][$name] = $resp->getParsedValue();
+                    case 'operate_status':
+                        if($v === 'enable') $v = 'Up';
+                        if($v === 'disable') $v = 'Down';
+                        $response[$num]['status'] =   ucfirst($v);
+                        break;
+                    case 'admin_status':
+                        $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : ucfirst($v);
+                        break;
+                    case 'interface':
+                        $response[$num]['num'] = $v;
+                        break;
+                    case 'speed_config':
+                        $response[$num]['admin_speed'] = ucfirst($v);
+                        break;
+                    case 'ether_loop':
+                    case 'power_control':
+                        $response[$num][$k] = ucfirst($v);
                         break;
                 }
             }
         }
-        return array_values(array_map(function ($onu) {
-            foreach ($onu['unis'] as $num=>$uni) {
-                $onu['unis'][$num] = $uni;
+        return [['interface' => $interface, 'unis' => $response]];
+    }
+
+    public function getGponInfoC610($interface) {
+        $response = [];
+        for($portNum = 1; $portNum <= 24; $portNum++) {
+            try {
+                $resp = $this->parseExpandedTable($this->telnet->exec("show gpon remote-onu interface eth {$interface['name']} eth_0/{$portNum}"));
+                foreach ($resp as $num => $info) {
+                    foreach ($info as $k => $v) {
+                        switch ($k) {
+                            case 'speed_status':
+                                $response[$num]['speed'] = $v === 'auto' ? 'Down' : ucfirst($v);
+                                break;
+                            case 'operate_status':
+                                if ($v === 'enable') $v = 'Up';
+                                if ($v === 'disable') $v = 'Down';
+                                $response[$num]['status'] = ucfirst($v);
+                                break;
+                            case 'admin_status':
+                                $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : ucfirst($v);
+                                break;
+                            case 'interface':
+                                $response[$num]['num'] = $v;
+                                break;
+                            case 'speed_config':
+                                $response[$num]['admin_speed'] = ucfirst($v);
+                                break;
+                            case 'ether_loop':
+                            case 'power_control':
+                                $response[$num][$k] = ucfirst($v);
+                                break;
+                        }
+                    }
+                }
+            } catch (\Exception $e) {
+                break;
             }
-            $onu['unis'] = array_values($onu['unis']);
-            return $onu;
-        }, $data));
+        }
+        return [['interface' => $interface, 'unis' => $response]];
+    }
+
+
+    public function getPretty()
+    {
+        return $this->response;
     }
 
     public function getPrettyFiltered($filter = [])

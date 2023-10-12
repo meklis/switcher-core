@@ -2,7 +2,7 @@
 
 namespace SwitcherCore\Modules\ZTE\C600Series;
 
-class OntDownHistory extends \SwitcherCore\Modules\ZTE\ModuleAbstract {
+class OntDownHistory extends ModuleAbstract {
     public function run($params = [])
     {
         if(!$params['interface']) {

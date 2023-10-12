@@ -2,7 +2,7 @@
 
 namespace SwitcherCore\Modules\ZTE\C600Series;
 
-class OntConfiguration extends \SwitcherCore\Modules\ZTE\ModuleAbstract {
+class OntConfiguration extends ModuleAbstract {
     public function run($params = [])
     {
         if(!$params['interface']) {

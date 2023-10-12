@@ -45,7 +45,7 @@
 - {name: gpon.ont.OntVendor, oid: .1.3.6.1.4.1.3902.1012.3.50.11.2.1.1}
 - {name: gpon.ont.serial, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.5}
 - {name: gpon.ont.VportMode, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.10, values: { 1: gemport, 2: onu, 3: manual}}
-- {name: gpon.ont.adminState, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.1, values: { 1: enabled, 2: disabled}}
+- {name: gpon.ont.adminState, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.1, values: { 1: Enabled, 2: Disabled}}
 - {name: gpon.ont.phaseState, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.4, values: { 0: logging, 1: LOS, 2: syncMib, 3: working, 4: DyingGasp, 5: authFailed, 6: Offline}}
 - {name: gpon.ont.LastOnlineTime, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.5}
 - {name: gpon.ont.LastOfflineTime, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.6}

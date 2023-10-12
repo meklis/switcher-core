@@ -90,24 +90,23 @@ class OntOpticalInfo extends ModuleAbstract
         if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
             if(in_array('gpon', $type) && $this->isGponCardsExist()) $info[] = $this->oids->getOidByName('gpon.optical.olt_rx');
         }
-        $oids = [];
-        foreach ($info as $oid) {
-            $oids[] = $oid->getOid();
-        }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                $blk = $iface['_technology'] == 'gpon' ?  ".1" : '';
-                return $e . "." . $iface['_oid_id'] . $blk;
-            }, $oids);
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
+
+            $oids = [];
+            foreach ($info as $oid) {
+                $ID = "{$oid->getOid()}.{$iface['_oid_id']}";
+                if(in_array($oid->getName(), ['gpon.optical.rx', 'gpon.optical.tx', 'gpon.optical.temp', 'gpon.optical.voltage'])) {
+                    $ID .= ".1";
+                }
+                $oids[] = Oid::init($ID);
+            }
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
+            $oids = [];
+            foreach ($info as $oid) {
+                $oids[] = Oid::init($oid->getOid());
+            }
             $this->response = $this->formatResponse($this->snmp->walkNext($oids));
         }
         return $this;
@@ -196,16 +195,22 @@ class OntOpticalInfo extends ModuleAbstract
         } catch (\Exception $e) {}
         try {
             $responses = $this->getResponseByName('gpon.optical.olt_rx')->fetchAll();
+
             foreach ($responses as $resp) {
-                $id = Helper::getIndexByOid($resp->getOid(), 2) . "." . Helper::getIndexByOid($resp->getOid(), 1);
+                $id = Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid(), 0);
                 if(!isset($ifaces[$id])) {
                     $ifaces[$id] = [
                         'interface' => $this->parseInterface($id),
                     ];
                 }
                 $ifaces[$id]['olt_rx'] = round($resp->getParsedValue() / 1000, 3);
+                if($ifaces[$id]['olt_rx'] == -1 || $ifaces[$id]['olt_rx'] == -80) {
+                    $ifaces[$id]['olt_rx'] = 0;
+                }
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+            throw $e;
+        }
         try {
             $responses = $this->getResponseByName('gpon.optical.temp')->fetchAll();
             foreach ($responses as $resp) {
@@ -233,7 +238,7 @@ class OntOpticalInfo extends ModuleAbstract
         try {
             $responses = $this->getResponseByName('gpon.optical.distance')->fetchAll();
             foreach ($responses as $resp) {
-                $id = Helper::getIndexByOid($resp->getOid(), 2) . "." . Helper::getIndexByOid($resp->getOid(), 1);
+                $id = Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid());
                 if(!isset($ifaces[$id])) {
                     $ifaces[$id] = [
                         'interface' => $this->parseInterface($id),

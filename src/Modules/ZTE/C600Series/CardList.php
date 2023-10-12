@@ -33,6 +33,8 @@ class CardList extends ModuleAbstract
         $response = $this->formatResponse($this->snmp->walk([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.RealType')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.NumPorts')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.HardwareVer')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.FirmwareVer')->getOid()),
         ]));
         $RESP = [];
         //Validate not errors
@@ -47,10 +49,10 @@ class CardList extends ModuleAbstract
             $shelf = Helper::getIndexByOid($type->getOid(), 1);
             $slot = Helper::getIndexByOid($type->getOid());
             $technology = null;
-            if(preg_match('/^G[A-Z]GO$/', $type->getValue())) {
+            if(preg_match('/^G.*$/', $type->getValue())) {
                 $technology = 'gpon';
             }
-            if(preg_match('/^E[A-Z]GO$/', $type->getValue())) {
+            if(preg_match('/^E.*$/', $type->getValue())) {
                 $technology = 'epon';
             }
             $RESP["{$rack}/{$shelf}/{$slot}"] = [
@@ -70,6 +72,18 @@ class CardList extends ModuleAbstract
             $shelf = Helper::getIndexByOid($type->getOid(), 1);
             $slot = Helper::getIndexByOid($type->getOid());
             $RESP["{$rack}/{$shelf}/{$slot}"]['num_ports'] = $type->getValue();
+        }
+        foreach ($response['zx.slot.HardwareVer']->fetchAll() as $type) {
+            $rack = Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = Helper::getIndexByOid($type->getOid(), 1);
+            $slot = Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['hard_ver'] = $type->getValue();
+        }
+        foreach ($response['zx.slot.FirmwareVer']->fetchAll() as $type) {
+            $rack = Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = Helper::getIndexByOid($type->getOid(), 1);
+            $slot = Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['soft_ver'] = $type->getValue();
         }
 
         $this->response = array_values($RESP);

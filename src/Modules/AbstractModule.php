@@ -206,4 +206,17 @@ abstract class AbstractModule
         }
         return $str;
     }
+
+    /**
+     * @param PoollerResponse[] $responses
+     * @return void
+     */
+    protected function checkSnmpRespError($responses) {
+        foreach ($responses as $response) {
+            if($response->error) {
+                throw new \SNMPException($response->error);
+            }
+        }
+        return;
+    }
 }

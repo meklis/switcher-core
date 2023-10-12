@@ -6,7 +6,6 @@ namespace SwitcherCore\Modules\ZTE\C600Series;
 
 
 use Exception;
-use SwitcherCore\Modules\ZTE\C600Series\ModuleAbstract;
 
 class GponOntProfileList extends ModuleAbstract
 {
@@ -15,6 +14,8 @@ class GponOntProfileList extends ModuleAbstract
         $this->response = [
             'line' => $this->lineProfileList(),
             'remote' => $this->remoteProfileList(),
+            'traffic' => $this->gponTrafficProfile(),
+           // 'epon_sla' => $this->eponTrafficProfile(),
         ];
         return $this;
     }
@@ -61,5 +62,51 @@ class GponOntProfileList extends ModuleAbstract
         }
         $this->setCache('onu_profile_list_remote', $lines, 60);
         return $lines;
+    }
+
+    function gponTrafficProfile() {
+        if($cache = $this->getCache('gpon_traffic_profile')) {
+            return $cache;
+        }
+        if (!$this->telnet) {
+            throw new Exception("Module required telnet connection");
+        }
+        $input = $this->telnet->exec("show gpon profile traffic");
+        $lines = explode("\n", $input);
+        $profiles = [];
+        foreach ($lines as $line) {
+            if(preg_match('/^Name.*?:(.*)$/', trim($line), $m)) {
+                $profiles[] = trim($m[1]);
+            }
+            if(preg_match('/^Profile name.*?:(.*)$/', trim($line), $m)) {
+                $profiles[] = trim($m[1]);
+            }
+        }
+        $this->setCache('gpon_traffic_profile', $profiles, 60);
+        return $profiles;
+    }
+
+    function eponTrafficProfile() {
+        if($cache = $this->getCache('epon_traffic_profile')) {
+            return $cache;
+        }
+        if (!$this->telnet) {
+            throw new Exception("Module required telnet connection");
+        }
+        $input = $this->telnet->exec("show epon onu-sla-profile");
+        $lines = explode("\n", $input);
+        $profiles = [];
+        $listStarted = false;
+        foreach ($lines as $line) {
+            if(preg_match('/------/', trim($line))) {
+                $listStarted = true;
+                continue;
+            }
+            if($listStarted) {
+                $profiles[] = trim($line);
+            }
+        }
+        $this->setCache('epon_traffic_profile', $profiles, 60);
+        return $profiles;
     }
 }

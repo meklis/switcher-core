@@ -23,10 +23,9 @@ class CardStatus extends ModuleAbstract
     {
         $response = $this->formatResponse($this->snmp->walk([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.OperStatus')->getOid()),
-      //      \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.AdminStatus')->getOid()),
-       //     \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.CpuLoad')->getOid()),
-      //      \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.temperature')->getOid()),
-      //      \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.MemUsage')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.AdminStatus')->getOid()),
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.CpuLoad')->getOid()),
+        //    \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.MemUsage')->getOid()),
         ]));
         $RESP = [];
         //Validate not errors
@@ -45,21 +44,25 @@ class CardStatus extends ModuleAbstract
                 'shelf' => $shelf,
                 'slot' => $slot,
                 'oper_status' => $type->getParsedValue(),
+                'temperature' => null,
+                'memory_usage' => null,
+                'cpu_load' => null,
+                'admin_status' => null,
                 'id' => (int)"10{$rack}{$shelf}{$slot}",
             ];
         }
-//        foreach ($response['zx.slot.AdminStatus']->fetchAll() as $type) {
-//            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
-//            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
-//            $slot = (int)Helper::getIndexByOid($type->getOid());
-//            $RESP["{$rack}/{$shelf}/{$slot}"]['admin_status'] = $type->getParsedValue();
-//        }
-//        foreach ($response['zx.slot.CpuLoad']->fetchAll() as $type) {
-//            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
-//            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
-//            $slot = (int)Helper::getIndexByOid($type->getOid());
-//            $RESP["{$rack}/{$shelf}/{$slot}"]['cpu_load'] = $type->getParsedValue();
-//        }
+        foreach ($response['zx.slot.AdminStatus']->fetchAll() as $type) {
+            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
+            $slot = (int)Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['admin_status'] = $type->getParsedValue();
+        }
+        foreach ($response['zx.slot.CpuLoad']->fetchAll() as $type) {
+            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
+            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
+            $slot = (int)Helper::getIndexByOid($type->getOid());
+            $RESP["{$rack}/{$shelf}/{$slot}"]['cpu_load'] = $type->getParsedValue();
+        }
 //        foreach ($response['zx.slot.temperature']->fetchAll() as $type) {
 //            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
 //            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
