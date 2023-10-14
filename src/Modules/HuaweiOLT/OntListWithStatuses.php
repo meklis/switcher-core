@@ -60,6 +60,18 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
             }
         } catch (\Exception $e) {
         }
+        try {
+            $data = $this->getResponseByName('ont.controlActive', $resp);
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $d) {
+                    $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
+                    if (isset($return[$xid])) {
+                        $return[$xid]['admin_state'] = $d->getParsedValue();
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+        }
 
         return array_values($return);
     }
@@ -83,10 +95,14 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
             if (in_array('status', $loadOnly)) {
                 $oidRequests[] = $this->oids->getOidByName('ont.status');
             }
+            if (in_array('admin_state', $loadOnly)) {
+                $oidRequests[] = $this->oids->getOidByName('ont.controlActive');
+            }
         } else {
             $oidRequests = [
                 $this->oids->getOidByName('ont.confStatus'),
                 $this->oids->getOidByName('ont.status'),
+                $this->oids->getOidByName('ont.controlActive'),
             ];
         }
         $oids = [];

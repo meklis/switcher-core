@@ -77,10 +77,10 @@ class PonPortsOptical extends HuaweiOLTAbstractModule
         }
 
         return array_values(array_map(function ($e) {
-            if (!isset($e['bias'])) $e['bias'] = null;
-            if (!isset($e['voltage'])) $e['voltage'] = null;
-            if (!isset($e['temp'])) $e['temp'] = null;
-            if (!isset($e['tx'])) $e['tx'] = null;
+            if (!isset($e['bias']) || $e['bias'] > 10000) $e['bias'] = null;
+            if (!isset($e['voltage'])  || $e['voltage'] > 10000) $e['voltage'] = null;
+            if (!isset($e['temp'])  || $e['temp'] > 10000) $e['temp'] = null;
+            if (!isset($e['tx'])  || $e['tx'] > 10000) $e['tx'] = null;
             return $e;
         }, $ifaces));
     }

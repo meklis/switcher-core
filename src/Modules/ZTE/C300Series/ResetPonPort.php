@@ -21,6 +21,7 @@ class ResetPonPort extends ModuleAbstract
 
         $this->exec("conf t");
         $this->exec("interface {$interface['_technology']}-olt_{$interface['_shelf']}/{$interface['_slot']}/{$interface['_port']}");
+        sleep(10);
         $this->exec("shutdown");
         $this->exec("reset");
         $this->exec("no shutdown");

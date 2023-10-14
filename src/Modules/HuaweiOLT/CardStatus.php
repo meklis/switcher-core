@@ -66,7 +66,11 @@ class CardStatus extends HuaweiOLTAbstractModule
         foreach ($response['sys.slot.temp']->fetchAll() as $type) {
             $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
             $slot = (int)Helper::getIndexByOid($type->getOid());
-            $RESP["{$shelf}/{$slot}"]['temperature'] = $type->getParsedValue();
+            $temp = $type->getParsedValue();
+            if($temp > 10000) {
+                $temp = null;
+            }
+            $RESP["{$shelf}/{$slot}"]['temperature'] = $temp;
         }
         $RESP = array_filter($RESP, function ($c) {
            return isset($c['oper_status'])  && isset($c['admin_status']);
