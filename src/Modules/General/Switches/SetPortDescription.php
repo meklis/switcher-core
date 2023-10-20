@@ -27,8 +27,11 @@ abstract class SetPortDescription extends AbstractInterfaces
 
     public function run($filter = [])
     {
-        if (!$filter['interface'] || !$filter['description']) {
+        if (!$filter['interface']) {
             throw new \Exception("Arguments interface and description is required");
+        }
+        if(!isset($filter['description'])) {
+            $filter['description'] = '';
         }
         $interface = $this->parseInterface($filter['interface']);
         $aliasOid = $this->oids->getOidByName('if.Alias')->getOid() . ".{$interface['_snmp_id']}";

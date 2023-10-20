@@ -19,3 +19,6 @@ models:
     vlans_by_port: \SwitcherCore\Modules\DellSwitch\VlanByPorts
     interface_descriptions: \SwitcherCore\Modules\DellSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\DellSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\DellSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\DellSwitch\StatePortControl
+

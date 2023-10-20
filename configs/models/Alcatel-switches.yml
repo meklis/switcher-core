@@ -20,3 +20,4 @@ models:
     interface_descriptions: \SwitcherCore\Modules\AlcatelSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\AlcatelSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\AlcatelSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\AlcatelSwitch\StatePortControl

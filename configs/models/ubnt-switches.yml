@@ -18,3 +18,5 @@ models:
     interfaces_list: \SwitcherCore\Modules\UbntSwitch\InterfacesList
     vlans: \SwitcherCore\Modules\UbntSwitch\VlansDot1q
     vlans_by_port: \SwitcherCore\Modules\UbntSwitch\VlanByPorts
+    ctrl_port_descr: \SwitcherCore\Modules\UbntSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\UbntSwitch\StatePortControl

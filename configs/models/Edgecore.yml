@@ -31,6 +31,7 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ECS4120-28Fv2
     key: edgecore_ecs4120_28fv2
@@ -59,6 +60,7 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ECS4510-28F
     key: edgecore_ecs4510_28f
@@ -87,6 +89,7 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ES4612
     key: edgecore_es4612
@@ -114,6 +117,7 @@ models:
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ES3552M
     key: edgecore_es3552m
@@ -144,6 +148,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ECS3510-28T
     key: edgecore_ecs3510_28t
@@ -174,6 +179,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ES3528M
     key: edgecore_es3528m
@@ -204,6 +210,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ES3510MA
     key: edgecore_es3510ma
@@ -234,6 +241,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagES3510
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ES3510MAv2
     key: edgecore_es3510ma_v2
@@ -264,6 +272,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagES3510
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core ES3510
     key: edgecore_es3510
@@ -290,6 +299,7 @@ models:
       rmon: \SwitcherCore\Modules\Edgecore\Rmon
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
 
   - name: Edge-core General switch
     key: edgecore_general_switch
@@ -316,3 +326,4 @@ models:
       rmon: \SwitcherCore\Modules\Edgecore\Rmon
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl

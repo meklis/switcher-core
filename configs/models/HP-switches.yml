@@ -41,6 +41,8 @@ models:
     vlans_by_port: \SwitcherCore\Modules\HpSwitch\VlanByPorts
     interface_descriptions: \SwitcherCore\Modules\HpSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\HpSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\HpSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\HpSwitch\StatePortControl
 
 - name: HP Switch (ArubaOS)
   key: hp_arubaos_switch
@@ -60,3 +62,5 @@ models:
     vlans_by_port: \SwitcherCore\Modules\HpArubaOsSwitch\VlanByPorts
     interface_descriptions: \SwitcherCore\Modules\HpArubaOsSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\HpArubaOsSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\HpArubaOsSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\HpArubaOsSwitch\StatePortControl

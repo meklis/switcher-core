@@ -66,4 +66,5 @@ models:
       pvid: \SwitcherCore\Modules\Huawei\PvidDot1q
       cable_diag: \SwitcherCore\Modules\Huawei\CableDiag
       ctrl_port_descr: \SwitcherCore\Modules\Huawei\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\Huawei\StatePortControl
 

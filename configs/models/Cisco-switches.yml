@@ -16,6 +16,8 @@ models:
     rmon: \SwitcherCore\Modules\CiscoSwitch\Rmon
     interface_descriptions: \SwitcherCore\Modules\CiscoSwitch\Descriptions
     interfaces_list: \SwitcherCore\Modules\CiscoSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\CiscoSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\CiscoSwitch\StatePortControl
 
 - name: Cisco Switch
   key: cisco_general_switch_sg
@@ -35,3 +37,5 @@ models:
     interfaces_list: \SwitcherCore\Modules\CiscoSwitch\InterfacesList
     vlans: \SwitcherCore\Modules\CiscoSwitch\VlansDot1q
     vlans_by_port: \SwitcherCore\Modules\CiscoSwitch\VlanByPorts
+    ctrl_port_descr: \SwitcherCore\Modules\CiscoSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\CiscoSwitch\StatePortControl
