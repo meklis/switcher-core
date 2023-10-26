@@ -13,7 +13,6 @@ models:
       pon_ports_list: \SwitcherCore\Modules\HuaweiOLT\PonPortsList
       parse_interface: \SwitcherCore\Modules\HuaweiOLT\ParseInterface
       interfaces_list: \SwitcherCore\Modules\HuaweiOLT\InterfacesList
-      pon_count_registered_onts: \SwitcherCore\Modules\HuaweiOLT\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\HuaweiOLT\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\HuaweiOLT\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\HuaweiOLT\OntOpticalInfo
@@ -58,7 +57,6 @@ models:
       pon_ports_list: \SwitcherCore\Modules\HuaweiOLT\PonPortsList
       parse_interface: \SwitcherCore\Modules\HuaweiOLT\ParseInterface
       interfaces_list: \SwitcherCore\Modules\HuaweiOLT\InterfacesList
-      pon_count_registered_onts: \SwitcherCore\Modules\HuaweiOLT\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\HuaweiOLT\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\HuaweiOLT\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\HuaweiOLT\OntOpticalInfo
@@ -103,7 +101,6 @@ models:
       pon_ports_list: \SwitcherCore\Modules\HuaweiOLT\PonPortsList
       parse_interface: \SwitcherCore\Modules\HuaweiOLT\ParseInterface
       interfaces_list: \SwitcherCore\Modules\HuaweiOLT\InterfacesList
-      pon_count_registered_onts: \SwitcherCore\Modules\HuaweiOLT\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\HuaweiOLT\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\HuaweiOLT\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\HuaweiOLT\OntOpticalInfo
@@ -148,7 +145,6 @@ models:
       pon_ports_list: \SwitcherCore\Modules\HuaweiOLT\PonPortsList
       parse_interface: \SwitcherCore\Modules\HuaweiOLT\ParseInterface
       interfaces_list: \SwitcherCore\Modules\HuaweiOLT\InterfacesList
-      pon_count_registered_onts: \SwitcherCore\Modules\HuaweiOLT\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\HuaweiOLT\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\HuaweiOLT\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\HuaweiOLT\OntOpticalInfo
@@ -193,7 +189,6 @@ models:
       pon_ports_list: \SwitcherCore\Modules\HuaweiOLT\PonPortsList
       parse_interface: \SwitcherCore\Modules\HuaweiOLT\ParseInterface
       interfaces_list: \SwitcherCore\Modules\HuaweiOLT\InterfacesList
-      pon_count_registered_onts: \SwitcherCore\Modules\HuaweiOLT\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\HuaweiOLT\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\HuaweiOLT\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\HuaweiOLT\OntOpticalInfo
