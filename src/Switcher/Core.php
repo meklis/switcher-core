@@ -173,6 +173,9 @@ class Core
         //Check device is alive before getting info from cache
         $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
         if ($response[0]->error) {
+            if(strpos($response[0]->error, 'No Such Object available on this agent at this OID') !== false) {
+                throw new \ErrorException("Current device not support detect. Please, set device model manually");
+            }
             throw new \SNMPException($response[0]->error);
         }
         if ($this->cache && $resp = $this->cache->get("SW_CORE_MODEL_DETECT:{$this->device->getIp()}")) {
