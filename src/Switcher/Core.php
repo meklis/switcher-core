@@ -256,7 +256,7 @@ class Core
             if ($this->device->isCheckAlive()) {
                 $response = $multiwalker->get([O::init($oidCollector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
 
-                if ($response[0]->error) {
+                if ($response[0]->error && strpos($response[0]->error, 'No response from') !== false) {
                     throw new \SNMPException($response[0]->error);
                 }
             }

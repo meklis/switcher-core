@@ -1,0 +1,20 @@
+- {name: system.deviceInfo, oid: .1.3.6.1.4.1.35160.1.1.0}
+- {name: system.macAddress, oid: .1.3.6.1.4.1.35160.1.6.0}
+- {name: system.uptime, oid: .1.3.6.1.4.1.35160.1.2.0}
+- {name: system.deviceName, oid: .1.3.6.1.4.1.35160.1.7.0}
+- {name: system.deviceDescription, oid: .1.3.6.1.4.1.35160.1.8.0}
+
+- {name: power.out.name, oid: .1.3.6.1.4.1.35160.1.11.1.2}
+- {name: power.out.mode, oid: .1.3.6.1.4.1.35160.1.11.1.4, values: {0: 'On', 1: 'Off', 2: ControlledByPings, 3: ControlledByAnalogLine} }
+
+- {name: digital.lines.name, oid: .1.3.6.1.4.1.35160.1.15.1.2}
+- {name: digital.lines.direction, oid: .1.3.6.1.4.1.35160.1.15.1.5, values: {0: 'Output', 1: 'Input'}}
+- {name: digital.lines.output, oid: .1.3.6.1.4.1.35160.1.15.1.6, values: {0: 'Low', 1: 'High'}}
+- {name: digital.lines.value, oid: .1.3.6.1.4.1.35160.1.15.1.7, values: {0: 'Low', 1: 'High'}}
+
+- {name: analog.lines.name, oid: .1.3.6.1.4.1.35160.1.15.1.2}
+- {name: analog.lines.value, oid: .1.3.6.1.4.1.35160.1.16.1.13}
+
+
+- {name: knock.state, oid: .1.3.6.1.4.1.35160.1.22.0}
+- {name: power.sensorState, oid: .1.3.6.1.4.1.35160.1.26.0}

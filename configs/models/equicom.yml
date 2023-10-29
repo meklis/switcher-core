@@ -1,0 +1,16 @@
+############################################## GENERAL DEVICES  #####################################################
+
+models:
+ - name: Ping3
+   key: equicom_ping3
+   device_type: SENSORS
+   inputs:
+     - snmp
+   oids:
+     - ./oids/equicom/ping3.yml
+   detect: {description: PING3_DEVICE_DETECT_NOT_WORKING }
+   modules:
+     system: \SwitcherCore\Modules\Sensors\Ping3\SystemInfo
+
+
+
