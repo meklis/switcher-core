@@ -83,11 +83,6 @@ class OntFDBTable extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        /**
-        - {name: pon.fdbWithInterface, oid: .1.3.6.1.4.1.34592.1.3.100.12.2.1.1.3}
-        - {name: pon.fdbWithUni, oid: 1.3.6.1.4.1.34592.1.3.100.13.1.1.5}
-         */
-
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             if($iface['type'] === 'ONU') {

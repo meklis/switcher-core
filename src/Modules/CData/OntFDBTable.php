@@ -44,7 +44,7 @@ class OntFDBTable extends CDataAbstractModule
 
     private function processWithoutInterface() {
 
-        $oidLoc[] = $this->oids->getOidByName('pon.fdbWithInterface');
+        $oidLoc[] = $this->oids->getOidByName('dot1q.FdbPort');
         $oidLoc[] = $this->oids->getOidByName('pon.fdbWithUni');
         $oids = [];
         foreach ($oidLoc as $o) {
@@ -56,11 +56,11 @@ class OntFDBTable extends CDataAbstractModule
         /**
          * @var $fdb WrappedResponse
          */
-        $fdb = $this->getResponseByName('pon.fdbWithInterface', $response);
+        $fdb = $this->getResponseByName('dot1q.FdbPort', $response);
         if($fdb->error()) {
             throw new \SNMPException($fdb->error());
         }
-        foreach ($this->getResponseByName('pon.fdbWithInterface', $response)->fetchAll() as $r) {
+        foreach ($this->getResponseByName('dot1q.FdbPort', $response)->fetchAll() as $r) {
             $interface = $this->parseInterface($r->getValue());
             $vlanId = Helper::getIndexByOid($r->getOid());
             $mac = Helper::oid2macArray([
@@ -114,7 +114,7 @@ class OntFDBTable extends CDataAbstractModule
             }
         }
         $oids = [];
-        $parent = $this->oids->getOidByName('pon.fdbWithInterface');
+        $parent = $this->oids->getOidByName('dot1q.FdbPort');
         foreach ($macDecs as $mac) {
             $oids[] = Oid::init("{$parent->getOid()}.{$mac}");
         }
@@ -152,11 +152,6 @@ class OntFDBTable extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        /**
-        - {name: pon.fdbWithInterface, oid: .1.3.6.1.4.1.34592.1.3.100.12.2.1.1.3}
-        - {name: pon.fdbWithUni, oid: 1.3.6.1.4.1.34592.1.3.100.13.1.1.5}
-         */
-
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             if($iface['type'] === 'ONU') {

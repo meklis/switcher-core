@@ -71,7 +71,6 @@
 - {name: profile.onu.vlan.trunk_vlans, oid: .1.3.6.1.4.1.3320.10.6.1.1.1.5}
 
 - {name: profile.onu.tcont.name, oid: .1.3.6.1.4.1.3320.10.6.2.1.2}
-- {name: profile.onu.tcont.type, oid: .1.3.6.1.4.1.3320.10.6.2.1.3 }
 
 - {name: profile.onu.flow.name, oid: .1.3.6.1.4.1.3320.10.6.6.1.3}
 - {name: profile.onu.flow.uni_type, oid: .1.3.6.1.4.1.3320.10.6.2.1.3, values: {1: ethernet-uni, 2: pots-uni, 3: t1, 4: e1, 5: hpna, 6: ip-host} }

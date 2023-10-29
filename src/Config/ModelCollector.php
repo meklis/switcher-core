@@ -65,4 +65,23 @@ class ModelCollector extends Collector
         throw new \Exception("Model not found by key $key");
     }
 
+    /**
+     * @return string[]
+     * @throws Exception
+     */
+    function getAllModelKeys() {
+       $modelKeys = [];
+        foreach ($this->modelsDB as $model) {
+            if($model->getRewrites() && isset($model->getRewrites()['mapping'])) {
+                foreach ($model->getRewrites()['mapping'] as $rewrite) {
+                    if(isset($rewrite['rewrite']['key']) && $rewrite['rewrite']['key'] != $model->getKey()) {
+                        $modelKeys[] = $model->getKey();
+                    }
+                }
+            }
+            $modelKeys[] = $model->getKey();
+        }
+        return $modelKeys;
+    }
+
 }

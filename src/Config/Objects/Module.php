@@ -110,7 +110,7 @@ class Module
                 throw new InvalidArgumentException("Parameter $key is required");
             }
             if(!isset($arguments[$key]) || !$arguments[$key]) {
-                $arguments[$key] = isset($val['default']) ? $val['default'] : '';
+                $arguments[$key] = isset($val['default']) ? $val['default'] : null;
             }
 
         }

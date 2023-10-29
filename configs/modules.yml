@@ -470,3 +470,65 @@
   descr: Reset physical port
   arguments:
     - {name: interface, pattern: '.*', required: yes}
+
+- name: ctrl_set_device_name
+  descr: Setting device name
+  arguments:
+    - {name: name, pattern: '.*', required: yes}
+
+- name: ctrl_set_device_description
+  descr: Setting device description
+  arguments:
+    - {name: description, pattern: '.*', required: yes}
+
+- name: ctrl_set_device_location
+  descr: Setting device location
+  arguments:
+    - {name: location, pattern: '.*', required: yes}
+
+- name: ctrl_set_device_contact
+  descr: Setting device contact
+  arguments:
+    - {name: contact, pattern: '.*', required: yes}
+
+- name: power_control_output_list
+  descr: List of output power interfaces
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,3}$', required: no}
+
+- name: power_sensor_state
+  descr: Current power sensor state
+
+- name: knock_sensor_state
+  descr: Current knock sensor state
+
+- name: ctrl_power_control_output
+  descr: Configure power output control
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,3}$', required: yes}
+    - {name: name, pattern: '.*', required: no}
+    - {name: mode, pattern: '(On|Off)', required: no, values: ['On', 'Off']}
+
+- name: digital_lines_list
+  descr: List of output power interfaces
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,3}$', required: no}
+
+- name: ctrl_digital_line
+  descr: Configure power output control
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,3}$', required: yes}
+    - {name: name, pattern: '.*', required: no}
+    - {name: direction, pattern: '(Output|Input)', required: no, values: ['Output', 'Input']}
+    - {name: output, pattern: '(Low|High)', required: no, values: ['Low', 'High']}
+
+- name: analog_lines_list
+  descr: List of output power interfaces
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,3}$', required: no}
+
+- name: ctrl_analog_line
+  descr: Configure power output control
+  arguments:
+    - {name: id, pattern: '^[0-9]{1,3}$', required: yes}
+    - {name: name, pattern: '.*', required: no}

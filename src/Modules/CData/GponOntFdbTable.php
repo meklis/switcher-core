@@ -69,7 +69,7 @@ class GponOntFdbTable extends CDataAbstractModule
 
     protected function getVlanByMacInterfaceId($mac, $interfaceId) {
         $response = $this->snmp->walk(
-                [Oid::init($this->oids->getOidByName('pon.fdbWithInterface')->getOid() . "." . Helper::mac2oid($mac))]
+                [Oid::init($this->oids->getOidByName('dot1q.FdbPort')->getOid() . "." . Helper::mac2oid($mac))]
             );
         foreach ($response as $resp) {
            if($resp->error) continue;
@@ -109,10 +109,6 @@ class GponOntFdbTable extends CDataAbstractModule
      */
     public function run($filter = [])
     {
-        /**
-        - {name: pon.fdbWithInterface, oid: .1.3.6.1.4.1.34592.1.3.100.12.2.1.1.3}
-        - {name: pon.fdbWithUni, oid: 1.3.6.1.4.1.34592.1.3.100.13.1.1.5}
-         */
 
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);

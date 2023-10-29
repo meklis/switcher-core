@@ -11,6 +11,13 @@ models:
    detect: {description: PING3_DEVICE_DETECT_NOT_WORKING }
    modules:
      system: \SwitcherCore\Modules\Sensors\Ping3\SystemInfo
-
-
-
+     ctrl_set_device_name: \SwitcherCore\Modules\General\SetDeviceName
+     ctrl_set_device_description: \SwitcherCore\Modules\General\SetDeviceDescription
+     ctrl_power_control_output: \SwitcherCore\Modules\Sensors\Ping3\PowerOutputControl
+     ctrl_digital_line: \SwitcherCore\Modules\Sensors\Ping3\DigitalLinesControl
+     ctrl_analog_line: \SwitcherCore\Modules\Sensors\Ping3\AnalogLinesControl
+     power_control_output_list: \SwitcherCore\Modules\Sensors\Ping3\PowerOutputsList
+     digital_lines_list: \SwitcherCore\Modules\Sensors\Ping3\DigitalLinesList
+     analog_lines_list: \SwitcherCore\Modules\Sensors\Ping3\AnalogLinesList
+     power_sensor_state: \SwitcherCore\Modules\Sensors\Ping3\PowerSensorState
+     knock_sensor_state: \SwitcherCore\Modules\Sensors\Ping3\KnockSensorState
