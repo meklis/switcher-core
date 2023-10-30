@@ -65,7 +65,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
                 $interface = $this->parseInterface(trim($matches[1]));
                 $response[] = [
                     'interface' => $interface,
-                    'status' => trim($matches[2]) == 'Online' ? 'Online' : 'Offline',
+                    'status' => strtolower(trim($matches[2])) == 'online' ? 'Online' : 'Offline',
                     'bind_status' => trim($matches[2]),
                     '_oam_status' => trim($matches[3]),
                     '_mac' => trim($matches[4]),
@@ -92,7 +92,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
                     $response[] = [
                         'interface' => $this->parseInterface('gpon-onu_' . trim($match[1])),
                         'admin_state' => $match[2],
-                        'status' => $match[3] == 'enable' ? 'Online' : 'Offline',
+                        'status' => strtolower(trim($match[3])) == 'enable' ? 'Online' : 'Offline',
                         'bind_status' => $match[4],
                         '_channel' => $match[5],
                     ];
@@ -100,7 +100,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
                     $response[] = [
                         'interface' => $this->parseInterface(trim($match[1])),
                         'admin_state' => trim($match[2]),
-                        'status' => trim($match[3]) == 'enable' ? 'Online' : 'Offline',
+                        'status' => strtolower(trim($match[3])) == 'enable' ? 'Online' : 'Offline',
                         'bind_status' => trim($match[5]),
                         '_channel' => null,
                     ];
@@ -108,7 +108,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
                     $response[] = [
                         'interface' => $this->parseInterface('gpon-onu_' . trim($match[1])),
                         'admin_state' => trim($match[2]),
-                        'status' => trim($match[3]) == 'enable' ? 'Online' : 'Offline',
+                        'status' => strtolower(trim($match[3])) == 'enable' ? 'Online' : 'Offline',
                         'bind_status' => trim($match[5]),
                         '_channel' => null,
                     ];
@@ -179,7 +179,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
                             'admin_state' => null,
                         ];
                     }
-                    $ifaces[$xid]['status'] = $d->getParsedValue() == 'Working' ? 'Online' : 'Offline';
+                    $ifaces[$xid]['status'] = strtolower($d->getParsedValue()) == 'working' ? 'Online' : 'Offline';
                     $ifaces[$xid]['bind_status'] = $d->getParsedValue();
                 }
             }
@@ -199,7 +199,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
                         'admin_state' => null,
                     ];
                 }
-                $ifaces[$xid]['status'] = strtolower($d->getParsedValue()) == 'Online' ? 'Online' : 'Offline';
+                $ifaces[$xid]['status'] = strtolower($d->getParsedValue()) == 'online' ? 'Online' : 'Offline';
                 $ifaces[$xid]['bind_status'] = $d->getParsedValue();
             }
         }
