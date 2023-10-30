@@ -109,6 +109,7 @@ class OntFDBTable extends CDataAbstractModule
                 $RETURN["{$interface['id']}-{$r->getHexValue()}"] = [
                     'interface' => $interface,
                     'mac_address' => $r->getHexValue(),
+                    'vlan_id' => 0,
                 ];
                 $macDecs[] = Helper::mac2oid($r->getHexValue());
             }
