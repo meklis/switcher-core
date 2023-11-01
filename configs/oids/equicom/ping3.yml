@@ -17,4 +17,4 @@
 
 
 - {name: knock.state, oid: .1.3.6.1.4.1.35160.1.22.0, values: {0: 'OK', 1: 'Alarm'}}
-- {name: power.sensorState, oid: .1.3.6.1.4.1.35160.1.26.0, values: {0: 'PowerIsBad', 1: 'Good'}}
+- {name: power.sensorState, oid: .1.3.6.1.4.1.35160.1.26.0, values: {0: 'PowerIsBad', 1: 'OK'}}
