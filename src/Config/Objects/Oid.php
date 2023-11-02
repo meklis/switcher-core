@@ -114,6 +114,14 @@ class Oid
         }
         throw new InvalidArgumentException("Value with name '$valueName' not found in values");
     }
+    public function getValueNameById($valueId) {
+        foreach ($this->getValues() as $id=>$value) {
+                if($id == $valueId) {
+                    return $value;
+                }
+        }
+        throw new InvalidArgumentException("Value with id '$valueId' not found in values");
+    }
 
     protected function __construct()
     {

@@ -1,0 +1,23 @@
+############################################## Parameters description  #####################################################
+##
+############################################################################################################################
+
+models:
+ - name: Mikrotik CRS
+   key: mikrotik_crs
+   ports: 0
+   device_type: SWITCH
+   detect: {description: ^RouterOS CRS.*,  objid: ^.1.3.6.1.4.1.14988 }
+   inputs:
+     - snmp
+   modules:
+     parse_interface: \SwitcherCore\Modules\MikrotikCRS\ParseInterface
+     fdb: \SwitcherCore\Modules\MikrotikCRS\Fdb
+     link_info: \SwitcherCore\Modules\MikrotikCRS\LinkInfo
+     interface_counters: \SwitcherCore\Modules\MikrotikCRS\Counters
+     system: \SwitcherCore\Modules\MikrotikCRS\System
+     errors: \SwitcherCore\Modules\MikrotikCRS\Errors
+     interface_descriptions: \SwitcherCore\Modules\MikrotikCRS\Descriptions
+     interfaces_list: \SwitcherCore\Modules\MikrotikCRS\InterfacesList
+     pvid: \SwitcherCore\Modules\MikrotikCRS\PvidDot1q
+     ctrl_port_descr: \SwitcherCore\Modules\MikrotikCRS\SetPortDescription
