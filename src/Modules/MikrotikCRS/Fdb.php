@@ -31,5 +31,13 @@ class Fdb extends FdbDot1Bridge
         return $this;
     }
 
+    function getPrettyFiltered($filter = [])
+    {
+        $data = parent::getPrettyFiltered($filter);
+        return array_filter($data, function ($f) {
+            return $f['status'] !== 'SELF';
+        });
+    }
+
 
 }
