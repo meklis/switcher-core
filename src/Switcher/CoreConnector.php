@@ -147,9 +147,9 @@ class CoreConnector
         $walker = $this->initWalker($device);
         $core = (new Core)->setDevice($device)
             ->addInput($walker)
-            ->setModelCollector($this->modelCollector)
-            ->setModuleCollector($this->moduleCollector)
-            ->setOidCollector($this->oidCollector);
+            ->setModelCollector(clone $this->modelCollector)
+            ->setModuleCollector(clone $this->moduleCollector)
+            ->setOidCollector(clone $this->oidCollector);
 
         if($this->cache) {
             $core->setCache($this->cache);
