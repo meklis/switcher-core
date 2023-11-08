@@ -32,14 +32,14 @@ class OntSerial extends BDcomAbstractModule
             $iface = $this->parseInterface($filter['interface']);
             $DATA[] = [
               'interface' => $iface,
-              'serial' => $resp->fetchOne()->getParsedValue(),
+              'serial' => str_replace(":", "", $resp->fetchOne()->getParsedValue()),
             ];
         }
         foreach ($resp->fetchAll() as $resp) {
             $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
             $DATA[] = [
                 'interface' => $iface,
-                'serial' => $resp->getParsedValue(),
+                'serial' => str_replace(":", "", $resp->getParsedValue()),
             ];
         }
         return  $this->sortResponseByInterface($DATA);
