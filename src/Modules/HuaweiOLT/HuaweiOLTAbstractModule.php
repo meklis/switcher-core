@@ -40,7 +40,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
             return $ret;
         }
         $resp = $this->getPretty();
-        $this->setCache(json_encode($filter), $resp, 15);
+        $this->setCache(json_encode($filter), $resp, 5);
         return $resp;
     }
 

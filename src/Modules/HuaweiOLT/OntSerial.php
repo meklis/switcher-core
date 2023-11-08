@@ -28,12 +28,14 @@ class OntSerial extends HuaweiOLTAbstractModule
         $resp = [];
         foreach ($this->getResponseByName('ont.config.sn')->fetchAll() as $d) {
             $blocks = explode(":", $d->getHexValue());
+            $serialASCII =  $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7];
+            $serialHEX =  str_replace(":", "",$d->getHexValue());
             $resp[] = [
                 'interface' => $this->findIfaceByOid($d->getOid()),
-                '_serial_asci' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
-                    $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
-                ,
-                'serial' =>  str_replace(":", "",$d->getHexValue()),
+                '_serial_asci' => $serialASCII,
+                'serial' =>  $filter['sn_as_ascii'] ? $serialASCII : $serialHEX,
+                '_serial_hex' =>  $serialHEX,
                 '_vendor_prefix' => $this->convertHexToString(substr($d->getHexValue(), 0, 11)),
             ];
         }

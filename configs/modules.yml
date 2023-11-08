@@ -357,6 +357,7 @@
   descr: Returned ONTs serial number (for GPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
+    - {name: sn_as_ascii, pattern: '.*', required: no}
 
 - name: pon_onts_optical
   descr: Returned ONTs MAC addresses
@@ -416,6 +417,7 @@
   description: Allow run command
   arguments:
     - { name: type, pattern: '^(all|gpon|epon)$', required: no, values: [ all,gpon,epon ] }
+    - {name: sn_as_ascii, pattern: '.*', required: no}
 
 - name: console_command
   description: Allow run command
