@@ -35,30 +35,34 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
     public function run($filter = [])
     {
         $oids = array_map(function ($e) {
-           return Oid::init($e->getOid());
+            return Oid::init($e->getOid());
         }, $this->oids->getOidsByRegex('ont.autofind..*'));
 
         $response = $this->formatResponse($this->snmp->walkNext($oids));
 
         $data = [];
         if (isset($response['ont.autofind.sn'])) {
-            if($response['ont.autofind.sn']->error()) {
-                return  null;
+            if ($response['ont.autofind.sn']->error()) {
+                return null;
             }
             foreach ($response['ont.autofind.sn']->fetchAll() as $sn) {
                 $iface = $this->findIfaceByOid($sn->getOid());
-                $data[$iface['id']] =  [
-                   'serial' => str_replace(":", "", $sn->getHexValue()),
-                   'interface' => $iface,
-                   'password' => null,
-                   'version' => null,
-                   'equipment_id' => null,
-                   'fw_version' => null,
-                   'check_code' => null,
-                   'loid' => null,
-                   'reg_time' => null,
-                   'model' => null,
-                   'type' => null,
+                $blocks = explode(":", $sn->getHexValue());
+                $data[$iface['id']] = [
+                    '_serial_raw' => str_replace(":", "", $sn->getHexValue()),
+                    'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                        $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
+                    ,
+                    'interface' => $iface,
+                    'password' => null,
+                    'version' => null,
+                    'equipment_id' => null,
+                    'fw_version' => null,
+                    'check_code' => null,
+                    'loid' => null,
+                    'reg_time' => null,
+                    'model' => null,
+                    'type' => null,
                 ];
             }
         }
