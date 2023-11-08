@@ -33,7 +33,7 @@ class OntSerial extends HuaweiOLTAbstractModule
             $serialHEX =  str_replace(":", "",$d->getHexValue());
             $resp[] = [
                 'interface' => $this->findIfaceByOid($d->getOid()),
-                '_serial_asci' => $serialASCII,
+                '_serial_ascii' => $serialASCII,
                 'serial' =>  $filter['sn_as_ascii'] ? $serialASCII : $serialHEX,
                 '_serial_hex' =>  $serialHEX,
                 '_vendor_prefix' => $this->convertHexToString(substr($d->getHexValue(), 0, 11)),
