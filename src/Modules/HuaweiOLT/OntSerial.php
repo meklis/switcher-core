@@ -30,10 +30,10 @@ class OntSerial extends HuaweiOLTAbstractModule
             $blocks = explode(":", $d->getHexValue());
             $resp[] = [
                 'interface' => $this->findIfaceByOid($d->getOid()),
-                'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                '_serial_asci' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
                     $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
                 ,
-                '_serial_raw' =>  str_replace(":", "",$d->getHexValue()),
+                'serial' =>  str_replace(":", "",$d->getHexValue()),
                 '_vendor_prefix' => $this->convertHexToString(substr($d->getHexValue(), 0, 11)),
             ];
         }

@@ -49,10 +49,10 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($sn->getOid());
                 $blocks = explode(":", $sn->getHexValue());
                 $data[$iface['id']] = [
-                    '_serial_raw' => str_replace(":", "", $sn->getHexValue()),
-                    'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                    '_serial_asci' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
                         $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
                     ,
+                    'serial' => str_replace(":", "", $sn->getHexValue()),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,
