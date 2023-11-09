@@ -62,7 +62,7 @@ abstract class ModuleAbstract extends AbstractModule
                     '_port' => $m[4],
                     'name' => $f->getValue(),
                     'parent' => null,
-                    '_onu_num' => null,
+                    '_onu' => null,
                     '_pon_max_ont_size' => in_array($m[1], ['epon', 'gpon']) ? 128 : null,
                     '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
                     '_oid_id' => null,
@@ -91,7 +91,7 @@ abstract class ModuleAbstract extends AbstractModule
                     '_port' => $m[4],
                     'name' => $f->getValue(),
                     'parent' => null,
-                    '_onu_num' => null,
+                    '_onu' => null,
                     '_pon_max_ont_size' => in_array($m[1], ['epon', 'gpon']) ? 128 : null,
                     '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
                     '_oid_id' =>  null,
@@ -191,7 +191,7 @@ abstract class ModuleAbstract extends AbstractModule
         }
 
         if($ontNum) {
-            $iface['_onu_num'] = $ontNum;
+            $iface['_onu'] = $ontNum;
             $iface['_oid_id'] = "{$iface['_xid']}.$ontNum";
             $iface['parent'] = $iface['id'];
             $iface['id'] += $ontNum;
