@@ -108,7 +108,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
-      fdb: \SwitcherCore\Modules\CData\OntFDBTable
+      fdb: \SwitcherCore\Modules\CData\FdbTableConsole
       interface_counters: \SwitcherCore\Modules\CData\EponOntInterfaceCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntReboot
