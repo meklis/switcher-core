@@ -35,7 +35,8 @@ class GponOntSerial extends CDataAbstractModule
             $serial = str_replace(":", "", $r->getHexValue());
             $return[] = [
                 'interface' => $interface,
-                'serial' => Helper::hexToStr(substr($serial, 0, 8)) . substr($serial, 8),
+                'serial' => Helper::hexToStr(substr($r->getHexValue(), 0, 12)) . substr(str_replace(":", "", $r->getHexValue()), 8),
+                '_raw' => $r->getHexValue(),
             ];
         }
         return $return;
