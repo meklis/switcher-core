@@ -50,16 +50,6 @@ class UniInterfacesStatus extends BDcomAbstractModule
         } else {
             throw new \Exception("if.OperStatus not returned, but required ({$data->error()})");
         }
-        $data = $this->getResponseByName('ont.uni.opStatus');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $xid = Helper::getIndexByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$xid]['unis'][$uni]['status'] =  $r->getParsedValue();
-            }
-        }
         $data = $this->getResponseByName('ont.uni.adminStatus');
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
@@ -68,6 +58,20 @@ class UniInterfacesStatus extends BDcomAbstractModule
                 if(!isset($ifaces[$xid])) continue;
                 $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
                 $ifaces[$xid]['unis'][$uni]['admin_state'] =  $r->getParsedValue();
+            }
+        }
+        $data = $this->getResponseByName('ont.uni.opStatus');
+        if(!$data->error()) {
+            foreach ($data->fetchAll() as $r) {
+                $xid = Helper::getIndexByOid($r->getOid(), 1);
+                $uni = Helper::getIndexByOid($r->getOid());
+                if(!isset($ifaces[$xid])) continue;
+                $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
+                if(isset($ifaces[$xid]['unis'][$uni]['admin_state']) && $ifaces[$xid]['unis'][$uni]['admin_state'] === 'Disabled') {
+                    $ifaces[$xid]['unis'][$uni]['status'] = 'Disabled';
+                } else {
+                    $ifaces[$xid]['unis'][$uni]['status'] =  $r->getParsedValue();
+                }
             }
         }
         return array_values(array_map(function ($e){

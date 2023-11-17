@@ -22,9 +22,14 @@
 - {name: ont.fwVer1active, oid: .1.3.6.1.4.1.3320.10.3.1.1.26, values: {1: yes, 2: no} }
 - {name: ont.fwVer1committed, oid: .1.3.6.1.4.1.3320.10.3.1.1.27, values: {1: yes, 2: no} }
 
+
 - {name: ont.opticalRx, oid: .1.3.6.1.4.1.3320.10.3.4.1.2 } # ONU PON port optical receive power. Unit is 0.1dB.
 - {name: ont.opticalTx, oid: .1.3.6.1.4.1.3320.10.3.4.1.3 } # ONU PON port optical send power. Unit is 0.1dB.
 - {name: ont.distance, oid: .1.3.6.1.4.1.3320.10.3.1.1.33 }
+
+- {name: ont.ports.totalCATV, oid: .1.3.6.1.4.1.3320.10.3.1.1.38}
+- {name: ont.ports.totalETH, oid: .1.3.6.1.4.1.3320.10.3.1.1.40}
+- {name: ont.ports.totalVOIP, oid: .1.3.6.1.4.1.3320.10.3.1.1.41}
 
 - {name: fdb.setIfIndex, oid: .1.3.6.1.4.1.3320.10.15.6.0}
 - {name: fdb.setVid, oid: .1.3.6.1.4.1.3320.10.15.5.0}
@@ -50,10 +55,12 @@
 - {name: vlan.untagged, oid: .1.3.6.1.2.1.17.7.1.4.2.1.5}
 
 
+- {name: ont.sysUptime, oid: .1.3.6.1.4.1.3320.10.3.1.1.19}
 
 #SNMP ACTIONS
 - {name: olt.save, oid: .1.3.6.1.4.1.3320.20.15.1.1.0, values: {1: action}}
 - {name: ont.action.reboot, oid: .1.3.6.1.4.1.3320.10.3.2.1.4, values: {1: reboot}}
+- {name: ont.action.delete, oid: .1.3.6.1.4.1.3320.10.3.2.1.2, values: {1: activate, 2: deactivate}}
 - {name: ont.action.disable, oid: .1.3.6.1.4.1.3320.10.3.2.1.3, values: {1: enable, 2: disable}}
 - {name: ont.action.description, oid: .1.3.6.1.4.1.3320.10.3.2.1.21 }
 #UNI Block
@@ -63,6 +70,8 @@
 - {name: ont.uni.statInCRC, oid: .1.3.6.1.4.1.3320.10.4.2.1.36}
 - {name: ont.uni.statOutOctets, oid: .1.3.6.1.4.1.3320.10.4.2.1.39}
 - {name: ont.uni.vlanProfileId, oid: .1.3.6.1.4.1.3320.10.4.1.1.6}
+
+
 
 # OLT GPON profiles
 - {name: profile.onu.vlan.name, oid: .1.3.6.1.4.1.3320.10.6.1.1.1.2}

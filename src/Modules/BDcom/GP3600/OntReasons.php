@@ -40,7 +40,7 @@ class OntReasons extends BDcomAbstractModule
         if(!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 if(isset($ifaces[Helper::getIndexByOid($r->getOid())])) {
-                    $ifaces[Helper::getIndexByOid($r->getOid())]['last_change_since'] = $this->getSince($r->getValue());
+                    $ifaces[Helper::getIndexByOid($r->getOid())]['last_change_since'] =  null;
                     $ifaces[Helper::getIndexByOid($r->getOid())]['last_change'] = (new \DateTime())->setTimestamp(time()- $r->getValue())->format("Y-m-d h:i:s");
                 }
             }

@@ -478,6 +478,13 @@
   arguments:
     - {name: name, pattern: '.*', required: yes}
 
+- name: ctrl_ont_uni_admin_state
+  descr: Setting device name
+  arguments:
+    - {name: interface, pattern: '.*', required: yes}
+    - {name: num, pattern: '.*', required: yes}
+    - {name: state, pattern: '^(enable|disable)$', required: yes}
+
 - name: ctrl_set_device_description
   descr: Setting device description
   arguments:

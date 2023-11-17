@@ -127,7 +127,7 @@ class OntOpticalInfo extends BDcomAbstractModule
             $oids = array_map(function ($e) {
                 return Oid::init($e);
             }, $oids);
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            $this->response = $this->formatResponse($this->snmp->walkNext($oids));
         }
         return $this;
     }
