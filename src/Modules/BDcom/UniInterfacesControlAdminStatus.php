@@ -1,15 +1,12 @@
 <?php
 
 
-namespace SwitcherCore\Modules\BDcom\GP3600;
+namespace SwitcherCore\Modules\BDcom;
 
 
 use Exception;
-use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-use SwitcherCore\Switcher\Objects\SnmpResponse;
-use SwitcherCore\Switcher\Objects\WrappedResponse;
+use SwitcherCore\Modules\BDcom\GP3600\BDcomAbstractModule;
 
 class UniInterfacesControlAdminStatus extends BDcomAbstractModule
 {

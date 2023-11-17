@@ -1,17 +1,13 @@
 <?php
 
 
-namespace SwitcherCore\Modules\BDcom\GP3600;
+namespace SwitcherCore\Modules\CData;
 
 
 use Exception;
-use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\Helper;
-use SwitcherCore\Switcher\Objects\SnmpResponse;
-use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class UniInterfacesControlAdminStatus extends BDcomAbstractModule
+class UniInterfacesControlAdminStatus extends CDataAbstractModule
 {
     protected $response = null;
 
@@ -42,7 +38,7 @@ class UniInterfacesControlAdminStatus extends BDcomAbstractModule
             case 'disable': $action = 2; break;
         }
 
-        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.uni.adminStatus')->getOid() . ".{$iface['xid']}.{$filter['num']}")
+        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.uni.adminStatus')->getOid() . ".{$iface['id']}.0.{$filter['num']}")
             ->setType('Integer')
             ->setValue($action);
         $resp = $this->snmp->set($oid);

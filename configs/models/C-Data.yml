@@ -26,6 +26,7 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\FD11XX\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\FD11XX\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: stels
@@ -66,6 +67,7 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\FD11XX\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\FD11XX\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: stels
       pon_port_size: 64
@@ -118,6 +120,7 @@ models:
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -169,6 +172,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -230,6 +234,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -295,6 +300,7 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -356,6 +362,7 @@ models:
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 128
       console_conn_type: cdata

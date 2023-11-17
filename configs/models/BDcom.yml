@@ -87,6 +87,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -125,6 +126,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -163,6 +165,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -201,6 +204,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -239,6 +243,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -277,6 +282,7 @@ models:
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
     extra:
       pon_port_size: 64
       console_conn_type: bdcom

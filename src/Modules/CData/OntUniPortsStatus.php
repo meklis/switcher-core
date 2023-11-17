@@ -69,6 +69,13 @@ class OntUniPortsStatus extends CDataAbstractModule
                 $return[$interface['id']]['interface'] = $interface;
             }
         }
+        foreach ($return as $interfaceID=>$ifaceData) {
+            foreach ($ifaceData['unis'] as $uniNum=>$uni) {
+                if(isset($uni['admin_status']) && $uni['admin_status'] === 'Disabled') {
+                    $return[$interfaceID]['unis'][$uniNum]['status'] = 'Disabled';
+                }
+            }
+        }
         return array_values(array_map(function ($e){
             $e['unis'] = array_values($e['unis']);
             return $e;

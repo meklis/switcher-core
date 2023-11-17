@@ -56,11 +56,11 @@ class GponOntSerial extends CDataAbstractModule
         foreach ($responses as $r) {
             $onuId = Helper::getIndexByOid($r->getOid());
             $interface = $this->parseInterface($onuId);
-            $serial = str_replace(":", "", $r->getHexValue());
             $interface['onu_id'] = $onuId;
             $return[] = [
                 'interface' => $interface,
-                'serial' => Helper::hexToStr(substr($serial, 0, 8)) . substr($serial, 8),
+                'serial' => Helper::hexToStr(substr($r->getHexValue(), 0, 12)) . substr(str_replace(":", "", $r->getHexValue()), 8),
+                '_raw' => $r->getHexValue(),
             ];
         }
         return $return;
