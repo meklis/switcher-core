@@ -49,6 +49,7 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\GP3600\OntDelete
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\GP3600\UniInterfacesControlAdminStatus
       save_config: \SwitcherCore\Modules\BDcom\OltSaveSettings
+      link_info: \SwitcherCore\Modules\BDcom\GP3600\LinkInfo
     extra:
       pon_port_size: 128
       console_conn_type: bdcom
@@ -88,6 +89,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\BDcom\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -127,6 +129,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\BDcom\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -166,6 +169,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\BDcom\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -205,6 +209,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\BDcom\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -244,6 +249,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\BDcom\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -283,6 +289,7 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
       uni_interfaces_vlans: \SwitcherCore\Modules\BDcom\UniInterfacesVlans
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\BDcom\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\BDcom\LinkInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
