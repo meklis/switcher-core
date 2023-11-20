@@ -75,7 +75,12 @@ class UniInterfacesStatus extends ModuleAbstract
                                 $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : ucfirst($v);
                                 break;
                             case 'interface':
-                                $response[$num]['num'] = $v;
+                                if(preg_match('/^eth.*?\/([0-9]{1,2})/', $v, $m)) {
+                                    $response[$num]['num'] = $m[1];
+                                    $response[$num]['name'] = $v;
+                                } else {
+                                    $response[$num]['num'] = $v;
+                                }
                                 break;
                             case 'speed_config':
                                 $response[$num]['admin_speed'] = ucfirst($v);

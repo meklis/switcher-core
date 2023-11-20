@@ -37,6 +37,7 @@ models:
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -81,6 +82,7 @@ models:
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -125,6 +127,7 @@ models:
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -169,6 +172,7 @@ models:
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -224,6 +228,7 @@ models:
       ctrl_ont_disable: \SwitcherCore\Modules\ZTE\C600Series\CtrlOntDisable
       ctrl_ont_descr: \SwitcherCore\Modules\ZTE\C600Series\CtrlOntDescription
       link_info: \SwitcherCore\Modules\ZTE\C600Series\LinkInfo
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: zte
       port_offset: 1
