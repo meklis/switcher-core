@@ -252,14 +252,14 @@ abstract class BDcomAbstractModule extends AbstractModule
             $id += 100000 * $matches[1];
             return $id;
         }
-        if(preg_match('/g0\/([0-9]{1,2})/', $name, $matches)) {
+        if(preg_match('/^tg0\/([0-9]{1,2})/', $name, $matches)) {
+            return (int)$matches[1] + 1000;
+        }
+        if(preg_match('/^g0\/([0-9]{1,2})/', $name, $matches)) {
             return (int)$matches[1] + 100;
         }
-        if(preg_match('/fe0\/([0-9]{1,2})/', $name, $matches)) {
+        if(preg_match('/^fe0\/([0-9]{1,2})/', $name, $matches)) {
             return (int)$matches[1] + 10;
-        }
-        if(preg_match('/tg0\/([0-9]{1,2})/', $name, $matches)) {
-            return (int)$matches[1] + 1000;
         }
         return null;
     }
