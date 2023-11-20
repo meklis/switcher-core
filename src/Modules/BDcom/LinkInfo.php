@@ -18,13 +18,13 @@ class LinkInfo extends BDcomAbstractModule
         $snmp_duplex = !$this->response['if.StatsDuplexStatus']->error() ? $this->response['if.StatsDuplexStatus']->fetchAll() : [];
 
         $indexes = [];
-        foreach ($this->getPhysicalInterfaces() as $index => $port) {
-            $indexes[$index]['interface'] = $port;
-            $indexes[$index]['oper_status'] = null;
-            $indexes[$index]['nway_status'] = null;
-            $indexes[$index]['admin_state'] = null;
-            $indexes[$index]['last_change'] = null;
-            $indexes[$index]['medium_type'] = null;
+        foreach ($this->getPhysicalInterfaces() as $port) {
+            $indexes[$port['xid']]['interface'] = $port;
+            $indexes[$port['xid']]['oper_status'] = null;
+            $indexes[$port['xid']]['nway_status'] = null;
+            $indexes[$port['xid']]['admin_state'] = null;
+            $indexes[$port['xid']]['last_change'] = null;
+            $indexes[$port['xid']]['medium_type'] = null;
         }
 
         foreach ($snmp_oper_status as $index) {
