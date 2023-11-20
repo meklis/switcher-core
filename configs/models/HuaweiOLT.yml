@@ -37,6 +37,7 @@ models:
       link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
       card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -80,6 +81,7 @@ models:
       link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
       card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -123,6 +125,7 @@ models:
       link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
       card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -167,6 +170,7 @@ models:
       link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
       card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -211,6 +215,7 @@ models:
       link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
       card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -255,6 +260,7 @@ models:
       link_info: \SwitcherCore\Modules\HuaweiOLT\LinkInfo
       card_list: \SwitcherCore\Modules\HuaweiOLT\CardList
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:

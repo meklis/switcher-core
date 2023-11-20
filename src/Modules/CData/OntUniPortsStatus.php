@@ -61,7 +61,7 @@ class OntUniPortsStatus extends CDataAbstractModule
                 $val = $resp->getValue();
                 switch ($key) {
                     case 'status': $val = $resp->getParsedValue(); break;
-                    case 'admin_status':
+                    case 'admin_state':
                     case 'vlan_mode': $val = $resp->getParsedValue(); break;
                 }
                 $return[$interface['id']]['unis'][$uni][$key] = $val;
@@ -71,7 +71,7 @@ class OntUniPortsStatus extends CDataAbstractModule
         }
         foreach ($return as $interfaceID=>$ifaceData) {
             foreach ($ifaceData['unis'] as $uniNum=>$uni) {
-                if(isset($uni['admin_status']) && $uni['admin_status'] === 'Disabled') {
+                if(isset($uni['admin_state']) && $uni['admin_state'] === 'Disabled') {
                     $return[$interfaceID]['unis'][$uniNum]['status'] = 'Disabled';
                 }
             }

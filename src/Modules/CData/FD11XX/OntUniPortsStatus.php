@@ -65,7 +65,7 @@ class OntUniPortsStatus extends CDataAbstractModule
                     case 'ont.uni.opStatus':
                     case 'ont.uni.speed':
                     case 'ont.uni.duplex':
-                    case 'ont.uni.adminStatus':
+                    case 'ont.uni.adminState':
                     case 'ont.uni.type':
                         $name = Helper::fromCamelCase(str_replace("ont.uni.", "", $name));
                         $RETURN[$interface['id']]['unis'][$uniNum][$name] = $r->getParsedValue();

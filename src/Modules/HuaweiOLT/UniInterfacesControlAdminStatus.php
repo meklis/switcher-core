@@ -1,13 +1,12 @@
 <?php
 
 
-namespace SwitcherCore\Modules\CData;
+namespace SwitcherCore\Modules\HuaweiOLT;
 
 
-use Exception;
-use SwitcherCore\Modules\AbstractModule;
 
-class UniInterfacesControlAdminStatus extends CDataAbstractModule
+
+class UniInterfacesControlAdminStatus extends HuaweiOLTAbstractModule
 {
     protected $response = null;
 
@@ -25,8 +24,8 @@ class UniInterfacesControlAdminStatus extends CDataAbstractModule
 
     /**
      * @param array $filter
-     * @return $this|AbstractModule
-     * @throws Exception
+     * @return $this
+     * @throws \Exception
      */
     public function run($filter = [])
     {
@@ -38,7 +37,7 @@ class UniInterfacesControlAdminStatus extends CDataAbstractModule
             case 'disable': $action = 2; break;
         }
 
-        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.uni.adminState')->getOid() . ".{$iface['id']}.0.{$filter['num']}")
+        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName('uni.configure.state')->getOid() . ".{$iface['xid']}.{$filter['num']}")
             ->setType('Integer')
             ->setValue($action);
         $resp = $this->snmp->set($oid);
