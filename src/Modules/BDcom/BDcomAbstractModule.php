@@ -195,6 +195,12 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^GigaEthernet([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
             }
+            if (preg_match('/^TGigaEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "tg{$m[1]}";
+            }
+            if (preg_match('/^FastEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "fe{$m[1]}";
+            }
             if (preg_match('/^g([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
             }
@@ -247,7 +253,13 @@ abstract class BDcomAbstractModule extends AbstractModule
             return $id;
         }
         if(preg_match('/g0\/([0-9]{1,2})/', $name, $matches)) {
-            return (int)$matches[1];
+            return (int)$matches[1] + 100;
+        }
+        if(preg_match('/fe0\/([0-9]{1,2})/', $name, $matches)) {
+            return (int)$matches[1] + 10;
+        }
+        if(preg_match('/tg0\/([0-9]{1,2})/', $name, $matches)) {
+            return (int)$matches[1] + 1000;
         }
         return null;
     }
