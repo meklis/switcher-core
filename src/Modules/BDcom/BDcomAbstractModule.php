@@ -115,6 +115,24 @@ abstract class BDcomAbstractModule extends AbstractModule
                     'type' => 'GE',
                 ];
             }
+            if (preg_match('/^TGigaEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "tg{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'TGE',
+                ];
+            }
+            if (preg_match('/^FastEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "fe{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'FE',
+                ];
+            }
             if (preg_match('/^EPON([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
                 $name = "epon{$m[1]}";
                 $this->physicalInterfaces[] = [
