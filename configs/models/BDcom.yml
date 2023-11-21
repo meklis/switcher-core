@@ -182,7 +182,7 @@ models:
     inputs:
       - snmp
       - console
-    detect: {description: ^BDCOM.*?P36.*,  objid: ^.1.3.6.1.4.1.3320 }
+    detect: {description: '^BDCOM.*?P36.*' ,  objid: ^.1.3.6.1.4.1.3320 }
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
