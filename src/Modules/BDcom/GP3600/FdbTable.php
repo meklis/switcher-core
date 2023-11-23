@@ -107,7 +107,7 @@ class FdbTable extends BDcomAbstractModule
             return \SnmpWrapper\Oid::init($oid->getOid());
         }, $this->oids->getOidsByRegex('^fdb.getResult'));
         $result = [];
-        foreach ($this->formatResponse($this->snmp->walkNext($oids)) as $name => $res) {
+        foreach ($this->formatResponse($this->snmp->walkNext($oids, null, null, 2000)) as $name => $res) {
             if($res->error()) {
                 throw new \Exception("Error fetch FDB - {$res->error()}");
             }
