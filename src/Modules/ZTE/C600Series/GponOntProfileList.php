@@ -13,9 +13,8 @@ class GponOntProfileList extends ModuleAbstract
     {
         $this->response = [
             'line' => $this->lineProfileList(),
-            'remote' => $this->remoteProfileList(),
+            'service' => $this->profileServiceList(),
             'traffic' => $this->gponTrafficProfile(),
-           // 'epon_sla' => $this->eponTrafficProfile(),
         ];
         return $this;
     }
@@ -47,14 +46,14 @@ class GponOntProfileList extends ModuleAbstract
         return $lines;
     }
 
-    function remoteProfileList() {
+    function profileServiceList() {
         if($cache = $this->getCache('onu_profile_list_remote')) {
             return $cache;
         }
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
-        $input = $this->telnet->exec("show pon onu-profile gpon remote");
+        $input = $this->telnet->exec("show pon onu-profile gpon service");
         $lines = explode("\n", $input);
         $lines = array_splice($lines, 2);
         foreach ($lines as $k=>$line) {
@@ -71,7 +70,7 @@ class GponOntProfileList extends ModuleAbstract
         if (!$this->telnet) {
             throw new Exception("Module required telnet connection");
         }
-        $input = $this->telnet->exec("show gpon profile traffic");
+        $input = $this->telnet->exec("show gpon onu profile traffic");
         $lines = explode("\n", $input);
         $profiles = [];
         foreach ($lines as $line) {
@@ -86,27 +85,4 @@ class GponOntProfileList extends ModuleAbstract
         return $profiles;
     }
 
-    function eponTrafficProfile() {
-        if($cache = $this->getCache('epon_traffic_profile')) {
-            return $cache;
-        }
-        if (!$this->telnet) {
-            throw new Exception("Module required telnet connection");
-        }
-        $input = $this->telnet->exec("show epon onu-sla-profile");
-        $lines = explode("\n", $input);
-        $profiles = [];
-        $listStarted = false;
-        foreach ($lines as $line) {
-            if(preg_match('/------/', trim($line))) {
-                $listStarted = true;
-                continue;
-            }
-            if($listStarted) {
-                $profiles[] = trim($line);
-            }
-        }
-        $this->setCache('epon_traffic_profile', $profiles, 60);
-        return $profiles;
-    }
 }
