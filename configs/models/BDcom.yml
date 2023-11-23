@@ -35,7 +35,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\BDcom\GP3600\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\GP3600\OntVendorInfo
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
-      fdb: \SwitcherCore\Modules\BDcom\GP3600\FdbTable
+      fdb: \SwitcherCore\Modules\BDcom\GP3600\FdbTableConsole
       interface_descriptions: \SwitcherCore\Modules\BDcom\GP3600\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\BDcom\GP3600\SystemResources
       interface_counters: \SwitcherCore\Modules\BDcom\GP3600\InterfaceCounters
