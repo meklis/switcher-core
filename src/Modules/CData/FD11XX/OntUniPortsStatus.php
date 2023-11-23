@@ -83,8 +83,11 @@ class OntUniPortsStatus extends CDataAbstractModule
                             $status = "Down";
                         }
                     }
+                    if(isset($uni['admin_state']) && $uni['admin_state'] == 'Disabled' ) {
+                        $status = 'Disabled';
+                    }
                     return [
-                      'admin_state' => isset($uni['admin_status']) ? $uni['admin_status'] : null,
+                      'admin_state' => isset($uni['admin_state']) ? $uni['admin_state'] : null,
                       'status' => $status,
                       'speed' => isset($uni['speed']) ? $uni['speed'] : null,
                       'duplex' => isset($uni['duplex']) ? $uni['duplex'] : null,
