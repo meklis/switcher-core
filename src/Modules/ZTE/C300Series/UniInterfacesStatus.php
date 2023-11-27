@@ -35,7 +35,7 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
                         $response[$num]['status'] =   ucfirst($v);
                         break;
                     case 'admin_status':
-                        $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : ucfirst($v);
+                        $response[$num]['admin_state'] = $v === 'unlock' ? 'Enabled' : 'Disabled';
                         break;
                     case 'interface':
                         if(preg_match('/^eth.*?\/([0-9]{1,2})/', $v, $m)) {
@@ -53,6 +53,9 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
                         $response[$num][$k] = ucfirst($v);
                         break;
                 }
+            }
+            if(isset($response[$num]['speed']) && $response[$num]['speed'] === 'Down') {
+                $response[$num]['status'] = 'Down';
             }
         }
         return [['interface' => $interface, 'unis' => $response]];
@@ -86,6 +89,11 @@ class UniInterfacesStatus extends \SwitcherCore\Modules\ZTE\ModuleAbstract
         }
         return array_values(array_map(function ($onu) {
             foreach ($onu['unis'] as $num=>$uni) {
+                if($uni['speed'] === 'Down') {
+                    $uni['status'] = 'Down';
+                } else {
+                    $uni['status'] = 'Up';
+                }
                 $onu['unis'][$num] = $uni;
             }
             $onu['unis'] = array_values($onu['unis']);

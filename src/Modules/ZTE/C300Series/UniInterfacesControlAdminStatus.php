@@ -32,7 +32,30 @@ class UniInterfacesControlAdminStatus extends ModuleAbstract
     {
         $iface = $this->parseInterface($filter['interface']);
 
+        if(in_array($this->model->getKey(), [
+            'zte_c300_fw_1_2',
+            'zte_c320_fw_1_2',
+        ])) {
+            $this->controlOverConsole($iface, $filter);
+        } else {
+            $this->controlOverSNMP($iface, $filter);
+        }
 
+        $this->response = true;
+        return $this;
+    }
+
+    public function controlOverConsole($iface, $filter) {
+        $this->telnet->exec("conf t");
+        $this->telnet->exec("pon-onu-mng {$iface['name']}");
+        if($iface['_technology'] === 'epon') {
+            throw new \Exception("Method not supported for EPON");
+        } else {
+            $state = $filter['state'] === 'enable' ? 'unlock':'lock';
+            $this->telnet->exec("interface eth eth_0/{$filter['num']} state {$state}");
+        }
+    }
+    public function controlOverSNMP($iface, $filter) {
         if($iface['_technology'] === 'epon') {
             $action = null;
             switch ($filter['state']) {
@@ -58,8 +81,7 @@ class UniInterfacesControlAdminStatus extends ModuleAbstract
                 throw new \SNMPException($r->getError());
             }
         }
-        $this->response = true;
-        return $this;
+
     }
 }
 
