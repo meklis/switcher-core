@@ -4,6 +4,7 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
     detect: {description: ^S.*,  objid: .1.3.6.1.4.1.2011.2.23 }
     extra:
       sys_resources_id: 67108873
@@ -12,6 +13,7 @@ models:
         - 67240078
       diag_linkup: false
       only_manual_diag: true
+      console_conn_type: huawei
     rewrites:
       oid: .1.3.6.1.2.1.1.1.0
       mapping:
@@ -67,4 +69,5 @@ models:
       cable_diag: \SwitcherCore\Modules\Huawei\CableDiag
       ctrl_port_descr: \SwitcherCore\Modules\Huawei\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Huawei\StatePortControl
-
+      clear_counters: \SwitcherCore\Modules\Huawei\ClearCounters
+      reboot: \SwitcherCore\Modules\Huawei\Reboot

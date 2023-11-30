@@ -1,17 +1,15 @@
 <?php
 
-
-namespace SwitcherCore\Modules\Dlink;
+namespace SwitcherCore\Modules\Edgecore;
 
 use Exception;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-
 class Reboot extends AbstractModule
 {
-
     protected $status = false;
+
     /**
      * @Inject
      * @var \SwitcherCore\Switcher\Console\ConsoleInterface
@@ -28,23 +26,21 @@ class Reboot extends AbstractModule
         return $this->status;
     }
 
-
-    public function run($filter = [])
+    public function run($params = [])
     {
-        if (!$this->telnet) {
-            throw new Exception("Module Reboot required telnet connection");
+        return $this;
+        if(!$this->telnet) {
+            throw new Exception("Module Edgecore/Reboot required console connection");
         }
         $this->status = false;
         try {
-            $this->telnet->exec("show switch");
-
-            $this->telnet->write("reboot");
+            $response = $this->telnet->exec("reload");
             sleep(1);
             $this->telnet->write("y");
             sleep(1);
             $this->status = true;
         } catch (Exception $e) {
-            throw new Exception("Error execute command", 1, $e);
+            throw new Exception("error execute command: {$e->getMessage()}", 1, $e);
         }
         return $this;
     }
