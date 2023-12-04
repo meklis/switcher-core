@@ -392,10 +392,12 @@
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
+
 - name: interface_counters
-  descr: Returned FDB table on ONTs
+  descr: Return counters by interface or whole interfaces
   arguments:
     - {name: interface, pattern: '.*', required: no}
+    - {name: interface_type, pattern: '.*', required: no, values: ['PHYSICAL', 'ONU']}
 
 
 - name: interfaces_list

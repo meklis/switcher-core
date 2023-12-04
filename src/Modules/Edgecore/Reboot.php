@@ -9,12 +9,11 @@ use SwitcherCore\Switcher\Console\ConsoleInterface;
 class Reboot extends AbstractModule
 {
     protected $status = false;
-
     /**
      * @Inject
      * @var \SwitcherCore\Switcher\Console\ConsoleInterface
      */
-    protected $telnet;
+    protected $console;
 
     function getPretty()
     {
@@ -28,15 +27,16 @@ class Reboot extends AbstractModule
 
     public function run($params = [])
     {
-        return $this;
-        if(!$this->telnet) {
+        if(!$this->console) {
             throw new Exception("Module Edgecore/Reboot required console connection");
         }
         $this->status = false;
         try {
-            $response = $this->telnet->exec("reload");
+            $this->console->exec("show system");
+
+            $this->console->write("reload");
             sleep(1);
-            $this->telnet->write("y");
+            $this->console->write("y");
             sleep(1);
             $this->status = true;
         } catch (Exception $e) {

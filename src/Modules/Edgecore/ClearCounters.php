@@ -8,7 +8,6 @@ use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 class ClearCounters extends AbstractModule
 {
-
     use InterfacesTrait;
 
     /**
@@ -29,13 +28,9 @@ class ClearCounters extends AbstractModule
 
     public function run($params = [])
     {
-        $this->status = false;
-        $ports = $this->getInterfacesIds();
-        print_r($this->console->exec('show line'));
-
-
-
-
+        foreach ($this->getInterfacesIds() as $port) {
+            $this->console->exec('clear counters ethernet '.$port['_unit'].'/'.$port['_port']);
+        }
         return $this;
     }
 }
