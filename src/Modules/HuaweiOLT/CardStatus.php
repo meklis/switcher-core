@@ -49,14 +49,16 @@ class CardStatus extends HuaweiOLTAbstractModule
                 'admin_status' => null,
                 'cpu_load' => null,
                 'temperature' => null,
-                'oper_status' => $type->getParsedValue(),
+                'oper_status' =>  "{$type->getParsedValue()} ({$type->getValue()})",
+                '_oper_status' => $type->getValue(),
                 'id' => (int)"100{$shelf}{$slot}",
             ];
         }
         foreach ($response['sys.slot.adminState']->fetchAll() as $type) {
             $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
             $slot = (int)Helper::getIndexByOid($type->getOid());
-            $RESP["{$shelf}/{$slot}"]['admin_status'] = $type->getParsedValue();
+            $RESP["{$shelf}/{$slot}"]['admin_status'] =  "{$type->getParsedValue()} ({$type->getValue()})";
+            $RESP["{$shelf}/{$slot}"]['_admin_status'] = $type->getValue();
         }
         foreach ($response['sys.slot.cpuUtil']->fetchAll() as $type) {
             $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
