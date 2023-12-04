@@ -34,17 +34,13 @@ class Reboot extends AbstractModule
         }
         $this->status = false;
         try {
-            sleep(1);
-            $response = $this->console->exec("reboot");
+            $this->console->exec("display device");
+
+            $this->console->write("reboot");
             sleep(1);
             $this->console->write("y");
             sleep(1);
             $this->status = true;
-            /*if (preg_match('/(Info: Reset successfully.)/', $response) !== false) {
-                $this->status = true;
-            } else {
-                throw new Exception("Error reset counters, response: " . $response);
-            }*/
         } catch (Exception $e) {
             throw new Exception("error execute command: {$e->getMessage()}", 1, $e);
         }

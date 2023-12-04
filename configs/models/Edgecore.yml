@@ -10,6 +10,9 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
+    extra:
+      console_conn_type: edge-core
     detect: {description: ^ECS4120-28F,  objid: .1.3.6.1.4.1.259.10.1.45.103 }
     oids:
       - ./oids/edgecore/ecs4120.yml
@@ -32,6 +35,8 @@ models:
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ECS4120-28Fv2
     key: edgecore_ecs4120_28fv2
@@ -39,6 +44,9 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
+    extra:
+      console_conn_type: edge-core
     detect: {description: ^ECS4120-28Fv2,  objid: .1.3.6.1.4.1.259.10.1.45.105 }
     oids:
       - ./oids/edgecore/ecs4120.yml
@@ -61,6 +69,8 @@ models:
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ECS4510-28F
     key: edgecore_ecs4510_28f
@@ -68,6 +78,9 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
+    extra:
+      console_conn_type: edge-core
     detect: {description: ^ECS4510-28F,  objid: .1.3.6.1.4.1.259.10.1.24.103 }
     oids:
       - ./oids/edgecore/ecs4510.yml
@@ -90,6 +103,8 @@ models:
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ES4612
     key: edgecore_es4612
@@ -97,6 +112,9 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
+    extra:
+      console_conn_type: edge-core
     detect: {description: ^8 SFP ports \+ 4 Gigabit,  objid: .1.3.6.1.4.1.259.6.10.57 }
     oids:
       - ./oids/edgecore/es4612.yml
@@ -118,6 +136,8 @@ models:
       sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ES3552M
     key: edgecore_es3552m
@@ -125,11 +145,13 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
     detect: {description: .*ES3552M,  objid: .1.3.6.1.4.1.259.6.10.94 }
     extra:
       diag_linkup: false
       count_pairs: 2
       overwrite_pairs: {ports: [], count_pairs: 4}
+      console_conn_type: edge-core
     oids:
       - ./oids/edgecore/es3552m.yml
     modules:
@@ -149,6 +171,8 @@ models:
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ECS3510-28T
     key: edgecore_ecs3510_28t
@@ -180,6 +204,8 @@ models:
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagOnlyByPort
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ES3528M
     key: edgecore_es3528m
@@ -222,11 +248,13 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
     detect: {description: ES3510MA,  objid: .1.3.6.1.4.1.259.8.1.11.101}
     extra:
       diag_linkup: false
       count_pairs: 2
       overwrite_pairs: {ports: [], count_pairs: 4}
+      console_conn_type: edge-core
     oids:
       - ./oids/edgecore/es3510mav2.yml
     modules:
@@ -246,6 +274,8 @@ models:
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagES3510
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ES3510MAv2
     key: edgecore_es3510ma_v2
@@ -253,11 +283,13 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
     detect: {description: ES3510MAv2,  objid: .1.3.6.1.4.1.259.8.1.11.105 }
     extra:
       diag_linkup: false
       count_pairs: 2
       overwrite_pairs: {ports: [], count_pairs: 4}
+      console_conn_type: edge-core
     oids:
       - ./oids/edgecore/es3510mav2.yml
     modules:
@@ -277,6 +309,8 @@ models:
       cable_diag: \SwitcherCore\Modules\Edgecore\CableDiagES3510
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core ES3510
     key: edgecore_es3510
@@ -284,11 +318,13 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
     detect: {description: ES3510,  objid: .1.3.6.1.4.1.259.8.1.5 }
     extra:
       diag_linkup: false
       count_pairs: 2
       overwrite_pairs: {ports: [], count_pairs: 4}
+      console_conn_type: edge-core
     modules:
       system: \SwitcherCore\Modules\Edgecore\System
       parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
@@ -304,6 +340,8 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
 
   - name: Edge-core General switch
     key: edgecore_general_switch
@@ -311,11 +349,13 @@ models:
     device_type: SWITCH
     inputs:
       - snmp
+      - console
     detect: {description: ^ES.*,  objid: .1.3.6.1.4.1.259 }
     extra:
       diag_linkup: false
       count_pairs: 2
       overwrite_pairs: {ports: [], count_pairs: 4}
+      console_conn_type: edge-core
     modules:
       system: \SwitcherCore\Modules\Edgecore\System
       parse_interface: \SwitcherCore\Modules\Edgecore\ParseInterface
@@ -331,3 +371,5 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
+      clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
+      reboot: \SwitcherCore\Modules\Edgecore\Reboot
