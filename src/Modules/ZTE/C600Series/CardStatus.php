@@ -43,7 +43,8 @@ class CardStatus extends ModuleAbstract
                 'rack' => $rack,
                 'shelf' => $shelf,
                 'slot' => $slot,
-                'oper_status' =>  "{$type->getParsedValue()} ({$type->getValue()})",
+              //  'oper_status' =>  "{$type->getParsedValue()} ({$type->getValue()})",
+                'oper_status' =>   $type->getParsedValue() ,
                 '_oper_status' => $type->getValue(),
                 'temperature' => null,
                 'memory_usage' => null,
@@ -56,7 +57,8 @@ class CardStatus extends ModuleAbstract
             $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
             $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
             $slot = (int)Helper::getIndexByOid($type->getOid());
-            $RESP["{$rack}/{$shelf}/{$slot}"]['admin_status'] =  "{$type->getParsedValue()} ({$type->getValue()})";
+           // $RESP["{$rack}/{$shelf}/{$slot}"]['admin_status'] =  "{$type->getParsedValue()} ({$type->getValue()})";
+            $RESP["{$rack}/{$shelf}/{$slot}"]['admin_status'] =   $type->getParsedValue() ;
             $RESP["{$rack}/{$shelf}/{$slot}"]['_admin_status'] = $type->getValue();
         }
         foreach ($response['zx.slot.CpuLoad']->fetchAll() as $type) {
