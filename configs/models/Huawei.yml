@@ -25,7 +25,6 @@ models:
               - 67240014
               - 67240078
             diag_linkup: false
-            only_manual_diag: false
         - value: ^S2320-28TP
           rewrite:
             key: huawei_s2320_28tp_ei
@@ -36,7 +35,6 @@ models:
               - 67240014
               - 67240078
             diag_linkup: false
-            only_manual_diag: true
         - value: ^S2350-28TP-EI-AC
           rewrite:
             key: huawei_s2350_28tp
@@ -47,7 +45,6 @@ models:
               - 67240014
               - 67240078
             diag_linkup: false
-            only_manual_diag: true
     oids:
       - ./oids/huawei/s2326tp.yml
     modules:
