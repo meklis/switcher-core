@@ -9,81 +9,56 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
 
-
-
 class InterfaceCounters extends ModuleAbstract
 {
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = null;
 
     public function run($filter = [])
     {
-        $oidsLoc = [
-            $this->oids->getOidByName('if.InErrors'),
-            $this->oids->getOidByName('if.OutErrors'),
-            $this->oids->getOidByName('if.InDiscards'),
-            $this->oids->getOidByName('if.OutDiscards'),
-            $this->oids->getOidByName('if.HCInOctets'),
-            $this->oids->getOidByName('if.HCOutOctets'),
-            $this->oids->getOidByName('if.HCInMulticastPkts'),
-            $this->oids->getOidByName('if.HCOutMulticastPkts'),
-            $this->oids->getOidByName('if.HCInBroadcastPkts'),
-            $this->oids->getOidByName('if.HCOutBroadcastPkts'),
-        ];
+        $oidsLoc = $this->interfaceCounterOids();
         $suffix = '';
+        $oids = [];
         if($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            $suffix = '.'.$interface['_xid_id'];
-            $oids = [];
-            foreach ($oidsLoc as $oid) {
-                $oids[] = Oid::init($oid->getOid() . $suffix);
+            if($interface['type'] == 'ONU'){ // one onu
+                $oids = array_map(function ($e) use ($interface) {
+                    return Oid::init($e->getOid() . "." . $interface['_xpon_id']);
+                }, $this->oids->getOidsByRegex('^xpon.ont.counters'));
+                $this->response = $this->formatResponse($this->snmp->get($oids));
+            }else{ // one port
+                $suffix = '.'.$interface['_xid'];
+                $oids = [];
+                foreach ($oidsLoc as $oid) {
+                    $oids[] = Oid::init($oid->getOid() . $suffix);
+                }
+                $this->response = $this->formatResponse($this->snmp->get($oids));
             }
-            $this->response = $this->formatResponse($this->snmp->get($oids));
-        } elseif ($filter['interface_type'] == 'ONU') { // all onu counters
+            return $this;
+        }
+        if ($filter['interface_type'] == 'ONU' || (!isset($filter['interface']) && !isset($filter['interface_type']))) { // all onu counters
             $oids = array_map(function ($e)  {
                 return Oid::init($e->getOid());
             }, $this->oids->getOidsByRegex('^xpon.ont.counters'));
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
-        } else {
-            $oids = [];
+        }
+        if ($filter['interface_type'] != 'ONU' || (!isset($filter['interface']) && !isset($filter['interface_type']))) { // all ports
             foreach ($oidsLoc as $oid) {
                 $oids[] = Oid::init($oid->getOid() . $suffix);
             }
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
         }
+        $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }
     function getPrettyFiltered($params = [], $fromCache = false)
     {
-        if($params['interface_type'] == 'ONU'){
-            $data = [];
-            foreach ($this->response as $oidName=>$dt) {
-                if($dt->error()) {
-                    continue;
-                }
-                $name = Helper::fromCamelCase(str_replace("xpon.ont.counters.", "", $oidName));
-                foreach ($dt->fetchAll() as $resp) {
-                    try {
-                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
-                        $data[$iface['id']]['interface'] = $iface;
-                        $data[$iface['id']][$name] = $resp->getValue();
-                    } catch (\Exception $e) {
-                        if (strpos($e->getMessage(), "not in service card") === false) {
-                            throw $e;
-                        }
-                    }
-                }
-            }
-            return array_values($data);
-        } else { // types TGE/GE/PON
-            $ifaces = [];
-            //$filter['interface'] = 0;
-            if($params['interface']) {
-                $iface = $this->parseInterface($params['interface']);
-                $ifaces[$iface['_xid_id']] = [
-                    'interface' => $iface,
+        $ifaces = [];
+        if($params['interface']) {
+            $interface = $this->parseInterface($params['interface']);
+            if($interface['type'] != 'ONU'){
+                $ifaces[$interface['_xid']] = [
+                    'interface' => $interface,
                     'in_errors' => null,
                     'out_errors' => null,
                     'in_octets' => null,
@@ -93,11 +68,36 @@ class InterfaceCounters extends ModuleAbstract
                     'in_broadcast_pkts' => null,
                     'out_broadcast_pkts' => null,
                 ];
-            } else {
+            }
+        }
+
+        if((isset($interface['type']) && $interface['type'] == 'ONU') || $params['interface_type'] == 'ONU' || (!isset($params['interface']) && !isset($params['interface_type']))){ // all onus
+            $data = [];
+            foreach ($this->response as $oidName=>$dt) {
+                if($dt->error()) {
+                    continue;
+                }
+                $name = Helper::fromCamelCase(str_replace("xpon.ont.counters.", "", $oidName));
+                foreach ($dt->fetchAll() as $resp) {
+                    try {
+                        $interface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+                        $data[$interface['id']]['interface'] = $interface;
+                        $data[$interface['id']][$name] = $resp->getValue();
+                    } catch (\Exception $e) {
+                        if (strpos($e->getMessage(), "not in service card") === false) {
+                            throw $e;
+                        }
+                    }
+                }
+            }
+            return array_values($data);
+        }
+
+        if((isset($interface['type']) && $interface['type'] != 'ONU') || (isset($params['interface_type']) && $params['interface_type'] != 'ONU' || (!isset($params['interface']) && !isset($params['interface_type'])))){ // all or one physical port
+            if(!$ifaces){ //if no interfaces in array, create array with all physicals ports
                 foreach ($this->listInterfacesByXidNames() as $iface) {
-                    $iface_parsed = $this->parseInterface($iface['id']);
-                    $ifaces[$iface_parsed['_xid_id']] = [
-                        'interface' => $iface_parsed,
+                    $ifaces[$iface['_xid']] = [
+                       'interface' => $iface,
                         'in_errors' => null,
                         'out_errors' => null,
                         'in_discards' => null,
@@ -111,7 +111,6 @@ class InterfaceCounters extends ModuleAbstract
                     ];
                 }
             }
-
 
             $data = $this->getResponseByName('if.InErrors');
             if(!$data->error()) {
@@ -196,11 +195,12 @@ class InterfaceCounters extends ModuleAbstract
 
             return array_values($ifaces);
         }
-
+        return $this;
     }
 
     function getPretty()
     {
-        return null;
+        return $this->getPrettyFiltered();
     }
+
 }

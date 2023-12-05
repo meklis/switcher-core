@@ -41,7 +41,7 @@ abstract class ModuleAbstract extends AbstractModule
             return str_pad(decbin($val), $size, '0', STR_PAD_LEFT);
         };
         $detectedType = '';
-        if (preg_match('/^(gpon|epon|gei|xgei|)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})(:([0-9]{1,}))?$/', $value, $matches)) {
+        if (preg_match('/^(gpon|epon|gei|xgei)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})(:([0-9]{1,}))?$/', $value, $matches)) {
             if (!$type) {
                 $detectedType = $matches[1];
             }
@@ -141,7 +141,9 @@ abstract class ModuleAbstract extends AbstractModule
                 $vPort = bindec(substr($binary, 24, 8));
                 break;
         }
+
         $card = $this->getCardInfoBy($shelf, $slot);
+
         if($card['oper_status'] !== 'inService') {
             throw new \Exception("Error decode port on not in service card. shelf={$shelf}, slot={$slot}");
         }
@@ -198,9 +200,9 @@ abstract class ModuleAbstract extends AbstractModule
                     '_port' => $m[4],
                     'name' => $f->getValue(),
                     'parent' => null,
-                    '_technology' => in_array($m[1], ['epon', 'gpon', 'gei', 'xgei']) ? $m[1] : null,
-                    '_oid_id' => in_array($m[1], ['epon', 'gpon', 'gei', 'xgei']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
-                    '_oid_eth_id' => in_array($m[1], ['epon', 'gpon', 'gei', 'xgei']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}", "gpon_eth") : null,
+                    '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
+                    '_oid_id' => in_array($m[1], ['epon', 'gpon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
+                    '_oid_eth_id' => in_array($m[1], ['epon', 'gpon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}", "gpon_eth") : null,
                     '_xpon_id' => null,
                 ];
             } elseif (preg_match('/^(gpon|epon|gei|xgei)[-_]olt[-_]([0-9]{1,3})\/([0-9]{1,3})\/([0-9]{1,3})$/', trim($f->getValue()), $m)) {
@@ -227,7 +229,7 @@ abstract class ModuleAbstract extends AbstractModule
                     '_port' => $m[4],
                     'name' => $f->getValue(),
                     'parent' => null,
-                    '_technology' => in_array($m[1], ['epon', 'gpon', 'gei', 'xgei']) ? $m[1] : null,
+                    '_technology' => in_array($m[1], ['epon', 'gpon']) ? $m[1] : null,
                     '_oid_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}") : null,
                     '_oid_eth_id' => in_array($m[1], ['gpon', 'epon']) ? $this->encodeSnmpOid("{$m[1]}-olt_{$m[2]}/{$m[3]}/{$m[4]}", "gpon_eth") : null,
                     '_xpon_id' => null,
@@ -283,6 +285,14 @@ abstract class ModuleAbstract extends AbstractModule
     {
         $oidID = 0;
         $xidList = $this->listInterfacesByXidNames();
+
+
+        $find = array_filter($xidList, fn($item) => $item['_xid'] == $name);
+        if (count($find) > 0) {
+            return array_values($find)[0];
+        }
+
+
         if ($parseBy == 'eth_id') {
             [$oidBlock, $onuId] = explode(".", $name);
             $find = array_filter($xidList, function ($e) use ($oidBlock) {
@@ -298,6 +308,7 @@ abstract class ModuleAbstract extends AbstractModule
         //Попытка распарсить интерфейсы по ID ОЛТа ZTE. При этом переназначается переменная $name, которая будет содержать имя интерфейса
         if (($parseBy == 'id' && is_numeric($name) && $name > 19999999) || preg_match('/^([0-9]{1,})\.([0-9]{1,})$/', $name)) {
             $result = $this->decodeSnmpOid($name);
+
             if ($result['onu_number']) {
                 $name = "{$result['type']}-onu_{$result['shelf']}/{$result['slot']}/{$result['port']}:{$result['onu_number']}";
             } else {
@@ -311,7 +322,6 @@ abstract class ModuleAbstract extends AbstractModule
                 return array_values($find)[0];
             }
         }
-
         //Попытка распарсить интерфейс PON по его имени
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})/', $name, $matches)) {
             $onu = null;
@@ -360,7 +370,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_onu' => (int)$onu,
                 '_oid_id' => $oidID ? $oidID : $this->encodeSnmpOid($name),
                 '_gpon_format' => $this->encodeSnmpOid($name, 'gpon'),
-                '_xid_id' => $xidList[$matches[3].'/'.$matches[4].'/'.$matches[5]],
+                '_xid_id' => 0,
                 '_oid_eth_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid($name, "gpon_eth") : null,
                 '_xpon_id' => $xponId,
             ];
@@ -377,6 +387,11 @@ abstract class ModuleAbstract extends AbstractModule
                 throw new \Exception("Error parse port on not in service card. shelf={$matches[3]}, slot={$matches[4]}");
             }
 
+            $find = array_filter($xidList, fn($item) => $item['id'] == $name);
+            if (count($find) > 0) {
+                return array_values($find)[0];
+            }
+
             $technology = $card['technology'];
             if (!$technology) {
                 $technology = $xidList[$shelf.'/'.$slot.'/'.$port]['_technology'];
@@ -386,7 +401,6 @@ abstract class ModuleAbstract extends AbstractModule
             }
 
             $parent = null;
-            //$interface = "{$technology}_{$shelf}/{$slot}/{$port}";
             $interface = "{$technology}-olt_{$shelf}/{$slot}/{$port}";
             if ($onu) {
                 $parent = (int)$name - $onu;
@@ -403,7 +417,7 @@ abstract class ModuleAbstract extends AbstractModule
 
             $xponId = null;
             $maxOntSize = 0;
-            if(in_array($technology, ['gpon', 'epon','gei','xgei'])) {
+            if(in_array($technology, ['gpon', 'epon'])) {
 
                 $card = $this->getCardInfoBy($shelf,$slot);
                 if (!$card['technology']) {
@@ -416,9 +430,7 @@ abstract class ModuleAbstract extends AbstractModule
 
                 if($card['num_ports'] > 8) {
                     $xponId = $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", '16_port');
-                } /*elseif(in_array($technology, ['gei','xgei'])){
-                    $xponId = $this->encodeSnmpOid("{$technology}-{$shelf}/{$slot}/{$port}");
-                }*/ else {
+                } else {
                     $xponId = $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", 'xpon');
                 }
 
@@ -443,7 +455,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_onu' => (int)$onu,
                 '_oid_id' => $this->encodeSnmpOid($interface),
                 '_gpon_format' => $this->encodeSnmpOid($interface, 'gpon'),
-                '_xid_id' => $xidList[$shelf.'/'.$slot.'/'.$port]['_xid'],
+                '_xid_id' => 0,
                 '_xid_name' => '',
                 '_oid_eth_id' => in_array($technology, ['gpon', 'epon']) ? $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", "gpon_eth") : null,
                 '_xpon_id' => $xponId,
