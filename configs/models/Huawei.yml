@@ -36,7 +36,7 @@ models:
               - 67240014
               - 67240078
             diag_linkup: false
-            only_manual_diag: false
+            only_manual_diag: true
         - value: ^S2350-28TP-EI-AC
           rewrite:
             key: huawei_s2350_28tp
