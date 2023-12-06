@@ -72,7 +72,7 @@ class InterfaceDescriptions extends ModuleAbstract
                     $data[$iface['id']] = [
                         'interface' => $iface,
                         'description' => $this->prettyDescription($resp->getHexValue()),
-                        '_description' => $this->prettyDescription($resp->getHexValue()),
+                        '_description' => $this->convertHexToString($resp->getHexValue()),
                         '_name' => null,
                     ];
                 } catch (\Exception $e) {
