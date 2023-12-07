@@ -109,10 +109,9 @@ class Module
             if(!isset($arguments[$key]) && $val['required']) {
                 throw new InvalidArgumentException("Parameter $key is required");
             }
-            if(!isset($arguments[$key]) || !$arguments[$key]) {
+            if(!isset($arguments[$key])) {
                 $arguments[$key] = isset($val['default']) ? $val['default'] : null;
             }
-
         }
         return $this;
     }

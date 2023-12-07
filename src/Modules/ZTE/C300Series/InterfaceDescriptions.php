@@ -66,13 +66,17 @@ class InterfaceDescriptions extends ModuleAbstract
             }
         }
         if (isset($response['epon.ont.EponDescription']) && !$response['epon.ont.EponDescription']->error()) {
+            $block = -1;
+            if(isset($params['_description_block_index']) && is_numeric($params['_description_block_index'])) {
+                $block = $params['_description_block_index'];
+            }
             foreach ($response['epon.ont.EponDescription']->fetchAll() as $resp) {
                 try {
                     $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
                     $data[$iface['id']] = [
                         'interface' => $iface,
-                        'description' => $this->prettyDescription($resp->getHexValue()),
-                        '_description' => $this->prettyDescription($resp->getHexValue()),
+                        'description' => $this->prettyDescription($resp->getHexValue(), $block),
+                        '_description' => $this->convertHexToString($resp->getHexValue()),
                         '_name' => null,
                     ];
                 } catch (\Exception $e) {
@@ -86,12 +90,16 @@ class InterfaceDescriptions extends ModuleAbstract
         return $this;
     }
 
-    private function prettyDescription($descr)
+    private function prettyDescription($descr, $block = -1)
     {
         $descr = $this->convertHexToString($descr);
         if (str_contains($descr, '$$')) {
             $blocks = explode("$$", $descr);
-            return $blocks[count($blocks) - 1];
+            if($block != -1 && isset($blocks[$block])) {
+                return $blocks[$block];
+            } else {
+                return $blocks[count($blocks) - 1];
+            }
         } else {
             return $descr;
         }

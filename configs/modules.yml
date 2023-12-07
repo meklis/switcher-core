@@ -441,6 +441,7 @@
   descr: Return interface description
   arguments:
     - {name: interface, pattern: '.*', required: no}
+    - {name: _description_block_index, pattern: '.*', required: no}
 
 - name: pon_ports_optical
   descr: Return optical information from PON-SFP
