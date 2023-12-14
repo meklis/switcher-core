@@ -20,38 +20,63 @@ class InterfaceCounters extends CDataAbstractModule
                 return $item;
             }
         }
-        return $exploded[count($exploded) - 1 - $offset];
+        $last = $exploded[count($exploded) - 1 - $offset];
+        if(strlen($last) > 3){
+            return $last;
+        }else{
+            return false;
+        }
+
     }
 
     public function run($params = [])
     {
         $oidsLoc = $this->interfaceCounterOids();
         $oids = [];
+        $add_oid = $this->model->getExtraParamByName('additional_oid_digits');
         if($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
             if($interface['type'] == 'ONU'){ //one onu
-                $oids = array_map(function ($e) use ($interface)  {
-                    return Oid::init($e->getOid() .  "." . $interface['id']);
+                $oids = array_map(function ($e) use ($interface,$add_oid)  {
+                    return Oid::init($e->getOid() .  "." . $interface['id'] . $add_oid);
                 }, $this->oids->getOidsByRegex('ont.counters'));
-                $this->response = $this->formatResponse($this->snmp->walk($oids));
             }else{ //one port
                 $oids = array_map(function ($e) use ($interface) {
-                    return  Oid::init($e->getOid() . '.' . $interface['xid']);
+                    return Oid::init($e->getOid() . '.' . $interface['xid']);
                 }, $oidsLoc);
-                $this->response = $this->formatResponse($this->snmp->get($oids));
             }
+            $this->response = $this->formatResponse($this->snmp->get($oids));
             return $this;
         }
-        if ($params['interface_type'] == 'ONU' || (!isset($params['interface']) && !isset($params['interface_type']))) { // all onu
+        if ($params['interface_type'] == 'ONU' || (!$params['interface'] && !$params['interface_type'])) { //  all onu || without arguments
             $oids = array_map(function ($e) {
                 return Oid::init($e->getOid());
             }, $this->oids->getOidsByRegex('ont.counters'));
+
+            if(str_contains($this->device->getModelKey(), 'c_data_fd16')){
+                $whole_onu_ids = [];
+                foreach ($this->getInterfacesIds() as $interfacesId) {
+                    if($interfacesId['type'] == 'PON'){
+                        foreach ($this->getOntIdsByInterface($interfacesId['name']) as $onu){
+                            foreach ($oids as $oid){
+                                $whole_onu_ids['oids'][] = Oid::init($oid->getOid() .  "." . $onu . $add_oid);
+                            }
+                        }
+                    }
+                }
+                $oids = $whole_onu_ids['oids'];
+                if($params['interface_type'] == 'ONU'){
+                    $this->response = $this->formatResponse($this->snmp->get($oids)); //snmpget fix time from 350 to 150s
+                    return $this;
+                }
+            }
         }
-        if ($params['interface_type'] != 'ONU' || (!isset($params['interface']) && !isset($params['interface_type']))) { // all ports
+        if ($params['interface_type'] == 'PHYSICAL' || (!$params['interface'] && !$params['interface_type'])) { //  all ports || without arguments
             foreach ($oidsLoc as $oid) {
                 $oids[] = Oid::init($oid->getOid());
             }
         }
+
         $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }
@@ -60,9 +85,12 @@ class InterfaceCounters extends CDataAbstractModule
     {
         $ifaces = [];
         $onu_ifaces = [];
-        $interface = ($params['interface']) ? $this->parseInterface($params['interface']) : false;
 
-        if((isset($interface['type']) && $interface['type'] == 'ONU') || $params['interface_type'] == 'ONU' || (!isset($params['interface']) && !isset($params['interface_type']))){ // all or one onu
+        if($params['interface']){
+            $interface = $this->parseInterface($params['interface']);
+        }
+
+        if((isset($interface['type']) && $interface['type'] == 'ONU') || $params['interface_type'] == 'ONU' || (!$params['interface'] && !$params['interface_type'])){ // one onu || all onu || without arguments
             foreach ($this->response as $oidName=>$dt) {
                 if($dt->error()) {
                     continue;
@@ -70,7 +98,11 @@ class InterfaceCounters extends CDataAbstractModule
                 $name = Helper::fromCamelCase(str_replace("ont.counters.", "", $oidName));
                 foreach ($dt->fetchAll() as $resp) {
                     try {
-                        $interface = $this->parseInterface($this->getIndexByOidCdata($resp->getOid()));
+                        $parsed_id = $this->getIndexByOidCdata($resp->getOid());
+                        if(!$parsed_id){
+                            continue;
+                        }
+                        $interface = $this->parseInterface($parsed_id);
                         if($interface['type'] != 'ONU'){
                             continue;
                         }
@@ -85,8 +117,8 @@ class InterfaceCounters extends CDataAbstractModule
             }
         }
 
-        if((isset($interface['type']) && $interface['type'] != 'ONU') || (isset($params['interface_type']) && $params['interface_type'] != 'ONU'  || (!isset($params['interface']) && !isset($params['interface_type'])))){ // all or one physical port
-                $list = [];
+        if((isset($interface['type']) && $interface['type'] != 'ONU') || ($params['interface_type'] && $params['interface_type'] == 'PHYSICAL') || (!$params['interface'] && !$params['interface_type'])){ // one port || all ports || without arguments
+            $list = [];
                 if($params['interface'] && isset($interface)){
                     $list[] = $interface;
                 }else{
@@ -188,6 +220,7 @@ class InterfaceCounters extends CDataAbstractModule
                 }
             }
         }
+
         return array_values(array_merge($onu_ifaces, $ifaces));
     }
 

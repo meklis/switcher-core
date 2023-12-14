@@ -37,16 +37,17 @@ class InterfaceCounters extends ModuleAbstract
             $this->response = $this->formatResponse($this->snmp->get($oids));
             return $this;
         }
-        if ($filter['interface_type'] == 'ONU' || (!isset($filter['interface']) && !isset($filter['interface_type']))) { // all onu
+        if ($filter['interface_type'] == 'ONU' || (!$filter['interface'] && !$filter['interface_type'])) { //  all onu || without arguments
             $oids = array_map(function ($e)  {
                 return Oid::init($e->getOid());
             }, $this->oids->getOidsByRegex('^xpon.ont.counters'));
         }
-        if ($filter['interface_type'] != 'ONU' || (!isset($filter['interface']) && !isset($filter['interface_type']))) { // all ports
+        if ($filter['interface_type'] == 'PHYSICAL' || (!$filter['interface'] && !$filter['interface_type'])) { //  all ports || without arguments
             foreach ($oidsLoc as $oid) {
                 $oids[] = Oid::init($oid->getOid() . $suffix);
             }
         }
+
         $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }
@@ -54,10 +55,12 @@ class InterfaceCounters extends ModuleAbstract
     {
         $ifaces = [];
         $onu_ifaces = [];
-        $interface = ($params['interface']) ? $this->parseInterface($params['interface']) : false;
 
-        if((isset($interface['type']) && $interface['type'] == 'ONU') || $params['interface_type'] == 'ONU' || (!isset($params['interface']) && !isset($params['interface_type']))){ // all or one onu
-            $data = [];
+        if($params['interface']){
+            $interface = $this->parseInterface($params['interface']);
+        }
+
+        if((isset($interface['type']) && $interface['type'] == 'ONU') || $params['interface_type'] == 'ONU' || (!isset($params['interface']) && !isset($params['interface_type']))){ // one onu || all onu || without arguments
             foreach ($this->response as $oidName=>$dt) {
                 if($dt->error()) {
                     continue;
@@ -80,7 +83,7 @@ class InterfaceCounters extends ModuleAbstract
             }
         }
 
-        if((isset($interface['type']) && $interface['type'] != 'ONU') || (isset($params['interface_type']) && $params['interface_type'] != 'ONU' || (!isset($params['interface']) && !isset($params['interface_type'])))){ // all or one physical port
+        if((isset($interface['type']) && $interface['type'] != 'ONU') || ($params['interface_type'] && $params['interface_type'] == 'PHYSICAL') || (!$params['interface'] && !$params['interface_type'])){ // one port || all ports || without arguments
             $list = [];
             if($params['interface'] && isset($interface)){
                 $list[] = $interface;
@@ -184,6 +187,7 @@ class InterfaceCounters extends ModuleAbstract
                 }
             }
         }
+
         return array_values(array_merge($onu_ifaces, $ifaces));
     }
 
