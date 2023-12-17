@@ -8,6 +8,7 @@ use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Modules\ZTE\ModuleAbstract;
+use SwitcherCore\Switcher\Objects\WrappedResponse;
 
 class InterfaceCounters extends ModuleAbstract
 {
