@@ -13,39 +13,23 @@ class InterfaceCounters extends CDataAbstractModule
      */
     protected $response = null ;
 
-    public function getIndexByOidCdata($oid, $offset = 0) {
-        $exploded = explode(".", $oid);
-        foreach ($exploded as $item){
-            if(strlen($item) > 5){
-                return $item;
-            }
-        }
-        $last = $exploded[count($exploded) - 1 - $offset];
-        if(strlen($last) > 3){
-            return $last;
-        }else{
-            return false;
-        }
-
-    }
-
     public function run($params = [])
     {
         $oidsLoc = $this->interfaceCounterOids();
         $oids = [];
-        $add_oid = $this->model->getExtraParamByName('additional_oid_digits');
         if($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
             if($interface['type'] == 'ONU'){ //one onu
-                $oids = array_map(function ($e) use ($interface,$add_oid)  {
-                    return Oid::init($e->getOid() .  "." . $interface['id'] . $add_oid);
+                $oids = array_map(function ($e) use ($interface)  {
+                    return Oid::init($e->getOid() .  "." . $interface['id']);
                 }, $this->oids->getOidsByRegex('ont.counters'));
+                $this->response = $this->formatResponse($this->snmp->walk($oids));
             }else{ //one port
                 $oids = array_map(function ($e) use ($interface) {
                     return Oid::init($e->getOid() . '.' . $interface['xid']);
                 }, $oidsLoc);
+                $this->response = $this->formatResponse($this->snmp->get($oids));
             }
-            $this->response = $this->formatResponse($this->snmp->get($oids));
             return $this;
         }
         if ($params['interface_type'] == 'ONU' || (!$params['interface'] && !$params['interface_type'])) { //  all onu || without arguments
@@ -59,7 +43,7 @@ class InterfaceCounters extends CDataAbstractModule
                     if($interfacesId['type'] == 'PON'){
                         foreach ($this->getOntIdsByInterface($interfacesId['name']) as $onu){
                             foreach ($oids as $oid){
-                                $whole_onu_ids['oids'][] = Oid::init($oid->getOid() .  "." . $onu . $add_oid);
+                                $whole_onu_ids['oids'][] = Oid::init($oid->getOid() .  "." . $onu . '.0.0');
                             }
                         }
                     }
@@ -98,7 +82,7 @@ class InterfaceCounters extends CDataAbstractModule
                 $name = Helper::fromCamelCase(str_replace("ont.counters.", "", $oidName));
                 foreach ($dt->fetchAll() as $resp) {
                     try {
-                        $parsed_id = $this->getIndexByOidCdata($resp->getOid());
+                        $parsed_id = Helper::getIndexByOid($resp->getOid(), 2);
                         if(!$parsed_id){
                             continue;
                         }
