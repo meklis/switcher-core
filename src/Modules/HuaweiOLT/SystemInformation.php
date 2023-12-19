@@ -58,9 +58,9 @@ class SystemInformation extends AbstractModule
         $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid() ,true);
+            $oArray[] = Oid::init($oid->getOid() . ".0" ,true);
         }
-        $this->response = $this->formatResponse($this->snmp->walk($oArray));
+        $this->response = $this->formatResponse($this->snmp->get($oArray));
         return $this;
     }
 }
