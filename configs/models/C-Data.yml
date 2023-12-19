@@ -290,7 +290,7 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
       #interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
-      interface_counters: \SwitcherCore\Modules\CData\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\CData\InterfaceCounters
       ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
       ctrl_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
     #  ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
@@ -352,7 +352,7 @@ models:
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
       #interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
-      interface_counters: \SwitcherCore\Modules\CData\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\CData\InterfaceCounters
       ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
       ctrl_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
       #  ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDelete
