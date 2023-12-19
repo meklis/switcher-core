@@ -107,7 +107,7 @@ class OntVendorInfo extends CDataAbstractModule
             foreach ($optical as $opt) {
                 $oids[] = Oid::init($opt->getOid());
             }
-            $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walk($oids)));
+            $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walkNext($oids)));
         } else {
             $oids = [];
             foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
