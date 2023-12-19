@@ -124,7 +124,6 @@ models:
     extra:
       pon_port_size: 64
       console_conn_type: cdata
-      additional_oid_digits: .0.0
       console_commands_after_connect:
         - enable
         - config
@@ -177,7 +176,6 @@ models:
     extra:
       pon_port_size: 64
       console_conn_type: cdata
-      additional_oid_digits: .0.1
       console_commands_after_connect:
         - enable
         - config
@@ -240,7 +238,6 @@ models:
     extra:
       pon_port_size: 64
       console_conn_type: cdata
-      additional_oid_digits: .0.1
       console_commands_after_connect:
         - enable
         - config
@@ -291,8 +288,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
-      #uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
-      uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatusConsole
+      uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
       #interface_counters: \SwitcherCore\Modules\CData\OntInterfaceCounters
       interface_counters: \SwitcherCore\Modules\CData\InterfaceCounters
       ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
@@ -309,7 +305,6 @@ models:
     extra:
       pon_port_size: 128
       console_conn_type: cdata
-      additional_oid_digits: .0.0
       console_commands_after_connect:
         - enable
         - config
@@ -372,7 +367,6 @@ models:
     extra:
       pon_port_size: 128
       console_conn_type: cdata
-      additional_oid_digits: .0.0
       console_commands_after_connect:
         - enable
         - config
