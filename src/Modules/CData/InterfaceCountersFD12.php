@@ -40,9 +40,7 @@ class InterfaceCountersFD12 extends CDataAbstractModule
     {
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
-            if ($interface['type'] == 'ONU' && $this->model->getKey() === 'c_data_fd1204sn') {
-                $oids = $this->getInterfaceOids($interface['id'], $this->getOidsForPhysical());
-            } else if ($interface['type'] == 'ONU') {
+            if ($interface['type'] == 'ONU') {
                 $oids = $this->getInterfaceOids($interface['id'] . '.0.1', $this->getOidsForOnts());
             } else  {
                 $oids = $this->getInterfaceOids($interface['xid'], $this->getOidsForPhysical());
