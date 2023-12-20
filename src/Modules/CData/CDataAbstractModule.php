@@ -155,13 +155,14 @@ abstract class CDataAbstractModule extends AbstractModule
         }
         $min = $interface['id'];
         $max = $min + 256;
-        $ontIds = [];
         if(!$this->_ontStatuses) {
             $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+            $this->_ontStatuses = $onts;
         } else {
             $onts = $this->_ontStatuses;
         }
 
+        $ontIds = [];
         foreach ($onts as $ont) {
             if ($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
                 if ($onlyOnline && $ont['status'] !== 'Online') {
