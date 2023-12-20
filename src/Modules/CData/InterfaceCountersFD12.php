@@ -54,7 +54,7 @@ class InterfaceCountersFD12 extends CDataAbstractModule
             $physOids = $this->getOidsForPhysical();
             $oids = [];
             foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
-                $oids = array_merge($oids, $this->getInterfaceOids('.' . $iface['xid'], $physOids));
+                $oids = array_merge($oids, $this->getInterfaceOids( $iface['xid'], $physOids));
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
         }
