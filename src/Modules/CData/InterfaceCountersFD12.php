@@ -29,7 +29,7 @@ class InterfaceCountersFD12 extends CDataAbstractModule
         }, $this->interfaceCounterOids());
     }
 
-    function getInterfaiceOids($interface_id, $oids)
+    function getInterfaceOids($interface_id, $oids)
     {
         return array_map(function ($e) use ($interface_id) {
             return Oid::init($e->getOid() . '.' . $interface_id);
@@ -41,18 +41,22 @@ class InterfaceCountersFD12 extends CDataAbstractModule
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
             if ($interface['type'] == 'ONU' && $this->model->getKey() === 'c_data_fd1204sn') {
-                $oids = $this->getInterfaiceOids($interface['id'], $this->getOidsForPhysical());
+                $oids = $this->getInterfaceOids($interface['id'], $this->getOidsForPhysical());
             } else if ($interface['type'] == 'ONU') {
-                $oids = $this->getInterfaiceOids($interface['id'] . '.0.1', $this->getOidsForOnts());
+                $oids = $this->getInterfaceOids($interface['id'] . '.0.1', $this->getOidsForOnts());
             } else  {
-                $oids = $this->getInterfaiceOids($interface['xid'], $this->getOidsForPhysical());
+                $oids = $this->getInterfaceOids($interface['xid'], $this->getOidsForPhysical());
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } elseif ($params['interface_type'] == 'ONU' ) {
             throw new \Exception('Not available (Mass SNMP by ont.counters can reboot device)');
         } else {
-            $oids = $this->getOidsForPhysical();
-            $this->response = $this->formatResponse($this->snmp->walkNext($oids));
+            $physOids = $this->getOidsForPhysical();
+            $oids = [];
+            foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
+                $oids = array_merge($oids, $this->getInterfaceOids('.' . $iface['xid'], $physOids));
+            }
+            $this->response = $this->formatResponse($this->snmp->get($oids));
         }
         return $this;
     }
