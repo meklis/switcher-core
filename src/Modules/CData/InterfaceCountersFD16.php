@@ -15,9 +15,17 @@ class InterfaceCountersFD16 extends CDataAbstractModule
 
     protected $_ifacesHC = [];
 
-    protected function getInterfacesWithIfHcIds()
+    protected function getInterfacesWithIfHcIds($fromCache = true)
     {
         if ($this->_ifacesHC) return $this->_ifacesHC;
+
+        if($fromCache){
+            if ($interfaces = $this->getCache('interfaces_with_hc_id', true)) {
+                $this->_ifacesHC = $interfaces;
+                return $interfaces;
+            }
+        }
+
         $oids = [Oid::init($this->oids->getOidByName('if.Name')->getOid())];
         $response = $this->formatResponse($this->snmp->walk($oids));
         if (!isset($response['if.Name'])) {
@@ -37,7 +45,19 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             }
         }
         $this->_ifacesHC = $interfaces;
+        $this->setCache('interfaces_with_hc_id', $interfaces, 3600, true);
         return $interfaces;
+    }
+
+    protected function isHcInterfaceExist($interface)
+    {
+        if ($interfaces = $this->getCache('interfaces_with_hc_id', true)) {
+            $data = array_filter($interfaces, function ($e) use ($interface) {
+                return $e['interface']['name'] == $interface['name'];
+            });
+            return count($data) > 0;
+        }
+        return false;
     }
 
     function getInterfaiceOids($interface_id, $oids)
@@ -50,10 +70,10 @@ class InterfaceCountersFD16 extends CDataAbstractModule
     public function run($params = [])
     {
         $global_oids = $this->interfaceCounterOids();
-        $whole_ifaces = $this->getInterfacesWithIfHcIds();
 
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
+            $whole_ifaces = $this->getInterfacesWithIfHcIds($this->isHcInterfaceExist($interface));
             $filtered = array_values(array_filter($whole_ifaces, function ($i) use ($interface) {
                 return $i['interface']['name'] == $interface['name'];
             }));
@@ -67,8 +87,12 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             $oids = $this->getInterfaiceOids($suffix, $global_oids);
 
             $this->response = $this->process($this->formatResponse($this->snmp->get($oids)), $filtered);
-        } elseif ($params['interface_type'] == 'ONU') {
+            return $this;
+        }
+
+        if ($params['interface_type'] == 'ONU') {
             $onus = [];
+            $whole_ifaces = $this->getInterfacesWithIfHcIds();
             foreach ($whole_ifaces as $xid => $port) {
                 if ($port['interface']['type'] == 'ONU') {
                     $onus[$xid] = $port;
@@ -77,7 +101,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             $oids = $this->getInterfaiceOids('', $global_oids);
 
             $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $onus);
-        } else {
+        } elseif($params['interface_type'] == 'PHYSICAL') {
             $response = [];
             foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
                 $item[$iface['xid']]['interface'] = $iface;
@@ -86,6 +110,11 @@ class InterfaceCountersFD16 extends CDataAbstractModule
                 $response[] = current($this->process($this->formatResponse($this->snmp->get($oids)), $item));
             }
             $this->response = array_values($response);
+        }else{
+            $whole_ifaces = $this->getInterfacesWithIfHcIds();
+            $oids = $this->getInterfaiceOids('', $global_oids);
+
+            $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $whole_ifaces);
         }
         return $this;
     }
@@ -110,6 +139,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
                     $data[$xid]['interface'] = $interfaces[$xid]['interface'];
                     $data[$xid][$name] = $resp->getValue();
                 } catch (\Exception $e) {
+
                 }
             }
         }
