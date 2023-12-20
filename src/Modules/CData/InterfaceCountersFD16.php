@@ -19,13 +19,12 @@ class InterfaceCountersFD16 extends CDataAbstractModule
     {
         if ($this->_ifacesHC) return $this->_ifacesHC;
 
-        if($fromCache){
+        if ($fromCache) {
             if ($interfaces = $this->getCache('interfaces_with_hc_id', true)) {
                 $this->_ifacesHC = $interfaces;
                 return $interfaces;
             }
         }
-
         $oids = [Oid::init($this->oids->getOidByName('if.Name')->getOid())];
         $response = $this->formatResponse($this->snmp->walk($oids));
         if (!isset($response['if.Name'])) {
@@ -101,16 +100,15 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             $oids = $this->getInterfaiceOids('', $global_oids);
 
             $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $onus);
-        } elseif($params['interface_type'] == 'PHYSICAL') {
+        } elseif ($params['interface_type'] == 'PHYSICAL') {
             $response = [];
             foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
                 $item[$iface['xid']]['interface'] = $iface;
                 $oids = $this->getInterfaiceOids('.' . $iface['xid'], $global_oids);
-
                 $response[] = current($this->process($this->formatResponse($this->snmp->get($oids)), $item));
             }
             $this->response = array_values($response);
-        }else{
+        } else {
             $whole_ifaces = $this->getInterfacesWithIfHcIds();
             $oids = $this->getInterfaiceOids('', $global_oids);
 
