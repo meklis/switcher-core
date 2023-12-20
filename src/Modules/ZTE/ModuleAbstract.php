@@ -358,7 +358,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_onu' => (int)$onu,
                 '_oid_id' => $oidID ? $oidID : $this->encodeSnmpOid($name),
                 '_gpon_format' => $this->encodeSnmpOid($name, 'gpon'),
-                '_xid_id' => 0,
+                '_xid' => 0,
                 '_oid_eth_id' => in_array($matches[1], ['gpon', 'epon']) ? $this->encodeSnmpOid($name, "gpon_eth") : null,
                 '_xpon_id' => $xponId,
             ];
@@ -374,7 +374,7 @@ abstract class ModuleAbstract extends AbstractModule
                 throw new \Exception("Error parse port on not in service card. shelf={$matches[3]}, slot={$matches[4]}");
             }
             $technology = $card['technology'];
-            if (!$technology && isset($xidList["{$shelf}/{$slot}/{$port}"])) {
+            if ((!$technology || !$onu) && isset($xidList["{$shelf}/{$slot}/{$port}"])) {
                 return  $xidList["{$shelf}/{$slot}/{$port}"];
             } elseif (!$technology) {
                 throw new \Exception("Error get technology");
@@ -423,7 +423,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_onu' => (int)$onu,
                 '_oid_id' => $this->encodeSnmpOid($interface),
                 '_gpon_format' => $this->encodeSnmpOid($interface, 'gpon'),
-                '_xid_id' => 0,
+                '_xid' => 0,
                 '_xid_name' => '',
                 '_oid_eth_id' => in_array($technology, ['gpon', 'epon']) ? $this->encodeSnmpOid("{$technology}-olt_{$shelf}/{$slot}/{$port}:$onu", "gpon_eth") : null,
                 '_xpon_id' => $xponId,
