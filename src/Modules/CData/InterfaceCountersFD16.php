@@ -59,7 +59,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
         return false;
     }
 
-    function getInterfaiceOids($interface_id, $oids)
+    function getInterfaceOids($interface_id, $oids)
     {
         return array_map(function ($e) use ($interface_id) {
             return Oid::init($e->getOid() . $interface_id);
@@ -83,7 +83,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             $suffix = '.' . $filtered[0]['interface']['_hc_id'];
             unset($filtered[0]);
 
-            $oids = $this->getInterfaiceOids($suffix, $global_oids);
+            $oids = $this->getInterfaceOids($suffix, $global_oids);
 
             $this->response = $this->process($this->formatResponse($this->snmp->get($oids)), $filtered);
             return $this;
@@ -97,20 +97,20 @@ class InterfaceCountersFD16 extends CDataAbstractModule
                     $onus[$xid] = $port;
                 }
             }
-            $oids = $this->getInterfaiceOids('', $global_oids);
+            $oids = $this->getInterfaceOids('', $global_oids);
 
             $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $onus);
         } elseif ($params['interface_type'] == 'PHYSICAL') {
             $response = [];
             foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
                 $item[$iface['xid']]['interface'] = $iface;
-                $oids = $this->getInterfaiceOids('.' . $iface['xid'], $global_oids);
+                $oids = $this->getInterfaceOids('.' . $iface['xid'], $global_oids);
                 $response[] = current($this->process($this->formatResponse($this->snmp->get($oids)), $item));
             }
             $this->response = array_values($response);
         } else {
             $whole_ifaces = $this->getInterfacesWithIfHcIds();
-            $oids = $this->getInterfaiceOids('', $global_oids);
+            $oids = $this->getInterfaceOids('', $global_oids);
 
             $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $whole_ifaces);
         }
