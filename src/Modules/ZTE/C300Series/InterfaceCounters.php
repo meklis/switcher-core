@@ -40,11 +40,11 @@ class InterfaceCounters extends ModuleAbstract
             $interface = $this->parseInterface($params['interface']);
             if ($interface['type'] === 'ONU') {
                 $oids = array_map(function ($e) use ($interface) {
-                    return $e . "." . $interface['_xpon_id'];
+                    return $e->setOid($e->getOid() . "." . $interface['_xpon_id']);
                 }, $this->getOidsForOnts());
             } else {
                 $oids = array_map(function ($e) use ($interface) {
-                    return $e . "." . $interface['_xid'];
+                    return $e->setOid($e->getOid()  . "." . $interface['_xid']);
                 }, $this->getOidsForPhysical());
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));

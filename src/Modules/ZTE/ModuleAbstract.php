@@ -374,7 +374,9 @@ abstract class ModuleAbstract extends AbstractModule
                 throw new \Exception("Error parse port on not in service card. shelf={$matches[3]}, slot={$matches[4]}");
             }
             $technology = $card['technology'];
-            if (!$technology) {
+            if (!$technology && isset($xidList["{$shelf}/{$slot}/{$port}"])) {
+                return  $xidList["{$shelf}/{$slot}/{$port}"];
+            } elseif (!$technology) {
                 throw new \Exception("Error get technology");
             }
             if ($onu) {
