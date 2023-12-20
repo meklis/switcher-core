@@ -141,6 +141,7 @@ abstract class CDataAbstractModule extends AbstractModule
         return null;
     }
 
+    protected $_ontStatuses = null ;
     /**
      * @param $interface
      * @throws DependencyException
@@ -155,7 +156,12 @@ abstract class CDataAbstractModule extends AbstractModule
         $min = $interface['id'];
         $max = $min + 256;
         $ontIds = [];
-        $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+        if(!$this->_ontStatuses) {
+            $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+        } else {
+            $onts = $this->_ontStatuses;
+        }
+
         foreach ($onts as $ont) {
             if ($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
                 if ($onlyOnline && $ont['status'] !== 'Online') {
