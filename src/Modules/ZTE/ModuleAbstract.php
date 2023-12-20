@@ -280,6 +280,7 @@ abstract class ModuleAbstract extends AbstractModule
     {
         $oidID = 0;
         $xidList = $this->listInterfacesByXidNames();
+
         if ($parseBy == 'eth_id') {
             [$oidBlock, $onuId] = explode(".", $name);
             $find = array_filter($xidList, function ($e) use ($oidBlock) {
