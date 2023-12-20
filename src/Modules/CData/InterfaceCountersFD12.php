@@ -41,7 +41,7 @@ class InterfaceCountersFD12 extends CDataAbstractModule
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
             if ($interface['type'] == 'ONU' && $this->model->getKey() === 'c_data_fd1204sn') {
-                $oids = $this->getInterfaiceOids($interface['xid'], $this->getOidsForPhysical());
+                $oids = $this->getInterfaiceOids($interface['id'], $this->getOidsForPhysical());
             } else if ($interface['type'] == 'ONU') {
                 $oids = $this->getInterfaiceOids($interface['id'] . '.0.1', $this->getOidsForOnts());
             } else  {
@@ -52,7 +52,7 @@ class InterfaceCountersFD12 extends CDataAbstractModule
             throw new \Exception('Not available (Mass SNMP by ont.counters can reboot device)');
         } else {
             $oids = $this->getOidsForPhysical();
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            $this->response = $this->formatResponse($this->snmp->walkNext($oids));
         }
         return $this;
     }
