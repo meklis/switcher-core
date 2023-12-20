@@ -33,15 +33,24 @@ class InterfaceCountersFD16 extends CDataAbstractModule
         if ($response['if.Name']->error()) {
             throw new \Exception($response['if.Name']->error());
         }
+
+        //Fetching physical interfaces
+        $physicalIfaces = [];
+        foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
+            $physicalIfaces[$iface['xid']] = $iface;
+        }
+
         $interfaces = [];
         foreach ($response['if.Name']->fetchAll() as $iface) {
             $id = Helper::getIndexByOid($iface->getOid());
-            try {
-                $if = $this->parseInterface($iface->getValue());
-                $interfaces[$id]['interface'] = $if;
+            if (isset($physicalIfaces[$id])) {
+                $interfaces[$id]['interface'] = $physicalIfaces[$id];
                 $interfaces[$id]['interface']['_hc_id'] = $id;
-            } catch (\Exception $e) {
+                continue;
             }
+            $if = $this->parseInterface($iface->getValue());
+            $interfaces[$id]['interface'] = $if;
+            $interfaces[$id]['interface']['_hc_id'] = $id;
         }
         $this->_ifacesHC = $interfaces;
         $this->setCache('interfaces_with_hc_id', $interfaces, 3600, true);
@@ -132,13 +141,10 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             $name = Helper::fromCamelCase(str_replace(["if.HC", "if"], "", $name));
             foreach ($dt->fetchAll() as $resp) {
                 $xid = Helper::getIndexByOid($resp->getOid());
-                try {
-                    if (!isset($interfaces[$xid])) continue;
-                    $data[$xid]['interface'] = $interfaces[$xid]['interface'];
-                    $data[$xid][$name] = $resp->getValue();
-                } catch (\Exception $e) {
+                if (!isset($interfaces[$xid])) continue;
+                $data[$xid]['interface'] = $interfaces[$xid]['interface'];
+                $data[$xid][$name] = $resp->getValue();
 
-                }
             }
         }
         return array_values($data);
