@@ -269,12 +269,12 @@ models:
         - {name: pon0/0/15, id: 16783616,  xid: 25, type: PON, pontype: epon}
         - {name: pon0/0/16, id: 16783872,  xid: 26, type: PON, pontype: epon}
 
-  - name: C-Data FD1616SN-R1
-    key: c_data_fd1616sn_r1
+  - name: C-Data FD1616
+    key: c_data_fd1616
     inputs:
       - snmp
       - console
-    detect: {description: ^FD1616SN-R1$,  objid: ^.1.3.6.1.4.1.17409$}
+    detect: {description: ^FD1616,  objid: ^.1.3.6.1.4.1.17409$}
     device_type: OLT
     oids:
       - ./oids/cdata/fd-gpon-series.yml
@@ -332,8 +332,8 @@ models:
         - {name: pon0/0/15, id: 16782592,  xid: 21, type: PON, pontype: gpon}
         - {name: pon0/0/16, id: 16782848,  xid: 22, type: PON, pontype: gpon}
 
-  - name: C-Data FD1608SN-R1
-    key: c_data_fd1608sn_r1
+  - name: C-Data FD1608
+    key: c_data_fd1608
     inputs:
       - snmp
       - console
