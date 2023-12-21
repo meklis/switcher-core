@@ -109,7 +109,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             }
             $oids = $this->getInterfaceOids('', $global_oids);
 
-            $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $onus);
+            $this->response = $this->process($this->formatResponse($this->snmp->walkNext($oids)), $onus);
         } elseif ($params['interface_type'] == 'PHYSICAL') {
             $response = [];
             foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
@@ -122,7 +122,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
             $whole_ifaces = $this->getInterfacesWithIfHcIds();
             $oids = $this->getInterfaceOids('', $global_oids);
 
-            $this->response = $this->process($this->formatResponse($this->snmp->walk($oids)), $whole_ifaces);
+            $this->response = $this->process($this->formatResponse($this->snmp->walkNext($oids)), $whole_ifaces);
         }
         return $this;
     }
