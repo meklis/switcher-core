@@ -30,21 +30,9 @@ class InterfaceCountersFD16 extends CDataAbstractModule
         if (!isset($response['if.Name'])) {
             throw new \Exception("Not found response by if.Name");
         }
-        //Костыль для FD1608SN-R2-DAP
-        // Software ver: V2.0.5_230523
-        // Hardware ver: V1.1
+
         if ($response['if.Name']->error()) {
-            $oids = [Oid::init($this->oids->getOidByName('if.Descr')->getOid())];
-            $response = $this->formatResponse($this->snmp->walk($oids));
-            if (!isset($response['if.Descr'])) {
-                throw new \Exception("Not found response by if.Descr");
-            }
-            if ($response['if.Descr']->error()) {
-               throw new \Exception($response['if.Descr']->error());
-            }
-            $resp = $response['if.Descr'];
-        } else {
-            $resp = $response['if.Name'];
+            throw new \Exception($response['if.Name']->error());
         }
 
         //Fetching physical interfaces
@@ -54,7 +42,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
         }
 
         $interfaces = [];
-        foreach ($resp->fetchAll() as $iface) {
+        foreach ($response['if.Name']->fetchAll() as $iface) {
             $id = Helper::getIndexByOid($iface->getOid());
             if (isset($physicalIfaces[$id])) {
                 $interfaces[$id]['interface'] = $physicalIfaces[$id];
