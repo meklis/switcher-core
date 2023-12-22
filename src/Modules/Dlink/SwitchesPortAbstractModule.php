@@ -16,7 +16,7 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
         if($this->indexesPort) {
             return $this->indexesPort;
         }
-        if($cached = $this->getCache('port_indexes')) {
+        if($cached = $this->getCache('port_indexes', true)) {
             return $cached;
         }
         $response = $this->formatResponse($this->snmp->walk([
@@ -43,7 +43,7 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
             }
         }
         $this->indexesPort = $indexes;
-        $this->setCache('port_indexes', $indexes, 600);
+        $this->setCache('port_indexes', $indexes, 600, true);
         return $indexes;
     }
 
