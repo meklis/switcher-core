@@ -29,7 +29,11 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
         }
 
         foreach ($response['if.Name']->fetchAll() as $resp) {
-            if(isset($types[Helper::getIndexByOid($resp->getOid())]) && $ethernetOnly && in_array($types[Helper::getIndexByOid($resp->getOid())], ['FE','GE'])) {
+            if(isset($types[Helper::getIndexByOid($resp->getOid())]) &&
+                $ethernetOnly &&
+                in_array($types[Helper::getIndexByOid($resp->getOid())], ['FE','GE']) &&
+                strpos($resp->getValue(), "ch") !== 0
+            ) {
                 $indexes[Helper::getIndexByOid($resp->getOid())] = [
                     'id' =>  Helper::getIndexByOid($resp->getOid()),
                     'name' => $resp->getValue(),
