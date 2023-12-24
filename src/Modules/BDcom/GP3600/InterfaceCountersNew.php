@@ -30,12 +30,6 @@ class InterfaceCountersNew extends BDcomAbstractModule
         }, $this->interfaceCounterOids());
     }
 
-    function getOidsForOnts()
-    {
-        $this->onts = array_filter($this->getInterfacesIds(), fn($v) => $v['type'] == 'ONU');
-        $oids = $this->getOidsByInterfacesArray($this->onts);
-        return $oids;
-    }
 
     function getOidsByInterfacesArray($interfaces)
     {
@@ -45,14 +39,6 @@ class InterfaceCountersNew extends BDcomAbstractModule
         }
         return $oids;
     }
-
-    function getOntByXid($xid)
-    {
-        $iface = array_filter($this->onts, fn($v) => $v['xid'] == $xid);
-        return current($iface);
-    }
-
-    public $onts;
 
     public function run($params = [])
     {
@@ -71,10 +57,12 @@ class InterfaceCountersNew extends BDcomAbstractModule
         }
 
         if ($params['interface_type'] == 'ONU') {
-            $oids = $this->getOidsForOnts();
+            $ifaces = array_filter($this->getInterfacesIds(), fn($v) => $v['type'] == 'ONU');
+            $oids = $this->getOidsByInterfacesArray($ifaces);
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } elseif ($params['interface_type'] == 'PHYSICAL') {
-            $oids = $this->getOidsByInterfacesArray($this->getPhysicalInterfaces());
+            $ifaces = $this->getPhysicalInterfaces();
+            $oids = $this->getOidsByInterfacesArray($ifaces);
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
             foreach ($oidsLoc as $oid) {
@@ -95,21 +83,11 @@ class InterfaceCountersNew extends BDcomAbstractModule
             $name = Helper::fromCamelCase(str_replace(["if.HC", "if"], "", $oidName));
             foreach ($dt->fetchAll() as $resp) {
                 try {
-                    if ($filter['interface']) {
-                        $iface = $this->parseInterface($filter['interface']);
-                    } elseif ($filter['interface_type'] == 'ONU') {
-                        $iface = $this->getOntByXid(Helper::getIndexByOid($resp->getOid()));
-                    } else {
-                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
-                    }
-                    if ($iface['id']) {
-                        $data[$iface['id']]['interface'] = $iface;
-                        $data[$iface['id']][$name] = $resp->getValue();
-                    }
-                } catch (Exception $e) {
-                    if (strpos($e->getMessage(), "not in service card") === false) {
-                        throw $e;
-                    }
+                    $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+                    $data[$iface['id']]['interface'] = $iface;
+                    $data[$iface['id']][$name] = $resp->getValue();
+                } catch (\Exception $e) {
+
                 }
             }
         }
