@@ -38,7 +38,8 @@ models:
       fdb: \SwitcherCore\Modules\BDcom\GP3600\FdbTableConsole
       interface_descriptions: \SwitcherCore\Modules\BDcom\GP3600\InterfaceDescriptions
       sys_resources: \SwitcherCore\Modules\BDcom\GP3600\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\GP3600\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\GP3600\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\GP3600\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\GP3600\InterfacesList
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\GP3600\UniInterfacesStatus
       gpon_profiles: \SwitcherCore\Modules\BDcom\GP3600\GponProfiles
@@ -83,7 +84,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
@@ -123,7 +125,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
@@ -163,7 +166,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
@@ -203,7 +207,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
@@ -243,7 +248,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
@@ -283,7 +289,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
@@ -323,7 +330,8 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\BDcom\OntDelete
       parse_interface: \SwitcherCore\Modules\BDcom\ParseInterface
       sys_resources: \SwitcherCore\Modules\BDcom\SystemResources
-      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      #interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCounters
+      interface_counters: \SwitcherCore\Modules\BDcom\InterfaceCountersNew
       interfaces_list: \SwitcherCore\Modules\BDcom\InterfacesList
       interface_descriptions: \SwitcherCore\Modules\BDcom\InterfaceDescriptions
       uni_interfaces_status: \SwitcherCore\Modules\BDcom\UniInterfacesStatus
