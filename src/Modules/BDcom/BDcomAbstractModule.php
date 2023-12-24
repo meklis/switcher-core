@@ -31,12 +31,13 @@ abstract class BDcomAbstractModule extends AbstractModule
         return [];
     }
 
-    function __construct(Model $model) {
+    function __construct(Model $model)
+    {
     }
 
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
-        if($fromCache && $ret = $this->getCache(json_encode($filter))) {
+        if ($fromCache && $ret = $this->getCache(json_encode($filter))) {
             return $ret;
         }
         $resp = $this->getPretty();
@@ -44,56 +45,71 @@ abstract class BDcomAbstractModule extends AbstractModule
         return $resp;
     }
 
-    protected function parseInterface($input)
+    protected function parseInterface($input, $parseBy = 'id')
     {
         $ifaces = $this->getInterfacesIds();
-       if(is_numeric($input) && isset($ifaces[$input])) {
-           return $ifaces[$input];
-       }
-       if (is_numeric($input)) {
-           $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
-               return $input == $iface['xid'];
-           }));
-           if(count($filtered) > 0) {
-               return  $filtered[0];
-           }
-       }
-       if (is_string($input)) {
-           $input = strtolower(str_replace("t", "", $input));
-           $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
-               return $input == strtolower($iface['name']);
-           }));
-           if(count($filtered) > 0) {
-               return  $filtered[0];
-           }
-       }
 
-       if (is_string($input) && strpos($input, ".") !== false) {
-           $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
-               return $input == $iface['_llid_id'];
-           }));
-           if(count($filtered) > 0) {
-               return  $filtered[0];
-           }
-       }
-       throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
+        if (is_numeric($input) && $parseBy == 'xid') {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == $iface['xid'];
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+
+        if (is_numeric($input) && isset($ifaces[$input])) {
+            return $ifaces[$input];
+        }
+        if (is_numeric($input)) {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == $iface['xid'];
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+        if (is_string($input)) {
+            $input = strtolower(str_replace("t", "", $input));
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == strtolower($iface['name']);
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+
+        if (is_string($input) && strpos($input, ".") !== false) {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == $iface['_llid_id'];
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+        throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
-    function getInterfacesIds() {
-        if(!$this->interfacesIds) {
+    function getInterfacesIds()
+    {
+        if (!$this->interfacesIds) {
             $this->loadInterfaces();
         }
         return $this->interfacesIds;
     }
-    protected function getPhysicalInterfaces() {
-        if(!$this->physicalInterfaces) {
+
+    protected function getPhysicalInterfaces()
+    {
+        if (!$this->physicalInterfaces) {
             $this->loadInterfaces();
         }
         return $this->physicalInterfaces;
     }
-    private function loadInterfaces() {
+
+    private function loadInterfaces()
+    {
         $data = $this->getCache("interfaces_list", true);
-        if($data) {
+        if ($data) {
             $this->interfacesIds = $data['ifaces_list'];
             $this->physicalInterfaces = $data['ifaces_physical'];
             return $this;
@@ -172,24 +188,24 @@ abstract class BDcomAbstractModule extends AbstractModule
         }
         $ifaces = [];
         $llidSeqs = [];
-        foreach($this->getResponseByName('ont.llidSeqNumber', $data)->fetchAll() as $item) {
+        foreach ($this->getResponseByName('ont.llidSeqNumber', $data)->fetchAll() as $item) {
             $xid = Helper::getIndexByOid($item->getOid(), 6);
             $parentIface = $this->findPhysicalInterface($xid, 'xid');
-            if($parentIface) {
-            $llidSeqs["{$parentIface['name']}:{$item->getValue()}"] = "." .
-                Helper::getIndexByOid($item->getOid(), 6) . "." .
-                Helper::getIndexByOid($item->getOid(), 5) . "." .
-                Helper::getIndexByOid($item->getOid(), 4) . "." .
-                Helper::getIndexByOid($item->getOid(), 3) . "." .
-                Helper::getIndexByOid($item->getOid(), 2) . "." .
-                Helper::getIndexByOid($item->getOid(), 1) . "." .
-                Helper::getIndexByOid($item->getOid());
+            if ($parentIface) {
+                $llidSeqs["{$parentIface['name']}:{$item->getValue()}"] = "." .
+                    Helper::getIndexByOid($item->getOid(), 6) . "." .
+                    Helper::getIndexByOid($item->getOid(), 5) . "." .
+                    Helper::getIndexByOid($item->getOid(), 4) . "." .
+                    Helper::getIndexByOid($item->getOid(), 3) . "." .
+                    Helper::getIndexByOid($item->getOid(), 2) . "." .
+                    Helper::getIndexByOid($item->getOid(), 1) . "." .
+                    Helper::getIndexByOid($item->getOid());
             }
         }
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
             $parentIface = $this->findPhysicalInterface($xid, 'xid');
-            $type =  $parentIface ? $parentIface['type'] : 'ONU';
+            $type = $parentIface ? $parentIface['type'] : 'ONU';
             //Fucking telnet - need to rename port
             $name = strtolower($iface->getValue());
             if (preg_match('/^GigaEthernet([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
@@ -207,13 +223,13 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^tg([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
             }
-            if(strpos($iface->getValue(), "VLAN") !== false) {
+            if (strpos($iface->getValue(), "VLAN") !== false) {
                 $type = 'vlan';
             };
             $id = $this->getIdByName($name);
             $ifaces[$id] = [
                 'id' => $id,
-                'xid' =>  $xid,
+                'xid' => $xid,
                 'name' => $name,
                 '_llid_id' => isset($llidSeqs[$name]) ? $llidSeqs[$name] : null,
                 'type' => $type,
@@ -230,39 +246,43 @@ abstract class BDcomAbstractModule extends AbstractModule
         return $this;
     }
 
-    private function findParentByName($name) {
+    private function findParentByName($name)
+    {
         //EPON0/2:48
-        if(preg_match('/epon0\/([0-9]{1,2}):([0-9]{1,3})/', $name, $matches)) {
+        if (preg_match('/epon0\/([0-9]{1,2}):([0-9]{1,3})/', $name, $matches)) {
             $id = 10000000;
             $id += 100000 * $matches[1];
             return $id;
         }
-        return  null;
+        return null;
     }
-    private function getIdByName($name) {
+
+    private function getIdByName($name)
+    {
         //EPON0/2:48
-        if(preg_match('/epon0\/([0-9]{1,2}):([0-9]{1,3})/', $name, $matches)) {
+        if (preg_match('/epon0\/([0-9]{1,2}):([0-9]{1,3})/', $name, $matches)) {
             $id = 10000000;
             $id += 100000 * $matches[1];
             $id += 100 * $matches[2];
             return $id;
         }
-        if(preg_match('/epon0\/([0-9]{1,2})/', $name, $matches)) {
+        if (preg_match('/epon0\/([0-9]{1,2})/', $name, $matches)) {
             $id = 10000000;
             $id += 100000 * $matches[1];
             return $id;
         }
-        if(preg_match('/^tg0\/([0-9]{1,2})/', $name, $matches)) {
+        if (preg_match('/^tg0\/([0-9]{1,2})/', $name, $matches)) {
             return (int)$matches[1] + 1000;
         }
-        if(preg_match('/^g0\/([0-9]{1,2})/', $name, $matches)) {
+        if (preg_match('/^g0\/([0-9]{1,2})/', $name, $matches)) {
             return (int)$matches[1] + 100;
         }
-        if(preg_match('/^fe0\/([0-9]{1,2})/', $name, $matches)) {
+        if (preg_match('/^fe0\/([0-9]{1,2})/', $name, $matches)) {
             return (int)$matches[1] + 10;
         }
         return null;
     }
+
     private function findPhysicalInterface($findValue, $findKey)
     {
         $filtered = array_values(array_filter($this->physicalInterfaces, function ($val) use ($findValue, $findKey) {

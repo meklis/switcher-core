@@ -83,14 +83,16 @@ class InterfaceCountersNew extends BDcomAbstractModule
             $name = Helper::fromCamelCase(str_replace(["if.HC", "if"], "", $oidName));
             foreach ($dt->fetchAll() as $resp) {
                 try {
-                    $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
-                    $data[$iface['id']]['interface'] = $iface;
-                    $data[$iface['id']][$name] = $resp->getValue();
+                    $xid = Helper::getIndexByOid($resp->getOid());
+                    $iface = $this->parseInterface($xid, 'xid');
+                    $data[$xid]['interface'] = $iface;
+                    $data[$xid][$name] = $resp->getValue();
                 } catch (\Exception $e) {
 
                 }
             }
         }
+        ksort($data);
         return array_values($data);
     }
 

@@ -40,12 +40,22 @@ abstract class BDcomAbstractModule extends AbstractModule
         return $resp;
     }
 
-    protected function parseInterface($input)
+    protected function parseInterface($input, $parseBy='id')
     {
         $ifaces = $this->getInterfacesIds();
         foreach ($this->getPhysicalInterfaces() as $physicalInterface) {
             $ifaces[$physicalInterface['id']] = $physicalInterface;
         }
+
+        if (is_numeric($input) && $parseBy == 'xid') {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $input == $iface['xid'];
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+
        if(is_numeric($input) && isset($ifaces[$input])) {
            return $ifaces[$input];
        }
