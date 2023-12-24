@@ -22,52 +22,42 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = null;
+
     function getRaw()
     {
         return $this->response;
     }
+
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
 
-        $data = $this->getResponseByName('ont.stat.inBytes');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['in_octets'] = (float)$r->getValue();
+        $data = [];
+        foreach ($this->response as $oidName => $dt) {
+            if ($dt->error()) {
+                continue;
+            }
+            $name = Helper::fromCamelCase(str_replace(["ont.stat.", "if.HC", "if"], "", $oidName));
+            foreach ($dt->fetchAll() as $resp) {
+                try {
+                    if (strpos($oidName, "ont.stat.") !== false) {
+                        $iface = $this->findIfaceByOid($resp->getOid());
+                    } else {
+                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+                    }
+                    $data[$iface['id']]['interface'] = $iface;
+                    $data[$iface['id']][$name] = (float)$resp->getValue();
+                } catch (\Exception $e) {
+
+                }
             }
         }
-        $data = $this->getResponseByName('ont.stat.outBytes');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['out_octets'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('ont.stat.inDropPkts');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['in_drop_pkts'] = (float)$r->getValue();
-            }
-        }
-        $data = $this->getResponseByName('ont.stat.outDropPkts');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['out_drop_pkts'] = (float)$r->getValue();
-            }
-        }
-        return array_values($ifaces);
+        return array_values($data);
     }
 
     function getPretty()
     {
-       return null;
+        return null;
     }
 
     /**
@@ -77,29 +67,55 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-        $oidsLoc = [
-            $this->oids->getOidByName('ont.stat.outBytes'),
-            $this->oids->getOidByName('ont.stat.inBytes'),
-            $this->oids->getOidByName('ont.stat.outDropPkts'),
-            $this->oids->getOidByName('ont.stat.inDropPkts'),
-        ];
-        $suffix = '';
-        if($filter['interface']) {
+
+        if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            $suffix = '.'.$interface['xid'];
-            $oids = [];
-            foreach ($oidsLoc as $oid) {
-                $oids[] = Oid::init($oid->getOid() . $suffix);
+            if ($interface['type'] == 'ONU') {
+                $oids = $this->getOnuOids($interface['xid']);
+            } else {
+                $oids = $this->getPhysicalIfacesOids($interface['xid']);
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
-        } else {
-            $oids = [];
-            foreach ($oidsLoc as $oid) {
-                $oids[] = Oid::init($oid->getOid() . $suffix);
-            }
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            return $this;
         }
+
+        if (isset($filter['interface_type']) && $filter['interface_type'] === 'ONU') {
+            $oids = $this->getOnuOids();
+        } elseif (isset($filter['interface_type']) && $filter['interface_type'] === 'PHYSICAL') {
+            $oids = $this->getPhysicalIfacesOids();
+        } else {
+            $oids = array_merge($this->getOnuOids(), $this->getPhysicalIfacesOids());
+        }
+        $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
+    }
+
+    function getOnuOids($suffix = '')
+    {
+        if ($suffix) {
+            $suffix = ".{$suffix}";
+        }
+        return [
+            Oid::init($this->oids->getOidByName('ont.stat.outOctets')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('ont.stat.inOctets')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('ont.stat.outDropPkts')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('ont.stat.inDropPkts')->getOid() . "{$suffix}"),
+        ];
+    }
+
+    function getPhysicalIfacesOids($suffix = '')
+    {
+        if ($suffix) {
+            $suffix = ".{$suffix}";
+        }
+        return [
+            Oid::init($this->oids->getOidByName('if.InErrors')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('if.OutErrors')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('if.InDiscards')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('if.OutDiscards')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('if.HCInOctets')->getOid() . "{$suffix}"),
+            Oid::init($this->oids->getOidByName('if.HCOutOctets')->getOid() . "{$suffix}"),
+        ];
     }
 }
 
