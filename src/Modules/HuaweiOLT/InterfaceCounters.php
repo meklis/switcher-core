@@ -52,7 +52,18 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
                 }
             }
         }
-        return array_values($data);
+        return array_values(array_map(function ($e) {
+            if(!isset($e['in_octets']) || !isset($e['out_octets'])) {
+                $e['in_octets'] = 0;
+                $e['out_octets'] = 0;
+            }
+            if($e['in_octets'] > 1000000 && $e['out_octets'] > 1000000 && $e['in_octets'] == $e['out_octets']) {
+                $e['in_octets'] = 0;
+                $e['out_octets'] = 0;
+            }
+            return $e;
+        },  $data));
+
     }
 
     function getPretty()
