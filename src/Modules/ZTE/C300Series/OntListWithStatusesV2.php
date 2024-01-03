@@ -46,6 +46,9 @@ class OntListWithStatusesV2 extends ModuleAbstract
                         }
                         $this->fullInterfacesList = array_merge($this->fullInterfacesList, $resp);
                     } catch (\Exception $e) {
+                        if(strpos($e->getMessage(), "No related information") === false) {
+                            throw $e;
+                        }
                         $this->logger->error("error get info for port {$card['shelf']}/{$card['slot']}/{$port} on device {$this->device->getIp()} with message: {$e->getMessage()}");
                     }
                 }
@@ -79,7 +82,7 @@ class OntListWithStatusesV2 extends ModuleAbstract
     private function getStateGPON($interface)
     {
         $input = $this->telnet->exec("show gpon onu state {$interface}");
-        if (!$input) throw new Exception("Empty response on command 'show epon onu state {$interface}'");
+        if (!$input) throw new Exception("Empty response on command 'show gpon onu state {$interface}'");
         if (preg_match('/No related information to show/', $input)) {
             throw new Exception('No related information to show');
         }
