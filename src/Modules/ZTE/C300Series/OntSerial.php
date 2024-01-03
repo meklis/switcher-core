@@ -83,7 +83,7 @@ class OntSerial extends ModuleAbstract
                 return \SnmpWrapper\Oid::init($e);
             }, $oids);
             $this->response = $this->formate($this->formatResponse(
-                $this->snmp->walk($oids)
+                $this->snmp->walkNext($oids)
             ));
         }
         return $this;
