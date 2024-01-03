@@ -23,15 +23,22 @@ class InterfaceDescriptions extends ModuleAbstract
             } else {
                 throw new \InvalidArgumentException("Allow only ONT");
             }
-        }
-        if ($oids) {
             $response = $this->formatResponse($this->snmp->get($oids));
         } else {
-            $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponName')->getOid());
-            $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponDescription')->getOid());
+            $descriptionOid = $this->oids->getOidByName('gpon.ont.GponDescription');
+            $nameOid = $this->oids->getOidByName('gpon.ont.GponName');
+
+            $ports = $this->getModule('pon_ports_list')->run([])->getPrettyFiltered([]);
+            $oids = [];
+            foreach ($ports as $port) {
+                if($port['_technology'] !== 'gpon') continue;
+                $oids[] = \SnmpWrapper\Oid::init("{$descriptionOid->getOid()}.{$port['_oid_id']}");
+                $oids[] = \SnmpWrapper\Oid::init("{$nameOid->getOid()}.{$port['_oid_id']}");
+            }
             $oids[] = Oid::init($this->oids->getOidByName('epon.ont.EponDescription')->getOid());
             $response = $this->formatResponse($this->snmp->walk($oids));
         }
+
         $data = [];
         if (isset($response['gpon.ont.GponDescription']) && !$response['gpon.ont.GponDescription']->error()) {
             foreach ($response['gpon.ont.GponDescription']->fetchAll() as $resp) {

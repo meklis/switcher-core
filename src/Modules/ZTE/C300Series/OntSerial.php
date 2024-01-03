@@ -61,13 +61,13 @@ class OntSerial extends ModuleAbstract
     public function run($filter = [])
     {
 
-        $oidRequests = [];
-        $oidRequests[] = $this->oids->getOidByName('gpon.ont.serial');
-        $oids = [];
-        foreach ($oidRequests as $oid) {
-            $oids[] = $oid->getOid();
-        }
         if ($filter['interface']) {
+            $oidRequests[] = $this->oids->getOidByName('gpon.ont.serial');
+            $oids = [];
+            foreach ($oidRequests as $oid) {
+                $oids[] = $oid->getOid();
+            }
+
             $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
                 return $e . "." . $iface['_oid_id'];
@@ -79,11 +79,15 @@ class OntSerial extends ModuleAbstract
                 $this->snmp->get($oids)
             ));
         } else {
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+            $ports = $this->getModule('pon_ports_list')->run([])->getPrettyFiltered([]);
+            $snOid = $this->oids->getOidByName('gpon.ont.serial');
+            $oids = [];
+            foreach ($ports as $port) {
+              if($port['_technology'] !== 'gpon') continue;
+              $oids[] = \SnmpWrapper\Oid::init("{$snOid->getOid()}.{$port['_oid_id']}");
+            }
             $this->response = $this->formate($this->formatResponse(
-                $this->snmp->walkNext($oids)
+                $this->snmp->walk($oids)
             ));
         }
         return $this;
