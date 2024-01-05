@@ -47,7 +47,8 @@ models:
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
  - name: D-link DGS-1100-10/ME
    key: dlink_dgs_1100_10_me_a1
@@ -89,4 +90,5 @@ models:
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1100SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand

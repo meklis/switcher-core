@@ -44,7 +44,8 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
  - name: D-link DGS-1210-20/ME/A1
    key: dlink_dgs_1210_20_me_a1
@@ -84,7 +85,8 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
  - name: D-link DGS-1210-10/ME/A1
    key: dlink_dgs_1210_10_me_a1
@@ -124,7 +126,8 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
  - name: D-link DGS-1210-20/ME/B1
    key: dlink_dgs_1210_20_me_b1
@@ -164,6 +167,8 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
  - name: D-link DGS-1210-12TS/ME/B1
    key: dlink_dgs_1210_12ts_me_b1
@@ -203,8 +208,8 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
  - name: D-link DGS-1210-28/ME/B1
    key: dlink_dgs_1210_28_me_b1
@@ -245,6 +250,8 @@ models:
      sys_resources: \SwitcherCore\Modules\Dlink\System\DGS1210SystemResources
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
 
 
  - name: D-link DGS-1210-28XS/ME/B1
@@ -284,4 +291,5 @@ models:
      ctrl_vlan_port: \SwitcherCore\Modules\Dlink\VlanPortControl
      interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
-
+     console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand

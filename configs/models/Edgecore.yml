@@ -37,6 +37,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ECS4120-28Fv2
     key: edgecore_ecs4120_28fv2
@@ -71,6 +73,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ECS4510-28F
     key: edgecore_ecs4510_28f
@@ -105,6 +109,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ES4612
     key: edgecore_es4612
@@ -138,6 +144,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ES3552M
     key: edgecore_es3552m
@@ -173,6 +181,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ECS3510-28T
     key: edgecore_ecs3510_28t
@@ -206,6 +216,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ES3528M
     key: edgecore_es3528m
@@ -241,6 +253,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ES3510MA
     key: edgecore_es3510ma
@@ -276,6 +290,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ES3510MAv2
     key: edgecore_es3510ma_v2
@@ -311,6 +327,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core ES3510
     key: edgecore_es3510
@@ -342,6 +360,8 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
 
   - name: Edge-core General switch
     key: edgecore_general_switch
@@ -373,3 +393,5 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
+      console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand

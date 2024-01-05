@@ -47,3 +47,5 @@ models:
       sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
       interface_descriptions: \SwitcherCore\Modules\Dlink\Link\Descriptions
       interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
+      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand

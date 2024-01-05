@@ -28,6 +28,8 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD11XX\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       pon_port_size: 64
       console_conn_type: stels
@@ -70,6 +72,8 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\FD11XX\InterfaceDescriptions
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD11XX\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       console_conn_type: stels
       pon_port_size: 64
@@ -124,6 +128,8 @@ models:
       interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -177,6 +183,8 @@ models:
       link_info: \SwitcherCore\Modules\CData\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -240,6 +248,8 @@ models:
       link_info: \SwitcherCore\Modules\CData\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -307,6 +317,8 @@ models:
       link_info: \SwitcherCore\Modules\CData\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -370,6 +382,8 @@ models:
       link_info: \SwitcherCore\Modules\CData\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
     extra:
       pon_port_size: 128
       console_conn_type: cdata

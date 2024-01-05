@@ -68,3 +68,5 @@ models:
       ctrl_port_state: \SwitcherCore\Modules\Huawei\StatePortControl
       clear_counters: \SwitcherCore\Modules\Huawei\ClearCounters
       reboot: \SwitcherCore\Modules\Huawei\Reboot
+      console_command: \SwitcherCore\Modules\Huawei\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\Huawei\MultiRawConsoleCommand
