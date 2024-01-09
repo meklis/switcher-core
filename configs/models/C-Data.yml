@@ -112,7 +112,7 @@ models:
       pon_count_registered_onts: \SwitcherCore\Modules\CData\PortCountRegisteredOnts
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
-      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
+      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfoFD12
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
@@ -166,7 +166,7 @@ models:
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
-      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
+      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfoFD12
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
@@ -231,7 +231,7 @@ models:
       pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\OntMacAddress
       uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
-      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfo
+      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfoFD12
       pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FdbTableConsole
