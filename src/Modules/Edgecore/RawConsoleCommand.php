@@ -33,10 +33,6 @@ class RawConsoleCommand extends AbstractModule
 
     protected function validResponse($response)
     {
-        if (preg_match('/\[Successful\]/', $response)) return true;
-        if (preg_match('/\[OK\]/', $response)) return true;
-        if (preg_match('/Failed/', $response)) return false;
-
         if (preg_match('/Invalid/', $response)) return false;
         return true;
     }

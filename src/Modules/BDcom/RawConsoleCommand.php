@@ -32,10 +32,6 @@ class RawConsoleCommand extends BDcomAbstractModule
 
     protected function validResponse($response)
     {
-        if (preg_match('/\[Successful\]/', $response)) return true;
-        if (preg_match('/\[OK\]/', $response)) return true;
-        if (preg_match('/Failed/', $response)) return false;
-
         if (preg_match('/Incomplete command/', $response)) return false;
         if (preg_match('/Too many parameters/', $response)) return false;
         if (preg_match('/Unknown command/', $response)) return false;

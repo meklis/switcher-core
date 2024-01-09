@@ -32,10 +32,6 @@ class RawConsoleCommand extends CDataAbstractModule
 
     protected function validResponse($response)
     {
-        if (preg_match('/\[Successful\]/', $response)) return true;
-        if (preg_match('/\[OK\]/', $response)) return true;
-        if (preg_match('/Failed/', $response)) return false;
-
         if (preg_match('/Command incomplete/', $response)) return false;
         if (preg_match('/Unknown command/', $response)) return false;
         return true;
