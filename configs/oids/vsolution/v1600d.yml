@@ -31,7 +31,7 @@
 - {name: ont.model, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.6}
 - {name: ont.description, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.9}
 - {name: ont.type, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.13}
-- {name: ont.lastDeregReason, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.15, values: {0: WireDown, 1: PowerOff}}
+- {name: ont.lastDeregReason, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.15, values: {0: LOS, 1: PowerOff}}
 - {name: ont.lastRegTime, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.18}
 - {name: ont.lastDeregTime, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.19}
 - {name: ont.aliveTime, oid: .1.3.6.1.4.1.37950.1.1.5.12.1.29.1.20}

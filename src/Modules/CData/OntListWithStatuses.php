@@ -66,6 +66,7 @@ class OntListWithStatuses extends CDataAbstractModule
                     ],
                     'status' => $statusText,
                     'admin_state' => null,
+                    'bind_status'  => null,
                 ];
             }
         }
@@ -87,12 +88,22 @@ class OntListWithStatuses extends CDataAbstractModule
              * @var WrappedResponse[] $resp
              */
             $resp = $this->formatResponse(
-                $this->snmp->walk(
-                    [Oid::init($this->oids->getOidByName('ont.adminStatus')->getOid() . ".{$iface['id']}")]
+                $this->snmp->get(
+                    [
+                        Oid::init($this->oids->getOidByName('ont.adminStatus')->getOid() . ".{$iface['id']}"),
+                        Oid::init($this->oids->getOidByName('ont.lastDownReason')->getOid() . ".{$iface['id']}")
+                    ]
                 )
             );
             if(!$resp || !isset($resp['ont.adminStatus'])) throw new \Exception("Error load admin_status");
+            if(!$resp || !isset($resp['ont.lastDownReason'])) throw new \Exception("Error load lastDownReason");
             $data[$iface['id']]['admin_state'] = $resp['ont.adminStatus']->fetchOne()->getParsedValue();
+            $data[$iface['id']]['bind_status'] = $resp['ont.lastDownReason']->fetchOne()->getParsedValue();
+
+            if($data[$iface['id']]['status'] == 'Online') {
+                $data[$iface['id']]['bind_status'] = 'Online';
+            }
+
             $this->response = [
                 $data[$iface['id']]
             ];
@@ -101,24 +112,41 @@ class OntListWithStatuses extends CDataAbstractModule
                 $this->response = $cached;
                 return  $this;
             }
-            $resp = $this->formatResponse(
-                $this->snmp->walk(
-                    [Oid::init($this->oids->getOidByName('ont.adminStatus')->getOid())]
-                )
-            );
-            if($resp['ont.adminStatus']->error()) {
-                throw new \Exception($resp['ont.adminStatus']->error());
-            }
-            foreach ($resp['ont.adminStatus']->fetchAll() as $status) {
-                $index = Helper::getIndexByOid($status->getOid());
-                if(!isset($data[$index])) continue;
-                $data[$index]['admin_state'] = $status->getParsedValue();
-            }
+            $this->fillBindStatuses($data);
             $this->setCache("onts_status", array_values($data), 10, true);
             $this->response = array_values($data);
         }
 
         return $this;
+    }
+
+    function fillBindStatuses(&$statuses)
+    {
+        $oid = $this->oids->getOidByName('ont.lastDownReason')->getOid();
+        $oids = [];
+        foreach ($statuses as $index=>$status) {
+            if($status['status'] != 'Online') {
+                $oids[] = Oid::init("{$oid}.{$status['interface']['id']}");
+            } else {
+                $statuses[$index]['bind_status'] = $status['status'];
+            }
+        }
+        if(!$oids) {
+            return [];
+        }
+        $responses = $this->formatResponse($this->snmp->get($oids));
+        if(!isset($responses['ont.lastDownReason'])) {
+            throw new \Exception("Not found responses for lastDownReason");
+        } elseif ($responses['ont.lastDownReason']->error()) {
+            throw new \Exception($responses['ont.lastDownReason']->error());
+        }
+        foreach ($responses['ont.lastDownReason']->fetchAll() as $resp) {
+            $index = Helper::getIndexByOid($resp->getOid());
+            if($resp->getParsedValue() !== 'Unknown') {
+                $statuses[$index]['bind_status'] = $resp->getParsedValue();
+            }
+        }
+        return  $statuses;
     }
 }
 
