@@ -11,7 +11,7 @@
 - {name: ont.vendor, oid: .1.3.6.1.4.1.3320.101.10.1.1.1 }
 - {name: ont.model, oid: .1.3.6.1.4.1.3320.101.10.1.1.2 }
 - {name: ont.bindType, oid: .1.3.6.1.4.1.3320.101.10.1.1.28, values: {0: Static, 1: Dynamic}}
-- {name: ont.status, oid: .1.3.6.1.4.1.3320.101.10.1.1.26, values: {0: authenticated, 1: registered, 2: deregistered, 3: auto-configured, 4: lost, 5: stand-by }}
+- {name: ont.status, oid: .1.3.6.1.4.1.3320.101.10.1.1.26, values: {0: authenticated, 1: registered, 2: Offline, 3: Online, 4: LOS, 5: stand-by }}
 - {name: ont.ipAddress, oid: .1.3.6.1.4.1.3320.101.10.4.1.2}
 - {name: ont.aliveTime, oid: .1.3.6.1.4.1.3320.101.10.1.1.80}
 - {name: ont.gePortCount, oid: .1.3.6.1.4.1.3320.101.10.1.1.12}
@@ -36,7 +36,7 @@
 # b[6] - секунда
 - {name: ont.llidLastRegTime, oid: .1.3.6.1.4.1.3320.101.11.1.1.9}
 - {name: ont.llidLastDeregTime, oid: .1.3.6.1.4.1.3320.101.11.1.1.10}
-- {name: ont.llidLastDeregReason, oid: .1.3.6.1.4.1.3320.101.11.1.1.11, values: {0: unknown, 2: normal, 3: mpcp-down, 4: oam-down, 5: firmware-download, 6: illegal-mac, 7: admin-down, 8: wire-down, 9: power-off}}
+- {name: ont.llidLastDeregReason, oid: .1.3.6.1.4.1.3320.101.11.1.1.11, values: {0: unknown, 2: normal, 3: mpcp-down, 4: oam-down, 5: firmware-download, 6: illegal-mac, 7: admin-down, 8: LOS, 9: PowerOff}}
 
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.3320.3.6.10.1.11}
 #- {name: resources.cpuUsage5sec, oid: .1.3.6.1.4.1.3320.9.109.1.1.1.1.3}

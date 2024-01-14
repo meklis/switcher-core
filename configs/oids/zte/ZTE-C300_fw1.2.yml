@@ -46,10 +46,10 @@
 - {name: gpon.ont.serial, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.5}
 - {name: gpon.ont.VportMode, oid: .1.3.6.1.4.1.3902.1012.3.28.1.1.10, values: { 1: gemport, 2: onu, 3: manual}}
 - {name: gpon.ont.adminState, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.1, values: { 1: Enabled, 2: Disabled}}
-- {name: gpon.ont.phaseState, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.4, values: { 0: logging, 1: LOS, 2: syncMib, 3: Working, 4: DyingGasp, 5: authFailed, 6: Offline}}
+- {name: gpon.ont.phaseState, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.4, values: { 0: logging, 1: LOS, 2: syncMib, 3: Online, 4: PowerOff, 5: authFailed, 6: Offline}}
 - {name: gpon.ont.LastOnlineTime, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.5}
 - {name: gpon.ont.LastOfflineTime, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.6}
-- {name: gpon.ont.LastOfflineReason, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.7, values: { 1: unknown, 2: los, 3: losi, 4: lofi, 5: sfi, 6: loai, 7: loami, 8: authFail, 9: dyingGasp, 10: deactiveSucc, 11: deactiveFail, 12: reboot, 13: shutdown }}
+- {name: gpon.ont.LastOfflineReason, oid: .1.3.6.1.4.1.3902.1012.3.28.2.1.7, values: { 1: unknown, 2: LOS, 3: LOSi, 4: lofi, 5: sfi, 6: loai, 7: loami, 8: authFail, 9: PowerOff, 10: deactiveSucc, 11: deactiveFail, 12: reboot, 13: shutdown }}
 
 - {name: gpon.ont.vendorId, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.1}
 - {name: gpon.ont.verFirmware, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.2}
@@ -79,7 +79,7 @@
 #Включение/отключение ОНУ
 - {name: epon.ont.ctrlActiveStatus, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.4.1.18, values: {1: active, 2: inactive}}
 - {name: epon.ont.lastOfflineTime, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.4.1.26}
-- {name: epon.ont.lastOfflineReason, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.4.1.27, values: {1: unknown, 14: bugsell, 21: los, 22: poweroff, 23: timestampDrift}}
+- {name: epon.ont.lastOfflineReason, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.4.1.27, values: {1: unknown, 14: bugsell, 21: LOS, 22: PowerOff, 23: timestampDrift}}
 
 - {name: epon.optical.temp, oid: .1.3.6.1.4.1.3902.1015.1010.1.1.1.29.1.1}
 - {name: epon.optical.voltage, oid: .1.3.6.1.4.1.3902.1015.1010.1.1.1.29.1.2}

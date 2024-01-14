@@ -1,5 +1,5 @@
 #ONT BLOCK
-- {name: ont.deactiveReason, oid: .1.3.6.1.4.1.3320.10.3.1.1.35, values: {0: none, 1: dying-gasp, 2: laser-always-on, 3: admin-control, 4: temp-omcc-problem, 5: unknown, 6: pon-los, 7: lcdg, 8: wire-down, 9: omci-mismatch, 10: omci-linkdown, 11: password-mismatch, 12: reboot, 13: ranging-failed, 14: disable-onu, 15: ack-timeout, 16: sfi, 17: tiwi, 18: onu-alarm, 19: loki} }
+- {name: ont.deactiveReason, oid: .1.3.6.1.4.1.3320.10.3.1.1.35, values: {0: None, 1: PowerOff, 2: laser-always-on, 3: admin-control, 4: temp-omcc-problem, 5: unknown, 6: pon-los, 7: lcdg, 8: LOS, 9: omci-mismatch, 10: omci-linkdown, 11: password-mismatch, 12: Reboot, 13: ranging-failed, 14: disable-onu, 15: ack-timeout, 16: sfi, 17: tiwi, 18: onu-alarm, 19: loki} }
 - {name: ont.serial, oid: .1.3.6.1.4.1.3320.10.3.3.1.2}
 
 - {name: pon.port.optical.temp, oid: .1.3.6.1.4.1.3320.10.2.2.1.2 } # Optical module temperature. The unit is 1/256 degree.

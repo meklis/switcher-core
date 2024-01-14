@@ -59,7 +59,7 @@
 - {name: ont.vendor, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.25}
 - {name: ont.model, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.26}
 - {name: ont.lastRegSince, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.18}
-- {name: ont.lastDownReason, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.7, values: {'dying-gasp': Dying Gasp, 'losi': Losi, '': Unknown}}
+- {name: ont.lastDownReason, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.7, values: {'dying-gasp': PowerOff, 'losi': LOS, '': Unknown}}
 - {name: ont.lastDownSince, oid: .1.3.6.1.4.1.34592.1.3.100.12.3.1.1.6}
 - {name: pon.ontStatus, oid: .1.3.6.1.4.1.34592.1.3.3.14.1}
 

@@ -66,10 +66,14 @@ class OntListWithStatusesV2 extends ModuleAbstract
         foreach (array_splice($lines, 2) as $line) {
             if (preg_match('/^(.*)[ ]{1,}(Offline|Power Off|Online)[ ]{1,}(idle|complete)[ ]{1,}(.*)$/', trim($line), $matches)) {
                 $interface = $this->parseInterface(trim($matches[1]));
+                $bindStatus = trim($matches[2]);
+                if($bindStatus == 'Power Off') {
+                    $bindStatus="PowerOff";
+                }
                 $response[] = [
                     'interface' => $interface,
                     'status' => strtolower(trim($matches[2])) == 'online' ? 'Online' : 'Offline',
-                    'bind_status' => trim($matches[2]),
+                    'bind_status' => $bindStatus,
                     '_oam_status' => trim($matches[3]),
                     '_mac' => trim($matches[4]),
                     'admin_state' => null,
@@ -92,27 +96,58 @@ class OntListWithStatusesV2 extends ModuleAbstract
             $row = trim($row);
             try {
                 if (preg_match('/^([0-9].*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*)$/', $row, $match)) {
+                    $bindStatus = trim($match[4]);
+                    if($bindStatus == 'DyingGasp') {
+                        $bindStatus = "PowerOff";
+                    }
+                    if($bindStatus == 'OffLine') {
+                        $bindStatus = "Offline";
+                    }
+                    if($bindStatus == 'working') {
+                        $bindStatus = "Online";
+                    }
+
                     $response[] = [
                         'interface' => $this->parseInterface('gpon-onu_' . trim($match[1])),
                         'admin_state' => $match[2],
                         'status' => strtolower(trim($match[3])) == 'enable' ? 'Online' : 'Offline',
-                        'bind_status' => $match[4],
+                        'bind_status' => $bindStatus,
                         '_channel' => $match[5],
                     ];
                 } elseif (preg_match('/^(gpon-onu_[0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3}:[0-9]{1,3})[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)$/', $row, $match)) {
+                    $bindStatus = trim($match[5]);
+                    if($bindStatus == 'DyingGasp') {
+                        $bindStatus = "PowerOff";
+                    }
+                    if($bindStatus == 'OffLine') {
+                        $bindStatus = "Offline";
+                    }
+                    if($bindStatus == 'working') {
+                        $bindStatus = "Online";
+                    }
                     $response[] = [
                         'interface' => $this->parseInterface(trim($match[1])),
                         'admin_state' => trim($match[2]),
                         'status' => strtolower(trim($match[3])) == 'enable' ? 'Online' : 'Offline',
-                        'bind_status' => trim($match[5]),
+                        'bind_status' => $bindStatus,
                         '_channel' => null,
                     ];
                 } elseif (preg_match('/^(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*?)[ ]{1,}(.*)$/', $row, $match)) {
+                    $bindStatus = trim($match[5]);
+                    if($bindStatus == 'working') {
+                        $bindStatus = "Online";
+                    }
+                    if($bindStatus == 'DyingGasp') {
+                        $bindStatus = "PowerOff";
+                    }
+                    if($bindStatus == 'OffLine') {
+                        $bindStatus = "Offline";
+                    }
                     $response[] = [
                         'interface' => $this->parseInterface('gpon-onu_' . trim($match[1])),
                         'admin_state' => trim($match[2]),
                         'status' => strtolower(trim($match[3])) == 'enable' ? 'Online' : 'Offline',
-                        'bind_status' => trim($match[5]),
+                        'bind_status' => $bindStatus,
                         '_channel' => null,
                     ];
                 }

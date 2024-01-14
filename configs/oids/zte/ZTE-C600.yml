@@ -30,11 +30,11 @@
 - {name: gpon.ont.vportMode, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.3.1.11, values: { 1: gemport, 2: onu, 3: manual}}
 - {name: gpon.ont.dbaMode, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.3.1.12, values: { 1: gemport, 2: onu, 3: manual}}
 - {name: gpon.ont.adminState, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.1, values: { 1: Enabled, 2: Disabled}}
-- {name: gpon.ont.phaseState, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.4, values: { 1: Logging, 2: LOS, 3: SyncMib, 4: Working, 5: DyingGasp, 6: AuthFailed, 7: Offline}}
+- {name: gpon.ont.phaseState, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.4, values: { 1: Logging, 2: LOS, 3: SyncMib, 4: Working, 5: PowerOff, 6: AuthFailed, 7: Offline}}
 - {name: gpon.ont.equipmentId, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.8}
 - {name: gpon.ont.LastOnlineTime, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.5}
 - {name: gpon.ont.LastOfflineTime, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.6}
-- {name: gpon.ont.LastOfflineReason, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7, values: { 1: unknown, 2: LOS, 3: LOSi, 4: LOFi, 5: sfi, 6: loai, 7: loami, 8: AuthFail, 9: DyingGasp, 10: deactiveSucc, 11: deactiveFail, 12: Reboot, 13: Shutdown }}
+- {name: gpon.ont.LastOfflineReason, oid: .1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.7, values: { 1: unknown, 2: LOS, 3: LOSi, 4: LOFi, 5: sfi, 6: loai, 7: loami, 8: AuthFail, 9: PowerOff, 10: deactiveSucc, 11: deactiveFail, 12: Reboot, 13: Shutdown }}
 
 - {name: gpon.ont.vendorId, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.1}
 - {name: gpon.ont.verFirmware, oid: .1.3.6.1.4.1.3902.1082.500.20.2.1.2.1.2}
