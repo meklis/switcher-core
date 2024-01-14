@@ -108,7 +108,7 @@
 #The value (13) indicates that the reason is dying-gasp,
 #The value (15) indicates that the reason is LOKI(Loss of key synch with ONUi),
 #The value (-1) indicates that the query fails.
-- {name: ont.lastDownCause, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.24, values: {1: LOS, 2: LOSi, 3: LOFi, 4: SFI, 5: LOAI, 6: LOAMI, 7: DeactivateFail, 8: Deactivated, 9: Reset, 10: ReRegister, 11: PopUpFail, 13: PowerOff, 15: LOKI, -1: Unknown}}
+- {name: ont.lastDownCause, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.24, values: {1: LOS, 2: LOSi, 3: LOFi, 4: SFI, 5: LOAI, 6: LOAMI, 7: DeactivateFail, 8: Deactivated, 9: Reset, 10: ReRegister, 11: PopUpFail, 13: PowerOff, 15: LOKI, -1: Unknown, 18: Unknown}}
 
 #For build table down-up-downReason
 - {name: ont.regTable.uptime, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.101.1.6}

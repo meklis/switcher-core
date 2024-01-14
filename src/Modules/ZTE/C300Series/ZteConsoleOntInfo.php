@@ -55,6 +55,11 @@ class ZteConsoleOntInfo extends ModuleAbstract
     {
         $input = $this->telnet->exec("show pon onu information {$interface}");
         if (!$input) throw new Exception("Empty response on command 'show epon onu state {$interface}'");
+
+        if(strpos($input, "No infomation to show") !== false) {
+            throw new Exception("No infomation to show - 'show epon onu state {$interface}'");
+        }
+
         @list($info, $logs) = @explode("------------------------------------------", $input);
         if(!$logs || !$info) {
             throw new Exception("Error parse ont information");
@@ -190,6 +195,9 @@ class ZteConsoleOntInfo extends ModuleAbstract
     {
         $input = $this->telnet->exec("show onu detail {$interface}");
         if (!$input) throw new Exception("Empty response on command 'show epon onu state {$interface}'");
+        if(strpos($input, "No infomation to show") !== false) {
+            throw new Exception("No infomation to show - 'show epon onu state {$interface}'");
+        }
         $lines = explode("\n", $input);
         $ont_info = [];
         foreach ($lines as $line) {

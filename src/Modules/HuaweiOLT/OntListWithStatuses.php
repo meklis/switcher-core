@@ -73,7 +73,7 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
         } catch (\Exception $e) {
         }
 
-        return array_values($return);
+        return $return;
     }
 
     /**
@@ -117,18 +117,52 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
             $oids = array_map(function ($e) {
                 return \SnmpWrapper\Oid::init($e);
             }, $oids);
-            $this->response = $this->formate($this->formatResponse(
+            $response = $this->formate($this->formatResponse(
                 $this->snmp->get($oids)
             ));
         } else {
             $oids = array_map(function ($e) {
                 return \SnmpWrapper\Oid::init($e);
             }, $oids);
-            $this->response = $this->formate($this->formatResponse(
+            $response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
             ));
         }
+
+        $this->fillBindStatuses($response);
+
+        $this->response = array_values($response);
+
         return $this;
+    }
+
+    function fillBindStatuses(&$statuses)
+    {
+        $oid = $this->oids->getOidByName('ont.lastDownCause')->getOid();
+        $oids = [];
+        foreach ($statuses as $index=>$status) {
+            if($status['status'] != 'Online') {
+                $oids[] = \SnmpWrapper\Oid::init("{$oid}.{$status['interface']['xid']}");
+            } else {
+                $statuses[$index]['bind_status'] = $status['status'];
+            }
+        }
+        if(!$oids) {
+            return [];
+        }
+        $responses = $this->formatResponse($this->snmp->get($oids));
+        if(!isset($responses['ont.lastDownCause'])) {
+            throw new \Exception("Not found responses for ont.lastDownCause");
+        } elseif ($responses['ont.lastDownCause']->error()) {
+            throw new \Exception($responses['ont.lastDownCause']->error());
+        }
+        foreach ($responses['ont.lastDownCause']->fetchAll() as $resp) {
+            $xid = Helper::getIndexByOid($resp->getOid(), 1) . "." .Helper::getIndexByOid($resp->getOid());
+            if($resp->getParsedValue() !== 'Unknown') {
+                $statuses[$xid]['bind_status'] = $resp->getParsedValue();
+            }
+        }
+        return  $statuses;
     }
 }
 
