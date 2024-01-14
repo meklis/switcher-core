@@ -85,7 +85,7 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
     {
 
         $oidRequests = [];
-        if ($filter['load_only']) {
+        if (isset($filter['load_only']) && $filter['load_only']) {
             $loadOnly = array_map(function ($e) {
                 return trim($e);
             }, explode(",", $filter['load_only']));
@@ -129,8 +129,16 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
             ));
         }
 
-        $this->fillBindStatuses($response);
+        $loadOnly = ['bind_status'];
+        if(isset($filter['load_only']) && $filter['load_only']) {
+            $loadOnly = array_map(function ($e) {
+                return trim($e);
+            }, explode(",", $filter['load_only']));
+        }
 
+        if(in_array('bind_status', $loadOnly)) {
+            $this->fillBindStatuses($response);
+        }
         $this->response = array_values($response);
 
         return $this;
