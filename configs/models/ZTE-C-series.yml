@@ -32,7 +32,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
-      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
+      #pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
@@ -77,7 +77,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
-      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
+      #pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
@@ -122,7 +122,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
-      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
+      #pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
@@ -167,7 +167,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
-      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
+      #pon_onts_vendor: \SwitcherCore\Modules\ZTE\C300Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C300Series\ZteConsoleOntInfo
       link_info:  \SwitcherCore\Modules\ZTE\C300Series\LinkInfo
@@ -221,7 +221,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C600Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C600Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C600Series\OntDownHistory
-      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C600Series\OntVendorInfo
+      #pon_onts_vendor: \SwitcherCore\Modules\ZTE\C600Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C600Series\ZteConsoleOntInfo
       ctrl_ont_reboot: \SwitcherCore\Modules\ZTE\C600Series\OntReboot
