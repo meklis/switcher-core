@@ -77,6 +77,13 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (count($filtered) > 0) {
                 return $filtered[0];
             }
+            $input_as_arr = str_split($input);
+            foreach ($ifaces as $iface) {
+                preg_match("/port-aggregator{$input_as_arr[count($input_as_arr)-1]}/", $iface['name'], $match);
+                if (count($match) > 0) {
+                    return $iface;
+                }
+            }
         }
 
         if (is_string($input) && strpos($input, ".") !== false) {
@@ -223,8 +230,12 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^tg([0-9]\/[0-9]{1,3})/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
             }
+            if (strpos($name, "aggregator") !== false) {
+                $type = 'LACP';
+            }
             if (strpos($iface->getValue(), "VLAN") !== false) {
                 $type = 'vlan';
+                continue;
             };
             $id = $this->getIdByName($name);
             $ifaces[$id] = [
@@ -279,6 +290,10 @@ abstract class BDcomAbstractModule extends AbstractModule
         }
         if (preg_match('/^fe0\/([0-9]{1,2})/', $name, $matches)) {
             return (int)$matches[1] + 10;
+        }
+        if (strpos($name, "aggregator") !== false) {
+            $input_as_arr = str_split($name);
+            return 70000000 + $input_as_arr[count($input_as_arr) - 1];
         }
         return null;
     }
