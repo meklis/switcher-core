@@ -192,6 +192,15 @@ abstract class BDcomAbstractModule extends AbstractModule
                     'type' => 'PON',
                 ];
             }
+            if (preg_match('/aggregator([0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $name = "pa{$m[1]}";
+                $this->physicalInterfaces[] = [
+                    'id' => $this->getIdByName($name),
+                    'xid' => $xid,
+                    'name' => $name,
+                    'type' => 'PON',
+                ];
+            }
         }
         $ifaces = [];
         $llidSeqs = [];
@@ -292,6 +301,10 @@ abstract class BDcomAbstractModule extends AbstractModule
             return (int)$matches[1] + 10;
         }
         if (strpos($name, "aggregator") !== false) {
+            $input_as_arr = str_split($name);
+            return 70000000 + $input_as_arr[count($input_as_arr) - 1];
+        }
+        if (strpos($name, "pa") !== false) {
             $input_as_arr = str_split($name);
             return 70000000 + $input_as_arr[count($input_as_arr) - 1];
         }
