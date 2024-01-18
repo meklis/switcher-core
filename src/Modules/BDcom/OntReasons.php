@@ -33,7 +33,7 @@ class OntReasons extends BDcomAbstractModule
                 $llid = $this->getLLidFromOid($r->getOid());
                 $time = $this->parseReasonTime($r->getHexValue());
                 $ifaces[$llid]['interface'] = $this->parseInterface($llid);
-                $ifaces[$llid]['last_reg'] = $time;
+                $ifaces[$llid]['last_reg'] = $time ? date("Y-m-d H:i:s", $time) : null;
                 $ifaces[$llid]['last_reg_since'] =  $time == null ? null :$this->getSince($time);
             }
         }
@@ -43,7 +43,7 @@ class OntReasons extends BDcomAbstractModule
                 $llid = $this->getLLidFromOid($r->getOid());
                 $time = $this->parseReasonTime($r->getHexValue());
                 $ifaces[$llid]['interface'] = $this->parseInterface($llid);
-                $ifaces[$llid]['last_dereg'] = $time;
+                $ifaces[$llid]['last_dereg'] = $time ? date("Y-m-d H:i:s", $time) : null;
                 $ifaces[$llid]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
             }
         }
