@@ -45,7 +45,7 @@ class FdbTableConsoleFD1616 extends CDataAbstractModule
             $resp = $this->console->exec("show mac-address vlan {$filter['vlan']}");
         } elseif ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            if (!preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $interface['name'], $m)) {
+            if (!preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]{1,3})\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $interface['name'], $m)) {
                 throw new \Exception("Interface {$filter['interface']} not supported!");
             }
             if($interface['pontype']) {
