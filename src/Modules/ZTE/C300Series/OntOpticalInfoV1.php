@@ -115,15 +115,14 @@ class OntOpticalInfoV1 extends ModuleAbstract
                 if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.tx', $iface);
                 if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.tx', $iface);
             }
-            //Временно уберем, так как сильно влияет на скорость загрузки
-//            if (!$loadOnly || in_array("voltage", $loadOnly)) {
-//                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.voltage', $iface);
-//                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.voltage', $iface);
-//            }
-//            if (!$loadOnly || in_array("temp", $loadOnly)) {
-//                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.temp', $iface);
-//                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.temp', $iface);
-//            }
+            if (!$loadOnly || in_array("voltage", $loadOnly)) {
+                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.voltage', $iface);
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.voltage', $iface);
+            }
+            if (!$loadOnly || in_array("temp", $loadOnly)) {
+                if ($type == 'epon' && $this->isEponCardsExist()) $addOid('epon.optical.temp', $iface);
+                if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.temp', $iface);
+            }
             if (!$loadOnly || in_array("distance", $loadOnly)) {
                 if ($type == 'gpon' && $this->isGponCardsExist()) $addOid('gpon.optical.distance', $iface);
             }

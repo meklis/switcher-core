@@ -47,7 +47,8 @@ class InterfaceCountersFD12 extends CDataAbstractModule
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } elseif ($params['interface_type'] == 'ONU' ) {
-            throw new \Exception('Not available (Mass SNMP by ont.counters can reboot device)');
+            $this->response = [];
+            return $this;
         } else {
             $physOids = $this->getOidsForPhysical();
             $oids = [];
