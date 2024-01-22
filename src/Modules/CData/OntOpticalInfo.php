@@ -127,3 +127,4 @@ class OntOpticalInfo extends CDataAbstractModule
         return $this;
     }
 }
+
