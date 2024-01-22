@@ -30,6 +30,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: stels
@@ -74,6 +75,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       console_conn_type: stels
       pon_port_size: 64
@@ -131,6 +133,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -187,6 +190,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -253,6 +257,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -323,6 +328,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -389,6 +395,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 128
       console_conn_type: cdata

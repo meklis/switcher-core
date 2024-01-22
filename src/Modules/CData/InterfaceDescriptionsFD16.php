@@ -33,7 +33,7 @@ class InterfaceDescriptionsFD16 extends CDataAbstractModule
         $oids = [];
         foreach ($interfaces as $iface) {
             $oids = array_merge($oids, [
-                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$iface['xid']}"),
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid() . ".{$iface['xid']}"),
             ]);
         }
         return $oids;
@@ -76,9 +76,9 @@ class InterfaceDescriptionsFD16 extends CDataAbstractModule
                 $this->response = $this->fetchData($data);
             } else {
                 $data = $this->formatResponse(
-                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$interface['xid']}")])
+                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid() . ".{$interface['xid']}")])
                 );
-                $this->response = $this->fetchData($data, 'if.Alias');
+                $this->response = $this->fetchData($data, 'if.Name');
             }
             return $this;
         }
@@ -99,7 +99,7 @@ class InterfaceDescriptionsFD16 extends CDataAbstractModule
         if ($filter['interface_type'] == 'PHYSICAL' || $without_arguments) {
             $oids = $this->getOidsByInterfacesArray($this->getInterfacesIds());
             $data = $this->formatResponse($this->snmp->get($oids));
-            $this->response = $physicals = $this->fetchData($data, 'if.Alias');
+            $this->response = $physicals = $this->fetchData($data, 'if.Name');
         }
 
         if ($without_arguments) {
@@ -108,7 +108,5 @@ class InterfaceDescriptionsFD16 extends CDataAbstractModule
 
         return $this;
     }
-
-
 }
 
