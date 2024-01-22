@@ -32,21 +32,19 @@ class OntSerial extends ModuleAbstract
     {
         $ifaces = [];
         $data = $this->getResponseByName('gpon.ont.serial', $resp);
-        if (!$data->error()) {
-            foreach ($data->fetchAll() as $d) {
-                $xid = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
-                $blocks = explode(":", $d->getHexValue());
-                try {
-                    $ifaces[$xid] = [
-                        'interface' => $this->parseInterface($xid),
-                        'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
-                            $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
-                        ,
-                    ];
-                } catch (\Exception $e) {
-                    if (strpos($e->getMessage(), "not in service card") === false) {
-                        throw $e;
-                    }
+        foreach ($data->fetchAll() as $d) {
+            $xid = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $blocks = explode(":", $d->getHexValue());
+            try {
+                $ifaces[$xid] = [
+                    'interface' => $this->parseInterface($xid),
+                    'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                        $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
+                    ,
+                ];
+            } catch (\Exception $e) {
+                if (strpos($e->getMessage(), "not in service card") === false) {
+                    throw $e;
                 }
             }
         }
@@ -83,8 +81,8 @@ class OntSerial extends ModuleAbstract
             $snOid = $this->oids->getOidByName('gpon.ont.serial');
             $oids = [];
             foreach ($ports as $port) {
-              if($port['_technology'] !== 'gpon') continue;
-              $oids[] = \SnmpWrapper\Oid::init("{$snOid->getOid()}.{$port['_oid_id']}");
+                if ($port['_technology'] !== 'gpon') continue;
+                $oids[] = \SnmpWrapper\Oid::init("{$snOid->getOid()}.{$port['_oid_id']}");
             }
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
