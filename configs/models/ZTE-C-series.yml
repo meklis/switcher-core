@@ -233,7 +233,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\ZTE\C600Series\CtrlOntDescription
       link_info: \SwitcherCore\Modules\ZTE\C600Series\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
-      ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\ZTE\C600Series\PortDescriptionControl
     extra:
       console_conn_type: zte
       port_offset: 1
