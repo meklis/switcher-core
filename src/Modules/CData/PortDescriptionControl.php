@@ -20,8 +20,17 @@ class PortDescriptionControl extends CDataAbstractModule
         preg_match_all('!\d+!', $interface['name'], $matches);
         $f_s = $matches[0][0] . '/' . $matches[0][1];
         $port_numb = $matches[0][2];
+
+        if(!isset($interface['pontype'])){
+            preg_match_all('![a-z]!', $interface['name'], $letters);
+            $interface['pontype'] = implode('', $letters[0]);
+        }
+
         $this->console->exec("interface {$interface['pontype']} {$f_s}");
-        $this->console->exec("port-name {$port_numb} {$description}");
+        $response = $this->console->exec("port-name {$port_numb} {$description}");
+
+        if (preg_match('/Command incomplete/', $response)) return false;
+        if (preg_match('/Unknown command/', $response)) return false;
         return true;
     }
 
