@@ -141,7 +141,7 @@
 - name: ctrl_port_descr
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-    - {name: description, pattern: '^[0-9a-zA-Z_-\(\)]{0,}$', required: yes}
+    - {name: description, pattern: '^[0-9a-zA-Z_-]{0,}$', required: yes}
   descr: Установка описания порта
 
 
