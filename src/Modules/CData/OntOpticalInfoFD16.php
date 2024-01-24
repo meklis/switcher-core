@@ -33,8 +33,9 @@ class OntOpticalInfoFD16 extends CDataAbstractModule
         $return = [];
         $responses = [];
         foreach ($response as $poolerResponse) {
-            if ($poolerResponse->error) continue;
-            $responses[] = $poolerResponse->getResponse()[0];
+            if(isset($poolerResponse->getResponse()[0])) {
+                $responses[] = $poolerResponse->getResponse()[0];
+            }
         }
         foreach ($responses as $r) {
             $oid = $this->oids->findOidById($r->getOid());
@@ -94,9 +95,9 @@ class OntOpticalInfoFD16 extends CDataAbstractModule
         if ($loadOnly === null || in_array('rx', $loadOnly)) {
             $optical[] = $this->oids->getOidByName('ont.opticalRx');
         }
-        if ($loadOnly === null || in_array('olt_rx', $loadOnly)) {
-            $optical[] = $this->oids->getOidByName('pon.portOpticalRxOfOnu');
-        }
+//        if ($loadOnly === null || in_array('olt_rx', $loadOnly)) {
+//            $optical[] = $this->oids->getOidByName('pon.portOpticalRxOfOnu');
+//        }
         if ($loadOnly === null || in_array('temp', $loadOnly)) {
             $optical[] = $this->oids->getOidByName('ont.opticalTemp');
         }
@@ -117,7 +118,8 @@ class OntOpticalInfoFD16 extends CDataAbstractModule
                     }
                 }
             }
-            $this->response = $this->process($this->snmp->get($oids));
+            $responses = $this->snmp->get($oids);
+            $this->response = $this->process($responses);
         } else {
             $oids = [];
             foreach ($this->getOntIdsByInterface($filter['interface'], true) as $id) {
