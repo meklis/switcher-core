@@ -12,57 +12,30 @@ class InterfaceDescriptions extends ModuleAbstract
 {
     public function run($params = [])
     {
-        $oids = [];
         if ($params['interface']) {
+            $oids = [];
             $parsed = $this->parseInterface($params['interface']);
             if ($parsed['type'] == 'ONU' && $parsed['_technology'] == 'gpon') {
              //   $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponName')->getOid() . ".{$parsed['_oid_id']}");
                 $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponDescription')->getOid() . ".{$parsed['_oid_id']}");
-            } else {
-                throw new \InvalidArgumentException("Allow only ONT");
+            } else if ($parsed['type'] !== 'ONU') {
+                $oids[] = Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$parsed['_xid']}");
+                //throw new \InvalidArgumentException("Allow only ONT");
             }
+            $this->response = $this->formatResponse($this->snmp->get($oids));
+            return  $this;
         }
-        if ($oids) {
-            $response = $this->formatResponse($this->snmp->get($oids));
-        } else {
-       //     $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponName')->getOid());
+
+        $oids = [];
+        if($params['interface_type'] && $params['interface_type'] == 'ONU') {
             $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponDescription')->getOid());
-    //        $oids[] = Oid::init($this->oids->getOidByName('epon.ont.EponDescription')->getOid());
-            $response = $this->formatResponse($this->snmp->walk($oids));
+        } elseif ($params['interface_type'] && $params['interface_type'] == 'PHYSICAL') {
+            $oids[] = Oid::init($this->oids->getOidByName('if.Alias')->getOid());
+        } else {
+            $oids[] = Oid::init($this->oids->getOidByName('gpon.ont.GponDescription')->getOid());
+            $oids[] = Oid::init($this->oids->getOidByName('if.Alias')->getOid());
         }
-        $data = [];
-        if (isset($response['gpon.ont.GponDescription']) && !$response['gpon.ont.GponDescription']->error()) {
-            foreach ($response['gpon.ont.GponDescription']->fetchAll() as $resp) {
-                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
-                $data[$iface['id']] = [
-                    'interface' => $iface,
-                    'description' => $this->prettyDescription($resp->getHexValue()),
-                    '_description' => $this->prettyDescription($resp->getHexValue()),
-                ];
-            }
-        }
-//        if (isset($response['gpon.ont.GponName']) && !$response['gpon.ont.GponName']->error()) {
-//            foreach ($response['gpon.ont.GponName']->fetchAll() as $resp) {
-//                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
-//                $data[$iface['id']]['interface'] = $iface;
-//                $data[$iface['id']]['_name'] = $this->prettyDescription($resp->getHexValue());
-//                if (strpos($this->prettyDescription($resp->getHexValue()), "ONU-") === false) {
-//                    $data[$iface['id']]['description'] = $this->prettyDescription($resp->getHexValue());
-//                }
-//            }
-//        }
-//        if (isset($response['epon.ont.EponDescription']) && !$response['epon.ont.EponDescription']->error()) {
-//            foreach ($response['epon.ont.EponDescription']->fetchAll() as $resp) {
-//                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
-//                $data[$iface['id']] = [
-//                    'interface' => $iface,
-//                    'description' => $this->prettyDescription($resp->getHexValue()),
-//                    '_description' => $this->prettyDescription($resp->getHexValue()),
-//                    '_name' => null,
-//                ];
-//            }
-//        }
-        $this->response = array_values($data);
+        $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }
 
@@ -79,12 +52,33 @@ class InterfaceDescriptions extends ModuleAbstract
 
     public function getPretty()
     {
-        return $this->response;
+        $data = [];
+        if (isset($this->response['gpon.ont.GponDescription']) && !$this->response['gpon.ont.GponDescription']->error()) {
+            foreach ($this->response['gpon.ont.GponDescription']->fetchAll() as $resp) {
+                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . "." . Helper::getIndexByOid($resp->getOid()));
+                $data[$iface['id']] = [
+                    'interface' => $iface,
+                    'description' => $this->prettyDescription($resp->getHexValue()),
+                    '_description' => $this->prettyDescription($resp->getHexValue()),
+                ];
+            }
+        }
+        if (isset($this->response['if.Alias']) && !$this->response['if.Alias']->error()) {
+            foreach ($this->response['if.Alias']->fetchAll() as $resp) {
+                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'xid');
+                $data[$iface['id']] = [
+                    'interface' => $iface,
+                    'description' => $this->prettyDescription($resp->getHexValue()),
+                    '_description' => $this->prettyDescription($resp->getHexValue()),
+                ];
+            }
+        }
+        return array_values($data);
     }
 
     public function getPrettyFiltered($filter = [])
     {
-        return $this->response;
+        return $this->getPretty();
     }
 
 }

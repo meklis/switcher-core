@@ -30,6 +30,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: stels
@@ -74,6 +75,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       console_conn_type: stels
       pon_port_size: 64
@@ -125,11 +127,13 @@ models:
       ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
-      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      #interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptionsFD12
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -178,13 +182,15 @@ models:
       ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
-      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      #interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptionsFD12
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -243,13 +249,15 @@ models:
       ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
-      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      #interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptionsFD12
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 64
       console_conn_type: cdata
@@ -311,7 +319,8 @@ models:
     #  ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
-      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      #interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptionsFD16
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
@@ -319,6 +328,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -376,7 +386,8 @@ models:
       #  ctrl_ont_clear_counters: \SwitcherCore\Modules\CData\OntUniClearCounters
       save_config: \SwitcherCore\Modules\CData\OltSaveSettings
       parse_interface: \SwitcherCore\Modules\CData\ParseInterface
-      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      #interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptions
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptionsFD16
       sys_resources: \SwitcherCore\Modules\CData\SystemResources
       interfaces_list: \SwitcherCore\Modules\CData\PonPortsList
       link_info: \SwitcherCore\Modules\CData\LinkInfo
@@ -384,6 +395,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
     extra:
       pon_port_size: 128
       console_conn_type: cdata

@@ -141,7 +141,7 @@
 - name: ctrl_port_descr
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-    - {name: description, pattern: '^[0-9a-zA-Z_]{0,}$', required: yes}
+    - {name: description, pattern: '^.{1,}$', required: yes}
   descr: Установка описания порта
 
 
@@ -442,6 +442,7 @@
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: _description_block_index, pattern: '.*', required: no}
+    - {name: interface_type, pattern: '.*', required: no, values: ['PHYSICAL', 'ONU']}
 
 - name: pon_ports_optical
   descr: Return optical information from PON-SFP
