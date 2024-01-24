@@ -32,15 +32,17 @@ class LinkInfo extends ModuleAbstract
         foreach ($snmp_oper_status as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
             $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] =  $index->getParsedValue();
+            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = null;
         }
 
         foreach ($snmp_high_speed as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown' ) {
+            $operStatus = $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'];
+            if(!in_array($operStatus, ['Down', 'LLDown']) && $index->getParsedValue() !== 'Down') {
+                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
+            } elseif (in_array($operStatus, ['Down', 'LLDown'])) {
                 $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  'Down';
-                continue;
             }
-            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
         }
         foreach ($snmp_duplex as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
