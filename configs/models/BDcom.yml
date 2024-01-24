@@ -53,7 +53,7 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\GP3600\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\GP3600\PortDescriptionControl
     extra:
       pon_port_size: 128
       console_conn_type: bdcom
