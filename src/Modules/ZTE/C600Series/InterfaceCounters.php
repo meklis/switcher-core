@@ -6,7 +6,6 @@ namespace SwitcherCore\Modules\ZTE\C600Series;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Helper;
-use SwitcherCore\Modules\ZTE\C600Series\ModuleAbstract;
 
 class InterfaceCounters extends ModuleAbstract
 {
@@ -74,7 +73,7 @@ class InterfaceCounters extends ModuleAbstract
             foreach ($dt->fetchAll() as $resp) {
                 try {
                     if (strpos($oidName, "xpon.ont.counters") !== false) {
-                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1) . '.' . Helper::getIndexByOid($resp->getOid()));
                     } else {
                         $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'xid');
                     }
