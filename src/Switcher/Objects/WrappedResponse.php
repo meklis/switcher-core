@@ -28,7 +28,7 @@ class WrappedResponse {
     }
 
     /**
-     * @return Resp|null
+     * @return \SnmpWrapper\Response\SnmpResponse|null
      */
     public function fetchOne() {
         $counter = $this->counter;
@@ -54,7 +54,7 @@ class WrappedResponse {
     }
 
     /**
-     * @return Resp[]
+     * @return \SnmpWrapper\Response\SnmpResponse[]
      */
     public function fetchAll() {
         if(!$this->data->getResponse() && $this->data->getError()) {
