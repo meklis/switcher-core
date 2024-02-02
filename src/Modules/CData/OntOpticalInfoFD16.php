@@ -95,7 +95,7 @@ class OntOpticalInfoFD16 extends CDataAbstractModule
         if ($loadOnly === null || in_array('rx', $loadOnly)) {
             $optical[] = $this->oids->getOidByName('ont.opticalRx');
         }
-        if ( ($loadOnly === null || in_array('olt_rx', $loadOnly)) && $filter['interface']) {
+        if ($loadOnly === null || in_array('olt_rx', $loadOnly)) {
             $optical[] = $this->oids->getOidByName('pon.portOpticalRxOfOnu');
         }
         if ($loadOnly === null || in_array('temp', $loadOnly)) {
