@@ -70,3 +70,34 @@ models:
       reboot: \SwitcherCore\Modules\Huawei\Reboot
       console_command: \SwitcherCore\Modules\Huawei\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Huawei\MultiRawConsoleCommand
+  - name: Huawei Quidway S9300 series
+    key: huawei_quidway_s93xx
+    device_type: SWITCH
+    extra:
+      console_conn_type: huawei
+    inputs:
+      - snmp
+      - console
+    detect: {description: ^Quidway S93.*,  objid: .1.3.6.1.4.1.2011.2 }
+    oids:
+      - ./oids/huawei/s2326tp.yml
+    modules:
+      system: \SwitcherCore\Modules\HuaweiS93\System
+      parse_interface: \SwitcherCore\Modules\HuaweiS93\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\HuaweiS93\InterfacesList
+      fdb: \SwitcherCore\Modules\HuaweiS93\Fdb
+      link_info: \SwitcherCore\Modules\HuaweiS93\LinkInfo
+      interface_counters: \SwitcherCore\Modules\HuaweiS93\Counters
+      vlans: \SwitcherCore\Modules\HuaweiS93\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\HuaweiS93\VlanByPorts
+      errors: \SwitcherCore\Modules\HuaweiS93\Errors
+      interface_descriptions: \SwitcherCore\Modules\HuaweiS93\Descriptions
+      sys_resources: \SwitcherCore\Modules\HuaweiS93\SysResources
+      rmon: \SwitcherCore\Modules\HuaweiS93\Rmon
+      pvid: \SwitcherCore\Modules\HuaweiS93\PvidDot1q
+      ctrl_port_descr: \SwitcherCore\Modules\HuaweiS93\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\HuaweiS93\StatePortControl
+      clear_counters: \SwitcherCore\Modules\HuaweiS93\ClearCounters
+      reboot: \SwitcherCore\Modules\HuaweiS93\Reboot
+      console_command: \SwitcherCore\Modules\HuaweiS93\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\HuaweiS93\MultiRawConsoleCommand

@@ -10,3 +10,25 @@
 - {name: cable_diag.action, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.7.1.4, values: {1: start, 2: resetValues, 3: readyToTest}}
 - {name: cable_diag.status, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.7.1.2, values: {1: OK, 2: Open, 3: Short, 4: OpenShort, 5: CrossTalk, 6: Unknown, 7: NotSupport}}
 - {name: cable_diag.length, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.7.1.3}
+
+# Variants
+# LPU Board ([0-9]) - плата
+# MPU Board ([0-9]) - плата
+# FAN([0-9])
+# PWR([0-
+- {name: ent.phys.name, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.6.1.1}
+- {name: ent.phys.devRealType, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.6.1.2}
+- {name: ent.phys.hardwareRev, oid: .1.3.6.1.2.1.47.1.1.1.1.8}
+
+- {name: ddm.optical.vender.name, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24}
+- {name: ddm.optical.vender.pn, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25}
+
+- {name: ddm.optical.bias, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.31}
+- {name: ddm.optical.rx, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32} # value / 100
+- {name: ddm.optical.tx, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33} # value / 100
+- {name: ddm.optical.voltage, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.6} # value / 1000. If value = -255 - ignore
+
+- {name: ddm.optical.threshold.rx.low, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13} # value/100
+- {name: ddm.optical.threshold.rx.high, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14} # value/100
+- {name: ddm.optical.threshold.tx.low, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15} # value/100
+- {name: ddm.optical.threshold.tx.high, oid: .1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16} # value/100
