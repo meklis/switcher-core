@@ -135,10 +135,8 @@ class OntListWithStatuses extends CDataAbstractModule
             return [];
         }
         $responses = $this->formatResponse($this->snmp->get($oids));
-        if(!isset($responses['ont.lastDownReason'])) {
-            throw new \Exception("Not found responses for lastDownReason");
-        } elseif ($responses['ont.lastDownReason']->error()) {
-            throw new \Exception($responses['ont.lastDownReason']->error());
+        if(!isset($responses['ont.lastDownReason']) || $responses['ont.lastDownReason']->error()) {
+            return  [];
         }
         foreach ($responses['ont.lastDownReason']->fetchAll() as $resp) {
             $index = Helper::getIndexByOid($resp->getOid());
