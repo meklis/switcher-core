@@ -86,8 +86,12 @@ class InterfaceDescriptionsFD12 extends CDataAbstractModule
             $this->response = $onts = $this->fetchData($data);
         }
         if ($filter['interface_type'] == 'PHYSICAL' || $without_arguments) {
+            $oids = [];
+            foreach ($this->getInterfacesIds() as $iface) {
+                 $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid() . "." . $iface['xid']);
+            }
             $data = $this->formatResponse(
-                $this->snmp->walk([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid())])
+                $this->snmp->get($oids)
             );
             $this->response = $physicals = $this->fetchData($data, 'if.Name');
         }
