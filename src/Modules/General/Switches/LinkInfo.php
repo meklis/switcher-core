@@ -29,6 +29,7 @@ abstract class LinkInfo extends AbstractInterfaces
           }
 
         foreach ($snmp_oper_status as $index) {
+
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
             $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] =  $index->getParsedValue();
         }
@@ -39,7 +40,11 @@ abstract class LinkInfo extends AbstractInterfaces
                 $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  'Down';
                 continue;
             }
-            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
+            $speed = $index->getParsedValue();
+            if($speed === 'Down' && $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] === 'Up') {
+                $speed = null;
+            }
+            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $speed;
         }
         foreach ($snmp_duplex as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
@@ -120,6 +125,12 @@ abstract class LinkInfo extends AbstractInterfaces
             foreach ($data as $num=>$d) {
                 $data[$num] .= ".{$interface['_snmp_id']}";
             }
+            $oidObjects = [];
+            foreach ($data as $oid) {
+                $oidObjects[] = Oid::init($oid);
+            }
+            $this->response = $this->formatResponse($this->snmp->get($oidObjects));
+            return $this;
         }
         $oidObjects = [];
         foreach ($data as $oid) {

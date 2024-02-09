@@ -1820,6 +1820,13 @@
 </details>
             
     
+### [analog_lines_list](#analog_lines_list) - List of output power interfaces 
+    
+**Аргументы:**    
+- **id**, проверка выражением: *^[0-9]{1,3}$*    
+      
+    
+    
 ### [arp_info](#arp_info) - ARP таблица 
     
 **Аргументы:**    
@@ -15761,6 +15768,24 @@ true
 </details>
             
     
+### [ctrl_analog_line](#ctrl_analog_line) - Configure power output control 
+    
+**Аргументы:**    
+- **id**, проверка выражением: *^[0-9]{1,3}$*, обязательный    
+- **name**, проверка выражением: *.**    
+      
+    
+    
+### [ctrl_digital_line](#ctrl_digital_line) - Configure power output control 
+    
+**Аргументы:**    
+- **id**, проверка выражением: *^[0-9]{1,3}$*, обязательный    
+- **name**, проверка выражением: *.**    
+- **direction**, проверка выражением: *(Output|Input)*    
+- **output**, проверка выражением: *(Low|High)*    
+      
+    
+    
 ### [ctrl_ont_clear_counters](#ctrl_ont_clear_counters) - Clear counters 
     
 **Аргументы:**    
@@ -15805,11 +15830,20 @@ true
       
     
     
+### [ctrl_ont_uni_admin_state](#ctrl_ont_uni_admin_state) - Setting device name 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**, обязательный    
+- **num**, проверка выражением: *.**, обязательный    
+- **state**, проверка выражением: *^(enable|disable)$*, обязательный    
+      
+    
+    
 ### [ctrl_port_descr](#ctrl_port_descr) - Установка описания порта 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
-- **description**, проверка выражением: *^[0-9a-zA-Z_]{0,}$*, обязательный    
+- **description**, проверка выражением: *^.{1,}$*, обязательный    
       
 <details>
 <summary>Пример ответа</summary>
@@ -15843,10 +15877,47 @@ true
       
     
     
+### [ctrl_power_control_output](#ctrl_power_control_output) - Configure power output control 
+    
+**Аргументы:**    
+- **id**, проверка выражением: *^[0-9]{1,3}$*, обязательный    
+- **name**, проверка выражением: *.**    
+- **mode**, проверка выражением: *(On|Off)*    
+      
+    
+    
 ### [ctrl_reset_port](#ctrl_reset_port) - Reset physical port 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**, обязательный    
+      
+    
+    
+### [ctrl_set_device_contact](#ctrl_set_device_contact) - Setting device contact 
+    
+**Аргументы:**    
+- **contact**, проверка выражением: *.**, обязательный    
+      
+    
+    
+### [ctrl_set_device_description](#ctrl_set_device_description) - Setting device description 
+    
+**Аргументы:**    
+- **description**, проверка выражением: *.**, обязательный    
+      
+    
+    
+### [ctrl_set_device_location](#ctrl_set_device_location) - Setting device location 
+    
+**Аргументы:**    
+- **location**, проверка выражением: *.**, обязательный    
+      
+    
+    
+### [ctrl_set_device_name](#ctrl_set_device_name) - Setting device name 
+    
+**Аргументы:**    
+- **name**, проверка выражением: *.**, обязательный    
       
     
     
@@ -15931,6 +16002,13 @@ true
 </p>
 </details>
             
+    
+### [digital_lines_list](#digital_lines_list) - List of output power interfaces 
+    
+**Аргументы:**    
+- **id**, проверка выражением: *^[0-9]{1,3}$*    
+      
+    
     
 ### [errors](#errors) - Ошибки на портах 
     
@@ -16299,10 +16377,11 @@ true
       
     
     
-### [interface_counters](#interface_counters) - Returned FDB table on ONTs 
+### [interface_counters](#interface_counters) - Return counters by interface or whole interfaces 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
+- **interface_type**, проверка выражением: *.**    
       
     
     
@@ -16310,6 +16389,8 @@ true
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
+- **_description_block_index**, проверка выражением: *.**    
+- **interface_type**, проверка выражением: *.**    
       
     
     
@@ -17300,6 +17381,10 @@ true
 </p>
 </details>
             
+    
+### [knock_sensor_state](#knock_sensor_state) - Current knock sensor state 
+      
+    
     
 ### [lease_info](#lease_info) - Lease таблица 
     
@@ -20154,6 +20239,7 @@ true
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
+- **sn_as_ascii**, проверка выражением: *.**    
       
     
     
@@ -23352,6 +23438,17 @@ true
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
 - **load_only**, проверка выражением: *.**    
+      
+    
+    
+### [power_control_output_list](#power_control_output_list) - List of output power interfaces 
+    
+**Аргументы:**    
+- **id**, проверка выражением: *^[0-9]{1,3}$*    
+      
+    
+    
+### [power_sensor_state](#power_sensor_state) - Current power sensor state 
       
     
     
@@ -35025,6 +35122,7 @@ true
     
 **Аргументы:**    
 - **type**, проверка выражением: *^(all|gpon|epon)$*    
+- **sn_as_ascii**, проверка выражением: *.**    
       
     
     

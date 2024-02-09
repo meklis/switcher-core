@@ -2,6 +2,7 @@
 
 namespace SwitcherCore\Dev;
 
+use Monolog\Logger;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\CoreConnector;
 use SwitcherCore\Switcher\Device;
@@ -98,28 +99,18 @@ abstract class AbstractCommand extends Command
     }
 
     /**
-     * @return AbstractCommand
-     */
-    function addDefaultArguments() {
-        return $this->addArgument('ip', InputArgument::REQUIRED, "Device IP")
-            ->addArgument('community', InputArgument::REQUIRED, "Device community")
-            ->addArgument('login', InputArgument::OPTIONAL, "Device login", '')
-            ->addArgument('password', InputArgument::OPTIONAL, "Device password", '');
-    }
-
-    /**
      * @return \SwitcherCore\Switcher\Core
      */
-    function getCore() {
+    function getCore($ip, $community, $login, $password) {
         $connector = (new CoreConnector(Helper::getBuildInConfig()))
+            ->setLogger(new Logger("test"))
             ->setCache(new PhpCache());
-        return $connector->init(Device::init(
-            $this->input->getArgument('ip'),
-            $this->input->getArgument('community'),
-            $this->input->getArgument('login'),
-            $this->input->getArgument('password')
+        return $connector->init(Device::init($ip,
+            $community,
+            $login,
+            $password
         )
-            ->setPrivateCommunity($this->input->getArgument('community'))
+            ->setPrivateCommunity($community)
             ->set('consoleConnectionType', conf('console.type'))
             ->set('consoleTimeout', conf('console.timeout'))
             ->set('consolePort', conf('console.port'))
