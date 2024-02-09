@@ -24,7 +24,9 @@ abstract class Counters extends AbstractInterfaces
                 $response[$port_index][$metric_name] = (float)$resp->getValue();
             }
         }
-        return array_values($response);
+        return array_values(array_filter($response, function ($e) {
+           return isset($e['in_octets']) && isset($e['out_octets']);
+        }));
     }
     function getPretty()
     {

@@ -54,3 +54,33 @@ models:
       reboot: \SwitcherCore\Modules\Huawei\Reboot
       console_command: \SwitcherCore\Modules\Huawei\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Huawei\MultiRawConsoleCommand
+
+  - name: Huawei Quidway S9300 series
+    key: huawei_quidway_S9300_series
+    device_type: SWITCH
+    inputs:
+      - snmp
+      - console
+    detect: {description: ^Quidway S93.*,  objid: .1.3.6.1.4.1.2011.2 }
+    extra:
+      console_conn_type: huawei
+      console_commands_after_connect:
+        - screen-length 0 temporary
+    oids:
+      - ./oids/huawei/s2326tp.yml
+    modules:
+      system: \SwitcherCore\Modules\HuaweiQuidwayS93\System
+      parse_interface: \SwitcherCore\Modules\HuaweiQuidwayS93\ParseInterface
+      interfaces_list: \SwitcherCore\Modules\HuaweiQuidwayS93\InterfacesList
+      fdb: \SwitcherCore\Modules\HuaweiQuidwayS93\Fdb
+      link_info: \SwitcherCore\Modules\HuaweiQuidwayS93\LinkInfo
+      interface_counters: \SwitcherCore\Modules\HuaweiQuidwayS93\Counters
+      vlans: \SwitcherCore\Modules\HuaweiQuidwayS93\VlansDot1q
+      vlans_by_port: \SwitcherCore\Modules\HuaweiQuidwayS93\VlanByPorts
+      errors: \SwitcherCore\Modules\HuaweiQuidwayS93\Errors
+      interface_descriptions: \SwitcherCore\Modules\HuaweiQuidwayS93\Descriptions
+      pvid: \SwitcherCore\Modules\HuaweiQuidwayS93\PvidDot1q
+      ctrl_port_descr: \SwitcherCore\Modules\HuaweiQuidwayS93\SetPortDescription
+      ctrl_port_state: \SwitcherCore\Modules\HuaweiQuidwayS93\StatePortControl
+      console_command: \SwitcherCore\Modules\HuaweiQuidwayS93\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\HuaweiQuidwayS93\MultiRawConsoleCommand

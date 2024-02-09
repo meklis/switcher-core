@@ -16,7 +16,6 @@ abstract class ParseInterface extends AbstractInterfaces
 
     public function getPrettyFiltered($filter = [])
     {
-
         return $this->parseInterface($filter['interface']);
     }
 
