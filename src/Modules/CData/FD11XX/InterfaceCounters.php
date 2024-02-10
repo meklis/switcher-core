@@ -33,13 +33,15 @@ class InterfaceCounters extends CDataAbstractModule
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface'], 'id');
             if ($interface['type'] == 'ONU') {
-                throw new \InvalidArgumentException("ONU oids not found at the moment, just physical ports");
+                //throw new \InvalidArgumentException("ONU oids not found at the moment, just physical ports");
+                return $this;
             } else  {
                 $oids = $this->getInterfaceOids($interface['id'], $this->getOidsForPhysical());
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } elseif ($params['interface_type'] == 'ONU' ) {
-            throw new \InvalidArgumentException("ONU oids not found at the moment, just physical ports");
+            //throw new \InvalidArgumentException("ONU oids not found at the moment, just physical ports");
+            return $this;
         } else {
             $physOids = $this->getOidsForPhysical();
             $oids = [];
@@ -54,6 +56,7 @@ class InterfaceCounters extends CDataAbstractModule
     function getPretty()
     {
         $data = [];
+        if(empty($this->response)) return [];
         foreach ($this->response as $oidName => $dt) {
             if ($dt->error()) {
                 continue;

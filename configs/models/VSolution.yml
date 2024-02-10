@@ -42,6 +42,8 @@ models:
       sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo
       snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
+      console_command: \SwitcherCore\Modules\VsolOlts\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\VsolOlts\MultiRawConsoleCommand
     extra:
       pon_port_size: 64
       console_conn_type: vsolution
@@ -66,30 +68,33 @@ models:
             name: V-Solution V1600G1B
     device_type: OLT
     oids:
-      - ./oids/vsolution/v1600d.yml
+      - ./oids/vsolution/v1600g.yml
     modules:
       system: \SwitcherCore\Modules\VsolOlts\SystemInformation
-      interfaces_list: \SwitcherCore\Modules\VsolOlts\InterfacesList
-      pon_ports_list: \SwitcherCore\Modules\VsolOlts\PonPortsList
-      pon_count_registered_onts: \SwitcherCore\Modules\VsolOlts\PortCountRegisteredOnts
-      pon_onts_status: \SwitcherCore\Modules\VsolOlts\OntListWithStatuses
-      pon_onts_mac_addr: \SwitcherCore\Modules\VsolOlts\OntMacAddress
-      pon_onts_optical: \SwitcherCore\Modules\VsolOlts\OntOpticalInfo
-      pon_ports_optical: \SwitcherCore\Modules\VsolOlts\PonPortsOptical
-      pon_onts_reasons: \SwitcherCore\Modules\VsolOlts\OntReasons
-      pon_onts_vendor: \SwitcherCore\Modules\VsolOlts\OntVendorInfo
-      fdb: \SwitcherCore\Modules\VsolOlts\FdbTable
-      interface_counters: \SwitcherCore\Modules\VsolOlts\InterfaceCounters
-      interface_descriptions: \SwitcherCore\Modules\VsolOlts\InterfaceDescriptions
+      sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
+      fdb: \SwitcherCore\Modules\VsolOlts\GPONV1600\FdbTable
+      pon_onts_mac_addr: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntMacAddress
+      interfaces_list: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfacesList
+      pon_ports_list: \SwitcherCore\Modules\VsolOlts\GPONV1600\PonPortsList
+      pon_count_registered_onts: \SwitcherCore\Modules\VsolOlts\GPONV1600\PortCountRegisteredOnts
+      pon_onts_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntListWithStatuses
+      pon_ports_optical: \SwitcherCore\Modules\VsolOlts\GPONV1600\PonPortsOptical
+      parse_interface: \SwitcherCore\Modules\VsolOlts\GPONV1600\ParseInterface
+      link_info: \SwitcherCore\Modules\VsolOlts\GPONV1600\LinkInfo
+      pon_onts_optical: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntOpticalInfo
+      pon_onts_vendor: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntVendorInfo
+      interface_counters: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfaceCounters
+      interface_descriptions: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfaceDescriptions
+      #pon_onts_reasons: \SwitcherCore\Modules\VsolOlts\OntReasons
+      #uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\UniInterfacesInfo
+      #snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
+      #ctrl_ont_reset: \SwitcherCore\Modules\VsolOlts\OntReset
       reboot: \SwitcherCore\Modules\VsolOlts\OltReboot
       save_config: \SwitcherCore\Modules\VsolOlts\OltSaveSettings
-      ctrl_ont_reset: \SwitcherCore\Modules\VsolOlts\OntReset
-      parse_interface: \SwitcherCore\Modules\VsolOlts\ParseInterface
-      sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
-      uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo
-      snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
+      console_command: \SwitcherCore\Modules\VsolOlts\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\VsolOlts\MultiRawConsoleCommand
     extra:
-      pon_port_size: 64
+      pon_port_size: 128
       console_conn_type: vsolution
       console_commands_after_connect:
         - terminal length 0

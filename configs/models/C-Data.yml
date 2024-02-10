@@ -60,7 +60,7 @@ models:
       pon_onts_status: \SwitcherCore\Modules\CData\FD11XX\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\CData\FD11XX\OntMacAddress
       pon_onts_optical: \SwitcherCore\Modules\CData\FD11XX\OntOpticalInfo
-      #pon_onts_reasons: \SwitcherCore\Modules\CData\FD11XX\OntReasons
+      pon_onts_reasons: \SwitcherCore\Modules\CData\FD11XX\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\CData\FD11XX\OntVendorInfo
       fdb: \SwitcherCore\Modules\CData\FD11XX\OntFDBTable
       uni_interfaces_status: \SwitcherCore\Modules\CData\FD11XX\OntUniPortsStatus
