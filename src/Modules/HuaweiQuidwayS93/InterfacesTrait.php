@@ -98,7 +98,7 @@ trait InterfacesTrait
 
         if ($this->_physicalDevices) {
             return $this->_physicalDevices;
-        } elseif ($data = $this->getCache('PHYSICAL_DEVICES')) {
+        } elseif ($data = $this->getCache('PHYSICAL_DEVICES', true)) {
             return $data;
         }
 
@@ -163,7 +163,6 @@ trait InterfacesTrait
 
     function getInterfacesIds()
     {
-        $physical = $this->getPhysicalDevices()['interfaces_by_name'];
 
         if ($this->_interfaces) {
             return $this->_interfaces;
@@ -173,6 +172,7 @@ trait InterfacesTrait
             return $info;
         }
 
+        $physical = $this->getPhysicalDevices()['interfaces_by_name'];
 
         $responses = [];
         foreach ($this->snmp->walk([
@@ -198,12 +198,20 @@ trait InterfacesTrait
             $id = Helper::getIndexByOid($r->getOid());
             $slot = null;
             $port = null;
-            if (preg_match('/(Eth|eth).*(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
+            $shortName = '';
+            if (preg_match('/(Eth|eth).*?(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $name = $r->getValue();
                 $slot = $m[3];
                 $port = $m[5];
             } elseif (preg_match('/(Eth-)/', $r->getValue(), $m)) {
                 $name = $r->getValue();
+            }
+            if(preg_match('/XGigabitEthernet/', $r->getValue())) {
+                $shortName="XGE$slot/0/$port";
+            } elseif (preg_match('/GigabitEthernet/', $r->getValue())) {
+                $shortName="GE$slot/0/$port";
+            } elseif (preg_match('/^Eth-/', $r->getValue())) {
+                $shortName=$r->getValue();
             }
 
             if(!$name) {
@@ -219,6 +227,7 @@ trait InterfacesTrait
                 '_port' => $port,
                 '_snmp_id' => $id,
                 '_lacp_ifaces' => null,
+                '_short_name' => $shortName,
             ];
         }
 
