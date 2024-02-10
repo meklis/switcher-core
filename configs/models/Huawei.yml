@@ -75,8 +75,8 @@ models:
       fdb: \SwitcherCore\Modules\HuaweiQuidwayS93\Fdb
       link_info: \SwitcherCore\Modules\HuaweiQuidwayS93\LinkInfo
       interface_counters: \SwitcherCore\Modules\HuaweiQuidwayS93\Counters
-      vlans: \SwitcherCore\Modules\HuaweiQuidwayS93\VlansDot1q
-      vlans_by_port: \SwitcherCore\Modules\HuaweiQuidwayS93\VlanByPorts
+      #vlans: \SwitcherCore\Modules\HuaweiQuidwayS93\VlansDot1q
+      #vlans_by_port: \SwitcherCore\Modules\HuaweiQuidwayS93\VlanByPorts
       errors: \SwitcherCore\Modules\HuaweiQuidwayS93\Errors
       interface_descriptions: \SwitcherCore\Modules\HuaweiQuidwayS93\Descriptions
       pvid: \SwitcherCore\Modules\HuaweiQuidwayS93\PvidDot1q

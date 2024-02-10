@@ -141,12 +141,15 @@ trait InterfacesTrait
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $name = "eth{$m[5]}";
+                $shortName = '';
                 $id = $m[5];
                 if($m[1] == "Ethernet") {
                     $lastEthNum  = $m[5];
+                    $shortName = "Eth{$m[3]}/{$m[4]}/{$m[5]}";
                 }
                 if ($m[1] == 'GigabitEthernet') {
                     $name = "Ge{$m[5]}";
+                    $shortName = "GE{$m[3]}/{$m[4]}/{$m[5]}";
                     $id = $lastEthNum + $m[5];
                 }
 
@@ -159,6 +162,7 @@ trait InterfacesTrait
                     '_shelf' => $m[3],
                     '_slot' => $m[4],
                     '_port' => $m[5],
+                    '_short_name' => $shortName,
                 ];
             }
         }

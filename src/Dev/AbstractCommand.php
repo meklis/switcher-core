@@ -101,7 +101,7 @@ abstract class AbstractCommand extends Command
     /**
      * @return \SwitcherCore\Switcher\Core
      */
-    function getCore($ip, $community, $login, $password) {
+    function getCore($ip, $community, $login, $password, $consolePort = 23, $snmpPort = 161) {
         $connector = (new CoreConnector(Helper::getBuildInConfig()))
             ->setLogger(new Logger("test"))
             ->setCache(new PhpCache());
@@ -113,7 +113,8 @@ abstract class AbstractCommand extends Command
             ->setPrivateCommunity($community)
             ->set('consoleConnectionType', conf('console.type'))
             ->set('consoleTimeout', conf('console.timeout'))
-            ->set('consolePort', conf('console.port'))
+            ->set('consolePort', $consolePort)
+            ->set('snmpPort', $snmpPort)
             ->set('snmpRepeats', conf('snmp.repeats'))
             ->set('snmpTimeoutSec', conf('snmp.timeout'))
             ->set('mikrotikApiPort', conf('miktotik_api.port'))
