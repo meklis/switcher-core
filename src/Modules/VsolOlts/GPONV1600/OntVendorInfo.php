@@ -30,7 +30,7 @@ class OntVendorInfo extends VsolOltsAbstractModule
     function getPretty()
     {
         $ifaces = [];
-        $data = $this->getResponseByName('ont.sn.vendor');
+        $data = $this->getResponseByName('ont.vendor');
         if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $xid = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
@@ -38,7 +38,7 @@ class OntVendorInfo extends VsolOltsAbstractModule
                 $ifaces[$xid]['vendor'] = $this->convertHexToString($r->getHexValue());
             }
         }
-        $data = $this->getResponseByName('ont.sn.model');
+        $data = $this->getResponseByName('ont.model');
         if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $xid = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
@@ -46,7 +46,7 @@ class OntVendorInfo extends VsolOltsAbstractModule
                 $ifaces[$xid]['model'] = $r->getValue();
             }
         }
-        $data = $this->getResponseByName('ont.sn.softwareVer');
+        $data = $this->getResponseByName('ont.softwareVer');
         if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $xid = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
@@ -54,7 +54,7 @@ class OntVendorInfo extends VsolOltsAbstractModule
                 $ifaces[$xid]['ver_software'] = $this->convertHexToString($r->getHexValue());
             }
         }
-        $data = $this->getResponseByName('ont.sn.hardwareVer');
+        $data = $this->getResponseByName('ont.hardwareVer');
         if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $xid = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
@@ -62,7 +62,7 @@ class OntVendorInfo extends VsolOltsAbstractModule
                 $ifaces[$xid]['ver_hardware'] = $this->convertHexToString($r->getHexValue());
             }
         }
-        $data = $this->getResponseByName('ont.sn.onuId');
+        $data = $this->getResponseByName('ont.onuId');
         if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $xid = "." . Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
@@ -89,7 +89,13 @@ class OntVendorInfo extends VsolOltsAbstractModule
      */
     public function run($filter = [])
     {
-        $vendorInfo = $this->oids->getOidsByRegex('^ont\.sn\..*');
+        $vendorInfo = [
+            $this->oids->getOidByName('ont.model'),
+            $this->oids->getOidByName('ont.vendor'),
+            $this->oids->getOidByName('ont.onuId'),
+            $this->oids->getOidByName('ont.hardwareVer'),
+            $this->oids->getOidByName('ont.softwareVer'),
+        ];
         $oids = [];
         foreach ($vendorInfo as $oid) {
             $oids[] = $oid->getOid();

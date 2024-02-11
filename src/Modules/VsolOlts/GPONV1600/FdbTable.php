@@ -56,23 +56,6 @@ class FdbTable extends VsolOltsAbstractModule
         } else {
             $this->response = $this->allFdbByConsole();
             return $this;
-            /*$oidList[] = $this->oids->getOidByName('pon.macPhysicalPortName');
-            $oidList[] = $this->oids->getOidByName('pon.PhysAddr');
-            $oidList[] = $this->oids->getOidByName('pon.macVlanId');
-            $oidList[] = $this->oids->getOidByName('pon.macType');
-            $oids = [];
-            foreach ($oidList as $oid) {
-                $oids[] = $oid->getOid();
-            }
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
-
-            if ($cached = $this->getCache('all_fdb_table', true)) {
-                $this->response = $cached;
-            } else {
-                $this->response = $this->allFdb($this->formatResponse($this->snmp->walk($oids)));
-            }*/
         }
         return $this;
     }
@@ -91,7 +74,7 @@ class FdbTable extends VsolOltsAbstractModule
         foreach (explode("\n", $lines) as $line) {
             $line = trim($line);
             if (preg_match('/^[[:xdigit:]]{4}\.[[:xdigit:]]{4}\.[[:xdigit:]]{4}$/', $line, $m)) {
-                $mac = implode(':', str_split(str_replace('.', '', $m[0]), 2));
+                $mac = Helper::formatMac($m[0]);
             } else {
                 if ($line = substr($line, 4)) {
                     if (preg_match('/^[0-9]{1,4}$/', $line, $m)) {
@@ -110,62 +93,6 @@ class FdbTable extends VsolOltsAbstractModule
             }
         }
         return $fdb;
-    }
-
-    public function allFdb($formatted_resp)
-    {
-        $this->response = $formatted_resp;
-        $ifaces = [];
-        $data = $this->getResponseByName('pon.macPhysicalPortName');
-        if (!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $id_from_oid = Helper::getIndexByOid($r->getOid());
-                $name = $r->getParsedValue();
-                if (preg_match('/^PON([0-9]{1,3}):ONU([0-9]{1,3})$/', $name, $matches)) {
-                    $name = "GPON0/$matches[1]:$matches[2]";
-                } elseif (preg_match('/^GE([0-9]{1,3})$/', $name, $matches)) {
-                    $name = "GE0/$matches[1]";
-                } else {
-                    continue;
-                }
-                $iface = $this->parseInterface($name);
-                if (!$iface) continue;
-                $ifaces[$id_from_oid]['interface'] = $iface;
-            }
-        }
-
-        $data = $this->getResponseByName('pon.PhysAddr');
-        if (!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $id_from_oid = Helper::getIndexByOid($r->getOid());
-                if (isset($ifaces[$id_from_oid]['interface'])) {
-                    $ifaces[$id_from_oid]['mac_address'] = str_replace(' ', ":", $r->getParsedValue());
-                }
-            }
-        }
-
-        $data = $this->getResponseByName('pon.macVlanId');
-        if (!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $id_from_oid = Helper::getIndexByOid($r->getOid());
-                if (isset($ifaces[$id_from_oid]['interface'])) {
-                    $ifaces[$id_from_oid]['vlan_id'] = (int)$r->getParsedValue();
-                }
-            }
-        }
-
-        $data = $this->getResponseByName('pon.macType');
-        if (!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $id_from_oid = Helper::getIndexByOid($r->getOid());
-                if (isset($ifaces[$id_from_oid]['interface'])) {
-                    $ifaces[$id_from_oid]['is_dynamic'] = ($r->getParsedValue()) ? true : false;
-                }
-            }
-        }
-
-        $this->setCache('all_fdb_table', array_values($ifaces), 120);
-        return array_values($ifaces);
     }
 
     public function allFdbByConsole()
@@ -188,7 +115,7 @@ class FdbTable extends VsolOltsAbstractModule
                 $vlan_id = $m[0];
             }
             if (isset($parts[1]) && preg_match('/^[[:xdigit:]]{4}:[[:xdigit:]]{4}:[[:xdigit:]]{4}$/', $parts[1], $m)) {
-                $mac = implode(':', str_split(str_replace(':', '', $m[0]), 2));
+                $mac = Helper::formatMac($m[0]);
             }
             if (isset($parts[2]) && preg_match('/^Dynamic|Static$/', $parts[2], $m)) {
                 $is_dynamic = ($m[0] == 'Dynamic') ? 'true' : 'false';

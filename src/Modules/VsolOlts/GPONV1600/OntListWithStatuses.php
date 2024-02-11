@@ -36,6 +36,7 @@ class OntListWithStatuses extends VsolOltsAbstractModule
                 'interface' => $v,
                 'status' => null,
                 'admin_state' => null,
+                'bind_status' => null,
             ];
         }
         try {
@@ -68,6 +69,18 @@ class OntListWithStatuses extends VsolOltsAbstractModule
             }
         } catch (\Exception $e) {
         }
+        try {
+            $data = $this->getResponseByName('ont.status', $resp);
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $d) {
+                    $iface  = $this->parseInterface(Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid()));
+                    if (isset($ifaces[$iface['xid']])) {
+                        $ifaces[$xid]['bind_status'] = $d->getParsedValue();
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+        }
 
 
         return array_values(array_filter($ifaces, function ($e) {
@@ -94,10 +107,14 @@ class OntListWithStatuses extends VsolOltsAbstractModule
             if (in_array('status', $loadOnly)) {
                 $oidRequests[] = $this->oids->getOidByName('if.OperStatus');
             }
+            if (in_array('bind_status', $loadOnly)) {
+                $oidRequests[] = $this->oids->getOidByName('ont.status');
+            }
         } else {
             $oidRequests = [
                 $this->oids->getOidByName('if.AdminStatus'),
                 $this->oids->getOidByName('if.OperStatus'),
+                $this->oids->getOidByName('ont.status'),
             ];
         }
         $oids = [];
