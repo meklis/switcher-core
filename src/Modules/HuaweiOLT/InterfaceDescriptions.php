@@ -14,7 +14,7 @@ use SwitcherCore\Switcher\Objects\WrappedResponse;
 class InterfaceDescriptions extends HuaweiOLTAbstractModule
 {
     /**
-     * @var SnmpResponse[]
+     * @var WrappedResponse[]
      */
     protected $response = null;
 
@@ -32,16 +32,26 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
     function getPretty()
     {
         $data = [];
-        foreach ($this->response as $resp) {
-            try {
-                $d = [
-                    'interface' => $this->findIfaceByOid($resp->getOid()),
-                    'description' => $resp->getValue(),
-                ];
-                if (!$d['interface']['id']) continue;
-                $data[] = $d;
-            } catch (\Exception $e) {
-                $this->logger->error("Error get interface description for interface:" . $e->getMessage());
+        foreach ($this->response as $name=>$wrapped) {
+            if($wrapped->error()) {
+                throw new \SNMPException($wrapped->error());
+            }
+            foreach ($wrapped->fetchAll() as $resp) {
+                try {
+                    if ($name === 'ont.config.description') {
+                        $iface = $this->findIfaceByOid($resp->getOid());
+                    } else {
+                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+                    }
+                    $d = [
+                        'interface' => $iface,
+                        'description' => $resp->getValue(),
+                    ];
+                    if (!$d['interface']['id']) continue;
+                    $data[] = $d;
+                } catch (\Exception $e) {
+                    $this->logger->error("Error get interface description for interface:" . $e->getMessage());
+                }
             }
         }
         return $data;
@@ -56,25 +66,34 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
     {
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            $data = $this->formatResponse(
-                $this->snmp->get([
-                    \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid() . ".{$interface['xid']}"),
-                ])
+            if ($interface['type'] === 'ONU') {
+                $oids = [\SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid() . ".{$interface['xid']}"),];
+            } else {
+                $oids = [\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$interface['xid']}"),];
+            }
+
+            $this->response = $this->formatResponse(
+                $this->snmp->get($oids)
             );
+            return $this;
+        }
+        if ($filter['interface_type'] === 'ONU') {
+            $oids =  [
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid()),
+            ];
+        } elseif ($filter['interface_type'] === 'PHYSICAL') {
+            $oids =  [
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()),
+            ];
         } else {
-            $data = $this->formatResponse(
-                $this->snmp->walk(
-                    [
-                        \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid()),
-                    ]
-                )
-            );
+            $oids =  [
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()),
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid()),
+            ];
         }
-        $resp = $this->getResponseByName('ont.config.description', $data);
-        if($resp->error()) {
-            throw new \Exception($resp->error());
-        }
-        $this->response = $this->getResponseByName('ont.config.description', $data)->fetchAll();
+        $this->response = $this->formatResponse(
+            $this->snmp->walk($oids)
+        );
         return $this;
     }
 }

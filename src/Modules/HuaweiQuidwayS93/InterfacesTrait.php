@@ -198,20 +198,30 @@ trait InterfacesTrait
             $id = Helper::getIndexByOid($r->getOid());
             $slot = null;
             $port = null;
+            $shelf = 0;
+            $submodule = null;
+            $type = null;
             $shortName = '';
             if (preg_match('/(Eth|eth).*?(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $name = $r->getValue();
                 $slot = $m[3];
+                $submodule = $m[4];
                 $port = $m[5];
             } elseif (preg_match('/(Eth-)/', $r->getValue(), $m)) {
                 $name = $r->getValue();
             }
             if(preg_match('/XGigabitEthernet/', $r->getValue())) {
                 $shortName="XGE$slot/0/$port";
+                $type = 'XGigabitEthernet';
             } elseif (preg_match('/GigabitEthernet/', $r->getValue())) {
                 $shortName="GE$slot/0/$port";
+                $type = 'GigabitEthernet';
             } elseif (preg_match('/^Eth-/', $r->getValue())) {
                 $shortName=$r->getValue();
+                $type = 'Eth-Trunk';
+            } elseif (preg_match('/^Ethernet/', $r->getValue())) {
+                $shortName="E$slot/0/$port";
+                $type = 'Ethernet';
             }
 
             if(!$name) {
@@ -223,6 +233,9 @@ trait InterfacesTrait
                 'name' => $name,
                 'type' => isset($ifaceTypes[$id])  ? $ifaceTypes[$id] : null,
                 '_physical_id' => isset($physical[$name]) ? $physical[$name] : null,
+                '_type' => $type,
+                '_shelf' => $shelf,
+                '_submodule' => $submodule,
                 '_slot' => $slot,
                 '_port' => $port,
                 '_snmp_id' => $id,

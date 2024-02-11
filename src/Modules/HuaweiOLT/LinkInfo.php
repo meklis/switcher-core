@@ -117,7 +117,7 @@ class LinkInfo extends HuaweiOLTAbstractModule
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             foreach ($data as $num=>$d) {
-                $data[$num] .= ".{$interface['_snmp_id']}";
+                $data[$num] .= ".{$interface['xid']}";
             }
         }
         $oidObjects = [];
