@@ -52,7 +52,7 @@ class SystemInformation extends AbstractModule
         } else {
             $data['descr'] = $this->getResponseByName('sys.Descr')->fetchOne()->getValue();
             $data['serial_num'] = $this->getResponseByName('sys.serialNum')->fetchOne()->getValue();
-            $data['mac_addr'] = $this->getResponseByName('sys.macAddress')->fetchOne()->getHexValue();
+            $data['mac_addr'] = strtoupper($this->getResponseByName('sys.macAddress')->fetchOne()->getHexValue());
             $data['board_software_ver'] = $this->getResponseByName('sys.boardSoftwareVer')->fetchOne()->getValue();
             $data['board_hardware_ver'] = $this->getResponseByName('sys.boardHardwareVer')->fetchOne()->getValue();
             $this->setCache('system', $data, 3600);

@@ -5,7 +5,7 @@ models:
       - snmp
       - console
     detect:
-      description: ^V1600G*
+      description: ^V1600G.*
       objid: .1.3.6.1.4.1.37950.1.1.5.10.14.1
     rewrites:
       oid: .1.3.6.1.4.1.37950.1.1.5.10.14.1.0
@@ -53,7 +53,7 @@ models:
       - snmp
       - console
     detect:
-      description: ^V1600
+      description: ^V1600[^G].*
       objid: .1.3.6.1.4.1.37950.1.1.5.10.14.1
     rewrites:
       oid: .1.3.6.1.4.1.37950.1.1.5.10.14.1.0
