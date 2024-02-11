@@ -49,9 +49,15 @@
 - {name: ont.optical.txPower, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.3.1.6}
 - {name: ont.optical.rxPower, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.3.1.7}
 
+# Настройка UNI портов
+- {name: uni.control.set.ponNum, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.1.0}
+- {name: uni.control.set.onuNum, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.2.0}
+- {name: uni.control.set.portNum, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.3.0}
+- {name: uni.control.set.adminStatus, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.4.0, values: {0: Enabled, 1: Disabled}}
 
-- {name: ont.setUni.ponNum, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.1.0}
-- {name: ont.setUni.onuNum, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.2.0}
-- {name: ont.setUni.portNum, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.3.0}
-- {name: ont.uni.speed, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.6.0, values: {0: Down, 1: Up}}
-- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.7.8.4.0, values: {0: Enabled, 1: Disabled}}
+# Инфо о UNI-порте
+- {name: ont.uni.status, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.8.15.1.4, values: {0: Up, 1: Down}}
+- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.37950.1.1.5.12.5.1.13.1.5, values: {1: Down, 2: 10-Half, 3: 10-Full, 4: 100-Half, 5: 100-Full, 6: 1G-Full, 7: 1G-Half}}
+
+
+
