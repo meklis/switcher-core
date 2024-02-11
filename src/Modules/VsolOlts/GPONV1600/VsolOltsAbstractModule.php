@@ -41,26 +41,10 @@ abstract class VsolOltsAbstractModule extends AbstractModule
     protected function parseInterface($input)
     {
         $ifaces = $this->getInterfaces();
-        if (is_numeric($input)) {
-            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
-                return $iface['id'] == $input;
-            }));
-            if (count($filtered) > 0) {
-                return $filtered[0];
-            }
-        }
-        if (is_numeric($input) && $input < 10000) {
-            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
-                return $iface['xid'] == $input;
-            }));
-            if (count($filtered) > 0) {
-                return $filtered[0];
-            }
-        }
 
         if (is_string($input) && strpos($input, ".") !== false) {
             $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
-                return $iface['_snmp_id'] == $input;
+                return trim($iface['_snmp_id'], ".") === trim($input, ".");
             }));
             if (count($filtered) > 0) {
                 return $filtered[0];
@@ -75,6 +59,23 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 return $filtered[0];
             }
         }
+        if (is_numeric($input) && $input < 10000) {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $iface['xid'] == $input;
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+        if (is_numeric($input)) {
+            $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
+                return $iface['id'] == $input;
+            }));
+            if (count($filtered) > 0) {
+                return $filtered[0];
+            }
+        }
+
         throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
@@ -120,7 +121,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 continue;
             }
 
-            if (preg_match('/^EPON|GPON([0-9]{1,3})ONU([0-9]{1,3})$/', $name, $matches)) {
+            if (preg_match('/^GPON([0-9]{1,3})ONU([0-9]{1,3})$/', $name, $matches)) {
                 $first_letter = $matches[0][0];
                 $port = (int)$matches[1];
                 $interfaces[$id] = [
@@ -129,14 +130,12 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                     '_snmp_id' => "." . $port . "." . $matches[2],
                     'name' => $first_letter . "PON0/{$port}:{$matches[2]}",
                     'type' => 'ONU',
-                    'technology' => strtolower($first_letter) . 'pon',
                     'parent' => 10000000 + $port * 1000,
                     '_slot' => 0,
                     '_port' => $port,
                     '_onu' => (int)$matches[2],
                 ];
-            } elseif (preg_match('/^EPON|GPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $name, $matches)) {
-                $first_letter = strtolower($matches[0][0]);
+            } elseif (preg_match('/^GPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $name, $matches)) {
                 $port = (int)$matches[2];
                 $interfaces[$id] = [
                     'id' => $id,
@@ -144,21 +143,18 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                     '_snmp_id' => "." . $matches[2] . "." . $matches[3],
                     'name' => $name,
                     'type' => 'ONU',
-                    'technology' => $first_letter . 'pon',
                     'parent' => 10000000 + $port * 1000,
                     '_slot' => (int)$matches[1],
                     '_port' => $port,
                     '_onu' => (int)$matches[3],
                 ];
-            } elseif (preg_match('/^EPON|GPON([0-9]{1,3})\/([0-9]{1,3})$/', $name, $matches)) {
-                $first_letter = strtolower($matches[0][0]);
+            } elseif (preg_match('/^GPON([0-9]{1,3})\/([0-9]{1,3})$/', $name, $matches)) {
                 $physicalInterfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
-                    '_snmp_id' => "." . $matches[2],
+                    '_snmp_id' => '.' . $xid,
                     'name' => $name,
                     'type' => 'PON',
-                    'technology' => $first_letter.'pon',
                     'parent' => null,
                     '_slot' => (int)$matches[1],
                     '_port' => (int)$matches[2],
@@ -168,13 +164,13 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 $physicalInterfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
-                    '_snmp_id' => "." . $matches[2],
+                    '_snmp_id' => "." . $xid,
                     'name' => $name,
                     'type' => 'GE',
                     'technology' => null,
                     'parent' => null,
-                    '_slot' => null, //(int)$matches[1],
-                    '_port' => null, //(int)$matches[2],
+                    '_slot' => (int)$matches[1],
+                    '_port' =>  (int)$matches[2],
                     '_onu' => null,
                 ];
             }
@@ -187,7 +183,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
         $this->setCache("interfaces_list", [
             'ifaces_list' => $interfaces,
             'ifaces_physical' => $physicalInterfaces,
-        ], 120, true);
+        ], 300, true);
         return array_merge($interfaces, $physicalInterfaces);
     }
 

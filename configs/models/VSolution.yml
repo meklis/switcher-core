@@ -21,7 +21,7 @@ models:
       system: \SwitcherCore\Modules\VsolOlts\SystemInformation
       sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
       fdb: \SwitcherCore\Modules\VsolOlts\GPONV1600\FdbTable
-      pon_onts_mac_addr: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntMacAddress
+      pon_onts_serial: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntSerial
       interfaces_list: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfacesList
       pon_ports_list: \SwitcherCore\Modules\VsolOlts\GPONV1600\PonPortsList
       pon_count_registered_onts: \SwitcherCore\Modules\VsolOlts\GPONV1600\PortCountRegisteredOnts

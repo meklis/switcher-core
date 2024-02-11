@@ -75,7 +75,7 @@ class OntListWithStatuses extends VsolOltsAbstractModule
                 foreach ($data->fetchAll() as $d) {
                     $iface  = $this->parseInterface(Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid()));
                     if (isset($ifaces[$iface['xid']])) {
-                        $ifaces[$xid]['bind_status'] = $d->getParsedValue();
+                        $ifaces[$iface['xid']]['bind_status'] = $d->getParsedValue();
                     }
                 }
             }
@@ -84,7 +84,7 @@ class OntListWithStatuses extends VsolOltsAbstractModule
 
 
         return array_values(array_filter($ifaces, function ($e) {
-            return $e['status'] != null || $e['admin_state'] != null;
+            return $e['status'] != null || $e['admin_state'] != null || $e['bind_status'] != null;
         }));
     }
 
@@ -118,24 +118,22 @@ class OntListWithStatuses extends VsolOltsAbstractModule
             ];
         }
         $oids = [];
-        foreach ($oidRequests as $oid) {
-            $oids[] = $oid->getOid();
-        }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+            foreach ($oidRequests as $oid) {
+                $index = "." . $iface['xid'];
+                if($oid->getName() === 'ont.status') {
+                    $index = $iface['_snmp_id'];
+                }
+                $oids[] = \SnmpWrapper\Oid::init($oid->getOid() . $index);
+            }
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->get($oids)
             ));
         } else {
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+            $oids = array_map(function (Oid $e) {
+                return \SnmpWrapper\Oid::init($e->getOid());
+            }, $oidRequests);
             $this->response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
             ));

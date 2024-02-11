@@ -10,11 +10,9 @@ class LinkInfo extends VsolOltsAbstractModule
     protected function formate()
     {
         $snmp_high_speed = !$this->response['if.HighSpeed']->error() ? $this->response['if.HighSpeed']->fetchAll() : [];
-        $snmp_type = !$this->response['if.Type']->error() ? $this->response['if.Type']->fetchAll() : [];
         $snmp_last_change = !$this->response['if.LastChange']->error() ? $this->response['if.LastChange']->fetchAll() : [];
         $snmp_oper_status = !$this->response['if.OperStatus']->error() ? $this->response['if.OperStatus']->fetchAll() : [];
         $snmp_admin_status = !$this->response['if.AdminStatus']->error() ? $this->response['if.AdminStatus']->fetchAll() : [];
-        //$snmp_duplex = !$this->response['if.StatsDuplexStatus']->error() ? $this->response['if.StatsDuplexStatus']->fetchAll() : [];
 
         $indexes = [];
 
@@ -26,7 +24,6 @@ class LinkInfo extends VsolOltsAbstractModule
             $indexes[$xid]['admin_state'] = null;
             $indexes[$xid]['last_change'] = null;
             $indexes[$xid]['medium_type'] = null;
-            //$indexes[$xid]['type'] = 'GPON';
         }
 
 
@@ -43,27 +40,12 @@ class LinkInfo extends VsolOltsAbstractModule
             }
             $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = $index->getParsedValue();
         }
-        /*foreach ($snmp_duplex as $index) {
-            if (!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            if ($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown') {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = 'Down';
-                continue;
-            }
-            if ($index->getParsedValue() == 'Down') {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = $index->getParsedValue();
-            } else {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] .= "-" . $index->getParsedValue();
-            }
-        }*/
 
         foreach ($snmp_admin_status as $index) {
             if (!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
             $indexes[Helper::getIndexByOid($index->getOid())]['admin_state'] = $index->getParsedValue();
         }
-        /*foreach ($snmp_type as $index) {
-            if (!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            $indexes[Helper::getIndexByOid($index->getOid())]['type'] = $index->getParsedValue();
-        }*/
+
         foreach ($snmp_last_change as $index) {
             if (!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
             if ($index->getValue()) {
@@ -114,11 +96,9 @@ class LinkInfo extends VsolOltsAbstractModule
         $data = [];
         $data_oids = [
             $this->oids->getOidByName('if.HighSpeed')->getOid(),
-            $this->oids->getOidByName('if.Type')->getOid(),
             $this->oids->getOidByName('if.LastChange')->getOid(),
             $this->oids->getOidByName('if.OperStatus')->getOid(),
             $this->oids->getOidByName('if.AdminStatus')->getOid(),
-            //$this->oids->getOidByName('if.StatsDuplexStatus')->getOid(),
         ];
 
         if ($filter['interface']) {
@@ -126,10 +106,10 @@ class LinkInfo extends VsolOltsAbstractModule
             foreach ($data_oids as $num => $d) {
                 $data[$num] .= ".{$interface['xid']}";
             }
-        }else{
+        } else {
             foreach ($data_oids as $num => $d) {
-                foreach ($this->getPhysicalInterfaces() as $item){
-                    $data[] = $data_oids[$num].".{$item['xid']}";
+                foreach ($this->getPhysicalInterfaces() as $item) {
+                    $data[] = $data_oids[$num] . ".{$item['xid']}";
                 }
             }
         }
