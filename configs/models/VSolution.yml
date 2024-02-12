@@ -42,7 +42,7 @@ models:
       ctrl_ont_reboot: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntReboot
       ctrl_ont_delete: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntDelete
       ctrl_ont_disable: \SwitcherCore\Modules\VsolOlts\GPONV1600\CtrlOntDisable
-      uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\UniInterfacesInfo
+      #uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\UniInterfacesInfo
       #snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
     extra:
       pon_port_size: 128
