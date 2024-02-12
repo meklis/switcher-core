@@ -101,12 +101,12 @@ abstract class VsolOltsAbstractModule extends AbstractModule
     protected function getInterfaces()
     {
         $data = $this->getCache("interfaces_list", true);
-        if (isset($data['ifaces_list']) && isset($data['ifaces_physical'])) {
+        if ($data) {
             $this->_interfaces = $data['ifaces_list'];
             $this->physicalInterfaces = $data['ifaces_physical'];
             return array_merge($this->_interfaces, $this->physicalInterfaces);
         }
-        $data = $this->formatResponse($this->snmp->walk([
+        $data = $this->formatResponse($this->snmp->walkNext([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid())
         ]));
 
@@ -152,7 +152,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 $physicalInterfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
-                    '_snmp_id' => '.' . $xid,
+                    '_snmp_id' => ".{$xid}",
                     'name' => $name,
                     'type' => 'PON',
                     'parent' => null,
@@ -164,7 +164,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 $physicalInterfaces[$id] = [
                     'id' => $id,
                     'xid' => $xid,
-                    '_snmp_id' => "." . $xid,
+                    '_snmp_id' => ".{$xid}",
                     'name' => $name,
                     'type' => 'GE',
                     'technology' => null,
@@ -175,7 +175,6 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 ];
             }
         }
-
         ksort($interfaces);
         sort($physicalInterfaces);
         $this->_interfaces = $interfaces;

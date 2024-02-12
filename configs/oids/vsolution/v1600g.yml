@@ -29,7 +29,7 @@
 #}
 - {name: ont.status, oid: 1.3.6.1.4.1.37950.1.1.6.1.1.1.1.5, values: {0: Logging, 2: SyncMib, 3: Online, 4: PowerOff, 5: AuthFail, 6: Offline, 7: Disabled, 8: ConfigFail}}
 
-- {name: ont.serial, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.4.1.5}
+- {name: ont.serial, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.2.1.5}
 
 - {name: ont.actions.port, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.5.1.0}
 - {name: ont.actions.ont, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.5.2.0}
@@ -57,7 +57,29 @@
 
 # Инфо о UNI-порте
 - {name: ont.uni.status, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.8.15.1.4, values: {0: Up, 1: Down}}
-- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.37950.1.1.5.12.5.1.13.1.5, values: {1: Down, 2: 10-Half, 3: 10-Full, 4: 100-Half, 5: 100-Full, 6: 1G-Full, 7: 1G-Half}}
+- {name: ont.uni.adminStatus, oid: .1.3.6.1.4.1.37950.1.1.6.1.1.8.15.1.6, values: {1: Down, 2: 10-Half, 3: 10-Full, 4: 100-Half, 5: 100-Full, 6: 1G-Full, 7: 1G-Half}}
+
+# UNI версия 2
+# Скорость .1.3.6.1.4.1.37950.1.1.6.1.1.8.15.1.6
+#  INTEGER {auto(1),
+#half10(2),
+#full10(3),
+#half100(4),
+#full100(5),
+#full1000(6),
+#half1000(7)
+#}
+
+# Cтатус порта - .1.3.6.1.4.1.37950.1.1.6.1.1.8.15.1.4 (0-включен, 1-выключен)
 
 
-
+#  INTEGER {update(1),
+#active(2),
+#commit(3),
+#update-and-reboot(4),
+#quick_active(6)
+#}
+- {name: ont.up.statusAction, oid: .1.3.6.1.4.1.37950.1.1.6.1.4.7.1.3}
+- {name: ont.up.status, oid: .1.3.6.1.4.1.37950.1.1.6.1.4.7.1.4}
+- {name: ont.up.failReason, oid: .1.3.6.1.4.1.37950.1.1.6.1.4.7.1.6}
+- {name: ont.up.commitTime, oid: .1.3.6.1.4.1.37950.1.1.6.1.4.7.1.7}
