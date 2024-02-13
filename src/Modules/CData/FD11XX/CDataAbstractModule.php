@@ -60,6 +60,9 @@ abstract class CDataAbstractModule extends AbstractModule
             if(!$interface) {
                 $interface = $this->findInterface($input + 100000, $parseBy);
             }
+            if(!$interface) {
+                $interface = $this->findInterface($input  , 'id');
+            }
             if($interface === null) {
                 throw new \Exception("Interface with {$parseBy}=$input not found");
             }

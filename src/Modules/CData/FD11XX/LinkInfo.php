@@ -18,13 +18,13 @@ class LinkInfo extends CDataAbstractModule
 
         $indexes = [];
         foreach ($this->getInterfacesIds() as $index => $port) {
-            $indexes[$index]['interface'] = $port;
-            $indexes[$index]['oper_status'] = null;
-            $indexes[$index]['nway_status'] = null;
-            $indexes[$index]['admin_state'] = null;
-            $indexes[$index]['last_change'] = null;
-            $indexes[$index]['medium_type'] = null;
-            $indexes[$index]['type'] = $port['type'];
+            $indexes[$port['phys_snmp_id']]['interface'] = $port;
+            $indexes[$port['phys_snmp_id']]['oper_status'] = null;
+            $indexes[$port['phys_snmp_id']]['nway_status'] = null;
+            $indexes[$port['phys_snmp_id']]['admin_state'] = null;
+            $indexes[$port['phys_snmp_id']]['last_change'] = null;
+            $indexes[$port['phys_snmp_id']]['medium_type'] = null;
+            $indexes[$port['phys_snmp_id']]['type'] = $port['type'];
         }
 
         foreach ($snmp_oper_status as $index) {
@@ -121,7 +121,7 @@ class LinkInfo extends CDataAbstractModule
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             foreach ($data as $num => $d) {
-                $data[$num] .= ".{$interface['xid']}";
+                $data[$num] .= ".{$interface['phys_snmp_id']}";
             }
         }
         $oidObjects = [];

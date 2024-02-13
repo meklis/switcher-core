@@ -35,18 +35,18 @@ class InterfaceCounters extends CDataAbstractModule
             if ($interface['type'] == 'ONU') {
                 //throw new \InvalidArgumentException("ONU oids not found at the moment, just physical ports");
                 return $this;
-            } else  {
-                $oids = $this->getInterfaceOids($interface['id'], $this->getOidsForPhysical());
+            } else {
+                $oids = $this->getInterfaceOids($interface['phys_snmp_id'], $this->getOidsForPhysical());
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
-        } elseif ($params['interface_type'] == 'ONU' ) {
+        } elseif ($params['interface_type'] == 'ONU') {
             //throw new \InvalidArgumentException("ONU oids not found at the moment, just physical ports");
             return $this;
         } else {
             $physOids = $this->getOidsForPhysical();
             $oids = [];
             foreach ($this->getInterfacesIds() as $iface) {
-                $oids = array_merge($oids, $this->getInterfaceOids( $iface['id'], $physOids));
+                $oids = array_merge($oids, $this->getInterfaceOids($iface['phys_snmp_id'], $physOids));
             }
             $this->response = $this->formatResponse($this->snmp->get($oids));
         }
@@ -56,22 +56,16 @@ class InterfaceCounters extends CDataAbstractModule
     function getPretty()
     {
         $data = [];
-        if(empty($this->response)) return [];
+        if (empty($this->response)) return [];
         foreach ($this->response as $oidName => $dt) {
             if ($dt->error()) {
                 continue;
             }
             $name = Helper::fromCamelCase(str_replace(["if.HC", "if"], "", $oidName));
             foreach ($dt->fetchAll() as $resp) {
-                try {
-                    $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()),'id');
-                    $data[$iface['id']]['interface'] = $iface;
-                    $data[$iface['id']][$name] = $resp->getValue();
-                } catch (Exception $e) {
-                    if (strpos($e->getMessage(), "not in service card") === false) {
-                        throw $e;
-                    }
-                }
+                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'id');
+                $data[$iface['id']]['interface'] = $iface;
+                $data[$iface['id']][$name] = $resp->getValue();
             }
         }
         return array_values($data);
