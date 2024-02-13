@@ -99,12 +99,13 @@ class OntReasons extends HuaweiOLTAbstractModule
         $elements = explode(":", $hex);
         if(count($elements) < 7) return null;
         $date =  hexdec($elements[0] . $elements[1]) . "-" .
-            hexdec($elements[2]) . '-' .
-            hexdec($elements[3]) . ' '  .
-            hexdec($elements[4]) . ':'  .
-            hexdec($elements[5]) . ':'  .
-            hexdec($elements[6]);
-        $time = \DateTime::createFromFormat("Y-m-d h:i:s", $date);
+            str_pad(hexdec($elements[2]), 2, "0", STR_PAD_LEFT)  . '-' .
+            str_pad(hexdec($elements[3]), 2, "0", STR_PAD_LEFT) . ' '  .
+            str_pad(hexdec($elements[4]), 2, "0", STR_PAD_LEFT) . ':'  .
+            str_pad(hexdec($elements[5]), 2, "0", STR_PAD_LEFT) . ':'  .
+            str_pad(hexdec($elements[6]), 2, "0", STR_PAD_LEFT) ;
+
+        $time = \DateTime::createFromFormat("Y-m-d H:i:s", $date);
         if($time) {
             return $time->getTimestamp();
         } else {

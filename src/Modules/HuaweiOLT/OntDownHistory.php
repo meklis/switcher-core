@@ -17,38 +17,48 @@ class OntDownHistory extends HuaweiOLTAbstractModule
     /**
      * @var WrappedResponse[]
      */
-    protected $response = null ;
+    protected $response = null;
+
     function getRaw()
     {
         return $this->response;
     }
+
     function getPretty()
     {
         $ifaces = [];
         $data = $this->getResponseByName('ont.regTable.uptime');
-        if(!$data->error()) {
+        if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $iface = $this->findIfaceByOid($r->getOid(), 1);
                 $id = Helper::getIndexByOid($r->getOid());
                 $time = null;
-                if($ts = \DateTime::createFromFormat("Y-m-d H:i:s", trim($r->getValue(), "Z"))) {
+                if ($ts = \DateTime::createFromFormat("Y-m-d H:i:s", trim($r->getValue(), "Z"))) {
                     $time = $ts->getTimestamp();
-                }elseif ($ts = \DateTime::createFromFormat("d.m.Y H:i:s", trim($r->getValue(), "Z"))) {
+                } elseif ($ts = \DateTime::createFromFormat("d.m.Y H:i:s", trim($r->getValue(), "Z"))) {
+                    $time = $ts->getTimestamp();
+                } elseif (preg_match('/([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})\+.*$/', $r->getValue(), $m) &&
+                    $ts = \DateTime::createFromFormat("Y-m-d H:i:s", $m[1])
+                ) {
                     $time = $ts->getTimestamp();
                 }
                 $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['logs'][$id]['reg_time'] =  $time ? date("Y-m-d H:i:s", $time) : null;;
-                $ifaces[$iface['id']]['logs'][$id]['reg_since'] =  $time == null ? null :$this->getSince($time);
+                $ifaces[$iface['id']]['logs'][$id]['reg_time'] = $time ? date("Y-m-d H:i:s", $time) : null;;
+                $ifaces[$iface['id']]['logs'][$id]['reg_since'] = $time == null ? null : $this->getSince($time);
             }
         }
         $data = $this->getResponseByName('ont.regTable.downTime');
-        if(!$data->error()) {
+        if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $iface = $this->findIfaceByOid($r->getOid(), 1);
                 $time = null;
-                if($ts = \DateTime::createFromFormat("Y-m-d H:i:s", trim($r->getValue(), "Z"))) {
+                if ($ts = \DateTime::createFromFormat("Y-m-d H:i:s", trim($r->getValue(), "Z"))) {
                     $time = $ts->getTimestamp();
                 } elseif ($ts = \DateTime::createFromFormat("d.m.Y H:i:s", trim($r->getValue(), "Z"))) {
+                    $time = $ts->getTimestamp();
+                } elseif (preg_match('/([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})\+.*$/', $r->getValue(), $m) &&
+                    $ts = \DateTime::createFromFormat("Y-m-d H:i:s", $m[1])
+                ) {
                     $time = $ts->getTimestamp();
                 }
                 $id = Helper::getIndexByOid($r->getOid());
@@ -58,7 +68,7 @@ class OntDownHistory extends HuaweiOLTAbstractModule
             }
         }
         $data = $this->getResponseByName('ont.regTable.downCause');
-        if(!$data->error()) {
+        if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $iface = $this->findIfaceByOid($r->getOid(), 1);
                 $id = Helper::getIndexByOid($r->getOid());
@@ -68,12 +78,12 @@ class OntDownHistory extends HuaweiOLTAbstractModule
         }
         return array_values(array_map(function ($iface) {
             $iface['logs'] = array_values(array_filter(array_map(function ($e) {
-                if(isset($e['down_reason']) && $e['down_reason'] == 'Invalid') return null;
-                if(!isset($e['down_reason'])) $e['down_reason'] = null;
-                if(!isset($e['dereg_time'])) $e['dereg_time'] = null;
-                if(!isset($e['reg_time'])) $e['reg_time'] = null;
-                if(!isset($e['dereg_since'])) $e['dereg_since'] = null;
-                if(!isset($e['reg_since'])) $e['reg_since'] = null;
+                if (isset($e['down_reason']) && $e['down_reason'] == 'Invalid') return null;
+                if (!isset($e['down_reason'])) $e['down_reason'] = null;
+                if (!isset($e['dereg_time'])) $e['dereg_time'] = null;
+                if (!isset($e['reg_time'])) $e['reg_time'] = null;
+                if (!isset($e['dereg_since'])) $e['dereg_since'] = null;
+                if (!isset($e['reg_since'])) $e['reg_since'] = null;
                 return $e;
             }, $iface['logs']), function ($e) {
                 return $e !== null;
@@ -98,26 +108,31 @@ class OntDownHistory extends HuaweiOLTAbstractModule
         foreach ($reasons as $oid) {
             $oids[] = $oid->getOid();
         }
-        if($filter['interface']) {
+        if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oids = array_map(function ($e) use ($iface) {
-                return $e ."." .  $iface['xid'];
+                return $e . "." . $iface['xid'];
             }, $oids);
-            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $oids = array_map(function ($e) {
+                return Oid::init($e);
+            }, $oids);
             $this->response = $this->formatResponse($this->snmp->walk($oids));
         } else {
-            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $oids = array_map(function ($e) {
+                return Oid::init($e);
+            }, $oids);
             $this->response = $this->formatResponse($this->snmp->walk($oids));
         }
         return $this;
     }
 
-    private function getSince($time) {
+    private function getSince($time)
+    {
         $timetrics = time() - $time;
-        $days = floor($timetrics/ (24 * 60 * 60)   );
-        $hours = floor(($timetrics - ((24 * 60 * 60)   * $days)) / (60 * 60) );
-        $minutes = floor(($timetrics - ((24 * 60 * 60)  * $days) - ((60 * 60) * $hours) ) / 60 );
-        $seconds = floor( ($timetrics - ((24 * 60 * 60)  * $days) - ((60 * 60) * $hours)- (60 * $minutes)) );
+        $days = floor($timetrics / (24 * 60 * 60));
+        $hours = floor(($timetrics - ((24 * 60 * 60) * $days)) / (60 * 60));
+        $minutes = floor(($timetrics - ((24 * 60 * 60) * $days) - ((60 * 60) * $hours)) / 60);
+        $seconds = floor(($timetrics - ((24 * 60 * 60) * $days) - ((60 * 60) * $hours) - (60 * $minutes)));
         return "{$days}d {$hours}h {$minutes}min {$seconds}sec";
     }
 }
