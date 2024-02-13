@@ -30,7 +30,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\FD11XX\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\CData\FD11XX\PortDescriptionControl
+      #ctrl_port_descr: \SwitcherCore\Modules\CData\FD11XX\PortDescriptionControl
       link_info: \SwitcherCore\Modules\CData\FD11XX\LinkInfo
       pon_onts_reasons: \SwitcherCore\Modules\CData\FD11XX\OntReasons
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
@@ -39,14 +39,18 @@ models:
       pon_port_size: 64
       console_conn_type: stels
       interfaces:
-        - {name: ge1,  id: 1000,  xid: 1, _pon_port: 0,  type: 1G-SFP}
-        - {name: ge2,  id: 2000,  xid: 2, _pon_port: 0,  type: 1G-SFP}
-        - {name: ge3,  id: 3000,  xid: 3, _pon_port: 0,  type: 1G-SFP}
-        - {name: ge4,  id: 4000,  xid: 4, _pon_port: 0,  type: 1G-SFP}
-        - {name: pon1/1, id: 5000,  xid: 5, _pon_port: 1, type: PON}
-        - {name: pon1/2, id: 6000,  xid: 6, _pon_port: 2, type: PON}
-        - {name: pon1/3, id: 7000,  xid: 7, _pon_port: 3, type: PON}
-        - {name: pon1/4, id: 8000,  xid: 8, _pon_port: 4, type: PON}
+        - {name: ge1,  id: 100001,  xid: null, type: 1G-SFP, phys_snmp_id: 1}
+        - {name: ge2,  id: 100002,  xid: null, type: 1G-SFP, phys_snmp_id: 2}
+        - {name: ge3,  id: 100003,  xid: null, type: 1G-SFP, phys_snmp_id: 3}
+        - {name: ge4,  id: 100004,  xid: null, type: 1G-SFP, phys_snmp_id: 4}
+        - {name: ge5,  id: 100005,  xid: null, type: 1G-SFP, phys_snmp_id: 5}
+        - {name: ge6,  id: 100006,  xid: null, type: 1G-SFP, phys_snmp_id: 6}
+        - {name: ge7,  id: 100007,  xid: null, type: 1G-SFP, phys_snmp_id: 7}
+        - {name: ge8,  id: 100008,  xid: null, type: 1G-SFP, phys_snmp_id: 8}
+        - {name: pon1/1, id: 9,  xid: 1, type: PON, phys_snmp_id: 9}
+        - {name: pon1/2, id: 10,  xid: 2, type: PON, phys_snmp_id: 10}
+        - {name: pon1/3, id: 11,  xid: 3, type: PON, phys_snmp_id: 11}
+        - {name: pon1/4, id: 12,  xid: 4, type: PON, phys_snmp_id: 12}
 
   - name: C-Data FD1108S
     key: c_data_fd1108s
@@ -79,7 +83,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\FD11XX\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\CData\FD11XX\PortDescriptionControl
+      #ctrl_port_descr: \SwitcherCore\Modules\CData\FD11XX\PortDescriptionControl
       interfaces_list: \SwitcherCore\Modules\CData\FD11XX\PonPortsList
       link_info: \SwitcherCore\Modules\CData\FD11XX\LinkInfo
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
@@ -88,22 +92,22 @@ models:
       console_conn_type: stels
       pon_port_size: 64
       interfaces:
-        - {name: ge1,  id: 1000,  xid: 1, _pon_port: 0, type: 1G-SFP}
-        - {name: ge2,  id: 2000,  xid: 2, _pon_port: 0, type: 1G-SFP}
-        - {name: ge3,  id: 3000,  xid: 3, _pon_port: 0, type: 1G-SFP}
-        - {name: ge4,  id: 4000,  xid: 4, _pon_port: 0, type: 1G-SFP}
-        - {name: ge5,  id: 5000,  xid: 5, _pon_port: 0, type: 1G-SFP}
-        - {name: ge6,  id: 6000,  xid: 6, _pon_port: 0, type: 1G-SFP}
-        - {name: ge7,  id: 7000,  xid: 7, _pon_port: 0, type: 1G-SFP}
-        - {name: ge8,  id: 8000,  xid: 8, _pon_port: 0, type: 1G-SFP}
-        - {name: pon1/1, id: 9000,  xid: 9, _pon_port: 1, type: PON}
-        - {name: pon1/2, id: 10000,  xid: 10, _pon_port: 2, type: PON}
-        - {name: pon1/3, id: 11000,  xid: 11, _pon_port: 3, type: PON}
-        - {name: pon1/4, id: 12000,  xid: 12, _pon_port: 4, type: PON}
-        - {name: pon1/5, id: 13000,  xid: 13, _pon_port: 5, type: PON}
-        - {name: pon1/6, id: 14000,  xid: 14, _pon_port: 6, type: PON}
-        - {name: pon1/7, id: 15000,  xid: 15, _pon_port: 7, type: PON}
-        - {name: pon1/8, id: 16000,  xid: 16, _pon_port: 8, type: PON}
+        - { name: ge1,  id: 100001,  xid: null, type: 1G-SFP, phys_snmp_id: 1 }
+        - { name: ge2,  id: 100002,  xid: null, type: 1G-SFP, phys_snmp_id: 2 }
+        - { name: ge3,  id: 100003,  xid: null, type: 1G-SFP, phys_snmp_id: 3 }
+        - { name: ge4,  id: 100004,  xid: null, type: 1G-SFP, phys_snmp_id: 4 }
+        - { name: ge5,  id: 100005,  xid: null, type: 1G-SFP, phys_snmp_id: 5 }
+        - { name: ge6,  id: 100006,  xid: null, type: 1G-SFP, phys_snmp_id: 6 }
+        - { name: ge7,  id: 100007,  xid: null, type: 1G-SFP, phys_snmp_id: 7 }
+        - { name: ge8,  id: 100008,  xid: null, type: 1G-SFP, phys_snmp_id: 8 }
+        - { name: pon1/1, id: 9,  xid: 1, type: PON, phys_snmp_id: 9 }
+        - { name: pon1/2, id: 10,  xid: 2, type: PON, phys_snmp_id: 10 }
+        - { name: pon1/3, id: 11,  xid: 3, type: PON, phys_snmp_id: 11 }
+        - { name: pon1/4, id: 12,  xid: 4, type: PON, phys_snmp_id: 12 }
+        - { name: pon1/5, id: 13,  xid: 5, type: PON, phys_snmp_id: 13 }
+        - { name: pon1/6, id: 14,  xid: 6, type: PON, phys_snmp_id: 14 }
+        - { name: pon1/7, id: 15,  xid: 7, type: PON, phys_snmp_id: 15 }
+        - { name: pon1/8, id: 16,  xid: 8, type: PON, phys_snmp_id: 16 }
 
   - name: C-Data FD1204SN
     key: c_data_fd1204sn
