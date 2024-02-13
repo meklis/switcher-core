@@ -65,17 +65,17 @@ class InterfaceDescriptions extends CDataAbstractModule
     public function run($filter = [])
     {
         if ($filter['interface']) {
-            $interface = $this->parseInterface($filter['interface'], 'id');
+            $interface = $this->parseInterface($filter['interface'] );
             if ($interface['type'] == 'ONU') {
                 $oid_name = 'ont.name';
                 $data = $this->formatResponse(
-                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName($oid_name)->getOid() . ".{$interface['_snmp_id']}"),])
+                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName($oid_name)->getOid() . "{$interface['_snmp_id']}"),])
                 );
                 $this->response[$oid_name] = $this->fetchData($data);
             } else {
-                $oid_name = 'if.Name';
+                $oid_name = 'if.Alias';
                 $data = $this->formatResponse(
-                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName($oid_name)->getOid() . ".{$interface['id']}"),])
+                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName($oid_name)->getOid() . ".{$interface['xid']}"),])
                 );
                 $this->response[$oid_name] = $this->fetchData($data, $oid_name);
             }
@@ -95,7 +95,7 @@ class InterfaceDescriptions extends CDataAbstractModule
             $this->response[$oid_name] = $this->fetchData($data);
         }
         if ($filter['interface_type'] == 'PHYSICAL' || $without_arguments) {
-            $oid_name = 'if.Name';
+            $oid_name = 'if.Alias';
             $data = $this->formatResponse(
                 $this->snmp->walkNext([\SnmpWrapper\Oid::init($this->oids->getOidByName($oid_name)->getOid()),])
             );
