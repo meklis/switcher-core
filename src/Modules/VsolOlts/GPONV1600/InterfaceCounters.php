@@ -26,7 +26,7 @@ class InterfaceCounters extends VsolOltsAbstractModule
     {
         return array_map(function ($e) use ($interface_id) {
             return Oid::init($e->getOid() . $interface_id);
-        }, $this->interfaceCounterOids());
+        }, $this->getInterfaceCountersOids());
     }
 
     function getOidsByInterfacesArray($interfaces)

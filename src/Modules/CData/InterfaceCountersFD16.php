@@ -78,7 +78,7 @@ class InterfaceCountersFD16 extends CDataAbstractModule
 
     public function run($params = [])
     {
-        $global_oids = $this->interfaceCounterOids();
+        $global_oids = $this->getInterfaceCountersOids();
 
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);

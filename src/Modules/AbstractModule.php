@@ -220,7 +220,7 @@ abstract class AbstractModule
         return;
     }
 
-    function interfaceCounterOids(): array
+    function getInterfaceCountersOids(): array
     {
         return [
             $this->oids->getOidByName('if.InErrors'),

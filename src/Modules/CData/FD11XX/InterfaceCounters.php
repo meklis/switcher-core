@@ -18,7 +18,7 @@ class InterfaceCounters extends CDataAbstractModule
     {
         return array_map(function ($e) {
             return Oid::init($e->getOid());
-        }, $this->interfaceCounterOids());
+        }, $this->getInterfaceCountersOids());
     }
 
     function getInterfaceOids($interface_id, $oids)

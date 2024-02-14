@@ -23,7 +23,7 @@ class InterfaceCountersNew extends BDcomAbstractModule
     {
         return array_map(function ($e) use ($interface_id) {
             return Oid::init($e->getOid() . $interface_id);
-        }, $this->interfaceCounterOids());
+        }, $this->getInterfaceCountersOids());
     }
 
 

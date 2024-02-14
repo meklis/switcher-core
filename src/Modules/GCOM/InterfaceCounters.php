@@ -47,10 +47,6 @@ class InterfaceCounters extends GCOMAbstractModule
                     case 'ont.stat.inOctets': $data[$iface['id']]['in_octets'] = $value; break;
                     case 'ont.stat.outOctets': $data[$iface['id']]['out_octets'] = $value; break;
                     case 'ont.stat.inCrcErrors': $data[$iface['id']]['crc_errors'] = $value; break;
-                    case 'ont.stat.inMcast': $data[$iface['id']]['in_multicast_pkts'] = $value; break;
-                    case 'ont.stat.inBcast': $data[$iface['id']]['in_broadcast_pkts'] = $value; break;
-                    case 'ont.stat.outMcast': $data[$iface['id']]['out_multicast_pkts'] = $value; break;
-                    case 'ont.stat.outBcast': $data[$iface['id']]['out_broadcast_pkts'] = $value; break;
                 }
             }
         }
@@ -64,14 +60,19 @@ class InterfaceCounters extends GCOMAbstractModule
      */
     public function run($filter = [])
     {
-        $oids = $this->oids->getOidsByRegex('^ont.stat\..*');
+        $ontOids = [
+            $this->oids->getOidByName('ont.stat.inOctets'),
+            $this->oids->getOidByName('ont.stat.outOctets'),
+            $this->oids->getOidByName('ont.stat.inCrcErrors'),
+        ];
         if ($filter['interface']) {
+
             $interface = $this->parseInterface($filter['interface']);
             $data = $this->formatResponse(
                 $this->snmp->get(
                     array_map(function ($o) use ($interface) {
                         return \SnmpWrapper\Oid::init($o->getOid() . ".{$interface['xid']}");
-                    }, $oids)
+                    }, $ontOids)
                 )
             );
         } else {
