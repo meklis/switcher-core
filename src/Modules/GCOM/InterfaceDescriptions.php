@@ -14,7 +14,7 @@ use SwitcherCore\Switcher\Objects\WrappedResponse;
 class InterfaceDescriptions extends GCOMAbstractModule
 {
     /**
-     * @var SnmpResponse[]
+     * @var WrappedResponse[]
      */
     protected $response = null;
 
@@ -32,16 +32,28 @@ class InterfaceDescriptions extends GCOMAbstractModule
     function getPretty()
     {
         $data = [];
-        foreach ($this->response as $resp) {
-            try {
-                $d = [
-                    'interface' => $this->parseInterface($this->getOnuXidByOid($resp->getOid())),
-                    'description' => strtolower($resp->getValue()) != 'epon' ? $resp->getValue() : null,
-                ];
-                if (!$d['interface']['id']) continue;
-                $data[] = $d;
-            } catch (\Exception $e) {
-                $this->logger->error("Error get interface description for interface:" . $e->getMessage());
+        foreach ($this->response as $name => $wrapped) {
+            if ($wrapped->error()) {
+                throw new Exception($wrapped);
+            }
+            foreach ($wrapped->fetchAll() as $resp) {
+                try {
+                    if($name === 'if.Alias') {
+                        $d = [
+                            'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
+                            'description' => $resp->getValue(),
+                        ];
+                    } else {
+                        $d = [
+                            'interface' => $this->parseInterface($this->getOnuXidByOid($resp->getOid())),
+                            'description' => strtolower($resp->getValue()) != 'epon' ? $resp->getValue() : null,
+                        ];
+                    }
+                    if (!$d['interface']['id']) continue;
+                    $data[] = $d;
+                } catch (\Exception $e) {
+                    $this->logger->error("Error get interface description for interface:" . $e->getMessage());
+                }
             }
         }
         return $this->sortResponseByInterface($data);
@@ -56,25 +68,35 @@ class InterfaceDescriptions extends GCOMAbstractModule
     {
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            $data = $this->formatResponse(
-                $this->snmp->get([
-                    \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$interface['xid']}"),
-                ])
-            );
+            if ($interface['type'] === 'ONU') {
+                $this->response = $this->formatResponse(
+                    $this->snmp->get([
+                        \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$interface['xid']}"),
+                    ])
+                );
+            } else {
+                $this->response = $this->formatResponse(
+                    $this->snmp->get([
+                        \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$interface['xid']}"),
+                    ])
+                );
+            }
+            return $this;
+        }
+
+        $oids = [];
+        if ($filter['interface_type'] === 'ONU') {
+            $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid());
+        } elseif ($filter['interface_type'] === 'PHYSICAL') {
+            $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid());
         } else {
-            $data = $this->formatResponse(
-                $this->snmp->walk(
-                    [
-                        \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid()),
-                    ]
-                )
-            );
+            $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid());
+            $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid());
         }
-        $resp = $this->getResponseByName('ont.description', $data);
-        if($resp->error()) {
-            throw new \Exception($resp->error());
-        }
-        $this->response = $this->getResponseByName('ont.description', $data)->fetchAll();
+
+        $this->response = $this->formatResponse(
+            $this->snmp->walk($oids)
+        );
         return $this;
     }
 }

@@ -1,46 +1,56 @@
 models:
   - name: GCOM EPON series
-    key: gcom_epon_series
+    key: gcom_el5610_series
     inputs:
       - snmp
       - console
-    detect: {description: .*GCOM EPON,  objid: ^.1.3.6.1.4.1.13464.1.10.5.3 }
+    detect: {description: .*GCOM EPON,  objid: ^.1.3.6.1.4.1.13464.1.10.5 }
     device_type: OLT
     oids:
       - ./oids/gcom/el5610.yml
     rewrites:
       oid: .1.3.6.1.2.1.1.5.0
       mapping:
-        - value: EL5610-04P
+        - value: (EL5610-04P|OLT-04P)
           rewrite:
             key: gcom_el5610_04p
             name: GCOM EL5610-04P
-        - value: EL5610-08P
+        - value: (EL5610-08P|OLT-08P)
           rewrite:
             key: gcom_el5610_08p
             name: GCOM EL5610-08P
-        - value: EL5610-16P
+        - value: (EL5610-16P|OLT-16P)
           rewrite:
             key: gcom_el5610_16p
             name: GCOM EL5610-16P
     modules:
       system: \SwitcherCore\Modules\GCOM\SystemInformation
       parse_interface: \SwitcherCore\Modules\GCOM\ParseInterface
-      pon_onts_status: \SwitcherCore\Modules\GCOM\OntListWithStatuses
+      pon_ports_list: \SwitcherCore\Modules\GCOM\PonPortsList
       pon_onts_mac_addr: \SwitcherCore\Modules\GCOM\OntMacAddress
+      sys_resources: \SwitcherCore\Modules\GCOM\SystemResources
+      pon_onts_status: \SwitcherCore\Modules\GCOM\OntListWithStatuses
       pon_onts_optical: \SwitcherCore\Modules\GCOM\OntOpticalInfo
       pon_ports_optical: \SwitcherCore\Modules\GCOM\PonPortsOptical
       pon_onts_reasons: \SwitcherCore\Modules\GCOM\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\GCOM\OntVendorInfo
       fdb: \SwitcherCore\Modules\GCOM\FdbTable
       interface_descriptions: \SwitcherCore\Modules\GCOM\InterfaceDescriptions
-      sys_resources: \SwitcherCore\Modules\GCOM\SystemResources
       interfaces_list: \SwitcherCore\Modules\GCOM\InterfacesList
-     # interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
       uni_interfaces_status: \SwitcherCore\Modules\GCOM\UniInterfacesStatus
-      uni_interfaces_vlans: \SwitcherCore\Modules\GCOM\UniInterfacesVlans
+      interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
+
       ctrl_ont_reset: \SwitcherCore\Modules\GCOM\OntReset
       ctrl_ont_descr: \SwitcherCore\Modules\GCOM\CtrlOntDescription
+      ctrl_ont_reboot: \SwitcherCore\Modules\GCOM\OntReboot
+      ctrl_ont_disable: \SwitcherCore\Modules\GCOM\CtrlOntDisable
+      ctrl_ont_delete: \SwitcherCore\Modules\GCOM\OntDelete
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\GCOM\UniInterfacesControlAdminStatus
+      link_info: \SwitcherCore\Modules\GCOM\LinkInfo
+      console_command: \SwitcherCore\Modules\GCOM\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
+
     extra:
       pon_port_size: 64
       console_conn_type: bdcom

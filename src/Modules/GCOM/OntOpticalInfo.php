@@ -137,10 +137,16 @@ class OntOpticalInfo extends GCOMAbstractModule
             }, $oids);
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            $statuses = $this->getModule('pon_onts_status')->run(['load_only' => '', 'interface' => null])->getPretty();
+            $oidList = [];
+            foreach ($statuses as $status) {
+                if($status['status'] === 'Online') {
+                    $oidList = array_merge($oidList, array_map(function ($e) use ($status) {
+                        return Oid::init($e . "." . $status['interface']['xid']);
+                    }, $oids));
+                }
+            }
+            $this->response = $this->formatResponse($this->snmp->get($oidList));
         }
         return $this;
     }

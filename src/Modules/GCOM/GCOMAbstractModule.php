@@ -68,7 +68,7 @@ abstract class GCOMAbstractModule extends AbstractModule
             ];
         }
 
-        if(is_numeric($input) && $input > 1000000) {
+        if(is_numeric($input) && $input > 1000000 && $input < 1100000) {
             $input = (string)$input;
             $slot = (int)$input[1];
             $port = (int)($input[2] . $input[3]);
