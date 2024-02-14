@@ -27,6 +27,15 @@ abstract class CDataAbstractModule extends AbstractModule
         $this->interfaces = $model->getExtraParamByName('interfaces');
     }
 
+    function getInterfacesIds()
+    {
+        $data = [];
+        foreach ($this->model->getExtraParamByName('interfaces') as $iface) {
+            $data[$iface['id']] = $iface;
+        }
+        return $data;
+    }
+
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
         if($fromCache && $ret = $this->getCache(json_encode($filter))) {
@@ -37,18 +46,32 @@ abstract class CDataAbstractModule extends AbstractModule
         return $resp;
     }
 
-    protected function parseInterface($input)
+    protected function parseInterface($input, $parseBy = 'xid')
     {
-        if (is_numeric($input) && $input < 100) {
-            $interface = $this->findInterface($input, 'xid');
+        if(is_numeric($input) && $input > 100000) {
+            $interface = $this->findInterface($input, 'id');
             if($interface === null) {
-                throw new \Exception("Interface with xid=$input not found");
+                throw new \Exception("Interface with id=$input not found");
+            }
+            return  $interface;
+        }
+        if (is_numeric($input) && $input < 100) {
+            $interface = $this->findInterface($input, $parseBy);
+            if(!$interface) {
+                $interface = $this->findInterface($input + 100000, $parseBy);
+            }
+            if(!$interface) {
+                $interface = $this->findInterface($input  , 'id');
+            }
+            if($interface === null) {
+                throw new \Exception("Interface with {$parseBy}=$input not found");
             }
             return [
                 'name' => $interface['name'],
                 'id' => $interface['id'],
                 'xid' => $interface['xid'],
                 'type' => $interface['type'],
+                'phys_snmp_id' => $interface['phys_snmp_id'],
                 'onu_num' => null,
                 'parent' => null,
                 '_snmp_id' => null,
@@ -65,6 +88,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'xid' => null,
                     'type' => 'ONU',
                     'onu_num' => $onuNum,
+                    'phys_snmp_id' => $interface['phys_snmp_id'],
                     '_snmp_id' => "{$interface['xid']}.{$onuNum}",
                 ];
             }
@@ -77,6 +101,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'parent' => null,
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],
+                    'phys_snmp_id' => $interface['phys_snmp_id'],
                     'onu_num' => null,
                     '_snmp_id' => null,
                 ];

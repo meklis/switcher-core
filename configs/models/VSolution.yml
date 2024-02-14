@@ -1,11 +1,62 @@
 models:
+  - name: V-Solution GPON OLT V1600 series
+    key: v_solution_v1600g
+    inputs:
+      - snmp
+      - console
+    detect:
+      description: ^V1600G.*
+      objid: .1.3.6.1.4.1.37950.1.1.5.10.14.1
+    rewrites:
+      oid: .1.3.6.1.4.1.37950.1.1.5.10.14.1.0
+      mapping:
+        - value: V1600G1B
+          rewrite:
+            key: v_solution_v1600g1b
+            name: V-Solution V1600G1B
+    device_type: OLT
+    oids:
+      - ./oids/vsolution/v1600g.yml
+    modules:
+      system: \SwitcherCore\Modules\VsolOlts\SystemInformation
+      sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
+      fdb: \SwitcherCore\Modules\VsolOlts\GPONV1600\FdbTable
+      pon_onts_serial: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntSerial
+      interfaces_list: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfacesList
+      pon_ports_list: \SwitcherCore\Modules\VsolOlts\GPONV1600\PonPortsList
+      pon_count_registered_onts: \SwitcherCore\Modules\VsolOlts\GPONV1600\PortCountRegisteredOnts
+      pon_onts_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntListWithStatuses
+      pon_ports_optical: \SwitcherCore\Modules\VsolOlts\GPONV1600\PonPortsOptical
+      parse_interface: \SwitcherCore\Modules\VsolOlts\GPONV1600\ParseInterface
+      link_info: \SwitcherCore\Modules\VsolOlts\GPONV1600\LinkInfo
+      pon_onts_optical: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntOpticalInfo
+      pon_onts_vendor: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntVendorInfo
+      interface_counters: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfaceCounters
+      interface_descriptions: \SwitcherCore\Modules\VsolOlts\GPONV1600\InterfaceDescriptions
+      reboot: \SwitcherCore\Modules\VsolOlts\OltReboot
+      save_config: \SwitcherCore\Modules\VsolOlts\OltSaveSettings
+      console_command: \SwitcherCore\Modules\VsolOlts\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\VsolOlts\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\VsolOlts\GPONV1600\PortDescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntDescriptionControl
+      ctrl_ont_reboot: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntReboot
+      ctrl_ont_delete: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntDelete
+      ctrl_ont_disable: \SwitcherCore\Modules\VsolOlts\GPONV1600\CtrlOntDisable
+      #uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\UniInterfacesInfo
+      #snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
+    extra:
+      pon_port_size: 128
+      console_conn_type: vsolution
+      console_commands_after_connect:
+        - terminal length 0
+
   - name: V-Solution OLT V1600 series
     key: v_solution_v1600d
     inputs:
       - snmp
       - console
     detect:
-      description: ^V1600
+      description: ^V1600[^G].*
       objid: .1.3.6.1.4.1.37950.1.1.5.10.14.1
     rewrites:
       oid: .1.3.6.1.4.1.37950.1.1.5.10.14.1.0
@@ -42,6 +93,8 @@ models:
       sys_resources: \SwitcherCore\Modules\VsolOlts\SystemResources
       uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\UniInterfacesInfo
       snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
+      console_command: \SwitcherCore\Modules\VsolOlts\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\VsolOlts\MultiRawConsoleCommand
     extra:
       pon_port_size: 64
       console_conn_type: vsolution

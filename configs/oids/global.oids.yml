@@ -39,7 +39,7 @@
   - {name: if.HighSpeed, oid: .1.3.6.1.2.1.31.1.1.1.15, access: read, values: {0: "Down", 1000: 1G, 2000: 2G, 3000: 3G, 4000: 3G, 2488: 2.5G, 2500: 2.5G, 10000: 10G} }
   - {name: if.ConnectorPresent, oid: .1.3.6.1.2.1.31.1.1.1.17, access: read, values: { 1: 'YES', 2: 'NO' } }
   - {name: if.Name, oid: .1.3.6.1.2.1.31.1.1.1.1, access: read }
-  - {name: if.Alias, oid: .1.3.6.1.2.1.31.1.1.1.18, access: read }
+  - {name: if.Alias, oid: .1.3.6.1.2.1.31.1.1.1.18, access: write }
   - {name: if.stackStatus, oid: 1.3.6.1.2.1.31.1.2.1.3 } #Возвращает список родительских элементов для LACP
   - {name: ent.physicalType, oid: .1.3.6.1.2.1.47.1.1.1.1.2}
   - {name: ent.physicalName, oid: .1.3.6.1.2.1.47.1.1.1.1.7}

@@ -1,11 +1,11 @@
 <?php
 
-namespace SwitcherCore\Modules\CData;
+namespace SwitcherCore\Modules\VsolOlts;
 
 use Exception;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-class RawConsoleCommand extends CDataAbstractModule
+class RawConsoleCommand extends VsolOltsAbstractModule
 {
     /**
      * @Inject
@@ -21,6 +21,7 @@ class RawConsoleCommand extends CDataAbstractModule
         if (!isset($params['command'])) {
             throw new \Exception("Command parameter is required");
         }
+
         $response = $this->console->exec($params['command']);
         $this->response = [
             'command' => $params['command'],
@@ -32,9 +33,8 @@ class RawConsoleCommand extends CDataAbstractModule
 
     protected function validResponse($response)
     {
-        if (preg_match('/Command incomplete/', $response)) return false;
-        if (preg_match('/Unknown command/', $response)) return false;
-        if (preg_match('/Error/', $response)) return false;
+        if (preg_match('/% There is no matched command./', $response)) return false;
+        if (preg_match('/% Unknown command./', $response)) return false;
         return true;
     }
 
