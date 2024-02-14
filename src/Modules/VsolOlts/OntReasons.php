@@ -42,7 +42,7 @@ class OntReasons extends VsolOltsAbstractModule
                 $snmpId = ".". Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
                 $time = $this->parseTime($r->getValue());
                 $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
-                $ifaces[$snmpId]['last_reg'] = $time;
+                $ifaces[$snmpId]['last_reg'] = date("Y-m-d H:i:s", $time);
                 $ifaces[$snmpId]['last_reg_since'] = !$time ? null : $this->getSince($time);
             }
         }
@@ -53,7 +53,7 @@ class OntReasons extends VsolOltsAbstractModule
                 $snmpId = ".". Helper::getIndexByOid($r->getOid(), 1) . "." . Helper::getIndexByOid($r->getOid());
                 $time = $this->parseTime($r->getValue());
                 $ifaces[$snmpId]['interface'] = $this->parseInterface($snmpId);
-                $ifaces[$snmpId]['last_dereg'] = $time;
+                $ifaces[$snmpId]['last_dereg'] = date("Y-m-d H:i:s", $time);
                 $ifaces[$snmpId]['last_dereg_since'] = !$time ? null : $this->getSince($time);
             }
         }
