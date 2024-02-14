@@ -39,6 +39,7 @@ class OntListWithStatuses extends GCOMAbstractModule
                 $status = $d->getParsedValue();
             }
             $ifaces[$iface['id']]['status'] = $status;
+            $ifaces[$iface['id']]['admin_state'] = null;
             $ifaces[$iface['id']]['interface'] = $iface;
         }
         return array_values($ifaces);

@@ -32,24 +32,26 @@ class InterfaceCounters extends GCOMAbstractModule
     function getPretty()
     {
         $data = [];
-        foreach ($this->response as $name=>$resp) {
-            if($resp->error()) {
-                throw new \SNMPException($resp->error());
+        foreach ($this->response as $oidName => $dt) {
+            if ($dt->error()) {
+                continue;
             }
-            foreach ($resp->fetchAll() as $r) {
-                $iface = $this->parseInterface($this->getOnuXidByOid($r->getOid()));
-                $data[$iface['id']]['interface'] = $iface;
-                $value = (int)$r->getValue();
-                if($value < 0) {
-                    $value = + (2147483648 * 2);
-                }
-                switch ($name) {
-                    case 'ont.stat.inOctets': $data[$iface['id']]['in_octets'] = $value; break;
-                    case 'ont.stat.outOctets': $data[$iface['id']]['out_octets'] = $value; break;
-                    case 'ont.stat.inCrcErrors': $data[$iface['id']]['crc_errors'] = $value; break;
+            $name = Helper::fromCamelCase(str_replace(["if.HC", "if", "ont.stat."], "", $oidName));
+            foreach ($dt->fetchAll() as $resp) {
+                try {
+                    if (strpos($oidName, "ont.stat") !== false) {
+                        $iface = $this->parseInterface($this->getOnuXidByOid($resp->getOid()), 'xid');
+                    } else {
+                        $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'xid');
+                    }
+                    $data[$iface['id']]['interface'] = $iface;
+                    $data[$iface['id']][$name] = $resp->getValue();
+                } catch (\Exception $e) {
+                    $this->logger->error("error get interface_counters -> " . $e->getMessage());
                 }
             }
         }
+        ksort($data);
         return array_values($data);
     }
 
@@ -65,26 +67,44 @@ class InterfaceCounters extends GCOMAbstractModule
             $this->oids->getOidByName('ont.stat.outOctets'),
             $this->oids->getOidByName('ont.stat.inCrcErrors'),
         ];
+        $physOids = $this->getInterfaceCountersOids();
         if ($filter['interface']) {
-
             $interface = $this->parseInterface($filter['interface']);
-            $data = $this->formatResponse(
-                $this->snmp->get(
-                    array_map(function ($o) use ($interface) {
-                        return \SnmpWrapper\Oid::init($o->getOid() . ".{$interface['xid']}");
-                    }, $ontOids)
-                )
-            );
-        } else {
-            $data = $this->formatResponse(
-                $this->snmp->walk(
-                    array_map(function ($o)  {
-                        return \SnmpWrapper\Oid::init($o->getOid());
-                    }, $oids)
-                )
-            );
+            if ($interface['type'] === 'ONU') {
+                $data = $this->formatResponse(
+                    $this->snmp->get(
+                        array_map(function ($o) use ($interface) {
+                            return \SnmpWrapper\Oid::init($o->getOid() . ".{$interface['xid']}");
+                        }, $ontOids)
+                    )
+                );
+            } else {
+                $data = $this->formatResponse(
+                    $this->snmp->get(
+                        array_map(function ($o) use ($interface) {
+                            return \SnmpWrapper\Oid::init($o->getOid() . ".{$interface['xid']}");
+                        }, $physOids)
+                    )
+                );
+            }
+            $this->response = $data;
+            return $this;
         }
-        $this->response = $data;
+
+        if ($filter['interface_type'] === 'ONU') {
+            $oids = $ontOids;
+        } elseif ($filter['interface_type'] === 'PHYSICAL') {
+            $oids = $physOids;
+        } else {
+            $oids = array_merge($ontOids, $physOids);
+        }
+        $this->response = $this->formatResponse(
+            $this->snmp->walk(
+                array_map(function ($o) {
+                    return \SnmpWrapper\Oid::init($o->getOid());
+                }, $oids)
+            )
+        );
         return $this;
     }
 }

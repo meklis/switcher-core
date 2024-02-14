@@ -4,6 +4,7 @@
 namespace SwitcherCore\Modules\GCOM;
 
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\GCOM\GCOMAbstractModule;
@@ -41,9 +42,13 @@ class PortDescriptionControl extends GCOMAbstractModule
 
     public function run($filter = [])
     {
-        $this->response = array_values(array_filter($this->getPhysicalInterfaces(), function ($p) {
-          return $p['type'] === 'PON';
-        }));
+        $iface = $this->parseInterface($filter['interface']);
+        $description = str_replace(' ', '_', $filter['description']);
+        $this->checkSnmpRespError($this->snmp->set(
+            Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$iface['xid']}")
+                ->setType('StringValue')
+                ->setValue($description)
+        ));
         return $this;
     }
 

@@ -19,18 +19,29 @@ class RawConsoleCommand extends GCOMAbstractModule
      */
     protected $console;
 
-    protected $interfaces;
-
-
-    function getRaw()
+    public function run($params = [])
     {
-        return $this->response;
+        if (!$this->console) {
+            throw new \Exception("Module required console connection");
+        }
+        if (!isset($params['command'])) {
+            throw new \Exception("Command parameter is required");
+        }
+        $response = $this->console->exec($params['command']);
+        $this->response = [
+            'command' => $params['command'],
+            'output' => $response,
+            'success' => $this->validResponse($response),
+        ];
+        return $this;
     }
 
-    function getPrettyFiltered($filter = [], $fromCache = false)
+    protected function validResponse($response)
     {
-        $data = $this->getPretty();
-        return $data;
+        if (preg_match('/Incomplete command/', $response)) return false;
+        if (preg_match('/Too many parameters/', $response)) return false;
+        if (preg_match('/Unknown command/', $response)) return false;
+        return true;
     }
 
     function getPretty()
@@ -38,14 +49,11 @@ class RawConsoleCommand extends GCOMAbstractModule
         return $this->response;
     }
 
-
-    public function run($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
-        $this->response = array_values(array_filter($this->getPhysicalInterfaces(), function ($p) {
-          return $p['type'] === 'PON';
-        }));
-        return $this;
+        return $this->response;
     }
+
 
 }
 

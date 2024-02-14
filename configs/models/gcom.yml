@@ -1,4 +1,40 @@
 models:
+  - name: GCOM EPON series (OLD)
+    key: gcom_el5610_series_old
+    inputs:
+      - snmp
+      - console
+    detect: {description: ^EPON$,  objid: ^.1.3.6.1.4.1.13464.1.10.5.1 }
+    device_type: OLT
+    oids:
+      - ./oids/gcom/el5610.yml
+    modules:
+      system: \SwitcherCore\Modules\GCOM\SystemInformation
+      parse_interface: \SwitcherCore\Modules\GCOM\ParseInterface
+      pon_ports_list: \SwitcherCore\Modules\GCOM\PonPortsList
+      pon_onts_mac_addr: \SwitcherCore\Modules\GCOM\OntMacAddress
+      sys_resources: \SwitcherCore\Modules\GCOM\SystemResources
+      pon_onts_status: \SwitcherCore\Modules\GCOM\OntListWithStatuses
+      pon_onts_reasons: \SwitcherCore\Modules\GCOM\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\GCOM\OntVendorInfo
+      interface_descriptions: \SwitcherCore\Modules\GCOM\InterfaceDescriptions
+      interfaces_list: \SwitcherCore\Modules\GCOM\InterfacesList
+      uni_interfaces_status: \SwitcherCore\Modules\GCOM\UniInterfacesStatus
+      interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
+      link_info: \SwitcherCore\Modules\GCOM\LinkInfo
+      ctrl_ont_reset: \SwitcherCore\Modules\GCOM\OntReset
+      ctrl_ont_descr: \SwitcherCore\Modules\GCOM\CtrlOntDescription
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\GCOM\UniInterfacesControlAdminStatus
+      console_command: \SwitcherCore\Modules\GCOM\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
+
+    extra:
+      pon_port_size: 64
+      console_conn_type: gcom
+      console_commands_after_connect:
+        - {command: enable, check_password: true}
+
   - name: GCOM EPON series
     key: gcom_el5610_series
     inputs:
@@ -39,21 +75,17 @@ models:
       interfaces_list: \SwitcherCore\Modules\GCOM\InterfacesList
       uni_interfaces_status: \SwitcherCore\Modules\GCOM\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
+      link_info: \SwitcherCore\Modules\GCOM\LinkInfo
 
       ctrl_ont_reset: \SwitcherCore\Modules\GCOM\OntReset
       ctrl_ont_descr: \SwitcherCore\Modules\GCOM\CtrlOntDescription
-      ctrl_ont_reboot: \SwitcherCore\Modules\GCOM\OntReboot
-      ctrl_ont_disable: \SwitcherCore\Modules\GCOM\CtrlOntDisable
-      ctrl_ont_delete: \SwitcherCore\Modules\GCOM\OntDelete
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\GCOM\UniInterfacesControlAdminStatus
-      link_info: \SwitcherCore\Modules\GCOM\LinkInfo
       console_command: \SwitcherCore\Modules\GCOM\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
 
     extra:
       pon_port_size: 64
-      console_conn_type: bdcom
+      console_conn_type: gcom
       console_commands_after_connect:
         - {command: enable, check_password: true}
-        - terminal length 0
