@@ -150,7 +150,7 @@ models:
       pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - config
         - vty output show-all
       interfaces:
@@ -207,7 +207,7 @@ models:
       pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - config
         - vty output show-all
       interfaces:
@@ -274,7 +274,7 @@ models:
       pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - config
       interfaces:
         - {name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP}
@@ -345,7 +345,7 @@ models:
       pon_port_size: 128
       console_conn_type: cdata
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - config
         - vty output show-more
       interfaces:
@@ -412,7 +412,7 @@ models:
       pon_port_size: 128
       console_conn_type: cdata
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - config
         - vty output show-more
       interfaces:

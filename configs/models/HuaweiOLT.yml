@@ -270,5 +270,5 @@ models:
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - "scroll \r\n"

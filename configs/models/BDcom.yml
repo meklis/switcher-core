@@ -58,7 +58,7 @@ models:
       pon_port_size: 128
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P3612-2TE
@@ -102,7 +102,7 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P3616-2TE
@@ -146,7 +146,7 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P3608B
@@ -190,7 +190,7 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P36xx series
@@ -234,7 +234,7 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P3310C
@@ -278,7 +278,7 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P3310D
@@ -322,7 +322,7 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
 
   - name: BDCOM P3310B
@@ -366,5 +366,5 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0

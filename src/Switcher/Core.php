@@ -142,10 +142,10 @@ class Core
             $helper = Helpers::getByName($model->getConsoleConnType());
             $input->setDeviceHelper($helper);
             try {
-                $helper->setAfterLoginCommands([]);
-                foreach ($model->getExtraParamByName('console_commands_after_connect') as $comm) {
-                    $helper->addAfterLoginCommand($comm);
+                if($commands = $model->getExtraParamByName('console_commands_after_connect')) {
+                    $helper->setAfterLoginCommands($commands);
                 }
+
             } catch (Exception $e) {
             }
             $this->container->set(ConsoleInterface::class, $input);

@@ -62,10 +62,7 @@ class FdbTable extends VsolOltsAbstractModule
 
     public function byOnu($iface)
     {
-        $this->console->exec("enable", true, "^Password:");
-        if (strpos($this->console->exec($this->device->getPassword()), "password") !== false) {
-            throw new \Exception("Error enable command");
-        }
+
         $this->console->exec("conf t");
         $lines = $this->console->exec("show mac address-table pon {$iface['_port']} {$iface['_onu']}");
 

@@ -49,6 +49,7 @@ models:
       console_conn_type: vsolution
       console_commands_after_connect:
         - terminal length 0
+        - {command: enable, check_password: true}
 
   - name: V-Solution OLT V1600 series
     key: v_solution_v1600d
@@ -100,3 +101,4 @@ models:
       console_conn_type: vsolution
       console_commands_after_connect:
         - terminal length 0
+        - {command: enable, check_password: true}

@@ -55,5 +55,5 @@ models:
       pon_port_size: 64
       console_conn_type: bdcom
       console_commands_after_connect:
-        - enable
+        - {command: enable, check_password: true}
         - terminal length 0
