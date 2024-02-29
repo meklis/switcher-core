@@ -5,7 +5,10 @@ models:
   device_type: SWITCH
   inputs:
     - snmp
+    - console
   detect: {description: .*,  objid: ^.1.3.6.1.4.1.6486 }
+  extra:
+    console_conn_type: alcatel
   modules:
     parse_interface: \SwitcherCore\Modules\AlcatelSwitch\ParseInterface
     fdb: \SwitcherCore\Modules\AlcatelSwitch\Fdb
@@ -21,3 +24,5 @@ models:
     interfaces_list: \SwitcherCore\Modules\AlcatelSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\AlcatelSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\AlcatelSwitch\StatePortControl
+    console_command: \SwitcherCore\Modules\AlcatelSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\AlcatelSwitch\MultiRawConsoleCommand
