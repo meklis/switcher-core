@@ -100,14 +100,14 @@ models:
         - { name: ge6,  id: 100006,  xid: null, type: 1G-SFP, phys_snmp_id: 6 }
         - { name: ge7,  id: 100007,  xid: null, type: 1G-SFP, phys_snmp_id: 7 }
         - { name: ge8,  id: 100008,  xid: null, type: 1G-SFP, phys_snmp_id: 8 }
-        - { name: pon1/1, id: 9,  xid: 1, type: PON, phys_snmp_id: 9 }
-        - { name: pon1/2, id: 10,  xid: 2, type: PON, phys_snmp_id: 10 }
-        - { name: pon1/3, id: 11,  xid: 3, type: PON, phys_snmp_id: 11 }
-        - { name: pon1/4, id: 12,  xid: 4, type: PON, phys_snmp_id: 12 }
-        - { name: pon1/5, id: 13,  xid: 5, type: PON, phys_snmp_id: 13 }
-        - { name: pon1/6, id: 14,  xid: 6, type: PON, phys_snmp_id: 14 }
-        - { name: pon1/7, id: 15,  xid: 7, type: PON, phys_snmp_id: 15 }
-        - { name: pon1/8, id: 16,  xid: 8, type: PON, phys_snmp_id: 16 }
+        - { name: pon1/1, id: 9,  xid: 1, type: PON, phys_snmp_id: 9, _slot: 1, _port: 1 }
+        - { name: pon1/2, id: 10,  xid: 2, type: PON, phys_snmp_id: 10 , _slot: 1, _port: 2}
+        - { name: pon1/3, id: 11,  xid: 3, type: PON, phys_snmp_id: 11 , _slot: 1, _port: 3}
+        - { name: pon1/4, id: 12,  xid: 4, type: PON, phys_snmp_id: 12 , _slot: 1, _port: 4}
+        - { name: pon1/5, id: 13,  xid: 5, type: PON, phys_snmp_id: 13 , _slot: 1, _port: 5}
+        - { name: pon1/6, id: 14,  xid: 6, type: PON, phys_snmp_id: 14 , _slot: 1, _port: 6}
+        - { name: pon1/7, id: 15,  xid: 7, type: PON, phys_snmp_id: 15 , _slot: 1, _port: 7}
+        - { name: pon1/8, id: 16,  xid: 8, type: PON, phys_snmp_id: 16 , _slot: 1, _port: 8}
 
   - name: C-Data FD1204SN
     key: c_data_fd1204sn
@@ -160,10 +160,10 @@ models:
         - {name: ge0/0/4, id: 16778240,  xid: 4, type: 1G-SFP}
         - {name: xge0/0/1, id: 16778240,  xid: 5, type: 10G-SFP}
         - {name: xge0/0/2, id: 16778752,  xid: 6, type: 10G-SFP}
-        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: epon}
-        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: epon}
-        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: epon}
-        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: epon}
+        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: epon, _slot: 0, _port: 1}
+        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: epon, _slot: 0, _port: 2}
+        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: epon, _slot: 0, _port: 3}
+        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: epon, _slot: 0, _port: 4}
 
   - name: C-Data FD1208S
     key: c_data_fd1208s
@@ -223,14 +223,14 @@ models:
         - {name: xge0/0/2, id: 16779776,  xid: 10, type: 10G-SFP}
         - {name: xge0/0/3, id: 16780032,  xid: 11, type: 10G-SFP}
         - {name: xge0/0/4, id: 16780288,  xid: 12, type: 10G-SFP}
-        - {name: pon0/0/1, id: 16780544,  xid: 13, type: PON, pontype: epon}
-        - {name: pon0/0/2, id: 16780800,  xid: 14, type: PON, pontype: epon}
-        - {name: pon0/0/3, id: 16781056,  xid: 15, type: PON, pontype: epon}
-        - {name: pon0/0/4, id: 16781312,  xid: 16, type: PON, pontype: epon}
-        - {name: pon0/0/5, id: 16781568,  xid: 17, type: PON, pontype: epon}
-        - {name: pon0/0/6, id: 16781824,  xid: 18, type: PON, pontype: epon}
-        - {name: pon0/0/7, id: 16782080,  xid: 19, type: PON, pontype: epon}
-        - {name: pon0/0/8, id: 16782336,  xid: 20, type: PON, pontype: epon}
+        - {name: pon0/0/1, id: 16780544,  xid: 13, type: PON, pontype: epon, _slot: 0, _port: 1}
+        - {name: pon0/0/2, id: 16780800,  xid: 14, type: PON, pontype: epon, _slot: 0, _port: 2}
+        - {name: pon0/0/3, id: 16781056,  xid: 15, type: PON, pontype: epon, _slot: 0, _port: 3}
+        - {name: pon0/0/4, id: 16781312,  xid: 16, type: PON, pontype: epon, _slot: 0, _port: 4}
+        - {name: pon0/0/5, id: 16781568,  xid: 17, type: PON, pontype: epon, _slot: 0, _port: 5}
+        - {name: pon0/0/6, id: 16781824,  xid: 18, type: PON, pontype: epon, _slot: 0, _port: 6}
+        - {name: pon0/0/7, id: 16782080,  xid: 19, type: PON, pontype: epon, _slot: 0, _port: 7}
+        - {name: pon0/0/8, id: 16782336,  xid: 20, type: PON, pontype: epon, _slot: 0, _port: 8}
 
   - name: C-Data FD1216S-R1
     key: c_data_fd1216s_r1
@@ -287,22 +287,22 @@ models:
         - {name: ge0/0/8, id: 16779264,  xid: 8, type: 1G-SFP}
         - {name: xge0/0/1, id: 16779520,  xid: 9, type: 10G-SFP}
         - {name: xge0/0/2, id: 16779776,  xid: 10, type: 10G-SFP}
-        - {name: pon0/0/1, id: 16780032,  xid: 11, type: PON, pontype: epon}
-        - {name: pon0/0/2, id: 16780288,  xid: 12, type: PON, pontype: epon}
-        - {name: pon0/0/3, id: 16780544,  xid: 13, type: PON, pontype: epon}
-        - {name: pon0/0/4, id: 16780800,  xid: 14, type: PON, pontype: epon}
-        - {name: pon0/0/5, id: 16781056,  xid: 15, type: PON, pontype: epon}
-        - {name: pon0/0/6, id: 16781312,  xid: 16, type: PON, pontype: epon}
-        - {name: pon0/0/7, id: 16781568,  xid: 17, type: PON, pontype: epon}
-        - {name: pon0/0/8, id: 16781824,  xid: 18, type: PON, pontype: epon}
-        - {name: pon0/0/9, id: 16782080,  xid: 19, type: PON, pontype: epon}
-        - {name: pon0/0/10, id: 16782336,  xid: 20, type: PON, pontype: epon}
-        - {name: pon0/0/11, id: 16782592,  xid: 21, type: PON, pontype: epon}
-        - {name: pon0/0/12, id: 16782848,  xid: 22, type: PON, pontype: epon}
-        - {name: pon0/0/13, id: 16783104,  xid: 23, type: PON, pontype: epon}
-        - {name: pon0/0/14, id: 16783360,  xid: 24, type: PON, pontype: epon}
-        - {name: pon0/0/15, id: 16783616,  xid: 25, type: PON, pontype: epon}
-        - {name: pon0/0/16, id: 16783872,  xid: 26, type: PON, pontype: epon}
+        - {name: pon0/0/1, id: 16780032,  xid: 11, type: PON, pontype: epon, _slot: 0, _port: 1}
+        - {name: pon0/0/2, id: 16780288,  xid: 12, type: PON, pontype: epon, _slot: 0, _port: 2}
+        - {name: pon0/0/3, id: 16780544,  xid: 13, type: PON, pontype: epon, _slot: 0, _port: 3}
+        - {name: pon0/0/4, id: 16780800,  xid: 14, type: PON, pontype: epon, _slot: 0, _port: 4}
+        - {name: pon0/0/5, id: 16781056,  xid: 15, type: PON, pontype: epon, _slot: 0, _port: 5}
+        - {name: pon0/0/6, id: 16781312,  xid: 16, type: PON, pontype: epon, _slot: 0, _port: 6}
+        - {name: pon0/0/7, id: 16781568,  xid: 17, type: PON, pontype: epon, _slot: 0, _port: 7}
+        - {name: pon0/0/8, id: 16781824,  xid: 18, type: PON, pontype: epon, _slot: 0, _port: 8}
+        - {name: pon0/0/9, id: 16782080,  xid: 19, type: PON, pontype: epon, _slot: 0, _port: 9}
+        - {name: pon0/0/10, id: 16782336,  xid: 20, type: PON, pontype: epon, _slot: 0, _port: 10}
+        - {name: pon0/0/11, id: 16782592,  xid: 21, type: PON, pontype: epon, _slot: 0, _port: 11}
+        - {name: pon0/0/12, id: 16782848,  xid: 22, type: PON, pontype: epon, _slot: 0, _port: 12}
+        - {name: pon0/0/13, id: 16783104,  xid: 23, type: PON, pontype: epon, _slot: 0, _port: 13}
+        - {name: pon0/0/14, id: 16783360,  xid: 24, type: PON, pontype: epon, _slot: 0, _port: 14}
+        - {name: pon0/0/15, id: 16783616,  xid: 25, type: PON, pontype: epon, _slot: 0, _port: 15}
+        - {name: pon0/0/16, id: 16783872,  xid: 26, type: PON, pontype: epon, _slot: 0, _port: 16}
 
   - name: C-Data FD1616
     key: c_data_fd1616
@@ -356,22 +356,22 @@ models:
         - {name: ge0/0/4, id: 16778240,  xid: 4, type: 1G-SFP}
         - {name: xge0/0/1, id: 16778496,  xid: 5, type: 10G-SFP}
         - {name: xge0/0/2, id: 16778752,  xid: 6, type: 10G-SFP}
-        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: gpon}
-        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: gpon}
-        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: gpon}
-        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: gpon}
-        - {name: pon0/0/5, id: 16780032,  xid: 11, type: PON, pontype: gpon}
-        - {name: pon0/0/6, id: 16780288,  xid: 12, type: PON, pontype: gpon}
-        - {name: pon0/0/7, id: 16780544,  xid: 13, type: PON, pontype: gpon}
-        - {name: pon0/0/8, id: 16780800,  xid: 14, type: PON, pontype: gpon}
-        - {name: pon0/0/9, id: 16781056,  xid: 15, type: PON, pontype: gpon}
-        - {name: pon0/0/10, id: 16781312,  xid: 16, type: PON, pontype: gpon}
-        - {name: pon0/0/11, id: 16781568,  xid: 17, type: PON, pontype: gpon}
-        - {name: pon0/0/12, id: 16781824,  xid: 18, type: PON, pontype: gpon}
-        - {name: pon0/0/13, id: 16782080,  xid: 19, type: PON, pontype: gpon}
-        - {name: pon0/0/14, id: 16782336,  xid: 20, type: PON, pontype: gpon}
-        - {name: pon0/0/15, id: 16782592,  xid: 21, type: PON, pontype: gpon}
-        - {name: pon0/0/16, id: 16782848,  xid: 22, type: PON, pontype: gpon}
+        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: gpon, _slot: 0, _port: 1}
+        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: gpon, _slot: 0, _port: 2}
+        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: gpon, _slot: 0, _port: 3}
+        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: gpon, _slot: 0, _port: 4}
+        - {name: pon0/0/5, id: 16780032,  xid: 11, type: PON, pontype: gpon, _slot: 0, _port: 5}
+        - {name: pon0/0/6, id: 16780288,  xid: 12, type: PON, pontype: gpon, _slot: 0, _port: 6}
+        - {name: pon0/0/7, id: 16780544,  xid: 13, type: PON, pontype: gpon, _slot: 0, _port: 7}
+        - {name: pon0/0/8, id: 16780800,  xid: 14, type: PON, pontype: gpon, _slot: 0, _port: 8}
+        - {name: pon0/0/9, id: 16781056,  xid: 15, type: PON, pontype: gpon, _slot: 0, _port: 9}
+        - {name: pon0/0/10, id: 16781312,  xid: 16, type: PON, pontype: gpon, _slot: 0, _port: 10}
+        - {name: pon0/0/11, id: 16781568,  xid: 17, type: PON, pontype: gpon, _slot: 0, _port: 11}
+        - {name: pon0/0/12, id: 16781824,  xid: 18, type: PON, pontype: gpon, _slot: 0, _port: 12}
+        - {name: pon0/0/13, id: 16782080,  xid: 19, type: PON, pontype: gpon, _slot: 0, _port: 13}
+        - {name: pon0/0/14, id: 16782336,  xid: 20, type: PON, pontype: gpon, _slot: 0, _port: 14}
+        - {name: pon0/0/15, id: 16782592,  xid: 21, type: PON, pontype: gpon, _slot: 0, _port: 15}
+        - {name: pon0/0/16, id: 16782848,  xid: 22, type: PON, pontype: gpon, _slot: 0, _port: 16}
 
   - name: C-Data FD1608
     key: c_data_fd1608
@@ -424,11 +424,11 @@ models:
         - {name: ge0/0/4, id: 16778240,  xid: 4, type: 1G-SFP}
         - {name: xge0/0/1, id: 16778496,  xid: 5, type: 10G-SFP}
         - {name: xge0/0/2, id: 16778752,  xid: 6, type: 10G-SFP}
-        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: gpon}
-        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: gpon}
-        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: gpon}
-        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: gpon}
-        - {name: pon0/0/5, id: 16780032,  xid: 11, type: PON, pontype: gpon}
-        - {name: pon0/0/6, id: 16780288,  xid: 12, type: PON, pontype: gpon}
-        - {name: pon0/0/7, id: 16780544,  xid: 13, type: PON, pontype: gpon}
-        - {name: pon0/0/8, id: 16780800,  xid: 14, type: PON, pontype: gpon}
+        - {name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: gpon, _slot: 0, _port: 1}
+        - {name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: gpon, _slot: 0, _port: 2}
+        - {name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: gpon, _slot: 0, _port: 3}
+        - {name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: gpon, _slot: 0, _port: 4}
+        - {name: pon0/0/5, id: 16780032,  xid: 11, type: PON, pontype: gpon, _slot: 0, _port: 5}
+        - {name: pon0/0/6, id: 16780288,  xid: 12, type: PON, pontype: gpon, _slot: 0, _port: 6}
+        - {name: pon0/0/7, id: 16780544,  xid: 13, type: PON, pontype: gpon, _slot: 0, _port: 7}
+        - {name: pon0/0/8, id: 16780800,  xid: 14, type: PON, pontype: gpon, _slot: 0, _port: 8}

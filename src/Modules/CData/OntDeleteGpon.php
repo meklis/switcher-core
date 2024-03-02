@@ -38,6 +38,8 @@ class OntDeleteGpon extends CDataAbstractModule
         }
         $this->_exe("interface gpon 0/0");
         $this->_exe("ont delete {$m[4]} {$m[5]}");
+        $this->_exe("exit");
+        $this->_exe("save");
         $this->response = true;
         return $this;
     }
