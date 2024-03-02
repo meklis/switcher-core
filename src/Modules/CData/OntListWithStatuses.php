@@ -73,6 +73,7 @@ class OntListWithStatuses extends CDataAbstractModule
         return $interfaces;
     }
 
+
     /**
      * @param array $filter
      * @return $this|AbstractModule
@@ -108,12 +109,12 @@ class OntListWithStatuses extends CDataAbstractModule
                 $data[$iface['id']]
             ];
         } else {
-            if($cached = $this->getCache("onts_status", true)) {
-                $this->response = $cached;
-                return  $this;
-            }
+//            if($cached = $this->getCache("onts_status", true)) {
+//                $this->response = $cached;
+//                return  $this;
+//            }
             $this->fillBindStatuses($data);
-            $this->setCache("onts_status", array_values($data), 10, true);
+//            $this->setCache("onts_status", array_values($data), 10, true);
             $this->response = array_values($data);
         }
 
