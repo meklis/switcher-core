@@ -341,6 +341,7 @@ models:
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -408,6 +409,7 @@ models:
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
     extra:
       pon_port_size: 128
       console_conn_type: cdata
