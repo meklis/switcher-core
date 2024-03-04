@@ -246,9 +246,13 @@ trait InterfacesTrait
 
         foreach ($ifaces as $id=>$iface) {
             if($iface['type'] === 'LACP') {
-                $ifaces[$id]['_lacp_ifaces'] = array_map(function ($e) use ($ifaces) {
-                    return $ifaces[$e];
-                }, $this->getParentIfaceIDsByLACP($id));
+                $ifaces[$id]['_lacp_ifaces'] = array_filter(array_map(function ($e) use ($ifaces) {
+                    return isset($ifaces[$e]) ? $ifaces[$e] : null;
+                }, $this->getParentIfaceIDsByLACP($id)),
+                function ($i) {
+                    return $i !== null;
+                }
+                );
             }
         }
 
