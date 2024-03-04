@@ -80,7 +80,7 @@ class OntVendorInfo extends BDcomAbstractModule
                 $parsed = null;
                 switch ($m[2]) {
                     case 'version':
-                        $parsed = $this->convertHexToString($val->getHexValue(), true);
+                        $parsed = $this->convertHexToStringWithoutDelimiter($val->getValue(), true);
                         break;
                     case 'active':
                     case 'committed':

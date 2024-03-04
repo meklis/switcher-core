@@ -206,6 +206,24 @@ abstract class AbstractModule
         }
         return $str;
     }
+    function convertHexToStringWithoutDelimiter($string, $trimNulls = false) {
+        if($trimNulls) {
+            $string = rtrim($string, "0");
+        }
+        $symbols = str_split($string, 2);
+        $str = '';
+        foreach ($symbols as $symbol) {
+            if(!hexdec($symbol)) continue;
+            $char = Helper::hexToStr($symbol);
+            if(!mb_detect_encoding($char, 'ASCII', true)) {
+                continue;
+            }
+
+            $str .= $char;
+        }
+        return $str;
+    }
+
 
     /**
      * @param PoollerResponse[] $responses
