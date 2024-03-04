@@ -80,7 +80,7 @@ class OntVendorInfo extends BDcomAbstractModule
                 $parsed = null;
                 switch ($m[2]) {
                     case 'version':
-                        $parsed = $this->convertHexToString($val->getHexValue());
+                        $parsed = $this->convertHexToString($val->getHexValue(), true);
                         break;
                     case 'active':
                     case 'committed':
@@ -113,7 +113,10 @@ class OntVendorInfo extends BDcomAbstractModule
         $vendorInfo[] = $this->oids->getOidByName('ont.model');
         $vendorInfo[] = $this->oids->getOidByName('ont.modelId');
         $vendorInfo[] = $this->oids->getOidByName('ont.omccVersion');
-        $vendorInfo = array_merge($vendorInfo, $this->oids->getOidsByRegex('^ont.fwVer'));
+
+        if($filter['interface']) {
+            $vendorInfo = array_merge($vendorInfo, $this->oids->getOidsByRegex('^ont.fwVer'));
+        }
 
         $oids = [];
         foreach ($vendorInfo as $oid) {
