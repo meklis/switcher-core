@@ -33,6 +33,8 @@ class Fdb extends FdbDot1Bridge
                 $command = "display mac-address Eth-Trunk {$m[1]}";
             } elseif (preg_match('/^eth([0-9]{1,3})/', $iface['name'], $m)) {
                 $command = "display mac-address {$iface['_type']} 0/0/{$m[1]}";
+            } elseif (preg_match('/^Ge([0-9]{1,3})/', $iface['name'], $m)) {
+                $command = "display mac-address {$iface['_type']} 0/0/{$m[1]}";
             } else {
                 throw  new \Exception("Incorrect interface for get FDB");
             }
