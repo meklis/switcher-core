@@ -33,29 +33,29 @@ class UniInterfacesVlans extends HuaweiOLTAbstractModule
     {
         $data = [];
         $ifaces = [];
-        $data = $this->getResponseByName('ont.uni.pvid');
-        if(!$data->error()) {
+        $data = $this->getResponseByName('ont.gpon.uni.pvid');
+        if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
-                if(!$r->getValue()) continue;
+                if (!$r->getValue()) continue;
                 $xid = Helper::getIndexByOid($r->getOid(), 1);
                 $uni = Helper::getIndexByOid($r->getOid());
                 $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$xid]['unis'][$uni]['pvid'] =  $r->getParsedValue();
+                $ifaces[$xid]['unis'][$uni]['num'] = $uni;
+                $ifaces[$xid]['unis'][$uni]['pvid'] = $r->getParsedValue();
             }
         }
-        $data = $this->getResponseByName('ont.uni.pvidMode');
-        if(!$data->error()) {
+        $data = $this->getResponseByName('ont.gpon.uni.pvidMode');
+        if (!$data->error()) {
             foreach ($data->fetchAll() as $r) {
                 $xid = Helper::getIndexByOid($r->getOid(), 1);
                 $uni = Helper::getIndexByOid($r->getOid());
-                if(!isset($ifaces[$xid])) continue;
-                $ifaces[$xid]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$xid]['unis'][$uni]['pvid_mode'] =  $r->getParsedValue();
+                if (!isset($ifaces[$xid])) continue;
+                $ifaces[$xid]['unis'][$uni]['num'] = $uni;
+                $ifaces[$xid]['unis'][$uni]['pvid_mode'] = $r->getParsedValue();
             }
         }
-        return array_values(array_map(function ($e){
-            if(isset($e['unis'])) {
+        return array_values(array_map(function ($e) {
+            if (isset($e['unis'])) {
                 $e['unis'] = array_values($e['unis']);
             }
             return $e;
@@ -69,19 +69,16 @@ class UniInterfacesVlans extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-        $oidList[] = $this->oids->getOidByName('ont.uni.pvid');
-        $oidList[] = $this->oids->getOidByName('ont.uni.pvidMode');
-        $oids = [];
-        foreach ($oidList as $oid) {
-            $oids[] = $oid->getOid();
+        if (!$filter['interface']) {
+            throw new \Exception("Interface is required");
         }
-        if($filter['interface']) {
-            $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-        }
-        $oids = array_map(function ($e) {return \SnmpWrapper\Oid::init($e); }, $oids);
+        $iface = $this->parseInterface($filter['interface']);
+
+        $oidList[] = $this->oids->getOidByName("ont.${iface['_technology']}.uni.pvid");
+        $oidList[] = $this->oids->getOidByName("ont.${iface['_technology']}.uni.pvidMode");
+        $oids = array_map(function ($e) use ($iface) {
+            return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['xid']);
+        }, $oidList);
         $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }

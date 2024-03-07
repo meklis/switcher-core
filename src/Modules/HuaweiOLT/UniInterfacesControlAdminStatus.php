@@ -37,7 +37,7 @@ class UniInterfacesControlAdminStatus extends HuaweiOLTAbstractModule
             case 'disable': $action = 2; break;
         }
 
-        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName('uni.configure.state')->getOid() . ".{$iface['xid']}.{$filter['num']}")
+        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName("uni.{$iface['_technology']}.configure.state")->getOid() . ".{$iface['xid']}.{$filter['num']}")
             ->setType('Integer')
             ->setValue($action);
         $resp = $this->snmp->set($oid);

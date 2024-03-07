@@ -27,34 +27,67 @@ class OntReasons extends HuaweiOLTAbstractModule
     function getPretty()
     {
         $ifaces = [];
-        $data = $this->getResponseByName('ont.lastUptime');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $time = $this->parseReasonTime($r->getHexValue());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['last_reg'] = date("Y-m-d H:i:s", $time);
-                $ifaces[$iface['id']]['last_reg_since'] =  $time == null ? null :$this->getSince($time);
+        try {
+            $data = $this->getResponseByName('ont.gpon.lastUptime');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $time = $this->parseReasonTime($r->getHexValue());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['last_reg'] = date("Y-m-d H:i:s", $time);
+                    $ifaces[$iface['id']]['last_reg_since'] = $time == null ? null : $this->getSince($time);
+                }
             }
-        }
-        $data = $this->getResponseByName('ont.lastDownTime');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $time = $this->parseReasonTime($r->getHexValue());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['last_dereg'] =  $time ? date("Y-m-d H:i:s", $time) : null;
-                $ifaces[$iface['id']]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
+            $data = $this->getResponseByName('ont.gpon.lastDownTime');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $time = $this->parseReasonTime($r->getHexValue());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['last_dereg'] = $time ? date("Y-m-d H:i:s", $time) : null;
+                    $ifaces[$iface['id']]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
+                }
             }
-        }
-        $data = $this->getResponseByName('ont.lastDownCause');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['last_down_reason'] = $r->getParsedValue();
+            $data = $this->getResponseByName('ont.gpon.lastDownCause');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['last_down_reason'] = $r->getParsedValue();
+                }
             }
-        }
+        } catch (\Exception $e) {}
+        try {
+            $data = $this->getResponseByName('ont.epon.lastUptime');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $time = $this->parseReasonTime($r->getHexValue());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['last_reg'] = date("Y-m-d H:i:s", $time);
+                    $ifaces[$iface['id']]['last_reg_since'] = $time == null ? null : $this->getSince($time);
+                }
+            }
+            $data = $this->getResponseByName('ont.epon.lastDownTime');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $time = $this->parseReasonTime($r->getHexValue());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['last_dereg'] = $time ? date("Y-m-d H:i:s", $time) : null;
+                    $ifaces[$iface['id']]['last_dereg_since'] = $time == null ? null : $this->getSince($time);
+                }
+            }
+            $data = $this->getResponseByName('ont.epon.lastDownCause');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['last_down_reason'] = $r->getParsedValue();
+                }
+            }
+        } catch (\Exception $e) {}
+
         return array_values(array_map(function ($e) {
             if(!isset($e['last_down_reason'])) $e['last_down_reason'] = null;
             if(!isset($e['last_dereg_since'])) $e['last_dereg_since'] = null;
@@ -73,9 +106,13 @@ class OntReasons extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-        $reasons[] = $this->oids->getOidByName('ont.lastUptime');
-        $reasons[] = $this->oids->getOidByName('ont.lastDownTime');
-        $reasons[] = $this->oids->getOidByName('ont.lastDownCause');
+        if($this->isHasGponIfaces()) $reasons[] = $this->oids->getOidByName('ont.gpon.lastUptime');
+        if($this->isHasGponIfaces()) $reasons[] = $this->oids->getOidByName('ont.gpon.lastDownTime');
+        if($this->isHasGponIfaces()) $reasons[] = $this->oids->getOidByName('ont.gpon.lastDownCause');
+
+        if($this->isHasEponIfaces()) $reasons[] = $this->oids->getOidByName('ont.epon.lastUptime');
+        if($this->isHasEponIfaces()) $reasons[] = $this->oids->getOidByName('ont.epon.lastDownTime');
+        if($this->isHasEponIfaces()) $reasons[] = $this->oids->getOidByName('ont.epon.lastDownCause');
 
         $oids = [];
         foreach ($reasons as $oid) {
@@ -83,10 +120,12 @@ class OntReasons extends HuaweiOLTAbstractModule
         }
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
+            $reasons = array_filter($reasons, function ($oid) use ($iface) {
+                return strpos($oid->getName(), $iface['_technology']) !== false;
+            });
             $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+                return  Oid::init($e->getOid() . "." . $iface['xid']);
+            }, $reasons);
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
             $oids = array_map(function ($e) {return Oid::init($e); }, $oids);

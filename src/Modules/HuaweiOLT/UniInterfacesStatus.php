@@ -32,73 +32,150 @@ class UniInterfacesStatus extends HuaweiOLTAbstractModule
     function getPretty()
     {
         $data = [];
-        $data = $this->getResponseByName('uni.status');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['status'] =  $r->getParsedValue();
+        $ifaces = [];
+        try {
+            $data = $this->getResponseByName('uni.gpon.status');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['status'] = $r->getParsedValue();
+                }
             }
-        }
-        $data = $this->getResponseByName('uni.configure.state');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['admin_state'] =  $r->getParsedValue();
+            $data = $this->getResponseByName('uni.gpon.configure.state');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['admin_state'] = $r->getParsedValue();
+                }
             }
-        }
-        $data = $this->getResponseByName('uni.configure.flowControl');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['flow_control'] =  $r->getParsedValue();
+            $data = $this->getResponseByName('uni.gpon.configure.flowControl');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['flow_control'] = $r->getParsedValue();
+                }
             }
-        }
-        $data = $this->getResponseByName('uni.configure.vlan');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['vlan'] =  $r->getParsedValue();
+            $data = $this->getResponseByName('uni.gpon.configure.vlan');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['vlan'] = $r->getParsedValue();
+                }
             }
-        }
-        $data = $this->getResponseByName('uni.configure.speed');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['speed'] =  $r->getParsedValue();
+            $data = $this->getResponseByName('uni.gpon.configure.speed');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['speed'] = $r->getParsedValue();
+                }
             }
-        }
-        $data = $this->getResponseByName('uni.configure.duplex');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['duplex'] =  $r->getParsedValue();
+            $data = $this->getResponseByName('uni.gpon.configure.duplex');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['duplex'] = $r->getParsedValue();
+                }
             }
-        }
-        $data = $this->getResponseByName('uni.type');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid(), 1);
-                $uni = Helper::getIndexByOid($r->getOid());
-                $ifaces[$iface['id']]['unis'][$uni]['num'] =  $uni;
-                $ifaces[$iface['id']]['unis'][$uni]['type'] =  $r->getParsedValue();
+            $data = $this->getResponseByName('uni.gpon.type');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['type'] = $r->getParsedValue();
+                }
             }
-        }
-        return array_values(array_map(function ($e){
-            if(isset($e['unis'])) {
+        } catch (\Exception $e) {}
+
+        try {
+            $data = $this->getResponseByName('uni.epon.status');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['status'] = $r->getParsedValue();
+                }
+            }
+            $data = $this->getResponseByName('uni.epon.configure.state');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['admin_state'] = $r->getParsedValue();
+                }
+            }
+            $data = $this->getResponseByName('uni.epon.configure.flowControl');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['flow_control'] = $r->getParsedValue();
+                }
+            }
+            $data = $this->getResponseByName('uni.epon.configure.vlan');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['vlan'] = $r->getParsedValue();
+                }
+            }
+            $data = $this->getResponseByName('uni.epon.configure.speed');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['speed'] = $r->getParsedValue();
+                }
+            }
+            $data = $this->getResponseByName('uni.epon.configure.duplex');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid(), 1);
+                    $uni = Helper::getIndexByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['unis'][$uni]['num'] = $uni;
+                    $ifaces[$iface['id']]['unis'][$uni]['duplex'] = $r->getParsedValue();
+                }
+            }
+        } catch (\Exception $e) {}
+
+        return array_values(array_map(function ($e) {
+            if (isset($e['unis'])) {
                 $e['unis'] = array_values(array_filter($e['unis'], function ($e) {
-                    if($e['type'] == '-1' || (int)$e['type'] == -1) {
+                    if (isset($e['vlan']) && ($e['vlan'] == '-1' || (int)$e['vlan'] == -1)) {
+                        return false;
+                    }
+                    if (isset($e['type']) && ($e['type'] == '-1' || (int)$e['type'] == -1)) {
                         return false;
                     }
                     return true;
@@ -115,18 +192,14 @@ class UniInterfacesStatus extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-        $oidList = $this->oids->getOidsByRegex('uni\.*');
-        $oids = [];
-        foreach ($oidList as $oid) {
-            $oids[] = $oid->getOid();
+        if (!$filter['interface']) {
+            throw new \Exception("Interface is required parameter");
         }
-        if($filter['interface']) {
-            $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-        }
-        $oids = array_map(function ($e) {return \SnmpWrapper\Oid::init($e); }, $oids);
+        $iface = $this->parseInterface($filter['interface']);
+        $oidList = $this->oids->getOidsByRegex("uni\.{$iface['_technology']}*");
+        $oids = array_map(function ($e) use ($iface) {
+            return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['xid']);
+        }, $oidList);
         $this->response = $this->formatResponse($this->snmp->walk($oids));
         return $this;
     }

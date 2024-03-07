@@ -31,9 +31,8 @@ class CtrlOntDescription extends HuaweiOLTAbstractModule
 
         $descr = str_replace(['"', "'", ], '_', $filter['description']);
 
-        $this->console->exec("interface gpon {$iface['_shelf']}/{$iface['_slot']}");
-        $this->console->exec("ont modify {$iface['_shelf']} {$iface['_onu']} desc \"{$descr}\"");
-
+        $this->console->exec("interface {$iface['_technology']} {$iface['_shelf']}/{$iface['_slot']}");
+        $this->console->exec("ont modify {$iface['_port']} {$iface['_onu']} desc \"{$descr}\"");
         return $this;
     }
 }

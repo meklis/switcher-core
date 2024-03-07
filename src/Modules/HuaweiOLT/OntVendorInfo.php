@@ -31,14 +31,51 @@ class OntVendorInfo extends HuaweiOLTAbstractModule
     function getPretty()
     {
         $ifaces = [];
-        $data = $this->getResponseByName('ont.vendor.equipmentId');
-        if(!$data->error()) {
-            foreach ($data->fetchAll() as $r) {
-                $iface = $this->findIfaceByOid($r->getOid());
-                $ifaces[$iface['id']]['interface'] = $iface;
-                $ifaces[$iface['id']]['model'] = $this->convertHexToString($r->getHexValue());
+        try {
+            $data = $this->getResponseByName('ont.gpon.vendor.equipmentId');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['model'] = $this->convertHexToString($r->getHexValue());
+                }
             }
-        }
+        } catch (\Exception $e) {}
+
+        try {
+            $data = $this->getResponseByName('ont.epon.vendor.hardwareVer');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['ver_hardware'] = $this->convertHexToString($r->getHexValue());
+                }
+            }
+            $data = $this->getResponseByName('ont.epon.vendor.softwareVer');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['ver_software'] = $this->convertHexToString($r->getHexValue());
+                }
+            }
+            $data = $this->getResponseByName('ont.epon.vendor.model');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['model'] = $this->convertHexToString($r->getHexValue());
+                }
+            }
+            $data = $this->getResponseByName('ont.epon.vendor.customInfo');
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $r) {
+                    $iface = $this->findIfaceByOid($r->getOid());
+                    $ifaces[$iface['id']]['interface'] = $iface;
+                    $ifaces[$iface['id']]['vendor'] = $this->convertHexToString($r->getHexValue());
+                }
+            }
+        } catch (\Exception $e) {}
         ksort($ifaces);
         return array_values(array_map(function ($e){
             if(!isset($e['vendor'])) $e['vendor'] = null;
@@ -57,23 +94,25 @@ class OntVendorInfo extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-        //$vendorInfo[] = $this->oids->getOidByName('ont.vendor.hardwareVer');
-        $vendorInfo[] = $this->oids->getOidByName('ont.vendor.equipmentId');
-        //$vendorInfo[] = $this->oids->getOidByName('ont.vendor.softwareVer');
+        $requests = [];
+        if($this->isHasGponIfaces()) $requests[] = $this->oids->getOidByName('ont.gpon.vendor.equipmentId');
 
-        $oids = [];
-        foreach ($vendorInfo as $oid) {
-            $oids[] = $oid->getOid();
-        }
+        if($this->isHasEponIfaces()) $requests[] = $this->oids->getOidByName('ont.epon.vendor.hardwareVer');
+        if($this->isHasEponIfaces()) $requests[] = $this->oids->getOidByName('ont.epon.vendor.softwareVer');
+        if($this->isHasEponIfaces()) $requests[] = $this->oids->getOidByName('ont.epon.vendor.model');
+        if($this->isHasEponIfaces()) $requests[] = $this->oids->getOidByName('ont.epon.vendor.customInfo');
+
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
+            $requests = array_filter($requests, function ($oid) use ($iface) {
+                return strpos($oid->getName(), $iface['_technology']) !== false;
+            });
             $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+                return  Oid::init($e->getOid() . "." . $iface['xid']);
+            }, $requests);
             $this->response = $this->formatResponse($this->snmp->get($oids));
         } else {
-            $oids = array_map(function ($e) {return Oid::init($e); }, $oids);
+            $oids = array_map(function ($e) {return Oid::init($e->getOid()); }, $requests);
             $this->response = $this->formatResponse($this->snmp->walk($oids));
         }
         return $this;

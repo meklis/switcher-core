@@ -81,11 +81,11 @@ class FdbTableConsole extends HuaweiOLTAbstractModule
         foreach ($commands as $command) {
             $result = $this->console->exec($command);
             foreach (explode("\n", $result) as $line) {
-                if (preg_match('/^(-|[0-9]{1,5})\s*?[\S*?]\s*?(eth|gpon)\s.*?([[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4})\s.*?(\S*?)\s*?([0-9].*?\/[0-9].*?\/[0-9]{1,3})\s*?(-|[0-9]{1,4})\s*?(-|[0-9]{1,4})\s*?(-|[0-9]{1,4})$/', trim($line), $m)) {
+                if (preg_match('/^(-|[0-9]{1,5})\s*?[\S*?]\s*?(eth|gpon|epon)\s.*?([[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4})\s.*?(\S*?)\s*?([0-9].*?\/[0-9].*?\/[0-9]{1,3})\s*?(-|[0-9]{1,4})\s*?(-|[0-9]{1,4})\s*?(-|[0-9]{1,4})$/', trim($line), $m)) {
                     if (trim($m[6]) == '-') {
                         $iface = $this->parseInterface('ethernet' . str_replace(" ", "", $m[5]));
                     } else {
-                        $iface = $this->parseInterface("GPON " . str_replace(" ", "", $m[5]) . ":" . $m[6]);
+                        $iface = $this->parseInterface(strtoupper(trim($m[2]))." " . str_replace(" ", "", $m[5]) . ":" . $m[6]);
                     }
                     $response[] = [
                         'interface' => $iface,

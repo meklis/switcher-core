@@ -37,11 +37,13 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
             if ($dt->error()) {
                 continue;
             }
-            $name = Helper::fromCamelCase(str_replace(["ont.stat.", "if.HC", "if"], "", $oidName));
+            $name = Helper::fromCamelCase(str_replace(["ont.gpon.stat.","ont.epon.stat.", "if.HC", "if"], "", $oidName));
             foreach ($dt->fetchAll() as $resp) {
                 try {
-                    if (strpos($oidName, "ont.stat.") !== false) {
+                    if (strpos($oidName, "ont.gpon") !== false) {
                         $iface = $this->findIfaceByOid($resp->getOid());
+                    } elseif (strpos($oidName, "ont.epon") !== false) {
+                        $iface = $this->findIfaceByOid($resp->getOid(), 1);
                     } else {
                         $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
                     }
@@ -82,11 +84,12 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             if ($interface['type'] == 'ONU') {
-                $oids = $this->getOnuOids($interface['xid']);
+                $oids = $this->getOnuOids($interface['xid'], $interface['_technology']);
+                $this->response = $this->formatResponse($this->snmp->get($oids));
             } else {
                 $oids = $this->getPhysicalIfacesOids($interface['xid']);
+                $this->response = $this->formatResponse($this->snmp->get($oids));
             }
-            $this->response = $this->formatResponse($this->snmp->get($oids));
             return $this;
         }
 
@@ -101,17 +104,30 @@ class InterfaceCounters extends HuaweiOLTAbstractModule
         return $this;
     }
 
-    function getOnuOids($suffix = '')
+    function getOnuOids($suffix = '', $technology = null)
     {
-        if ($suffix) {
-            $suffix = ".{$suffix}";
+        $epon = true;
+        $gpon = true;
+        if($technology) {
+            if($technology == 'epon') $gpon = false;
+            if($technology == 'gpon') $epon = false;
         }
-        return [
-            Oid::init($this->oids->getOidByName('ont.stat.outOctets')->getOid() . "{$suffix}"),
-            Oid::init($this->oids->getOidByName('ont.stat.inOctets')->getOid() . "{$suffix}"),
-            Oid::init($this->oids->getOidByName('ont.stat.outDropPkts')->getOid() . "{$suffix}"),
-            Oid::init($this->oids->getOidByName('ont.stat.inDropPkts')->getOid() . "{$suffix}"),
-        ];
+
+        if ($suffix) {
+            $suffix = ".{$suffix}" . ($epon ? ".0" : '');
+        } else {
+            $epon = false;
+        }
+
+        $oids = [];
+        if($this->isHasEponIfaces() && $epon) $oids[] = Oid::init($this->oids->getOidByName('ont.epon.stat.outOctets')->getOid() . "{$suffix}");
+        if($this->isHasEponIfaces() && $epon) $oids[] = Oid::init($this->oids->getOidByName('ont.epon.stat.inOctets')->getOid() . "{$suffix}");
+        if($this->isHasGponIfaces() && $gpon) $oids[] = Oid::init($this->oids->getOidByName('ont.gpon.stat.outOctets')->getOid() . "{$suffix}");
+        if($this->isHasGponIfaces() && $gpon) $oids[] = Oid::init($this->oids->getOidByName('ont.gpon.stat.inOctets')->getOid() . "{$suffix}");
+        if($this->isHasGponIfaces() && $gpon) $oids[] = Oid::init($this->oids->getOidByName('ont.gpon.stat.outDropPkts')->getOid() . "{$suffix}");
+        if($this->isHasGponIfaces() && $gpon) $oids[] = Oid::init($this->oids->getOidByName('ont.gpon.stat.inDropPkts')->getOid() . "{$suffix}");
+
+        return $oids;
     }
 
     function getPhysicalIfacesOids($suffix = '')

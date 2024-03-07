@@ -28,7 +28,7 @@ class OntReboot extends HuaweiOLTAbstractModule
     {
         $iface = $this->parseInterface($filter['interface']);
 
-        $oid = $this->oids->getOidByName('ont.controlReset')->getOid() . ".{$iface['xid']}";
+        $oid = $this->oids->getOidByName("ont.{$iface['_technology']}.controlReset")->getOid() . ".{$iface['xid']}";
         $resp = $this->snmp->set(Oid::init($oid, false, 'Integer', 1));
         if($resp[0]->error) {
             throw new \Exception("Returned error from device: {$resp[0]->error}");

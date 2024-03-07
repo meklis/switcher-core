@@ -31,7 +31,24 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
     {
         $return = [];
         try {
-            $data = $this->getResponseByName('ont.status', $resp);
+            $data = $this->getResponseByName('ont.gpon.status', $resp);
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $d) {
+                    $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
+                    $iface = $this->parseInterface($xid);
+                    $return[$xid] = [
+                        'interface' => $iface,
+                        'status' => $d->getParsedValue(),
+                        'conf_status' => null,
+                        'admin_state' => null,
+                        'bind_status' => null,
+                    ];
+                }
+            }
+        } catch (\Exception $e) {
+        }
+        try {
+            $data = $this->getResponseByName('ont.epon.status', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
                     $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
@@ -49,7 +66,7 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
         }
 
         try {
-            $data = $this->getResponseByName('ont.confStatus', $resp);
+            $data = $this->getResponseByName('ont.gpon.confStatus', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
                     $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
@@ -61,7 +78,31 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
         } catch (\Exception $e) {
         }
         try {
-            $data = $this->getResponseByName('ont.controlActive', $resp);
+            $data = $this->getResponseByName('ont.epon.confStatus', $resp);
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $d) {
+                    $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
+                    if (isset($return[$xid])) {
+                        $return[$xid]['conf_status'] = $d->getParsedValue();
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+        }
+        try {
+            $data = $this->getResponseByName('ont.gpon.controlActive', $resp);
+            if (!$data->error()) {
+                foreach ($data->fetchAll() as $d) {
+                    $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
+                    if (isset($return[$xid])) {
+                        $return[$xid]['admin_state'] = $d->getParsedValue();
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+        }
+        try {
+            $data = $this->getResponseByName('ont.epon.controlActive', $resp);
             if (!$data->error()) {
                 foreach ($data->fetchAll() as $d) {
                     $xid = Helper::getIndexByOid($d->getOid(), 1) . "." .Helper::getIndexByOid($d->getOid());
@@ -76,6 +117,7 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
         return $return;
     }
 
+    
     /**
      * @param array $filter
      * @return $this|AbstractModule
@@ -83,52 +125,53 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-
         $oidRequests = [];
         if (isset($filter['load_only']) && $filter['load_only']) {
             $loadOnly = array_map(function ($e) {
                 return trim($e);
             }, explode(",", $filter['load_only']));
             if (in_array('conf_status', $loadOnly)) {
-                $oidRequests[] = $this->oids->getOidByName('ont.confStatus');
+                if($this->isHasGponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.gpon.confStatus');
+                if($this->isHasEponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.epon.confStatus');
             }
             if (in_array('status', $loadOnly)) {
-                $oidRequests[] = $this->oids->getOidByName('ont.status');
+                if($this->isHasGponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.gpon.status');
+                if($this->isHasEponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.epon.status');
             }
             if (in_array('admin_state', $loadOnly)) {
-                $oidRequests[] = $this->oids->getOidByName('ont.controlActive');
+                if($this->isHasGponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.gpon.controlActive');
+                if($this->isHasEponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.epon.controlActive');
             }
         } else {
-            $oidRequests = [
-                $this->oids->getOidByName('ont.confStatus'),
-                $this->oids->getOidByName('ont.status'),
-                $this->oids->getOidByName('ont.controlActive'),
-            ];
-        }
-        $oids = [];
-        foreach ($oidRequests as $oid) {
-            $oids[] = $oid->getOid();
+            $oidRequests = [];
+            if($this->isHasGponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.gpon.confStatus');
+            if($this->isHasGponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.gpon.status');
+            if($this->isHasGponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.gpon.controlActive');
+
+            if($this->isHasEponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.epon.confStatus');
+            if($this->isHasEponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.epon.status');
+            if($this->isHasEponIfaces()) $oidRequests[] = $this->oids->getOidByName('ont.epon.controlActive');
         }
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
-            $oids = array_map(function ($e) use ($iface) {
-                return $e . "." . $iface['xid'];
-            }, $oids);
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+            $oidRequests = array_filter($oidRequests, function (Oid $e) use ($iface) {
+                return strpos($e->getName(), $iface['_technology']) !== false;
+            });
+            $oids = array_map(function (Oid $e) use ($iface) {
+                return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['xid']);
+            }, $oidRequests);
             $response = $this->formate($this->formatResponse(
                 $this->snmp->get($oids)
             ));
         } else {
-            $oids = array_map(function ($e) {
-                return \SnmpWrapper\Oid::init($e);
-            }, $oids);
+            $oids = array_map(function (Oid $e) {
+                return \SnmpWrapper\Oid::init($e->getOid());
+            }, $oidRequests);
             $response = $this->formate($this->formatResponse(
                 $this->snmp->walk($oids)
             ));
-        }
 
+        }
         $loadOnly = ['bind_status'];
         if(isset($filter['load_only']) && $filter['load_only']) {
             $loadOnly = array_map(function ($e) {
@@ -146,10 +189,16 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
 
     function fillBindStatuses(&$statuses)
     {
-        $oid = $this->oids->getOidByName('ont.lastDownCause')->getOid();
+        $gponDownCause = $this->oids->getOidByName('ont.gpon.lastDownCause')->getOid();
+        $eponDownCause = $this->oids->getOidByName('ont.epon.lastDownCause')->getOid();
         $oids = [];
         foreach ($statuses as $index=>$status) {
             if($status['status'] != 'Online') {
+                if($status['interface']['_technology'] === 'gpon') {
+                    $oid = $gponDownCause;
+                } else {
+                    $oid = $eponDownCause;
+                }
                 $oids[] = \SnmpWrapper\Oid::init("{$oid}.{$status['interface']['xid']}");
             } else {
                 $statuses[$index]['bind_status'] = $status['status'];
@@ -159,17 +208,23 @@ class OntListWithStatuses extends HuaweiOLTAbstractModule
             return [];
         }
         $responses = $this->formatResponse($this->snmp->get($oids));
-        if(!isset($responses['ont.lastDownCause'])) {
-            throw new \Exception("Not found responses for ont.lastDownCause");
-        } elseif ($responses['ont.lastDownCause']->error()) {
-            throw new \Exception($responses['ont.lastDownCause']->error());
-        }
-        foreach ($responses['ont.lastDownCause']->fetchAll() as $resp) {
-            $xid = Helper::getIndexByOid($resp->getOid(), 1) . "." .Helper::getIndexByOid($resp->getOid());
-            if($resp->getParsedValue() !== 'Unknown') {
-                $statuses[$xid]['bind_status'] = $resp->getParsedValue();
+        if(isset($responses['ont.gpon.lastDownCause']) && !$responses['ont.gpon.lastDownCause']->error()) {
+            foreach ($responses['ont.gpon.lastDownCause']->fetchAll() as $resp) {
+                $xid = Helper::getIndexByOid($resp->getOid(), 1) . "." .Helper::getIndexByOid($resp->getOid());
+                if($resp->getParsedValue() !== 'Unknown') {
+                    $statuses[$xid]['bind_status'] = $resp->getParsedValue();
+                }
             }
         }
+        if(isset($responses['ont.epon.lastDownCause']) && !$responses['ont.epon.lastDownCause']->error()) {
+            foreach ($responses['ont.epon.lastDownCause']->fetchAll() as $resp) {
+                $xid = Helper::getIndexByOid($resp->getOid(), 1) . "." .Helper::getIndexByOid($resp->getOid());
+                if($resp->getParsedValue() !== 'Unknown') {
+                    $statuses[$xid]['bind_status'] = $resp->getParsedValue();
+                }
+            }
+        }
+
         return  $statuses;
     }
 }

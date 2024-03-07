@@ -34,23 +34,22 @@ class LinkInfo extends HuaweiOLTAbstractModule
 
         foreach ($snmp_high_speed as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'NotPresent' ) {
+            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown' ) {
                 $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  'Down';
                 continue;
             }
-            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $index->getParsedValue();
+            $speed = $index->getParsedValue();
+            if($speed === 'Down' && $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] === 'Up') {
+                $speed = null;
+            }
+            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  $speed;
         }
         foreach ($snmp_duplex as $index) {
             if(!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            if($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down'  || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'NotPresent') {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] =  'Down';
-                continue;
-            }
-            if($index->getParsedValue() == 'Down') {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = $index->getParsedValue();
-            } else {
-                $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] .= "-" . $index->getParsedValue();
-            }
+            if(!$indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] || $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] == 'Down') continue;
+            $duplex = $index->getParsedValue();
+            if(!$duplex || $duplex == 'Down') continue;
+            $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] .= "-" . $index->getParsedValue();
         }
 
         foreach ($snmp_admin_status as $index) {

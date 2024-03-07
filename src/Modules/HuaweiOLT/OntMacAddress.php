@@ -11,7 +11,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class OntSerial extends HuaweiOLTAbstractModule
+class OntMacAddress extends HuaweiOLTAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -25,18 +25,12 @@ class OntSerial extends HuaweiOLTAbstractModule
 
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
+        if(!$this->isHasEponIfaces()) return [];
         $resp = [];
-        foreach ($this->getResponseByName('ont.gpon.config.ident')->fetchAll() as $d) {
-            $blocks = explode(":", $d->getHexValue());
-            $serialASCII =  $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
-                $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7];
-            $serialHEX =  str_replace(":", "",$d->getHexValue());
+        foreach ($this->getResponseByName('ont.epon.config.ident')->fetchAll() as $d) {
             $resp[] = [
                 'interface' => $this->findIfaceByOid($d->getOid()),
-                '_serial_ascii' => $serialASCII,
-                'serial' =>  $filter['sn_as_ascii'] ? $serialASCII : $serialHEX,
-                '_serial_hex' =>  $serialHEX,
-                '_vendor_prefix' => $this->convertHexToString(substr($d->getHexValue(), 0, 11)),
+                'mac_address' => $d->getHexValue(),
             ];
         }
         return $resp;
@@ -49,7 +43,8 @@ class OntSerial extends HuaweiOLTAbstractModule
      */
     public function run($filter = [])
     {
-        $oid = $this->oids->getOidByName('ont.gpon.config.ident');
+        if(!$this->isHasEponIfaces()) return $this;
+        $oid = $this->oids->getOidByName('ont.epon.config.ident');
         if ($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $oid = $oid->getOid() . "." . $iface['xid'];

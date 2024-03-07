@@ -38,7 +38,7 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
             }
             foreach ($wrapped->fetchAll() as $resp) {
                 try {
-                    if ($name === 'ont.config.description') {
+                    if (strpos($name, 'ont.') !== false) {
                         $iface = $this->findIfaceByOid($resp->getOid());
                     } else {
                         $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
@@ -67,7 +67,7 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             if ($interface['type'] === 'ONU') {
-                $oids = [\SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid() . ".{$interface['xid']}"),];
+                $oids = [\SnmpWrapper\Oid::init($this->oids->getOidByName("ont.{$interface['_technology']}.config.description")->getOid() . ".{$interface['xid']}"),];
             } else {
                 $oids = [\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid() . ".{$interface['xid']}"),];
             }
@@ -78,18 +78,18 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
             return $this;
         }
         if ($filter['interface_type'] === 'ONU') {
-            $oids =  [
-                \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid()),
-            ];
+            $oids = [];
+            if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.gpon.config.description')->getOid());
+            if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.epon.config.description')->getOid());
+
         } elseif ($filter['interface_type'] === 'PHYSICAL') {
             $oids =  [
                 \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()),
             ];
         } else {
-            $oids =  [
-                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid()),
-                \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.config.description')->getOid()),
-            ];
+            $oids =  [\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid())];
+            if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.gpon.config.description')->getOid());
+            if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.epon.config.description')->getOid());
         }
         $this->response = $this->formatResponse(
             $this->snmp->walk($oids)
