@@ -64,7 +64,7 @@
 - {name: ont.epon.vendor.model, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.55.1.13}
 - {name: ont.epon.vendor.customInfo, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.55.1.16}
 
-- {name: ont.epon.controlActive, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.57.1.1, values: {1: Activate, 2: Deactivate, -1: Invalid}}
+- {name: ont.epon.controlActive, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.57.1.1, values: {1: Activated, 2: Deactivated, -1: Invalid}}
 - {name: ont.epon.controlReset, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.57.1.2, values: {1: Reset}}
 - {name: ont.epon.controlReRegister, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.57.1.3, values: {1: ReRegister}}
 - {name: ont.epon.controlReDiscovery, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.57.1.3, values: {1: ReDiscovery}}
@@ -235,7 +235,7 @@
 - {name: ont.gpon.batteryStatus, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.27, values: {0: NotSupported, 1: Charge, 2: Discharge, 3: Holding, 4: SupportButInvalid, -1: Unknown}}
 
 #This object is used to activate or deactivate an ONT
-- {name: ont.gpon.controlActive, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.1, values: {1: Activate, 2: Deactivate, -1: Invalid}}
+- {name: ont.gpon.controlActive, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.1, values: {1: Activated, 2: Deactivated, -1: Invalid}}
 #This object is used to reset an ont.gpon.
 - {name: ont.gpon.controlReset, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.2, values: {1: Reset}}
 #This object is used to re-register an ont.gpon.

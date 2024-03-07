@@ -145,7 +145,7 @@ class OntReasons extends HuaweiOLTAbstractModule
             str_pad(hexdec($elements[6]), 2, "0", STR_PAD_LEFT) ;
 
         $time = \DateTime::createFromFormat("Y-m-d H:i:s", $date);
-        if($time) {
+        if($time && $time->getTimestamp() > 86400) {
             return $time->getTimestamp();
         } else {
             return null;

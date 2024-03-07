@@ -214,22 +214,23 @@ class OntOpticalInfo extends HuaweiOLTAbstractModule
             if($this->isHasEponIfaces()) $oidToRequest[] = $this->oids->getOidByName('ont.epon.opticalOltRx');
         }
         if ($filter['interface']) {
-            $iface = $this->parseInterface($filter['interface']);
-            if($iface['type'] == 'ONU') {
-                $iface = $this->parseInterface($filter['interface']);
-                $oidsFiltered = array_filter($oidToRequest, function ($oid) use ($iface) {
-                    return strpos($oid->getName(), $iface['_technology']) !== false;
+            $choosedIface = $this->parseInterface($filter['interface']);
+            if($choosedIface['type'] == 'ONU') {
+                $oidsFiltered = array_filter($oidToRequest, function ($oid) use ($choosedIface) {
+                    return strpos($oid->getName(), $choosedIface['_technology']) !== false;
                 });
-                $oids = array_map(function ($e) use ($iface) {
-                    return  Oid::init($e->getOid() . "." . $iface['xid']);
+                $oids = array_map(function ($e) use ($choosedIface) {
+                    return  Oid::init($e->getOid() . "." . $choosedIface['xid']);
                 }, $oidsFiltered);
                 $this->response = $this->formatResponse($this->snmp->get($oids));
             } else {
                 $reqOids = [];
                 $ifaces = $this->getModule('pon_onts_status')->run(['interface' =>  null, 'load_only'=>'status'])->getPrettyFiltered(['interface'=>null, 'load_only'=>'status']);
-                foreach ($ifaces as $iface) {
-                    if($iface['interface']['parent'] != $iface['id']) continue;
-                    if($iface['status'] !== 'Online') continue;
+                foreach ($ifaces as $ifaceStatus) {
+                    if($ifaceStatus['interface']['parent'] != $choosedIface['id']) continue;
+                    if($ifaceStatus['status'] !== 'Online') continue;
+
+                    $iface = $ifaceStatus['interface'];
                     $oidsFiltered = array_filter($oidToRequest, function ($oid) use ($iface) {
                         return strpos($oid->getName(), $iface['_technology']) !== false;
                     });
