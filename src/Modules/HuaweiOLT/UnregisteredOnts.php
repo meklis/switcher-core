@@ -161,7 +161,7 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
                 $data[$iface['id']]['fw_version'] = $this->convertHexToString($d->getHexValue());
             }
         }
-        if (isset($response['ont.gpon.autofind.equipmentId'])) {
+        if (isset($response['ont.epon.autofind.equipmentId'])) {
             foreach ($response['ont.epon.autofind.equipmentId']->fetchAll() as $d) {
                 $iface = $this->findIfaceByOid($d->getOid());
                 $data[$iface['id']]['equipment_id'] = $this->convertHexToString($d->getHexValue());
