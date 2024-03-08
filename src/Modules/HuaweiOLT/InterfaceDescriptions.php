@@ -80,7 +80,7 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
         if ($filter['interface_type'] === 'ONU') {
             $oids = [];
             if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.gpon.config.description')->getOid());
-            if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.epon.config.description')->getOid());
+            if($this->isHasEponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.epon.config.description')->getOid());
 
         } elseif ($filter['interface_type'] === 'PHYSICAL') {
             $oids =  [
@@ -89,7 +89,7 @@ class InterfaceDescriptions extends HuaweiOLTAbstractModule
         } else {
             $oids =  [\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Alias')->getOid())];
             if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.gpon.config.description')->getOid());
-            if($this->isHasGponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.epon.config.description')->getOid());
+            if($this->isHasEponIfaces()) $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.epon.config.description')->getOid());
         }
         $this->response = $this->formatResponse(
             $this->snmp->walk($oids)

@@ -40,9 +40,7 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
         $oids = array_map(function ($e) {
             return Oid::init($e->getOid());
         }, $oidRequests);
-
         $response = $this->formatResponse($this->snmp->walkNext($oids));
-
         $this->response = array_values(array_merge($this->getGponUnregisteredFromResponses($response), $this->getEponUnregisteredFromResponses($response)));
         return $this;
     }
@@ -80,12 +78,6 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
             foreach ($response['ont.gpon.autofind.password']->fetchAll() as $d) {
                 $iface = $this->findIfaceByOid($d->getOid());
                 $data[$iface['id']]['password'] = $this->convertHexToString($d->getHexValue());
-            }
-        }
-        if (isset($response['ont.gpon.autofind.version'])) {
-            foreach ($response['ont.gpon.autofind.version']->fetchAll() as $d) {
-                $iface = $this->findIfaceByOid($d->getOid());
-                $data[$iface['id']]['version'] = $this->convertHexToString($d->getHexValue());
             }
         }
         if (isset($response['ont.gpon.autofind.softwareVer'])) {
@@ -147,12 +139,6 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
             foreach ($response['ont.epon.autofind.password']->fetchAll() as $d) {
                 $iface = $this->findIfaceByOid($d->getOid());
                 $data[$iface['id']]['password'] = $this->convertHexToString($d->getHexValue());
-            }
-        }
-        if (isset($response['ont.epon.autofind.version'])) {
-            foreach ($response['ont.epon.autofind.version']->fetchAll() as $d) {
-                $iface = $this->findIfaceByOid($d->getOid());
-                $data[$iface['id']]['version'] = $this->convertHexToString($d->getHexValue());
             }
         }
         if (isset($response['ont.epon.autofind.softwareVer'])) {
