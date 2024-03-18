@@ -34,7 +34,7 @@ class OntDelete extends HuaweiOLTAbstractModule
         $this->console->exec("", true, ".*\(y\/n\)\[n\]");
         $this->console->exec("y");
         //Remove ONT
-        $this->console->exec("interface gpon {$iface['_shelf']}/{$iface['_slot']}");
+        $this->console->exec("interface {$iface['_technology']} {$iface['_shelf']}/{$iface['_slot']}");
         $resp = $this->console->exec("ont delete {$iface['_port']} {$iface['_onu']}");
         if(strpos($resp, "Failure") !== false) {
             throw new \Exception("Error delete, resp from device: " . $resp);
