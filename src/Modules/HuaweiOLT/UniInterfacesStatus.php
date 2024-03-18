@@ -196,12 +196,41 @@ class UniInterfacesStatus extends HuaweiOLTAbstractModule
             throw new \Exception("Interface is required parameter");
         }
         $iface = $this->parseInterface($filter['interface']);
-        $oidList = $this->oids->getOidsByRegex("uni\.{$iface['_technology']}*");
+        if($iface['_technology'] === 'gpon')  {
+            $oidList = $this->oids->getOidsByRegex("uni\.{$iface['_technology']}*");
+            $oids = array_map(function ($e) use ($iface) {
+                return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['xid']);
+            }, $oidList);
+            $this->response = $this->formatResponse($this->snmp->walk($oids));
+        }  else {
+            $oids = [];
+            $countIfaces = $this->getCountEponIfaces($iface);
+            $oidList = $this->oids->getOidsByRegex("uni\.{$iface['_technology']}*");
+            for($i = 1; $i <= $countIfaces; $i++) {
+                $oids = array_merge($oids, array_map(function ($e) use ($iface, $i) {
+                    return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['xid'] . "." . $i);
+                }, $oidList));
+            }
+            $this->response = $this->formatResponse($this->snmp->get($oids));
+        }
+        return $this;
+    }
+
+    function getCountEponIfaces($iface)
+    {
+        $oidList = $this->oids->getOidsByRegex("uniif\.epon\.*");
         $oids = array_map(function ($e) use ($iface) {
             return \SnmpWrapper\Oid::init($e->getOid() . "." . $iface['xid']);
         }, $oidList);
-        $this->response = $this->formatResponse($this->snmp->walk($oids));
-        return $this;
+        $data = $this->snmp->get($oids);
+        $countIfaces = 0;
+        foreach ($data as $d) {
+            if($d->getError()) continue;
+            foreach ($d->getResponse() as $resp) {
+                if((int)$resp->getValue() > 0) $countIfaces += (int)$resp->getValue();
+            }
+        }
+        return $countIfaces;
     }
 }
 

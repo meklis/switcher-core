@@ -172,6 +172,9 @@ class OntOpticalInfo extends HuaweiOLTAbstractModule
             if (!isset($e['rx'])  || $e['rx'] > 100) $e['rx'] = null;
             if (!isset($e['tx']) || $e['tx'] > 100) $e['tx'] = null;
             if (!isset($e['olt_rx']) || $e['olt_rx'] > 100) $e['olt_rx'] = null;
+
+            if($e['rx'] <= -50) $e['rx'] = null;
+            if($e['olt_rx'] <= -50) $e['olt_rx'] = null;
             return $e;
         }, $ifaces));
     }
