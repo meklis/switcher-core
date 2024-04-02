@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\EltexSwitch;
+namespace SwitcherCore\Modules\JuniperSwitch;
 
 use DI\Container;
 use DI\DependencyException;
@@ -92,7 +92,6 @@ trait InterfacesTrait
             return $info;
         }
         $response = $this->snmp->walk([
-            Oid::init($this->oids->getOidByName('rlStack.unitIdTable')->getOid()),
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
         ]);
         /**
@@ -101,24 +100,18 @@ trait InterfacesTrait
         $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
-            if($resp->getError() && $name->getName() != 'rlStack.unitIdTable') {
+            if($resp->getError() ) {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
             $responses[$name->getName()] = $resp;
         }
 
         $ifaces = [];
-        $stackSize = 1;
-        if(!$responses['rlStack.unitIdTable']->getError()) {
-            $stackSize = count($responses['rlStack.unitIdTable']->getResponse());
-        }
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(te|gi)([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+            if (preg_match('/^(ae|et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
-                if($shelf > $stackSize) {
-                    continue;
-                }
                 $id = Helper::getIndexByOid($r->getOid());
+                $type = "ETH";
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
@@ -127,33 +120,8 @@ trait InterfacesTrait
                     '_slot_num' => $slot,
                     '_shelf_num' => $shelf,
                     '_type' => $m[1],
-                    'type' => 'ETH',
-                ];
-            } elseif (preg_match('/^(te|gi|fe) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
-                [$slot, $port] = explode("/", $m[2]);
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
-                    'name' => $r->getValue(),
-                    '_snmp_id' => $id,
-                    '_port_num' => $port,
-                    '_slot_num' => $slot,
-                    '_shelf_num' => null,
-                    '_type' => $m[1],
-                    'type' => 'ETH',
-                ];
-            } elseif (preg_match('/^(gigabitethernet|ethernet) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
-                [$slot, $port] = explode("/", $m[2]);
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
-                    'name' => $r->getValue(),
-                    '_snmp_id' => $id,
-                    '_port_num' => $port,
-                    '_slot_num' => $slot,
-                    '_shelf_num' => null,
-                    '_type' => $m[1],
-                    'type' => 'ETH',
+                    '_sorting' => ((!$shelf ? $shelf + 1 : $shelf) * 100000) + ($slot * 1000) + $port,
+                    'type' => $type,
                 ];
             }
         }

@@ -134,7 +134,6 @@ class OntOpticalInfoV1 extends ModuleAbstract
         $this->_mustLoadedOidNames = $loadingOidNames;
 
         $this->response = $this->formatResponse($this->snmp->get($oids, 5, 2));
-        print_r($this->response);
         return $this;
     }
 
