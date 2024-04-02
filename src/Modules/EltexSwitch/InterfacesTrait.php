@@ -8,6 +8,7 @@ use DI\NotFoundException;
 use Monolog\Logger;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Oid;
+use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Modules\Helper;
@@ -94,19 +95,25 @@ trait InterfacesTrait
             Oid::init($this->oids->getOidByName('rlStack.unitIdTable')->getOid()),
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
         ]);
+        /**
+         * @var  $responses PoollerResponse[]
+         */
         $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
-            if($resp->getError()) {
+            if($resp->getError() && $name->getName() != 'rlStack.unitIdTable') {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
-            $responses[$name->getName()] = $resp->getResponse();
+            $responses[$name->getName()] = $resp;
         }
 
         $ifaces = [];
-        $stackSize = count($responses['rlStack.unitIdTable']);
-
-        foreach ($responses['if.Name'] as $r) {
+        $stackSize = 1;
+        if(!$responses['rlStack.unitIdTable']->getError()) {
+            $stackSize = count($responses['rlStack.unitIdTable']->getResponse());
+        }
+        print_r($responses['if.Name']->getResponse());
+        foreach ($responses['if.Name']->getResponse() as $r) {
             if (preg_match('/^(te|gi)([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
                 if($shelf > $stackSize) {
@@ -120,6 +127,18 @@ trait InterfacesTrait
                     '_port_num' => $port,
                     '_slot_num' => $slot,
                     '_shelf_num' => $shelf,
+                    '_type' => $m[1],
+                ];
+            } elseif (preg_match('/^(te|gi|fe) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+                [$slot, $port] = explode("/", $m[2]);
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => $port,
+                    '_slot_num' => $slot,
+                    '_shelf_num' => null,
                     '_type' => $m[1],
                 ];
             }
