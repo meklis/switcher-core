@@ -1,5 +1,5 @@
 models:
-  - name: ZTE C320
+  - name: ZTE C320 (FW 2.1)
     key: zte_c320
     device_type: OLT
     detect: {description: ZTE,  objid: .*\.1001\.320\.2\.1$ }
@@ -45,7 +45,7 @@ models:
       console_commands_after_connect:
         - terminal length 0
 
-  - name: ZTE C300
+  - name: ZTE C300 (FW 2.1)
     key: zte_c300
     device_type: OLT
     detect: {description: C300,  objid: 1082.1001.300.2.1$ }

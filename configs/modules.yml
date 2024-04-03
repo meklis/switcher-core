@@ -1,10 +1,10 @@
 #Module for get system info + meta
 - name: system
-  descr: Системная информация о устройстве
+  descr: System information (uptime, description, mac-address, serial)
 
 #Sys dashboard statistic
 - name: sys_resources
-  descr: External system information (CPU/Memory/Temperature)
+  descr: System resources (CPU, Memory, Temperature)
   arguments:
     - {name: load_only, pattern: '^.*', required: no }
 
@@ -12,25 +12,25 @@
 - name: link_info
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: Информация о портах (для свитчей)
+  descr: Physical port statuses
 
 #Module for get counters
 - name: counters
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: Счетчики на портах
+  descr: Traffic
 
 #Module for get errors
 - name: errors
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: Ошибки на портах
+  descr: Errors counters
 
 #Module for get rmon data
 - name: rmon
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: RMON статистика (более детальная инфа о ошибках)
+  descr: RMON statistic
 
 #Module for get FDB
 - name: fdb
@@ -38,13 +38,13 @@
     - {name: interface, pattern: '^.*$', required: no}
     - {name: mac, pattern: '.*', required: no}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-  descr: FDB-таблица
+  descr: FDB-table (user mac addresses)
 
 #Get vlan info from device
 - name: vlans
   arguments:
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-  descr: Информация о вланах на устройстве
+  descr: Vlan list
 
 #Get vlan info from device by ports
 - name: vlans_by_port
@@ -52,97 +52,98 @@
     - {name: interface, pattern: '^.*$', required: no}
   depends:
     - vlans
-  descr: Информация о вланах на портах
+  descr: Vlans by port
 
 - name: pvid
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: PVID таблица
+  descr: PVID
 #Cable diagnostic module
 - name: cable_diag
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
+  descr: Cable diagnostic
 
 - name: sfp_diag
   arguments:
     - { name: interface, pattern: '^.*$', required: no }
-  descr: SFP information and diagnostic
+  descr: SFP information
 - name: sfp_optical
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: SFP optical information (RX, TX, Vcc, Bias, distance, etc.)
+  descr: SFP signals
 - name: sfp_media
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
-  descr: SFP media information (vendor, model, eth.)
+  descr: SFP media info
 
 
 #Action clear counters
 - name: clear_counters
-  descr: Очистка счетчиков (во всей системе)
+  descr: Reset counters
 #Action save configuration
 - name: save_config
-  descr: Сохранение конфигурации
+  descr: Save system config
 #Action reboot
 - name: reboot
-  descr: Перезагрузка устройства
+  descr: Reboot device
 
 #Action port state control
 - name: ctrl_port_state
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: state, pattern: '^(disable|enable)$', required: yes, values: [disable, enable]}
-  descr: Установка административного состояния порта(включение/отключение)
+  descr: Change port state
 #Action port state control
 - name: ctrl_ont_disable
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: state, pattern: '^(disable|enable)$', required: yes, values: [disable, enable]}
-  descr: Включение/отключение ОНУ
+  descr: Enable/Disable ONU
 
 #Action port state desciption
 - name: ctrl_ont_descr
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: description, pattern: '^.*$', required: yes}
-  descr: Установка описания ОНУ
+  descr: Change ONU description
 
 #Action port state desciption
 - name: ctrl_ont_reboot
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-  descr: Ребут ОНУ
+  descr: ONT reboot
 #Action clear counters
 - name: ctrl_ont_clear_counters
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-  descr: Clear counters
+  descr: Clear counters on ONT
 
 #Action port state desciption
 - name: ctrl_ont_delete
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-  descr: Удаление ОНУ
+  descr: Delete ONU
 
 #Action port state desciption
 - name: ctrl_ont_reset
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-  descr: Сброс ОНУ
+  descr: Reset ONU
 
 #Action port state speed
 - name: ctrl_port_speed
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: speed, pattern: '^auto|(10|100|1000|10000)-(Half|Full)$', required: yes, values: [auto, 10-Full, 100-Full, 1000-Full]}
-  descr: Установка скорости на порту
+  descr: Set interface speed
 
 #Action port state desciption
 - name: ctrl_port_descr
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: description, pattern: '^.{1,}$', required: yes}
-  descr: Установка описания порта
+  descr: Set port description
 
 
 #Action for vlan state control
@@ -151,7 +152,7 @@
     - {name: id, pattern: '^[0-9]{1,4}$', required: no}
     - {name: name, pattern: '^[0-9a-zA-Z_]{1,16}$', required: no}
     - {name: action, pattern: '^(delete|create)$', required: yes, values: [delete, create]}
-  descr: Управление вланами на устройстве
+  descr: VLAN control
 
 #Action for vlan state control
 - name: ctrl_vlan_port
@@ -160,7 +161,7 @@
     - {name: interface, pattern: '^.*$', required: yes}
     - {name: type, pattern: '^(tagged|untagged)$', required: no, values: [tagged, untagged]}
     - {name: action, pattern: '^(delete|add)$', required: yes, values: [delete, add]}
-  descr: Управление вланами на порту устройства
+  descr: VLAN control on port
 
 #Action Get arp info with filters
 - name: arp_info
@@ -173,7 +174,7 @@
     - {name: status, pattern: '^(disabled|invalid|OK)$', required: no, values: [disabled, invalid, OK]}
   depends:
     - interface_vlan_info
-  descr: ARP таблица
+  descr: ARP table
 
 #Action Get arp info with filters
 - name: lease_info
@@ -186,7 +187,7 @@
     - {name: hide_server_detail, pattern: '^(yes|no)$', required: no, values: ['yes', 'no']}
   depends:
     - dhcp_server_info
-  descr: Lease таблица
+  descr: Lease table
 #Action Get arp info with filters
 - name: ctrl_static_lease
   arguments:
@@ -200,7 +201,7 @@
   depends:
     - dhcp_server_info
     - lease_info
-  descr: Управление лизами
+  descr: Lease control
 
 
 #Action Get arp info with filters
@@ -211,25 +212,25 @@
     - {name: vlan_name, pattern: '^.*$', required: no}
   depends:
     - interface_vlan_info
-  descr: Список DHCP-серверов и их конфиг (RouterOS devices)
+  descr: DHCP-servers info (RouterOS devices)
 
 #Action Get arp info with filters
 - name: interface_vlan_info
   arguments:
     - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-  descr: Информация по интерфейсам (vlans on L3 devices)
+  descr: Vlans on L3 devices
 
 - name: interface_info
   arguments:
     - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
-  descr: Информация по интерфейсам (on L3 devices)
+  descr: Interface info (on L3 devices)
 
 - name: bgp_sessions
   arguments:
     - {name: _id, pattern: '.*', required: no}
     - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
-  descr: Информация о BGP
+  descr: BGP-sessions
 
 #Action Get arp info with filters
 - name: arp_ping
@@ -316,13 +317,13 @@
 
 #Get ONU state by interface
 - name: gpon_profiles
-  descr: List ONU profiles for GPON
+  descr: Profiles
 
 - name: card_list
   descr: Listing of cards on OLT
 
 - name: card_status
-  descr: Returning card status
+  descr: Slots information and statuses
 
 - name: pon_ports_list
   descr: Information of PON interfaces
@@ -334,7 +335,7 @@
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: load_only, pattern: '.*', required: no}
-  descr: Returned onts statuses
+  descr: ONU statuses (Online, Offline, PowerOff, LOS eth)
 
 - name: pon_ont_state
   arguments:
@@ -349,18 +350,18 @@
   descr: Returned onts statuses
 
 - name: pon_onts_mac_addr
-  descr: Returned ONTs MAC addresses (for EPON)
+  descr: ONTs MAC addresses (for EPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
 - name: pon_onts_serial
-  descr: Returned ONTs serial number (for GPON)
+  descr: ONTs serial number (for GPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: sn_as_ascii, pattern: '.*', required: no}
 
 - name: pon_onts_optical
-  descr: Returned ONTs MAC addresses
+  descr: Optical information (rx, tx, olt rx, distance)
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: load_only, pattern: '^.*', required: no }
@@ -376,7 +377,7 @@
     - {name: interface, pattern: '.*', required: no}
 
 - name: pon_onts_vendor
-  descr: Returned ONTs MAC addresses
+  descr: ONU vendor info
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
@@ -394,21 +395,21 @@
 
 
 - name: interface_counters
-  descr: Return counters by interface or whole interfaces
+  descr: Traffic counters
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: interface_type, pattern: '.*', required: no, values: ['PHYSICAL', 'ONU']}
 
 
 - name: interfaces_list
-  description: Возвращает список интерфейсов (Стандартизированный модуль)
+  descr: Возвращает список интерфейсов (Стандартизированный модуль)
   arguments:
     - { name: interface, pattern: '.*', required: no }
     - { name: parent, pattern: '.*', required: no }
     - { name: root, pattern: '.*', required: no }
 
 - name: interfaces_status
-  description: Возвращает список интерфейсов c их состоянием (Стандартизированный модуль)
+  descr: Возвращает список интерфейсов c их состоянием (Стандартизированный модуль)
   arguments:
     - { name: interface, pattern: '.*', required: no }
     - { name: parent, pattern: '.*', required: no }
@@ -416,18 +417,18 @@
 
 
 - name: unregistered_onts
-  description: Allow run command
+  descr: List unregistered ONUs
   arguments:
     - { name: type, pattern: '^(all|gpon|epon)$', required: no, values: [ all,gpon,epon ] }
     - {name: sn_as_ascii, pattern: '.*', required: no}
 
 - name: console_command
-  description: Allow run command
+  descr:  Execute command in console
   arguments:
     - {name: command, pattern: '.*', required: true}
 
 - name: multi_console_command
-  description: Allow run commands as array or multi string
+  descr: Execute commands in console (for macros or ONU registration)
   arguments:
     - {name: commands, pattern: '.*', required: true}
     - {name: break_on_error, pattern: '(yes|no)', required: false}
@@ -438,7 +439,7 @@
     - {name: interface, pattern: '.*', required: no}
 
 - name: interface_descriptions
-  descr: Return interface description
+  descr: Interface descriptions
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: _description_block_index, pattern: '.*', required: no}
