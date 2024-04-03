@@ -128,6 +128,12 @@ HTML;
 
 
 $html = "
+<html>
+ <head>
+  <title>Wildcore support device information</title>
+  <meta charset=\"utf-8\">
+ </head>
+<body>
 <style>
     .container {
         max-width: 100%;
@@ -183,18 +189,20 @@ $html = "
         background: #D0D0D0;
     }
 </style>
-    <h1>OLTs</h1>
+    <h1>List of supported devices and available functionality</h1>
+    <h2>OLTs</h2>
     <h3>Information</h3>
     ".$buildTable($displayModulesForTypes['OLT']['info'], $supportDevices['OLT'])."
     <h3>Management</h3>
     ".$buildTable($displayModulesForTypes['OLT']['management'], $supportDevices['OLT'])."
     
     <br>
-    <h1>Switches</h1>
+    <h2>Switches</h2>
     <h3>Information</h3>
     ".$buildTable($displayModulesForTypes['SWITCH']['info'], $supportDevices['SWITCH'])."
     <h3>Management</h3>
     ".$buildTable($displayModulesForTypes['SWITCH']['management'], $supportDevices['SWITCH'])."
+</body>
 ";
 
 file_put_contents(__DIR__ . '/device_info.html', $html);
