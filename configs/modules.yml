@@ -261,7 +261,7 @@
     - {name: _id, pattern: .*, required: no}
     - {name: name, pattern: '^[0-9a-zA-Z_\-]{1,}$', required: no}
     - {name: address, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$|^(?:[0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]{1,2}$', required: no}
-  descr: Информация по адрес-листам (Router OS)
+  descr: Address lists info (Router OS)
 
 - name: address_list_ctrl
   arguments:
