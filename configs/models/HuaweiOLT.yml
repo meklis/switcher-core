@@ -185,7 +185,7 @@ models:
         - enable
         - "scroll \r\n"
 
-  - name: Huawei SmartAX OLT
+  - name: Huawei MA56xx/MA58xx series
     key: huawei_smart_ax
     inputs:
       - snmp

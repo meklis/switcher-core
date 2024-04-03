@@ -73,7 +73,22 @@ $displayModulesForTypes = [
         ],
         'management' => [
         ],
-    ]
+    ],
+    'SENSORS' => [
+      'info' => [
+            'system',
+            'power_control_output_list',
+            'digital_lines_list',
+            'analog_lines_list',
+            'power_sensor_state',
+            'knock_sensor_state',
+      ],
+        'management' => [
+            'ctrl_power_control_output',
+            'ctrl_digital_line',
+            'ctrl_analog_line',
+        ]
+    ],
 ];
 
 
@@ -196,7 +211,7 @@ $html = "
         background: #dcffd5;
     }
     .flag-not {
-        background: #D0D0D0;
+        background: #FAFAFA;
     }
 </style>
     <h1>List of supported devices and available functionality</h1>
@@ -217,6 +232,12 @@ $html = "
     <h3>Information</h3>
     ".$buildTable($displayModulesForTypes['ROUTER']['info'], $supportDevices['ROUTER'])."
    
+    <br>
+    <h2>Sensors</h2>
+    <h3>Information</h3>
+    ".$buildTable($displayModulesForTypes['SENSORS']['info'], $supportDevices['SENSORS'])."
+    <h3>Management</h3>
+    ".$buildTable($displayModulesForTypes['SENSORS']['management'], $supportDevices['SENSORS'])."
 </body>
 ";
 
