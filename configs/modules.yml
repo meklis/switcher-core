@@ -112,12 +112,12 @@
 - name: ctrl_ont_reboot
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-  descr: ONT reboot
+  descr: ONU reboot
 #Action clear counters
 - name: ctrl_ont_clear_counters
   arguments:
     - {name: interface, pattern: '^.*$', required: yes}
-  descr: Clear counters on ONT
+  descr: Clear counters on ONU
 
 #Action port state desciption
 - name: ctrl_ont_delete
@@ -347,15 +347,15 @@
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: load_only, pattern: '.*', required: no}
-  descr: Returned onts statuses
+  descr: ONU configuration
 
 - name: pon_onts_mac_addr
-  descr: ONTs MAC addresses (for EPON)
+  descr: ONUs MAC addresses (for EPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
 - name: pon_onts_serial
-  descr: ONTs serial number (for GPON)
+  descr: ONUs serial number (for GPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: sn_as_ascii, pattern: '.*', required: no}
@@ -367,7 +367,7 @@
     - {name: load_only, pattern: '^.*', required: no }
 
 - name: pon_onts_reasons
-  descr: Returned ONTs MAC addresses
+  descr: Returned ONUs MAC addresses
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
@@ -382,14 +382,14 @@
     - {name: interface, pattern: '.*', required: no}
 
 - name: pon_fdb
-  descr: Returned FDB table on ONTs
+  descr: Returned FDB table on ONUs
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: vlan_id, pattern: '[0-9]{1,4}', required: no}
     - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
 
 - name: pon_interface_counters
-  descr: Returned FDB table on ONTs
+  descr: Returned FDB table on ONUs
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
