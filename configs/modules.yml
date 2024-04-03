@@ -524,12 +524,12 @@
     - {name: mode, pattern: '(On|Off)', required: no, values: ['On', 'Off']}
 
 - name: digital_lines_list
-  descr: List of output power interfaces
+  descr: Digital line statuses
   arguments:
     - {name: id, pattern: '^[0-9]{1,3}$', required: no}
 
 - name: ctrl_digital_line
-  descr: Configure power output control
+  descr: Configure digital line(name, state, direction)
   arguments:
     - {name: id, pattern: '^[0-9]{1,3}$', required: yes}
     - {name: name, pattern: '.*', required: no}
@@ -537,12 +537,12 @@
     - {name: output, pattern: '(Low|High)', required: no, values: ['Low', 'High']}
 
 - name: analog_lines_list
-  descr: List of output power interfaces
+  descr: Analog line statuses
   arguments:
     - {name: id, pattern: '^[0-9]{1,3}$', required: no}
 
 - name: ctrl_analog_line
-  descr: Configure power output control
+  descr: Configure analog line name
   arguments:
     - {name: id, pattern: '^[0-9]{1,3}$', required: yes}
     - {name: name, pattern: '.*', required: no}
