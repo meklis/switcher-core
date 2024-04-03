@@ -367,7 +367,7 @@
     - {name: load_only, pattern: '^.*', required: no }
 
 - name: pon_onts_reasons
-  descr: Returned ONUs MAC addresses
+  descr: Offline reasons and time/duration of change statuses
   arguments:
     - {name: interface, pattern: '.*', required: no}
 
