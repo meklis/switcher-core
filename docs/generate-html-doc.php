@@ -59,9 +59,19 @@ $displayModulesForTypes = [
             'ctrl_port_state',
             'ctrl_port_speed',
             'ctrl_port_descr',
-            'ctrl_vlan_state',
-            'ctrl_vlan_port',
             'multi_console_command',
+        ],
+    ],
+    'ROUTER' => [
+        'info' => [
+            'system',
+            'interface_info',
+            'dhcp_server_info',
+            'lease_info',
+            'address_list_info',
+            'bgp_sessions',
+        ],
+        'management' => [
         ],
     ]
 ];
@@ -74,15 +84,15 @@ foreach ($devices as $dev) {
     $supportDevices[$dev->getDeviceType()][$dev->getKey()]['name'] = $dev->getName();
     $supportDevices[$dev->getDeviceType()][$dev->getKey()]['key'] = $dev->getKey();
     $supportDevices[$dev->getDeviceType()][$dev->getKey()]['modules'] = $dev->getModulesList();
-    if ($dev->getRewrites() && isset($dev->getRewrites()['mapping'])) {
-        foreach ($dev->getRewrites()['mapping'] as $mapping) {
-            if (!isset($mapping['rewrite']['key'])) continue;
-            if (!isset($mapping['rewrite']['name'])) continue;
-            $supportDevices[$dev->getDeviceType()][$mapping['rewrite']['key']]['name'] = $mapping['rewrite']['name'];
-            $supportDevices[$dev->getDeviceType()][$mapping['rewrite']['key']]['key'] = $mapping['rewrite']['key'];
-            $supportDevices[$dev->getDeviceType()][$mapping['rewrite']['key']]['modules'] = $dev->getModulesList();
-        }
-    }
+//    if ($dev->getRewrites() && isset($dev->getRewrites()['mapping'])) {
+//        foreach ($dev->getRewrites()['mapping'] as $mapping) {
+//            if (!isset($mapping['rewrite']['key'])) continue;
+//            if (!isset($mapping['rewrite']['name'])) continue;
+//            $supportDevices[$dev->getDeviceType()][$mapping['rewrite']['key']]['name'] = $mapping['rewrite']['name'];
+//            $supportDevices[$dev->getDeviceType()][$mapping['rewrite']['key']]['key'] = $mapping['rewrite']['key'];
+//            $supportDevices[$dev->getDeviceType()][$mapping['rewrite']['key']]['modules'] = $dev->getModulesList();
+//        }
+//    }
 }
 $modulesData = [];
 foreach ($reader->readModulesConfig() as $module) {
@@ -202,6 +212,11 @@ $html = "
     ".$buildTable($displayModulesForTypes['SWITCH']['info'], $supportDevices['SWITCH'])."
     <h3>Management</h3>
     ".$buildTable($displayModulesForTypes['SWITCH']['management'], $supportDevices['SWITCH'])."
+    <br>
+    <h2>Routers</h2>
+    <h3>Information</h3>
+    ".$buildTable($displayModulesForTypes['ROUTER']['info'], $supportDevices['ROUTER'])."
+   
 </body>
 ";
 

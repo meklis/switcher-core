@@ -484,7 +484,7 @@
     - {name: name, pattern: '.*', required: yes}
 
 - name: ctrl_ont_uni_admin_state
-  descr: Setting device name
+  descr: Set eth port state on ONU
   arguments:
     - {name: interface, pattern: '.*', required: yes}
     - {name: num, pattern: '.*', required: yes}
