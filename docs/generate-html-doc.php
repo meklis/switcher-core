@@ -32,7 +32,6 @@ $displayModulesForTypes = [
            'ctrl_port_descr',
            'ctrl_ont_delete',
            'ctrl_ont_uni_admin_state',
-           'save_config',
            'multi_console_command',
            'unregistered_onts',
         ],
