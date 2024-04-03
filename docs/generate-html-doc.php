@@ -8,7 +8,6 @@ $displayModulesForTypes = [
             'system',
             'sys_resources',
             'card_status',
-            'vlans',
             'link_info',
             'fdb',
             'interface_descriptions',
