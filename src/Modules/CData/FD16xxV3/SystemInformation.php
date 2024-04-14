@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\CData;
+namespace SwitcherCore\Modules\CData\FD16xxV3;
 
 
 use Exception;
