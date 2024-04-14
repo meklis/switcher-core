@@ -82,7 +82,7 @@ class OntReasons extends CDataAbstractModuleFD16xxV3
         $ids = array_keys($issetIds);
         $return = array_filter($return, function ($e) use ($ids) {
 
-          return in_array($e['interface']['id'], $ids);
+          return in_array($e['interface']['_snmp_id'], $ids);
         });
         return array_values($return);
     }
