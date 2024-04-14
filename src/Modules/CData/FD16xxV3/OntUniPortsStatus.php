@@ -90,7 +90,7 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
                 $unis[$_id][$rows[$cellID]] = $rw;
             }
         }
-        return array_values($unis);
+        return $unis;
     }
 
 
@@ -113,12 +113,31 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
         }
         $interface = $this->parseInterface($filter['interface']);
         $this->response = [];
+        $statuses = $this->getUniDataByConsole($interface);
+        $this->fillAdminStatus($statuses);
         $this->response[] = [
             'interface' => $interface,
-            'unis' => $this->getUniDataByConsole($interface)
+            'unis' => array_values($statuses),
         ];
 
         return $this;
+    }
+
+    public function fillAdminStatus(&$statuses)
+    {
+        $data = $this->formatResponse($this->snmp->walk([
+           Oid::init($this->oids->getOidByName('ont.uni.adminState')->getOid())
+        ]));
+        if($data['ont.uni.adminState']->error()) {
+            return $statuses;
+        }
+        foreach ($data['ont.uni.adminState']->fetchAll() as $dt) {
+            $id = Helper::getIndexByOid($dt->getOid());
+            if(isset($statuses[$id])) {
+                $statuses[$id]['admin_state'] = $dt->getParsedValue();
+            }
+        }
+        return  $statuses;
     }
 }
 

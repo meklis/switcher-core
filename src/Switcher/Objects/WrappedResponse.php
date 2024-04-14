@@ -54,7 +54,7 @@ class WrappedResponse {
     }
 
     /**
-     * @return \SnmpWrapper\Response\SnmpResponse[]
+     * @return SnmpResponse[]
      */
     public function fetchAll() {
         if(!$this->data->getResponse() && $this->data->getError()) {
