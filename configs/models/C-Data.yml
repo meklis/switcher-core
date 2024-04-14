@@ -412,8 +412,8 @@ models:
         - {name: pon0/0/15, id: 16782592,  xid: 21, type: PON, pontype: gpon, _slot: 0, _port: 15}
         - {name: pon0/0/16, id: 16782848,  xid: 22, type: PON, pontype: gpon, _slot: 0, _port: 16}
 
-  - name: C-Data FD16xx general must be rewrited
-    key: c_data_fd1608_must_be_rewrited
+  - name: C-Data FD1608
+    key: c_data_fd1608_rewrite
     detect: {description: .*,  objid: ^.1.3.6.1.4.1.17409$, ifacesCount: 14}
     inputs:
       - snmp
