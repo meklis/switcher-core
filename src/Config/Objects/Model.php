@@ -47,7 +47,7 @@ class Model
     /**
      * @var AbstractModule[]
      */
-    protected $modules;
+    protected $modulesObjects;
 
 
     /**
@@ -58,7 +58,7 @@ class Model
     /**
      * @var string[]
      */
-    protected $modulesNames;
+    protected $modules;
 
 
     /**
@@ -97,7 +97,7 @@ class Model
     function getModulesList()
     {
         $modules = [];
-        foreach ($this->modulesNames as $name => $_) {
+        foreach ($this->modules as $name => $_) {
             $modules[] = $name;
         }
         return $modules;
@@ -108,7 +108,7 @@ class Model
      */
     function getModulesListAssoc()
     {
-        return $this->modulesNames;
+        return $this->modules;
     }
 
     public static function init($arr): Model
@@ -148,7 +148,7 @@ class Model
         }
 
         if (isset($arr['modules'])) {
-            $model->modulesNames = $arr['modules'];
+            $model->modules = $arr['modules'];
         }
 
         if (isset($arr['rewrites'])) {
@@ -375,28 +375,30 @@ class Model
     /**
      * @return AbstractModule[]
      */
-    public function getModules(): array
+    public function getModulesObjects(): array
     {
-        return $this->modules;
+        return $this->modulesObjects;
     }
 
     /**
-     * @param AbstractModule[] $modules
+     * @param AbstractModule[] $modulesObjects
      */
-    public function setModules(array $modules): void
+    public function setModulesObjects(array $modulesObjects): void
     {
-        $this->modules = $modules;
+        $this->modulesObjects = $modulesObjects;
     }
 
     public function rewriteModelByValue($value)
     {
         if (!isset($this->getRewrites()['mapping'])) return $this;
         foreach ($this->getRewrites()['mapping'] as $rewrite) {
-            if (!preg_match("/{$rewrite['value']}/", $value)) continue;
-            if (isset($rewrite['rewrite'])) {
-                foreach ($rewrite['rewrite'] as $key => $value) {
-                    $this->{$key} = $value;
+            if (preg_match("/{$rewrite['value']}/", $value)) {
+                if (isset($rewrite['rewrite'])) {
+                    foreach ($rewrite['rewrite'] as $key => $rewriteValue) {
+                        $this->{$key} = $rewriteValue;
+                    }
                 }
+                break;
             }
         }
         return $this;
