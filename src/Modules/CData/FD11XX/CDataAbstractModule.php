@@ -72,7 +72,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 'xid' => $interface['xid'],
                 'type' => $interface['type'],
                 'phys_snmp_id' => $interface['phys_snmp_id'],
-                'onu_num' => null,
+                '_onu_num' => null,
                 'parent' => null,
                 '_snmp_id' => null,
             ];
@@ -87,7 +87,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'id' => ($interface['xid'] * 1000) + $onuNum,
                     'xid' => null,
                     'type' => 'ONU',
-                    'onu_num' => $onuNum,
+                    '_onu_num' => $onuNum,
                     'phys_snmp_id' => $interface['phys_snmp_id'],
                     '_snmp_id' => "{$interface['xid']}.{$onuNum}",
                 ];
@@ -102,14 +102,14 @@ abstract class CDataAbstractModule extends AbstractModule
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],
                     'phys_snmp_id' => $interface['phys_snmp_id'],
-                    'onu_num' => null,
+                    '_onu_num' => null,
                     '_snmp_id' => null,
                 ];
                 switch (count($m)) {
                     case 3:
                         $response['name'] .= ":{$m[2]}";
                         $response['parent'] = $interface['id'];
-                        $response['onu_num'] = (int)$m[2];
+                        $response['_onu_num'] = (int)$m[2];
                         $response['type'] = 'ONU';
                         $response['_snmp_id'] = "{$response['xid']}.{$m[2]}";
                         $response['id'] = ((int)$response['xid'] * 1000) + $m[2];

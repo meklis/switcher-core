@@ -90,7 +90,7 @@ class GponOntFdbTable extends CDataAbstractModule
     private function processWithInterface($interface) {
         $response = $this->formatResponse(
             $this->snmp->walk(
-                [Oid::init($this->oids->getOidByName('pon.fdbWithUni')->getOid() . ".{$interface['xid']}.{$interface['onu_num']}")]
+                [Oid::init($this->oids->getOidByName('pon.fdbWithUni')->getOid() . ".{$interface['xid']}.{$interface['_onu_num']}")]
             )
         );
         return $this->parseWalk($response);

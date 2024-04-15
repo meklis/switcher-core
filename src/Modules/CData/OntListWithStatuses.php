@@ -61,7 +61,7 @@ class OntListWithStatuses extends CDataAbstractModule
                         'id' =>  $interface['id'] + $ontNum,
                         'xid' => $interface['xid'],
                         'type' => 'ONU',
-                        'onu_num' => $ontNum,
+                        '_onu_num' => $ontNum,
                         'uni' => null,
                     ],
                     'status' => $statusText,
