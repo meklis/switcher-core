@@ -273,10 +273,10 @@ abstract class BDcomAbstractModule extends AbstractModule
             $slot = null;
             $port = null;
             $onuNum = null;
-            if(preg_match('/.*?([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if(preg_match('/.*?([0-9]{1,3})\/([0-9]{1,3}):?([0-9]{1,3})?$/', $iface->getValue(), $m)) {
                 $slot = (int)$m[1];
                 $port = (int)$m[2];
-                $onuNum = (int)$m[3];
+                $onuNum = isset($m[3]) ? (int)$m[3] : null;
             }
 
             $id = $this->getIdByName($name);
@@ -290,7 +290,6 @@ abstract class BDcomAbstractModule extends AbstractModule
                 '_slot' => $slot,
                 '_port' => $port,
                 '_onu_num' => $onuNum,
-                '_type' => 'epon',
             ];
         }
         ksort($ifaces);
