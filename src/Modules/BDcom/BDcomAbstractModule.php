@@ -129,67 +129,88 @@ abstract class BDcomAbstractModule extends AbstractModule
         $this->physicalInterfaces = [];
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
-            if (preg_match('/^GigaEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^GigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'GE',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'GigaEthernet',
                 ];
             }
-            if (preg_match('/^TGigaEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^TGigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'TGE',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'TGigaEthernet',
                 ];
             }
-            if (preg_match('/^FastEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^FastEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "fe{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'FE',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'FastEthernet',
                 ];
             }
-            if (preg_match('/^EPON([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^EPON(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "epon{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'EPON',
                 ];
             }
-            if (preg_match('/^g([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^g(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'GE',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'g',
                 ];
             }
-            if (preg_match('/^tg([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^tg(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'TGE',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'tg',
                 ];
             }
-            if (preg_match('/^epon([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
+            if (preg_match('/^epon(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "epon{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => $this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
+                    '_slot' => (int)$m[2],
+                    '_port' => (int)$m[3],
+                    '_type' => 'epon',
                 ];
             }
             if (preg_match('/aggregator([0-9]{1,3})$/', $iface->getValue(), $m)) {
@@ -199,6 +220,9 @@ abstract class BDcomAbstractModule extends AbstractModule
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
+                    '_slot' => null,
+                    '_port' => $m[1],
+                    '_type' => 'aggregator',
                 ];
             }
         }
@@ -245,7 +269,16 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (strpos($iface->getValue(), "VLAN") !== false) {
                 $type = 'vlan';
                 continue;
-            };
+            }
+            $slot = null;
+            $port = null;
+            $onuNum = null;
+            if(preg_match('/.*?([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $iface->getValue(), $m)) {
+                $slot = (int)$m[1];
+                $port = (int)$m[2];
+                $onuNum = (int)$m[3];
+            }
+
             $id = $this->getIdByName($name);
             $ifaces[$id] = [
                 'id' => $id,
@@ -254,6 +287,10 @@ abstract class BDcomAbstractModule extends AbstractModule
                 '_llid_id' => isset($llidSeqs[$name]) ? $llidSeqs[$name] : null,
                 'type' => $type,
                 'parent' => $this->findParentByName($name),
+                '_slot' => $slot,
+                '_port' => $port,
+                '_onu_num' => $onuNum,
+                '_type' => 'epon',
             ];
         }
         ksort($ifaces);
