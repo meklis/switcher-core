@@ -58,7 +58,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
                 $data[$uniqId] = [
                     '_serial_ascii' => $sn->getValue(),
                     '_serial_hex' => $hexVal,
-                    'serial' => $sn->getValue(),
+                    'serial' => str_replace("-", "", $sn->getValue()),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,
