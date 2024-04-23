@@ -345,6 +345,8 @@ models:
               ctrl_port_descr: \SwitcherCore\Modules\CData\FD16xxV3\PortDescriptionControl
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
+              unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
               pon_port_size: 128
               console_conn_type: cdata
@@ -381,6 +383,8 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
+      unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+      pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
     extra:
       pon_port_size: 128
       console_conn_type: cdata
@@ -453,6 +457,8 @@ models:
               ctrl_port_descr: \SwitcherCore\Modules\CData\FD16xxV3\PortDescriptionControl
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
+              unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
               pon_port_size: 128
               console_conn_type: cdata
@@ -490,6 +496,8 @@ models:
               multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
               ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
               ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
+              unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
               pon_port_size: 128
               console_conn_type: cdata

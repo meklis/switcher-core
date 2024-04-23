@@ -15,9 +15,6 @@
 - {name: vlan.tagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.4}
 - {name: vlan.untagged, oid: .1.3.6.1.4.1.17409.2.3.7.2.1.1.5}
 
-- {name: sys.dbaProfileNames, oid: .1.3.6.1.4.1.17409.2.8.11.1.1.1.2}
-- {name: sys.lineProfileNames, oid: .1.3.6.1.4.1.17409.2.8.11.2.1.1.2}
-- {name: sys.srvProfileNames, oid: .1.3.6.1.4.1.17409.2.8.11.3.1.1.2}
 
 - {name: snoop.dhcpBindMacAddr, oid: .1.3.6.1.4.1.34592.1.3.100.5.4.1.3}
 - {name: snoop.dhcpBindPortId, oid: .1.3.6.1.4.1.34592.1.3.100.5.4.1.4}
@@ -106,3 +103,15 @@
 #- {name: ont.uni.statOutCrcPkts, oid: .1.3.6.1.4.1.17409.2.3.10.1.1.44 }
 #- {name: ont.uni.statOutDropPkts, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.45 }
 #- {name: ont.uni.statOutJabber, oid:  .1.3.6.1.4.1.17409.2.3.10.1.1.46 }
+
+#Unregistered Block
+- {name: ont.autofind.ident, oid: .1.3.6.1.4.1.17409.2.8.4.7.1.3}
+- {name: ont.autofind.password, oid: .1.3.6.1.4.1.17409.2.8.4.7.1.4}
+- {name: ont.autofind.equipmentId, oid: .1.3.6.1.4.1.17409.2.8.4.7.1.2}
+- {name: ont.autofind.softwareVer, oid: .1.3.6.1.4.1.17409.2.8.4.7.1.8}
+#- {name: ont.autofind.hardwareVer, oid: .1.3.6.1.4.1.17409.2.8.4.7.1.9}
+
+- {name: profile.dba.name, oid: .1.3.6.1.4.1.17409.2.8.11.1.1.1.2}
+- {name: profile.line.name, oid: .1.3.6.1.4.1.17409.2.8.11.2.1.1.2}
+- {name: profile.srv.name, oid: .1.3.6.1.4.1.17409.2.8.11.3.1.1.2}
+- {name: profile.traffic.name, oid: .1.3.6.1.4.1.17409.2.8.11.4.1.1.2}

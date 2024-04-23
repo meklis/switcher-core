@@ -319,6 +319,10 @@
 - name: gpon_profiles
   descr: Profiles
 
+#Get ONU state by interface
+- name: pon_profiles
+  descr: Return list of profiles on OLT (included EPON/GPON data)
+
 - name: card_list
   descr: Listing of cards on OLT
 
