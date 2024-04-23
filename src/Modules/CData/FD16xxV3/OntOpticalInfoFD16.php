@@ -76,6 +76,8 @@ class OntOpticalInfoFD16 extends CDataAbstractModuleFD16xxV3
             if(!isset($e['tx'])) $e['tx'] = null;
             if(!isset($e['olt_rx'])) $e['olt_rx'] = null;
             if(!isset($e['rx'])) $e['rx'] = null;
+            if($e['rx'] == -0.01) $e['rx'] = null;
+            if($e['olt_rx'] == -0.01) $e['rx'] = null;
             return $e;
         },$return));
     }

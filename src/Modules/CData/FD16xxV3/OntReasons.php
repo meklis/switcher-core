@@ -58,8 +58,6 @@ class OntReasons extends CDataAbstractModuleFD16xxV3
             $oid = $this->oids->findOidById($poolerResponse->getOid());
             $responses[] = WrappedResponse::init($poolerResponse, $oid->getValues());
         }
-        $regTimeSeconds = null;
-        $onlineTimeSeconds = null;
         foreach ($responses as $r) {
             $wr = $r->fetchAll()[0];
             $oid = $this->oids->findOidById($wr->getOid());
@@ -70,15 +68,11 @@ class OntReasons extends CDataAbstractModuleFD16xxV3
                                          $return[$onuId]['last_reg_since'] = $wr->getValueAsTimeTicks(SnmpResponse::HUMANIZE_DURATION);
                                          $regTimeSeconds = ['sec' => $wr->getValue(), 'onu_id' => $onuId];
                                          break;
-                case 'ont.lastDownSince': $onlineTimeSeconds = ['sec' => $wr->getValue(), 'onu_id' => $onuId];
+                case 'ont.lastDownSince': $return[$onuId]['last_dereg']  = $wr->getValue();
                                          break;
                 case 'ont.lastDownReason': $return[$onuId]['last_down_reason'] = $wr->getParsedValue(); break;
             }
         }
-        if($onlineTimeSeconds && $regTimeSeconds && $return[$onlineTimeSeconds['onu_id']]['status'] !== 'Online') {
-            $return[$onlineTimeSeconds['onu_id']]['last_dereg'] = date("Y-m-d H:i:s", time() - ($regTimeSeconds['sec'] - $onlineTimeSeconds['sec']));
-        }
-
         $ids = array_keys($issetIds);
         $return = array_filter($return, function ($e) use ($ids) {
 

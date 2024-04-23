@@ -114,6 +114,10 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
         $interface = $this->parseInterface($filter['interface']);
         $this->response = [];
         $statuses = $this->getUniDataByConsole($interface);
+        if(!$statuses) {
+            $this->response = null;
+            return  $this;
+        }
         $this->fillAdminStatus($statuses);
         $this->response[] = [
             'interface' => $interface,

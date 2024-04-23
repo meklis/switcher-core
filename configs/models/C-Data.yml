@@ -350,8 +350,8 @@ models:
               console_conn_type: cdata
               console_commands_after_connect:
                 - { command: enable, check_password: true }
+                - terminal length 0
                 - config
-                - vty output show-more
     modules:
       system: \SwitcherCore\Modules\CData\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
@@ -458,8 +458,8 @@ models:
               console_conn_type: cdata
               console_commands_after_connect:
                 - { command: enable, check_password: true }
+                - terminal length 0
                 - config
-                - vty output show-more
 
         - value: ^.*
           rewrite:
