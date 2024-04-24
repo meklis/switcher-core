@@ -383,7 +383,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
-      unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+      unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
     extra:
       pon_port_size: 128
@@ -496,7 +496,7 @@ models:
               multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
               ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
               ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
-              unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
               pon_port_size: 128
