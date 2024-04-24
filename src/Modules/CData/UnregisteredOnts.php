@@ -38,7 +38,11 @@ class UnregisteredOnts extends CDataAbstractModule
             return Oid::init($e->getOid());
         }, $this->oids->getOidsByRegex('ont.autofind..*'));
         $response = $this->formatResponse($this->snmp->walk($oids));
-        $this->response = array_values($this->getGponUnregisteredFromResponses($response));
+        if($this->model->getExtraParamByName('pon_type') === 'EPON') {
+            $this->response = array_values($this->getEponUnregisteredFromResponses($response));
+        } elseif ($this->model->getExtraParamByName('pon_type') === 'GPON') {
+            $this->response = array_values($this->getGponUnregisteredFromResponses($response));
+        }
         return $this;
     }
 
@@ -68,7 +72,7 @@ class UnregisteredOnts extends CDataAbstractModule
                     'loid' => null,
                     'reg_time' => null,
                     'model' => null,
-                    'type' => null,
+                    'type' => 'gpon',
                 ];
             }
         }
@@ -83,6 +87,40 @@ class UnregisteredOnts extends CDataAbstractModule
         foreach ($response['ont.autofind.softwareVer']->fetchAll() as $d) {
             $uniqId = Helper::getIndexByOid($d->getOid());
             $data[$uniqId]['fw_version'] = $this->convertHexToString($d->getHexValue());
+        }
+        return $data;
+    }
+
+    function getEponUnregisteredFromResponses($response)
+    {
+        $data = [];
+        if (isset($response['ont.autofind.ident'])) {
+            if ($response['ont.autofind.ident']->error()) {
+                return [];
+            }
+            foreach ($response['ont.autofind.ident']->fetchAll() as $onuId => $sn) {
+                $uniqId = Helper::getIndexByOid($sn->getOid());
+                $ifacePort = explode(":", $this->parseInterface($uniqId)['name'])[0];
+                $iface = $this->parseInterface($ifacePort . ":" . ($onuId + 1));
+                $data[$uniqId] = [
+                    '_mac_address_hex' => str_replace(":", "", $sn->getHexValue()),
+                    'mac_address' => $sn->getHexValue(),
+                    'interface' => $iface,
+                    'password' => null,
+                    'version' => null,
+                    'equipment_id' => null,
+                    'fw_version' => null,
+                    'check_code' => null,
+                    'loid' => null,
+                    'reg_time' => null,
+                    'model' => null,
+                    'type' => 'epon',
+                ];
+            }
+        }
+        foreach ($response['ont.autofind.password']->fetchAll() as $d) {
+            $uniqId = Helper::getIndexByOid($d->getOid());
+            $data[$uniqId]['password'] = $this->convertHexToString($d->getHexValue());
         }
         return $data;
     }

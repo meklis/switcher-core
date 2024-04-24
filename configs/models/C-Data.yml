@@ -34,9 +34,9 @@ models:
       link_info: \SwitcherCore\Modules\CData\FD11XX\LinkInfo
       pon_onts_reasons: \SwitcherCore\Modules\CData\FD11XX\OntReasons
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
-
     extra:
       pon_port_size: 64
+      pon_type: EPON
       console_conn_type: stels
       interfaces:
         - {name: ge1,  id: 100001,  xid: null, type: 1G-SFP, phys_snmp_id: 1}
@@ -89,6 +89,7 @@ models:
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
       pon_ports_optical: \SwitcherCore\Modules\CData\FD11XX\PonPortsOptical
     extra:
+      pon_type: EPON
       console_conn_type: stels
       pon_port_size: 64
       interfaces:
@@ -146,7 +147,10 @@ models:
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
+      unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
     extra:
+      pon_type: EPON
       pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
@@ -203,7 +207,10 @@ models:
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
+      unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
     extra:
+      pon_type: EPON
       pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
@@ -270,7 +277,10 @@ models:
       console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
+      unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
     extra:
+      pon_type: EPON
       pon_port_size: 64
       console_conn_type: cdata
       console_commands_after_connect:
@@ -348,6 +358,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
+              pon_type: GPON
               pon_port_size: 128
               console_conn_type: cdata
               console_commands_after_connect:
@@ -386,6 +397,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
     extra:
+      pon_type: GPON
       pon_port_size: 128
       console_conn_type: cdata
       console_commands_after_connect:
@@ -460,6 +472,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
+              pon_type: GPON
               pon_port_size: 128
               console_conn_type: cdata
               console_commands_after_connect:
@@ -499,6 +512,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
             extra:
+              pon_type: GPON
               pon_port_size: 128
               console_conn_type: cdata
               console_commands_after_connect:
