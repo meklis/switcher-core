@@ -41,7 +41,7 @@ class UniInterfacesVlans extends BDcomAbstractModule
      */
     public function run($filter = [])
     {
-        $gponProfiles = $this->getModule('gpon_profiles')->run()->getPretty();
+        $gponProfiles = $this->getModule('pon_profiles')->run()->getPretty();
         if(!isset($gponProfiles['vlan'])) {
             throw new \Exception("Error load vlans profiles list from gpon_profiles module");
         }
