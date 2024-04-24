@@ -28,6 +28,7 @@ models:
       console_command: \SwitcherCore\Modules\ZTE\C300Series\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\ZTE\C300Series\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
+      pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
@@ -74,6 +75,7 @@ models:
       console_command: \SwitcherCore\Modules\ZTE\C300Series\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\ZTE\C300Series\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
+      pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
@@ -120,6 +122,7 @@ models:
       console_command: \SwitcherCore\Modules\ZTE\C300Series\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\ZTE\C300Series\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
+      pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
@@ -166,6 +169,7 @@ models:
       console_command: \SwitcherCore\Modules\ZTE\C300Series\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\ZTE\C300Series\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
+      pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
@@ -221,6 +225,7 @@ models:
       console_command: \SwitcherCore\Modules\ZTE\C600Series\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\ZTE\C600Series\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\ZTE\C600Series\GponOntProfileList
+      pon_profiles: \SwitcherCore\Modules\ZTE\C600Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C600Series\Fdb
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C600Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C600Series\OntConfiguration

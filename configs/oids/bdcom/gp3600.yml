@@ -85,3 +85,6 @@
 - {name: profile.onu.flow.uni_type, oid: .1.3.6.1.4.1.3320.10.6.2.1.3, values: {1: ethernet-uni, 2: pots-uni, 3: t1, 4: e1, 5: hpna, 6: ip-host} }
 
 - {name: profile.onu.uniport.name, oid: .1.3.6.1.4.1.3320.10.6.8.1.2}
+
+- {name: ont.disabled.reason, oid: .1.3.6.1.4.1.3320.10.2.8.1.5, values: {1: UnknownSN, 2: MismatchPassword, 3: Anti-Rogue, 4: Ranging-Failed, 5: LoidAuthFailed, 6: Manual}}
+- {name: ont.disabled.ident, oid: .1.3.6.1.4.1.3320.10.2.8.1.6 }

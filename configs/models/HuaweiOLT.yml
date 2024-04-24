@@ -32,6 +32,7 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
+      pon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
       ctrl_port_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlPortDescription
@@ -77,6 +78,7 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
+      pon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
@@ -123,6 +125,7 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
+      pon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
@@ -170,6 +173,7 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
+      pon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
@@ -217,6 +221,7 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
+      pon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription
@@ -264,6 +269,7 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiOLT\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiOLT\MultiRawConsoleCommand
       gpon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
+      pon_profiles: \SwitcherCore\Modules\HuaweiOLT\GponProfiles
       unregistered_onts: \SwitcherCore\Modules\HuaweiOLT\UnregisteredOnts
       ctrl_ont_delete: \SwitcherCore\Modules\HuaweiOLT\OntDelete
       ctrl_ont_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlOntDescription

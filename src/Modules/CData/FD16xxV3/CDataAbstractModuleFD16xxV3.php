@@ -115,9 +115,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
         $onuNum = 0;
         $binary = str_pad(decbin($oid), 24, '0', STR_PAD_LEFT);
         $type = bindec(substr($binary, 0, 6));
-        if($type != 18) {
-            throw new \Exception("Unknown type decoded with id $type");
-        }
+
         $portOlt = bindec(substr($binary, 6, 6)) + 1;
         $onuNum = bindec(substr($binary, 12, 12));
         if(!$onuNum) {
@@ -145,7 +143,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
         ];
     }
 
-    protected function parseInterface($input)
+    protected function parseInterface($input, $searchBy=null)
     {
         //Определение, что это ID физ порта
         if(is_numeric($input) && $input >= 1000 && $input <= 3000) {
@@ -157,7 +155,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
         }
 
         //Определение, что это локальный ID пон-порта или ОНУ
-        if (is_numeric($input) && $input >= 10000000) {
+        if (is_numeric($input) && $input >= 10000000 && $searchBy != '_snmp_id') {
             $portID = floor($input / 1000) * 1000;
             $interface = $this->findInterface($portID, 'id');
             if ($interface === null) {
@@ -178,7 +176,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
         }
 
         //Поиск по _snmp_id или преобразование номера в ОНУ
-        if (is_numeric($input) && $input > 10000  && $input < 10000000) {
+        if (is_numeric($input) && $input > 10000  && ($input < 10000000 || $searchBy = '_snmp_id')) {
             //Check is port
             if ($interface = $this->findInterface($input, '_snmp_id')) {
                 return $interface;

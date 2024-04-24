@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\CData\FD16xxV3;
+namespace SwitcherCore\Modules\BDcom\GP3600;
 
 
 use Exception;
@@ -10,7 +10,7 @@ use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
+class UnregisteredOnts extends BDcomAbstractModule
 {
     /**
      * @var WrappedResponse[]
@@ -36,7 +36,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
     {
         $oids = array_map(function ($e) {
             return Oid::init($e->getOid());
-        }, $this->oids->getOidsByRegex('ont.autofind..*'));
+        }, $this->oids->getOidsByRegex('ont.disabled\..*'));
         $response = $this->formatResponse($this->snmp->walk($oids));
         $this->response = array_values($this->getGponUnregisteredFromResponses($response));
         return $this;
@@ -45,20 +45,21 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
     function getGponUnregisteredFromResponses($response)
     {
         $data = [];
-        if (isset($response['ont.autofind.ident'])) {
-            if ($response['ont.autofind.ident']->error()) {
+        if (isset($response['ont.disabled.ident'])) {
+            if ($response['ont.disabled.ident']->error()) {
                 return [];
             }
-            foreach ($response['ont.autofind.ident']->fetchAll() as $onuId => $sn) {
+            foreach ($response['ont.disabled.ident']->fetchAll() as  $sn) {
+                $portId = Helper::getIndexByOid($sn->getOid(), 1);
                 $uniqId = Helper::getIndexByOid($sn->getOid());
-                $ifacePort = explode(":", $this->parseInterface($uniqId, '_snmp_id')['name'])[0];
-                $iface = $this->parseInterface($ifacePort . ":" . ($onuId + 1));
+                $ponPort = $this->parseInterface($portId, 'xid');
+                $iface = $this->parseInterface($ponPort['name'] . ":" . $uniqId);
                 $val = $sn->getValue();
                 $hexVal = strtoupper(bin2hex(substr($val, 0, 4))) . substr($val, 5);
-                $data[$uniqId] = [
+                $data["{$portId}.{$uniqId}"] = [
                     '_serial_ascii' => $sn->getValue(),
                     '_serial_hex' => $hexVal,
-                    'serial' => str_replace("-", "", $sn->getValue()),
+                    'serial' => str_replace(":", "", $sn->getValue()),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,
@@ -68,21 +69,16 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
                     'loid' => null,
                     'reg_time' => null,
                     'model' => null,
-                    'type' => null,
+                    'type' => 'gpon',
                 ];
             }
         }
-        foreach ($response['ont.autofind.equipmentId']->fetchAll() as $d) {
+        foreach ($response['ont.disabled.reason']->fetchAll() as $d) {
+            $portId = Helper::getIndexByOid($d->getOid(), 1);
             $uniqId = Helper::getIndexByOid($d->getOid());
-            $data[$uniqId]['equipment_id'] = $this->convertHexToString($d->getHexValue());
-        }
-        foreach ($response['ont.autofind.password']->fetchAll() as $d) {
-            $uniqId = Helper::getIndexByOid($d->getOid());
-            $data[$uniqId]['password'] = $this->convertHexToString($d->getHexValue());
-        }
-        foreach ($response['ont.autofind.softwareVer']->fetchAll() as $d) {
-            $uniqId = Helper::getIndexByOid($d->getOid());
-            $data[$uniqId]['fw_version'] = $this->convertHexToString($d->getHexValue());
+            if($d->getParsedValue() != 'UnknownSN') {
+                unset($data["{$portId}.{$uniqId}"]);
+            }
         }
         return $data;
     }
