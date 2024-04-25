@@ -51,22 +51,34 @@ class GetProfiles extends CDataAbstractModuleFD16xxV3
         ];
         if(isset($this->response['profile.dba.name']) && !$this->response['profile.dba.name']->error()) {
             foreach ($this->response['profile.dba.name']->fetchAll() as $d) {
-                $data['dba'][] = $this->convertHexToString($d->getHexValue());
+                $data['dba'][] = [
+                    'id' => Helper::getIndexByOid($d->getOid()),
+                    'name' => $this->convertHexToString($d->getHexValue())
+                ];
             }
         }
         if(isset($this->response['profile.line.name']) && !$this->response['profile.line.name']->error()) {
             foreach ($this->response['profile.line.name']->fetchAll() as $d) {
-                $data['line'][] = $this->convertHexToString($d->getHexValue());
+                $data['line'][] =  [
+                    'id' => Helper::getIndexByOid($d->getOid()),
+                    'name' => $this->convertHexToString($d->getHexValue())
+                ];
             }
         }
         if(isset($this->response['profile.srv.name']) && !$this->response['profile.srv.name']->error()) {
             foreach ($this->response['profile.srv.name']->fetchAll() as $d) {
-                $data['srv'][] = $this->convertHexToString($d->getHexValue());
+                $data['srv'][] =  [
+                    'id' => Helper::getIndexByOid($d->getOid()),
+                    'name' => $this->convertHexToString($d->getHexValue())
+                ];
             }
         }
         if(isset($this->response['profile.traffic.name']) && !$this->response['profile.traffic.name']->error()) {
             foreach ($this->response['profile.traffic.name']->fetchAll() as $d) {
-                $data['traffic'][] = $this->convertHexToString($d->getHexValue());
+                $data['traffic'][] =  [
+                    'id' => Helper::getIndexByOid($d->getOid()),
+                    'name' => $this->convertHexToString($d->getHexValue())
+                ];
             }
         }
         return $data;
