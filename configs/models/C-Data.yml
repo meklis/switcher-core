@@ -460,7 +460,7 @@ models:
               parse_interface: \SwitcherCore\Modules\CData\FD16xxV3\ParseInterface
               interface_descriptions: \SwitcherCore\Modules\CData\FD16xxV3\InterfaceDescriptionsFD16
               sys_resources: \SwitcherCore\Modules\CData\FD16xxV3\SystemResources
-              interfaces_list: \SwitcherCore\Modules\CData\FD16xxV3\PonPortsList
+              interfaces_list: \SwitcherCore\Modules\CData\FD16xxV3\InterfacesList
               link_info: \SwitcherCore\Modules\CData\FD16xxV3\LinkInfo
               ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
               ctrl_ont_descr: \SwitcherCore\Modules\CData\FD16xxV3\CtrlOntDescription
