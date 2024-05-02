@@ -27,16 +27,17 @@ class OntSerial extends BDcomAbstractModule
     {
 
         $DATA = [];
+        $useCache = !isset($filter['use_cache']) || $filter['use_cache'] == 'yes';
         $resp = $this->getResponseByName('ont.serial');
         if($filter['interface']) {
-            $iface = $this->parseInterface($filter['interface']);
+            $iface = $this->parseInterface($filter['interface'], 'id', !$useCache);
             $DATA[] = [
               'interface' => $iface,
               'serial' => str_replace(":", "", $resp->fetchOne()->getParsedValue()),
             ];
         }
         foreach ($resp->fetchAll() as $resp) {
-            $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
+            $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'id', !$useCache);
             $DATA[] = [
                 'interface' => $iface,
                 'serial' => str_replace(":", "", $resp->getParsedValue()),

@@ -357,12 +357,14 @@
   descr: ONUs MAC addresses (for EPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
+    - {name: use_cache, pattern: '(no|yes)', required: no}
 
 - name: pon_onts_serial
   descr: ONUs serial number (for GPON)
   arguments:
     - {name: interface, pattern: '.*', required: no}
     - {name: sn_as_ascii, pattern: '.*', required: no}
+    - {name: use_cache, pattern: '(no|yes)', required: no}
 
 - name: pon_onts_optical
   descr: Optical information (rx, tx, olt rx, distance)

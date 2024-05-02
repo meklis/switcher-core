@@ -25,6 +25,7 @@ class OntMacAddress extends BDcomAbstractModule
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
 
+        $useCache = !isset($filter['use_cache']) || $filter['use_cache'] == 'yes';
         if($filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             $mac = Helper::oid2macArray([
@@ -40,7 +41,7 @@ class OntMacAddress extends BDcomAbstractModule
             ];
         } else {
             $response = [];
-            foreach ($this->getInterfacesIds() as $iface) {
+            foreach ($this->getInterfacesIds($useCache) as $iface) {
                 if(!$iface['_llid_id']) continue;
                 $response[] = [
                   'interface' => $iface,

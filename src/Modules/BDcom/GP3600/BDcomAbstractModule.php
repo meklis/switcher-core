@@ -40,9 +40,9 @@ abstract class BDcomAbstractModule extends AbstractModule
         return $resp;
     }
 
-    protected function parseInterface($input, $parseBy='id')
+    protected function parseInterface($input, $parseBy='id', $useCache = true)
     {
-        $ifaces = $this->getInterfacesIds();
+        $ifaces = $this->getInterfacesIds($useCache);
         foreach ($this->getPhysicalInterfaces() as $physicalInterface) {
             $ifaces[$physicalInterface['id']] = $physicalInterface;
         }
@@ -89,21 +89,21 @@ abstract class BDcomAbstractModule extends AbstractModule
        throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
-    function getInterfacesIds() {
+    function getInterfacesIds($useCache = true) {
         if(!$this->interfacesIds) {
-            $this->loadInterfaces();
+            $this->loadInterfaces($useCache);
         }
         return $this->interfacesIds;
     }
-    protected function getPhysicalInterfaces() {
+    protected function getPhysicalInterfaces($useCache = true) {
         if(!$this->physicalInterfaces) {
-            $this->loadInterfaces();
+            $this->loadInterfaces($useCache);
         }
         return $this->physicalInterfaces;
     }
-    private function loadInterfaces() {
+    private function loadInterfaces($useCache = true) {
         $data = $this->getCache("interfaces_list", true);
-        if($data) {
+        if($data && $useCache) {
             $this->interfacesIds = $data['ifaces_list'];
             $this->physicalInterfaces = $data['ifaces_physical'];
             return $this;

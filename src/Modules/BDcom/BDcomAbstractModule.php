@@ -97,26 +97,26 @@ abstract class BDcomAbstractModule extends AbstractModule
         throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
-    function getInterfacesIds()
+    function getInterfacesIds($useCache = true)
     {
         if (!$this->interfacesIds) {
-            $this->loadInterfaces();
+            $this->loadInterfaces($useCache);
         }
         return $this->interfacesIds;
     }
 
-    protected function getPhysicalInterfaces()
+    protected function getPhysicalInterfaces($useCache = true)
     {
         if (!$this->physicalInterfaces) {
-            $this->loadInterfaces();
+            $this->loadInterfaces($useCache);
         }
         return $this->physicalInterfaces;
     }
 
-    private function loadInterfaces()
+    private function loadInterfaces($useCache = true)
     {
         $data = $this->getCache("interfaces_list", true);
-        if ($data) {
+        if ($data && $useCache) {
             $this->interfacesIds = $data['ifaces_list'];
             $this->physicalInterfaces = $data['ifaces_physical'];
             return $this;
@@ -273,7 +273,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             $slot = null;
             $port = null;
             $onuNum = null;
-            if(preg_match('/.*?([0-9]{1,3})\/([0-9]{1,3}):?([0-9]{1,3})?$/', $iface->getValue(), $m)) {
+            if (preg_match('/.*?([0-9]{1,3})\/([0-9]{1,3}):?([0-9]{1,3})?$/', $iface->getValue(), $m)) {
                 $slot = (int)$m[1];
                 $port = (int)$m[2];
                 $onuNum = isset($m[3]) ? (int)$m[3] : null;
