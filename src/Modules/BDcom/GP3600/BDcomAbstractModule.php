@@ -127,6 +127,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_slot' => (int)$m[2],
                     '_port' => (int)$m[3],
                     '_type' => 'GigaEthernet',
+                    '_technology' => null,
                 ];
             } else if (preg_match('/^TGigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
@@ -138,6 +139,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_slot' => (int)$m[2],
                     '_port' => (int)$m[3],
                     '_type' => 'TGigaEthernet',
+                    '_technology' => null,
                 ];
             } else if (preg_match('/^gpon(([0-9])\/([0-9]{1,3}))$/', strtolower($iface->getValue()), $m)) {
                 $name = "gpon{$m[1]}";
@@ -149,6 +151,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_slot' => (int)$m[2],
                     '_port' => (int)$m[3],
                     '_type' => 'gpon',
+                    '_technology' => 'gpon',
                 ];
             } else if (preg_match('/^gpon0\/([0-9]{1,2}):([0-9]{1,3})$/', strtolower($iface->getValue()), $m)) {
                 $ifaces[$id] = [
@@ -161,6 +164,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_port' => (int)$m[1],
                     '_onu_num' => (int)$m[2],
                     '_type' => 'gpon',
+                    '_technology' => 'gpon',
                 ];
             }
         }

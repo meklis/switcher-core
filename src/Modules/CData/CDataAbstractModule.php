@@ -67,6 +67,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 'uni' => null,
                 'parent' => null,
                 'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
+                '_technology' => isset($interface['pontype']) ? $interface['pontype'] : null,
             ];
         } elseif (is_numeric($input) && $input > 10000) {
             //Check is port
@@ -82,6 +83,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     '_onu_num' => null,
                     'uni' => null,
                     'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
+                    '_technology' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
             }
             //Find ont number
@@ -100,6 +102,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => 'ONU',
                     'uni' => null,
                     'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
+                    '_technology' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
             }
         } elseif (!is_numeric($input)) {
@@ -116,6 +119,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     '_onu_num' => null,
                     'uni' => null,
                     'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
+                    '_technology' => isset($interface['pontype']) ? $interface['pontype'] : null,
                 ];
                 switch (count($m)) {
                     case 7:

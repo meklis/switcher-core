@@ -175,6 +175,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_slot' => (int)$m[2],
                     '_port' => (int)$m[3],
                     '_type' => 'EPON',
+                    '_technology' => 'epon',
                 ];
             }
             if (preg_match('/^g(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
@@ -211,6 +212,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_slot' => (int)$m[2],
                     '_port' => (int)$m[3],
                     '_type' => 'epon',
+                    '_technology' => 'epon',
                 ];
             }
             if (preg_match('/aggregator([0-9]{1,3})$/', $iface->getValue(), $m)) {
@@ -290,6 +292,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 '_slot' => $slot,
                 '_port' => $port,
                 '_onu_num' => $onuNum,
+                '_technology' => 'epon',
             ];
         }
         ksort($ifaces);

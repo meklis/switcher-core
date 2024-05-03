@@ -74,6 +74,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
                     '_slot' => $m[3],
                     '_port' => $m[4],
                     '_onu_num' => null,
+                    '_technology' => 'gpon',
                 ];
             }
         }
@@ -140,6 +141,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
             '_shelf' => $iface['_shelf'],
             '_slot' => $iface['_slot'],
             '_port' => $iface['_port'],
+            '_technology' => 'gpon',
         ];
     }
 
