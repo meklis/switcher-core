@@ -291,7 +291,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 'parent' => $this->findParentByName($name),
                 '_slot' => $slot,
                 '_port' => $port,
-                '_onu_num' => $onuNum,
+                '_onu' => $onuNum,
                 '_technology' => 'epon',
             ];
         }

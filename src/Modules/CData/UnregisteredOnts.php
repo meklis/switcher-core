@@ -105,6 +105,7 @@ class UnregisteredOnts extends CDataAbstractModule
                 $data[$uniqId] = [
                     '_mac_address_hex' => str_replace(":", "", $sn->getHexValue()),
                     'mac_address' => $sn->getHexValue(),
+                    '_ident' => $sn->getHexValue(),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,

@@ -62,7 +62,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 'type' => $interface['type'],
                 '_port' => isset($interface['_port'])  ? $interface['_port'] : null,
                 '_slot' => isset($interface['_slot']) ? $interface['_slot'] : null,
-                '_onu_num' => null,
+                '_onu' => null,
                 'onu_id' => null,
                 'uni' => null,
                 'parent' => null,
@@ -80,7 +80,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => $interface['type'],
                     '_port' => isset($interface['_port'])  ? $interface['_port'] : null,
                     '_slot' => isset($interface['_slot']) ? $interface['_slot'] : null,
-                    '_onu_num' => null,
+                    '_onu' => null,
                     'uni' => null,
                     'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
                     '_technology' => isset($interface['pontype']) ? $interface['pontype'] : null,
@@ -98,7 +98,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'xid' => $interface['xid'],
                     '_port' => isset($interface['_port'])  ? $interface['_port'] : null,
                     '_slot' => isset($interface['_slot']) ? $interface['_slot'] : null,
-                    '_onu_num' => $onuNum,
+                    '_onu' => $onuNum,
                     'type' => 'ONU',
                     'uni' => null,
                     'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
@@ -116,7 +116,7 @@ abstract class CDataAbstractModule extends AbstractModule
                     'type' => $interface['type'],
                     '_port' => isset($interface['_port'])  ? $interface['_port'] : null,
                     '_slot' => isset($interface['_slot']) ? $interface['_slot'] : null,
-                    '_onu_num' => null,
+                    '_onu' => null,
                     'uni' => null,
                     'pontype' => isset($interface['pontype']) ? $interface['pontype'] : null,
                     '_technology' => isset($interface['pontype']) ? $interface['pontype'] : null,
@@ -125,13 +125,13 @@ abstract class CDataAbstractModule extends AbstractModule
                     case 7:
                         $response['name'] .= ":{$m[5]}";
                         $response['uni'] = (int)$m[6];
-                        $response['_onu_num'] = (int)$m[5];
+                        $response['_onu'] = (int)$m[5];
                         $response['type'] = 'UNI';
                         $response['id'] = (int)$m[5] + $response['id'];
                         break;
                     case 6:
                         $response['name'] .= ":{$m[5]}";
-                        $response['_onu_num'] = (int)$m[5];
+                        $response['_onu'] = (int)$m[5];
                         $response['type'] = 'ONU';
                         $response['id'] = (int)$m[5] + $response['id'];
                         break;

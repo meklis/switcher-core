@@ -61,6 +61,7 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
                     ,
                     '_serial_hex' => str_replace(":", "", $sn->getHexValue()),
                     'serial' => str_replace(":", "", $sn->getHexValue()),
+                    '_ident' => str_replace(":", "", $sn->getHexValue()),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,
@@ -122,6 +123,7 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
                 $iface = $this->findIfaceByOid($ident->getOid());
                 $data[$iface['id']] = [
                     'mac_address' => $ident->getHexValue(),
+                    '_ident' => $ident->getHexValue(),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,

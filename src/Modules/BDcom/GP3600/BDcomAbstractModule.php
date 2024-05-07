@@ -162,7 +162,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     'parent' => $this->findParentByName($iface->getValue()),
                     '_slot' => 0,
                     '_port' => (int)$m[1],
-                    '_onu_num' => (int)$m[2],
+                    '_onu' => (int)$m[2],
                     '_type' => 'gpon',
                     '_technology' => 'gpon',
                 ];

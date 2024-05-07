@@ -73,7 +73,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
                     '_shelf' => $m[2],
                     '_slot' => $m[3],
                     '_port' => $m[4],
-                    '_onu_num' => null,
+                    '_onu' => null,
                     '_technology' => 'gpon',
                 ];
             }
@@ -136,7 +136,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
             'parent' => $iface['id'],
             'type' => 'ONU',
             '_snmp_id' => $oid,
-            '_onu_num' => $onuNum,
+            '_onu' => $onuNum,
             '_type' => $iface['_type'],
             '_shelf' => $iface['_shelf'],
             '_slot' => $iface['_slot'],
@@ -172,7 +172,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
                 $interface['id'] = $input;
                 $interface['name'] .=  ":{$onu}";
                 $interface['_snmp_id'] = $this->encodeSnmpOid($interface['name']);
-                $interface['_onu_num'] =  $onu;
+                $interface['_onu'] =  $onu;
                 return $interface;
             }
         }
@@ -202,7 +202,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
                     $interface['id'] = $interface['id'] + (int)$m[5];
                     $interface['name'] .=  ":{$m[5]}";
                     $interface['_snmp_id'] = $this->encodeSnmpOid($interface['name']);
-                    $interface['_onu_num'] =  (int)$m[5];
+                    $interface['_onu'] =  (int)$m[5];
                 }
                 return $interface;
             }

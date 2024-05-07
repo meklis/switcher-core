@@ -55,6 +55,7 @@ class UnregisteredOntList extends ModuleAbstract
             $data["{$key}"] = [
                 'interface' => $interface,
                 'mac_address' => Helper::formatMac3Blocks($d->getHexValue()),
+                '_ident' => Helper::formatMac3Blocks($d->getHexValue()),
             ];
         }
         foreach ($this->getResponseByName('epon.uncfg.onuModel', $response)->fetchAll() as $d) {
@@ -91,6 +92,9 @@ class UnregisteredOntList extends ModuleAbstract
             $blocks = explode(":", $d->getHexValue());
             $data["{$key}"] = [
                 'interface' => $interface,
+                '_ident' =>  $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                    $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
+                ,
                 'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
                     $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
                 ,

@@ -35,6 +35,7 @@ class RawConsoleCommand extends CDataAbstractModuleFD16xxV3
         if (preg_match('/Command incomplete/', $response)) return false;
         if (preg_match('/Unknown command/', $response)) return false;
         if (preg_match('/Error/', $response)) return false;
+        if (preg_match('/failed/i', $response)) return false;
         return true;
     }
 

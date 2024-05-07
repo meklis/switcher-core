@@ -60,6 +60,9 @@ class UnregisteredOntList extends ModuleAbstract
                 'serial' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
                     $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
                 ,
+                '_ident' => $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
+                    $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7]
+                ,
             ];
         }
         foreach ($this->getResponseByName('gpon.uncfg.type', $response)->fetchAll() as $d) {

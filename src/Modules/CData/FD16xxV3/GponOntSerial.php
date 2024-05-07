@@ -32,6 +32,9 @@ class GponOntSerial extends CDataAbstractModuleFD16xxV3
             $onuId = Helper::getIndexByOid($r->getOid());
             $interface = $this->parseInterface($onuId);
             $interface['onu_id'] = $onuId;
+            if(!$interface) {
+                continue;
+            }
             $return[] = [
                 'interface' => $interface,
                 'serial' => Helper::hexToStr(substr($r->getHexValue(), 0, 12)) . substr(str_replace(":", "", $r->getHexValue()), 8),

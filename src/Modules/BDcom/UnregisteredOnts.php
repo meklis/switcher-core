@@ -47,6 +47,7 @@ class UnregisteredOnts extends BDcomAbstractModule
             unset($un['bind_status']);
             $un['_mac_address_hex'] = str_replace(":", "", $mac);
             $un['mac_address'] = $mac;
+            $un['_ident'] = $mac;
             return $un;
         }, $unregistered));
 

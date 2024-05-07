@@ -8,19 +8,10 @@ use Exception;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
-use SwitcherCore\Switcher\Console\ConsoleInterface;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
+class SnmpUnregisteredOnts extends CDataAbstractModuleFD16xxV3
 {
-
-
-    /**
-     * @Inject
-     * @var ConsoleInterface
-     */
-    protected $console;
-
     /**
      * @var WrappedResponse[]
      */
@@ -43,59 +34,11 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
      */
     public function run($filter = [])
     {
-        $finded = $this->console->exec("show ont autofind all");
-        $countOnts = 0;
-        if (preg_match('/Total: ([0-9]{1,3})/m', $finded, $matches)) {
-            $countOnts = (int)$matches[1];
-        }
-        if ($countOnts == 0) {
-            $this->response = [];
-            return $this;
-        }
-        $fieldID = 0;
-        $result = [];
-        foreach (explode("\n", $finded) as $line) {
-            if (preg_match('/Aging time|Total/', $line)) continue;
-            if (preg_match('/Frame\/Slot/', $line)) {
-                $fieldID++;
-                continue;
-            }
-            if (preg_match('/^(.*): (.*)$/', trim($line), $matches)) {
-                $result[$fieldID][Helper::fromCamelCase(trim($matches[1]))] = trim($matches[2]);
-            }
-        }
-        $portUniqIds = [];
-        $data = [];
-        foreach ($result as $ont) {
-            $id = 1;
-            if (isset($portUniqIds[$ont['port']])) {
-                $portUniqIds[$ont['port']] = $portUniqIds[$ont['port']]+1;
-                $id = $portUniqIds[$ont['port']];
-            } else {
-                $portUniqIds[$ont['port']] = $id;
-            }
-            if(!preg_match('/^([[:xdigit:]]{16}).*\((.*)\)$/', $ont['sn'], $ontSN)) {
-                throw new \Exception("Parse error");
-            }
-            $iface = $this->parseInterface("gpon 0/0/{$ont['port']}" . ":" . ($id));
-            $data[] = [
-                '_serial_ascii' => trim($ontSN[2]),
-                '_serial_hex' => trim($ontSN[1]),
-                'serial' => str_replace("-", "", trim($ontSN[2])),
-                '_ident' => str_replace("-", "", trim($ontSN[2])),
-                'interface' => $iface,
-                'password' => isset($ont['password']) ? $ont['password'] : '',
-                'version' => isset($ont['ont_version']) ? $ont['ont_version'] : null,
-                'equipment_id' => isset($ont['equipment_id']) ? $ont['equipment_id'] : null,
-                'fw_version' => isset($ont['ont_software_version']) ? $ont['ont_software_version'] : null,
-                'check_code' => null,
-                'loid' => isset($ont['loid']) ? $ont['loid'] : null,
-                'reg_time' => isset($ont['last_autofind_time']) ? $ont['last_autofind_time'] : null,
-                'model' => null,
-                'type' => null,
-            ];
-        }
-        $this->response = $data;
+        $oids = array_map(function ($e) {
+            return Oid::init($e->getOid());
+        }, $this->oids->getOidsByRegex('ont.autofind..*'));
+        $response = $this->formatResponse($this->snmp->walk($oids));
+        $this->response = array_values($this->getGponUnregisteredFromResponses($response));
         return $this;
     }
 

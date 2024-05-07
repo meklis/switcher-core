@@ -30,7 +30,7 @@ class OntDeleteGpon extends CDataAbstractModuleFD16xxV3
         if(!$interface['id']) {
             throw new \Exception("Incorrect ONU number");
         }
-        if (!preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $interface['name'], $m)) {
+        if (!preg_match('/^(pon|xge|ge|gpon) ([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $interface['name'], $m)) {
             throw new \Exception("Interface {$filter['interface']} not supported!");
         }
         if(count($m) < 5) {

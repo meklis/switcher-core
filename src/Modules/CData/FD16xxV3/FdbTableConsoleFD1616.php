@@ -50,7 +50,7 @@ class FdbTableConsoleFD1616 extends CDataAbstractModuleFD16xxV3
             }
             $telnetIdent = "{$iface['_type']} 0/0/{$iface['_port']}";
             if ($iface['type'] === 'ONU') {
-                $resp = $this->console->exec("show mac-address port {$telnetIdent} ont {$iface['_onu_num']}");
+                $resp = $this->console->exec("show mac-address port {$telnetIdent} ont {$iface['_onu']}");
             } else {
                 $resp = $this->console->exec("show mac-address port {$telnetIdent}");
             }

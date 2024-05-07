@@ -41,7 +41,7 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
 
 
         $this->console->exec("interface {$iface['_type']} 0/0");
-        $resp = $this->console->exec("show ont port state {$iface['_port']} {$iface['_onu_num']} eth all");
+        $resp = $this->console->exec("show ont port state {$iface['_port']} {$iface['_onu']} eth all");
         $response = [];
         $lines = explode("\n", $resp);
 
