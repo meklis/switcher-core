@@ -59,6 +59,11 @@
   - {name: dot1q.VlanStaticForbiddenEgressPorts, oid: .1.3.6.1.2.1.17.7.1.4.3.1.3, access: read} #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
   - {name: dot1q.VlanStaticUntaggedPorts, oid: .1.3.6.1.2.1.17.7.1.4.3.1.4, access: read } #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
   - {name: dot1q.VlanStaticRowStatus, oid: .1.3.6.1.2.1.17.7.1.4.3.1.5, access: read } #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
+
+  - {name: dot1q.VlanCurrentEgressPorts, oid: .1.3.6.1.2.1.17.7.1.4.2.1.4, access: read} #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
+  - {name: dot1q.VlanCurrentUntaggedPorts, oid: .1.3.6.1.2.1.17.7.1.4.2.1.5, access: read } #RETURNED HEX-STRING, must wrapped to binary. num of byte = num port; 1 = on port
+
+
 #qBridgeMIB - dot1qBase
   - {name: dot1q.Pvid, oid: .1.3.6.1.2.1.17.7.1.4.5.1.1, access: read}
   - {name: dot1q.NumVlans, oid: .1.3.6.1.2.1.17.7.1.1.4, access: read}

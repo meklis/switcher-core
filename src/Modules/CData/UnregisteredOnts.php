@@ -63,6 +63,7 @@ class UnregisteredOnts extends CDataAbstractModule
                     '_serial_ascii' => $sn->getValue(),
                     '_serial_hex' => $hexVal,
                     'serial' => str_replace("-", "", $sn->getValue()),
+                    '_ident' => str_replace("-", "", $sn->getValue()),
                     'interface' => $iface,
                     'password' => null,
                     'version' => null,
