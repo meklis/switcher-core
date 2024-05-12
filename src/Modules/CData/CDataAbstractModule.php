@@ -124,16 +124,18 @@ abstract class CDataAbstractModule extends AbstractModule
                 switch (count($m)) {
                     case 7:
                         $response['name'] .= ":{$m[5]}";
-                        $response['uni'] = (int)$m[6];
+                        $response['_uni'] = (int)$m[6];
                         $response['_onu'] = (int)$m[5];
                         $response['type'] = 'UNI';
                         $response['id'] = (int)$m[5] + $response['id'];
+                        $response['parent'] = $response['id'];
                         break;
                     case 6:
                         $response['name'] .= ":{$m[5]}";
                         $response['_onu'] = (int)$m[5];
                         $response['type'] = 'ONU';
                         $response['id'] = (int)$m[5] + $response['id'];
+                        $response['parent'] = $response['id'];
                         break;
                 }
                 return $response;
