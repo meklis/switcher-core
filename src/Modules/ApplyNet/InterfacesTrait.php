@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\HpSwitch;
+namespace SwitcherCore\Modules\ApplyNet;
 
 use DI\Container;
 use DI\DependencyException;
@@ -85,7 +85,7 @@ trait InterfacesTrait
             return $info;
         }
         $response = $this->snmp->walk([
-            Oid::init($this->oids->getOidByName('if.Name')->getOid()),
+            Oid::init($this->oids->getOidByName('if.Descr')->getOid()),
         ]);
         $responses = [];
         foreach ($response as $resp) {
@@ -99,16 +99,8 @@ trait InterfacesTrait
 
         $ifaces = [];
         $lastEthNum = 0;
-        foreach ($responses['if.Name'] as $r) {
-            if (preg_match('/^([0-9]{1,4})$/', $r->getValue(), $m)) {
-                $name = "{$m[1]}";
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
-                    'name' => $name,
-                    '_snmp_id' => $id,
-                ];
-            } elseif (preg_match('/.*?#([0-9]{1,4})$/', $r->getValue(), $m)) {
+        foreach ($responses['if.Descr'] as $r) {
+            if (preg_match('/^.*\(([0-9]{1,4})\)$/', $r->getValue(), $m)) {
                 $name = "{$m[1]}";
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [

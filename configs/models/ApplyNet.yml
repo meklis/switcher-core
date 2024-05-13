@@ -1,0 +1,21 @@
+
+models:
+- name: ApplyNet AN-SW812
+  key: applynet_sw812
+  device_type: SWITCH
+  inputs:
+    - snmp
+    - console
+  detect: {description: '',  objid: '' }
+  oids:
+    - ./oids/applynet.yml
+  extra:
+    console_conn_type: dell
+  modules:
+    parse_interface: \SwitcherCore\Modules\ApplyNet\ParseInterface
+    fdb: \SwitcherCore\Modules\ApplyNet\Fdb
+    link_info: \SwitcherCore\Modules\ApplyNet\LinkInfo
+    interface_counters: \SwitcherCore\Modules\ApplyNet\Counters
+    system: \SwitcherCore\Modules\ApplyNet\System
+    interfaces_list: \SwitcherCore\Modules\ApplyNet\InterfacesList
+    ctrl_port_state: \SwitcherCore\Modules\ApplyNet\StatePortControl

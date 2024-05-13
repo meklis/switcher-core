@@ -1,5 +1,26 @@
 
 models:
+- name: HP PROCURVE J9079A
+  key: hp_procurve_j9079
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: "PROCURVE J9079A",  objid: ^.1.3.6.1.4.1.11.2.3.7.11 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\HpSwitch\ParseInterface
+    link_info: \SwitcherCore\Modules\HpSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\HpSwitch\Counters
+    system: \SwitcherCore\Modules\HpSwitch\System
+    vlans: \SwitcherCore\Modules\HpSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\HpSwitch\Errors
+    rmon: \SwitcherCore\Modules\HpSwitch\Rmon
+    pvid: \SwitcherCore\Modules\HpSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\HpSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\HpSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\HpSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\HpSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\HpSwitch\StatePortControl
+
 - name: HP Switch
   key: hp_general_switch
   device_type: SWITCH
@@ -43,6 +64,8 @@ models:
     interfaces_list: \SwitcherCore\Modules\HpSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\HpSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HpSwitch\StatePortControl
+
+
 
 - name: HP Switch (ArubaOS)
   key: hp_arubaos_switch

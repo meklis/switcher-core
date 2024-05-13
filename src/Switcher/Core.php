@@ -142,7 +142,7 @@ class Core
             $helper = Helpers::getByName($model->getConsoleConnType());
             $input->setDeviceHelper($helper);
             try {
-                if($commands = $model->getExtraParamByName('console_commands_after_connect')) {
+                if ($commands = $model->getExtraParamByName('console_commands_after_connect')) {
                     $helper->setAfterLoginCommands($commands);
                 }
 
@@ -173,7 +173,7 @@ class Core
         //Check device is alive before getting info from cache
         $response = $multiwalker->get([O::init($collector->getOidByName('sys.Descr')->getOid() . '.0')], 1, 1);
         if ($response[0]->error) {
-            if(strpos($response[0]->error, 'No Such Object available on this agent at this OID') !== false) {
+            if (strpos($response[0]->error, 'No Such Object available on this agent at this OID') !== false) {
                 throw new \ErrorException("Current device not support detect. Please, set device model manually");
             }
             throw new \SNMPException($response[0]->error);
@@ -190,17 +190,16 @@ class Core
         foreach ($response as $resp) {
             if ($resp->error) {
                 $this->logger->error("Walker returned error: {$resp->error}");
-                throw new \SNMPException($resp->error);
-            } else {
-                if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
-                    $descr = $resp->getResponse()[0]->getValue();
-                }
-                if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
-                    $objId = $resp->getResponse()[0]->getValue();
-                }
-                if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.IfacesCount') {
-                    $ifacesCount = $resp->getResponse()[0]->getValue();
-                }
+                continue;
+            }
+            if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.Descr') {
+                $descr = $resp->getResponse()[0]->getValue();
+            }
+            if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.ObjId') {
+                $objId = $resp->getResponse()[0]->getValue();
+            }
+            if ($collector->findOidById($resp->getResponse()[0]->getOid())->getName() == 'sys.IfacesCount') {
+                $ifacesCount = $resp->getResponse()[0]->getValue();
             }
         }
         if ($descr || $objId) {
@@ -266,7 +265,7 @@ class Core
             $model = $modelCollector->getModelByDetect($devInfo['descr'], $devInfo['objid'], $devInfo['ifacesCount']);
             if ($model->getRewrites()) {
                 $response = $multiwalker->get([O::init($model->getRewrites()['oid'])], 3, 3);
-                 if ($response[0]->error) {
+                if ($response[0]->error) {
                     throw new \SNMPException("Error rewrites detect - " . $response[0]->error->getMessage());
                 }
                 $model->rewriteModelByValue($response[0]->getResponse()[0]->getValue());
