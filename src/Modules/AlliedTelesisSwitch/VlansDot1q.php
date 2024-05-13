@@ -3,9 +3,6 @@
 namespace SwitcherCore\Modules\AlliedTelesisSwitch;
 
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
-use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
 class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
@@ -40,7 +37,8 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
             $dex = Helper::hexToBinStr($resp->getHexValue());
             $ports = [];
             for($port = 1; $port < strlen($dex) ; $port++) {
-                if($dex[$port] == '1' && isset($indexes[$port])) $ports[] = $indexes[$port];
+                $portID = $port+1;
+                if($dex[$port] == '1' && isset($indexes[$portID])) $ports[] = $indexes[$portID];
             }
             return $ports;
         };

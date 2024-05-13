@@ -1,0 +1,28 @@
+
+models:
+- name: Allied Telesis 8000 series switches
+  key: ati_switch_8000
+  device_type: SWITCH
+  inputs:
+    - snmp
+    - console
+  detect: {description: AT-8000,  objid: ^.1.3.6.1.4.1.207.1.4 }
+  extra:
+    console_conn_type: dell
+  modules:
+    parse_interface: \SwitcherCore\Modules\AlliedTelesisSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\AlliedTelesisSwitch\Fdb
+    link_info: \SwitcherCore\Modules\AlliedTelesisSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\AlliedTelesisSwitch\Counters
+    system: \SwitcherCore\Modules\AlliedTelesisSwitch\System
+    vlans: \SwitcherCore\Modules\AlliedTelesisSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\AlliedTelesisSwitch\Errors
+    rmon: \SwitcherCore\Modules\AlliedTelesisSwitch\Rmon
+    pvid: \SwitcherCore\Modules\AlliedTelesisSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\AlliedTelesisSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\AlliedTelesisSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\AlliedTelesisSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\AlliedTelesisSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\AlliedTelesisSwitch\StatePortControl
+    console_command: \SwitcherCore\Modules\AlliedTelesisSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\AlliedTelesisSwitch\MultiRawConsoleCommand
