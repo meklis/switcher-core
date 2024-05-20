@@ -19,8 +19,9 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
         $names = $this->getResponseByName('dot1q.VlanStaticName');
         $egress = $this->getResponseByName('dot1q.VlanStaticEgressPorts');
 
-        if($names->error()) {
-            throw new IncompleteResponseException($names->error());
+        if ($names->error()) {
+            $this->logger->error($names->error());
+            return [];
         }
         if($egress->error()) {
             throw new IncompleteResponseException($egress->error());
