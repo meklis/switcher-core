@@ -6,7 +6,7 @@ models:
   inputs:
     - snmp
     - console
-  detect: {description: '',  objid: '' }
+  detect: {description: 'NOT_EXISTED',  objid: 'NOT_EXISTED' }
   oids:
     - ./oids/applynet.yml
   extra:
