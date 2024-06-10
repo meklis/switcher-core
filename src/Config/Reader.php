@@ -14,6 +14,7 @@ use Exception;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\Objects\Module;
 use SwitcherCore\Config\Objects\Oid;
+use SwitcherCore\Config\Objects\Trap;
 
 class Reader
 {
@@ -55,30 +56,6 @@ class Reader
         return $models;
     }
 
-    /**
-     * @return array
-     * @throws ErrorException
-     */
-    public function readGlobalOids() {
-        return $this->readOids("{$this->configPath}/oids/global.oids.yml");
-    }
-
-    /**
-     * @param string $path
-     * @return array
-     * @throws ErrorException
-     */
-    private function readOids(string $path) {
-            $data = yaml_parse_file($path);
-            if (!$data) {
-                throw new ErrorException("Error reading config $path");
-            }
-            $list = [];
-            foreach ($data as $oid) {
-                $list[] = Oid::init($oid);
-            }
-            return $list;
-    }
 /**
      * @param string $path
      * @return Module[]
@@ -97,6 +74,36 @@ class Reader
     }
 
 
+
+    /**
+     * @return array
+     * @throws ErrorException
+     */
+    public function readGlobalOids() {
+        return $this->readOids("{$this->configPath}/oids/global.oids.yml");
+    }
+
+    /**
+     * @param string $path
+     * @return array
+     * @throws ErrorException
+     */
+    private function readOids(string $path) {
+        try {
+            $data = yaml_parse_file($path);
+        } catch (\Exception $e) {
+            throw new ErrorException("Error reading yaml configuration - {$e->getMessage()}, path - $path");
+        }
+        if (!$data) {
+            throw new ErrorException("Error reading config $path");
+        }
+        $list = [];
+        foreach ($data as $oid) {
+            $list[] = Oid::init($oid);
+        }
+        return $list;
+    }
+
     /**
      * @param Model $model
      * @return array
@@ -112,6 +119,52 @@ class Reader
               $oids = array_merge($oids, $data);
           }
           return $oids;
+    }
+
+    /**
+     * @return array
+     * @throws ErrorException
+     */
+    public function readGlobalTraps() {
+        return $this->readTraps("{$this->configPath}/traps/global.yml");
+    }
+
+    /**
+     * @param string $path
+     * @return array
+     * @throws ErrorException
+     */
+    private function readTraps(string $path) {
+        try {
+            $data = yaml_parse_file($path);
+        } catch (\Exception $e) {
+            throw new ErrorException("Error reading yaml configuration - {$e->getMessage()}, path - $path");
+        }
+        if (!$data) {
+            throw new ErrorException("Error reading config $path");
+        }
+        $list = [];
+        foreach ($data as $oid) {
+            $list[] = Trap::init($oid);
+        }
+        return $list;
+    }
+
+    /**
+     * @param Model $model
+     * @return array
+     * @throws ErrorException
+     */
+    function readEnterpriseTraps(Model $model)   {
+        $oids = [];
+        foreach ($model->getTrapPatches() as $path) {
+            $data =  $this->readTraps("{$this->configPath}/{$path}");
+            if(!$data) {
+                throw new Exception("Traps in path $path is empty. Please, fix it.");
+            }
+            $oids = array_merge($oids, $data);
+        }
+        return $oids;
     }
 
 

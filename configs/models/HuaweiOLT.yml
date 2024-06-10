@@ -8,6 +8,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/huawei/smartax.yml
+    traps:
+      - ./traps/huawei.yml
     modules:
       system: \SwitcherCore\Modules\HuaweiOLT\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\HuaweiOLT\PonPortsList

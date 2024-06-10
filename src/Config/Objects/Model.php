@@ -30,10 +30,16 @@ class Model
 
     protected $rewrites = null;
 
+
     /**
-     * @var Oid[]
+     * @var string[]
      */
     protected $oids = [];
+
+    /**
+     * @var string[]
+     */
+    protected $traps = [];
 
     /**
      * @var array
@@ -269,12 +275,30 @@ class Model
     }
 
     /**
-     * @param Oid[] $oids
+     * @param string[] $oids
      * @return Model
      */
     public function setOidPatches(array $oids): Model
     {
         $this->oids = $oids;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTrapPatches(): array
+    {
+        return $this->traps;
+    }
+
+    /**
+     * @param string[] $traps
+     * @return Model
+     */
+    public function setTrapPatches(array $traps): Model
+    {
+        $this->traps = $traps;
         return $this;
     }
 
@@ -315,23 +339,6 @@ class Model
         return $this;
     }
 
-    /**
-     * @return Oid[]
-     */
-    public function getOids(): array
-    {
-        return $this->oids;
-    }
-
-    /**
-     * @param Oid[] $oids
-     * @return Model
-     */
-    public function setOids(array $oids): Model
-    {
-        $this->oids = $oids;
-        return $this;
-    }
 
     /**
      * @return string

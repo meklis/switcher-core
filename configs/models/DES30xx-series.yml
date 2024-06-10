@@ -18,6 +18,8 @@ models:
      - ./oids/dlink/common-diag-cable.yml
      - ./oids/dlink/common-agent-info.yml
      - ./oids/dlink/des-3026.yml
+   traps:
+     - ./traps/global.yml
    detect: {description: ^D-Link DES-3026 Fast Ethernet,  objid: .* }
    extra:
      console_conn_type: dlink
@@ -55,6 +57,8 @@ models:
    key: dlink_des_3028
    ports: 28
    device_type: SWITCH
+   traps:
+     - ./traps/global.yml
    inputs:
      - snmp
      - console

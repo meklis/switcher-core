@@ -53,6 +53,8 @@
 - {name: ont.distance, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.15}
 - {name: ont.name, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.2}
 - {name: ont.opStatus, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.8, values: {1: Up, 2: Down}}
+- {name: ont.linkStatus, oid: .1.3.6.1.4.1.34592.1.3.3.12.1.1.5, values: {1: NotPresent, 2: Offline, 3: Online, 4: Normal, 5: Abnormal}}
+- {name: ont.onlineStatus, oid: .1.3.6.1.4.1.34592.1.3.3.12.1.1.5, values: {1: NotPresent, 2: Offline, 3: Online, 4: Normal, 5: Abnormal}}
 - {name: ont.adminStatus, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.9, values: {1: Enabled, 2: Disabled}}
 - {name: ont.verSoftware, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.13}
 - {name: ont.verHardware, oid: .1.3.6.1.4.1.17409.2.3.4.1.1.27}

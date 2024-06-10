@@ -13,6 +13,7 @@ use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Config\Reader;
+use SwitcherCore\Config\TrapCollector;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Switcher\Console\SshLazyConnect;
@@ -54,26 +55,31 @@ class CoreConnector
     protected $oidCollector;
 
     /**
+     * @var  TrapCollector
+     */
+    protected $trapCollector;
+
+    /**
      * @var Core[]
      */
     protected $instances = [];
     public function __construct($configPath, $buildCachePath = null)
     {
-        if($buildCachePath) {
-            if(file_exists($buildCachePath) && time() - filemtime($buildCachePath) < 300) {
+        if($buildCachePath && file_exists($buildCachePath) && time() - filemtime($buildCachePath) < 300) {
                 $obj = unserialize( file_get_contents($buildCachePath));
-                $this->walker = $obj->walker;
+                $this->walker = new MultiWalker();
                 $this->oidCollector = $obj->oidCollector;
                 $this->modelCollector = $obj->modelCollector;
                 $this->moduleCollector = $obj->moduleCollector;
+                $this->trapCollector = $obj->trapCollector;
                 return;
-            }
         }
         $this->walker = new MultiWalker();
         $reader = new Reader($configPath);
         $this->oidCollector = OidCollector::init($reader);
         $this->modelCollector = ModelCollector::init($reader);
         $this->moduleCollector = ModuleCollector::init($reader);
+        $this->trapCollector = TrapCollector::init($reader);
 
         if($buildCachePath) {
             file_put_contents($buildCachePath, serialize($this));
@@ -149,8 +155,8 @@ class CoreConnector
             ->addInput($walker)
             ->setModelCollector(clone $this->modelCollector)
             ->setModuleCollector(clone $this->moduleCollector)
+            ->setTrapCollector(clone $this->trapCollector)
             ->setOidCollector(clone $this->oidCollector);
-
         if($this->cache) {
             $core->setCache($this->cache);
         }

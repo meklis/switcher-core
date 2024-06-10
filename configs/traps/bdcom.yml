@@ -1,0 +1,67 @@
+- name: AuthNotification
+  descriptions: The agent generates this notification when login authentication succeeds or fails.
+  object: .1.3.6.1.4.1.3320.9.188.6.1
+  is_interface: false
+
+- name: FanNotification
+  descriptions: The agent generates this notification when fan stops or resumes .
+  object: .1.3.6.1.4.1.3320.9.187.2.1
+  is_interface: false
+
+- name: PowerNotification
+  descriptions:  The agent generates this notification when power status changes.
+  object: .1.3.6.1.4.1.3320.9.189.4.1
+  is_interface: false
+
+- name: OnuStatusChangeNotification
+  description: The agent generates this notification when ONU status change alarms
+  object: .1.3.6.1.4.1.3320.10.3.7.2
+  modules:
+    - pon_onts_status
+    - pon_onts_vendor
+  is_interface: true
+
+- name: OnuSfpParameterAlarm
+  description:  The agent generates this notification when ONU SFP parameter alarms
+  object: .1.3.6.1.4.1.3320.10.3.6.3
+  modules:
+    - pon_onts_optical
+  is_interface: true
+
+- name:  OnuOpRxLowNotification
+  description:  The agent generates this notification when ONU status change alarms
+  object: .1.3.6.1.4.1.3320.10.3.10.2
+  modules:
+    - pon_onts_optical
+  is_interface: true
+
+- name: OnuOpRxHighNotification
+  description:  The agent generates this notification when ONU status change alarms
+  object: .1.3.6.1.4.1.3320.10.3.10.4
+  modules:
+    - pon_onts_optical
+  is_interface: true
+
+- name: UniPortStateNotification
+  description:  The agent generates this notification when ONU uni port state changed
+  object: .1.3.6.1.4.1.3320.10.4.4.4
+  modules:
+    - uni_interfaces_status
+  is_interface: true
+
+- name: VideoPortCatvAlarmNotification
+  description:   The agent generates this notification when alarm was triggered
+  object: .1.3.6.1.4.1.3320.10.10.2.3
+  is_interface: true
+
+- name: SfpParameterAlarmsNotification
+  description:  The agent generates this trap when olt optical module  works in abnormal status or return to normal
+  object: .1.3.6.1.4.1.3320.101.6.3.2
+  is_interface: true
+
+- name: EponLlidChangesNotification
+  description:  The agent generates this notification when llid change
+  object: .1.3.6.1.4.1.3320.101.17.4.1
+  modules:
+    - pon_onts_optical
+  is_interface: true

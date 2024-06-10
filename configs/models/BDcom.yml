@@ -23,6 +23,8 @@ models:
             name: BDCOM GP3600-16
     oids:
       - ./oids/bdcom/gp3600.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\GP3600\PonPortsList
@@ -71,6 +73,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
@@ -116,6 +120,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
@@ -161,6 +167,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
@@ -206,6 +214,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
@@ -251,6 +261,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
@@ -296,6 +308,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList
@@ -341,6 +355,8 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+    traps:
+      - ./traps/bdcom.yml
     modules:
       system: \SwitcherCore\Modules\BDcom\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\BDcom\PonPortsList

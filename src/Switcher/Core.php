@@ -18,6 +18,7 @@ use SwitcherCore\Config\ModelCollector;
 use SwitcherCore\Config\ModuleCollector;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
+use SwitcherCore\Config\TrapCollector;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
@@ -72,6 +73,12 @@ class Core
     function setOidCollector(OidCollector $collector)
     {
         $this->container->set(OidCollector::class, $collector);
+        return $this;
+    }
+
+    function setTrapCollector(TrapCollector $collector)
+    {
+        $this->container->set(TrapCollector::class, $collector);
         return $this;
     }
 
@@ -247,6 +254,11 @@ class Core
         $oidCollector = $this->container->get(OidCollector::class);
 
         /**
+         * @var TrapCollector
+         */
+        $trapCollector = $this->container->get(TrapCollector::class);
+
+        /**
          * @var $multiwalker MultiWalkerInterface
          */
         $multiwalker = $this->container->get(MultiWalkerInterface::class);
@@ -273,6 +285,7 @@ class Core
         }
         $this->container->set(Model::class, $model);
         $oidCollector->readEnterpriceOids($model);
+        $trapCollector->readEnterpriceTraps($model);
         $this->declareModules($model);
         return $this;
     }
