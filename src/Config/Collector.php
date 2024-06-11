@@ -9,7 +9,7 @@ abstract class Collector
     /**
      * @var Collector
      */
-    protected static $instance;
+    protected $instance;
 
     /**
      * @var Reader
@@ -20,11 +20,8 @@ abstract class Collector
         $instance = new static();
         $instance->reader = $reader;
         $instance->read();
-        self::$instance = $instance;
-        return self::$instance;
-    }
-    public static function getInstance() {
-        return self::$instance;
+        $instance->instance = $instance;
+        return $instance;
     }
     protected abstract function read();
 }
