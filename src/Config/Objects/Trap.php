@@ -103,7 +103,7 @@ class Trap
         if(isset($array['description']) && $array['description']) {
             $oid->setDescription($array['description']);
         }
-        $oid->setIsInterface(isset($array['isInterface']) && $array['isInterface']);
+        $oid->setIsInterface(isset($array['is_interface']) && $array['is_interface']);
         $oid->setModules(isset($array['modules']) ? $array['modules'] : []);
         return $oid;
     }

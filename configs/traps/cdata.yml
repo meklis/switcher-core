@@ -5,7 +5,7 @@
   modules:
     - pon_onts_status
 
-- name:  onuPortLoopBack
+- name: onuPortLoopBack
   description: Port loopback detected
   object: .1.3.6.1.4.1.34592.1.3.6.0.18
   is_interface: true
@@ -13,9 +13,9 @@
 - name: powerStatusChange
   description: Power status changed
   object: .1.3.6.1.4.1.34592.1.3.6.0.3
-  is_interface: true
+  is_interface: false
 
 - name:  fanStatusChange
   description: Fan status changed
   object: .1.3.6.1.4.1.34592.1.3.6.0.4
-  is_interface: true
+  is_interface: false

@@ -13,6 +13,7 @@ use Monolog\Logger;
 use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Response\PoollerResponse;
 use SwitcherCore\Config\Objects\Model;
+use SwitcherCore\Config\Objects\Trap;
 use SwitcherCore\Config\OidCollector;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Switcher\CacheInterface;
@@ -69,6 +70,11 @@ abstract class AbstractModule
      * @return self
      */
     public abstract function run($params = []);
+
+    public function trap(Trap  $trap, $data)
+    {
+        throw new \Exception("Not implemented catching trap in ".get_class($this));
+    }
 
     /**
      * @return array

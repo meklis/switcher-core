@@ -105,7 +105,7 @@ class TrapCollector extends Collector
         }
     }
     function findTrapById($oidId) {
-        foreach ($this->cacheNames as $oid) {
+        foreach ($this->cacheIds as $oid) {
             if(strpos($oidId, $oid->getObject()) !== false) {
                 $stack = explode(".", $oidId);
                 $needle = explode(".", $oid->getObject());

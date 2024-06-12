@@ -22,6 +22,7 @@ use SwitcherCore\Config\TrapCollector;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 use function DI\autowire;
 
@@ -342,6 +343,78 @@ class Core
             throw $e;
         }
         return $data;
+    }
+
+    /**
+     * @param $object
+     * @param $data
+     * @return array
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
+    public function trap($object, $data = [])
+    {
+        $trap = $this->container->get(TrapCollector::class)->findTrapById($object);
+        $oidCollector = $this->container->get(OidCollector::class);
+
+        $response = [
+            'declaration' => [
+                'modules' => $trap->getModules(),
+                'name' => $trap->getName(),
+                'object' => $trap->getObject(),
+                'description' => $trap->getDescription(),
+                'is_interface' => $trap->isInterface(),
+            ],
+            'errors' => [],
+            'modules' => [],
+            'parsed' => [],
+            'interface' => null,
+        ];
+        foreach ($trap->getModules() as $moduleName) {
+            try {
+                /**
+                 * @var $module AbstractModule
+                 */
+                $module = $this->container->get("module.{$moduleName}");
+                $response['data'][$moduleName] = $module->trap( $trap, $data);
+            } catch (\Throwable $e) {
+                $response['errors'][] = "error working with trap {$object} for calling module $moduleName - {$e->getMessage()}";
+                $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
+            }
+        }
+        foreach ($data as $oid=>$value) {
+            try {
+                $finded = $oidCollector->findOidById($oid);
+                $response['parsed'][$oid] = [
+                    'type' => $value['type'],
+                    'value' => $value['value'],
+                    'hex' => isset($value['hex']) ? $value['hex'] : null,
+                    'name' => $finded->getName(),
+                    'parsed_value' => $finded->getValues() ? $finded->getValueIdByName($value['value']) : $value['value'],
+                ];
+            } catch (\Throwable $e) {
+                $response['errors'][] = "error working with trap {$object} for parsing $oid - {$e->getMessage()}";
+                $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
+            }
+        }
+
+        if($trap->isInterface()) {
+            foreach ($data as $oid=>$value) {
+                try {
+                    /**
+                     * @var $module AbstractModule
+                     */
+                    $module = $this->container->get("module.parse_interface");
+                    $response['interface'] = $module->run(['interface' => Helper::getIndexByOid($oid)])->getPrettyFiltered(['interface' => Helper::getIndexByOid($oid)]);
+                } catch (\Throwable $e) {
+                    $response['errors'][] = "error parse interface trap {$object} for parsing $oid - {$e->getMessage()}";
+                    $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
+                }
+            }
+        }
+
+
+        return $response;
     }
 
     /**

@@ -160,6 +160,9 @@ class Model
         if (isset($arr['rewrites'])) {
             $model->rewrites = $arr['rewrites'];
         }
+        if (isset($arr['traps'])) {
+            $model->traps = $arr['traps'];
+        }
         return $model;
     }
 
