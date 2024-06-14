@@ -9,6 +9,7 @@ use ErrorException;
 use Exception;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\Objects\Trap;
+use SwitcherCore\Exceptions\TrapDeclarationNotFoundByObject;
 
 
 class TrapCollector extends Collector
@@ -120,7 +121,7 @@ class TrapCollector extends Collector
                 }
             }
         }
-        throw new Exception("Object with id $oidId not found");
+        throw new TrapDeclarationNotFoundByObject("Object with id $oidId not found");
     }
 
 }

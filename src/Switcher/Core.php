@@ -351,6 +351,7 @@ class Core
      * @return array
      * @throws \DI\DependencyException
      * @throws \DI\NotFoundException
+     * @throws \SwitcherCore\Exceptions\TrapDeclarationNotFoundByObject
      */
     public function trap($object, $data = [])
     {
@@ -385,12 +386,13 @@ class Core
         foreach ($data as $oid=>$value) {
             try {
                 $finded = $oidCollector->findOidById($oid);
+                $parsedValue = isset($finded->getValues()[$value['value']]) ? $finded->getValues()[$value['value']] : $value['value'];
                 $response['parsed'][$oid] = [
                     'type' => $value['type'],
                     'value' => $value['value'],
                     'hex' => isset($value['hex']) ? $value['hex'] : null,
                     'name' => $finded->getName(),
-                    'parsed_value' => $finded->getValues() ? $finded->getValueIdByName($value['value']) : $value['value'],
+                    'parsed_value' => $parsedValue,
                 ];
             } catch (\Throwable $e) {
                 $response['errors'][] = "error working with trap {$object} for parsing $oid - {$e->getMessage()}";
