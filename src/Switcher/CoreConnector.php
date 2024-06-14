@@ -149,7 +149,9 @@ class CoreConnector
 
     public function init(\SwitcherCore\Switcher\Device  $device) {
 
-        $this->logger->notice("Init device switcher-core for IP - {$device->getIp()}");
+        if($this->logger) {
+            $this->logger->notice("Init device switcher-core for IP - {$device->getIp()}");
+        }
         $walker = $this->initWalker($device);
         $core = (new Core)->setDevice($device)
             ->addInput($walker)
