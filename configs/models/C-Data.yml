@@ -400,6 +400,7 @@ models:
       ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
+      pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
     extra:
       pon_type: GPON
       pon_port_size: 128

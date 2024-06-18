@@ -73,7 +73,7 @@ class PonOntsConfiguration extends CDataAbstractModule
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             $this->response = $this->snmp->get(array_map(function ($e) use (&$interface) {
-                return \SnmpWrapper\Oid::init("{$e->getOid()}.{$interface['_snmp_id']}");
+                return \SnmpWrapper\Oid::init("{$e->getOid()}.{$interface['id']}");
             }, $oids));
             return $this;
         } else {
