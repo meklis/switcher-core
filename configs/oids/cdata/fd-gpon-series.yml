@@ -115,3 +115,6 @@
 - {name: profile.line.name, oid: .1.3.6.1.4.1.17409.2.8.11.2.1.1.2}
 - {name: profile.srv.name, oid: .1.3.6.1.4.1.17409.2.8.11.3.1.1.2}
 - {name: profile.traffic.name, oid: .1.3.6.1.4.1.17409.2.8.11.4.1.1.2}
+
+- {name: ont.profile.line, oid: .1.3.6.1.4.1.17409.2.8.4.6.1.1.6}
+- {name: ont.profile.srv, oid: .1.3.6.1.4.1.17409.2.8.4.6.1.1.7}
