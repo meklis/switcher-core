@@ -100,6 +100,10 @@
 - {name: profile.line.name, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.2.1.1.2}
 - {name: profile.srv.name, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.3.1.1.2}
 - {name: profile.traffic.name, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.4.1.1.2}
+- {name: profile.traffic.cfgCir, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.4.1.1.3}
+- {name: profile.traffic.cfgPir, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.4.1.1.4}
+- {name: profile.traffic.cfgCbs, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.4.1.1.5}
+- {name: profile.traffic.cfgPbs, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.4.1.1.6}
 - {name: profile.alarm.name, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.5.1.1.3}
 - {name: profile.sla.name, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.7.1.1.3}
 - {name: profile.optical_alarm.name, oid: .1.3.6.1.4.1.34592.1.3.1.1.1.6.1.1.3}

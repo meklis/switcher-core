@@ -34,7 +34,6 @@ class GetProfiles extends AbstractModule
      */
     public function run($filter = [])
     {
-
         $prepared = [];
         if(isset($filter['load_only']) && $filter['load_only']) {
             $loadOnly = explode(",", $filter['load_only']);
@@ -49,6 +48,10 @@ class GetProfiles extends AbstractModule
             }
             if(in_array("traffic", $loadOnly)) {
                 $prepared[] = $this->oids->getOidByName('profile.traffic.name');
+                $prepared[] = $this->oids->getOidByName('profile.traffic.cfgCir');
+                $prepared[] = $this->oids->getOidByName('profile.traffic.cfgPir');
+                $prepared[] = $this->oids->getOidByName('profile.traffic.cfgCbs');
+                $prepared[] = $this->oids->getOidByName('profile.traffic.cfgPbs');
             }
             if(in_array("sla", $loadOnly)) {
                 $prepared[] = $this->oids->getOidByName('profile.sla.name');
@@ -102,15 +105,6 @@ class GetProfiles extends AbstractModule
                 ];
             }
         }
-        if(isset($this->response['profile.traffic.name']) && !$this->response['profile.traffic.name']->error()) {
-            foreach ($this->response['profile.traffic.name']->fetchAll() as $d) {
-                $id = Helper::getIndexByOid($d->getOid());
-                $data['traffic'][] = [
-                    'id' => $id,
-                    'name' => $this->convertHexToString($d->getHexValue()),
-                ];
-            }
-        }
         if(isset($this->response['profile.alarm.name']) && !$this->response['profile.alarm.name']->error()) {
             foreach ($this->response['profile.alarm.name']->fetchAll() as $d) {
                 $id = Helper::getIndexByOid($d->getOid());
@@ -138,6 +132,44 @@ class GetProfiles extends AbstractModule
                 ];
             }
         }
+        if(isset($this->response['profile.traffic.name']) && !$this->response['profile.traffic.name']->error()) {
+            foreach ($this->response['profile.traffic.name']->fetchAll() as $d) {
+                $id = Helper::getIndexByOid($d->getOid());
+                $data['traffic'][$id] = [
+                    'id' => $id,
+                    'name' => $this->convertHexToString($d->getHexValue()),
+                       '_cbs' => null,
+                       '_pbs' => null,
+                       '_cir' => null,
+                       '_pir' => null,
+                ];
+            }
+        }
+        if(isset($this->response['profile.traffic.cfgCir']) && !$this->response['profile.traffic.cfgCir']->error()) {
+            foreach ($this->response['profile.traffic.cfgCir']->fetchAll() as $d) {
+                $id = Helper::getIndexByOid($d->getOid());
+                $data['traffic'][$id]['_cir'] = $d->getValue();
+            }
+        }
+        if(isset($this->response['profile.traffic.cfgPir']) && !$this->response['profile.traffic.cfgPir']->error()) {
+            foreach ($this->response['profile.traffic.cfgPir']->fetchAll() as $d) {
+                $id = Helper::getIndexByOid($d->getOid());
+                $data['traffic'][$id]['_pir'] = $d->getValue();
+            }
+        }
+        if(isset($this->response['profile.traffic.cfgCbs']) && !$this->response['profile.traffic.cfgCbs']->error()) {
+            foreach ($this->response['profile.traffic.cfgCbs']->fetchAll() as $d) {
+                $id = Helper::getIndexByOid($d->getOid());
+                $data['traffic'][$id]['_cbs'] = $d->getValue();
+            }
+        }
+        if(isset($this->response['profile.traffic.cfgPbs']) && !$this->response['profile.traffic.cfgPbs']->error()) {
+            foreach ($this->response['profile.traffic.cfgPbs']->fetchAll() as $d) {
+                $id = Helper::getIndexByOid($d->getOid());
+                $data['traffic'][$id]['_pbs'] = $d->getValue();
+            }
+        }
+        $data['traffic'] = array_values($data['traffic']);
         return $data;
     }
 
