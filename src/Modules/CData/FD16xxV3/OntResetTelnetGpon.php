@@ -31,7 +31,7 @@ class OntResetTelnetGpon extends CDataAbstractModuleFD16xxV3
             throw new \Exception("Incorrect ONU number");
         }
         $this->_exe("interface gpon 0/0");
-        $this->_exe("ont restore factory {$interface['_port']} {$interface['_onu']}");
+        $this->_exe("ont restore-factory {$interface['_port']} {$interface['_onu']}");
         $this->response = true;
         return $this;
     }
