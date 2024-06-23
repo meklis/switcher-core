@@ -31,6 +31,10 @@
 - [x] Eltex switches (базово)
 - [x] HP switches (базово)
 - [x] Dell switches (базово)
+- [x] Allied Telesis (базово)
+- [x] TP-link (базово)
+- [x] Juniper switches (базово)
+- [x] Raisecom switches (базово)
 
 ### [Полный список поддерживаемого оборудования и их модулей](docs/DEVICES.md)     
 ### [Список модулей](docs/MODULES.md)    
