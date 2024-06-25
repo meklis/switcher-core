@@ -6,6 +6,7 @@ namespace SwitcherCore\Modules\BDcom\GP3600;
 
 use Exception;
 use SwitcherCore\Config\Objects\Oid;
+use SwitcherCore\Config\Objects\Trap;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\WrappedResponse;
@@ -21,6 +22,14 @@ class OntListWithStatuses extends BDcomAbstractModule
     {
         return $this->response;
     }
+
+    public function trap(Trap $trap, $data)
+    {
+//        foreach ($data as $oid=>) {
+//
+//        }
+    }
+
 
     function getPretty()
     {

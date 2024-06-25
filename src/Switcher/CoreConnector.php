@@ -180,7 +180,7 @@ class CoreConnector
         return $core;
     }
 
-    private function initWalker(\SwitcherCore\Switcher\Device $device) {
+    protected function initWalker(\SwitcherCore\Switcher\Device $device) {
         $walker = clone $this->walker;
         $port = $device->snmpPort ? $device->snmpPort : 161;
         $version = $device->snmpVersion ? $device->snmpVersion : '2c';
@@ -194,7 +194,7 @@ class CoreConnector
             )->setPort($port)->setVersion($version)
         );
     }
-    private function initConsole(\SwitcherCore\Switcher\Device $device) {
+    protected function initConsole(\SwitcherCore\Switcher\Device $device) {
         $waitByteSec = $device->consoleWaitByteSec ?  $device->consoleWaitByteSec : 10;
         if(!$device->get('consoleConnectionType') || $device->get('consoleConnectionType') == 'telnet') {
             return (new TelnetLazyConnect($device->consoleTimeout, $waitByteSec))
@@ -208,7 +208,7 @@ class CoreConnector
             throw new \Exception("Another console not implemented");
         }
     }
-    private function initMikrotikApi(\SwitcherCore\Switcher\Device $device) {
+    protected function initMikrotikApi(\SwitcherCore\Switcher\Device $device) {
         return (new RouterOsLazyConnect())
             ->setPort($device->mikrotikApiPort)
             ->connect($device->getIp(), $device->getLogin(), $device->getPassword());

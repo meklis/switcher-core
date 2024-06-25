@@ -115,7 +115,7 @@ class Core
     }
 
 
-    private function buildContainer()
+    protected function buildContainer()
     {
         $builder = new ContainerBuilder();
         $builder->useAutowiring(true);
@@ -173,7 +173,7 @@ class Core
      * @return array
      * @throws Exception
      */
-    private function getDetectDevInfo()
+    protected function getDetectDevInfo()
     {
         $collector = $this->container->get(OidCollector::class);
         $multiwalker = $this->container->get(MultiWalkerInterface::class);
