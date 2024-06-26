@@ -99,7 +99,7 @@ class Module
         foreach ($arguments as $key=>$val) {
             if(!isset($this->arguments[$key])) {
                 unset($arguments[$key]);
-            } else {
+            } else if (!is_array($val)) {
                 if (!preg_match("/{$this->arguments[$key]['pattern']}/",$val)) {
                     throw new InvalidArgumentException("Send incorrect $key parameter, pattern check failed");
                 }
