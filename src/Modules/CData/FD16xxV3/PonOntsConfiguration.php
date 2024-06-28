@@ -78,7 +78,6 @@ class PonOntsConfiguration extends CDataAbstractModuleFD16xxV3
             $this->response = $this->snmp->walk(array_map(function ($e) {
                 return \SnmpWrapper\Oid::init($e->getOid());
             }, $oids));
-            print_r($this->response);
         }
         return $this;
     }
