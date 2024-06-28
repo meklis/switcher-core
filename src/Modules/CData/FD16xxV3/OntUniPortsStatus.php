@@ -137,7 +137,7 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
         }
         foreach ($data['ont.uni.adminState']->fetchAll() as $dt) {
             $id = Helper::getIndexByOid($dt->getOid());
-            if(isset($statuses[$id])) {
+            if(isset($statuses[$id]) && $dt->getValue() != -1) {
                 $statuses[$id]['admin_state'] = $dt->getParsedValue();
             }
         }
