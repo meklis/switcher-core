@@ -1,17 +1,15 @@
 <?php
 
 
-namespace SwitcherCore\Modules\CData;
+namespace SwitcherCore\Modules\CData\FD16xxV3;
 
 
 use Exception;
-use SwitcherCore\Config\Objects\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\SnmpResponse;
-use SwitcherCore\Switcher\Objects\WrappedResponse;
 
-class PonOntsConfiguration extends CDataAbstractModule
+class PonOntsConfiguration extends CDataAbstractModuleFD16xxV3
 {
     /**
      * @var SnmpResponse[]
@@ -80,6 +78,7 @@ class PonOntsConfiguration extends CDataAbstractModule
             $this->response = $this->snmp->walk(array_map(function ($e) {
                 return \SnmpWrapper\Oid::init($e->getOid());
             }, $oids));
+            print_r($this->response);
         }
         return $this;
     }

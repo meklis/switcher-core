@@ -375,6 +375,7 @@ models:
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+              pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -477,7 +478,7 @@ models:
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
-              pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+              pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -585,7 +586,7 @@ models:
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
-              pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+              pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
             extra:
               pon_type: GPON
               pon_port_size: 128
