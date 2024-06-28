@@ -188,7 +188,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
         }
 
         if (!is_numeric($input)) {
-            if (preg_match('/^(ge|xe|xge|gpon|epon)([0-9])\/([0-9])\/([0-9]{1,2})\:?([0-9]{1,3})?$/', str_replace(" ", "", trim($input)), $m)) {
+            if (preg_match('/^(ge|xe|xge|gpon|epon|pon)([0-9])\/([0-9])\/([0-9]{1,2})\:?([0-9]{1,3})?$/', str_replace(" ", "", trim($input)), $m)) {
                 if($m[1] === 'xe') {
                     $m[1] = 'xge';
                 }
