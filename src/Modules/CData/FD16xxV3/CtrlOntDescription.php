@@ -29,7 +29,7 @@ class CtrlOntDescription extends CDataAbstractModuleFD16xxV3
         }
         $description = str_replace(' ', '_', $filter['description']);
         $this->checkSnmpRespError($this->snmp->set(
-            Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$iface['id']}")
+            Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$iface['_snmp_id']}")
                 ->setType('StringValue')
                 ->setValue($description)
         ));
