@@ -6,6 +6,7 @@ namespace SwitcherCore\Modules\CData\FD16xxV3;
 
 use Exception;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 class UniInterfacesControlAdminStatus extends CDataAbstractModuleFD16xxV3
 {
@@ -32,21 +33,27 @@ class UniInterfacesControlAdminStatus extends CDataAbstractModuleFD16xxV3
     {
         $iface = $this->parseInterface($filter['interface']);
 
-        $action = null;
+        $commands = [
+            'interface gpon 0/0',
+        ];
         switch ($filter['state']) {
-            case 'enable': $action = 1; break;
-            case 'disable': $action = 2; break;
+            case 'enable':
+                $commands[] = "ont port attribute {$iface['_port']} {$iface['_onu']} eth {$filter['num']} operational-state enable";
+                break;
+            case 'disable':
+                $commands[] = "ont port attribute {$iface['_port']} {$iface['_onu']} eth {$filter['num']} operational-state disable";
+                break;
+        }
+        $responses = $this->getModule('multi_console_command')->run([
+            'commands' => $commands,
+            'break_on_error' => 'yes',
+        ])->getPrettyFiltered([]);
+        if (count(array_filter($responses, function ($response) {
+                return !$response['success'];
+            })) != 0) {
+            throw new Exception("Error running commands for change UNI port state", 1);
         }
 
-        $oid = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.uni.adminState')->getOid() . ".{$iface['_snmp_id']}.0.{$filter['num']}")
-            ->setType('Integer')
-            ->setValue($action);
-        $resp = $this->snmp->set($oid);
-        foreach ($resp as $r) {
-            if($r->getError()) {
-                throw new \SNMPException($r->getError());
-            }
-        }
         $this->response = true;
         return $this;
     }

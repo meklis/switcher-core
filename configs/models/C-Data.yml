@@ -366,7 +366,7 @@ models:
               sys_resources: \SwitcherCore\Modules\CData\FD16xxV3\SystemResources
               interfaces_list: \SwitcherCore\Modules\CData\FD16xxV3\PonPortsList
               link_info: \SwitcherCore\Modules\CData\FD16xxV3\LinkInfo
-              #ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
+              ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
               ctrl_ont_descr: \SwitcherCore\Modules\CData\FD16xxV3\CtrlOntDescription
               console_command: \SwitcherCore\Modules\CData\FD16xxV3\RawConsoleCommand
               multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand
@@ -440,8 +440,6 @@ models:
       - snmp
       - console
     device_type: OLT
-    oids:
-      - ./oids/cdata/fd-gpon-series.yml
     traps:
       - ./traps/cdata.yml
     rewrites:
@@ -469,7 +467,7 @@ models:
               sys_resources: \SwitcherCore\Modules\CData\FD16xxV3\SystemResources
               interfaces_list: \SwitcherCore\Modules\CData\FD16xxV3\InterfacesList
               link_info: \SwitcherCore\Modules\CData\FD16xxV3\LinkInfo
-              #ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
+              ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
               ctrl_ont_descr: \SwitcherCore\Modules\CData\FD16xxV3\CtrlOntDescription
               console_command: \SwitcherCore\Modules\CData\FD16xxV3\RawConsoleCommand
               multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand
@@ -577,7 +575,7 @@ models:
               sys_resources: \SwitcherCore\Modules\CData\FD16xxV3\SystemResources
               interfaces_list: \SwitcherCore\Modules\CData\FD16xxV3\PonPortsList
               link_info: \SwitcherCore\Modules\CData\FD16xxV3\LinkInfo
-              #ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
+              ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
               ctrl_ont_descr: \SwitcherCore\Modules\CData\FD16xxV3\CtrlOntDescription
               console_command: \SwitcherCore\Modules\CData\FD16xxV3\RawConsoleCommand
               multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand

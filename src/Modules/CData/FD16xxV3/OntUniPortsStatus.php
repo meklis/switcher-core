@@ -118,7 +118,7 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
             $this->response = null;
             return  $this;
         }
-        $this->fillAdminStatus($statuses);
+        $this->fillAdminStatus($statuses, $interface);
         $this->response[] = [
             'interface' => $interface,
             'unis' => array_values($statuses),
@@ -127,18 +127,22 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
         return $this;
     }
 
-    public function fillAdminStatus(&$statuses)
+    public function fillAdminStatus(&$statuses, $interface)
     {
-        $data = $this->formatResponse($this->snmp->walk([
-           Oid::init($this->oids->getOidByName('ont.uni.adminState')->getOid())
-        ]));
-        if($data['ont.uni.adminState']->error()) {
-            return $statuses;
-        }
-        foreach ($data['ont.uni.adminState']->fetchAll() as $dt) {
-            $id = Helper::getIndexByOid($dt->getOid());
-            if(isset($statuses[$id]) && $dt->getValue() != -1) {
-                $statuses[$id]['admin_state'] = $dt->getParsedValue();
+        $resp = $this->console->exec("show ont port attribute {$interface['_port']} {$interface['_onu']} eth all");
+        $lines = explode("\n", $resp);
+
+        for($i=3;$i<count($lines);$i++){
+            $parts = preg_split('/\s+/', trim($lines[$i]));
+            if(count($parts) > 1){
+                $state = 'N/A';
+                if($parts[7] == 'enable') {
+                    $state = 'Enabled';
+                }
+                if($parts[7] == 'disable') {
+                    $state = 'Disabled';
+                }
+                $statuses[$parts[3]]['admin_state'] = $state;
             }
         }
         return  $statuses;
