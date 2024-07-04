@@ -24,15 +24,27 @@ class CtrlOntDescription extends CDataAbstractModuleFD16xxV3
     public function run($filter = [])
     {
         $iface = $this->parseInterface($filter['interface']);
-        if($iface['type'] != 'ONU') {
-            throw new \InvalidArgumentException("Allow only for ONU");
+
+        if(!preg_match('/^[A-Za-z0-9_-]{1,}$/', $filter['description'])) {
+            throw new \Exception("Incorrect description format");
         }
-        $description = str_replace(' ', '_', $filter['description']);
-        $this->checkSnmpRespError($this->snmp->set(
-            Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$iface['_snmp_id']}")
-                ->setType('StringValue')
-                ->setValue($description)
-        ));
+
+        $commands = [
+            'interface gpon 0/0',
+            "ont description {$iface['_port']} {$iface['_onu']} {$filter['description']}",
+            "exit"
+        ];
+        $responses = $this->getModule('multi_console_command')->run([
+            'commands' => $commands,
+            'break_on_error' => 'yes',
+        ])->getPrettyFiltered([]);
+        if (count(array_filter($responses, function ($response) {
+                return !$response['success'];
+            })) != 0) {
+            throw new Exception("Error running commands for change ONU description", 1);
+        }
+
+        $this->response = true;
         return $this;
     }
 
