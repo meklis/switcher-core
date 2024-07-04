@@ -159,3 +159,4 @@ echo json_encode($core->action('system'), JSON_PRETTY_PRINT);
 ```
 
 
+### Используется в [wildcore.tools](https://wildcore.tools)
