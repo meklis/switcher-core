@@ -25,9 +25,10 @@ class OntListWithStatuses extends BDcomAbstractModule
 
     public function trap(Trap $trap, $data)
     {
-//        foreach ($data as $oid=>) {
-//
-//        }
+         if(!$data['interface']) {
+             return null;
+         }
+         return  $this->run(['interface' => $data['interface']['id'], 'load_only' => ''])->getPrettyFiltered(['interface' => $data['interface']['id'], 'load_only' => '']);
     }
 
 

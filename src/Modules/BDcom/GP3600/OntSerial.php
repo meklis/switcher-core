@@ -7,6 +7,7 @@ namespace SwitcherCore\Modules\BDcom\GP3600;
 use Exception;
 use SnmpWrapper\Oid;
 use SnmpWrapper\Response\PoollerResponse;
+use SwitcherCore\Config\Objects\Trap;
 use SwitcherCore\Exceptions\IncompleteResponseException;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -21,6 +22,27 @@ class OntSerial extends BDcomAbstractModule
     function getRaw()
     {
         return $this->response;
+    }
+
+    public function trap(Trap $trap, $data)
+    {
+        if(!$data['interface']) {
+            return null;
+        }
+
+        $filter = array_values(array_filter($data['parsed'], function ($item) {
+            return $item['name'] == 'ont.serial';
+        }));
+        if(count($filter) === 0) {
+            return  null;
+        }
+
+        return  [
+            [
+                'interface' => $data['interface'],
+                'serial' => str_replace(":", "", $filter[0]['value']),
+            ]
+        ];
     }
 
     function getPrettyFiltered($filter = [], $fromCache = false)

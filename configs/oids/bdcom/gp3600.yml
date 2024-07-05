@@ -96,8 +96,28 @@
 - { name: terminal.last.status, oid: .1.3.6.1.4.1.3320.9.188.5, values: { 0: Success, 1: Failed } }
 
 
-- { name: system.fan.status, oid: .1.3.6.1.4.1.3320.9.187.1, values: { 1: Normal, 2: Stop } }
-- { name: system.power.status, oid: .1.3.6.1.4.1.3320.9.189.1, values: { 1: Power-A-Normal, 2: Power-B-Normal, 3: Power-A-B-Normal, 4: Other } }
+
+- { name: alarm.trashhold, oid: .1.3.6.1.4.1.3320.10.3.6.2 }
+
 
 - { name: alarm.status, oid: .1.3.6.1.4.1.3320.10.3.6.1, values: { 1: Above, 2: Below, 3: Normal } }
-- { name: alarm.trashhold, oid: .1.3.6.1.4.1.3320.10.3.6.2 }
+- { name: system.fan.status, oid: .1.3.6.1.4.1.3320.9.187.1, values: { 1: Normal, 2: Stop } }
+- { name: system.power.status, oid: .1.3.6.1.4.1.3320.9.189.1.0, values: {
+  1: A-normal,
+  2: B-normal,
+  3: A-B-normal,
+  4: other
+} }
+
+- { name: system.power.trap.oldStatus, oid: .1.3.6.1.4.1.3320.9.189.2, values: {
+  1: A-normal,
+  2: B-normal,
+  3: A-B-normal,
+  4: other
+} }
+- { name: system.power.trap.newStatus, oid: .1.3.6.1.4.1.3320.9.189.3, values: {
+  1: A-normal,
+  2: B-normal,
+  3: A-B-normal,
+  4: other
+} }

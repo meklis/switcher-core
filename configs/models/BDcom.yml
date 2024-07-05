@@ -57,6 +57,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\GP3600\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\GP3600\UnregisteredOnts
+      power_status: \SwitcherCore\Modules\BDcom\GP3600\PowerStatus
     extra:
       pon_port_size: 128
       console_conn_type: bdcom

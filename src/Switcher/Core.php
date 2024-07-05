@@ -371,18 +371,6 @@ class Core
             'parsed' => [],
             'interface' => null,
         ];
-        foreach ($trap->getModules() as $moduleName) {
-            try {
-                /**
-                 * @var $module AbstractModule
-                 */
-                $module = $this->container->get("module.{$moduleName}");
-                $response['data'][$moduleName] = $module->trap( $trap, $data);
-            } catch (\Throwable $e) {
-                $response['errors'][] = "error working with trap {$object} for calling module $moduleName - {$e->getMessage()}";
-                $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
-            }
-        }
         foreach ($data as $oid=>$value) {
             try {
                 $finded = $oidCollector->findOidById($oid);
@@ -399,7 +387,6 @@ class Core
                 $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
             }
         }
-
         if($trap->isInterface()) {
             foreach ($data as $oid=>$value) {
                 try {
@@ -409,12 +396,27 @@ class Core
                     $module = $this->container->get("module.parse_interface");
                     $response['interface'] = $module->run(['interface' => Helper::getIndexByOid($oid)])->getPrettyFiltered(['interface' => Helper::getIndexByOid($oid)]);
                 } catch (\Throwable $e) {
-                    $response['errors'][] = "error parse interface trap {$object} for parsing $oid - {$e->getMessage()}";
-                    $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
+                    $response['errors'][] = "not found interface on trap {$object}";
+                    $this->logger->error("not found interface on trap {$object}");
                 }
             }
         }
-
+        foreach ($trap->getModules() as $moduleName) {
+            try {
+                /**
+                 * @var $module AbstractModule
+                 */
+                $module = $this->container->get("module.{$moduleName}");
+                $response['modules'][$moduleName] = $module->trap( $trap, [
+                    'parsed' =>  $response['parsed'],
+                    'raw' =>  $data,
+                    'interface' => $response['interface'],
+                ]);
+            } catch (\Throwable $e) {
+                $response['errors'][] = "error working with trap {$object} for calling module $moduleName - {$e->getMessage()}";
+                $this->logger->error("error working with trap {$object} - {$e->getMessage()}");
+            }
+        }
 
         return $response;
     }
