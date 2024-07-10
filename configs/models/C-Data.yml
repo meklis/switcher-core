@@ -436,6 +436,8 @@ models:
   - name: C-Data FD1608
     key: c_data_fd1608
     detect: {description: .*,  objid: ^.1.3.6.1.4.1.17409$, ifacesCount: 14}
+    oids:
+      - ./oids/cdata/fd-gpon-series.yml
     inputs:
       - snmp
       - console
