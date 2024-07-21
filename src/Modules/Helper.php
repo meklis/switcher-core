@@ -129,4 +129,19 @@ class Helper
             }
             return  '';
     }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    static function getTrapElementByName($trapParsedData, $searchingName)
+    {
+        $data = array_filter($trapParsedData, function ($e) use ($searchingName) {
+           return $e['name'] == $searchingName;
+        });
+        if(count($data) > 0) {
+            return array_values($data)[0];
+        }
+        return null;
+    }
 }

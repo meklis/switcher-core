@@ -5,11 +5,17 @@ namespace SwitcherCore\Modules\Dlink\Link;
 
 use Exception;
 use SnmpWrapper\Oid;
+use SwitcherCore\Config\Objects\Trap;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\Helper;
 
 class DlinkParser extends SwitchesPortAbstractModule
 {
+    function trap(Trap $trap, $data)
+    {
+        $data = $this->run(['interface' => $data['interface']['id']])->getPrettyFiltered(['interface' => $data['interface']['id']]);
+        return $data;
+    }
     protected function formate() {
           $link_status = $this->getResponseByName('dlink.PortInfoLinkStatus');
           $nway_status = $this->getResponseByName('dlink.PortInfoNwayStatus');

@@ -381,6 +381,7 @@ class Core
                     'hex' => isset($value['hex']) ? $value['hex'] : null,
                     'name' => $finded->getName(),
                     'parsed_value' => $parsedValue,
+                    'oid' => $oid,
                 ];
             } catch (\Throwable $e) {
                 $response['errors'][] = "error working with trap {$object} for parsing $oid - {$e->getMessage()}";

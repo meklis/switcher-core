@@ -4,12 +4,31 @@
 namespace SwitcherCore\Modules\General\Switches;
 
 use SnmpWrapper\Oid;
+use SwitcherCore\Config\Objects\Trap;
 use SwitcherCore\Modules\Dlink\SwitchesPortAbstractModule;
 use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\Helper;
 
 abstract class LinkInfo extends AbstractInterfaces
 {
+
+
+    function trap(Trap $trap, $data)
+    {
+
+        $oper = Helper::getTrapElementByName($data['parsed'], 'if.OperStatus');
+        $admin = Helper::getTrapElementByName($data['parsed'], 'if.AdminStatus');
+
+        return [[
+           'interface' => $data['interface'],
+           'oper_status' => $oper ? $oper['parsed_value'] : null,
+           'nway_status' => null,
+           'admin_state' => $admin ? $admin['parsed_value'] : null,
+           'last_change' => null,
+           'medium_type' => null,
+        ]];
+    }
+
     protected function formate() {
           $snmp_high_speed = !$this->response['if.HighSpeed']->error() ? $this->response['if.HighSpeed']->fetchAll() : [];
           $snmp_type = !$this->response['if.Type']->error() ? $this->response['if.Type']->fetchAll() : [];
