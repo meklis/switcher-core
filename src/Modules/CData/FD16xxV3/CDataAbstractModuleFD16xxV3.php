@@ -74,7 +74,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
                     '_slot' => $m[3],
                     '_port' => $m[4],
                     '_onu' => null,
-                    '_technology' => 'gpon',
+                    '_technology' => $type == 'PON' ? 'gpon' : null,
                 ];
             }
         }
