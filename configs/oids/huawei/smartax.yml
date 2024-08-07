@@ -150,6 +150,8 @@
 - {name: ont.epon.stat.inOctets, oid: .1.3.6.1.4.1.2011.6.128.1.1.4.42.1.3}
 - {name: ont.epon.stat.reset, oid: .1.3.6.1.4.1.2011.6.128.1.1.4.23.1.20, values: {1: Reset}}
 
+- {name: port.gpon.countOnts, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.21.1.16}
+- {name: port.epon.countOnts, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.31.1.12}
 
 #FOR NOT MODIFICATE
 - {name: ont.gpon.status, oid: .1.3.6.1.4.1.2011.6.128.1.1.2.46.1.15, values: {1: Online, 2: Offline, -1: Invalid}}

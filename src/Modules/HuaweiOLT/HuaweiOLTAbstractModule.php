@@ -124,7 +124,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
         $ifaces = array_filter($this->getInterfaces(), function ($f) {
             return $f['_technology'] === 'epon';
         });
-        return count($ifaces) > 0;
+        return count($ifaces) > 0  && $this->getCountOntsByTechnology('epon') > 0;
     }
 
     protected function isHasGponIfaces()
@@ -132,10 +132,39 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
         $ifaces = array_filter($this->getInterfaces(), function ($f) {
             return $f['_technology'] === 'gpon';
         });
-        return count($ifaces) > 0;
+        return count($ifaces) > 0 && $this->getCountOntsByTechnology('gpon') > 0;
     }
 
     private $_interfaces = [];
+
+
+    private $_cachedOntsCount = [
+        'epon' => null,
+        'gpon' => null,
+    ];
+    protected function getCountOntsByTechnology($technology)
+    {
+        if($this->_cachedOntsCount[$technology] !== null) {
+            return $this->_cachedOntsCount[$technology];
+        }
+        $dt = $this->getCache("COUNT_ONTS_BY_TECHNOLOGY:$technology", true);
+        if($dt !== null) {
+            $this->_cachedOntsCount[$technology] = $dt;
+            return $dt;
+        }
+        $oid = $this->oids->getOidByName("port.{$technology}.countOnts")->getOid();
+        $response = $this->snmp->walk([\SnmpWrapper\Oid::init($oid)]);
+        if($response[0]->getError()) {
+            throw new \SNMPException($response[0]->getError());
+        }
+        $countOnts = 0;
+        foreach ($response[0]->getResponse() as $resp) {
+            $countOnts += $resp->getValue();
+        }
+        $this->_cachedOntsCount[$technology] = $countOnts;
+        $this->setCache("COUNT_ONTS_BY_TECHNOLOGY:$technology", $countOnts, 180, true);
+        return $countOnts;
+    }
 
     protected function getInterfaces()
     {
