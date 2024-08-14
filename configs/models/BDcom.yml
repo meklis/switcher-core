@@ -105,6 +105,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -152,6 +153,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -199,6 +201,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -246,6 +249,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -293,6 +297,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -340,6 +345,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -387,6 +393,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
+      vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
