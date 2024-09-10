@@ -8,7 +8,9 @@ models:
     - console
   detect: {description: Juniper.*qfx51,  objid: ^.1.3.6.1.4.1.2636.1.1.1.4.82 }
   extra:
-    console_conn_type: alcatel
+    console_conn_type: junos
+    console_commands_after_connect:
+      - set cli screen-length 0
   modules:
     parse_interface: \SwitcherCore\Modules\JuniperSwitch\ParseInterface
   #  fdb: \SwitcherCore\Modules\JuniperSwitch\Fdb
@@ -26,3 +28,5 @@ models:
     ctrl_port_state: \SwitcherCore\Modules\JuniperSwitch\StatePortControl
     console_command: \SwitcherCore\Modules\JuniperSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\JuniperSwitch\MultiRawConsoleCommand
+
+
