@@ -79,7 +79,22 @@ trait InterfacesTrait
         }
         throw new \Exception("Interface with name {$iface} not found");
     }
-
+    protected function getParentIfaceIDsByLACP($ifaceId)
+    {
+        $data = [];
+        $resp = $this->snmp->walk([
+            Oid::init($this->oids->getOidByName('if.stackStatus')->getOid() . ".0.{$ifaceId}"),
+        ]);
+        $name = $this->oids->findOidById($resp[0]->getOid());
+        if ($resp[0]->getError()) {
+            $this->logger->error("Error get parent ifaces by LACP, oid {$name->getOid()}");
+            return [];
+        }
+        foreach ($resp[0]->getResponse() as $r) {
+            $data[] = Helper::getIndexByOid($r->getOid());
+        }
+        return  $data;
+    }
     private $_interfaces;
 
     function getInterfacesIds()
@@ -108,7 +123,7 @@ trait InterfacesTrait
 
         $ifaces = [];
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(ae|et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
                 $id = Helper::getIndexByOid($r->getOid());
                 $type = "ETH";
@@ -125,6 +140,27 @@ trait InterfacesTrait
                 ];
             }
         }
+        foreach ($responses['if.Name']->getResponse() as $r) {
+            if (preg_match('/^(ae)([0-9]{1,3})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $type = "LACP";
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => (int)$m[2],
+                    '_slot_num' => null,
+                    '_shelf_num' => null,
+                    '_type' => $m[1],
+                    '_sorting' => 10000000 + $m[2],
+                    '_lacp_ifaces' => null,
+                    'type' => $type,
+                ];
+            }
+        }
+
+
+
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
         return $ifaces;
