@@ -4,15 +4,12 @@ namespace SwitcherCore\Modules\BDcom;
 
 use SnmpWrapper\Oid;
 
-class PortDescriptionControl extends BDcomAbstractModule
+class DescriptionControl extends BDcomAbstractModule
 {
     public function run($params = [])
     {
         $interface = $this->parseInterface($params['interface']);
 
-        if ($interface['type'] == 'ONU') {
-            throw new \InvalidArgumentException("ONU not allowed, just physical ports");
-        }
 
         $description = str_replace(' ', '_', $params['description']);
         $this->checkSnmpRespError($this->snmp->set(

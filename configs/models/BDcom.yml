@@ -103,7 +103,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
@@ -151,7 +152,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
@@ -199,7 +201,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
@@ -247,7 +250,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
@@ -295,7 +299,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
@@ -343,7 +348,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
@@ -391,7 +397,8 @@ models:
       link_info: \SwitcherCore\Modules\BDcom\LinkInfo
       console_command: \SwitcherCore\Modules\BDcom\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\BDcom\MultiRawConsoleCommand
-      ctrl_port_descr: \SwitcherCore\Modules\BDcom\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
+      ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
     extra:
