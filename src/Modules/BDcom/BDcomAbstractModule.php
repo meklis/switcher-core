@@ -48,7 +48,6 @@ abstract class BDcomAbstractModule extends AbstractModule
     protected function parseInterface($input, $parseBy = 'id')
     {
         $ifaces = $this->getInterfacesIds();
-
         if (is_numeric($input) && $parseBy == 'xid') {
             $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
                 return $input == $iface['xid'];
@@ -331,13 +330,13 @@ abstract class BDcomAbstractModule extends AbstractModule
             return $id;
         }
         if (preg_match('/^tg0\/([0-9]{1,2})/', $name, $matches)) {
-            return (int)$matches[1] + 1000;
+            return (int)$matches[1] + 100000;
         }
         if (preg_match('/^g0\/([0-9]{1,2})/', $name, $matches)) {
-            return (int)$matches[1] + 100;
+            return (int)$matches[1] + 10000;
         }
         if (preg_match('/^fe0\/([0-9]{1,2})/', $name, $matches)) {
-            return (int)$matches[1] + 10;
+            return (int)$matches[1] + 1000;
         }
         if (strpos($name, "aggregator") !== false) {
             $input_as_arr = str_split($name);
