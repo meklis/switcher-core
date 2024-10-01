@@ -30,14 +30,8 @@ class OntDeleteGpon extends CDataAbstractModuleFD16xxV3
         if(!$interface['id']) {
             throw new \Exception("Incorrect ONU number");
         }
-        if (!preg_match('/^(pon|xge|ge|gpon) ([0-9])\/([0-9])\/([0-9]){1,}\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $interface['name'], $m)) {
-            throw new \Exception("Interface {$filter['interface']} not supported!");
-        }
-        if(count($m) < 5) {
-            throw new \Exception("Allow to reboot only ONTs");
-        }
         $this->_exe("interface gpon 0/0");
-        $this->_exe("ont delete {$m[4]} {$m[5]}");
+        $this->_exe("ont delete {$interface['_port']} {$interface['_onu']}");
         $this->_exe("exit");
         $this->_exe("save");
         $this->response = true;
