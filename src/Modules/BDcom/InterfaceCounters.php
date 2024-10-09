@@ -158,14 +158,8 @@ class InterfaceCounters extends BDcomAbstractModule
         $oidsLoc = [
             $this->oids->getOidByName('if.InErrors'),
             $this->oids->getOidByName('if.OutErrors'),
-            $this->oids->getOidByName('if.InDiscards'),
-            $this->oids->getOidByName('if.OutDiscards'),
             $this->oids->getOidByName('if.HCInOctets'),
             $this->oids->getOidByName('if.HCOutOctets'),
-            $this->oids->getOidByName('if.HCInMulticastPkts'),
-            $this->oids->getOidByName('if.HCOutMulticastPkts'),
-            $this->oids->getOidByName('if.HCInBroadcastPkts'),
-            $this->oids->getOidByName('if.HCOutBroadcastPkts'),
         ];
         $suffix = '';
         if($filter['interface']) {

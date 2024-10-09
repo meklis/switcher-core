@@ -107,8 +107,9 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
-      pon_port_size: 64
+      pon_port_size: 64 
       console_conn_type: bdcom
       console_commands_after_connect:
         - {command: enable, check_password: true}
@@ -156,6 +157,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -205,6 +207,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -254,6 +257,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -303,6 +307,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -352,6 +357,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -401,6 +407,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\BDcom\DescriptionControl
       unregistered_onts: \SwitcherCore\Modules\BDcom\UnregisteredOnts
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
+      interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
     extra:
       pon_port_size: 64
       console_conn_type: bdcom

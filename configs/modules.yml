@@ -221,6 +221,12 @@
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
   descr: Vlans on L3 devices
 
+- name: interface_rate_limits
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+    - {name: load_only, pattern: '.*', required: no}
+
+
 - name: interface_info
   arguments:
     - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
