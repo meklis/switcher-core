@@ -10,7 +10,6 @@ class SetDeviceDescription extends AbstractModule
 {
     public function run($params = [])
     {
-
         if(!isset($params['description'])) {
             $params['description'] = '';
         }

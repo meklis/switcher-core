@@ -74,3 +74,10 @@
   - {name: dot1q.FdbPort, oid: .1.3.6.1.2.1.17.7.1.2.2.1.2, access: read}
 # .1.3.6.1.2.1.17.7.1.2.2.1.3.[VLAN ID].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET].[MAC-OCTET] = [STATUS]
   - {name: dot1q.FdbStatus, oid: .1.3.6.1.2.1.17.7.1.2.2.1.3, access: read, values: {1: OTHER, 2: INVALID, 3: LEARNED, 4: SELF, 5: MGMT}}
+
+  - {name: lldp.locChassisId , oid: .1.0.8802.1.1.2.1.3.2 } # МАК-адрес(идентификатор железки)
+  - {name: lldp.locPortId, oid: .1.0.8802.1.1.2.1.3.7.1.3 } # Идентификаторы портов (вид как у мак-адреса, но с номерами)
+  - {name: lldp.remChassisId, oid: .1.0.8802.1.1.2.1.4.1.1.5} # Также идентификатор соседних мак-аредсов
+  - {name: lldp.remPortId, oid: .1.0.8802.1.1.2.1.4.1.1.7} # Идентификатор порта на удаленном устройстве (не ID порта)
+
+  - {name: ip.netSettings, oid: .1.3.6.1.2.1.4.22.1.2}
