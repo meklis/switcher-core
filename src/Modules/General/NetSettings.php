@@ -32,7 +32,7 @@ abstract class NetSettings extends AbstractInterfaces
                     $response['gateway_mac'] = $dt->getHexValue();
                     break;
                 case 3:
-                    $response['broadcast'] = $dt->getHexValue();
+                    $response['broadcast'] = $ip;
                     break;
             }
         }
@@ -53,7 +53,7 @@ abstract class NetSettings extends AbstractInterfaces
     {
         Helper::prepareFilter($filter);
         $oidObjects = Oid::init($this->oids->getOidByName('ip.netSettings'));
-        $this->response = $this->formatResponse($this->snmp->walk([$oidObjects]));
+        $this->response = $this->formatResponse($this->snmp->walk([$oidObjects->getOid()]));
         return $this;
     }
 }

@@ -21,7 +21,7 @@ abstract class LldpInfo extends AbstractInterfaces
             if($error = $this->getResponseByName('lldp.locChassisId')->error()) {
                 throw new \SNMPException($error);
             }
-            $response['local']['chassis_id'] = $this->getResponseByName('lldp.locChassisId')->fetchOne()->getHexValue();
+            $response['local']['chassis_id'] = $this->formateValue($this->getResponseByName('lldp.locChassisId')->fetchOne()->getValue());
         }
         if(isset($this->response['lldp.locPortId'])) {
             if($error = $this->getResponseByName('lldp.locPortId')->error()) {
@@ -32,7 +32,7 @@ abstract class LldpInfo extends AbstractInterfaces
                 $id = Helper::getIndexByOid($dt->getOid());
                 $ports[] = [
                     'port_id' => $id,
-                    'ident' => $dt->getHexValue(),
+                    'name' => $this->formateValue($dt->getValue()),
                     'interface' => $this->parseInterface($id),
                 ];
             }
@@ -48,11 +48,10 @@ abstract class LldpInfo extends AbstractInterfaces
                 $id = Helper::getIndexByOid($dt->getOid());
                 $port = Helper::getIndexByOid($dt->getOid(), 1);
                 $remotes["{$port}.{$id}"] = [
-                    'id' => $id,
-                    'interface' => $this->parseInterface($port),
-                    'chassis_id' => $dt->getHexValue(),
-                    'port_ident' => null,
-                    '_port_id' => null,
+                    'loc_interface' => $this->parseInterface($port),
+                    'rem_chassis_id' => $this->formateValue($dt->getValue()),
+                    'rem_interface' => null,
+                    '_rem_port_id' => null,
                 ];
             }
         }
@@ -60,19 +59,16 @@ abstract class LldpInfo extends AbstractInterfaces
             if($error = $this->getResponseByName('lldp.remPortId')->error()) {
                 throw new \SNMPException($error);
             }
-            $remotes = [];
             foreach ($this->getResponseByName('lldp.remPortId')->fetchAll() as $dt) {
                 $id = Helper::getIndexByOid($dt->getOid());
                 $port = Helper::getIndexByOid($dt->getOid(), 1);
-                if(!isset($remotes["{$port}.{$id}"]['chassis_id'])) {
-                    $remotes["{$port}.{$id}"]['chassis_id'] = null;
+                $remotes["{$port}.{$id}"]['loc_interface'] = $this->parseInterface($port);
+                $remotes["{$port}.{$id}"]['rem_interface'] = $this->formateValue($dt->getValue());
+                $remotes["{$port}.{$id}"]['_rem_port_id'] = $this->getPortId($remotes["{$port}.{$id}"]['rem_chassis_id'], $this->formateValue($dt->getValue()));
+                if(!isset($remotes["{$port}.{$id}"]['rem_chassis_id'])) {
+                    $remotes["{$port}.{$id}"]['rem_chassis_id'] = null;
                 }
-                $remotes["{$port}.{$id}"] = [
-                    'id' => $id,
-                    'interface' => $this->parseInterface($port),
-                    'port_ident' => $dt->getHexValue(),
-                    '_port_id' => $this->getPortId($remotes["{$port}.{$id}"]['chassis_id'], $dt->getHexValue()),
-                ];
+
             }
         }
         $response['remotes'] = array_values($remotes);
@@ -87,12 +83,25 @@ abstract class LldpInfo extends AbstractInterfaces
     {
         if(!$chassisId) return null;
         if(!$portIdent) return null;
-        return hexdec(str_replace(':', '', $portIdent)) - hexdec(str_replace(':', '', $chassisId));
+        try {
+            return hexdec(str_replace(':', '', $portIdent)) - hexdec(str_replace(':', '', $chassisId));
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     function getPrettyFiltered($filter = [])
     {
         return $this->formate();
+    }
+
+    function formateValue($value)
+    {
+        $value = trim($value);
+        if(preg_match('/^([[:xdigit:]]{2}) ([[:xdigit:]]{2}) ([[:xdigit:]]{2}) ([[:xdigit:]]{2}) ([[:xdigit:]]{2}) ([[:xdigit:]]{2})$/', $value, $m)) {
+            return "{$m[1]}:{$m[2]}:{$m[3]}:{$m[4]}:{$m[5]}:{$m[6]}";
+        }
+        return  $value;
     }
 
     public function run($filter = [])

@@ -55,7 +55,7 @@ trait InterfacesTrait
     protected $device;
 
 
-
+    protected $indexesPort;
     private $_interfaces;
 
     function getInterfacesIds()
