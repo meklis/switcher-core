@@ -40,6 +40,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -87,6 +88,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -134,6 +136,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -181,6 +184,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -239,6 +243,7 @@ models:
       link_info: \SwitcherCore\Modules\ZTE\C600Series\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C600Series\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: zte
       port_offset: 1

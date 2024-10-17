@@ -42,6 +42,7 @@ models:
       ctrl_ont_reboot: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntReboot
       ctrl_ont_delete: \SwitcherCore\Modules\VsolOlts\GPONV1600\OntDelete
       ctrl_ont_disable: \SwitcherCore\Modules\VsolOlts\GPONV1600\CtrlOntDisable
+      net_settings: \SwitcherCore\Modules\General\NetSettings
       #uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\UniInterfacesInfo
       #snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
     extra:
@@ -96,6 +97,7 @@ models:
       snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
       console_command: \SwitcherCore\Modules\VsolOlts\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\VsolOlts\MultiRawConsoleCommand
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       pon_port_size: 64
       console_conn_type: vsolution

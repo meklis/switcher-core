@@ -19,7 +19,7 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\TpLinkSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\TpLinkSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\TpLinkSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\TpLinkSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings
 
 - name: TP-Link Smart Switch
   key: tplink_smart_switch
@@ -43,7 +43,7 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\TpLinkSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\TpLinkSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\TpLinkSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\TpLinkSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings
 
 - name: TP-Link Switch
   key: tplink_general_switch
@@ -67,4 +67,4 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\TpLinkSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\TpLinkSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\TpLinkSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\TpLinkSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings

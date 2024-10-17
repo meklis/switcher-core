@@ -43,6 +43,7 @@ models:
       card_status: \SwitcherCore\Modules\HuaweiOLT\CardStatus
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -90,6 +91,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlPortDescription
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -137,6 +139,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlPortDescription
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -185,6 +188,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlPortDescription
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -233,6 +237,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlPortDescription
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -281,6 +286,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\HuaweiOLT\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\HuaweiOLT\CtrlPortDescription
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
+      net_settings: \SwitcherCore\Modules\General\NetSettings
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:

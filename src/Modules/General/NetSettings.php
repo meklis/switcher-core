@@ -4,10 +4,11 @@
 namespace SwitcherCore\Modules\General;
 
 use SnmpWrapper\Oid;
+use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\Helper;
 
-abstract class NetSettings extends AbstractInterfaces
+class NetSettings extends AbstractModule
 {
     protected function formate() {
         $response = [];

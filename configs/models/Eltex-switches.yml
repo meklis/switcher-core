@@ -32,4 +32,4 @@ models:
     console_command: \SwitcherCore\Modules\EltexSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\EltexSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\EltexSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\EltexSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings

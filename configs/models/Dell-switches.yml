@@ -29,4 +29,4 @@ models:
     console_command: \SwitcherCore\Modules\DellSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\DellSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings

@@ -55,7 +55,7 @@ models:
       console_command: \SwitcherCore\Modules\Huawei\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Huawei\MultiRawConsoleCommand
       lldp_info: \SwitcherCore\Modules\Huawei\LldpInfo
-      net_settings: \SwitcherCore\Modules\Huawei\NetSettings
+      net_settings: \SwitcherCore\Modules\General\NetSettings
 
   - name: Huawei Quidway S9300 series
     key: huawei_quidway_S9300_series
@@ -87,4 +87,4 @@ models:
       console_command: \SwitcherCore\Modules\HuaweiQuidwayS93\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\HuaweiQuidwayS93\MultiRawConsoleCommand
       lldp_info: \SwitcherCore\Modules\HuaweiQuidwayS93\LldpInfo
-      net_settings: \SwitcherCore\Modules\HuaweiQuidwayS93\NetSettings
+      net_settings: \SwitcherCore\Modules\General\NetSettings

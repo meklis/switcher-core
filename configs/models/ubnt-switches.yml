@@ -21,4 +21,4 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\UbntSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\UbntSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\UbntSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\UbntSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings

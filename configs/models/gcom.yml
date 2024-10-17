@@ -28,6 +28,7 @@ models:
       console_command: \SwitcherCore\Modules\GCOM\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
 
     extra:
       pon_port_size: 64
@@ -83,6 +84,7 @@ models:
       console_command: \SwitcherCore\Modules\GCOM\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
+      net_settings: \SwitcherCore\Modules\General\NetSettings
 
     extra:
       pon_port_size: 64

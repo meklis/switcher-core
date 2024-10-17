@@ -27,4 +27,4 @@ models:
     console_command: \SwitcherCore\Modules\AlcatelSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\AlcatelSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\AlcatelSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\AlcatelSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings

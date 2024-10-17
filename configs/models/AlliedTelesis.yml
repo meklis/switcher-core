@@ -27,4 +27,4 @@ models:
     console_command: \SwitcherCore\Modules\AlliedTelesisSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\AlliedTelesisSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\AlliedTelesisSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\AlliedTelesisSwitch\NetSettings
+    net_settings: \SwitcherCore\Modules\General\NetSettings
