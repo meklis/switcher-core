@@ -49,6 +49,8 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings
  - name: D-link DGS-3000-26TC
    key: dlink_dgs_3000_26tc_a1
    ports: 26
@@ -91,6 +93,8 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings
 
  - name: D-link DGS-3000-28L
    key: dlink_dgs_3000_28l_b1
@@ -135,3 +139,5 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings

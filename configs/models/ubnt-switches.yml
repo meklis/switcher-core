@@ -20,3 +20,5 @@ models:
     vlans_by_port: \SwitcherCore\Modules\UbntSwitch\VlanByPorts
     ctrl_port_descr: \SwitcherCore\Modules\UbntSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\UbntSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\UbntSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\UbntSwitch\NetSettings

@@ -39,6 +39,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ECS4120-28Fv2
     key: edgecore_ecs4120_28fv2
@@ -75,6 +77,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ECS4510-28F
     key: edgecore_ecs4510_28f
@@ -111,6 +115,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ES4612
     key: edgecore_es4612
@@ -146,6 +152,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ES3552M
     key: edgecore_es3552m
@@ -183,6 +191,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ECS3510-28T
     key: edgecore_ecs3510_28t
@@ -218,6 +228,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ES3528M
     key: edgecore_es3528m
@@ -255,6 +267,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ES3510MA
     key: edgecore_es3510ma
@@ -292,6 +306,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ES3510MAv2
     key: edgecore_es3510ma_v2
@@ -329,6 +345,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core ES3510
     key: edgecore_es3510
@@ -362,6 +380,8 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings
 
   - name: Edge-core General switch
     key: edgecore_general_switch
@@ -395,3 +415,5 @@ models:
       reboot: \SwitcherCore\Modules\Edgecore\Reboot
       console_command: \SwitcherCore\Modules\Edgecore\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\Edgecore\MultiRawConsoleCommand
+      lldp_info: \SwitcherCore\Modules\Edgecore\LldpInfo
+      net_settings: \SwitcherCore\Modules\Edgecore\NetSettings

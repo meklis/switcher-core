@@ -18,6 +18,9 @@ models:
     interfaces_list: \SwitcherCore\Modules\CiscoSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\CiscoSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\CiscoSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\CiscoSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\CiscoSwitch\NetSettings
+
 
 - name: Cisco Switch
   key: cisco_general_switch_sg
@@ -39,3 +42,5 @@ models:
     vlans_by_port: \SwitcherCore\Modules\CiscoSwitch\VlanByPorts
     ctrl_port_descr: \SwitcherCore\Modules\CiscoSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\CiscoSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\CiscoSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\CiscoSwitch\NetSettings

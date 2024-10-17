@@ -20,6 +20,8 @@ models:
     interfaces_list: \SwitcherCore\Modules\HpSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\HpSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HpSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\HpSwitch\NetSettings
 
 - name: HP Switch
   key: hp_general_switch
@@ -64,8 +66,8 @@ models:
     interfaces_list: \SwitcherCore\Modules\HpSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\HpSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HpSwitch\StatePortControl
-
-
+    lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\HpSwitch\NetSettings
 
 - name: HP Switch (ArubaOS)
   key: hp_arubaos_switch
@@ -87,3 +89,5 @@ models:
     interfaces_list: \SwitcherCore\Modules\HpArubaOsSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\HpArubaOsSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HpArubaOsSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\HpSwitch\NetSettings

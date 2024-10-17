@@ -561,3 +561,16 @@
 
 - name: power_status
   description: Device power status
+
+- name: net_settings
+  description: Get networks settings
+
+- name: ddm_info
+  description: Get DDM information
+  arguments:
+    - {name: interface, pattern: '^.*', required: no }
+
+- name: lldp_info
+  description: Get LLDP information
+  arguments:
+    - {name: load_only, pattern: '^.*', required: no }

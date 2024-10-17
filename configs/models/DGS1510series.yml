@@ -49,3 +49,5 @@ models:
      sys_resources: \SwitcherCore\Modules\Dlink\System\SystemResources
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings

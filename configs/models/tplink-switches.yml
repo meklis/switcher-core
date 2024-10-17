@@ -18,6 +18,8 @@ models:
     interfaces_list: \SwitcherCore\Modules\TpLinkSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\TpLinkSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\TpLinkSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\TpLinkSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\TpLinkSwitch\NetSettings
 
 - name: TP-Link Smart Switch
   key: tplink_smart_switch
@@ -40,6 +42,8 @@ models:
     vlans_by_port: \SwitcherCore\Modules\TpLinkSwitch\VlanByPorts
     ctrl_port_descr: \SwitcherCore\Modules\TpLinkSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\TpLinkSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\TpLinkSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\TpLinkSwitch\NetSettings
 
 - name: TP-Link Switch
   key: tplink_general_switch
@@ -62,3 +66,5 @@ models:
     pvid: \SwitcherCore\Modules\TpLinkSwitch\PvidDot1q
     ctrl_port_descr: \SwitcherCore\Modules\TpLinkSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\TpLinkSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\TpLinkSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\TpLinkSwitch\NetSettings

@@ -21,3 +21,5 @@ models:
      interfaces_list: \SwitcherCore\Modules\MikrotikCRS\InterfacesList
      pvid: \SwitcherCore\Modules\MikrotikCRS\PvidDot1q
      ctrl_port_descr: \SwitcherCore\Modules\MikrotikCRS\SetPortDescription
+     lldp_info: \SwitcherCore\Modules\MikrotikCRS\LldpInfo
+     net_settings: \SwitcherCore\Modules\MikrotikCRS\NetSettings

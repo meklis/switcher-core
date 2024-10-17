@@ -31,3 +31,5 @@ models:
     ctrl_port_state: \SwitcherCore\Modules\EltexSwitch\StatePortControl
     console_command: \SwitcherCore\Modules\EltexSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\EltexSwitch\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\EltexSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\EltexSwitch\NetSettings

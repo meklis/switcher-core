@@ -26,3 +26,5 @@ models:
      pvid: \SwitcherCore\Modules\Raisecom\PvidDot1q
      ctrl_port_descr: \SwitcherCore\Modules\Raisecom\SetPortDescription
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
+     lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
+     net_settings: \SwitcherCore\Modules\Raisecom\NetSettings

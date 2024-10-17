@@ -52,6 +52,8 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings
 
  - name: D-link DES-3028
    key: dlink_des_3028
@@ -97,6 +99,8 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings
 
  - name: D-link DES-3052
    key: dlink_des_3052g
@@ -140,6 +144,8 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings
 
  - name: D-link DES-3028G
    key: dlink_des_3028g
@@ -183,3 +189,5 @@ models:
      interfaces_list: \SwitcherCore\Modules\Dlink\InterfacesList
      console_command: \SwitcherCore\Modules\Dlink\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
+     net_settings: \SwitcherCore\Modules\Dlink\NetSettings

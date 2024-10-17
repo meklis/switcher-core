@@ -28,5 +28,7 @@ models:
     ctrl_port_state: \SwitcherCore\Modules\JuniperSwitch\StatePortControl
     console_command: \SwitcherCore\Modules\JuniperSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\JuniperSwitch\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\JuniperSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\JuniperSwitch\NetSettings
 
 

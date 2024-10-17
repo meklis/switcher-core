@@ -26,3 +26,5 @@ models:
     ctrl_port_state: \SwitcherCore\Modules\AlcatelSwitch\StatePortControl
     console_command: \SwitcherCore\Modules\AlcatelSwitch\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\AlcatelSwitch\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\AlcatelSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\AlcatelSwitch\NetSettings
