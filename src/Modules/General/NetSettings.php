@@ -24,12 +24,12 @@ abstract class NetSettings extends AbstractInterfaces
                     $response['network'] = $ip;
                     break;
                 case 1:
-                    $response['self_ip'] = $ip;
-                    $response['self_mac'] = $dt->getHexValue();
-                    break;
-                case 2:
                     $response['gateway_ip'] = $ip;
                     $response['gateway_mac'] = $dt->getHexValue();
+                    break;
+                case 2:
+                    $response['self_ip'] = $ip;
+                    $response['self_mac'] = $dt->getHexValue();
                     break;
                 case 3:
                     $response['broadcast'] = $ip;
