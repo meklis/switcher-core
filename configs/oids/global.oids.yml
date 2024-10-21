@@ -7,6 +7,7 @@
   - {name: sys.Name, oid: .1.3.6.1.2.1.1.5, access: write, type: string }
   - {name: sys.Location, oid: .1.3.6.1.2.1.1.6, access: write, type: string }
   - {name: sys.macAddr, oid: .1.3.6.1.2.1.17.1.1, access: read, type: string }
+  - {name: sys.macAddrV2, oid: .1.0.8802.1.1.2.1.3.2.0}
 
 # Not all device supported
 #  - {name: sys.Revision, oid: .1.3.6.1.2.1.47.1.1.1.1.8.1, type: string }
@@ -80,4 +81,5 @@
   - {name: lldp.remChassisId, oid: .1.0.8802.1.1.2.1.4.1.1.5} # Также идентификатор соседних мак-аредсов
   - {name: lldp.remPortId, oid: .1.0.8802.1.1.2.1.4.1.1.7} # Идентификатор порта на удаленном устройстве (не ID порта)
 
-  - {name: ip.netSettings, oid: .1.3.6.1.2.1.4.22.1.2}
+  - {name: ip.netSettings, oid: .1.3.6.1.2.1.4.20.1}
+  - {name: ip.arpTable, oid: .1.3.6.1.2.1.4.22.1}
