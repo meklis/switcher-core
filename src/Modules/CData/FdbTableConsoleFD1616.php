@@ -70,7 +70,7 @@ class FdbTableConsoleFD1616 extends CDataAbstractModule
                 }
                 $responses[] = [
                     'mac_address' => $match[1],
-                    'vlan_id' => $match[2],
+                    'vlan_id' => (int)$match[2],
                     'interface' => $iface,
                     'status' => $match[8] == '-' ? null :  $match[8],
                     '_sport' => $match[3] == '-' ? null :  $match[3],

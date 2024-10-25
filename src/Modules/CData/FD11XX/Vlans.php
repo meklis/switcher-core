@@ -41,7 +41,7 @@ class Vlans extends CDataAbstractModule
             if(!isset($ports[$id]['forbidden'])) $ports[$id]['forbidden'] = [];
             $ports[$id]['egress'] = array_unique(array_merge($ports[$id]['untagged'],$ports[$id]['tagged']));
             $response[] = [
-              'id' => $id,
+              'id' =>  (int)$id,
               'name' => $resp->getValue(),
               'ports' => $ports[$id],
             ];

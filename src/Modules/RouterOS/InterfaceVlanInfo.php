@@ -27,7 +27,7 @@ class InterfaceVlanInfo extends ExecCommand
         }
         foreach ($this->execComm('/interface/vlan/print', $formatedResp) as $vl) {
             $vlans[] = [
-                'vlan_id' => $vl['vlan-id'],
+                'vlan_id' => (int)$vl['vlan-id'],
                 'name' => $vl['name'],
                 'disabled' => $vl['disabled'],
                 'arp' => $vl['arp'],

@@ -64,7 +64,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
                     $type = "PON";
                 }
                 $resp[$id] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'name' => $d->getValue(),
                     'parent' => null,
                     'type' => $type,

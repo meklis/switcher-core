@@ -52,7 +52,7 @@ class LeaseInfo extends ExecCommand
             (isset($params['vlan_name']) && $params['vlan_name'])
         ) {
             $filter['?server'] = $this->getDhcpServerByParam([
-                'vlan_id' => $params['vlan_id'],
+                'vlan_id' => (int)$params['vlan_id'],
                 'vlan_name' => $params['vlan_name'],
             ])['name'];
         }

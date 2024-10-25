@@ -57,7 +57,7 @@ abstract class CDataAbstractModule extends AbstractModule
             }
             return [
                 'name' => $interface['name'],
-                'id' => $interface['id'],
+                'id' =>  (int)$interface['id'],
                 'xid' => $interface['xid'],
                 'type' => $interface['type'],
                 '_port' => isset($interface['_port'])  ? $interface['_port'] : null,
@@ -75,7 +75,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 return [
                     'name' => $interface['name'],
                     'parent' => null,
-                    'id' => $interface['id'],
+                    'id' =>  (int)$interface['id'],
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],
                     '_port' => isset($interface['_port'])  ? $interface['_port'] : null,
@@ -110,7 +110,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}", 'name');
                 $response = [
                     'name' => $interface['name'],
-                    'id' => $interface['id'],
+                    'id' =>  (int)$interface['id'],
                     'parent' => null,
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],

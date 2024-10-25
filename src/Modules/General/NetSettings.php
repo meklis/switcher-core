@@ -12,7 +12,7 @@ class NetSettings extends AbstractModule
 {
     protected function formate() {
         $response = [
-            'vlan_id'=> null,
+            'virtual_iface_id'=> null,
             'self_ip'=> null,
             'self_mac_address'=> null,
             'netmask'=> null,
@@ -23,7 +23,7 @@ class NetSettings extends AbstractModule
             $idx = Helper::getIndexByOid($dt->getOid(), 4);
             switch($idx) {
                 case 1: $response['self_ip'] = $dt->getValue(); break;
-                case 2: $response['vlan_id'] = $dt->getValue(); break;
+                case 2: $response['virtual_iface_id'] = $dt->getValue(); break;
                 case 3: $response['netmask'] = $dt->getValue(); break;
             }
         };
@@ -45,7 +45,7 @@ class NetSettings extends AbstractModule
             $idx = Helper::getIndexByOid($dt->getOid(), 5);
 
             switch ($idx) {
-                case 1: $arps[$ip]['vlan_id'] = $dt->getValue(); break;
+                case 1: $arps[$ip]['virtual_iface_id'] = $dt->getValue(); break;
                 case 2: $arps[$ip]['mac_address'] = $dt->getHexValue(); break;
                 case 3: $arps[$ip]['ip'] = $dt->getValue(); break;
                 case 4: if(!in_array($dt->getValue(), [3,4])) unset($arps[$ip]); break;

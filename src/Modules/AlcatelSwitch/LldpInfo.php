@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\CiscoSwitch;
+namespace SwitcherCore\Modules\AlcatelSwitch;
 
 
 class LldpInfo extends \SwitcherCore\Modules\General\LldpInfo

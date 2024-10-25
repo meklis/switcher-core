@@ -68,7 +68,7 @@ abstract class CDataAbstractModule extends AbstractModule
             }
             return [
                 'name' => $interface['name'],
-                'id' => $interface['id'],
+                'id' =>  (int)$interface['id'],
                 'xid' => $interface['xid'],
                 'type' => $interface['type'],
                 'phys_snmp_id' => $interface['phys_snmp_id'],
@@ -97,7 +97,7 @@ abstract class CDataAbstractModule extends AbstractModule
                 $interface = $this->findInterface("pon1/{$m[1]}", 'name');
                 $response = [
                     'name' => $interface['name'],
-                    'id' => $interface['id'],
+                    'id' =>  (int)$interface['id'],
                     'parent' => null,
                     'xid' => $interface['xid'],
                     'type' => $interface['type'],

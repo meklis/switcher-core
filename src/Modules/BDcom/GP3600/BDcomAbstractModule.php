@@ -120,7 +120,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^GigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'GE',
@@ -132,7 +132,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             } else if (preg_match('/^TGigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'TGE',
@@ -144,7 +144,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             } else if (preg_match('/^gpon(([0-9])\/([0-9]{1,3}))$/', strtolower($iface->getValue()), $m)) {
                 $name = "gpon{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
@@ -155,7 +155,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 ];
             } else if (preg_match('/^gpon0\/([0-9]{1,2}):([0-9]{1,3})$/', strtolower($iface->getValue()), $m)) {
                 $ifaces[$id] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' =>  $xid,
                     'name' => "gpon0/{$m[1]}:{$m[2]}",
                     'type' => 'ONU',

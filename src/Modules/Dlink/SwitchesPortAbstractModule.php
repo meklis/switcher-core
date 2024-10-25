@@ -35,7 +35,7 @@ abstract class SwitchesPortAbstractModule extends AbstractModule
                 strpos($resp->getValue(), "ch") !== 0
             ) {
                 $indexes[Helper::getIndexByOid($resp->getOid())] = [
-                    'id' =>  Helper::getIndexByOid($resp->getOid()),
+                    'id' =>  (int) Helper::getIndexByOid($resp->getOid()),
                     'name' => $resp->getValue(),
                     '_key' => Helper::getIndexByOid($resp->getOid()),
                     'type' => $types[Helper::getIndexByOid($resp->getOid())],

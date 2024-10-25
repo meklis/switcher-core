@@ -55,7 +55,7 @@ class Fdb extends FdbDot1Bridge
                 }
                 $fdb[] = [
                     'interface' => $interfacesList[$matches[3]],
-                    'vlan_id' => $matches[2],
+                    'vlan_id' => (int)$matches[2],
                     'mac_address' => Helper::formatMac($matches[1]),
                     'status' => $matches[4],
                 ];

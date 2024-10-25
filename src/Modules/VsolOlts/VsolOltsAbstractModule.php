@@ -101,7 +101,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
             if(preg_match('/^EPON([0-9]{1,3})ONU([0-9]{1,3})$/', $name, $matches)) {
                 $port = (int)$matches[1];
                 $interfaces[$id] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     '_snmp_id' => "." .$port . "." . $matches[2],
                     'name' => "EPON0/{$port}:{$matches[2]}",
@@ -114,7 +114,7 @@ abstract class VsolOltsAbstractModule extends AbstractModule
                 ];
             } elseif(preg_match('/^EPON([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $name, $matches)) {
                 $interfaces[$id] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     '_snmp_id' => "." .$matches[2] . "." . $matches[3],
                     'name' =>$name,

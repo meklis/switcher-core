@@ -81,7 +81,7 @@ class FdbTableConsole extends CDataAbstractModule
                     if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*([0-9]{1,3})\s*(\S*)$/', trim($line), $match)) {
                         $responses[] = [
                             'mac_address' => $match[1],
-                            'vlan_id' => $match[2],
+                            'vlan_id' => (int)$match[2],
                             'interface' => $this->parseInterface($match['3'] . ":" . $match[4])
                         ];
                     }
@@ -93,7 +93,7 @@ class FdbTableConsole extends CDataAbstractModule
                     if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*([0-9]{1,3})\s*(\S*)$/', trim($line), $match)) {
                         $responses[] = [
                             'mac_address' => $match[1],
-                            'vlan_id' => $match[2],
+                            'vlan_id' => (int)$match[2],
                             'interface' => $this->parseInterface($match['3'] . ":" . $match[4])
                         ];
                     }
@@ -105,7 +105,7 @@ class FdbTableConsole extends CDataAbstractModule
                     if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*([0-9]{1,4})\s*(\S*)\s*(\S*)$/', trim($line), $match)) {
                        $responses[] = [
                             'mac_address' => $match[1],
-                            'vlan_id' => $match[2],
+                            'vlan_id' => (int)$match[2],
                             'interface' => $this->parseInterface($match['3'])
                         ];
                     }

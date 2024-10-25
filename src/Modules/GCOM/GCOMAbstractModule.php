@@ -40,7 +40,7 @@ abstract class GCOMAbstractModule extends AbstractModule
         if(is_string($input) && preg_match('/^p?([0-9])\/([0-9]{1,2})[:\/]([0-9]{1,3})$/', $input, $m)) {
             $id = $this->getIdByName("{$m[1]}/{$m[2]}/{$m[3]}");
             return  [
-               'id' => $id,
+               'id' =>  (int)$id,
                'parent' => ((int) ($id / 1000) * 1000),
                'name' => "{$m[1]}/{$m[2]}:{$m[3]}",
                'xid' =>  "{$m[1]}.{$m[2]}.{$m[3]}",
@@ -50,7 +50,7 @@ abstract class GCOMAbstractModule extends AbstractModule
         if(is_string($input) && preg_match('/([0-9])\.([0-9]{1,2})\.([0-9]{1,3})$/', $input, $m)) {
             $id = $this->getIdByName("{$m[1]}/{$m[2]}/{$m[3]}");
             return  [
-               'id' => $id,
+               'id' =>  (int)$id,
                'parent' => ((int) ($id / 100) * 100),
                'name' => "{$m[1]}/{$m[2]}:{$m[3]}",
                'xid' =>  "{$m[1]}.{$m[2]}.{$m[3]}",
@@ -60,7 +60,7 @@ abstract class GCOMAbstractModule extends AbstractModule
         if(is_string($input) && preg_match('/([0-9]{1,2})\.([0-9]{1,3})$/', $input, $m)) {
             $id = $this->getIdByName("{$m[1]}/{$m[2]}");
             return  [
-               'id' => $id,
+               'id' =>  (int)$id,
                'parent' => null,
                'name' => "{$m[1]}/{$m[2]}",
                'xid' =>  "{$m[1]}.{$m[2]}",
@@ -75,7 +75,7 @@ abstract class GCOMAbstractModule extends AbstractModule
             $onuNum = (int)($input[4] . $input[5] . $input[6]);
             if($onuNum) {
                 return  [
-                    'id' => $this->getIdByName("{$slot}/{$port}:{$onuNum}"),
+                    'id' =>  (int)$this->getIdByName("{$slot}/{$port}:{$onuNum}"),
                     'parent' => 1000000 + ($slot * 100000) + ($port * 1000),
                     'name' => "{$slot}/{$port}:{$onuNum}",
                     'xid' =>  "{$slot}.{$port}.{$onuNum}",
@@ -83,7 +83,7 @@ abstract class GCOMAbstractModule extends AbstractModule
                 ];
             } else {
                 return  [
-                    'id' => $this->getIdByName("{$slot}/{$port}"),
+                    'id' =>  (int)$this->getIdByName("{$slot}/{$port}"),
                     'parent' => null,
                     'name' => "p{$slot}/{$port}",
                     'xid' =>  "{$slot}.{$port}",
@@ -150,14 +150,14 @@ abstract class GCOMAbstractModule extends AbstractModule
             $id = $this->getIdByName($iface->getValue());
             if (preg_match('/^e([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
                 $this->physicalInterfaces[] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $iface->getValue(),
                     'type' => 'GE',
                 ];
             } else if (preg_match('/^p([0-9]\/[0-9]{1,3})$/', strtolower($iface->getValue()), $m)) {
                 $this->physicalInterfaces[] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $iface->getValue(),
                     'type' => 'PON',

@@ -187,7 +187,7 @@ abstract class ModuleAbstract extends AbstractModule
                     ($m[3] * 100000) +
                     ($m[4] * 1000);
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     '_xid' => Helper::getIndexByOid($f->getOid()),
                     'type' => $type,
                     '_shelf' => $m[2],
@@ -216,7 +216,7 @@ abstract class ModuleAbstract extends AbstractModule
                     ($m[3] * 100000) +
                     ($m[4] * 1000);
                 $response["{$m[2]}/{$m[3]}/{$m[4]}"] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     '_xid' => Helper::getIndexByOid($f->getOid()),
                     'type' => $type,
                     '_shelf' => $m[2],

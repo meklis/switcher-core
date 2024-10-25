@@ -22,7 +22,7 @@ class Fdb extends FdbDot1Bridge
                         $iface = $this->parseInterface($d->getValue());
                         $ports[] = [
                             'interface' => $iface,
-                            'vlan_id' => null,
+                            'vlan_id' => 0,
                             'mac_address' => $mac,
                             'status' => null ,
                         ];

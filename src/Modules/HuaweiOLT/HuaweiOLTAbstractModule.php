@@ -186,7 +186,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
 
             if (preg_match('/^(EPON|GPON) ([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{1,2})$/', $iface->getValue(), $matches)) {
                 $interfaces[$id] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $iface->getValue(),
                     'type' => 'PON',
@@ -201,7 +201,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
                 ];
             } elseif (preg_match('/^ethernet([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{1,2})$/', $iface->getValue(), $matches)) {
                 $interfaces[$id] = [
-                    'id' => $id,
+                    'id' =>  (int)$id,
                     'xid' => $xid,
                     'name' => $iface->getValue(),
                     'type' => 'ETH',

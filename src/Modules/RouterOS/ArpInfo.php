@@ -68,7 +68,7 @@ class ArpInfo extends ExecCommand
                 'published' => isset($a['published']) ? $a['published'] == 'true' : null,
                 'invalid' => isset($a['published']) ? $a['invalid'] == 'true' : null,
                 'comment' => isset($a['comment']) ? $a['comment'] : "",
-                'vlan_id' => isset($vlans[$a['interface']]['vlan_id']) ? $vlans[$a['interface']]['vlan_id']: -1,
+                'vlan_id' => isset($vlans[$a['interface']]['vlan_id']) ? (int)$vlans[$a['interface']]['vlan_id']: -1,
                 'status' => $status,
                 'extra' => [
                     'id' => $a['.id'],

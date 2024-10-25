@@ -131,7 +131,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^GigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'GE',
@@ -143,7 +143,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^TGigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' => (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'TGE',
@@ -155,7 +155,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^FastEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "fe{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'FE',
@@ -167,7 +167,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^EPON(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "epon{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
@@ -180,7 +180,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^g(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'GE',
@@ -192,7 +192,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^tg(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'TGE',
@@ -204,7 +204,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^epon(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "epon{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
@@ -217,7 +217,7 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/aggregator([0-9]{1,3})$/', $iface->getValue(), $m)) {
                 $name = "pa{$m[1]}";
                 $this->physicalInterfaces[] = [
-                    'id' => $this->getIdByName($name),
+                    'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
                     'name' => $name,
                     'type' => 'PON',
@@ -282,7 +282,7 @@ abstract class BDcomAbstractModule extends AbstractModule
 
             $id = $this->getIdByName($name);
             $ifaces[$id] = [
-                'id' => $id,
+                'id' =>  (int)$id,
                 'xid' => $xid,
                 'name' => $name,
                 '_llid_id' => isset($llidSeqs[$name]) ? $llidSeqs[$name] : null,

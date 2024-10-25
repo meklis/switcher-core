@@ -39,7 +39,7 @@ class Fdb extends FdbDot1Bridge
                 try {
                     $pretties[] = [
                         'interface' => $this->parseInterface($ports[$mac], 'id'),
-                        'vlan_id' => null,
+                        'vlan_id' => 0,
                         'mac_address' => $mac,
                         'status' => $status,
                     ];

@@ -61,7 +61,7 @@ class GponOntFdbTable extends CDataAbstractModule
             $DATA[] = [
                 'mac_address' =>  $r->getHexValue(),
                 'interface' => $interface,
-                'vlan_id' => $this->getVlanByMacInterfaceId($r->getHexValue(), $interface['id']),
+                'vlan_id' => (int)$this->getVlanByMacInterfaceId($r->getHexValue(), $interface['id']),
             ];
         }
         return array_values($DATA);
