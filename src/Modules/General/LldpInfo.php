@@ -20,22 +20,24 @@ abstract class LldpInfo extends AbstractInterfaces
         ];
         if (isset($this->response['lldp.locChassisId'])) {
             if ($error = $this->getResponseByName('lldp.locChassisId')->error()) {
-                throw new \SNMPException($error);
+                $this->logger->error($error);
+            } else {
+                $response['local']['chassis_id'] =  $this->getResponseByName('lldp.locChassisId')->fetchOne()->getHexValue();
             }
-            $response['local']['chassis_id'] =  $this->getResponseByName('lldp.locChassisId')->fetchOne()->getHexValue();
         }
         if (isset($this->response['lldp.locPortId'])) {
             if ($error = $this->getResponseByName('lldp.locPortId')->error()) {
-                throw new \SNMPException($error);
-            }
-            $ports = [];
-            foreach ($this->getResponseByName('lldp.locPortId')->fetchAll() as $dt) {
-                $id = Helper::getIndexByOid($dt->getOid());
-                $ports[] = [
-                    'port_id' => (int)$id,
-                    'name' => $this->removeNullBytes($dt->getHexValue()),
-                    'interface' => $this->parseInterface($id),
-                ];
+                $this->logger->error($error);
+            } else {
+                $ports = [];
+                foreach ($this->getResponseByName('lldp.locPortId')->fetchAll() as $dt) {
+                    $id = Helper::getIndexByOid($dt->getOid());
+                    $ports[] = [
+                        'port_id' => (int)$id,
+                        'name' => $this->removeNullBytes($dt->getHexValue()),
+                        'interface' => $this->parseInterface($id),
+                    ];
+                }
             }
             $response['local']['ports'] = $ports;
         }

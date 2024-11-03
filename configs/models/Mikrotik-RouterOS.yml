@@ -70,3 +70,6 @@ models:
      simple_queue_ctrl: \SwitcherCore\Modules\RouterOS\SimpleQueuesCtrl
      bgp_sessions: \SwitcherCore\Modules\RouterOS\BgpSessionsInfo
      sys_resources: \SwitcherCore\Modules\RouterOS\SystemResources
+     lldp_info: \SwitcherCore\Modules\RouterOS\LldpInfo
+     link_info: \SwitcherCore\Modules\RouterOS\LinkInfo
+     fdb: \SwitcherCore\Modules\RouterOS\Fdb
