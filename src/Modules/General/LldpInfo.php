@@ -26,10 +26,10 @@ abstract class LldpInfo extends AbstractInterfaces
             }
         }
         if (isset($this->response['lldp.locPortId'])) {
+            $ports = [];
             if ($error = $this->getResponseByName('lldp.locPortId')->error()) {
                 $this->logger->error($error);
             } else {
-                $ports = [];
                 foreach ($this->getResponseByName('lldp.locPortId')->fetchAll() as $dt) {
                     $id = Helper::getIndexByOid($dt->getOid());
                     $ports[] = [
