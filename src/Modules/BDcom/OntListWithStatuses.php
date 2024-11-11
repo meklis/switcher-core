@@ -83,6 +83,9 @@ class OntListWithStatuses extends BDcomAbstractModule
         } catch (\Exception $e) {
         }
         return array_values(array_filter($ifaces, function ($e) {
+            if (isset($e['interface']['type']) && $e['interface']['type'] != 'ONU') {
+                return false;
+            }
             return $e['status'] != null || $e['admin_state'] != null || $e['bind_status'] != null;
         }));
     }

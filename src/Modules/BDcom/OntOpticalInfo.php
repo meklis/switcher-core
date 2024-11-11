@@ -101,6 +101,8 @@ class OntOpticalInfo extends BDcomAbstractModule
             if (!isset($e['rx'])) $e['rx'] = null;
             if (!isset($e['tx'])) $e['tx'] = null;
             if (!isset($e['olt_rx'])) $e['olt_rx'] = null;
+            if ($e['tx'] < -50) $e['tx'] = null;
+            if ($e['rx'] < -50) $e['rx'] = null;
             return $e;
         }, $ifaces));
     }
