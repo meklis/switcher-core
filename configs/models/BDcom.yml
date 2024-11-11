@@ -381,6 +381,7 @@ models:
     device_type: OLT
     oids:
       - ./oids/bdcom/3310c.yml
+      - ./oids/bdcom/3310b.yml
     traps:
       - ./traps/bdcom.yml
     modules:
