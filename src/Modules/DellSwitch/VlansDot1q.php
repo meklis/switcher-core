@@ -34,7 +34,7 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
 
         $indexes = [];
         foreach ($this->getInterfacesIds() as $iface) {
-            $indexes[$iface['id']] = $iface;
+            $indexes[$iface['_dot1q_id']] = $iface;
         }
         $formater = function ($resp) use ($indexes) {
             $dex = Helper::hexToBinStr($resp->getHexValue());
@@ -70,4 +70,6 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q
         }
         return array_values($response);
     }
+
+
 }
