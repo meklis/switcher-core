@@ -37,7 +37,7 @@
   - {name: if.HCOutBroadcastPkts, oid: .1.3.6.1.2.1.31.1.1.1.13, access: read }
   - {name: if.HCInBroadcastPkts, oid: .1.3.6.1.2.1.31.1.1.1.9, access: read }
 
-  - {name: if.HighSpeed, oid: .1.3.6.1.2.1.31.1.1.1.15, access: read, values: {0: "Down", 1000: 1G, 1250: 1.25G, 2000: 2G, 3000: 3G, 4000: 3G, 2488: 2.5G, 2500: 2.5G, 10000: 10G, 20000: 20G, 30000: 30G, 40000: 40G } }
+  - {name: if.HighSpeed, oid: .1.3.6.1.2.1.31.1.1.1.15, access: read, values: {0: "Down", 1000: 1G, 1250: 1.25G, 2000: 2G, 3000: 3G, 4000: 3G, 2488: 2.5G, 2500: 2.5G, 10000: 10G, 20000: 20G, 30000: 30G, 40000: 40G, 50000: 50G, 60000: 60G, 80000: 80G, 100000: 100G } }
   - {name: if.ConnectorPresent, oid: .1.3.6.1.2.1.31.1.1.1.17, access: read, values: { 1: 'YES', 2: 'NO' } }
   - {name: if.Name, oid: .1.3.6.1.2.1.31.1.1.1.1, access: read }
   - {name: if.Alias, oid: .1.3.6.1.2.1.31.1.1.1.18, access: write }
