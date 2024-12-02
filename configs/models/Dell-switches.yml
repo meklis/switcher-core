@@ -61,3 +61,34 @@ models:
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+
+- name: Dell EMC Networking OS10
+  key: dell_emc_networking_os
+  device_type: SWITCH
+  inputs:
+    - snmp
+    - console
+  detect: {description: .*,  objid: ^.1.3.6.1.4.1.674 }
+  traps:
+    - ./traps/global.yml
+  extra:
+    console_conn_type: dell
+  modules:
+    parse_interface: \SwitcherCore\Modules\DellSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\DellSwitch\Fdb
+    link_info: \SwitcherCore\Modules\DellSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\DellSwitch\Counters
+    system: \SwitcherCore\Modules\DellSwitch\System
+    vlans: \SwitcherCore\Modules\DellSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\DellSwitch\Errors
+    rmon: \SwitcherCore\Modules\DellSwitch\Rmon
+    pvid: \SwitcherCore\Modules\DellSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\DellSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\DellSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\DellSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\DellSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\DellSwitch\StatePortControl
+    console_command: \SwitcherCore\Modules\DellSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\General\NetSettings
