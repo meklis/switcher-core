@@ -18,6 +18,39 @@ models:
     interface_counters: \SwitcherCore\Modules\JuniperSwitch\Counters
     system: \SwitcherCore\Modules\JuniperSwitch\System
   #  vlans: \SwitcherCore\Modules\JuniperSwitch\VlansDot1q
+    vlan_list: \SwitcherCore\Modules\JuniperSwitch\VlanList
+    errors: \SwitcherCore\Modules\JuniperSwitch\Errors
+    rmon: \SwitcherCore\Modules\JuniperSwitch\Rmon
+    pvid: \SwitcherCore\Modules\JuniperSwitch\PvidDot1q
+  #  vlans_by_port: \SwitcherCore\Modules\JuniperSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\JuniperSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\JuniperSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\JuniperSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\JuniperSwitch\StatePortControl
+    console_command: \SwitcherCore\Modules\JuniperSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\JuniperSwitch\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\JuniperSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\General\NetSettings
+
+- name: Juniper JNP204 series
+  key: juniper_jnp204_series
+  device_type: L3
+  inputs:
+    - snmp
+    - console
+  detect: {description: .*,  objid: ^.1.3.6.1.4.1.2636.1.1.1.2.144 }
+  extra:
+    console_conn_type: junos
+    console_commands_after_connect:
+      - set cli screen-length 0
+  modules:
+    parse_interface: \SwitcherCore\Modules\JuniperSwitch\ParseInterface
+  #  fdb: \SwitcherCore\Modules\JuniperSwitch\Fdb
+    link_info: \SwitcherCore\Modules\JuniperSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\JuniperSwitch\Counters
+    system: \SwitcherCore\Modules\JuniperSwitch\System
+  #  vlans: \SwitcherCore\Modules\JuniperSwitch\VlansDot1q
+    vlan_list: \SwitcherCore\Modules\JuniperSwitch\VlanList
     errors: \SwitcherCore\Modules\JuniperSwitch\Errors
     rmon: \SwitcherCore\Modules\JuniperSwitch\Rmon
     pvid: \SwitcherCore\Modules\JuniperSwitch\PvidDot1q

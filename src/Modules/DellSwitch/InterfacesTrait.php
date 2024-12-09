@@ -58,8 +58,8 @@ trait InterfacesTrait
     function parseInterface($iface, $parseBy = 'id')
     {
         $ifaces = $this->getInterfacesIds();
-        if($parseBy == 'id') {
-            if(!isset($ifaces[$iface])) {
+        if ($parseBy == 'id') {
+            if (!isset($ifaces[$iface])) {
                 throw new \Exception("Incorrect interface ID");
             }
             return $ifaces[$iface];
@@ -67,8 +67,8 @@ trait InterfacesTrait
         $filtered = array_filter($ifaces, function ($i) use ($iface, $parseBy) {
             return isset($i[$parseBy]) && $i[$parseBy] == $iface;
         });
-        if(count($filtered) > 0) {
-            return  array_values($filtered)[0];
+        if (count($filtered) > 0) {
+            return array_values($filtered)[0];
         }
         throw new \Exception("Interface with name {$iface} not found");
     }
@@ -91,7 +91,7 @@ trait InterfacesTrait
         $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
-            if($resp->getError()) {
+            if ($resp->getError()) {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
             $responses[$name->getName()] = $resp->getResponse();
@@ -127,14 +127,10 @@ trait InterfacesTrait
                 ];
             }
         }
-        try {
-            foreach ($responses['dot1q.PortIfIndex'] as $r) {
-                if(isset($ifaces[$r->getValue()])) {
-                    $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
-                }
+        foreach ($responses['dot1q.PortIfIndex'] as $r) {
+            if (isset($ifaces[$r->getValue()])) {
+                $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
             }
-        } catch (\Exception $e) {
-
         }
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);

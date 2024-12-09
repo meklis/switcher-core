@@ -108,6 +108,7 @@ trait InterfacesTrait
         }
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
+            Oid::init($this->oids->getOidByName('dot1q.PortIfIndex')->getOid()),
         ]);
         /**
          * @var  $responses PoollerResponse[]
@@ -137,6 +138,7 @@ trait InterfacesTrait
                     '_type' => $m[1],
                     '_sorting' => ((!$shelf ? $shelf + 1 : $shelf) * 100000) + ($slot * 1000) + $port,
                     'type' => $type,
+                    '_dot1q_id' => null,
                 ];
             }
         }
@@ -155,11 +157,17 @@ trait InterfacesTrait
                     '_sorting' => 10000000 + $m[2],
                     '_lacp_ifaces' => null,
                     'type' => $type,
+                    '_dot1q_id' => null,
                 ];
             }
         }
 
 
+        foreach ($responses['dot1q.PortIfIndex'] as $r) {
+            if (isset($ifaces[$r->getValue()])) {
+                $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
+            }
+        }
 
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);

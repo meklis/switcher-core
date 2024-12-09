@@ -22,6 +22,13 @@ class MultiRawConsoleCommand extends CDataAbstractModuleFD16xxV3
             if(preg_match('/\<\s*?sleep *?([0-9]{1,3}).*?\>/', $command, $match)) {
                 sleep($match[1]);
             }
+            if(preg_match('/^\<f\>(.*)$/', $command, $match)) {
+                $command = $match[1];
+                $resp = $this->getModule('console_command')->run(['command' => trim($command)])->getPretty();
+                $resp['success'] = true;
+                $response[] = $resp;
+                continue;
+            }
             $resp = $this->getModule('console_command')->run(['command' => trim($command)])->getPretty();
             $response[] = $resp;
             if(!$resp['success'] && $params['break_on_error'] == 'yes') {

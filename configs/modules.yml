@@ -46,6 +46,10 @@
     - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
   descr: Vlan list
 
+#Get vlan info from device
+- name: vlan_list
+  descr: Vlan list
+
 #Get vlan info from device by ports
 - name: vlans_by_port
   arguments:
@@ -237,6 +241,10 @@
     - {name: _id, pattern: '.*', required: no}
     - {name: name, pattern: '^[0-9a-zA-Z_-]{1,16}$', required: no}
   descr: BGP-sessions
+
+- name: bgp_info
+  descr: BGP information
+
 
 #Action Get arp info with filters
 - name: arp_ping
