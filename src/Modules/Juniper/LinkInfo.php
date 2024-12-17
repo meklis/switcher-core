@@ -1,16 +1,15 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
-class Rmon extends \SwitcherCore\Modules\General\Switches\Rmon
+class LinkInfo extends \SwitcherCore\Modules\General\Switches\LinkInfo
 {
     use InterfacesTrait;
-
     use WalkerOverGet;
     public function run($filter = [])
     {
@@ -20,7 +19,15 @@ class Rmon extends \SwitcherCore\Modules\General\Switches\Rmon
         } else {
             $ifaces = $this->getInterfacesIds();
         }
-        $this->response = $this->snmpGetByInterfaces($ifaces,$this->oids->getOidsByRegex('rmon.*'));
+        $this->response = $this->snmpGetByInterfaces($ifaces, [
+            $this->oids->getOidByName('if.HighSpeed') ,
+            $this->oids->getOidByName('if.Type'),
+            $this->oids->getOidByName('if.LastChange'),
+            $this->oids->getOidByName('if.OperStatus'),
+            $this->oids->getOidByName('if.AdminStatus'),
+            $this->oids->getOidByName('if.StatsDuplexStatus'),
+        ]);
         return $this;
     }
+
 }

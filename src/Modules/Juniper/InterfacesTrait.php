@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 use DI\Container;
 use DI\DependencyException;
@@ -79,22 +79,6 @@ trait InterfacesTrait
         }
         throw new \Exception("Interface with name {$iface} not found");
     }
-    protected function getParentIfaceIDsByLACP($ifaceId)
-    {
-        $data = [];
-        $resp = $this->snmp->walk([
-            Oid::init($this->oids->getOidByName('if.stackStatus')->getOid() . ".0.{$ifaceId}"),
-        ]);
-        $name = $this->oids->findOidById($resp[0]->getOid());
-        if ($resp[0]->getError()) {
-            $this->logger->error("Error get parent ifaces by LACP, oid {$name->getOid()}");
-            return [];
-        }
-        foreach ($resp[0]->getResponse() as $r) {
-            $data[] = Helper::getIndexByOid($r->getOid());
-        }
-        return  $data;
-    }
     private $_interfaces;
 
     function getInterfacesIds()
@@ -116,18 +100,23 @@ trait InterfacesTrait
         $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
-            if($resp->getError() ) {
+            if($resp->getError() && !in_array($name->getName(), ['if.stackStatus', 'dot1q.PortIfIndex'])) {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
             $responses[$name->getName()] = $resp;
         }
 
         $ifaces = [];
+        $ifaceByNames = [];
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/i', trim($r->getValue()), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
                 $id = Helper::getIndexByOid($r->getOid());
-                $type = "ETH";
+                $type = "GE";
+                if($m[1] == "xe") {
+                    $type = "TGE";
+                }
+                $ifaceByNames[$r->getValue()] = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
@@ -136,16 +125,45 @@ trait InterfacesTrait
                     '_slot_num' => $slot,
                     '_shelf_num' => $shelf,
                     '_type' => $m[1],
-                    '_sorting' => ((!$shelf ? $shelf + 1 : $shelf) * 100000) + ($slot * 1000) + $port,
+                    '_sorting' => ((!$shelf ? $shelf + 1 : $shelf) * 1000000) + ($slot * 100000) + ($port * 10000),
+                    '_lacp_ifaces' => null,
                     'type' => $type,
                     '_dot1q_id' => null,
+                    '_iface_vlans' => null,
                 ];
             }
         }
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(ae)([0-9]{1,3})$/', $r->getValue(), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}):([0-9]{1,3})$/i', trim($r->getValue()), $m)) {
+                [$shelf, $slot, $port] = explode("/", $m[2]);
+                $id = Helper::getIndexByOid($r->getOid());
+                $type = "GE";
+                if($m[1] == "xe") {
+                    $type = "TGE";
+                }
+                $ifaceByNames[$r->getValue()] = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => $port,
+                    '_slot_num' => $slot,
+                    '_shelf_num' => $shelf,
+                    '_subport' => $m[3],
+                    '_type' => $m[1],
+                    '_sorting' => ((!$shelf ? $shelf + 1 : $shelf) * 1000000) + ($slot * 100000) + ($port * 10000) + $m[3],
+                    '_lacp_ifaces' => null,
+                    'type' => $type,
+                    '_dot1q_id' => null,
+                    '_iface_vlans' => null,
+                ];
+            }
+        }
+        foreach ($responses['if.Name']->getResponse() as $r) {
+            if (preg_match('/^(ae)([0-9]{1,5})$/', trim($r->getValue()), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 $type = "LACP";
+                $ifaceByNames[$r->getValue()] = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
@@ -154,20 +172,72 @@ trait InterfacesTrait
                     '_slot_num' => null,
                     '_shelf_num' => null,
                     '_type' => $m[1],
-                    '_sorting' => 10000000 + $m[2],
+                    '_sorting' => 100000000 + $m[2],
                     '_lacp_ifaces' => null,
                     'type' => $type,
                     '_dot1q_id' => null,
+                    '_iface_vlans' => null,
+                ];
+            }
+        }
+        foreach ($responses['if.Name']->getResponse() as $r) {
+            if (preg_match('/^(irb)\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $type = "BRIDGE";
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => (int)$m[2],
+                    '_slot_num' => null,
+                    '_shelf_num' => null,
+                    '_type' => $m[1],
+                    '_sorting' => 100000000 + $m[2],
+                    '_lacp_ifaces' => null,
+                    'type' => $type,
+                    '_dot1q_id' => null,
+                    '_iface_vlans' => null,
                 ];
             }
         }
 
-
-        foreach ($responses['dot1q.PortIfIndex'] as $r) {
+        foreach ($responses['if.Name']->getResponse() as $r) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                if(isset($ifaceByNames["{$m[1]}-{$m[2]}"])) {
+                    $ifaces[$ifaceByNames["{$m[1]}-{$m[2]}"]]['_iface_vlans'][$id] = $m[3];
+                }
+            }
+        }
+        foreach ($responses['if.Name']->getResponse() as $r) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}):([0-9]{1,3})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                if(isset($ifaceByNames["{$m[1]}-{$m[2]}:{$m[3]}"])) {
+                    $ifaces[$ifaceByNames["{$m[1]}-{$m[2]}:{$m[3]}"]]['_iface_vlans'][$id] = $m[4];
+                }
+            }
+        }
+        foreach ($responses['if.Name']->getResponse() as $r) {
+            if (preg_match('/^(ae)([0-9]{1,5})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                if(isset($ifaceByNames["{$m[1]}{$m[2]}"])) {
+                    $ifaces[$ifaceByNames["{$m[1]}{$m[2]}"]]['_iface_vlans'][$id] = $m[3];
+                }
+            }
+        }
+        foreach ($responses['dot1q.PortIfIndex']->getResponse() as $r) {
             if (isset($ifaces[$r->getValue()])) {
                 $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
             }
         }
+
+
+        uasort($ifaces, function ($a, $b) {
+            if ($a['_sorting'] && $b['_sorting']) {
+                return $a['_sorting'] > $b['_sorting'];
+            }
+            return strcmp($a['name'], $b['name']);
+        });
 
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
@@ -227,5 +297,8 @@ trait InterfacesTrait
         $this->container->get(CacheInterface::class)->set($key, $value, $timeout);
         return true;
     }
+
+
+
 
 }

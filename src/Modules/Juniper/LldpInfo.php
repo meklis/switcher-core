@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 
 class LldpInfo extends \SwitcherCore\Modules\General\LldpInfo

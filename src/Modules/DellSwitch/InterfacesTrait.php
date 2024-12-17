@@ -104,7 +104,9 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
+                    'type' => "GE",
                     '_snmp_id' => $id,
+                    '_lacp_ifaces' => null,
                     '_dot1q_id' => null,
                 ];
             }
@@ -113,7 +115,9 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
+                    'type' => "TGE",
                     '_snmp_id' => $id,
+                    '_lacp_ifaces' => null,
                     '_dot1q_id' => null,
                 ];
             }
@@ -122,6 +126,8 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
+                    'type' => "LACP",
+                    '_lacp_ifaces' => null,
                     '_snmp_id' => $id,
                     '_dot1q_id' => null,
                 ];
@@ -132,6 +138,21 @@ trait InterfacesTrait
                 $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
             }
         }
+
+
+        foreach ($ifaces as $id=>$iface) {
+            if($iface['type'] === 'LACP') {
+                $ifaces[$id]['_lacp_ifaces'] = array_filter(array_map(function ($e) use ($ifaces) {
+                    return isset($ifaces[$e]) ? $ifaces[$e] : null;
+                }, $this->getParentIfaceIDsByLACP($id)),
+                    function ($i) {
+                        return $i !== null;
+                    }
+                );
+            }
+        }
+
+
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
         return $ifaces;
@@ -189,6 +210,25 @@ trait InterfacesTrait
         }
         $this->container->get(CacheInterface::class)->set($key, $value, $timeout);
         return true;
+    }
+
+
+    protected function getParentIfaceIDsByLACP($ifaceId)
+    {
+        $data = [];
+        $resp = $this->snmp->walk([
+            Oid::init($this->oids->getOidByName('if.stackStatus')->getOid() . ".{$ifaceId}"),
+        ]);
+
+        $name = $this->oids->findOidById($resp[0]->getOid());
+        if ($resp[0]->getError()) {
+            $this->logger->error("Error get parent ifaces by LACP, oid {$name->getOid()}");
+            return [];
+        }
+        foreach ($resp[0]->getResponse() as $r) {
+            $data[] = Helper::getIndexByOid($r->getOid());
+        }
+        return  $data;
     }
 
 }

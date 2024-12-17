@@ -1,13 +1,13 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
-class LinkInfo extends \SwitcherCore\Modules\General\Switches\LinkInfo
+class Errors extends \SwitcherCore\Modules\General\Switches\Errors
 {
     use InterfacesTrait;
     use WalkerOverGet;
@@ -20,14 +20,11 @@ class LinkInfo extends \SwitcherCore\Modules\General\Switches\LinkInfo
             $ifaces = $this->getInterfacesIds();
         }
         $this->response = $this->snmpGetByInterfaces($ifaces, [
-            $this->oids->getOidByName('if.HighSpeed') ,
-            $this->oids->getOidByName('if.Type'),
-            $this->oids->getOidByName('if.LastChange'),
-            $this->oids->getOidByName('if.OperStatus'),
-            $this->oids->getOidByName('if.AdminStatus'),
-            $this->oids->getOidByName('if.StatsDuplexStatus'),
+            $this->oids->getOidByName('if.InErrors'),
+            $this->oids->getOidByName('if.OutErrors'),
+            $this->oids->getOidByName('if.InDiscards'),
+            $this->oids->getOidByName('if.OutDiscards'),
         ]);
         return $this;
     }
-
 }

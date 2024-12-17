@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 class System extends \SwitcherCore\Modules\General\Switches\System
 {

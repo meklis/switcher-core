@@ -245,6 +245,9 @@
 - name: bgp_info
   descr: BGP information
 
+- name: arps
+  descr: ARP information
+
 
 #Action Get arp info with filters
 - name: arp_ping

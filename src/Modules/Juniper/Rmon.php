@@ -1,16 +1,16 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
-use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
-class Descriptions extends \SwitcherCore\Modules\General\Switches\Descriptions
+class Rmon extends \SwitcherCore\Modules\General\Switches\Rmon
 {
     use InterfacesTrait;
+
     use WalkerOverGet;
     public function run($filter = [])
     {
@@ -20,10 +20,7 @@ class Descriptions extends \SwitcherCore\Modules\General\Switches\Descriptions
         } else {
             $ifaces = $this->getInterfacesIds();
         }
-
-        $oid = $this->oids->getOidByName('if.Alias') ;
-
-        $this->response = $this->snmpGetByInterfaces($ifaces, [$oid]);
+        $this->response = $this->snmpGetByInterfaces($ifaces,$this->oids->getOidsByRegex('rmon.*'));
         return $this;
     }
 }

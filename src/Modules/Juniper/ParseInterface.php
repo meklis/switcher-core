@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 class ParseInterface extends \SwitcherCore\Modules\General\Switches\ParseInterface
 {

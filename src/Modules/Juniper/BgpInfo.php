@@ -1,10 +1,10 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 use SwitcherCore\Modules\AbstractModule;
 
-class BgpPeers extends AbstractModule
+class BgpInfo extends AbstractModule
 {
     public function run($params = [])
     {

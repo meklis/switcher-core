@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 use Exception;
 use SwitcherCore\Switcher\Console\ConsoleInterface;

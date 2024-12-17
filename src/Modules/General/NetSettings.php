@@ -33,7 +33,7 @@ class NetSettings extends AbstractModule
             $response['self_mac_address'] = $this->getResponseByName('sys.macAddr')->fetchOne()->getHexValue();
         }
         $arps = [];
-        foreach ($this->getResponseByName('ip.arpTable')->fetchAll() as   $dt) {
+        foreach ($this->getResponseByName('ip.arp.macAddr')->fetchAll() as   $dt) {
             $vlanId = Helper::getIndexByOid($dt->getOid(), 4);
             $ip =
                 Helper::getIndexByOid($dt->getOid(), 3) . "." .
@@ -42,14 +42,9 @@ class NetSettings extends AbstractModule
                 Helper::getIndexByOid($dt->getOid())
             ;
 
-            $idx = Helper::getIndexByOid($dt->getOid(), 5);
-
-            switch ($idx) {
-                case 1: $arps[$ip]['virtual_iface_id'] = $dt->getValue(); break;
-                case 2: $arps[$ip]['mac_address'] = $dt->getHexValue(); break;
-                case 3: $arps[$ip]['ip'] = $dt->getValue(); break;
-                case 4: if(!in_array($dt->getValue(), [3,4])) unset($arps[$ip]); break;
-            }
+            $arps[$ip]['vlan_id'] = $vlanId;
+            $arps[$ip]['ip'] = $ip;
+            $arps[$ip]['mac_address'] = $dt->getHexValue();
         }
         $response['_arps'] = array_values($arps);
         if(count($arps) > 0) {
@@ -73,7 +68,7 @@ class NetSettings extends AbstractModule
     {
         Helper::prepareFilter($filter);
         $oidObjects = [
-            Oid::init($this->oids->getOidByName('ip.arpTable')->getOid()),
+            Oid::init($this->oids->getOidByName('ip.arp.macAddr')->getOid()),
             Oid::init($this->oids->getOidByName('ip.netSettings')->getOid()),
             Oid::init($this->oids->getOidByName('sys.macAddr')->getOid()),
             Oid::init($this->oids->getOidByName('sys.macAddrV2')->getOid()),

@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 
 class SetPortDescription extends \SwitcherCore\Modules\General\Switches\SetPortDescription

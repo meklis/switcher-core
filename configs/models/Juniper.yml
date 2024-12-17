@@ -12,25 +12,23 @@ models:
     console_commands_after_connect:
       - set cli screen-length 0
   modules:
-    parse_interface: \SwitcherCore\Modules\JuniperSwitch\ParseInterface
-  #  fdb: \SwitcherCore\Modules\JuniperSwitch\Fdb
-    link_info: \SwitcherCore\Modules\JuniperSwitch\LinkInfo
-    interface_counters: \SwitcherCore\Modules\JuniperSwitch\Counters
-    system: \SwitcherCore\Modules\JuniperSwitch\System
-  #  vlans: \SwitcherCore\Modules\JuniperSwitch\VlansDot1q
-    vlan_list: \SwitcherCore\Modules\JuniperSwitch\VlanList
-    errors: \SwitcherCore\Modules\JuniperSwitch\Errors
-    rmon: \SwitcherCore\Modules\JuniperSwitch\Rmon
-    pvid: \SwitcherCore\Modules\JuniperSwitch\PvidDot1q
-  #  vlans_by_port: \SwitcherCore\Modules\JuniperSwitch\VlanByPorts
-    interface_descriptions: \SwitcherCore\Modules\JuniperSwitch\Descriptions
-    interfaces_list: \SwitcherCore\Modules\JuniperSwitch\InterfacesList
-    ctrl_port_descr: \SwitcherCore\Modules\JuniperSwitch\SetPortDescription
-    ctrl_port_state: \SwitcherCore\Modules\JuniperSwitch\StatePortControl
-    console_command: \SwitcherCore\Modules\JuniperSwitch\RawConsoleCommand
-    multi_console_command: \SwitcherCore\Modules\JuniperSwitch\MultiRawConsoleCommand
-    lldp_info: \SwitcherCore\Modules\JuniperSwitch\LldpInfo
+    parse_interface: \SwitcherCore\Modules\Juniper\ParseInterface
+    link_info: \SwitcherCore\Modules\Juniper\LinkInfo
+    interface_counters: \SwitcherCore\Modules\Juniper\Counters
+    system: \SwitcherCore\Modules\Juniper\System
+    vlan_list: \SwitcherCore\Modules\Juniper\VlanList
+    errors: \SwitcherCore\Modules\Juniper\Errors
+    rmon: \SwitcherCore\Modules\Juniper\Rmon
+    pvid: \SwitcherCore\Modules\Juniper\PvidDot1q
+    interface_descriptions: \SwitcherCore\Modules\Juniper\Descriptions
+    interfaces_list: \SwitcherCore\Modules\Juniper\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\Juniper\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\Juniper\StatePortControl
+    console_command: \SwitcherCore\Modules\Juniper\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\Juniper\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    arps: \SwitcherCore\Modules\Juniper\ArpInfo
 
 - name: Juniper JNP204 series
   key: juniper_jnp204_series
@@ -44,24 +42,22 @@ models:
     console_commands_after_connect:
       - set cli screen-length 0
   modules:
-    parse_interface: \SwitcherCore\Modules\JuniperSwitch\ParseInterface
-  #  fdb: \SwitcherCore\Modules\JuniperSwitch\Fdb
-    link_info: \SwitcherCore\Modules\JuniperSwitch\LinkInfo
-    interface_counters: \SwitcherCore\Modules\JuniperSwitch\Counters
-    system: \SwitcherCore\Modules\JuniperSwitch\System
-  #  vlans: \SwitcherCore\Modules\JuniperSwitch\VlansDot1q
-    vlan_list: \SwitcherCore\Modules\JuniperSwitch\VlanList
-    errors: \SwitcherCore\Modules\JuniperSwitch\Errors
-    rmon: \SwitcherCore\Modules\JuniperSwitch\Rmon
-    pvid: \SwitcherCore\Modules\JuniperSwitch\PvidDot1q
-  #  vlans_by_port: \SwitcherCore\Modules\JuniperSwitch\VlanByPorts
-    interface_descriptions: \SwitcherCore\Modules\JuniperSwitch\Descriptions
-    interfaces_list: \SwitcherCore\Modules\JuniperSwitch\InterfacesList
-    ctrl_port_descr: \SwitcherCore\Modules\JuniperSwitch\SetPortDescription
-    ctrl_port_state: \SwitcherCore\Modules\JuniperSwitch\StatePortControl
-    console_command: \SwitcherCore\Modules\JuniperSwitch\RawConsoleCommand
-    multi_console_command: \SwitcherCore\Modules\JuniperSwitch\MultiRawConsoleCommand
-    lldp_info: \SwitcherCore\Modules\JuniperSwitch\LldpInfo
+    parse_interface: \SwitcherCore\Modules\Juniper\ParseInterface
+    link_info: \SwitcherCore\Modules\Juniper\LinkInfo
+    interface_counters: \SwitcherCore\Modules\Juniper\Counters
+    system: \SwitcherCore\Modules\Juniper\System
+    vlan_list: \SwitcherCore\Modules\Juniper\VlanList
+    errors: \SwitcherCore\Modules\Juniper\Errors
+    rmon: \SwitcherCore\Modules\Juniper\Rmon
+    pvid: \SwitcherCore\Modules\Juniper\PvidDot1q
+    interface_descriptions: \SwitcherCore\Modules\Juniper\Descriptions
+    interfaces_list: \SwitcherCore\Modules\Juniper\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\Juniper\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\Juniper\StatePortControl
+    console_command: \SwitcherCore\Modules\Juniper\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\Juniper\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    arps: \SwitcherCore\Modules\Juniper\ArpInfo
 
 

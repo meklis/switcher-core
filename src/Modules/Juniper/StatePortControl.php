@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\JuniperSwitch;
+namespace SwitcherCore\Modules\Juniper;
 
 
 class StatePortControl extends \SwitcherCore\Modules\General\Switches\StatePortControl
