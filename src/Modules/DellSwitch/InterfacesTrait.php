@@ -74,6 +74,21 @@ trait InterfacesTrait
     }
 
     private $_interfaces;
+    private $_vlans;
+
+    function getVlanIdsMap()
+    {
+        if ($this->_vlans) {
+            return $this->_vlans;
+        }
+        if ($info = $this->getCache('INTERFACES_VLANS', true)) {
+            $this->_vlans = $info;
+            return $info;
+        }
+        $this->fetchInfoFromDevice();
+        return $this->_vlans;
+    }
+
 
     function getInterfacesIds()
     {
@@ -84,6 +99,14 @@ trait InterfacesTrait
             $this->_interfaces = $info;
             return $info;
         }
+        $this->fetchInfoFromDevice();
+        return $this->_interfaces;
+    }
+    function fetchInfoFromDevice()
+    {
+        $this->_interfaces = null;
+        $this->_vlans = null;
+
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
             Oid::init($this->oids->getOidByName('dot1q.PortIfIndex')->getOid()),
@@ -152,10 +175,17 @@ trait InterfacesTrait
             }
         }
 
+        $vlans = [];
+        foreach ($responses['if.Name'] as $r) {
+            if (preg_match('/^Vlan ([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+                $vlans[Helper::getIndexByOid($r->getOid())] = (int)$m[1];
+            }
+        }
 
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
-        return $ifaces;
+        $this->_vlans = $vlans;
+        $this->setCache("INTERFACES_VLANS", $vlans, 600, true);
     }
 
     /**

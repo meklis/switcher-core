@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\Juniper;
+namespace SwitcherCore\Modules\DellSwitch;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;

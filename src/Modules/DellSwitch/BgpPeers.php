@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\Juniper;
+namespace SwitcherCore\Modules\DellSwitch;
 
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
@@ -17,7 +17,6 @@ class BgpPeers extends AbstractModule
                 throw new \SNMPException($data->error());
             }
         }
-
         return $this;
     }
 

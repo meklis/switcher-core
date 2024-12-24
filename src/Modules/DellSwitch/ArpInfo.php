@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\Juniper;
+namespace SwitcherCore\Modules\DellSwitch;
 
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
@@ -20,28 +20,10 @@ class ArpInfo extends AbstractModule
 
     public function getPretty()
     {
-        $ifaceByVlans = [];
-        $vlanIds = [];
-        foreach ($this->getInterfacesIds() as $interface) {
-            $ifaceByVlans[$interface['id']] = $interface;
-            if($interface['type'] == "BRIDGE" || $interface['type'] == "LACP") {
-                $vlanIds[$interface['id']] = $interface['_port_num'];
-            }
-            if (isset($interface['_iface_vlans'])) {
-                foreach ($interface['_iface_vlans'] as $key => $vlanId) {
-                    $ifaceByVlans[$key] = $interface;
-                    $vlanIds[$key] = $vlanId;
-                }
-            }
-        }
-        foreach ($ifaceByVlans as $iface => $ifaceInfo) {
-            unset($ifaceInfo['_iface_vlans']);
-            $ifaceByVlans[$iface] = $ifaceInfo;
-        }
-
         if ($this->response['ip.arp.macAddr']->error()) {
             throw new \SNMPException($this->response['ip.arp.macAddr']->error());
         }
+        $vlanIds = $this->getVlanIdsMap();
         $response = [];
         foreach ($this->response['ip.arp.macAddr']->fetchAll() as $mac) {
             $ip = Helper::getIndexByOid($mac->getOid(), 3) . "." .
@@ -55,8 +37,7 @@ class ArpInfo extends AbstractModule
                 'mac' => $mac->getHexValue(),
                 'ip' => $ip,
                 'vlan_id' => isset($vlanIds[$vlanIdIndex]) ? $vlanIds[$vlanIdIndex] : null,
-                'interface' => isset($ifaceByVlans[$vlanIdIndex]) ? $ifaceByVlans[$vlanIdIndex] : null,
-                '_raw_iface_id' => $vlanIdIndex,
+                'interface' =>  null,
             ];
         }
 

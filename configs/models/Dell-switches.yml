@@ -30,6 +30,7 @@ models:
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    arps: \SwitcherCore\Modules\DellSwitch\ArpInfo
 
 - name: Dell Networking OS
   key: dell_networking_os
@@ -61,10 +62,11 @@ models:
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    arps: \SwitcherCore\Modules\DellSwitch\ArpInfo
 
 - name: Dell EMC Networking OS10
   key: dell_emc_networking_os
-  device_type: SWITCH
+  device_type: L3
   inputs:
     - snmp
     - console
@@ -92,3 +94,6 @@ models:
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    arps: \SwitcherCore\Modules\DellSwitch\ArpInfo
+    bgp_info: \SwitcherCore\Modules\DellSwitch\BgpInfo
+    bgp_peers: \SwitcherCore\Modules\DellSwitch\BgpPeers

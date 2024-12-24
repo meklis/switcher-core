@@ -16,7 +16,7 @@ models:
     link_info: \SwitcherCore\Modules\Juniper\LinkInfo
     interface_counters: \SwitcherCore\Modules\Juniper\Counters
     system: \SwitcherCore\Modules\Juniper\System
-    vlan_list: \SwitcherCore\Modules\Juniper\VlanList
+    vlans: \SwitcherCore\Modules\Juniper\VlanList
     errors: \SwitcherCore\Modules\Juniper\Errors
     rmon: \SwitcherCore\Modules\Juniper\Rmon
     pvid: \SwitcherCore\Modules\Juniper\PvidDot1q
@@ -29,6 +29,8 @@ models:
     lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
+    bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
+    bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
 
 - name: Juniper JNP204 series
   key: juniper_jnp204_series
@@ -46,7 +48,7 @@ models:
     link_info: \SwitcherCore\Modules\Juniper\LinkInfo
     interface_counters: \SwitcherCore\Modules\Juniper\Counters
     system: \SwitcherCore\Modules\Juniper\System
-    vlan_list: \SwitcherCore\Modules\Juniper\VlanList
+    vlans: \SwitcherCore\Modules\Juniper\VlanList
     errors: \SwitcherCore\Modules\Juniper\Errors
     rmon: \SwitcherCore\Modules\Juniper\Rmon
     pvid: \SwitcherCore\Modules\Juniper\PvidDot1q
@@ -59,5 +61,8 @@ models:
     lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
+    bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
+    bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
+
 
 

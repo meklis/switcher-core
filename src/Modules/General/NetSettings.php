@@ -48,8 +48,16 @@ class NetSettings extends AbstractModule
         }
         $response['_arps'] = array_values($arps);
         if(count($arps) > 0) {
-            $response['gateway_ip'] = $response['_arps'][0]['ip'];
-            $response['gateway_mac_address'] = $response['_arps'][0]['mac_address'];
+            foreach ($arps as $ip => $arp) {
+                if($arp['mac_address'] === "FF:FF:FF:FF:FF:FF") {
+                    continue;
+                }
+                if($arp['mac_address'] === $response['self_mac_address']) {
+                    continue;
+                }
+                $response['gateway_ip'] = $arp['ip'];
+                $response['gateway_mac_address'] = $arp['mac_address'];
+            }
         }
         return $response;
     }

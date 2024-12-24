@@ -244,9 +244,16 @@
 
 - name: bgp_info
   descr: BGP information
+- name: bgp_peers
+  descr: BGP information
+- name: bgp_peer_routes
+  descr: BGP information
 
 - name: arps
   descr: ARP information
+  arguments:
+    - {name: ip, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$', required: no}
+    - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
 
 
 #Action Get arp info with filters
