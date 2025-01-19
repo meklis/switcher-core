@@ -91,6 +91,7 @@ trait InterfacesTrait
         }
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Type')->getOid()),
+            Oid::init($this->oids->getOidByName('dot1q.PortIfIndex')->getOid()),
         ]);
         $responses = [];
         foreach ($response as $resp) {
@@ -119,7 +120,13 @@ trait InterfacesTrait
                 'name' => $name,
                 'type' => $type,
                 '_snmp_id' => $id,
+                '_dot1q_id' => null,
             ];
+        }
+        foreach ($responses['dot1q.PortIfIndex'] as $r) {
+            if (isset($ifaces[$r->getValue()])) {
+                $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
+            }
         }
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
