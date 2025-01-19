@@ -133,7 +133,7 @@ trait InterfacesTrait
                     '_dot1q_id' => null,
                 ];
             }
-            if (preg_match('/^(TenGigabitEthernet|fortyGigE) ([0-9]{1,4})\/([0-9]{1,4})$/', $r->getValue(), $m)) {
+            if (preg_match('/^(TenGigabitEthernet|fortyGigE|twentyFiveGigE|hundredGigE) ([0-9]{1,4})\/([0-9]{1,4})$/', $r->getValue(), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,

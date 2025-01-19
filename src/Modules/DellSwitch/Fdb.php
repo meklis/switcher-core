@@ -39,8 +39,12 @@ class Fdb extends FdbDot1Bridge
                 }
                 if(!(int)$ports[$key])  continue;
                 try {
+                    $iface = $this->getIfaceByDot1q($ports[$key]);
+                    if(!$iface) {
+                        continue;
+                    }
                     $pretties[] = [
-                        'interface' => $this->getIfaceByDot1q($ports[$key]),
+                        'interface' => $iface,
                         'vlan_id' => (int)$vlanId,
                         'mac_address' => $macAddr,
                         'status' => $status,
