@@ -122,6 +122,9 @@ class InterfaceDescriptions extends ModuleAbstract
         if (isset($response['if.Alias']) && !$response['if.Alias']->error()) {
             foreach ($response['if.Alias']->fetchAll() as $resp) {
                 try {
+                    if(Helper::getIndexByOid($resp->getOid()) > 650000000) {
+                        continue;
+                    }
                     $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'xid');
                     $data[$iface['id']] = [
                         'interface' => $iface,
