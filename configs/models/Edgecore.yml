@@ -390,7 +390,7 @@ models:
     inputs:
       - snmp
       - console
-    detect: {description: ^ES.*,  objid: .1.3.6.1.4.1.259 }
+    detect: {description: ^(ES|ECS).*,  objid: .1.3.6.1.4.1.259 }
     extra:
       diag_linkup: false
       count_pairs: 2
