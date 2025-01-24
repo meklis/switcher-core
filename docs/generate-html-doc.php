@@ -24,6 +24,7 @@ $displayModulesForTypes = [
             'unregistered_onts',
             'pon_onts_down_history',
             'pon_onts_configuration',
+            'lldp_info',
         ],
         'management' => [
            'ctrl_ont_reboot',
@@ -49,6 +50,7 @@ $displayModulesForTypes = [
             'rmon',
             'fdb',
             'cable_diag',
+            'lldp_info',
         ],
         'management' => [
             'reboot',
@@ -68,6 +70,10 @@ $displayModulesForTypes = [
             'lease_info',
             'address_list_info',
             'bgp_sessions',
+            'lldp_info',
+            'bgp_info',
+            'bgp_peers',
+            'bgp_peer_routes',
         ],
         'management' => [
         ],
