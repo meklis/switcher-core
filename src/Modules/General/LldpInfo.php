@@ -32,11 +32,14 @@ abstract class LldpInfo extends AbstractInterfaces
             } else {
                 foreach ($this->getResponseByName('lldp.locPortId')->fetchAll() as $dt) {
                     $id = Helper::getIndexByOid($dt->getOid());
-                    $ports[] = [
-                        'port_id' => (int)$id,
-                        'name' => $this->removeNullBytes($dt->getHexValue()),
-                        'interface' => $this->parseInterface($id),
+                    try {
+                        $iface = $this->parseInterface($id);
+                        $ports[] = [
+                            'port_id' => (int)$id,
+                            'name' => $this->removeNullBytes($dt->getHexValue()),
+                            'interface' => $iface,
                     ];
+                    } catch (\Exception $e) {}
                 }
             }
             $response['local']['ports'] = $ports;
@@ -52,13 +55,12 @@ abstract class LldpInfo extends AbstractInterfaces
                     $port = Helper::getIndexByOid($dt->getOid(), 1);
                     $remotes["{$port}.{$id}"] = [
                         'loc_interface' => $this->parseInterface($port),
-                        'rem_chassis_id' =>  $dt->getHexValue(),
+                        'rem_chassis_id' =>  strtoupper($dt->getHexValue()),
                         'rem_interface' => null,
                         '_rem_port_id' => null,
                     ];
                 }
             }
-
         }
         if (isset($this->response['lldp.remPortId'])) {
             if ($error = $this->getResponseByName('lldp.remPortId')->error()) {

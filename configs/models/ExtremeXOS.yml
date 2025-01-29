@@ -1,0 +1,37 @@
+############################################## Parameters description  #####################################################
+##
+############################################################################################################################
+
+models:
+ - name: ExtremeXOS
+   key: extreme_xos
+   ports: 0
+   device_type: ROUTER
+   detect: {description: ^ExtremeXOS.*,  objid: ^.1.3.6.1.4.1.1916 }
+   oids:
+     - ./oids/xos.yml
+   inputs:
+     - snmp
+     - console
+   extra:
+     console_conn_type: xos
+     console_commands_after_connect:
+       - disable clipaging
+   modules:
+     parse_interface: \SwitcherCore\Modules\ExtremeXOS\ParseInterface
+     link_info: \SwitcherCore\Modules\ExtremeXOS\LinkInfo
+     interface_counters: \SwitcherCore\Modules\ExtremeXOS\Counters
+     system: \SwitcherCore\Modules\ExtremeXOS\System
+     vlans: \SwitcherCore\Modules\ExtremeXOS\VlanList
+     errors: \SwitcherCore\Modules\ExtremeXOS\Errors
+     rmon: \SwitcherCore\Modules\ExtremeXOS\Rmon
+     pvid: \SwitcherCore\Modules\ExtremeXOS\PvidDot1q
+     interface_descriptions: \SwitcherCore\Modules\ExtremeXOS\Descriptions
+     interfaces_list: \SwitcherCore\Modules\ExtremeXOS\InterfacesList
+     ctrl_port_descr: \SwitcherCore\Modules\ExtremeXOS\SetPortDescription
+     console_command: \SwitcherCore\Modules\ExtremeXOS\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\ExtremeXOS\MultiRawConsoleCommand
+     lldp_info: \SwitcherCore\Modules\ExtremeXOS\LldpInfo
+     arps: \SwitcherCore\Modules\ExtremeXOS\ArpInfo
+     bgp_info: \SwitcherCore\Modules\ExtremeXOS\BgpInfo
+     bgp_peers: \SwitcherCore\Modules\ExtremeXOS\BgpPeers

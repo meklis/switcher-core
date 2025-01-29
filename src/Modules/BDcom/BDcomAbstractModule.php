@@ -69,7 +69,6 @@ abstract class BDcomAbstractModule extends AbstractModule
             }
         }
         if (is_string($input)) {
-            $input = strtolower(str_replace("t", "", $input));
             $filtered = array_values(array_filter($ifaces, function ($iface) use ($input) {
                 return $input == strtolower($iface['name']);
             }));
@@ -190,7 +189,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 ];
             }
             if (preg_match('/^tg(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
-                $name = "g{$m[1]}";
+                $name = "tg{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
                     'xid' => $xid,
