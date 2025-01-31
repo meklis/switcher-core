@@ -91,6 +91,7 @@ trait InterfacesTrait
         }
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Type')->getOid()),
+            Oid::init($this->oids->getOidByName('if.Name')->getOid()),
         ]);
         $responses = [];
         foreach ($response as $resp) {
@@ -100,8 +101,6 @@ trait InterfacesTrait
             }
             $responses[$name->getName()] = $resp->getResponse();
         }
-
-        $ifaces = [];
 
         $types =  $this->oids->getOidByName('if.Type');
         foreach ($responses['if.Type'] as $r) {
@@ -119,7 +118,14 @@ trait InterfacesTrait
                 'name' => $name,
                 'type' => $type,
                 '_snmp_id' => $id,
+                '_name' => '',
             ];
+        }
+        foreach ($responses['if.Name'] as $r) {
+            $id = Helper::getIndexByOid($r->getOid());
+            if(isset($ifaces[$id])) {
+                $ifaces[Helper::getIndexByOid($r->getOid())]['_name'] = $r->getValue();
+            }
         }
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);

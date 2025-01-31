@@ -60,7 +60,7 @@ class GeneralArpInfo extends ExecCommand
             if($a['invalid'] == 'true') $status='invalid';
             if($a['disabled'] == 'true') $status='disabled';
             try {
-                $iface = $this->parseInterface($a['interface']);
+                $iface = $this->parseInterface($a['interface'], '_name');
             } catch (\Exception $e) {
                 continue;
             }
