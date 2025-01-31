@@ -54,7 +54,7 @@ class ArpInfo extends AbstractModule
             $response[] = [
                 'mac' => $mac->getHexValue(),
                 'ip' => $ip,
-                'vlan_id' => isset($vlanIds[$vlanIdIndex]) ? $vlanIds[$vlanIdIndex] : null,
+                'vlan_id' => isset($vlanIds[$vlanIdIndex]) ? (int)$vlanIds[$vlanIdIndex] : null,
                 'interface' => isset($ifaceByVlans[$vlanIdIndex]) ? $ifaceByVlans[$vlanIdIndex] : null,
                 '_raw_iface_id' => $vlanIdIndex,
             ];

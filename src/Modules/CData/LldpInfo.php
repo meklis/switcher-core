@@ -86,7 +86,7 @@ class LldpInfo extends CDataAbstractModule
         }
     }
 
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
         return $this->formate();
     }

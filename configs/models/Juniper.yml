@@ -59,7 +59,6 @@ models:
     console_command: \SwitcherCore\Modules\Juniper\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\Juniper\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
-    net_settings: \SwitcherCore\Modules\General\NetSettings
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
     bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
     bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
