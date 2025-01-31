@@ -57,6 +57,7 @@ models:
    modules:
      system: \SwitcherCore\Modules\Dlink\System\DefaultParser
      arp_info: \SwitcherCore\Modules\RouterOS\ArpInfo
+     arps: \SwitcherCore\Modules\RouterOS\ArpInfo
      arp_ping: \SwitcherCore\Modules\RouterOS\ArpPing
      interface_info: \SwitcherCore\Modules\RouterOS\InterfaceInfo
      interface_vlan_info: \SwitcherCore\Modules\RouterOS\InterfaceVlanInfo
