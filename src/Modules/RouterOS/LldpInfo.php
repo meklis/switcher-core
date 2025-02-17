@@ -32,11 +32,13 @@ class LldpInfo extends \SwitcherCore\Modules\General\LldpInfo
                 $ports = [];
                 foreach ($this->getResponseByName('lldp.locPortId')->fetchAll() as $dt) {
                     $id = Helper::getIndexByOid($dt->getOid());
-                    $ports[] = [
-                        'port_id' => (int)$id,
-                        'name' => $this->removeNullBytes($dt->getHexValue()),
-                        'interface' => $this->parseInterface($id),
-                    ];
+                    try {
+                        $ports[] = [
+                            'port_id' => (int)$id,
+                            'name' => $this->removeNullBytes($dt->getHexValue()),
+                            'interface' => $this->parseInterface($id),
+                        ];
+                    } catch (\Throwable $th) {}
                 }
             }
             $response['local']['ports'] = $ports;
@@ -50,12 +52,14 @@ class LldpInfo extends \SwitcherCore\Modules\General\LldpInfo
                 foreach ($this->getResponseByName('lldp.remChassisId')->fetchAll() as $dt) {
                     try {
                         $id = Helper::getIndexByOid($dt->getOid());
-                        $remotes[$id] = [
-                            'loc_interface' => $this->parseInterface($id),
-                            'rem_chassis_id' => $dt->getHexValue(),
-                            'rem_interface' => null,
-                            '_rem_port_id' => null,
-                        ];
+                        try {
+                            $remotes[$id] = [
+                                'loc_interface' => $this->parseInterface($id),
+                                'rem_chassis_id' => $dt->getHexValue(),
+                                'rem_interface' => null,
+                                '_rem_port_id' => null,
+                            ];
+                        } catch (\Throwable $th) {}
                     } catch (\Exception $e) {}
                 }
             }
@@ -73,7 +77,7 @@ class LldpInfo extends \SwitcherCore\Modules\General\LldpInfo
                         if (!isset($remotes[$id]['rem_chassis_id'])) {
                             $remotes[$id]['rem_chassis_id'] = null;
                         }
-                    } catch (\Exception $e) {}
+                    } catch (\Throwable $e) {}
                 }
             }
         }
