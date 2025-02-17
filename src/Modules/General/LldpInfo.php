@@ -60,7 +60,7 @@ abstract class LldpInfo extends AbstractInterfaces
                             'rem_interface' => null,
                             '_rem_port_id' => null,
                         ];
-                    } catch (\Exception $e) {}
+                    } catch (\Throwable $e) {}
                 }
             }
         }
@@ -78,7 +78,7 @@ abstract class LldpInfo extends AbstractInterfaces
                         if (!isset($remotes["{$port}.{$id}"]['rem_chassis_id'])) {
                             $remotes["{$port}.{$id}"]['rem_chassis_id'] = null;
                         }
-                    } catch (\Exception $e) {}
+                    } catch (\Throwable $e) {}
 
                 }
             }
