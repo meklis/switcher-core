@@ -53,12 +53,14 @@ abstract class LldpInfo extends AbstractInterfaces
                 foreach ($this->getResponseByName('lldp.remChassisId')->fetchAll() as $dt) {
                     $id = Helper::getIndexByOid($dt->getOid());
                     $port = Helper::getIndexByOid($dt->getOid(), 1);
-                    $remotes["{$port}.{$id}"] = [
-                        'loc_interface' => $this->parseInterface($port),
-                        'rem_chassis_id' =>  strtoupper($dt->getHexValue()),
-                        'rem_interface' => null,
-                        '_rem_port_id' => null,
-                    ];
+                    try {
+                        $remotes["{$port}.{$id}"] = [
+                            'loc_interface' => $this->parseInterface($port),
+                            'rem_chassis_id' => strtoupper($dt->getHexValue()),
+                            'rem_interface' => null,
+                            '_rem_port_id' => null,
+                        ];
+                    } catch (\Exception $e) {}
                 }
             }
         }
@@ -69,12 +71,14 @@ abstract class LldpInfo extends AbstractInterfaces
                 foreach ($this->getResponseByName('lldp.remPortId')->fetchAll() as $dt) {
                     $id = Helper::getIndexByOid($dt->getOid());
                     $port = Helper::getIndexByOid($dt->getOid(), 1);
-                    $remotes["{$port}.{$id}"]['loc_interface'] = $this->parseInterface($port);
-                    $remotes["{$port}.{$id}"]['rem_interface'] = $this->removeNullBytes($dt->getHexValue());
-                    $remotes["{$port}.{$id}"]['_rem_port_id'] = $this->getPortId($remotes["{$port}.{$id}"]['rem_chassis_id'], $this->removeNullBytes($dt->getHexValue()));
-                    if (!isset($remotes["{$port}.{$id}"]['rem_chassis_id'])) {
-                        $remotes["{$port}.{$id}"]['rem_chassis_id'] = null;
-                    }
+                    try {
+                        $remotes["{$port}.{$id}"]['loc_interface'] = $this->parseInterface($port);
+                        $remotes["{$port}.{$id}"]['rem_interface'] = $this->removeNullBytes($dt->getHexValue());
+                        $remotes["{$port}.{$id}"]['_rem_port_id'] = $this->getPortId($remotes["{$port}.{$id}"]['rem_chassis_id'], $this->removeNullBytes($dt->getHexValue()));
+                        if (!isset($remotes["{$port}.{$id}"]['rem_chassis_id'])) {
+                            $remotes["{$port}.{$id}"]['rem_chassis_id'] = null;
+                        }
+                    } catch (\Exception $e) {}
 
                 }
             }

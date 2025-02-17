@@ -60,16 +60,18 @@ class ArpInfo extends AbstractModule
             if(!preg_match('/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/', $columns[1])) {
                 continue;
             }
-            $parsedData[] = [
-                '_virtual_router' => $columns[0],
-                'ip' => $columns[1],
-                'mac' => strtoupper($columns[2]),
-                '_age' => (int)$columns[3],
-                '_static' => $columns[4] === 'YES',
-                '_vlan_name' => $columns[5],
-                'vlan_id' => (int)$columns[6],
-                'interface' => $this->parseInterface($columns[7]),
-            ];
+            try {
+                $parsedData[] = [
+                    '_virtual_router' => $columns[0],
+                    'ip' => $columns[1],
+                    'mac' => strtoupper($columns[2]),
+                    '_age' => (int)$columns[3],
+                    '_static' => $columns[4] === 'YES',
+                    '_vlan_name' => $columns[5],
+                    'vlan_id' => (int)$columns[6],
+                    'interface' => $this->parseInterface($columns[7]),
+                ];
+            } catch (\Exception $e) {}
         }
         /**
          * 'interface' => $a['interface'],
