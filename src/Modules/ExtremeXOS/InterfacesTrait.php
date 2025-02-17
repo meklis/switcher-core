@@ -107,7 +107,7 @@ trait InterfacesTrait
         $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
-            if ($resp->getError() && !in_array($name->getName(), ['if.stackStatus', 'dot1q.PortIfIndex'])) {
+            if ($resp->getError() && !in_array($name->getName(), ['port.loadShare.status','if.stackStatus', 'dot1q.PortIfIndex'])) {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
             $responses[$name->getName()] = $resp;
