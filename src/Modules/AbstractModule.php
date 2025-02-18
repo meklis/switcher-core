@@ -158,7 +158,7 @@ abstract class AbstractModule
         $cache = $this->container->get(CacheInterface::class);
         $md5 = md5($key);
         if($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $md5;
+            $key = "NO_CLASS_" . $this->device->getIp() . ":" . $md5;
         } else {
             $key = get_class($this) . ":" . $this->device->getIp() . ":" . $md5;
         }
@@ -187,7 +187,7 @@ abstract class AbstractModule
         }
         $md5 = md5($key);
         if($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $md5;
+            $key = "NO_CLASS_" . $this->device->getIp() . ":" . $md5;
         } else {
             $key = get_class($this) . ":" . $this->device->getIp() . ":" . $md5;
         }

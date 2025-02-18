@@ -141,7 +141,7 @@ trait InterfacesTrait
         }
         $cache = $this->container->get(CacheInterface::class);
         if ($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $key;
+            $key = "NO_CLASS_" . $this->device->getIp() . ":" . $key;
         } else {
             $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
         }
@@ -170,7 +170,7 @@ trait InterfacesTrait
             return false;
         }
         if ($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $key;
+            $key = "NO_CLASS_" . $this->device->getIp() . ":" . $key;
         } else {
             $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
         }

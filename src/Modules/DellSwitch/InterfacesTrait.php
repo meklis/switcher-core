@@ -111,7 +111,6 @@ trait InterfacesTrait
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
             Oid::init($this->oids->getOidByName('dot1q.PortIfIndex')->getOid()),
         ]);
-        $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
             if ($resp->getError()) {
@@ -133,6 +132,28 @@ trait InterfacesTrait
                     '_dot1q_id' => null,
                 ];
             }
+            if (preg_match('/^(ethernet1\/1\/)([0-9]{1,4})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    'type' => "GE",
+                    '_snmp_id' => $id,
+                    '_lacp_ifaces' => null,
+                    '_dot1q_id' => null,
+                ];
+            }
+            if (preg_match('/^(ethernet1\/1\/)([0-9]{1,4}):([0-9]{1,4})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id + 1000,
+                    'name' => $r->getValue(),
+                    'type' => "GE",
+                    '_snmp_id' => $id,
+                    '_lacp_ifaces' => null,
+                    '_dot1q_id' => null,
+                ];
+            }
             if (preg_match('/^(TenGigabitEthernet|fortyGigE|twentyFiveGigE|hundredGigE) ([0-9]{1,4})\/([0-9]{1,4})$/', $r->getValue(), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
@@ -145,6 +166,17 @@ trait InterfacesTrait
                 ];
             }
             if (preg_match('/^(Port-channel) ([0-9]{1,4})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    'type' => "LACP",
+                    '_lacp_ifaces' => null,
+                    '_snmp_id' => $id,
+                    '_dot1q_id' => null,
+                ];
+            }
+            if (preg_match('/^(port-channel)([0-9]{1,4})$/', $r->getValue(), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
@@ -180,8 +212,10 @@ trait InterfacesTrait
             if (preg_match('/^Vlan ([0-9]{1,5})$/', trim($r->getValue()), $m)) {
                 $vlans[Helper::getIndexByOid($r->getOid())] = (int)$m[1];
             }
+            if (preg_match('/^vlan([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+                $vlans[Helper::getIndexByOid($r->getOid())] = (int)$m[1];
+            }
         }
-
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
         $this->_vlans = $vlans;
@@ -205,7 +239,7 @@ trait InterfacesTrait
         }
         $cache = $this->container->get(CacheInterface::class);
         if ($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $key;
+            $key = "NO_CLASS_" . $this->device->getIp() . ":" . $key;
         } else {
             $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
         }
@@ -234,7 +268,7 @@ trait InterfacesTrait
             return false;
         }
         if ($withoutClass) {
-            $key = "_" . $this->device->getIp() . ":" . $key;
+            $key = "NO_CLASS_" . $this->device->getIp() . ":" . $key;
         } else {
             $key = get_class($this) . ":" . $this->device->getIp() . ":" . $key;
         }
