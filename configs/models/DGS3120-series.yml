@@ -43,6 +43,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
  - name: D-link DGS-3120-24SC/B
    key: dlink_dgs_3120_24sc_bx
    ports: 24
@@ -86,3 +87,4 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules

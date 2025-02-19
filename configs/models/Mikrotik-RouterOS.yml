@@ -74,3 +74,5 @@ models:
      lldp_info: \SwitcherCore\Modules\RouterOS\LldpInfo
      link_info: \SwitcherCore\Modules\RouterOS\LinkInfo
      fdb: \SwitcherCore\Modules\RouterOS\Fdb
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+

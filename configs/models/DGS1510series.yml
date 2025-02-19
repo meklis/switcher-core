@@ -51,3 +51,4 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules

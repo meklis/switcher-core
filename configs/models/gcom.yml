@@ -29,6 +29,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
       pon_port_size: 64
@@ -77,7 +78,6 @@ models:
       uni_interfaces_status: \SwitcherCore\Modules\GCOM\UniInterfacesStatus
       interface_counters: \SwitcherCore\Modules\GCOM\InterfaceCounters
       link_info: \SwitcherCore\Modules\GCOM\LinkInfo
-
       ctrl_ont_reset: \SwitcherCore\Modules\GCOM\OntReset
       ctrl_ont_descr: \SwitcherCore\Modules\GCOM\CtrlOntDescription
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\GCOM\UniInterfacesControlAdminStatus
@@ -85,6 +85,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\GCOM\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\GCOM\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
       pon_port_size: 64

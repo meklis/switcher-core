@@ -31,6 +31,7 @@ models:
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
     bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
     bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 - name: Juniper JNP204 series
   key: juniper_jnp204_series
@@ -62,6 +63,7 @@ models:
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
     bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
     bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 
 

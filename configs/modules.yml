@@ -1,3 +1,6 @@
+- name: supported_modules
+  descr: Returning supported modules for calling
+
 #Module for get system info + meta
 - name: system
   descr: System information (uptime, description, mac-address, serial)

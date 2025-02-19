@@ -21,3 +21,4 @@ models:
      analog_lines_list: \SwitcherCore\Modules\Sensors\Ping3\AnalogLinesList
      power_sensor_state: \SwitcherCore\Modules\Sensors\Ping3\PowerSensorState
      knock_sensor_state: \SwitcherCore\Modules\Sensors\Ping3\KnockSensorState
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules

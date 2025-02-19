@@ -33,3 +33,4 @@ models:
     multi_console_command: \SwitcherCore\Modules\EltexSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\EltexSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules

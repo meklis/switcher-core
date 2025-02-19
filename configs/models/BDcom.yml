@@ -59,6 +59,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\BDcom\GP3600\UnregisteredOnts
       power_status: \SwitcherCore\Modules\BDcom\GP3600\PowerStatus
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 128
       console_conn_type: bdcom
@@ -110,6 +111,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64 
       console_conn_type: bdcom
@@ -161,6 +163,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -212,6 +215,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -263,6 +267,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -314,6 +319,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -365,6 +371,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -417,6 +424,7 @@ models:
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       console_conn_type: bdcom

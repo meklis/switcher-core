@@ -35,3 +35,4 @@ models:
      arps: \SwitcherCore\Modules\ExtremeXOS\ArpInfo
      bgp_info: \SwitcherCore\Modules\ExtremeXOS\BgpInfo
      bgp_peers: \SwitcherCore\Modules\ExtremeXOS\BgpPeers
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules

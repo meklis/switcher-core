@@ -41,6 +41,8 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -89,6 +91,8 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -137,6 +141,8 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -185,6 +191,8 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
     extra:
       console_conn_type: zte
       port_offset: 1
@@ -244,6 +252,8 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C600Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\General\NetSettings
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
     extra:
       console_conn_type: zte
       port_offset: 1

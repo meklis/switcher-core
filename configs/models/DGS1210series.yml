@@ -48,6 +48,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
  - name: D-link DGS-1210-20/ME/A1
    key: dlink_dgs_1210_20_me_a1
@@ -91,6 +92,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
  - name: D-link DGS-1210-10/ME/A1
    key: dlink_dgs_1210_10_me_a1
@@ -134,6 +136,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
  - name: D-link DGS-1210-20/ME/B1
    key: dlink_dgs_1210_20_me_b1
@@ -177,6 +180,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
  - name: D-link DGS-1210-12TS/ME/B1
    key: dlink_dgs_1210_12ts_me_b1
@@ -220,6 +224,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
  - name: D-link DGS-1210-28/ME/B1
    key: dlink_dgs_1210_28_me_b1
@@ -264,6 +269,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 
  - name: D-link DGS-1210-28XS/ME/B1
@@ -307,3 +313,4 @@ models:
      multi_console_command: \SwitcherCore\Modules\Dlink\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules

@@ -36,6 +36,7 @@ models:
       link_info: \SwitcherCore\Modules\CData\FD11XX\LinkInfo
       pon_onts_reasons: \SwitcherCore\Modules\CData\FD11XX\OntReasons
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_port_size: 64
       pon_type: EPON
@@ -92,6 +93,7 @@ models:
       link_info: \SwitcherCore\Modules\CData\FD11XX\LinkInfo
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
       pon_ports_optical: \SwitcherCore\Modules\CData\FD11XX\PonPortsOptical
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_type: EPON
       console_conn_type: stels
@@ -156,6 +158,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
       pon_type: EPON
@@ -220,6 +223,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
       pon_type: EPON
@@ -294,6 +298,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
       pon_type: EPON
@@ -376,6 +381,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              supported_modules: \SwitcherCore\Modules\General\SupportedModules
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -412,6 +418,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_type: GPON
       pon_port_size: 128
@@ -479,6 +486,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              supported_modules: \SwitcherCore\Modules\General\SupportedModules
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -516,6 +524,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_type: GPON
       pon_port_size: 128
@@ -587,6 +596,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              supported_modules: \SwitcherCore\Modules\General\SupportedModules
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -623,6 +633,7 @@ models:
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
     extra:
       pon_type: GPON
       pon_port_size: 128

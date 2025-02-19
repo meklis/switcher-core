@@ -20,6 +20,7 @@ models:
     ctrl_port_state: \SwitcherCore\Modules\CiscoSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\CiscoSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 
 - name: Cisco Switch
@@ -44,3 +45,4 @@ models:
     ctrl_port_state: \SwitcherCore\Modules\CiscoSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\CiscoSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules

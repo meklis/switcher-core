@@ -23,3 +23,5 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\MikrotikCRS\SetPortDescription
      lldp_info: \SwitcherCore\Modules\MikrotikCRS\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
