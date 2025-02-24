@@ -35,8 +35,9 @@ class UnregisteredOnts extends HuaweiOLTAbstractModule
     public function run($filter = [])
     {
         $oidRequests = [];
-        if($this->isHasGponIfaces()) $oidRequests = array_merge($oidRequests, $this->oids->getOidsByRegex('ont.gpon.autofind..*'));
-        if($this->isHasEponIfaces()) $oidRequests = array_merge($oidRequests, $this->oids->getOidsByRegex('ont.epon.autofind..*'));
+        if($this->isHasGponIfaces(true)) $oidRequests = array_merge($oidRequests, $this->oids->getOidsByRegex('ont.gpon.autofind..*'));
+        if($this->isHasEponIfaces(true)) $oidRequests = array_merge($oidRequests, $this->oids->getOidsByRegex('ont.epon.autofind..*'));
+
         $oids = array_map(function ($e) {
             return Oid::init($e->getOid());
         }, $oidRequests);

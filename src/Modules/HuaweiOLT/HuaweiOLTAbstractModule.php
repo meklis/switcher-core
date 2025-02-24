@@ -119,20 +119,20 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
         throw new \InvalidArgumentException("Error find interface by ident='{$input}'");
     }
 
-    protected function isHasEponIfaces()
+    protected function isHasEponIfaces($ignoreCount = false)
     {
         $ifaces = array_filter($this->getInterfaces(), function ($f) {
             return $f['_technology'] === 'epon';
         });
-        return count($ifaces) > 0  && $this->getCountOntsByTechnology('epon') > 0;
+        return count($ifaces) > 0  && ($ignoreCount || $this->getCountOntsByTechnology('epon') > 0);
     }
 
-    protected function isHasGponIfaces()
+    protected function isHasGponIfaces($ignoreCount = false)
     {
         $ifaces = array_filter($this->getInterfaces(), function ($f) {
             return $f['_technology'] === 'gpon';
         });
-        return count($ifaces) > 0 && $this->getCountOntsByTechnology('gpon') > 0;
+        return count($ifaces) > 0 && ($ignoreCount || $this->getCountOntsByTechnology('gpon') > 0);
     }
 
     private $_interfaces = [];
@@ -144,6 +144,7 @@ abstract class HuaweiOLTAbstractModule extends AbstractModule
     ];
     protected function getCountOntsByTechnology($technology)
     {
+
         if($this->_cachedOntsCount[$technology] !== null) {
             return $this->_cachedOntsCount[$technology];
         }
