@@ -476,7 +476,7 @@ class Core
         if ($this->container->has(MultiWalkerInterface::class)) {
             $meta['connections']['snmp'] = true;
         }
-        if ($this->container->has(Telnet::class)) {
+        if ($this->container->has(ConsoleInterface::class)) {
             $meta['connections']['telnet'] = true;
         }
         if ($this->container->has(RouterosAPI::class)) {
@@ -488,5 +488,20 @@ class Core
     public function getContainer()
     {
         return $this->container;
+    }
+
+    public function destroy()
+    {
+        try {
+            if($this->container->has(ConsoleInterface::class)){
+                $this->container->get(ConsoleInterface::class)->disconnect();
+            }
+        } catch (\Throwable $e) {}
+        try {
+            if($this->container->has(RouterosAPI::class)){
+                $this->container->get(RouterosAPI::class)->disconnect();
+            }
+        } catch (\Throwable $e) {}
+        $this->container  = null;
     }
 }

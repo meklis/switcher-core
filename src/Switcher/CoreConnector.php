@@ -16,6 +16,7 @@ use SwitcherCore\Config\Reader;
 use SwitcherCore\Config\TrapCollector;
 use SwitcherCore\Exceptions\ModuleErrorLoadException;
 use SwitcherCore\Exceptions\ModuleNotFoundException;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 use SwitcherCore\Switcher\Console\SshLazyConnect;
 use SwitcherCore\Switcher\Console\TelnetLazyConnect;
 use SwitcherCore\Switcher\Objects\RouterOsLazyConnect;
@@ -104,6 +105,9 @@ class CoreConnector
     }
 
     public function closeAllCoreInstances() {
+        foreach ($this->instances as $instance) {
+            $instance->destroy();
+        }
         $this->instances = [];
         return $this;
     }
