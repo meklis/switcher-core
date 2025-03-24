@@ -90,13 +90,14 @@ trait InterfacesTrait
 
     function getInterfacesIds()
     {
-        if ($this->_interfaces) {
-            return $this->_interfaces;
-        }
+//        if ($this->_interfaces) {
+//            return $this->_interfaces;
+//        }
 //        if ($info = $this->getCache('INTERFACES', true)) {
 //            $this->_interfaces = $info;
 //            return $info;
 //        }
+
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
         ]);
@@ -108,7 +109,6 @@ trait InterfacesTrait
             }
             $responses[$name->getName()] = $resp->getResponse();
         }
-
         $ifaces = [];
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^gigabitethernet([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
@@ -121,6 +121,17 @@ trait InterfacesTrait
                     '_port_num' => (int)$port,
                     '_slot' => (int)$slot,
                     '_physical_id' => $id + 32,
+                ];
+            } elseif (preg_match('/^([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                [$shelf, $slot, $port] = explode("/", $m[1]);
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => (int)$port,
+                    '_slot' => (int)$slot,
+                    '_physical_id' => $id,
                 ];
             }
         }
