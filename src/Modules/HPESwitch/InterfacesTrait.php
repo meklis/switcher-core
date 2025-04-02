@@ -90,9 +90,9 @@ trait InterfacesTrait
 
     function getInterfacesIds()
     {
-//        if ($this->_interfaces) {
-//            return $this->_interfaces;
-//        }
+        if ($this->_interfaces) {
+            return $this->_interfaces;
+        }
         if ($info = $this->getCache('INTERFACES', true)) {
             $this->_interfaces = $info;
             return $info;
