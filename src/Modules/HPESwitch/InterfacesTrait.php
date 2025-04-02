@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitcherCore\Modules\HpArubaOsSwitch;
+namespace SwitcherCore\Modules\HPESwitch;
 
 use DI\Container;
 use DI\DependencyException;
@@ -90,13 +90,13 @@ trait InterfacesTrait
 
     function getInterfacesIds()
     {
-//        if ($this->_interfaces) {
-//            return $this->_interfaces;
-//        }
-//        if ($info = $this->getCache('INTERFACES', true)) {
-//            $this->_interfaces = $info;
-//            return $info;
-//        }
+        if ($this->_interfaces) {
+            return $this->_interfaces;
+        }
+        if ($info = $this->getCache('INTERFACES', true)) {
+            $this->_interfaces = $info;
+            return $info;
+        }
 
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
@@ -111,26 +111,51 @@ trait InterfacesTrait
         }
         $ifaces = [];
         foreach ($responses['if.Name'] as $r) {
+            $id = Helper::getIndexByOid($r->getOid());
             if (preg_match('/^gigabitethernet([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
                 [$shelf, $slot, $port] = explode("/", $m[1]);
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
+                $ifaces[$id] = [
+                    'id' => (int) $id,
                     'name' => "ge{$m[1]}",
                     '_snmp_id' => $id,
-                    '_port_num' => (int)$port,
-                    '_slot' => (int)$slot,
+                    '_port_num' => (int) $port,
+                    '_slot' => (int) $slot,
                     '_physical_id' => $id + 32,
                 ];
             } elseif (preg_match('/^([0-9]{1,3}\/[0-9]{1,3}\/[0-9]{1,3})$/', trim($r->getValue()), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
                 [$shelf, $slot, $port] = explode("/", $m[1]);
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
+                $ifaces[$id] = [
+                    'id' => (int) $id,
                     'name' => $r->getValue(),
                     '_snmp_id' => $id,
-                    '_port_num' => (int)$port,
-                    '_slot' => (int)$slot,
+                    '_port_num' => (int) $port,
+                    '_slot' => (int) $slot,
+                    '_physical_id' => $id,
+                ];
+            } elseif(preg_match('/^lag(\d{1,2})$/', trim($r->getValue()), $m)) {
+                $port = $m[1];
+                $ifaces[$id] = [
+                    'id' => (int) $id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => (int) $port,
+                    '_slot' => 'lag',
+                    '_physical_id' => $id,
+                ];
+            } elseif(preg_match('/^([A-F][0-9]{1,2}|Trk[0-9]{1,2})$/', trim($r->getValue()), $m)) {
+                if(strpos($m[1], 'Trk') !== false) {
+                    $slot = 'Trk';
+                    $port = substr($m[1], 3);
+                } else {
+                    $slot = substr($m[1], 0, 1);
+                    $port = substr($m[1], 1);
+                }
+                $ifaces[$id] = [
+                    'id' => (int) $id,
+                    'name' => $r->getValue(),
+                    '_snmp_id' => $id,
+                    '_port_num' => (int) $port,
+                    '_slot' => $slot,
                     '_physical_id' => $id,
                 ];
             }

@@ -24,6 +24,30 @@ models:
     net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
+- name: HP J9850A Switch
+  key: hp_j9850a
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: HP J9850A Switch,  objid: ^.1.3.6.1.4.1.11.2.3.7.11 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\HPESwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\HPESwitch\FdbById
+    link_info: \SwitcherCore\Modules\HPESwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\HPESwitch\Counters
+    system: \SwitcherCore\Modules\HPESwitch\System
+    vlans: \SwitcherCore\Modules\HPESwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\HPESwitch\Errors
+    rmon: \SwitcherCore\Modules\HPESwitch\Rmon
+    vlans_by_port: \SwitcherCore\Modules\HPESwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\HPESwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\HPESwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\HPESwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\HPESwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\General\NetSettings
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
 - name: HP Switch
   key: hp_general_switch
   device_type: SWITCH
@@ -91,6 +115,54 @@ models:
     interfaces_list: \SwitcherCore\Modules\HpArubaOsSwitch\InterfacesList
     ctrl_port_descr: \SwitcherCore\Modules\HpArubaOsSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HpArubaOsSwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\General\NetSettings
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
+- name: HPE ANW JL675A 6100
+  key: hpe_anw_jl675a
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: HPE ANW JL675A 6100,  objid: ^.1.3.6.1.4.1.47196.4.1 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\HPESwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\HPESwitch\Fdb
+    link_info: \SwitcherCore\Modules\HPESwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\HPESwitch\Counters
+    system: \SwitcherCore\Modules\HPESwitch\System
+    vlans: \SwitcherCore\Modules\HPESwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\HPESwitch\Errors
+    rmon: \SwitcherCore\Modules\HPESwitch\Rmon
+    vlans_by_port: \SwitcherCore\Modules\HPESwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\HPESwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\HPESwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\HPESwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\HPESwitch\StatePortControl
+    lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\General\NetSettings
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
+- name: HPE Switch
+  key: hpe_switch
+  device_type: SWITCH
+  inputs:
+    - snmp
+  detect: {description: ArubaOS,  objid: ^.1.3.6.1.4.1.14823.1.1 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\HPESwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\HPESwitch\Fdb
+    link_info: \SwitcherCore\Modules\HPESwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\HPESwitch\Counters
+    system: \SwitcherCore\Modules\HPESwitch\System
+    vlans: \SwitcherCore\Modules\HPESwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\HPESwitch\Errors
+    rmon: \SwitcherCore\Modules\HPESwitch\Rmon
+    vlans_by_port: \SwitcherCore\Modules\HPESwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\HPESwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\HPESwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\HPESwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\HPESwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
