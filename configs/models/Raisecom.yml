@@ -3,6 +3,35 @@
 ############################################################################################################################
 
 models:
+ - name: Raisecom ISCOM 2600
+   key: raisecom_iscom_2600
+   ports: 0
+   device_type: SWITCH
+   detect: {description: .*ISCOM2600.*,  objid: ^.1.3.6.1.4.1.8886.6 }
+   inputs:
+     - snmp
+   oids:
+     - ./oids/raisecom/iscom2600.yml
+   modules:
+     system: \SwitcherCore\Modules\Raisecom\System
+     parse_interface: \SwitcherCore\Modules\Raisecom\ParseInterface
+     interfaces_list: \SwitcherCore\Modules\Raisecom\InterfacesList
+     fdb: \SwitcherCore\Modules\Raisecom\Fdb
+     link_info: \SwitcherCore\Modules\Raisecom\LinkInfo
+     interface_counters: \SwitcherCore\Modules\Raisecom\Counters
+     vlans: \SwitcherCore\Modules\Raisecom\VlansDot1q
+     vlans_by_port: \SwitcherCore\Modules\Raisecom\VlanByPorts
+     errors: \SwitcherCore\Modules\Raisecom\Errors
+     interface_descriptions: \SwitcherCore\Modules\Raisecom\Descriptions
+#     sys_resources: \SwitcherCore\Modules\Raisecom\SysResources
+     rmon: \SwitcherCore\Modules\Raisecom\Rmon
+     pvid: \SwitcherCore\Modules\Raisecom\PvidDot1q
+     ctrl_port_descr: \SwitcherCore\Modules\Raisecom\SetPortDescription
+     ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
+     lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
+     net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+
  - name: Raisecom ISCOM
    key: raisecom_iscom
    ports: 0
