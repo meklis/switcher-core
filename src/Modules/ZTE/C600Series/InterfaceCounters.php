@@ -39,7 +39,7 @@ class InterfaceCounters extends ModuleAbstract
             $interface = $this->parseInterface($params['interface']);
             if ($interface['type'] === 'ONU') {
                 $oids = array_map(function ($e) use ($interface) {
-                    return $e->setOid($e->getOid() . "." . $interface['_xpon_id']);
+                    return $e->setOid($e->getOid() . "." . $interface['_oid_id']);
                 }, $this->getOidsForOnts());
             } else {
                 $oids = array_map(function ($e) use ($interface) {
@@ -80,9 +80,9 @@ class InterfaceCounters extends ModuleAbstract
                     $data[$iface['id']]['interface'] = $iface;
                     $data[$iface['id']][$name] = $resp->getValue();
                 } catch (\Exception $e) {
-                    if (strpos($e->getMessage(), "not in service card") === false) {
-                        throw $e;
-                    }
+//                    if (strpos($e->getMessage(), "not in service card") === false && ) {
+//                        throw $e;
+//                    }
                 }
             }
         }

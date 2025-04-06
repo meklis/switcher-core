@@ -65,12 +65,14 @@ class InterfaceDescriptions extends ModuleAbstract
         }
         if (isset($this->response['if.Alias']) && !$this->response['if.Alias']->error()) {
             foreach ($this->response['if.Alias']->fetchAll() as $resp) {
-                $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'xid');
-                $data[$iface['id']] = [
-                    'interface' => $iface,
-                    'description' => $this->prettyDescription($resp->getHexValue()),
-                    '_description' => $this->prettyDescription($resp->getHexValue()),
-                ];
+                try {
+                    $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()), 'xid');
+                    $data[$iface['id']] = [
+                        'interface' => $iface,
+                        'description' => $this->prettyDescription($resp->getHexValue()),
+                        '_description' => $this->prettyDescription($resp->getHexValue()),
+                    ];
+                } catch (\Throwable $e) {}
             }
         }
         return array_values($data);

@@ -13,10 +13,13 @@ class OntDownHistory extends ModuleAbstract {
         $data = [];
         if($module['data']['logs']) {
             foreach ($module['data']['logs'] as $log) {
+                $regTime = null;
+                if(isset($log['reg_time']))  $regTime = $log['reg_time'];
+                if(isset($log['authpath_time']))  $regTime = $log['authpath_time'];
                 $data[] = [
                     'down_reason' => $log['reason'],
                     'dereg_time' => $log['dereg_time'],
-                    'reg_time' => isset($log['reg_time']) ? $log['reg_time'] : null,
+                    'reg_time' => $regTime,
                     'reg_since' => null,
                     'dereg_since' => null,
                 ];
