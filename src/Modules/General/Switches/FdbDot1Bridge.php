@@ -73,7 +73,7 @@ abstract class FdbDot1Bridge extends AbstractInterfaces
         }
         if($filter['mac']) {
             foreach ($formated as $num=>$fdb) {
-                if($fdb['mac'] != $filter['mac']) {
+                if($fdb['mac_address'] != $filter['mac']) {
                     unset($formated[$num]);
                 }
             }
