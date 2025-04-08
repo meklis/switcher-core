@@ -72,7 +72,7 @@ class Fdb extends FdbDot1Bridge
         }
         if($filter['mac']) {
             foreach ($formated as $num=>$fdb) {
-                if($fdb['mac'] != $filter['mac']) {
+                if($fdb['mac_address'] != $filter['mac']) {
                     unset($formated[$num]);
                 }
             }

@@ -162,13 +162,6 @@ class Oid
             }
             $oid->setValues($array['values']);
         }
-        if(isset($array['values'])) {
-            if(!is_array($array['values'])) {
-                throw new InvalidArgumentException("Values must be as array(hash map, key=>value)");
-            }
-            $oid->setValues($array['values']);
-        }
-
 
         return $oid;
     }
