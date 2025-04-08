@@ -55,7 +55,10 @@ abstract class LinkInfo extends AbstractInterfaces
 
         foreach ($snmp_high_speed as $index) {
             if (!isset($indexes[Helper::getIndexByOid($index->getOid())])) continue;
-            if ($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown') {
+            if ($indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'Down' 
+                || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'LLDown'
+                || $indexes[Helper::getIndexByOid($index->getOid())]['oper_status'] == 'NotPresent'
+                ) {
                 $indexes[Helper::getIndexByOid($index->getOid())]['nway_status'] = 'Down';
                 continue;
             }
