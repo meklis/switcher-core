@@ -1,0 +1,4 @@
+### .dcn.os.priSystem.switchinfo
+- {name: switchinfo.switchCpuUsage, oid: .1.3.6.1.4.1.6339.100.1.11.10 } # CPU Load in %
+- {name: switchinfo.switchTemperature, oid: .1.3.6.1.4.1.6339.100.1.11.9.0 } # Temperature in Celsius
+- {name: switchinfo.switchMemoryUsage, oid: .1.3.6.1.4.1.6339.100.1.11.11.0 } # Used Memory in %
