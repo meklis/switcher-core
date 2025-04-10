@@ -110,7 +110,7 @@ class Helper
         return $dex;
     }
     static function hexToStr($string) {
-            $symbols = explode(":", $string);
+            $symbols = explode(":", strtoupper(str_replace(["-", " ", "."], ":", $string)));
             $str = '';
             $char = '';
             foreach ($symbols as $symbol) {

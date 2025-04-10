@@ -1,0 +1,28 @@
+models:
+- name: DCN
+  key: dcn_default
+  device_type: SWITCH
+  inputs:
+    - snmp
+    - console
+  extra:
+    console_conn_type: dcn
+  detect: {description: .*,  objid: ^.1.3.6.1.4.1.6339.1.1.1 }
+  modules:
+    parse_interface: \SwitcherCore\Modules\DCN\ParseInterface
+    fdb: \SwitcherCore\Modules\DCN\Fdb
+    link_info: \SwitcherCore\Modules\DCN\LinkInfo
+    interface_counters: \SwitcherCore\Modules\DCN\Counters
+    system: \SwitcherCore\Modules\DCN\System
+    vlans: \SwitcherCore\Modules\DCN\VlansDot1q
+    errors: \SwitcherCore\Modules\DCN\Errors
+    rmon: \SwitcherCore\Modules\DCN\Rmon
+    vlans_by_port: \SwitcherCore\Modules\DCN\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\DCN\Descriptions
+    interfaces_list: \SwitcherCore\Modules\DCN\InterfacesList
+    lldp_info: \SwitcherCore\Modules\DCN\LldpInfo
+    net_settings: \SwitcherCore\Modules\DCN\NetSettings
+    pvid: \SwitcherCore\Modules\DCN\PvidDot1q
+    console_command: \SwitcherCore\Modules\DCN\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\DCN\MultiRawConsoleCommand
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules

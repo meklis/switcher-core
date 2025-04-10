@@ -18,7 +18,7 @@ abstract class Rmon extends AbstractInterfaces
         $response = [];
         foreach ($this->response as $oid_name => $wrappedResponse) {
             if($wrappedResponse->error()) {
-                return  [];
+                return [];
             }
             foreach ($wrappedResponse->fetchAll() as $resp) {
                 $port_index = Helper::getIndexByOid($resp->getOid());

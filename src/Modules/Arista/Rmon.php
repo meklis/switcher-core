@@ -18,8 +18,7 @@ class Rmon extends \SwitcherCore\Modules\General\Switches\Rmon {
         $response = [];
         foreach ($this->response as $oid_name => $wrappedResponse) {
             if($wrappedResponse->error()) {
-                //return [];
-                throw new \Exception("Returned error {$wrappedResponse->error()} from {$wrappedResponse->getRaw()->ip}");
+                return [];
             }
         }
         foreach ($this->response as $oid_name => $wrappedResponse) {
