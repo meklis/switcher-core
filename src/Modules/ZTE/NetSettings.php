@@ -15,9 +15,9 @@ class NetSettings extends \SwitcherCore\Modules\General\NetSettings {
             Oid::init($this->oids->getOidByName('sys.macAddr')->getOid()),
             Oid::init($this->oids->getOidByName('sys.macAddrV2')->getOid()),
         ];
-        $this->snmp->setsetOidIncreasingCheck(false);
+        $this->snmp->setOidIncreasingCheck(false);
         $snmpResponses = $this->formatResponse($this->snmp->walk($oidObjects));
-        $this->snmp->setsetOidIncreasingCheck(true);
+        $this->snmp->setOidIncreasingCheck(true);
 
         $response = [
             'virtual_iface_id'=> null,
