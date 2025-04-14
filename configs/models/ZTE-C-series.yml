@@ -40,7 +40,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
-      net_settings: \SwitcherCore\Modules\General\NetSettings
+      net_settings: \SwitcherCore\Modules\ZTE\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -90,7 +90,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
-      net_settings: \SwitcherCore\Modules\General\NetSettings
+      net_settings: \SwitcherCore\Modules\ZTE\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -140,7 +140,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
-      net_settings: \SwitcherCore\Modules\General\NetSettings
+      net_settings: \SwitcherCore\Modules\ZTE\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -190,7 +190,7 @@ models:
       ctrl_reset_port:  \SwitcherCore\Modules\ZTE\C300Series\ResetPonPort
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
-      net_settings: \SwitcherCore\Modules\General\NetSettings
+      net_settings: \SwitcherCore\Modules\ZTE\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -251,7 +251,7 @@ models:
       link_info: \SwitcherCore\Modules\ZTE\C600Series\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C600Series\PortDescriptionControl
-      net_settings: \SwitcherCore\Modules\General\NetSettings
+      net_settings: \SwitcherCore\Modules\ZTE\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
