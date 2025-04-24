@@ -40,7 +40,15 @@ class OnuIpHost extends ZteConsoleOntInfo {
                 throw new Exception("Wrong info format for command 'show gpon remote-onu ip-host " . $interface . "'");
             }
         }
-        $response['data'] = array_values($output);
+        $response = [];
+        foreach($output as $host_id => $arr) {
+            if($arr['current_ip_address'] === '0.0.0.0') continue;
+            $val = [];
+            foreach(['host_id', 'mac_address', 'current_ip_address', 'current_mask', 'current_gateway', 'current_primary_dns', 'current_second_dns'] as $var) {
+                $val[$var] = $arr[$var];
+            }
+            $response['data'][] = $val;
+        }
 
         $this->setCache($key, $response, 600, true);
         return $response;
