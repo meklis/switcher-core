@@ -596,3 +596,8 @@
   description: Get LLDP information
   arguments:
     - {name: load_only, pattern: '^.*', required: no }
+
+- name: onu_ip_host
+  description: ONU ip host
+  arguments:
+    - {name: interface, pattern: '.*', required: yes}
