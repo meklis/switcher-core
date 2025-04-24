@@ -38,18 +38,23 @@ class ZteConsoleOntInfo extends ModuleAbstract
         return $this;
     }
 
-    private function getInfoGPON($interface)
-    {
-        //Get gereral information and logs
-        $input = $this->telnet->exec("show gpon onu detail-info {$interface}");
-        if (!$input) throw new Exception("Empty response on command ' gpon onu detail-info {$interface}'");
-        if (preg_match('/No related information to show/', $input)) {
-            throw new Exception('No related information to show');
+    protected function getInfoGPON($interface) {
+        $key = 'ZteOntInfo_' . $interface;
+        if ($output = $this->getCache($key, true)) {
+            return $output;
         }
-        @list($info, $logs) = explode("------------------------------------------", $input);
+
+        $input = $this->getModule('multi_console_command')
+            ->run(['commands' => [
+                'show gpon onu detail-info ' . $interface,
+                'show pon onu information ' . $interface,
+            ]])->getPretty();
+
+        @list($info, $logs) = explode("------------------------------------------", $input[0]['output']);
         if (!$logs || !$info) {
             throw new Exception("Error parse ont information");
         }
+
         $lines = explode("\n", $info);
         $ont_info = [];
         foreach ($lines as $line) {
@@ -165,10 +170,33 @@ class ZteConsoleOntInfo extends ModuleAbstract
             }
         }
         $ont_info['logs'] = $ont_logs;
-        return [
+
+        $info = explode("------------------------------------------", $input[1]['output'])[0];
+        $lines = explode("\n", $info);
+        foreach($lines as $line) {
+            if (preg_match('/^(.*?)\:(.*)$/', trim($line), $m)) {
+                $val = trim($m[2]);
+                switch (trim($m[1])) {
+                    case 'Hardware version':
+                        $ont_info['ver_hardware'] = $val;
+                        break;
+                    case 'Software version':
+                        $ont_info['ver_software'] = $val;
+                        break;
+                    case 'ONU type reported':
+                        $ont_info['onu_type_reported'] = $val;
+                        break;
+                }
+            }
+        }
+
+        $output = [
             'type' => 'gpon',
             'data' => $ont_info,
         ];
+
+        $this->setCache($key, $output, 600, true);
+        return $output;
     }
 
     public function getPretty()

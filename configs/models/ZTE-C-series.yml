@@ -41,6 +41,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      #onu_ip_host: \SwitcherCore\Modules\ZTE\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -91,6 +92,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      #onu_ip_host: \SwitcherCore\Modules\ZTE\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -141,6 +143,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      #onu_ip_host: \SwitcherCore\Modules\ZTE\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -191,6 +194,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C300Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C300Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      #onu_ip_host: \SwitcherCore\Modules\ZTE\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:
@@ -242,7 +246,7 @@ models:
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C600Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C600Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C600Series\OntDownHistory
-      #pon_onts_vendor: \SwitcherCore\Modules\ZTE\C600Series\OntVendorInfo
+      pon_onts_vendor: \SwitcherCore\Modules\ZTE\C600Series\OntVendorInfo
       uni_interfaces_status: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesStatus
       zte_ont_info: \SwitcherCore\Modules\ZTE\C600Series\ZteConsoleOntInfo
       ctrl_ont_reboot: \SwitcherCore\Modules\ZTE\C600Series\OntReboot
@@ -252,6 +256,7 @@ models:
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C600Series\PortDescriptionControl
       net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      onu_ip_host: \SwitcherCore\Modules\ZTE\C600Series\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
     extra:

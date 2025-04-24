@@ -15,6 +15,7 @@ class OntVendorInfo extends ModuleAbstract {
             'ver_hardware' => isset($module['data']['ver_hardware']) ? $module['data']['ver_hardware'] : null,
             'ver_software' => isset($module['data']['ver_software']) ? $module['data']['ver_software'] : null,
             'ver_firmware' => isset($module['data']['ver_firmware']) ? $module['data']['ver_firmware'] : null,
+            'onu_type_reported' => isset($module['data']['onu_type_reported']) ? $module['data']['onu_type_reported'] : null,
         ];
         $this->response = [$data];
         return $this;
