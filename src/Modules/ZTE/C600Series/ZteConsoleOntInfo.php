@@ -39,21 +39,16 @@ class ZteConsoleOntInfo extends ModuleAbstract
     }
 
     protected function getInfoGPON($interface) {
-        $key = 'ZteOntInfo_' . $interface;
-        if ($output = $this->getCache($key, true)) {
-            return $output;
-        }
-
         $input = $this->getModule('multi_console_command')
             ->run(['commands' => [
                 'show gpon onu detail-info ' . $interface,
                 'show pon onu information ' . $interface,
             ]])->getPretty();
 
-        @list($info, $logs) = explode("------------------------------------------", $input[0]['output']);
-        if (!$logs || !$info) {
-            throw new Exception("Error parse ont information");
-        }
+        $_inupt = explode("------------------------------------------", $input[0]['output']);
+        if(count($_inupt) < 2) throw new Exception("Error parse ont information");
+        $info = $_input[0];
+        $logs = $_input[1];
 
         $lines = explode("\n", $info);
         $ont_info = [];
@@ -195,7 +190,6 @@ class ZteConsoleOntInfo extends ModuleAbstract
             'data' => $ont_info,
         ];
 
-        $this->setCache($key, $output, 600, true);
         return $output;
     }
 
