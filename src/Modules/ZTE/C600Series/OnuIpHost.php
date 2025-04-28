@@ -8,10 +8,6 @@ use SwitcherCore\Modules\Helper;
 
 class OnuIpHost extends ZteConsoleOntInfo {
     protected function getInfoGPON($interface) {
-        $key = 'ZteOntIpHost_' . $interface;
-        if ($response = $this->getCache($key, true)) {
-            return $response;
-        }
 
         $input = $this->getModule('console_command')
             ->run([ 'command' => 'show gpon remote-onu ip-host ' . $interface ])->getPretty();
@@ -40,7 +36,9 @@ class OnuIpHost extends ZteConsoleOntInfo {
                 throw new Exception("Wrong info format for command 'show gpon remote-onu ip-host " . $interface . "'");
             }
         }
-        $response = [];
+        $response = [
+            'data' => [],
+        ];
         foreach($output as $host_id => $arr) {
             if($arr['current_ip_address'] === '0.0.0.0') continue;
             $val = [];
@@ -50,7 +48,6 @@ class OnuIpHost extends ZteConsoleOntInfo {
             $response['data'][] = $val;
         }
 
-        $this->setCache($key, $response, 600, true);
         return $response;
     }
 }
