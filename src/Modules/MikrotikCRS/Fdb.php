@@ -81,7 +81,7 @@ class Fdb extends FdbDot1Bridge
                 list($vlanId, $macAddr) = explode("-", $key);
                 if (!isset($ports[$key])) {
                     continue;
-                } 
+                }
                 if (!(int)$ports[$key]) continue;
                 try {
                     $iface = $this->getIfaceByDot1q($ports[$key]);
