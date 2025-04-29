@@ -77,14 +77,10 @@ class Fdb extends FdbDot1Bridge
 
                 }
             }
-            foreach ($ports as $key => $status) {
+            foreach ($ports as $key => $portId) {
                 list($vlanId, $macAddr) = explode("-", $key);
-                if (!isset($ports[$key])) {
-                    continue;
-                }
-                if (!(int)$ports[$key]) continue;
                 try {
-                    $iface = $this->getIfaceByDot1q($ports[$key]);
+                    $iface = $this->getIfaceByDot1q($portId);
                     if (!$iface) {
                         continue;
                     }
