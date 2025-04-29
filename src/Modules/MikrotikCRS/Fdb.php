@@ -14,6 +14,16 @@ class Fdb extends FdbDot1Bridge
 
     public function run($filter = [])
     {
+        try {
+            $this->runWithDot1q();
+        }  catch (\Exception $e) {
+            $this->runWithDot1d();
+        }
+        return $this;
+    }
+
+    protected function runWithDot1q($filter = [])
+    {
         Helper::prepareFilter($filter);
         $fdb_port = $this->oids->getOidByName('dot1q.FdbPort')->getOid();
         if ($filter['vlan_id']) {
@@ -22,18 +32,26 @@ class Fdb extends FdbDot1Bridge
         if ($filter['vlan_id'] && $filter['mac']) {
             $fdb_port .= "." . Helper::mac2oid($filter['mac']);
         }
-        for ($i = 0; $i < 5; $i++) {
-            try {
-                $this->response = $this->formatResponse($this->snmp->walk([
-                    Oid::init($fdb_port),
-                ]));
-                if ($this->response['dot1q.FdbPort']->error() && strpos($this->response['dot1q.FdbPort']->error(), "OID not increasing") !== false) {
-                    throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
-                }
-                break;
-            } catch (\Exception $e) {
-                usleep(50000);
-            }
+        $this->snmp->setOidIncreasingCheck(false);
+        $this->response = $this->formatResponse($this->snmp->walk([
+            Oid::init($fdb_port),
+        ]));
+        $this->snmp->setOidIncreasingCheck(true);
+        if ($this->response['dot1q.FdbPort']->error()) {
+            throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
+        }
+    }
+
+    protected function runWithDot1d()
+    {
+        $fdb_port = $this->oids->getOidByName('dot1d.FdbPort')->getOid();
+        $this->snmp->setOidIncreasingCheck(false);
+        $this->response = $this->formatResponse($this->snmp->walk([
+            Oid::init($fdb_port),
+        ]));
+        $this->snmp->setOidIncreasingCheck(true);
+        if ($this->response['dot1d.FdbPort']->error()) {
+            throw new \Exception("Returned error {$this->response['dot1d.FdbPort']->error()} from {$this->response['dot1d.FdbPort']->getRaw()->ip}");
         }
         return $this;
     }
@@ -41,12 +59,13 @@ class Fdb extends FdbDot1Bridge
     protected function formate()
     {
         if ($this->response) {
+            $response = array_values($this->response)[0];
             $pretties = [];
             $ports = [];
-            if ($this->response['dot1q.FdbPort']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
+            if ($response->error()) {
+                throw new \Exception("Returned error {$response->error()} from {$response->getRaw()->ip}");
             } else {
-                while ($d = $this->response['dot1q.FdbPort']->fetchOne()) {
+                while ($d = $response->fetchOne()) {
                     $data = Helper::oid2MacVlan($d->getOid());
                     $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
                 }
