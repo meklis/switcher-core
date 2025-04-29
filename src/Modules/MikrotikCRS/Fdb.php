@@ -56,7 +56,7 @@ class Fdb extends FdbDot1Bridge
             $iface =$this->parseInterface($item['on-interface'], 'name');
             $pretties[] = [
                 'interface' => $iface,
-                'vlan_id' => isset($item['vid']) ? $item['vid'] : 0,
+                'vlan_id' => isset($item['vid']) ? (int)$item['vid'] : 0,
                 'mac_address' => $item['mac-address'],
                 'status' => null,
             ];
