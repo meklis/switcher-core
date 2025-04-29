@@ -59,6 +59,7 @@ class Fdb extends FdbDot1Bridge
     protected function formate()
     {
         if ($this->response) {
+            $oidName = array_keys($this->response)[0];
             $response = array_values($this->response)[0];
             $pretties = [];
             $ports = [];
@@ -66,8 +67,14 @@ class Fdb extends FdbDot1Bridge
                 throw new \Exception("Returned error {$response->error()} from {$response->getRaw()->ip}");
             } else {
                 while ($d = $response->fetchOne()) {
-                    $data = Helper::oid2MacVlan($d->getOid());
-                    $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
+                    if($oidName == 'dot1q.FdbPort') {
+                        $data = Helper::oid2MacVlan($d->getOid());
+                        $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
+                    } else {
+                        $data = Helper::oid2mac($d->getOid());
+                        $ports["0-{$data}"] = $d->getValue();
+                    }
+
                 }
             }
             foreach ($ports as $key => $status) {
