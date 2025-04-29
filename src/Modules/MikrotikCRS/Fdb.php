@@ -16,7 +16,7 @@ class Fdb extends FdbDot1Bridge
     {
         try {
             $this->runWithDot1q();
-        }  catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->runWithDot1d();
         }
         return $this;
@@ -65,32 +65,30 @@ class Fdb extends FdbDot1Bridge
             $ports = [];
             if ($response->error()) {
                 throw new \Exception("Returned error {$response->error()} from {$response->getRaw()->ip}");
-            } else {
-                while ($d = $response->fetchOne()) {
-                    if($oidName == 'dot1q.FdbPort') {
-                        $data = Helper::oid2MacVlan($d->getOid());
-                        $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
-                    } else {
-                        $data = Helper::oid2mac($d->getOid());
-                        $ports["0-{$data}"] = $d->getValue();
-                    }
-
-                }
             }
-            foreach ($ports as $key => $portId) {
-                list($vlanId, $macAddr) = explode("-", $key);
+            while ($d = $response->fetchOne()) {
                 try {
-                    $iface = $this->getIfaceByDot1q($portId);
-                    if (!$iface) {
-                        continue;
+                    if ($oidName == 'dot1q.FdbPort') {
+                        $data = Helper::oid2MacVlan($d->getOid());
+                        $iface =$this->parseInterface($d->getValue(), '_dot1q_id');
+                        $pretties[] = [
+                            'interface' => $iface,
+                            'vlan_id' => (int)$data['vid'],
+                            'mac_address' => $data['mac'],
+                            'status' => null,
+                        ];
+                    } else {
+                        $iface = $this->parseInterface($d->getValue(), '_snmp_id');
+                        $data = Helper::oid2mac($d->getOid());
+                        $pretties[] = [
+                            'interface' => $iface,
+                            'vlan_id' => 0,
+                            'mac_address' => $data,
+                            'status' => null,
+                        ];
                     }
-                    $pretties[] = [
-                        'interface' => $iface,
-                        'vlan_id' => (int)$vlanId,
-                        'mac_address' => $macAddr,
-                        'status' => null,
-                    ];
                 } catch (\Throwable $e) {
+
                 }
             }
             return $pretties;
