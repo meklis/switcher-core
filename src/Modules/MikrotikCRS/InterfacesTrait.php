@@ -109,9 +109,6 @@ trait InterfacesTrait
         foreach ($responses['if.Type'] as $r) {
             $id = Helper::getIndexByOid($r->getOid());
             $type = $types->getValueNameById($r->getValue());
-            if($type == "VLAN") {
-                continue;
-            }
             $name = "$id";
             switch ($type) {
                 case 'FE': $name = "eth/{$id}"; break;
