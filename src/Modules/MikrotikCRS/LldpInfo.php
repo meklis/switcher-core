@@ -27,29 +27,21 @@ class LldpInfo extends \SwitcherCore\Modules\General\LldpInfo
         } elseif (isset($resp['!trap'][0]['message'])) {
             throw  new Exception("RouterOS api returned error - ".$resp['!trap'][0]['message']);
         }
+        $fdb = $this->getModule('fdb')->run([])->getPrettyFiltered([]);
+        $fdbMap = [];
+        foreach ($fdb as $f) {
+            $fdbMap[$f['mac_address']] = $f['interface'];
+        }
         $remotes = [];
         foreach ($resp as $item) {
-            $ifaceName = str_replace([',bridge', ',router'], '', $item['interface']);
-            $iface =$this->parseInterface($ifaceName, 'name');
-            /**
-             * {
-             * "loc_interface": {
-             * "id": 5,
-             * "name": "sfp-sfpplus5",
-             * "type": "FE",
-             * "_snmp_id": "5",
-             * "_dot1q_id": "21"
-             * },
-             * "rem_chassis_id": "00:55:B1:DD:E1:CD",
-             * "rem_interface": null,
-             * "_rem_port_id": null
-             * },
-             */
             if($item['ipv6'] == 'true') {
                 continue;
             }
+            if(!isset($fdbMap[$item['mac-address']])) {
+                continue;
+            }
             $remotes[] = [
-               'loc_interface' => $iface,
+               'loc_interface' => $fdbMap[$item['mac-address']],
                'rem_chassis_id' => $item['mac-address'],
                'rem_interface' => null,
                '_rem_port_id' => null,

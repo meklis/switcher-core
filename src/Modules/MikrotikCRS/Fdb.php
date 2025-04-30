@@ -36,8 +36,12 @@ class Fdb extends FdbDot1Bridge
         return $this;
     }
 
+    protected $_fdb = [];
     protected function runOverApi($filter = [])
     {
+        if(!$filter && $this->_fdb) {
+            return $this->_fdb;
+        }
         $params = [];
         if(isset($params['mac']) && $params['mac']) {
             $filter['?mac-address'] = $params['mac'];
@@ -61,6 +65,7 @@ class Fdb extends FdbDot1Bridge
                 'status' => null,
             ];
         }
+        $this->_fdb = $pretties;
         return $pretties;
     }
 
