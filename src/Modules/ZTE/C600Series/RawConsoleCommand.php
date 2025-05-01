@@ -18,7 +18,13 @@ class RawConsoleCommand extends ModuleAbstract
         if(!isset($params['command'])) {
             throw new \Exception("Command parameter is required");
         }
-        $response = $this->telnet->exec($params['command']);
+        
+        if(isset($params['prompt'])) {
+            $response = $this->telnet->exec($params['command'], true, $params['prompt']);
+        } else {
+            $response = $this->telnet->exec($params['command']);
+        }
+
         $this->response = [
             'command' => $params['command'],
             'output' => $response,
