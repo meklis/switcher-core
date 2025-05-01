@@ -8,4 +8,4 @@ snmp:
   timeout: 3
 
 miktotik_api:
-  port: 55055
+  port: 44044

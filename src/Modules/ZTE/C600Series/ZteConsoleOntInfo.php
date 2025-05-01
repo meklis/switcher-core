@@ -45,10 +45,12 @@ class ZteConsoleOntInfo extends ModuleAbstract
                 'show pon onu information ' . $interface,
             ]])->getPretty();
 
-        $_inupt = explode("------------------------------------------", $input[0]['output']);
-        if(count($_inupt) < 2) throw new Exception("Error parse ont information");
-        $info = $_input[0];
-        $logs = $_input[1];
+        $exploded = explode("------------------------------------------", $input[0]['output']);
+        if (count($exploded) < 2) {
+            throw new Exception("Error parse ont information");
+        }
+        $info = $exploded[0];
+        $logs = $exploded[1];
 
         $lines = explode("\n", $info);
         $ont_info = [];

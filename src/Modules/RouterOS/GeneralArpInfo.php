@@ -59,9 +59,12 @@ class GeneralArpInfo extends ExecCommand
             $status = 'OK';
             if($a['invalid'] == 'true') $status='invalid';
             if($a['disabled'] == 'true') $status='disabled';
-            try {
-                $iface = $this->parseInterface($a['interface'], '_name');
-            } catch (\Exception $e) {
+                try {
+                    $iface = $this->parseInterface($a['interface'], 'name');
+                } catch (\Exception $e) {
+                    continue;
+                }
+            if(!isset($a['mac-address'])) {
                 continue;
             }
             $arps[] = [

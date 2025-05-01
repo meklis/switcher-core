@@ -65,11 +65,13 @@ class SwitcherCoreCallModuleCommand extends AbstractCommand
             /**
              * @var ConsoleInterface $telnet
              */
-            $output->writeln("<comment>Telnet output:</comment>");
-            $output->writeln("<comment>-------------------------------------------------------------------------------</comment>");
-            $telnet = $core->getContainer()->get(ConsoleInterface::class);
-            $output->writeln($telnet->getGlobalBuffer());
-            $output->writeln("<comment>-------------------------------------------------------------------------------</comment>");
+            try {
+                $output->writeln("<comment>Telnet output:</comment>");
+                $output->writeln("<comment>-------------------------------------------------------------------------------</comment>");
+                $telnet = $core->getContainer()->get(ConsoleInterface::class);
+                $output->writeln($telnet->getGlobalBuffer());
+                $output->writeln("<comment>-------------------------------------------------------------------------------</comment>");
+            } catch (\Throwable $e) {}
 
         }
     }
