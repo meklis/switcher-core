@@ -601,3 +601,6 @@
   description: ONU ip host
   arguments:
     - {name: interface, pattern: '.*', required: yes}
+
+- name: direct_routes
+  description: Origin Direct

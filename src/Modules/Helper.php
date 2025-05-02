@@ -18,6 +18,10 @@ class Helper
         return $exploded[count($exploded) - 1 - $offset];
     }
 
+    public static function oid2IP($oid) {
+        return self::getIndexByOid($oid, 3) . '.' . self::getIndexByOid($oid, 2) . '.' . self::getIndexByOid($oid, 1) . '.' . self::getIndexByOid($oid); 
+    }
+
     static function fromCamelCase($input) {
         preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
         $ret = $matches[0];
