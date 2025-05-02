@@ -85,7 +85,7 @@ class Fdb extends FdbDot1Bridge
         ]));
         $this->snmp->setOidIncreasingCheck(true);
         if ($response['dot1q.FdbPort']->error()) {
-            throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
+            throw new \Exception("Returned error {$response['dot1q.FdbPort']->error()} from {$response['dot1q.FdbPort']->getRaw()->ip}");
         }
         return $response;
     }
@@ -99,7 +99,7 @@ class Fdb extends FdbDot1Bridge
         ]));
         $this->snmp->setOidIncreasingCheck(true);
         if ($response['dot1d.FdbPort']->error()) {
-            throw new \Exception("Returned error {$this->response['dot1d.FdbPort']->error()} from {$this->response['dot1d.FdbPort']->getRaw()->ip}");
+            throw new \Exception("Returned error {$response['dot1d.FdbPort']->error()} from {$response['dot1d.FdbPort']->getRaw()->ip}");
         }
         return $response;
     }
