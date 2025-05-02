@@ -39,7 +39,6 @@ class ZteConsoleOntInfo extends ModuleAbstract
     }
 
     protected function getInfoGPON($interface) {
-
         $input = $this->getModule('multi_console_command')
             ->run(['commands' => [
                 'show gpon onu detail-info ' . $interface,
