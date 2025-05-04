@@ -75,7 +75,12 @@ class OntReasons extends CDataAbstractModule
                 case 'ont.lastDownReason': $return[$onuId]['last_down_reason'] = $wr->getParsedValue(); break;
             }
         }
-        if($onlineTimeSeconds && $regTimeSeconds && $return[$onlineTimeSeconds['onu_id']]['status'] !== 'Online') {
+        if($onlineTimeSeconds
+            && $regTimeSeconds
+            && $return[$onlineTimeSeconds['onu_id']]['status'] !== 'Online'
+            && is_numeric($regTimeSeconds['sec'])
+            && is_numeric($onlineTimeSeconds['sec'])
+        ) {
             $return[$onlineTimeSeconds['onu_id']]['last_dereg'] = date("Y-m-d H:i:s", time() - ($regTimeSeconds['sec'] - $onlineTimeSeconds['sec']));
         }
 
