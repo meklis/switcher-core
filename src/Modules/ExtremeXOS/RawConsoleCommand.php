@@ -22,7 +22,11 @@ class RawConsoleCommand extends AbstractModule
         if (!isset($params['command'])) {
             throw new \Exception("Command parameter is required");
         }
-        $response = $this->console->exec($params['command']);
+        if(isset($params['prompt'])) {
+            $response = $this->console->exec($params['command'], true, $params['prompt']);
+        } else {
+            $response = $this->console->exec($params['command']);
+        }
         $this->response = [
             'command' => $params['command'],
             'output' => $response,
