@@ -45,6 +45,9 @@
   - {name: ent.physicalType, oid: .1.3.6.1.2.1.47.1.1.1.1.2}
   - {name: ent.physicalName, oid: .1.3.6.1.2.1.47.1.1.1.1.7}
 
+  - {name: ipAddrTable.ipAdEntIfIndex, oid: .1.3.6.1.2.1.4.20.1.2}
+  - {name: ipAddrTable.ipAdEntNetMask, oid: .1.3.6.1.2.1.4.20.1.3}
+
 #rmon mib
   - {name: rmon.EtherStatsCRCAlignErrors, oid: .1.3.6.1.2.1.16.1.1.1.8, access: read }
   - {name: rmon.EtherStatsUndersizePkts, oid: .1.3.6.1.2.1.16.1.1.1.9, access: read }
