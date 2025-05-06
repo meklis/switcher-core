@@ -15,7 +15,7 @@
 #if mib (.iso.org.dod.internet.mgmt.mib-2.interfaces + .iso.org.dod.internet.mgmt.mib-2.ifMIB.ifMIBObjects.ifXTable.ifXEntry)
   - {name: if.Index, oid: .1.3.6.1.2.1.2.2.1.1, access: read }
   - {name: if.Descr, oid: .1.3.6.1.2.1.2.2.1.2, access: read }
-  - {name: if.Type, oid: .1.3.6.1.2.1.2.2.1.3, access: read, values: {1: UNKNOWN, 53: Virtual, 24: Loopback, 6: FE, 117: GE, 135: VLAN, 161: LACP, 136: VLAN, 137: VLAN, 207: PON, 208: PON,  209: BRIDGE, 250: GPON, 266: ONU, 142: IP, 300: EPON}}
+  - {name: if.Type, oid: .1.3.6.1.2.1.2.2.1.3, access: read, values: {131: UNKNOWN, 1: UNKNOWN, 53: Virtual, 24: Loopback, 6: FE, 117: GE, 135: VLAN, 161: LACP, 136: VLAN, 137: VLAN, 207: PON, 208: PON,  209: BRIDGE, 250: GPON, 266: ONU, 142: IP, 300: EPON}}
   - {name: if.StatsDuplexStatus, oid: .1.3.6.1.2.1.10.7.2.1.19, access: read , values: {1: Down, 2: Half, 3: Full}}
   #Включен/отключен интерфейс
   # 1-UP/2-DOWN/3-TESTING

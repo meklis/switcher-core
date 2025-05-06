@@ -78,17 +78,18 @@ trait InterfacesTrait
         throw new \Exception("Interface with name {$iface} not found");
     }
 
-    private $_interfaces;
+    private $_interfaces = null;
 
     function getInterfacesIds()
     {
-        if ($this->_interfaces) {
+        if ($this->_interfaces !== null) {
             return $this->_interfaces;
         }
         if ($info = $this->getCache('INTERFACES', true)) {
             $this->_interfaces = $info;
             return $info;
         }
+
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Type')->getOid()),
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),

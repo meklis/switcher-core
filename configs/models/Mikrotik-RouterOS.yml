@@ -76,4 +76,5 @@ models:
      fdb: \SwitcherCore\Modules\RouterOS\Fdb
      direct_routes: \SwitcherCore\Modules\RouterOS\DirectRoutes
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     interfaces_list: \SwitcherCore\Modules\RouterOS\InterfacesList
 
