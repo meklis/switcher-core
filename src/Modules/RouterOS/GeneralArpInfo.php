@@ -57,6 +57,7 @@ class GeneralArpInfo extends ExecCommand
         }
         foreach ($this->execComm('/ip/arp/print', $filter) as $a) {
             $status = 'OK';
+            $iface = null;
             if($a['invalid'] == 'true') $status='invalid';
             if($a['disabled'] == 'true') $status='disabled';
                 try {
