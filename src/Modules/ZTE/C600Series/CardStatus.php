@@ -24,7 +24,7 @@ class CardStatus extends ModuleAbstract
         $response = $this->formatResponse($this->snmp->walk([
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.OperStatus')->getOid()),
             \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.AdminStatus')->getOid()),
-            \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.CpuLoad')->getOid()),
+        //    \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.CpuLoad')->getOid()),  // no correct value by snmp on c600
         //    \SnmpWrapper\Oid::init($this->oids->getOidByName('zx.slot.MemUsage')->getOid()),
         ]));
         $RESP = [];
@@ -61,12 +61,12 @@ class CardStatus extends ModuleAbstract
             $RESP["{$rack}/{$shelf}/{$slot}"]['admin_status'] =   $type->getParsedValue() ;
             $RESP["{$rack}/{$shelf}/{$slot}"]['_admin_status'] = $type->getValue();
         }
-        foreach ($response['zx.slot.CpuLoad']->fetchAll() as $type) {
-            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
-            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
-            $slot = (int)Helper::getIndexByOid($type->getOid());
-            $RESP["{$rack}/{$shelf}/{$slot}"]['cpu_load'] = $type->getParsedValue();
-        }
+        // foreach ($response['zx.slot.CpuLoad']->fetchAll() as $type) {                // no correct value by snmp on c600
+        //     $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
+        //     $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);       
+        //     $slot = (int)Helper::getIndexByOid($type->getOid());
+        //     $RESP["{$rack}/{$shelf}/{$slot}"]['cpu_load'] = $type->getParsedValue();
+        // }                                                                            // no correct value by snmp on c600
 //        foreach ($response['zx.slot.temperature']->fetchAll() as $type) {
 //            $rack = (int)Helper::getIndexByOid($type->getOid(), 2);
 //            $shelf = (int)Helper::getIndexByOid($type->getOid(), 1);
