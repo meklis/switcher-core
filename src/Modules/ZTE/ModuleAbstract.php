@@ -131,8 +131,11 @@ abstract class ModuleAbstract extends AbstractModule
                 $vPort = bindec(substr($binary, 24, 8));
                 break;
             case 9:
-                $shelf = bindec(substr($binary, 4, 3)) + 1;
-                $slot = bindec(substr($binary, 7, 4)) + 1;
+                //Временно отключил для проведения тестов
+                //$shelf = bindec(substr($binary, 4, 3)) + 1;
+                //$slot = bindec(substr($binary, 7, 4)) + 1;
+                $shelf = bindec(substr($binary, 4, 2)) + 1;
+                $slot = bindec(substr($binary, 8, 4)) ;
                 $portOlt = bindec(substr($binary, 12, 4)) + 1;
                 $onuNum = bindec(substr($binary, 16, 8));
                 $vPort = bindec(substr($binary, 24, 8));
@@ -309,7 +312,6 @@ abstract class ModuleAbstract extends AbstractModule
                 return array_values($find)[0];
             }
         }
-
         //Попытка распарсить интерфейс PON по его имени
         if (preg_match('/^(gpon|epon)-(onu|olt)_([0-9])\/([0-9]{1,3})\/([0-9]{1,3})/', $name, $matches)) {
             $onu = null;
@@ -367,6 +369,7 @@ abstract class ModuleAbstract extends AbstractModule
         if (is_numeric($name)) {
             $shelf = floor($name / 10000000);
             $slot = floor(($name - ($shelf * 10000000)) / 100000);
+
             $port = floor(($name - (($slot * 100000) + ($shelf * 10000000))) / 1000);
             $onu = floor(($name - (($port * 1000) + ($slot * 100000) + ($shelf * 10000000))));
             $card = $this->getCardInfoBy($shelf, $slot);
@@ -429,6 +432,7 @@ abstract class ModuleAbstract extends AbstractModule
                 '_xpon_id' => $xponId,
             ];
         }
+
 
         if (is_string($name)) {
             $find = array_filter($xidList, function ($e) use ($name) {
