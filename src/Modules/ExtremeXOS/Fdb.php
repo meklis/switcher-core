@@ -58,9 +58,10 @@ class Fdb extends AbstractModule
             }
             try {
                 $parsedData[] = [
-                    'mac' => strtoupper($m[1]),
+                    'mac_address' => strtoupper($m[1]),
                     '_vlan_name' => $m[3],
                     'vlan_id' => (int)$m[4],
+                    'status' => null,
                     'interface' => $this->parseInterface($m[5]),
                 ];
             } catch (\Exception $e) {}
