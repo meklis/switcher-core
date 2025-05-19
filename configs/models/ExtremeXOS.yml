@@ -36,4 +36,5 @@ models:
      bgp_info: \SwitcherCore\Modules\ExtremeXOS\BgpInfo
      bgp_peers: \SwitcherCore\Modules\ExtremeXOS\BgpPeers
      direct_routes: \SwitcherCore\Modules\ExtremeXOS\DirectRoutes
+     fdb: \SwitcherCore\Modules\ExtremeXOS\Fdb
      supported_modules: \SwitcherCore\Modules\General\SupportedModules

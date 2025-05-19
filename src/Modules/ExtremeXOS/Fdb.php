@@ -2,61 +2,75 @@
 
 namespace SwitcherCore\Modules\ExtremeXOS;
 
-use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
+use SnmpWrapper\Oid;
+use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-class Fdb extends FdbDot1Bridge
+class Fdb extends AbstractModule
 {
     use InterfacesTrait;
-    protected function formate() {
-        if($this->response) {
-            $pretties = [];
-            $statuses = [];
-            $ports = [];
-            if($this->response['dot1q.FdbStatus']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbStatus']->error()} from {$this->response['dot1q.FdbStatus']->getRaw()->ip}");
-            } else {
-                while ($d = $this->response['dot1q.FdbStatus']->fetchOne()) {
-                    $data = Helper::oid2MacVlan($d->getOid());
-                    $statuses["{$data['vid']}-{$data['mac']}"] = $d->getParsedValue();
-                }
-            }
-            if($this->response['dot1q.FdbPort']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
-            } else {
-                while ($d = $this->response['dot1q.FdbPort']->fetchOne()) {
-                    $data = Helper::oid2MacVlan($d->getOid());
-                    $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
-                }
-            }
-            foreach ($statuses as $key=>$status) {
-                list($vlanId, $macAddr) = explode("-", $key);
-                if(!isset($ports[$key])) {
-                    continue;
-                }
-                if(!(int)$ports[$key])  continue;
-                try {
-                    $pretties[] = [
-                        'interface' => $this->getIfaceByDot1q($ports[$key]),
-                        'vlan_id' => (int)$vlanId,
-                        'mac_address' => $macAddr,
-                        'status' => $status,
-                    ];
-                } catch (\Throwable $e) {}
-            }
-            return $pretties;
-        } else {
-            throw new \Exception("No response");
+
+
+    /**
+     * @Inject
+     * @var ConsoleInterface
+     */
+    protected $console;
+
+    /**
+     * @param $params
+     * @return $this|AbstractModule
+     * @throws \Exception
+     */
+    public function run($params = [])
+    {
+        /**
+         * - {name: ip, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$', required: no}
+         * - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
+         * - {name: vlan_name, pattern: '^.*$', required: no}
+         * - {name: interface, pattern: '^.*$', required: no}
+         * - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
+         * - {name: status, pattern: '^(disabled|invalid|OK)$', required: no, values: [disabled, invalid, OK]}
+         */
+        $command = "show fdb";
+        if(isset($params['vlan_name']) && $params['vlan_name']) {
+            $command .= " vlan {$params['vlan_name']}";
         }
+        if(isset($params['mac']) && $params['mac']) {
+            $command .= " {$params['mac']}";
+        }
+
+        $this->response = $this->console->exec($command);
+        return $this;
     }
 
-    protected function getIfaceByDot1q($ident) {
-        $filtered = array_filter($this->getInterfacesIds(), function ($iface) use ($ident) {
-            return $iface['_dot1q_id'] == $ident;
-        });
-        if(count($filtered) > 0) {
-            return array_values($filtered)[0];
+    public function getPretty()
+    {
+
+        $lines = explode("\n", $this->response);
+        array_shift($lines);
+        $parsedData = [];
+
+        foreach ($lines as $line) {
+            if(!preg_match('/^(([[:xdigit:]]{2}\:){5}[[:xdigit:]]{2})[ \t]*(.*?)\(([0-9]{1,4})\).*?([0-9]{1,3})$/', $line, $m)) {
+                continue;
+            }
+            try {
+                $parsedData[] = [
+                    'mac' => strtoupper($m[1]),
+                    '_vlan_name' => $m[3],
+                    'vlan_id' => (int)$m[4],
+                    'interface' => $this->parseInterface($m[5]),
+                ];
+            } catch (\Exception $e) {}
         }
-        return null;
+        return $parsedData;
     }
+
+    public function getPrettyFiltered($filter = [])
+    {
+        return $this->getPretty();
+    }
+
 }
