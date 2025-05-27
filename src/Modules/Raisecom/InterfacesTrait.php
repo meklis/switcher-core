@@ -70,7 +70,8 @@ trait InterfacesTrait
             } else {
                 throw new \Exception("Interface with name {$iface} not found");
             }
-        } elseif(preg_match('/^(e|tge|ge)([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
+        // } elseif(preg_match('/^(e|tge|ge)([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
+        } elseif(preg_match('/^(ethernet1|tengigabitethernet1|gigaethernet1)\/([0-9]{1,3})\/([0-9]{1,3})$/', $iface)) {
             $ifaces = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == $e['name'];
             });
@@ -95,12 +96,15 @@ trait InterfacesTrait
             $this->_interfaces = $info;
             return $info;
         }
+        
+        $this->snmp->setOidIncreasingCheck(false);
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Descr')->getOid())
         ])[0];
         if ($response->getError()) {
             throw new \Exception($response->getError());
         }
+        $this->snmp->setOidIncreasingCheck(true);
         $ifaces = [];
 
         foreach ($response->getResponse() as $r) {
@@ -108,7 +112,7 @@ trait InterfacesTrait
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[2]}",
+                    'name' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
@@ -117,7 +121,7 @@ trait InterfacesTrait
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[2]}",
+                    'name' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
@@ -126,7 +130,7 @@ trait InterfacesTrait
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[2]}",
+                    'name' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
