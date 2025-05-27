@@ -70,8 +70,7 @@ trait InterfacesTrait
             } else {
                 throw new \Exception("Interface with name {$iface} not found");
             }
-        // } elseif(preg_match('/^(e|tge|ge)([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
-        } elseif(preg_match('/^(ethernet1|tengigabitethernet1|gigaethernet1)\/([0-9]{1,3})\/([0-9]{1,3})$/', $iface)) {
+        } elseif(preg_match('/^(e|tge|ge)([0-9]{1,4})\/([0-9]{1,4})$/', $iface) || ) {
             $ifaces = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == $e['name'];
             });

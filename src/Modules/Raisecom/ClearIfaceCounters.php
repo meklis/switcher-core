@@ -19,7 +19,7 @@ class ClearIfaceCounters extends AbstractModule {
         $resp = $this->getModule('multi_console_command')
             ->run(['commands' => [
                 'config', 
-                'interface ' . $iface['name'], 
+                'interface ' . $iface['_fullname'], 
                 'clear interface statistics',
             ], 'break_on_error' => 'yes'])->getPretty();
 
