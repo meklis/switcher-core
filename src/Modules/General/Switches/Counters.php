@@ -65,10 +65,8 @@ abstract class Counters extends AbstractInterfaces
         foreach ($oids as $oid) {
             $oidObjects[] = Oid::init($oid);
         }
-
-        $this->snmp->setOidIncreasingCheck(false);
+        
         $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
-        $this->snmp->setOidIncreasingCheck(true);
         return $this;
     }
 }
