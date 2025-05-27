@@ -61,6 +61,13 @@ trait InterfacesTrait
         if(is_numeric($iface) && isset($ifaces[$iface])) {
             return $ifaces[$iface];
         }
+        $ifaces = array_filter($ifaces, function ($e) use ($iface) {
+                return $iface == $e['_port'];
+        });
+        if(count($ifaces) != 0) {
+            return array_values($ifaces)[0];
+        }
+
         if(preg_match('/^([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
             $ifaces = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == "{$e['_unit']}/{$e['_port']}";
@@ -70,16 +77,7 @@ trait InterfacesTrait
             } else {
                 throw new \Exception("Interface with name {$iface} not found");
             }
-        } elseif(preg_match('/^(e|tge|ge)([0-9]{1,4})\/([0-9]{1,4})$/', $iface) || ) {
-            $ifaces = array_filter($ifaces, function ($e) use ($iface) {
-                return $iface == $e['name'];
-            });
-            if(count($ifaces) != 0) {
-                return array_values($ifaces)[0];
-            } else {
-                throw new \Exception("Interface with name {$iface} not found");
-            }
-        }
+        } 
 
         throw new \Exception("Interface with name {$iface} not found");
     }

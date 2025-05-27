@@ -32,7 +32,7 @@ class ClearIfaceCounters extends AbstractModule {
         && preg_match('/Set successfully/', $this->response[2]['output'])) {
             return true;
         }
-        throw new Exception("Error when executing multi_console_command");
+        throw new Exception("Error when executing multi_console_command: " . $this->response[2]['output']);
     }
 
     public function getPrettyFiltered($filter = [], $fromCache = false) {
