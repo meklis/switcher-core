@@ -61,6 +61,13 @@ trait InterfacesTrait
         if(is_numeric($iface) && isset($ifaces[$iface])) {
             return $ifaces[$iface];
         }
+        $ifaces = array_filter($ifaces, function ($e) use ($iface) {
+                return $iface == $e['_port'];
+        });
+        if(count($ifaces) != 0) {
+            return array_values($ifaces)[0];
+        }
+
         if(preg_match('/^([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
             $ifaces = array_filter($ifaces, function ($e) use ($iface) {
                 return $iface == "{$e['_unit']}/{$e['_port']}";
@@ -70,16 +77,7 @@ trait InterfacesTrait
             } else {
                 throw new \Exception("Interface with name {$iface} not found");
             }
-        } elseif(preg_match('/^(e|tge|ge)([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
-            $ifaces = array_filter($ifaces, function ($e) use ($iface) {
-                return $iface == $e['name'];
-            });
-            if(count($ifaces) != 0) {
-                return array_values($ifaces)[0];
-            } else {
-                throw new \Exception("Interface with name {$iface} not found");
-            }
-        }
+        } 
 
         throw new \Exception("Interface with name {$iface} not found");
     }
@@ -95,12 +93,15 @@ trait InterfacesTrait
             $this->_interfaces = $info;
             return $info;
         }
+        
+        $this->snmp->setOidIncreasingCheck(false);
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Descr')->getOid())
         ])[0];
         if ($response->getError()) {
             throw new \Exception($response->getError());
         }
+        $this->snmp->setOidIncreasingCheck(true);
         $ifaces = [];
 
         foreach ($response->getResponse() as $r) {
@@ -109,6 +110,7 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => "{$m[2]}",
+                    '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
@@ -118,6 +120,7 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => "{$m[2]}",
+                    '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
@@ -127,6 +130,7 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => "{$m[2]}",
+                    '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],

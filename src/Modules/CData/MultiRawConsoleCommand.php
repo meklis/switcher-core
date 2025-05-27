@@ -21,6 +21,7 @@ class MultiRawConsoleCommand extends CDataAbstractModule
             }
             if(preg_match('/\<\s*?sleep *?([0-9]{1,3}).*?\>/', $command, $match)) {
                 sleep($match[1]);
+                continue;
             }
             if(preg_match('/^\<f\>(.*)$/', $command, $match)) {
                 $command = $match[1];
@@ -29,7 +30,14 @@ class MultiRawConsoleCommand extends CDataAbstractModule
                 $response[] = $resp;
                 continue;
             }
-            $resp = $this->getModule('console_command')->run(['command' => trim($command)])->getPretty();
+
+            $prompt = null;
+            if(preg_match("/^(.*)\<\s*?prompt *?['\"](.*)['\"].*?\>/i", $command, $match)) {
+                $command = $match[1];
+                $prompt = $match[2];
+            }
+
+            $resp = $this->getModule('console_command')->run(['command' => trim($command), 'prompt' => $prompt])->getPretty();
             $response[] = $resp;
             if(!$resp['success'] && $params['break_on_error'] == 'yes') {
                 break;

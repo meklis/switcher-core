@@ -88,6 +88,11 @@
 #Action clear counters
 - name: clear_counters
   descr: Reset counters
+#Action clear counters
+- name: clear_iface_counters
+  descr: Reset counters on specified interface
+  arguments:
+    - {name: interface, pattern: '^.*$', required: yes}
 #Action save configuration
 - name: save_config
   descr: Save system config

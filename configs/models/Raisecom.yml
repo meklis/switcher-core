@@ -10,6 +10,9 @@ models:
    detect: {description: .*ISCOM2600.*,  objid: ^.1.3.6.1.4.1.8886.6 }
    inputs:
      - snmp
+     - console
+   extra:
+     console_conn_type: raisecom
    oids:
      - ./oids/raisecom/iscom2600.yml
    modules:
@@ -30,6 +33,9 @@ models:
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
      lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
+     clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
  - name: Raisecom ISCOM
@@ -39,6 +45,9 @@ models:
    detect: {description: ^.*,  objid: ^.1.3.6.1.4.1.8886.6 }
    inputs:
      - snmp
+     - console
+   extra:
+     console_conn_type: raisecom     
    modules:
      system: \SwitcherCore\Modules\Raisecom\System
      parse_interface: \SwitcherCore\Modules\Raisecom\ParseInterface
@@ -57,5 +66,8 @@ models:
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
      lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
+     console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
+     multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
+     clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
