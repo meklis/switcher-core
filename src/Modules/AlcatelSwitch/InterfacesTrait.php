@@ -102,6 +102,7 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
+                    '_fullname' => $r->getValue(),
                     '_snmp_id' => $id,
                     '_slot_num' => 1,
                     '_port_num' => (int)$m[2],
@@ -112,6 +113,7 @@ trait InterfacesTrait
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
                     'name' => $r->getValue(),
+                    '_fullname' => $r->getValue(),
                     '_snmp_id' => $id,
                     '_slot_num' => (int)$m[1],
                     '_port_num' => (int)$m[2],

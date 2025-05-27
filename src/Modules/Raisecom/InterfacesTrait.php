@@ -112,7 +112,8 @@ trait InterfacesTrait
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[0]}",
+                    'name' => "{$m[2]}",
+                    '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
@@ -121,7 +122,8 @@ trait InterfacesTrait
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[0]}",
+                    'name' => "{$m[2]}",
+                    '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
@@ -130,7 +132,8 @@ trait InterfacesTrait
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
                     'id' => (int)$id,
-                    'name' => "{$m[0]}",
+                    'name' => "{$m[2]}",
+                    '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
