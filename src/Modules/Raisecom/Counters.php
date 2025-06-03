@@ -2,13 +2,9 @@
 
 namespace SwitcherCore\Modules\Raisecom;
 
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
-use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
-use SwitcherCore\Modules\Helper;
+use SnmpWrapper\Oid;
 
-class Counters extends \SwitcherCore\Modules\General\Switches\Counters
-{
+class Counters extends \SwitcherCore\Modules\General\Switches\Counters {
     use InterfacesTrait;
 
     public function run($params = []) {

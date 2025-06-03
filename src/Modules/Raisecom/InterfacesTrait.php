@@ -55,30 +55,24 @@ trait InterfacesTrait
     protected $device;
 
 
-    function parseInterface($iface, $parseBy = 'id')
-    {
+    function parseInterface($iface, $parseBy = 'id') {
+        $check_port = false;
+        $check_name = false;
+        if(preg_match('/^([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) $check_port = true;
+        if(preg_match('/^(ge|tge|e)1\/\d{1,3}\/\d{1,3}$/', $iface)) $check_name = true;
         $ifaces = $this->getInterfacesIds();
-        if(is_numeric($iface) && isset($ifaces[$iface])) {
-            return $ifaces[$iface];
-        }
-        $ifaces = array_filter($ifaces, function ($e) use ($iface) {
-                return $iface == $e['_port'];
-        });
-        if(count($ifaces) != 0) {
-            return array_values($ifaces)[0];
-        }
-
-        if(preg_match('/^([0-9]{1,4})\/([0-9]{1,4})$/', $iface)) {
-            $ifaces = array_filter($ifaces, function ($e) use ($iface) {
-                return $iface == "{$e['_unit']}/{$e['_port']}";
-            });
-            if(count($ifaces) != 0) {
-                return array_values($ifaces)[0];
-            } else {
-                throw new \Exception("Interface with name {$iface} not found");
+        foreach($ifaces as $iface_id => $iface_arr) {
+            if($iface_id == $iface) return $iface_arr;
+            if($iface_arr['_port'] == $iface) return $iface_arr;
+            if($check_port) {
+                if($iface == "{$iface_arr['_unit']}/{$iface_arr['_port']}") {
+                    return $iface_arr;
+                }
             }
-        } 
-
+            if($check_name) {
+                if($iface_arr['name'] == $iface) return $iface_arr;
+            }
+        }
         throw new \Exception("Interface with name {$iface} not found");
     }
 
@@ -105,31 +99,29 @@ trait InterfacesTrait
         $ifaces = [];
 
         foreach ($response->getResponse() as $r) {
+            $id = intval(Helper::getIndexByOid($r->getOid()));
             if (preg_match('/gigaethernet1\/([0-9]{1,3})\/([0-9]{1,3})$/', $r->getValue(), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                $ifaces[$id] = [
                     'id' => (int)$id,
-                    'name' => "{$m[2]}",
+                    'name' => "ge1/{$m[1]}/{$m[2]}",
                     '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
                 ];
             } elseif (preg_match('/tengigabitethernet1\/([0-9]{1,3})\/([0-9]{1,3})$/', $r->getValue(), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                $ifaces[$id] = [
                     'id' => (int)$id,
-                    'name' => "{$m[2]}",
+                    'name' => "tge1/{$m[1]}/{$m[2]}",
                     '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
                     '_port' => $m[2],
                 ];
             } elseif (preg_match('/ethernet1\/([0-9]{1,3})\/([0-9]{1,3})$/', $r->getValue(), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                $ifaces[$id] = [
                     'id' => (int)$id,
-                    'name' => "{$m[2]}",
+                    'name' => "e1/{$m[1]}/{$m[2]}",
                     '_fullname' => "{$m[0]}",
                     '_snmp_id' => $id,
                     '_unit' => $m[1],
