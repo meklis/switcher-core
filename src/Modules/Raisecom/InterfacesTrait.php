@@ -99,7 +99,7 @@ trait InterfacesTrait
         $ifaces = [];
 
         foreach ($response->getResponse() as $r) {
-            $id = intval(Helper::getIndexByOid($r->getOid()));
+            $id = Helper::getIndexByOid($r->getOid());
             if (preg_match('/gigaethernet1\/([0-9]{1,3})\/([0-9]{1,3})$/', $r->getValue(), $m)) {
                 $ifaces[$id] = [
                     'id' => (int)$id,
