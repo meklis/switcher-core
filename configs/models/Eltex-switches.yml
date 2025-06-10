@@ -11,9 +11,9 @@ models:
     - ./oids/eltex/eltex-mes.yml
   extra:
     console_conn_type: eltex
-    console_commands_after_connect:
-      - terminal datadump
-      - terminal width 512
+    # console_commands_after_connect:
+    #   - terminal datadump
+    #   - terminal width 512
   modules:
     parse_interface: \SwitcherCore\Modules\EltexSwitch\ParseInterface
     fdb: \SwitcherCore\Modules\EltexSwitch\Fdb

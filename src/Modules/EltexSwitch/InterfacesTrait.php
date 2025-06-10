@@ -113,7 +113,7 @@ trait InterfacesTrait
             $stackSize = count($responses['rlStack.unitIdTable']->getResponse());
         }
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(te|gi)([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+            if (preg_match('/^(te|gi|fo)([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
                 if($shelf > $stackSize) {
                     continue;
@@ -130,7 +130,7 @@ trait InterfacesTrait
                     '_type' => $m[1],
                     'type' => 'ETH',
                 ];
-            } elseif (preg_match('/^(te|gi|fe) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+            } elseif (preg_match('/^(te|gi|fe|fo) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$slot, $port] = explode("/", $m[2]);
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
@@ -144,7 +144,7 @@ trait InterfacesTrait
                     '_type' => $m[1],
                     'type' => 'ETH',
                 ];
-            } elseif (preg_match('/^(gigabitethernet|ethernet) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
+            } elseif (preg_match('/^(gigabitethernet|ethernet|fortygigabitethernet) ([0-9]{1,2}\/[0-9]{1,2})$/', $r->getValue(), $m)) {
                 [$slot, $port] = explode("/", $m[2]);
                 $id = Helper::getIndexByOid($r->getOid());
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [
