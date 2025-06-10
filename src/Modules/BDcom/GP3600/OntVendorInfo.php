@@ -44,7 +44,7 @@ class OntVendorInfo extends BDcomAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $xid = Helper::getIndexByOid($r->getOid());
                 $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['model'] = $this->convertHexToString($r->getValue(), true);
+                $ifaces[$xid]['model'] = $this->convertHexToStringWithoutDelimiter($r->getValue(), true);
             }
         }
         $data = $this->getResponseByName('ont.modelId');
