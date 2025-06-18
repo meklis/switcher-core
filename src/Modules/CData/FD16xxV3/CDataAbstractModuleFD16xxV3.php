@@ -79,7 +79,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
             }
         }
         if(!$resp) {
-            $this->logger->debug(json_encode($data['if.Descr']->fetchAll()), JSON_PRETTY_PRINT);
+            $this->logger->debug(json_encode($data['if.Descr']->fetchAll(), JSON_PRETTY_PRINT));
             throw new \Exception("if.Descr returned empty response");
         }
         $this->_interfaces = $resp;
