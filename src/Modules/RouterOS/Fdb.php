@@ -90,14 +90,14 @@ class Fdb extends FdbDot1Bridge
 
     protected function runWithDot1d()
     {
-        $fdb_port = $this->oids->getOidByName('dot1d.FdbPort')->getOid();
+        $fdb_port = $this->oids->getOidByName('dot1d.TpFdbPort')->getOid();
         $this->snmp->setOidIncreasingCheck(false);
         $response = $this->formatResponse($this->snmp->walk([
             Oid::init($fdb_port),
         ]));
         $this->snmp->setOidIncreasingCheck(true);
-        if ($response['dot1d.FdbPort']->error()) {
-            throw new \Exception("Returned error {$this->response['dot1d.FdbPort']->error()} from {$this->response['dot1d.FdbPort']->getRaw()->ip}");
+        if ($response['dot1d.TpFdbPort']->error()) {
+            throw new \Exception("Returned error {$this->response['dot1d.TpFdbPort']->error()} from {$this->response['dot1d.TpFdbPort']->getRaw()->ip}");
         }
         return $response;
     }
