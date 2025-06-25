@@ -1,0 +1,25 @@
+############################################## Parameters description  #####################################################
+##
+############################################################################################################################
+
+models:
+ - name: SwOS
+   key: swos_default
+   device_type: SWITCH
+   detect: {description: .*SwOS.*,  objid: ^.1.3.6.1.4.1.14988.2$ }
+   inputs:
+     - snmp
+   modules:
+     parse_interface: \SwitcherCore\Modules\SwOS\ParseInterface
+     fdb: \SwitcherCore\Modules\SwOS\FdbDot1Bridge
+     link_info: \SwitcherCore\Modules\SwOS\LinkInfo
+     interface_counters: \SwitcherCore\Modules\SwOS\Counters
+     system: \SwitcherCore\Modules\SwOS\System
+     errors: \SwitcherCore\Modules\SwOS\Errors
+     #interface_descriptions: \SwitcherCore\Modules\SwOS\
+     interfaces_list: \SwitcherCore\Modules\SwOS\InterfacesList
+     interface_descriptions: \SwitcherCore\Modules\SwOS\Descriptions
+     #pvid: \SwitcherCore\Modules\SwOS\
+     #lldp_info: \SwitcherCore\Modules\SwOS\
+     #net_settings: \SwitcherCore\Modules\General\NetSettings
+     supported_modules: \SwitcherCore\Modules\General\SupportedModules
