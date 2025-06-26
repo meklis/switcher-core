@@ -32,7 +32,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Raisecom\SetPortDescription
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
      lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
-     net_settings: \SwitcherCore\Modules\General\NetSettings
+     net_settings: \SwitcherCore\Modules\Raisecom\NetSettings
      console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
@@ -65,7 +65,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Raisecom\SetPortDescription
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
      lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
-     net_settings: \SwitcherCore\Modules\General\NetSettings
+     net_settings: \SwitcherCore\Modules\Raisecom\NetSettings
      console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
@@ -97,7 +97,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Raisecom\SetPortDescription
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
      lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
-#    net_settings: \SwitcherCore\Modules\General\NetSettings
+#    net_settings: \SwitcherCore\Modules\Raisecom\NetSettings
      console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
@@ -129,7 +129,7 @@ models:
      ctrl_port_descr: \SwitcherCore\Modules\Raisecom\SetPortDescription
      ctrl_port_state: \SwitcherCore\Modules\Raisecom\StatePortControl
      lldp_info: \SwitcherCore\Modules\Raisecom\LldpInfo
-     net_settings: \SwitcherCore\Modules\General\NetSettings
+#     net_settings: \SwitcherCore\Modules\Raisecom\NetSettings
      console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
