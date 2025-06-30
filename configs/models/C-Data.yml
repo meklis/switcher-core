@@ -695,4 +695,5 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\FD5008\MultiRawConsoleCommand
 #      lldp_info: \SwitcherCore\Modules\General\LldpInfo
 #      net_settings: \SwitcherCore\Modules\General\NetSettings
+      ctrl_port_state: \SwitcherCore\Modules\CData\FD5008\StatePortControl
       supported_modules: \SwitcherCore\Modules\General\SupportedModules

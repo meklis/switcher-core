@@ -57,7 +57,7 @@ class VlansDot1q extends \SwitcherCore\Modules\General\Switches\VlansDot1q {
                 }
                 if(preg_match('/^\s*Description\s*:\s*?(.*)/', $string, $m)) { 
                     $vlan_description = $m[1];
-                    $response[$vlan_id]['name'] = (strlen($vlan_description) > 0) ? $vlan_description : 'VLAN ID: ' . $vlan_id;
+                    $response[$vlan_id]['name'] = (strlen($vlan_description) > 0 && $vlan_description !== ' ') ? $vlan_description : 'VLAN ID: ' . $vlan_id;
                 }
                 if(preg_match('/^\s*Tagged\s*Ports:\s*?(none)?/', $string, $m)) {
                     $next_string = 'tagged';

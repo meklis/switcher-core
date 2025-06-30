@@ -15,18 +15,14 @@ abstract class System extends AbstractInterfaces
      * @var WrappedResponse[]
      */
     protected $response = null ;
-    function getPrettyFiltered($filter = [])
-    {
+    function getPrettyFiltered($filter = []) {
         return $this->getPretty();
     }
-    function getRaw()
-    {
+    function getRaw() {
         return $this->response;
     }
 
-    function getPretty()
-    {
-
+    function getPretty() {
         $data = [
             'descr' => $this->getResponseByName('sys.Descr')->fetchOne()->getValue(),
             'uptime' => $this->getResponseByName('sys.Uptime')->fetchAll()[0]->getValueAsTimeTicks(),
@@ -64,8 +60,7 @@ abstract class System extends AbstractInterfaces
      * @return $this|AbstractModule
      * @throws Exception
      */
-    public function run($filter = [])
-    {
+    public function run($filter = []) {
         $oids = $this->oids->getOidsByRegex('^sys\..*');
         $oArray = [];
         foreach ($oids as $oid) {

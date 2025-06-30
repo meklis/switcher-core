@@ -22,4 +22,5 @@ models:
      #pvid: \SwitcherCore\Modules\SwOS\
      #lldp_info: \SwitcherCore\Modules\SwOS\
      #net_settings: \SwitcherCore\Modules\General\NetSettings
+     ctrl_port_state: \SwitcherCore\Modules\SwOS\StatePortControl
      supported_modules: \SwitcherCore\Modules\General\SupportedModules

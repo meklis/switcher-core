@@ -64,7 +64,9 @@ trait InterfacesTrait
         }
         foreach($ifaces as $num => $_iface) {
             if($iface === $_iface['id']) return $ifaces[$num];
-            if($iface === $_iface['_port_num']) return $ifaces[$num];
+            //if($iface === $_iface['_port_num']) return $ifaces[$num];
+            if($iface === $_iface['name']) return $ifaces[$num];
+            if($iface === $_iface['_fullname']) return $ifaces[$num];
             if(isset($_iface[$parseBy]) && $_iface[$parseBy] == $iface) return $ifaces[$num];
         }
         throw new \Exception("Interface {$iface} not found");
