@@ -14,8 +14,6 @@ class SfpMediaInfo extends AbstractInterfaces
 {
     use InterfacesTrait;
 
-    use InterfacesTrait;
-
     public function run($params = [])
     {
         $suffixOid = "";
