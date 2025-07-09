@@ -255,7 +255,10 @@ models:
       link_info: \SwitcherCore\Modules\ZTE\C600Series\LinkInfo
       ctrl_ont_uni_admin_state: \SwitcherCore\Modules\ZTE\C600Series\UniInterfacesControlAdminStatus
       ctrl_port_descr: \SwitcherCore\Modules\ZTE\C600Series\PortDescriptionControl
-      net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      # net_settings: \SwitcherCore\Modules\ZTE\NetSettings
+      sfp_media: \SwitcherCore\Modules\ZTE\C600Series\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\ZTE\C600Series\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\ZTE\C600Series\SfpDiag
       onu_ip_host: \SwitcherCore\Modules\ZTE\C600Series\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
 

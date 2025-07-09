@@ -104,7 +104,7 @@ abstract class ModuleAbstract extends AbstractModule
             $data['xid'][$val['_xid']] = $val;
         }
         $this->_xidInterfaces = $data;
-        $this->setCache('xid_interfaces', $data, 300, true);
+        $this->setCache('xid_interfaces', $data, 600, true);
         return $data;
     }
 

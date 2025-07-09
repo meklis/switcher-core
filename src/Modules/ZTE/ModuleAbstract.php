@@ -235,7 +235,7 @@ abstract class ModuleAbstract extends AbstractModule
             }
         }
         $this->_xidInterfaces = $response;
-        $this->setCache('xid_interfaces', $response, 60, true);
+        $this->setCache('xid_interfaces', $response, 600, true);
         return $response;
     }
 
