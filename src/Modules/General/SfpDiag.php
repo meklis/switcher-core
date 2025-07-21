@@ -7,13 +7,19 @@ use SwitcherCore\Modules\AbstractModule;
 class SfpDiag extends AbstractModule {
     public function run($params = []) {
         $errors = [];
+        $media = [];
+        $optical = [];
         try {
-            $media = $this->getModule('sfp_media')->run($params)->getPretty();
+            if(in_array("sfp_media", $this->model->getModulesList())) {
+                $media = $this->getModule('sfp_media')->run($params)->getPretty();
+            }
         } catch (\Exception $e) {
             $errors["sfp_media"] = $e->getMessage();
         }
         try {
-            $optical = $this->getModule('sfp_optical')->run($params)->getPretty();
+            if(in_array("sfp_optical", $this->model->getModulesList())) {
+                $optical = $this->getModule('sfp_optical')->run($params)->getPretty();
+            }
         } catch (\Exception $e) {
             $errors["sfp_optical"] = $e->getMessage();
         }
