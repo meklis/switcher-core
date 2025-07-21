@@ -20,28 +20,46 @@ abstract class SfpMediaInfo extends AbstractInterfaces {
         $response = $this->formatResponse($this->snmp->walk($oids));
 
         $RESPONSES = [];
+        $errors = [];
         foreach ($response as $name => $resp) {
             $metricName = str_replace(['sfp_media_'], '', Helper::fromCamelCase($name));
-            if($resp->error()) continue;
+            if($resp->error())  {
+                $errors[] = $resp->error();
+                continue;
+            }
             foreach ($resp->fetchAll() as $value) {
                 $iface = $this->parseInterface(Helper::getIndexByOid($value->getOid()));
                 $RESPONSES[$iface['id']]['interface'] = $iface;
                 $RESPONSES[$iface['id']][$metricName] = $value->getParsedValue();
             }
         }
+        // Удалим пустые ответы
         foreach ($RESPONSES as $id => $RESPONS) {
-            if(!isset($RESPONS['serial_num'])) $RESPONSES[$id]['serial_num'] = null;
-            if(!isset($RESPONS['connector_type'])) $RESPONSES[$id]['connector_type'] = null;
-            if(!isset($RESPONS['eth_compliance_codes'])) $RESPONSES[$id]['eth_compliance_codes'] = null;
-            if(!isset($RESPONS['baud_rate'])) $RESPONSES[$id]['baud_rate'] = null;
-            if(!isset($RESPONS['vendor_name'])) $RESPONSES[$id]['vendor_name'] = null;
-            if(!isset($RESPONS['part_number'])) $RESPONSES[$id]['part_number'] = null;
-            if($filter_iface && !isset($RESPONS['serial_num']) && !isset($RESPONS['connector_type']) && !isset($RESPONS['eth_compliance_codes'])
-            && !isset($RESPONS['baud_rate']) && !isset($RESPONS['vendor_name']) && !isset($RESPONS['part_number'])) throw new \Exception('Nothing found by requested interface');
-            if(!isset($RESPONS['serial_num']) && !isset($RESPONS['connector_type']) && !isset($RESPONS['eth_compliance_codes'])
-            && !isset($RESPONS['baud_rate']) && !isset($RESPONS['vendor_name']) && !isset($RESPONS['part_number'])) unset($RESPONSES[$id]);
+            unset($RESPONS['interface']);
+
+            if(isset($RESPONS['fiber_type']) && $RESPONS['fiber_type'] == "Cooper") {
+                unset($RESPONSES[$id]);
+                continue;
+            }
+            if(count(array_filter($RESPONS, function ($e) {
+                  return $e !== null;
+            })) === 0) {
+                unset($RESPONSES[$id]);
+            }
         }
-        $this->response = array_values($RESPONSES);
+        if(count($RESPONSES) === 0) {
+            throw new \Exception("Nothing to show. Errors - " . json_encode($errors));
+        }
+
+        //Заполним нулами обязательные, но пустые значения
+        $this->response = array_values(array_map(function ($e) {
+            if(!isset($e['serial_num'])) $e['serial_num'] = null;
+            if(!isset($e['vendor_name'])) $e['vendor_name'] = null;
+            if(!isset($e['connector_type'])) $e['connector_type'] = null;
+            if(!isset($e['part_number'])) $e['part_number'] = null;
+            if(!isset($e['fiber_type'])) $e['fiber_type'] = null;
+            return $e;
+        },$RESPONSES));
         return $this;
     }
     public function getPretty()
