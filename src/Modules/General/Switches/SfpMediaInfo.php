@@ -47,9 +47,6 @@ abstract class SfpMediaInfo extends AbstractInterfaces {
                 unset($RESPONSES[$id]);
             }
         }
-        if(count($RESPONSES) === 0) {
-            throw new \Exception("Nothing to show. Errors - " . json_encode($errors));
-        }
 
         //Заполним нулами обязательные, но пустые значения
         $this->response = array_values(array_map(function ($e) {

@@ -46,8 +46,6 @@ class SfpOpticalInfo extends AbstractInterfaces {
             $response[$iface['id']][$type] = ($resp->getValue() != 0) ? round($resp->getValue() / 1000, 2) : null;
         }
 
-        if($filter_iface && !isset($response[$filter_iface]['temp']) && !isset($response[$filter_iface]['tx_bias']) 
-        && !isset($response[$filter_iface]['tx_power']) && !isset($response[$filter_iface]['rx_power']) && !isset($response[$filter_iface]['vcc'])) throw new \Exception('Nothing found by requested interface');
 
         foreach($response as $id => $v_arr) {
             if(!isset($v_arr['temp']) && !isset($v_arr['tx_bias']) && !isset($v_arr['tx_power']) && !isset($v_arr['rx_power']) && !isset($v_arr['vcc'])) {
