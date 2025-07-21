@@ -72,7 +72,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      sfp_media: \SwitcherCore\Modules\Raisecom\SfpMediaInfo
      sfp_optical: \SwitcherCore\Modules\Raisecom\SfpOpticalInfo
-     sfp_diag: \SwitcherCore\Modules\Raisecom\SfpDiag
+     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
   
@@ -107,7 +107,7 @@ models:
 #    net_settings: \SwitcherCore\Modules\Raisecom\NetSettings
      sfp_media: \SwitcherCore\Modules\Raisecom\SfpMediaInfo
      sfp_optical: \SwitcherCore\Modules\Raisecom\SfpOpticalInfo
-     sfp_diag: \SwitcherCore\Modules\Raisecom\SfpDiag
+     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
      console_command: \SwitcherCore\Modules\General\Switches\RawConsoleCommand
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters

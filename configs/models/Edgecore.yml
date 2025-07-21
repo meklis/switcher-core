@@ -32,7 +32,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
-      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
@@ -71,7 +71,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
-      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
@@ -110,7 +110,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
-      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters
@@ -148,7 +148,7 @@ models:
       pvid: \SwitcherCore\Modules\Edgecore\PvidDot1q
       sfp_media: \SwitcherCore\Modules\Edgecore\SfpMediaInfo
       sfp_optical: \SwitcherCore\Modules\Edgecore\SfpOpticalInfo
-      sfp_diag: \SwitcherCore\Modules\Edgecore\SfpDiag
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       ctrl_port_descr: \SwitcherCore\Modules\Edgecore\SetPortDescription
       ctrl_port_state: \SwitcherCore\Modules\Edgecore\StatePortControl
       clear_counters: \SwitcherCore\Modules\Edgecore\ClearCounters

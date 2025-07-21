@@ -1,22 +1,23 @@
-<?php
+<?php 
 
-namespace SwitcherCore\Modules\General\Switches;
+namespace SwitcherCore\Modules\General;
 
-abstract class SfpDiag extends AbstractInterfaces {
+use SwitcherCore\Modules\AbstractModule;
+
+class SfpDiag extends AbstractModule {
     public function run($params = []) {
-        $media_failed = false;
-        $optical_failed = false;
+        $errors = [];
         try {
             $media = $this->getModule('sfp_media')->run($params)->getPretty();
         } catch (\Exception $e) {
-            $media_failed = true;
+            $errors["sfp_media"] = $e->getMessage();
         }
         try {
             $optical = $this->getModule('sfp_optical')->run($params)->getPretty();
         } catch (\Exception $e) {
-            $optical_failed = true;
+            $errors["sfp_optical"] = $e->getMessage();
         }
-        if($media_failed && $optical_failed) throw new \Exception("Nothing found by requested interface");
+        if($errors) throw new \Exception("Error get data: " . json_encode($errors));
         
         $RESP = [];
         foreach ($media as $m) {
