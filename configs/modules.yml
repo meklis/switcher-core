@@ -78,6 +78,7 @@
 - name: sfp_optical
   arguments:
     - {name: interface, pattern: '^.*$', required: no}
+    - {name: load_only, pattern: '^.*$', required: no}
   descr: SFP signals
 - name: sfp_media
   arguments:

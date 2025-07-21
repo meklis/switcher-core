@@ -36,6 +36,7 @@ class Helper
         if(!isset($filter['disa_linkup_diag'])) $filter['disa_linkup_diag'] = true;
         if(!isset($filter['mac'])) $filter['mac'] = '';
         if(!isset($filter['type'])) $filter['type'] = '';
+        if(!isset($filter['load_only'])) $filter['load_only'] = null;
     }
     static function oid2MacVlan($oid) {
         $count = substr_count($oid, '.');

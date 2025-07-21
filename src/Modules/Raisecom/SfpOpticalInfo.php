@@ -10,15 +10,32 @@ class SfpOpticalInfo extends AbstractInterfaces {
     use InterfacesTrait;
 
     public function run($params = []) {
+        Helper::prepareFilter($params);
+        $load_only = false;
+        if($params['load_only']) $load_only = explode(',', $params['load_only']);
         $filter_iface = false;
         if($params['interface']) {
-            $filter_iface = $this->parseInterface($params['interface'])['_snmp_id'];
+            $ifc = $this->parseInterface($params['interface']);
+            $filter_iface = $ifc['id'];
+            $check_ifaces[$ifc['_snmp_id']] = $ifc;
+        } else {
+            $ifcs = $this->getInterfacesIds();
+            foreach($ifcs as $k => $ifc) {
+                $check_ifaces[$ifc['_snmp_id']] = $ifc;
+            }
         }
-        $res = $this->formatResponse($this->snmp->walk([Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid())]));
+        foreach($check_ifaces as $snmp_id => $ifc) {
+            if(!$load_only || in_array('temp', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.1");
+            if(!$load_only || in_array('tx_bias', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.2");
+            if(!$load_only || in_array('tx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.3");
+            if(!$load_only || in_array('rx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.4");
+            if(!$load_only || in_array('vcc', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.5");
+        }
+        $res = $this->formatResponse($this->snmp->get($oids));
+
         $response = [];
         foreach($res['sfp.ddmValues']->fetchAll() as $resp) {
-            $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid(), 1));
-            if($filter_iface && $iface['_snmp_id'] !== $filter_iface) continue;
+            $iface = $check_ifaces[Helper::getIndexByOid($resp->getOid(), 1)];
             $type = null;
             switch(Helper::getIndexByOid($resp->getOid())) {
                 case 1: $type = 'temp'; break;
@@ -29,18 +46,32 @@ class SfpOpticalInfo extends AbstractInterfaces {
                 default: continue 2;
             }
             if(!isset($response[$iface['id']])) $response[$iface['id']]['interface'] = $iface;
-            $response[$iface['id']][$type] = round($resp->getValue() / 1000, 2);
+            $response[$iface['id']][$type] = ($resp->getValue() != 0) ? round($resp->getValue() / 1000, 2) : null;
         }
-        $this->response = $response;
+
+        if($filter_iface && !isset($response[$filter_iface]['temp']) && !isset($response[$filter_iface]['tx_bias']) 
+        && !isset($response[$filter_iface]['tx_power']) && !isset($response[$filter_iface]['rx_power']) && !isset($response[$filter_iface]['vcc'])) throw new \Exception('Nothing found by requested interface');
+
+        foreach($response as $id => $v_arr) {
+            if(!isset($v_arr['temp']) && !isset($v_arr['tx_bias']) && !isset($v_arr['tx_power']) && !isset($v_arr['rx_power']) && !isset($v_arr['vcc'])) {
+                unset($response[$id]);
+            } else {
+                if(!isset($v_arr['temp'])) $response[$id]['temp'] = null;
+                if(!isset($v_arr['tx_bias'])) $response[$id]['tx_bias'] = null;
+                if(!isset($v_arr['tx_power'])) $response[$id]['tx_power'] = null;
+                if(!isset($v_arr['rx_power'])) $response[$id]['rx_power'] = null;
+                if(!isset($v_arr['vcc'])) $response[$id]['vcc'] = null;
+            }
+        }
+        
+        $this->response = array_values($response);
         return $this;
     }
-    public function getPretty()
-    {
+
+    public function getPretty() {
       return $this->response;
     }
-
-    public function getPrettyFiltered($filter = [])
-    {
+    public function getPrettyFiltered($filter = []) {
         return $this->response;
     }
 }
