@@ -188,4 +188,32 @@ trait InterfacesTrait
         return true;
     }
 
+    protected function getInterfacesWithOpticalConnectorTypes() {
+        $cached = $this->getCache('OPTICAL_MEDIA_INTERFACES', true);
+        if($cached !== null) {
+            return $cached;
+        }
+
+        $interfacesList = [];
+        $data = $this->formatResponse($this->snmp->walk([
+            Oid::init($this->oids->getOidByName('sfp.mediaConnectorType')->getOid()),
+        ]));
+        if($data['sfp.mediaConnectorType']->error()) {
+            throw new \Exception("Error get media types - " . $data['sfp.mediaConnectorType']->error());
+        }
+        $ifaceIds = [];
+        foreach ($data['sfp.mediaConnectorType']->fetchAll() as $interface) {
+            $ifaceIds[] = Helper::getIndexByOid($interface->getOid());
+        }
+
+        $ifcs = $this->getInterfacesIds();
+        foreach($ifcs as $k => $ifc) {
+            if(!in_array($ifc['_snmp_id'], $ifaceIds)) {
+                continue;
+            }
+            $interfacesList[$ifc['_snmp_id']] = $ifc;
+        }
+        $this->setCache('OPTICAL_MEDIA_INTERFACES', $interfacesList, 600, true);
+        return $interfacesList;
+    }
 }
