@@ -19,7 +19,7 @@ class SfpOpticalInfo extends AbstractInterfaces {
             $filter_iface = $ifc['id'];
             $check_ifaces[$ifc['_snmp_id']] = $ifc;
         } else {
-            $check_ifaces = $this->getInterfacesWithOpticalConnectorTypes();
+            $check_ifaces = $this->getInterfacesWithConnectorTypeInfo();
         }
         foreach($check_ifaces as $snmp_id => $ifc) {
             if(!$load_only || in_array('temp', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.1");

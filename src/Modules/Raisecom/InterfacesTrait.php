@@ -188,7 +188,7 @@ trait InterfacesTrait
         return true;
     }
 
-    protected function getInterfacesWithOpticalConnectorTypes() {
+    protected function getInterfacesWithConnectorTypeInfo() {
         $cached = $this->getCache('OPTICAL_MEDIA_INTERFACES', true);
         if($cached !== null) {
             return $cached;
