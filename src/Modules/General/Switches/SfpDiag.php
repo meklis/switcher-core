@@ -40,13 +40,11 @@ abstract class SfpDiag extends AbstractInterfaces {
         return $this;
     }
 
-    public function getPretty()
-    {
+    public function getPretty() {
        return $this->response;
     }
 
-    public function getPrettyFiltered($filter = [])
-    {
+    public function getPrettyFiltered($filter = []) {
         return $this->response;
     }
 }

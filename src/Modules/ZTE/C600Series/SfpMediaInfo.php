@@ -9,9 +9,11 @@ use SwitcherCore\Modules\Helper;
 class SfpMediaInfo extends ModuleAbstract {
     public function run($params = []) {
         $interfaces = [];
+        $filter_iface = false;
         if($params['interface']) { 
             $ifc = $this->parseInterface($params['interface']);
             $interfaces[$ifc['_xid']] = $ifc;
+            $filter_iface = true;
         } else {
             $interfaces = $this->listInterfacesByXidNames()['xid'];
         }
@@ -74,6 +76,11 @@ class SfpMediaInfo extends ModuleAbstract {
             $resp[$xid]['baud_rate'] = null;
             $resp[$xid]['connector_type'] = isset($connector_types[$xid]) ? $connector_types[$xid] : null;
             $resp[$xid]['_fiber_type'] = isset($fiber_types[$xid]) ? $fiber_types[$xid] : null;
+            if(!isset($resp[$xid]['vendor_name']) && !isset($resp[$xid]['part_number']) && !isset($resp[$xid]['serial_num']) && !isset($resp[$xid]['eth_compliance_codes'])
+            && !isset($resp[$xid]['baud_rate']) && !isset($resp[$xid]['connector_type']) && !isset($resp[$xid]['_fiber_type'])) {
+                if($filter_iface) throw new \Exception('Nothing found by requested interface');
+                unset($resp[$xid]);
+            }
         }
 
         $this->response = array_values($resp);
