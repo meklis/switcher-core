@@ -100,6 +100,7 @@ class SfpOpticalInfo extends ModuleAbstract {
             foreach($res['zx.anOpticalChanWavelength']->fetchAll() as $val) {
                 $chan_id = Helper::getIndexByOid($val->getOid());
                 $chan_wave_length[$chan_id] = $val->getParsedValue() / 100;
+                if($chan_wave_length[$chan_id] == 21474836.47 || $chan_wave_length[$chan_id] == 2147483647) $wave_length[$iface_xid] = null;
             }
         }
         $chan_tx_power = [];
@@ -107,6 +108,7 @@ class SfpOpticalInfo extends ModuleAbstract {
             foreach($res['zx.anOpticalChanCurrTxPwr']->fetchAll() as $val) {
                 $chan_id = Helper::getIndexByOid($val->getOid());
                 $chan_tx_power[$chan_id] = $val->getParsedValue() / 1000;
+                if($chan_tx_power[$chan_id] === 2147483.647) $chan_tx_power[$chan_id] = null;
             }
         }
         $chan_tx_bias = [];
@@ -114,6 +116,7 @@ class SfpOpticalInfo extends ModuleAbstract {
             foreach($res['zx.anOpticalChanBiasCurrent']->fetchAll() as $val) {
                 $chan_id = Helper::getIndexByOid($val->getOid());
                 $chan_tx_bias[$chan_id] = $val->getParsedValue() / 1000;
+                if($chan_tx_bias[$chan_id] === 2147483.647) $chan_tx_bias[$chan_id] = null;
             }
         }
         $chan_rx_noise = [];
@@ -121,6 +124,7 @@ class SfpOpticalInfo extends ModuleAbstract {
             foreach($res['zx.anOpticalChanRxNoise']->fetchAll() as $val) {
                 $chan_id = Helper::getIndexByOid($val->getOid());
                 $chan_rx_noise[$chan_id] = $val->getParsedValue() / 1000;
+                if($chan_rx_noise[$chan_id] === 2147483.647) $chan_rx_noise[$chan_id] = null;
             }
         }
         $chan_los_state = [];

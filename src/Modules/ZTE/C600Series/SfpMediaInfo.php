@@ -69,15 +69,16 @@ class SfpMediaInfo extends ModuleAbstract {
         foreach($interfaces as $xid => $val) {
             $resp[$xid]['interface'] = $val;
             $resp[$xid]['_double_channel'] = isset($gpon_xg_pon[$xid]) ? true : false;
-            $resp[$xid]['vendor_name'] = isset($vendor_names[$xid]) ? $vendor_names[$xid] : null;
-            $resp[$xid]['part_number'] = isset($part_numbers[$xid]) ? $part_numbers[$xid] : null;
-            $resp[$xid]['serial_num'] = isset($serial_numbers[$xid]) ? $serial_numbers[$xid] : null;
-            $resp[$xid]['eth_compliance_codes'] = isset($eth_compliance_codes[$xid]) ? $eth_compliance_codes[$xid] : null;
+            $resp[$xid]['vendor_name'] = (isset($vendor_names[$xid]) && $vendor_names[$xid] !== '' && $vendor_names[$xid] !== '-') ? $vendor_names[$xid] : null;
+            $resp[$xid]['part_number'] = (isset($serial_numbers[$xid]) && $serial_numbers[$xid] !== '' && $serial_numbers[$xid] !== '-') ? $part_numbers[$xid] : null;
+            $resp[$xid]['serial_num'] = (isset($eth_compliance_codes[$xid]) && $eth_compliance_codes[$xid] !== '' && $eth_compliance_codes[$xid] !== '-') ? $serial_numbers[$xid] : null;
+            $resp[$xid]['eth_compliance_codes'] = (isset($connector_types[$xid]) && $connector_types[$xid] !== '' && $connector_types[$xid] !== '-') ? $eth_compliance_codes[$xid] : null;
             $resp[$xid]['baud_rate'] = null;
-            $resp[$xid]['connector_type'] = isset($connector_types[$xid]) ? $connector_types[$xid] : null;
-            $resp[$xid]['_fiber_type'] = isset($fiber_types[$xid]) ? $fiber_types[$xid] : null;
+            $resp[$xid]['connector_type'] = (isset($vendor_names[$xid]) && $vendor_names[$xid] !== '' && $vendor_names[$xid] !== '-') ? $connector_types[$xid] : null;
+            $resp[$xid]['_fiber_type'] = (isset($fiber_types[$xid]) && $fiber_types[$xid] !== '' && $fiber_types[$xid] !== '-') ? $fiber_types[$xid] : null;
+
             if(!isset($resp[$xid]['vendor_name']) && !isset($resp[$xid]['part_number']) && !isset($resp[$xid]['serial_num']) && !isset($resp[$xid]['eth_compliance_codes'])
-            && !isset($resp[$xid]['baud_rate']) && !isset($resp[$xid]['connector_type']) && !isset($resp[$xid]['_fiber_type'])) {
+            && !isset($resp[$xid]['baud_rate']) && !isset($resp[$xid]['connector_type'])) {
                 if($filter_iface) throw new \Exception('Nothing found by requested interface');
                 unset($resp[$xid]);
             }
