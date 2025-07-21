@@ -75,7 +75,7 @@ class SfpMediaInfo extends ModuleAbstract {
             $resp[$xid]['eth_compliance_codes'] = (isset($connector_types[$xid]) && $connector_types[$xid] !== '' && $connector_types[$xid] !== '-') ? $eth_compliance_codes[$xid] : null;
             $resp[$xid]['baud_rate'] = null;
             $resp[$xid]['connector_type'] = (isset($vendor_names[$xid]) && $vendor_names[$xid] !== '' && $vendor_names[$xid] !== '-') ? $connector_types[$xid] : null;
-            $resp[$xid]['_fiber_type'] = (isset($fiber_types[$xid]) && $fiber_types[$xid] !== '' && $fiber_types[$xid] !== '-') ? $fiber_types[$xid] : null;
+            $resp[$xid]['fiber_type'] = (isset($fiber_types[$xid]) && $fiber_types[$xid] !== '' && $fiber_types[$xid] !== '-' && $fiber_types[$xid] !== 'unknown') ? $fiber_types[$xid] : null;
 
             if(!isset($resp[$xid]['vendor_name']) && !isset($resp[$xid]['part_number']) && !isset($resp[$xid]['serial_num']) && !isset($resp[$xid]['eth_compliance_codes'])
             && !isset($resp[$xid]['baud_rate']) && !isset($resp[$xid]['connector_type'])) {
