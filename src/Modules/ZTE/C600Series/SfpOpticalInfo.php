@@ -162,15 +162,6 @@ class SfpOpticalInfo extends ModuleAbstract {
                 $resp[$xid]['_second_channel']['_rx_noise'] = isset($chan_rx_noise[$chan_id]) ? $chan_rx_noise[$chan_id] : null;
                 $resp[$xid]['_second_channel']['_los_state'] = isset($chan_los_state[$chan_id]) ? $chan_los_state[$chan_id] : null;
             }
-            if(!isset($resp[$xid]['vcc']) && !isset($resp[$xid]['temp']) && !isset($resp[$xid]['_wave_length']) && !isset($resp[$xid]['tx_power']) 
-            && !isset($resp[$xid]['rx_power']) && !isset($resp[$xid]['tx_bias']) && !isset($resp[$xid]['_first_channel']['_wave_length'])
-            && !isset($resp[$xid]['_first_channel']['_wave_length']) && !isset($resp[$xid]['_first_channel']['tx_power']) && !isset($resp[$xid]['_first_channel']['tx_bias'])
-            && !isset($resp[$xid]['_first_channel']['_rx_noise']) && !isset($resp[$xid]['_first_channel']['_los_state']) 
-            && !isset($resp[$xid]['_second_channel']['_wave_length']) && !isset($resp[$xid]['_second_channel']['tx_power']) && !isset($resp[$xid]['_second_channel']['tx_bias'])
-            && !isset($resp[$xid]['_second_channel']['_rx_noise']) && !isset($resp[$xid]['_second_channel']['_los_state'])) {
-                if($filter_iface) throw new \Exception('Nothing found by requested interface');
-                unset($resp[$xid]);
-            }
         }
 
         $this->response = array_values($resp);

@@ -77,11 +77,6 @@ class SfpMediaInfo extends ModuleAbstract {
             $resp[$xid]['connector_type'] = (isset($vendor_names[$xid]) && $vendor_names[$xid] !== '' && $vendor_names[$xid] !== '-') ? $connector_types[$xid] : null;
             $resp[$xid]['fiber_type'] = (isset($fiber_types[$xid]) && $fiber_types[$xid] !== '' && $fiber_types[$xid] !== '-' && $fiber_types[$xid] !== 'unknown') ? $fiber_types[$xid] : null;
 
-            if(!isset($resp[$xid]['vendor_name']) && !isset($resp[$xid]['part_number']) && !isset($resp[$xid]['serial_num']) && !isset($resp[$xid]['eth_compliance_codes'])
-            && !isset($resp[$xid]['baud_rate']) && !isset($resp[$xid]['connector_type'])) {
-                if($filter_iface) throw new \Exception('Nothing found by requested interface');
-                unset($resp[$xid]);
-            }
         }
 
         $this->response = array_values($resp);
