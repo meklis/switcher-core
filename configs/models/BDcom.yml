@@ -60,6 +60,7 @@ models:
       power_status: \SwitcherCore\Modules\BDcom\GP3600\PowerStatus
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     extra:
       pon_port_size: 128
       console_conn_type: bdcom
@@ -112,6 +113,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64 
       console_conn_type: bdcom
@@ -164,6 +167,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -216,6 +221,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -268,6 +275,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -320,6 +329,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -372,6 +383,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -425,6 +438,8 @@ models:
       interface_rate_limits: \SwitcherCore\Modules\BDcom\RateLimits
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom

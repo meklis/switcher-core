@@ -7,6 +7,11 @@
 - { name: pon.port.optical.bias, oid: .1.3.6.1.4.1.3320.10.2.2.1.4 } # Optical module bias current. The unit is 2mA.
 - { name: pon.port.optical.txPower, oid: .1.3.6.1.4.1.3320.10.2.2.1.5 }
 - { name: pon.port.optical.rxPower, oid: .1.3.6.1.4.1.3320.10.2.3.1.3 }
+- { name: sfp.ddm.rxPower, oid: .1.3.6.1.4.1.3320.9.63.1.7.1.3}
+- { name: sfp.ddm.txPower, oid: .1.3.6.1.4.1.3320.9.63.1.7.1.2}
+- { name: sfp.ddm.temp, oid: .1.3.6.1.4.1.3320.9.63.1.7.1.4}
+- { name: sfp.ddm.voltage, oid: .1.3.6.1.4.1.3320.9.63.1.7.1.5}
+- { name: sfp.media.vendor_name, oid: .1.3.6.1.4.1.3320.9.63.1.7.1.7}
 
 - { name: ont.vendor, oid: .1.3.6.1.4.1.3320.10.3.1.1.2 }
 - { name: ont.model, oid: .1.3.6.1.4.1.3320.10.3.1.1.3 }
