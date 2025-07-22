@@ -439,6 +439,110 @@ models:
         - { name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: gpon, _slot: 0, _port: 3 }
         - { name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: gpon, _slot: 0, _port: 4 }
 
+  - name: C-Data FD1601
+    key: c_data_fd1601
+    inputs:
+      - snmp
+      - console
+    detect: {description: FD1601,  objid: ^.1.3.6.1.4.1.17409$}
+    device_type: OLT
+    oids:
+      - ./oids/cdata/fd-gpon-series.yml
+    traps:
+      - ./traps/cdata.yml
+    rewrites:
+      oid: .1.3.6.1.4.1.17409.2.3.1.3.1.1.9.1.0
+      mapping:
+        - value: ^V3.*
+          rewrite:
+            name: C-Data FD1601 (FW 3)
+            key: c_data_fd1601_fw3
+            modules:
+              system: \SwitcherCore\Modules\CData\FD16xxV3\SystemInformation
+              pon_ports_list: \SwitcherCore\Modules\CData\FD16xxV3\PonPortsList
+              pon_onts_status: \SwitcherCore\Modules\CData\FD16xxV3\OntListWithStatuses
+              pon_onts_serial: \SwitcherCore\Modules\CData\FD16xxV3\GponOntSerial
+              pon_onts_optical: \SwitcherCore\Modules\CData\FD16xxV3\OntOpticalInfoFD16
+              pon_onts_reasons: \SwitcherCore\Modules\CData\FD16xxV3\OntReasons
+              pon_onts_vendor: \SwitcherCore\Modules\CData\FD16xxV3\OntVendorInfo
+              fdb: \SwitcherCore\Modules\CData\FD16xxV3\FdbTableConsoleFD1616
+              interface_counters: \SwitcherCore\Modules\CData\FD16xxV3\InterfaceCountersFD16
+              ctrl_ont_reboot: \SwitcherCore\Modules\CData\FD16xxV3\OntRebootTelnetGpon
+              ctrl_ont_reset: \SwitcherCore\Modules\CData\FD16xxV3\OntResetTelnetGpon
+              save_config: \SwitcherCore\Modules\CData\FD16xxV3\OltSaveSettings
+              parse_interface: \SwitcherCore\Modules\CData\FD16xxV3\ParseInterface
+              interface_descriptions: \SwitcherCore\Modules\CData\FD16xxV3\InterfaceDescriptionsFD16
+              sys_resources: \SwitcherCore\Modules\CData\FD16xxV3\SystemResources
+              interfaces_list: \SwitcherCore\Modules\CData\FD16xxV3\InterfacesList
+              link_info: \SwitcherCore\Modules\CData\FD16xxV3\LinkInfo
+              ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\FD16xxV3\UniInterfacesControlAdminStatus
+              ctrl_ont_descr: \SwitcherCore\Modules\CData\FD16xxV3\CtrlOntDescription
+              console_command: \SwitcherCore\Modules\CData\FD16xxV3\RawConsoleCommand
+              multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand
+              #ctrl_port_descr: \SwitcherCore\Modules\CData\FD16xxV3\PortDescriptionControl
+              ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
+              uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
+              unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+              pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              supported_modules: \SwitcherCore\Modules\General\SupportedModules
+            extra:
+              pon_type: GPON
+              pon_port_size: 128
+              console_conn_type: cdata
+              console_commands_after_connect:
+                - { command: enable, check_password: true }
+                - terminal length 0
+                - config
+    modules:
+      system: \SwitcherCore\Modules\CData\SystemInformation
+      pon_ports_list: \SwitcherCore\Modules\CData\PonPortsList
+      pon_onts_status: \SwitcherCore\Modules\CData\OntListWithStatuses
+      pon_onts_serial: \SwitcherCore\Modules\CData\GponOntSerial
+      pon_onts_optical: \SwitcherCore\Modules\CData\OntOpticalInfoFD16
+      pon_onts_reasons: \SwitcherCore\Modules\CData\OntReasons
+      pon_onts_vendor: \SwitcherCore\Modules\CData\OntVendorInfo
+      fdb: \SwitcherCore\Modules\CData\FdbTableConsoleFD1616
+      uni_interfaces_status: \SwitcherCore\Modules\CData\OntUniPortsStatus
+      interface_counters: \SwitcherCore\Modules\CData\InterfaceCountersFD16
+      ctrl_ont_reboot: \SwitcherCore\Modules\CData\OntRebootTelnetGpon
+      ctrl_ont_reset: \SwitcherCore\Modules\CData\OntResetTelnetGpon
+      save_config: \SwitcherCore\Modules\CData\OltSaveSettings
+      parse_interface: \SwitcherCore\Modules\CData\ParseInterface
+      interface_descriptions: \SwitcherCore\Modules\CData\InterfaceDescriptionsFD16
+      sys_resources: \SwitcherCore\Modules\CData\SystemResources
+      interfaces_list: \SwitcherCore\Modules\CData\InterfacesList
+      link_info: \SwitcherCore\Modules\CData\LinkInfo
+      ctrl_ont_uni_admin_state: \SwitcherCore\Modules\CData\UniInterfacesControlAdminStatus
+      ctrl_ont_descr: \SwitcherCore\Modules\CData\CtrlOntDescription
+      console_command: \SwitcherCore\Modules\CData\RawConsoleCommand
+      multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
+      ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
+      ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
+      unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+      pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
+      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    extra:
+      pon_type: GPON
+      pon_port_size: 128
+      console_conn_type: cdata
+      console_commands_after_connect:
+        - {command: enable, check_password: true}
+        - config
+        - vty output show-more
+      interfaces:
+        - { name: ge0/0/1, id: 16777472,  xid: 1, type: 1G-SFP }
+        - { name: ge0/0/2, id: 16777728,  xid: 2, type: 1G-SFP }
+        - { name: ge0/0/3, id: 16777984,  xid: 3, type: 1G-SFP }
+        - { name: ge0/0/4, id: 16778240,  xid: 4, type: 1G-SFP }
+        - { name: xge0/0/1, id: 16778496,  xid: 5, type: 10G-SFP }
+        - { name: xge0/0/2, id: 16778752,  xid: 6, type: 10G-SFP }
+        - { name: pon0/0/1, id: 16779008,  xid: 7, type: PON, pontype: gpon, _slot: 0, _port: 1 }
+        - { name: pon0/0/2, id: 16779264,  xid: 8, type: PON, pontype: gpon, _slot: 0, _port: 2 }
+        - { name: pon0/0/3, id: 16779520,  xid: 9, type: PON, pontype: gpon, _slot: 0, _port: 3 }
+        - { name: pon0/0/4, id: 16779776,  xid: 10, type: PON, pontype: gpon, _slot: 0, _port: 4 }
+
 
   - name: C-Data FD1608
     key: c_data_fd1608
