@@ -377,6 +377,9 @@ models:
               multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand
               #ctrl_port_descr: \SwitcherCore\Modules\CData\FD16xxV3\PortDescriptionControl
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
+              sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+              sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+              sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
@@ -416,6 +419,9 @@ models:
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -481,6 +487,9 @@ models:
               console_command: \SwitcherCore\Modules\CData\FD16xxV3\RawConsoleCommand
               multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand
               #ctrl_port_descr: \SwitcherCore\Modules\CData\FD16xxV3\PortDescriptionControl
+              sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+              sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+              sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
@@ -521,6 +530,9 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
+      sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
@@ -596,6 +608,9 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+              sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+              sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
             extra:
               pon_type: GPON
@@ -631,6 +646,9 @@ models:
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       ctrl_ont_delete: \SwitcherCore\Modules\CData\OntDeleteGpon
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+      sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+      sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
