@@ -125,3 +125,9 @@
 
 - {name: ont.profile.line, oid: .1.3.6.1.4.1.17409.2.8.4.6.1.1.6}
 - {name: ont.profile.srv, oid: .1.3.6.1.4.1.17409.2.8.4.6.1.1.7}
+
+- {name: ddm.gponPortTemperature, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.1.1.0}
+- {name: ddm.gponPortVoltage, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.2.1.0}
+- {name: ddm.gponPortTxBias, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.3.1.0}
+- {name: ddm.gponPortTxPower, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.4.1.0}
+- {name: ddm.gponPortRxPower, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.5.1.0}
