@@ -18,6 +18,8 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
         $boardTemp = $this->getResponseByName('resources.temperature.board')->fetchOne()->getValue();
         if($boardTemp === 'NULL') {
             $boardTemp = null;
+        } else {
+            $boardTemp = (float)$boardTemp;
         }
         $response = [
             'main' => $boardTemp,

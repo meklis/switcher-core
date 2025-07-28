@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\RouterOS;
+namespace SwitcherCore\Modules\MikrotikCRS;
 
 
 use Exception;

@@ -31,8 +31,8 @@ class SystemTemperatures extends AbstractModule
             }
             $key = str_replace("resources.temperature.", "", $rawOidName);
             $val = $value->fetchOne();
-            $response[$key] = $val->getValue();
-            $response['main'] = $val->getValue();
+            $response[$key] = (float)$val->getValue();
+            $response['main'] = (float)$val->getValue();
             $response['main_from'] = $key;
         }
 
