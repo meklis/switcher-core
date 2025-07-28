@@ -31,8 +31,8 @@ class SystemResources extends AbstractModule
         return [
             'cpu' => [
                 'util' => $this->getResponseByName('resources.cpuUsage')->fetchAll()[0]->getValue(),
-                '_temperature' => (float)($this->getResponseByName('resources.temperature')->fetchAll()[0]->getValue())  ,
-                '_temperature_threshold' => (float)($this->getResponseByName('resources.temperatureTreshhold')->fetchAll()[0]->getValue()),
+                '_temperature' => (float)($this->getResponseByName('resources.temperature.cpu')->fetchAll()[0]->getValue())  ,
+                '_temperature_threshold' => (float)($this->getResponseByName('resources.temperature.cpuTreshhold')->fetchAll()[0]->getValue()),
             ],
             'disk' => null,
             'interfaces' => null,
@@ -55,7 +55,7 @@ class SystemResources extends AbstractModule
         $oids = $this->oids->getOidsByRegex('^resources\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid() . ".0", false);
+            $oArray[] = Oid::init($oid->getOid(), false);
         }
         $this->response = $this->formatResponse($this->snmp->get($oArray));
         return $this;

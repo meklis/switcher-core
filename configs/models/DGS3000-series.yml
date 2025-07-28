@@ -52,6 +52,7 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
  - name: D-link DGS-3000-26TC
    key: dlink_dgs_3000_26tc_a1
    ports: 26
@@ -97,6 +98,7 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
  - name: D-link DGS-3000-28L
    key: dlink_dgs_3000_28l_b1
@@ -144,3 +146,4 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures

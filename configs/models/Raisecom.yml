@@ -37,6 +37,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
  - name: Raisecom ISCOM
    key: raisecom_iscom
@@ -75,6 +76,7 @@ models:
      sfp_diag: \SwitcherCore\Modules\General\SfpDiag
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
   
  - name: Raisecom RAX721
    key: raisecom_rax721
@@ -144,3 +146,4 @@ models:
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures

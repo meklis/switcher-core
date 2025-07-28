@@ -10,6 +10,11 @@
   descr: System resources (CPU, Memory, Temperature)
   arguments:
     - {name: load_only, pattern: '^.*', required: no }
+#Sys dashboard statistic
+- name: sys_temp
+  descr: System temperatures (CPU, Boards, Components)
+  arguments:
+    - {name: load_only, pattern: '^.*', required: no }
 
 #Module for get link info
 - name: link_info
