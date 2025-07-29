@@ -18,25 +18,42 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
 
     function getPrettyFiltered($filter = [])
     {
+        $val = $this->response['physical.sensor.values']->fetchOne();
         $response = [
-            'main' => null,
-            'main_from' => null,
-            'cpu' => null,
+            'main' => $val->getValue() / 10,
+            'main_from' => 'cpu',
+            'cpu' => $val->getValue() / 10,
             'board' => null,
             'sensor' => null,
         ];
-        foreach ($this->response as $rawOidName => $value) {
-            if($value->error()) {
-               continue;
-            }
-            $key = str_replace("resources.temperature.", "", $rawOidName);
-            $val = $value->fetchOne();
-            $response[$key] = (float)$val->getValue() / 10;
-            $response['main'] = (float)$val->getValue() / 10;
-            $response['main_from'] = $key;
-        }
 
         return $response;
+    }
+
+    function getRaw()
+    {
+        return $this->response;
+    }
+
+    function getPretty()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param array $filter
+     * @return $this|AbstractModule
+     * @throws Exception
+     */
+    public function run($filter = [])
+    {
+        $returnedGets = $this->snmp->get(
+            [
+                Oid::init($this->oids->getOidByName('physical.sensor.values')->getOid() . ".100006001"),
+            ]
+        );
+        $this->response = $this->formatResponse($returnedGets);
+        return $this;
     }
 }
 
