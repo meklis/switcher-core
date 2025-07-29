@@ -44,7 +44,6 @@ class SystemResources extends AbstractModule
             'disk' => null,
             'interfaces' => null,
             'cards' => array_values($slots),
-            'temp' => (float)$this->getResponseByName('resources.temp')->fetchOne()->getValue()/100,
         ];
     }
 

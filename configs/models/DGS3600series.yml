@@ -44,3 +44,4 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
