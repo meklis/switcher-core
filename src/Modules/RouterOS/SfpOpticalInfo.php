@@ -20,7 +20,7 @@ class SfpOpticalInfo extends AbstractInterfaces
     }
     protected function _formula_vcc($e)
     {
-        return (float)$e / 100;
+        return (float)$e / 1000;
     }
     protected function _formula_tx_bias($e)
     {
@@ -28,11 +28,11 @@ class SfpOpticalInfo extends AbstractInterfaces
     }
     protected function _formula_tx_power($e)
     {
-        return (float)$e / 100;
+        return (float)$e / 10;
     }
     protected function _formula_rx_power($e)
     {
-        return (float)$e / 100;
+        return (float)$e / 10;
     }
 
     public function run($params = [])
