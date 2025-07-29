@@ -64,12 +64,11 @@ class SystemResources extends AbstractModule
         }
 
         $cpu_util = (int) $this->getResponseByName('hrDevice.hrProcessorLoad')->fetchAll()[0]->getValue();
-        $cpu_temp = (float) $this->getResponseByName('entitySensorMIB.entPhySensorValue')->fetchAll()[0]->getValue() / 10;
 
         return [
             'cpu' => [
                 'util' => $cpu_util,
-                '_temperature' => $cpu_temp,
+                '_temperature' => null,
             ],
             'disk' => null,
             'interfaces' => null,
@@ -89,7 +88,6 @@ class SystemResources extends AbstractModule
     public function run($filter = [])
     {
         $oids[] = $this->oids->getOidByName('hrDevice.hrProcessorLoad')->getOid();
-        $oids[] = $this->oids->getOidByName('entitySensorMIB.entPhySensorValue')->getOid();
         $oids[] = $this->oids->getOidByName('hrStorage.hrStorageSize')->getOid();
         $oids[] = $this->oids->getOidByName('hrStorage.hrStorageUsed.Total')->getOid();
         $oids[] = $this->oids->getOidByName('hrStorage.hrStorageUsed.MemoryInUse')->getOid();

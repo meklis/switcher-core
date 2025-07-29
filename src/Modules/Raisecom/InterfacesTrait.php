@@ -198,13 +198,16 @@ trait InterfacesTrait
         $data = $this->formatResponse($this->snmp->walk([
             Oid::init($this->oids->getOidByName('sfp.mediaConnectorType')->getOid()),
         ]));
-        if($data['sfp.mediaConnectorType']->error()) {
-            throw new \Exception("Error get media types - " . $data['sfp.mediaConnectorType']->error());
-        }
         $ifaceIds = [];
-        foreach ($data['sfp.mediaConnectorType']->fetchAll() as $interface) {
-            $ifaceIds[] = Helper::getIndexByOid($interface->getOid());
-        }
+        try {
+            if ($data['sfp.mediaConnectorType']->error()) {
+                throw new \Exception("Error get media types - " . $data['sfp.mediaConnectorType']->error());
+            }
+            foreach ($data['sfp.mediaConnectorType']->fetchAll() as $interface) {
+                $ifaceIds[] = Helper::getIndexByOid($interface->getOid());
+            }
+
+        } catch (\Throwable $e) {}
 
         $ifcs = $this->getInterfacesIds();
         foreach($ifcs as $k => $ifc) {

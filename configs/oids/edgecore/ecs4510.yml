@@ -6,7 +6,7 @@
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.259.10.1.24.1.39.2.1 }
 #For utilization must calculate as  100 - value = %
 - {name: resources.memFreePrc, oid: .1.3.6.1.4.1.259.10.1.24.1.39.3.4 }
-#- {name: resources.temperature, oid: .1.3.6.1.4.1.259.10.1.24.1.1.11.1.3 }
+- {name: resources.temperature.cpu, oid: .1.3.6.1.4.1.259.10.1.24.1.1.11.1.3 }
 
 # Unknown values
 - {name: port.type, oid: .1.3.6.1.4.1.259.10.1.24.1.2.1.1.3}

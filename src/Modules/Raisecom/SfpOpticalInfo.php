@@ -21,12 +21,17 @@ class SfpOpticalInfo extends AbstractInterfaces {
         } else {
             $check_ifaces = $this->getInterfacesWithConnectorTypeInfo();
         }
+        $oids = [];
         foreach($check_ifaces as $snmp_id => $ifc) {
             if(!$load_only || in_array('temp', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.1");
             if(!$load_only || in_array('tx_bias', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.2");
             if(!$load_only || in_array('tx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.3");
             if(!$load_only || in_array('rx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.4");
             if(!$load_only || in_array('vcc', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.5");
+        }
+        if(!$oids) {
+            $this->response = [];
+            return $this;
         }
         $res = $this->formatResponse($this->snmp->get($oids));
 

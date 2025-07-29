@@ -100,6 +100,7 @@ trait InterfacesTrait
 
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
+            Oid::init($this->oids->getOidByName('ent.physicalName')->getOid()),
         ]);
         $responses = [];
         foreach ($response as $resp) {
@@ -107,44 +108,67 @@ trait InterfacesTrait
             if($resp->getError()) {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
-            $responses[$name->getName()] = $resp->getResponse();
+            $responses[$name->getName()] = $resp;
         }
-        $ifaces = [];
-        foreach ($responses['if.Name'] as $r) {
+        $ifacesMapping = [];
+        foreach ($responses['if.Name']->getResponse() as $r) {
             $id = Helper::getIndexByOid($r->getOid());
             if (preg_match('/^Ethernet(\d{1,3})$/', trim($r->getValue()), $m)) {
                 $slot = 0;
                 $port = $m[1];
-                $ifaces[$id] = [
+                $ifacesMapping[$m[0]] = [
                     'id' => (int) $id,
                     'name' => $m[0],
                     '_snmp_id' => $id,
                     '_port_num' => (int) $port,
                     '_slot' => (int) $slot,
-                    '_physical_id' => $id,
+                    '_physical_id' => null,
                 ];
             } elseif (preg_match('/^Ethernet((\d{1,3})\/(\d{1,2}))$/', trim($r->getValue()), $m)) {
                 $slot = $m[3];
                 $port = $m[2];
-                $ifaces[$id] = [
+                $ifacesMapping[$m[0]] = [
                     'id' => (int) $id,
                     'name' => $m[0],
                     '_snmp_id' => $id,
                     '_port_num' => (int) $port,
                     '_slot' => (int) $slot,
-                    '_physical_id' => $id,
+                    '_physical_id' => null,
                 ];
             } elseif(preg_match('/^Port-Channel(\d{1,3})$/', trim($r->getValue()), $m)) {
                 $port = $m[1];
-                $ifaces[$id] = [
+                $ifacesMapping[$m[0]] = [
                     'id' => (int) $id,
                     'name' => $m[0],
                     '_snmp_id' => $id,
                     '_port_num' => (int) $port,
                     '_slot' => 'Port-Channel',
-                    '_physical_id' => $id,
+                    '_physical_id' => null,
                 ];
             } 
+        }
+        foreach ($responses['ent.physicalName']->getResponse() as $r) {
+            $id = Helper::getIndexByOid($r->getOid());
+            if(isset($ifacesMapping[$r->getValue()])) {
+                $ifacesMapping[$r->getValue()]['_physical_id'] = $id;
+            }
+            if (preg_match('/^DOM (.*?)\s.*Sensor for (.*)$/', trim($r->getValue()), $m)) {
+                if(isset($ifacesMapping[$m[2]])) {
+                    $ifacesMapping[$m[2]]['_sensor_ids'][strtolower($m[1])] = $id;
+                }
+            } elseif (preg_match('/^Xcvr for (.*?): model (.*) type (.*) media (.*)$/', trim($r->getValue()), $m)) {
+                if(isset($ifacesMapping[$m[1]])) {
+                    $ifacesMapping[$m[1]]['_sfp'] = [
+                        'model' => $m[2],
+                        'type' => $m[3],
+                        'media' => $m[4],
+                    ];
+                }
+            }
+        }
+        $ifaces = [];
+        foreach ($ifacesMapping as $name => $data) {
+            $ifaces[$data['id']] = $data;
         }
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);
