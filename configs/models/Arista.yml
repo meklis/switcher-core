@@ -30,3 +30,6 @@ models:
     multi_console_command: \SwitcherCore\Modules\Arista\MultiRawConsoleCommand
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
     sys_temp: \SwitcherCore\Modules\Arista\SystemTemperatures
+    sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+    sfp_optical: \SwitcherCore\Modules\Arista\SfpOpticalInfo
+    sfp_media: \SwitcherCore\Modules\Arista\SfpMediaInfo
