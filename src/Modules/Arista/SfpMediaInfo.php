@@ -2,13 +2,7 @@
 
 namespace SwitcherCore\Modules\Arista;
 
-use SnmpWrapper\Oid;
-use SnmpWrapper\Request\PoollerRequest;
-use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
-use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
-use SwitcherCore\Modules\Helper;
 
 class SfpMediaInfo extends AbstractInterfaces
 {
