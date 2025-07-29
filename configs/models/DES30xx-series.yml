@@ -56,6 +56,7 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
 
  - name: D-link DES-3028
    key: dlink_des_3028
@@ -104,7 +105,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
  - name: D-link DES-3052
    key: dlink_des_3052g
@@ -198,4 +198,3 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
