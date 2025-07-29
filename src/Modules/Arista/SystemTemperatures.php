@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitcherCore\Modules\MikrotikCRS;
+namespace SwitcherCore\Modules\Arista;
 
 
 use Exception;
@@ -31,11 +31,8 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
             }
             $key = str_replace("resources.temperature.", "", $rawOidName);
             $val = $value->fetchOne();
-            if($key === 'cpu') {
-                $val /= 10;
-            }
-            $response[$key] = (float)$val->getValue();
-            $response['main'] = (float)$val->getValue();
+            $response[$key] = (float)$val->getValue() / 10;
+            $response['main'] = (float)$val->getValue() / 10;
             $response['main_from'] = $key;
         }
 

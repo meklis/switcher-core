@@ -45,6 +45,7 @@ models:
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\HuaweiOLT\SystemTemperatures
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -94,6 +95,7 @@ models:
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\HuaweiOLT\SystemTemperatures
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -143,6 +145,7 @@ models:
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\HuaweiOLT\SystemTemperatures
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -193,6 +196,7 @@ models:
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\HuaweiOLT\SystemTemperatures
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -243,6 +247,7 @@ models:
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\HuaweiOLT\SystemTemperatures
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:
@@ -293,6 +298,7 @@ models:
       pon_onts_mac_addr: \SwitcherCore\Modules\HuaweiOLT\OntMacAddress
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\HuaweiOLT\SystemTemperatures
     extra:
       console_conn_type: huawei_ma
       console_commands_after_connect:

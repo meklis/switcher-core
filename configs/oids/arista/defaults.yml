@@ -1,5 +1,5 @@
 - {name: hrDevice.hrProcessorLoad, oid: .1.3.6.1.2.1.25.3.3.1.2.1 } # CPU Load in %
-- {name: entitySensorMIB.entPhySensorValue, oid: .1.3.6.1.2.1.99.1.1.1.4.100006001 } # CPU Temp Sensor in Celsius, need to be divide by 10 (Arista Networks EOS version 4.29.8M on Arista Networks DCS-7060SX2-48YC6)
+- {name: resources.temperature.cpu, oid: .1.3.6.1.2.1.99.1.1.1.4.100006001 } # CPU Temp Sensor in Celsius, need to be divide by 10 (Arista Networks EOS version 4.29.8M on Arista Networks DCS-7060SX2-48YC6)
 
 ### Free memory = (Total RAM – Used RAM) + Buffers + Cache  ( https://arista.my.site.com/AristaCommunity/s/article/memory-utilization-on-eos-devices#Comm_Kna_ka08C0000008SHcQAM_45 )
 - {name: hrStorage.hrStorageSize, oid: .1.3.6.1.2.1.25.2.3.1.5.1 } # Total RAM
