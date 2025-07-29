@@ -80,4 +80,8 @@ models:
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      interfaces_list: \SwitcherCore\Modules\RouterOS\InterfacesList
      sys_temp: \SwitcherCore\Modules\RouterOS\SystemTemperatures
+     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+     sfp_optical: \SwitcherCore\Modules\RouterOS\SfpOpticalInfo
+     sfp_media: \SwitcherCore\Modules\RouterOS\SfpMediaInfo
+
 
