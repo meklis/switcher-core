@@ -30,12 +30,12 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
                continue;
             }
             $key = str_replace("resources.temperature.", "", $rawOidName);
-            $val = $value->fetchOne();
-            if($key === 'cpu') {
+            $val = $value->fetchOne()->getValue();
+            if($key === 'cpu' && is_numeric($val)) {
                 $val /= 10;
             }
-            $response[$key] = (float)$val->getValue();
-            $response['main'] = (float)$val->getValue();
+            $response[$key] = (float)$val;
+            $response['main'] = (float)$val;
             $response['main_from'] = $key;
         }
 
