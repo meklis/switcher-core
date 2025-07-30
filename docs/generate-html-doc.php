@@ -142,7 +142,7 @@ $buildTable = function ($modulesList, $devicesList) use ($modulesData)
     $hmodels = '';
     foreach ($devicesList as $device) {
         $hmodels .= "
-            <tr><th class='device-name'>{$device['name']}</th>
+            <tr><th class='device-name'>{$device['name']}<br><span style='font-size: 90%; color: gray'>{$device['key']}</span></th>
         ";
         foreach ($modulesList as $moduleName ) {
             $exist = in_array($moduleName, $device['modules']) ? "+" : "-";
