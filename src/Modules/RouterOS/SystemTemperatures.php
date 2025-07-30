@@ -19,9 +19,9 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
     function getPrettyFiltered($filter = [])
     {
         $response = [
-            'main' => (float)$this->getResponseByName('resources.temperature.cpu')->fetchAll()[0]->getValue() / 10,
+            'main' => (float)$this->getResponseByName('sensors.temperature.cpu')->fetchAll()[0]->getValue() / 10,
             'main_from' => 'cpu',
-            'cpu' => (float)$this->getResponseByName('resources.temperature.cpu')->fetchAll()[0]->getValue() / 10,
+            'cpu' => (float)$this->getResponseByName('sensors.temperature.cpu')->fetchAll()[0]->getValue() / 10,
             'board' => null,
             'cards' => null,
         ];
@@ -47,7 +47,7 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
     public function run($filter = [])
     {
         $returnedGets = $this->snmp->get([
-            Oid::init($this->oids->getOidByName('resources.temperature.cpu')->getOid())
+            Oid::init($this->oids->getOidByName('sensors.temperature.cpu')->getOid())
         ]);
         $this->response = $this->formatResponse($returnedGets);
         return $this;

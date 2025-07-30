@@ -29,7 +29,7 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
             if($value->error()) {
                 throw new \SNMPException($value->error());
             }
-            $key = str_replace("resources.temperature.", "", $rawOidName);
+            $key = str_replace("sensors.temperature.", "", $rawOidName);
             $val = $value->fetchOne();
             $response[$key] = (float)$val->getValue() / 100;
             $response['main'] = (float)$val->getValue()/ 100;

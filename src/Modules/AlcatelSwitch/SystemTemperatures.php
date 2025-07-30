@@ -14,7 +14,7 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
     public function run($filter = [])
     {
         $returnedGets = $this->snmp->get([
-            Oid::init($this->oids->getOidByName('resources.temperature.board')->getOid())
+            Oid::init($this->oids->getOidByName('sensors.temperature.board')->getOid())
         ]);
         $this->response = $this->formatResponse($returnedGets);
         return $this;

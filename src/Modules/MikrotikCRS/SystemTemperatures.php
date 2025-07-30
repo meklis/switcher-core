@@ -29,7 +29,7 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
             if($value->error()) {
                continue;
             }
-            $key = str_replace("resources.temperature.", "", $rawOidName);
+            $key = str_replace("sensors.temperature.", "", $rawOidName);
             $val = $value->fetchOne()->getValue();
             if($key === 'cpu' && is_numeric($val)) {
                 $val /= 10;

@@ -32,9 +32,6 @@ class SystemResources extends AbstractModule
             'cpu' => [
                 'util' => (int)$this->getResponseByName('resources.cpuUtil')->fetchAll()[0]->getValue(),
             ],
-            'temperature' => [
-                'main_board' => (float)($this->getResponseByName('resources.temperature.cpu')->fetchAll()[0]->getValue()),
-            ],
             'disk' => null,
             'interfaces' => null,
             'cards' => null,

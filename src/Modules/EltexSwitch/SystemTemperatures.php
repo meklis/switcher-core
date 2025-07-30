@@ -15,7 +15,7 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
 
     function getPrettyFiltered($filter = [])
     {
-        $boardTemp = $this->getResponseByName('resources.temperature.board')->fetchOne()->getValue();
+        $boardTemp = $this->getResponseByName('sensors.temperature.board')->fetchOne()->getValue();
         if($boardTemp === 'NULL') {
             $boardTemp = null;
         } else {
@@ -50,7 +50,7 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
     public function run($filter = [])
     {
         $returnedGets = $this->snmp->walk([
-            Oid::init($this->oids->getOidByName('resources.temperature.board')->getOid())
+            Oid::init($this->oids->getOidByName('sensors.temperature.board')->getOid())
         ]);
         $this->response = $this->formatResponse($returnedGets);
         return $this;
