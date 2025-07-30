@@ -31,9 +31,6 @@ class SystemResources extends AbstractModule
         if($this->response['hrDevice.hrProcessorLoad']->error()) {
             throw new \Exception("Returned error {$this->response['hrDevice.hrProcessorLoad']->error()} from {$this->response['hrDevice.hrProcessorLoad']->getRaw()->ip}");
         }
-        if($this->response['entitySensorMIB.entPhySensorValue']->error()) {
-            throw new \Exception("Returned error {$this->response['entitySensorMIB.entPhySensorValue']->error()} from {$this->response['entitySensorMIB.entPhySensorValue']->getRaw()->ip}");
-        }
 
         if($this->response['hrStorage.hrStorageSize']->error()) {
             throw new \Exception("Returned error {$this->response['hrStorage.hrStorageSize']->error()} from {$this->response['hrStorage.hrStorageSize']->getRaw()->ip}");

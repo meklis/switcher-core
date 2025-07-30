@@ -17,7 +17,7 @@ class SystemResources extends ExecCommand
             'cpu' => [
                 'util' => $this->response['cpu-load'],
                 '_cpu_count' => $this->response['cpu-count'],
-                '_frequency' => $this->response['cpu-frequency'],
+                '_frequency' => isset($this->response['cpu-frequency']) ? $this->response['cpu-frequency'] : null,
             ],
             'memory' => [
                 'util' => round(100-($this->response['free-memory'] / $this->response['total-memory'] * 100), 2),

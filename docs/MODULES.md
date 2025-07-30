@@ -12,7 +12,7 @@
       
     
     
-### [address_list_info](#address_list_info) - Информация по адрес-листам (Router OS) 
+### [address_list_info](#address_list_info) - Address lists info (Router OS) 
     
 **Аргументы:**    
 - **_id**, проверка выражением: *.**    
@@ -1820,14 +1820,14 @@
 </details>
             
     
-### [analog_lines_list](#analog_lines_list) - List of output power interfaces 
+### [analog_lines_list](#analog_lines_list) - Analog line statuses 
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,3}$*    
       
     
     
-### [arp_info](#arp_info) - ARP таблица 
+### [arp_info](#arp_info) - ARP table 
     
 **Аргументы:**    
 - **ip**, проверка выражением: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*    
@@ -15015,7 +15015,28 @@
 </details>
             
     
-### [bgp_sessions](#bgp_sessions) - Информация о BGP 
+### [arps](#arps) - ARP information 
+    
+**Аргументы:**    
+- **ip**, проверка выражением: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*    
+- **vlan_id**, проверка выражением: *^[0-9]{1,4}$*    
+- **mac**, проверка выражением: *^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$*    
+      
+    
+    
+### [bgp_info](#bgp_info) - BGP information 
+      
+    
+    
+### [bgp_peer_routes](#bgp_peer_routes) - BGP information 
+      
+    
+    
+### [bgp_peers](#bgp_peers) - BGP information 
+      
+    
+    
+### [bgp_sessions](#bgp_sessions) - BGP-sessions 
     
 **Аргументы:**    
 - **_id**, проверка выражением: *.**    
@@ -15023,7 +15044,7 @@
       
     
     
-### [cable_diag](#cable_diag) -  
+### [cable_diag](#cable_diag) - Cable diagnostic 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -15353,11 +15374,11 @@
       
     
     
-### [card_status](#card_status) - Returning card status 
+### [card_status](#card_status) - Slots information and statuses 
       
     
     
-### [clear_counters](#clear_counters) - Очистка счетчиков (во всей системе) 
+### [clear_counters](#clear_counters) - Reset counters 
       
 <details>
 <summary>Пример ответа</summary>
@@ -15375,14 +15396,21 @@ true
 </details>
             
     
-### [console_command](#console_command) -  
+### [clear_iface_counters](#clear_iface_counters) - Reset counters on specified interface 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *^.*$*, обязательный    
+      
+    
+    
+### [console_command](#console_command) - Execute command in console 
     
 **Аргументы:**    
 - **command**, проверка выражением: *.**, обязательный    
       
     
     
-### [counters](#counters) - Счетчики на портах 
+### [counters](#counters) - Traffic 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -15768,7 +15796,7 @@ true
 </details>
             
     
-### [ctrl_analog_line](#ctrl_analog_line) - Configure power output control 
+### [ctrl_analog_line](#ctrl_analog_line) - Configure analog line name 
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,3}$*, обязательный    
@@ -15776,7 +15804,7 @@ true
       
     
     
-### [ctrl_digital_line](#ctrl_digital_line) - Configure power output control 
+### [ctrl_digital_line](#ctrl_digital_line) - Configure digital line(name, state, direction) 
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,3}$*, обязательный    
@@ -15786,29 +15814,29 @@ true
       
     
     
-### [ctrl_ont_clear_counters](#ctrl_ont_clear_counters) - Clear counters 
+### [ctrl_ont_clear_counters](#ctrl_ont_clear_counters) - Clear counters on ONU 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
       
     
     
-### [ctrl_ont_delete](#ctrl_ont_delete) - Удаление ОНУ 
+### [ctrl_ont_delete](#ctrl_ont_delete) - Delete ONU 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
       
     
     
-### [ctrl_ont_descr](#ctrl_ont_descr) - Установка описания ОНУ 
+### [ctrl_ont_descr](#ctrl_ont_descr) - Change ONU description 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
-- **description**, проверка выражением: *^[0-9a-zA-Z_]{0,}$*, обязательный    
+- **description**, проверка выражением: *^.*$*, обязательный    
       
     
     
-### [ctrl_ont_disable](#ctrl_ont_disable) - Включение/отключение ОНУ 
+### [ctrl_ont_disable](#ctrl_ont_disable) - Enable/Disable ONU 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
@@ -15816,21 +15844,21 @@ true
       
     
     
-### [ctrl_ont_reboot](#ctrl_ont_reboot) - Ребут ОНУ 
+### [ctrl_ont_reboot](#ctrl_ont_reboot) - ONU reboot 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
       
     
     
-### [ctrl_ont_reset](#ctrl_ont_reset) - Сброс ОНУ 
+### [ctrl_ont_reset](#ctrl_ont_reset) - Reset ONU 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
       
     
     
-### [ctrl_ont_uni_admin_state](#ctrl_ont_uni_admin_state) - Setting device name 
+### [ctrl_ont_uni_admin_state](#ctrl_ont_uni_admin_state) - Set eth port state on ONU 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**, обязательный    
@@ -15839,7 +15867,7 @@ true
       
     
     
-### [ctrl_port_descr](#ctrl_port_descr) - Установка описания порта 
+### [ctrl_port_descr](#ctrl_port_descr) - Set port description 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
@@ -15861,7 +15889,7 @@ true
 </details>
             
     
-### [ctrl_port_speed](#ctrl_port_speed) - Установка скорости на порту 
+### [ctrl_port_speed](#ctrl_port_speed) - Set interface speed 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
@@ -15869,7 +15897,7 @@ true
       
     
     
-### [ctrl_port_state](#ctrl_port_state) - Установка административного состояния порта(включение/отключение) 
+### [ctrl_port_state](#ctrl_port_state) - Change port state 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*, обязательный    
@@ -15933,7 +15961,7 @@ true
       
     
     
-### [ctrl_static_lease](#ctrl_static_lease) - Управление лизами 
+### [ctrl_static_lease](#ctrl_static_lease) - Lease control 
     
 **Аргументы:**    
 - **action**, проверка выражением: *^(add|remove)$*, обязательный    
@@ -15946,7 +15974,7 @@ true
       
     
     
-### [ctrl_vlan_port](#ctrl_vlan_port) - Управление вланами на порту устройства 
+### [ctrl_vlan_port](#ctrl_vlan_port) - VLAN control on port 
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,4}$*, обязательный    
@@ -15956,7 +15984,7 @@ true
       
     
     
-### [ctrl_vlan_state](#ctrl_vlan_state) - Управление вланами на устройстве 
+### [ctrl_vlan_state](#ctrl_vlan_state) - VLAN control 
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,4}$*    
@@ -15965,7 +15993,14 @@ true
       
     
     
-### [dhcp_server_info](#dhcp_server_info) - Список DHCP-серверов и их конфиг (RouterOS devices) 
+### [ddm_info](#ddm_info) -  
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *^.**    
+      
+    
+    
+### [dhcp_server_info](#dhcp_server_info) - DHCP-servers info (RouterOS devices) 
     
 **Аргументы:**    
 - **name**, проверка выражением: *^.*$*    
@@ -16003,14 +16038,18 @@ true
 </details>
             
     
-### [digital_lines_list](#digital_lines_list) - List of output power interfaces 
+### [digital_lines_list](#digital_lines_list) - Digital line statuses 
     
 **Аргументы:**    
 - **id**, проверка выражением: *^[0-9]{1,3}$*    
       
     
     
-### [errors](#errors) - Ошибки на портах 
+### [direct_routes](#direct_routes) -  
+      
+    
+    
+### [errors](#errors) - Errors counters 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -16340,7 +16379,7 @@ true
 </details>
             
     
-### [fdb](#fdb) - FDB-таблица 
+### [fdb](#fdb) - FDB-table (user mac addresses) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -16373,11 +16412,11 @@ true
 </details>
             
     
-### [gpon_profiles](#gpon_profiles) - List ONU profiles for GPON 
+### [gpon_profiles](#gpon_profiles) - Profiles 
       
     
     
-### [interface_counters](#interface_counters) - Return counters by interface or whole interfaces 
+### [interface_counters](#interface_counters) - Traffic counters 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -16385,7 +16424,7 @@ true
       
     
     
-### [interface_descriptions](#interface_descriptions) - Return interface description 
+### [interface_descriptions](#interface_descriptions) - Interface descriptions 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -16394,14 +16433,22 @@ true
       
     
     
-### [interface_info](#interface_info) - Информация по интерфейсам (on L3 devices) 
+### [interface_info](#interface_info) - Interface info (on L3 devices) 
     
 **Аргументы:**    
 - **name**, проверка выражением: *^[0-9a-zA-Z_-]{1,16}$*    
       
     
     
-### [interface_vlan_info](#interface_vlan_info) - Информация по интерфейсам (vlans on L3 devices) 
+### [interface_rate_limits](#interface_rate_limits) -  
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+- **load_only**, проверка выражением: *.**    
+      
+    
+    
+### [interface_vlan_info](#interface_vlan_info) - Vlans on L3 devices 
     
 **Аргументы:**    
 - **name**, проверка выражением: *^[0-9a-zA-Z_-]{1,16}$*    
@@ -16430,7 +16477,7 @@ true
 </details>
             
     
-### [interfaces_list](#interfaces_list) -  
+### [interfaces_list](#interfaces_list) - Возвращает список интерфейсов (Стандартизированный модуль) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -16794,7 +16841,7 @@ true
 </details>
             
     
-### [interfaces_status](#interfaces_status) -  
+### [interfaces_status](#interfaces_status) - Возвращает список интерфейсов c их состоянием (Стандартизированный модуль) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -17386,7 +17433,7 @@ true
       
     
     
-### [lease_info](#lease_info) - Lease таблица 
+### [lease_info](#lease_info) - Lease table 
     
 **Аргументы:**    
 - **ip**, проверка выражением: *^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$*    
@@ -17491,7 +17538,7 @@ true
 </details>
             
     
-### [link_info](#link_info) - Информация о портах (для свитчей) 
+### [link_info](#link_info) - Physical port statuses 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -18025,11 +18072,29 @@ true
 </details>
             
     
-### [multi_console_command](#multi_console_command) -  
+### [lldp_info](#lldp_info) -  
+    
+**Аргументы:**    
+- **load_only**, проверка выражением: *^.**    
+      
+    
+    
+### [multi_console_command](#multi_console_command) - Execute commands in console (for macros or ONU registration) 
     
 **Аргументы:**    
 - **commands**, проверка выражением: *.**, обязательный    
 - **break_on_error**, проверка выражением: *(yes|no)*    
+      
+    
+    
+### [net_settings](#net_settings) -  
+      
+    
+    
+### [onu_ip_host](#onu_ip_host) -  
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**, обязательный    
       
     
     
@@ -18044,7 +18109,7 @@ true
       
     
     
-### [pon_fdb](#pon_fdb) - Returned FDB table on ONTs 
+### [pon_fdb](#pon_fdb) - Returned FDB table on ONUs 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -18081,7 +18146,7 @@ true
 </details>
             
     
-### [pon_interface_counters](#pon_interface_counters) - Returned FDB table on ONTs 
+### [pon_interface_counters](#pon_interface_counters) - Returned FDB table on ONUs 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -18095,7 +18160,7 @@ true
       
     
     
-### [pon_onts_configuration](#pon_onts_configuration) - Returned onts statuses 
+### [pon_onts_configuration](#pon_onts_configuration) - ONU configuration 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -18110,10 +18175,11 @@ true
       
     
     
-### [pon_onts_mac_addr](#pon_onts_mac_addr) - Returned ONTs MAC addresses (for EPON) 
+### [pon_onts_mac_addr](#pon_onts_mac_addr) - ONUs MAC addresses (for EPON) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
+- **use_cache**, проверка выражением: *(no|yes)*    
       
 <details>
 <summary>Пример ответа</summary>
@@ -18158,7 +18224,7 @@ true
 </details>
             
     
-### [pon_onts_optical](#pon_onts_optical) - Returned ONTs MAC addresses 
+### [pon_onts_optical](#pon_onts_optical) - Optical information (rx, tx, olt rx, distance) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -20228,22 +20294,23 @@ true
 </details>
             
     
-### [pon_onts_reasons](#pon_onts_reasons) - Returned ONTs MAC addresses 
+### [pon_onts_reasons](#pon_onts_reasons) - Offline reasons and time/duration of change statuses 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
       
     
     
-### [pon_onts_serial](#pon_onts_serial) - Returned ONTs serial number (for GPON) 
+### [pon_onts_serial](#pon_onts_serial) - ONUs serial number (for GPON) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
 - **sn_as_ascii**, проверка выражением: *.**    
+- **use_cache**, проверка выражением: *(no|yes)*    
       
     
     
-### [pon_onts_status](#pon_onts_status) - Returned onts statuses 
+### [pon_onts_status](#pon_onts_status) - ONU statuses (Online, Offline, PowerOff, LOS eth) 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -23422,7 +23489,7 @@ true
 </details>
             
     
-### [pon_onts_vendor](#pon_onts_vendor) - Returned ONTs MAC addresses 
+### [pon_onts_vendor](#pon_onts_vendor) - ONU vendor info 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *.**    
@@ -23441,6 +23508,10 @@ true
       
     
     
+### [pon_profiles](#pon_profiles) - Return list of profiles on OLT (included EPON/GPON data) 
+      
+    
+    
 ### [power_control_output_list](#power_control_output_list) - List of output power interfaces 
     
 **Аргументы:**    
@@ -23452,7 +23523,11 @@ true
       
     
     
-### [pvid](#pvid) - PVID таблица 
+### [power_status](#power_status) -  
+      
+    
+    
+### [pvid](#pvid) - PVID 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -23478,11 +23553,11 @@ true
 </details>
             
     
-### [reboot](#reboot) - Перезагрузка устройства 
+### [reboot](#reboot) - Reboot device 
       
     
     
-### [rmon](#rmon) - RMON статистика (более детальная инфа о ошибках) 
+### [rmon](#rmon) - RMON statistic 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -23896,7 +23971,7 @@ true
 </details>
             
     
-### [save_config](#save_config) - Сохранение конфигурации 
+### [save_config](#save_config) - Save system config 
       
 <details>
 <summary>Пример ответа</summary>
@@ -23914,7 +23989,7 @@ true
 </details>
             
     
-### [sfp_diag](#sfp_diag) - SFP information and diagnostic 
+### [sfp_diag](#sfp_diag) - SFP information 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
@@ -23928,17 +24003,18 @@ true
       
     
     
-### [sfp_media](#sfp_media) - SFP media information (vendor, model, eth.) 
+### [sfp_media](#sfp_media) - SFP media info 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
       
     
     
-### [sfp_optical](#sfp_optical) - SFP optical information (RX, TX, Vcc, Bias, distance, etc.) 
+### [sfp_optical](#sfp_optical) - SFP signals 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
+- **load_only**, проверка выражением: *^.*$*    
       
     
     
@@ -34967,14 +35043,25 @@ true
       
     
     
-### [sys_resources](#sys_resources) - External system information (CPU/Memory/Temperature) 
+### [supported_modules](#supported_modules) - Returning supported modules for calling 
+      
+    
+    
+### [sys_resources](#sys_resources) - System resources (CPU, Memory, Temperature) 
     
 **Аргументы:**    
 - **load_only**, проверка выражением: *^.**    
       
     
     
-### [system](#system) - Системная информация о устройстве 
+### [sys_temp](#sys_temp) - System temperatures (CPU, Boards, Components) 
+    
+**Аргументы:**    
+- **load_only**, проверка выражением: *^.**    
+      
+    
+    
+### [system](#system) - System information (uptime, description, mac-address, serial) 
       
 <details>
 <summary>Пример ответа</summary>
@@ -35118,7 +35205,7 @@ true
       
     
     
-### [unregistered_onts](#unregistered_onts) -  
+### [unregistered_onts](#unregistered_onts) - List unregistered ONUs 
     
 **Аргументы:**    
 - **type**, проверка выражением: *^(all|gpon|epon)$*    
@@ -35126,7 +35213,11 @@ true
       
     
     
-### [vlans](#vlans) - Информация о вланах на устройстве 
+### [vlan_list](#vlan_list) - Vlan list 
+      
+    
+    
+### [vlans](#vlans) - Vlan list 
     
 **Аргументы:**    
 - **vlan_id**, проверка выражением: *^[0-9]{1,4}$*    
@@ -35495,7 +35586,7 @@ true
 </details>
             
     
-### [vlans_by_port](#vlans_by_port) - Информация о вланах на портах 
+### [vlans_by_port](#vlans_by_port) - Vlans by port 
     
 **Аргументы:**    
 - **interface**, проверка выражением: *^.*$*    
