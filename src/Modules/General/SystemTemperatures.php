@@ -57,7 +57,7 @@ class SystemTemperatures extends AbstractModule
     public function run($filter = [])
     {
         $returnedGets = $this->snmp->walk(
-            array_map(function ($e) {return Oid::init($e->getOid()); }, $this->oids->getOidsByRegex('resources.temperature\..*'))
+            array_map(function ($e) {return Oid::init($e->getOid()); }, $this->oids->getOidsByRegex('sensors.temperature\..*'))
         );
         $this->response = $this->formatResponse($returnedGets);
         return $this;
