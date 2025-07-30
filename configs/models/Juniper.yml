@@ -39,7 +39,7 @@ models:
 
 - name: Juniper JNP204 series
   key: juniper_jnp204_series
-  device_type: L3
+  device_type: ROUTER
   oids:
     - ./oids/juniper.yml
   inputs:
