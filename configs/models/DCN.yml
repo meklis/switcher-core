@@ -28,4 +28,7 @@ models:
     pvid: \SwitcherCore\Modules\DCN\PvidDot1q
     console_command: \SwitcherCore\Modules\DCN\RawConsoleCommand
     multi_console_command: \SwitcherCore\Modules\DCN\MultiRawConsoleCommand
+    sfp_media: \SwitcherCore\Modules\DCN\SfpMediaInfo
+    sfp_optical: \SwitcherCore\Modules\DCN\SfpOpticalInfo
+    sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     supported_modules: \SwitcherCore\Modules\General\SupportedModules

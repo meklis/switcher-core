@@ -2,3 +2,15 @@
 - {name: switchinfo.switchCpuUsage, oid: .1.3.6.1.4.1.6339.100.1.11.10 } # CPU Load in %
 - {name: switchinfo.switchTemperature, oid: .1.3.6.1.4.1.6339.100.1.11.9.0 } # Temperature in Celsius
 - {name: switchinfo.switchMemoryUsage, oid: .1.3.6.1.4.1.6339.100.1.11.11.0 } # Used Memory in %
+
+- {name: sfp.transceiverSn, oid: 1.3.6.1.4.1.6339.100.3.2.1.28}
+- {name: sfp.interfaceType, oid: .1.3.6.1.4.1.6339.100.30.3.1.6} # "1000BASE-LX"
+- {name: sfp.vendorInfo, oid: .1.3.6.1.4.1.6339.100.30.3.1.4}
+- {name: sfp.maxBandwidth, oid: .1.3.6.1.4.1.6339.100.30.3.1.7} #string like '1300Mbit/s'
+- {name: sfp.waveLength, oid: .1.3.6.1.4.1.6339.100.30.3.1.8} #string like '1310nm'
+
+- {name: sfp.ddmDiagnosisTemperature, oid: 1.3.6.1.4.1.6339.100.30.1.1.2} #string
+- {name: sfp.ddmDiagnosisVoltage, oid: 1.3.6.1.4.1.6339.100.30.1.1.7} #string
+- {name: sfp.ddmDiagnosisBias, oid: 1.3.6.1.4.1.6339.100.30.1.1.12} #string
+- {name: sfp.ddmDiagnosisRXPower, oid: 1.3.6.1.4.1.6339.100.30.1.1.17} #string
+- {name: sfp.ddmDiagnosisTXPower, oid: 1.3.6.1.4.1.6339.100.30.1.1.22} #string
