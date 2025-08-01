@@ -77,6 +77,12 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
             Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true),
         ]));
         $ports_list = [];
+        foreach ($this->getResponseByName('dlink.PortInfoMediumType')->fetchAll() as $ident) {
+            $port = Helper::getIndexByOid($ident->getOid());
+            if($ident->getParsedValue() == 'Fiber') {
+                 $ports_list[$port] = true;
+            }
+        }
         if($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             foreach ($ports_list as $port=>$pairs) {
@@ -84,13 +90,7 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
                     unset($ports_list[$port]);
                 }
             }
-            return $ports_list;
-        }
-        foreach ($this->getResponseByName('dlink.PortInfoMediumType')->fetchAll() as $ident) {
-            $port = Helper::getIndexByOid($ident->getOid());
-            if($ident->getParsedValue() == 'Fiber') {
-                 $ports_list[$port] = true;
-            }
+        //  return $ports_list;
         }
         return $ports_list;
     }
