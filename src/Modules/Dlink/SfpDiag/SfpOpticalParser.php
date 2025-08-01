@@ -31,9 +31,9 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
 
     public function run($filter = [])
     {
-        Helper::prepareFilter($params);
+        Helper::prepareFilter($filter);
         $load_only = false;
-        if($params['load_only']) $load_only = explode(',', $params['load_only']);
+        if($filter['load_only']) $load_only = explode(',', $filter['load_only']);
         $ports_list = $this->getPortList($filter);
         $results = [];
         foreach ($ports_list as $port=>$count_pairs) {
@@ -50,6 +50,7 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
                 'vcc' => null,
                 'rx_power' => null,
                 'tx_power' => null,
+                'tx_bias' => null,
             ];
             try {
                 $result['temp'] = $this->getResponseByName('sfp.ddm.temp')->fetchOne()->getParsedValue();
