@@ -147,7 +147,7 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
         $oids = [];
         foreach ($statuses as $index=>$status) {
             if($status['status'] != 'Online') {
-                $oids[] = Oid::init("{$oid}.{$status['interface']['id']}");
+                $oids[] = Oid::init("{$oid}.{$status['interface']['_snmp_id']}");
             } else {
                 $statuses[$index]['bind_status'] = $status['status'];
             }
@@ -161,8 +161,9 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
         }
         foreach ($responses['ont.lastDownReason']->fetchAll() as $resp) {
             $index = Helper::getIndexByOid($resp->getOid());
+            $iface = $this->parseInterface($index);
             if($resp->getParsedValue() !== 'Unknown') {
-                $statuses[$index]['bind_status'] = $resp->getParsedValue();
+                $statuses[$iface['id']]['bind_status'] = $resp->getParsedValue();
             }
         }
         return  $statuses;

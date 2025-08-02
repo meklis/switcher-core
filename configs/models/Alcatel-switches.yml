@@ -7,6 +7,8 @@ models:
     - snmp
     - console
   detect: {description: .*,  objid: ^.1.3.6.1.4.1.6486 }
+  oids:
+    - ./oids/alcatel.yml
   extra:
     console_conn_type: alcatel
   modules:
@@ -30,3 +32,4 @@ models:
     net_settings: \SwitcherCore\Modules\General\NetSettings
     clear_iface_counters: SwitcherCore\Modules\AlcatelSwitch\ClearIfaceCounters
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    sys_temp: \SwitcherCore\Modules\AlcatelSwitch\SystemTemperatures

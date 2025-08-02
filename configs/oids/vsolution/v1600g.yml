@@ -7,7 +7,7 @@
 
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.3.0}
 - {name: resources.memUtil, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.4.0}
-- {name: resources.temperature, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.9.0}
+- {name: sensors.temperature.cpu, oid: .1.3.6.1.4.1.37950.1.1.5.10.12.5.9.0}
 
 - {name: pon.port.optical.temp, oid: .1.3.6.1.4.1.37950.1.1.5.10.13.1.1.2}
 - {name: pon.port.optical.voltage, oid: .1.3.6.1.4.1.37950.1.1.5.10.13.1.1.3}

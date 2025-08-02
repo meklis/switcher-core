@@ -105,6 +105,16 @@ trait InterfacesTrait
                     '_port' => $m[2],
                 ];
             }
+            if (preg_match('/^Ethernet ([0-9]{1,3})\/([0-9]{1,3})$/', $r->getValue(), $m)) {
+                $id = Helper::getIndexByOid($r->getOid());
+                $ifaces[Helper::getIndexByOid($r->getOid())] = [
+                    'id' => (int)$id,
+                    'name' => "{$m[1]}/{$m[2]}",
+                    '_snmp_id' => $id,
+                    '_unit' => $m[1],
+                    '_port' => $m[2],
+                ];
+            }
         }
         $this->_interfaces = $ifaces;
         $this->setCache("INTERFACES", $ifaces, 600, true);

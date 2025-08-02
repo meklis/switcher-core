@@ -215,6 +215,10 @@ class Model
         return $ifacesCount == $this->detect['ifacesCount'];
     }
 
+    /**
+     * @param $name
+     * @return string
+     */
     public function getOidByName($name)
     {
         if (isset($this->oids[$name])) {

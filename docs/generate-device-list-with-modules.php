@@ -4,7 +4,6 @@ require  __DIR__ . "/../vendor/autoload.php";
 
 $reader = new \SwitcherCore\Config\Reader(__DIR__ . "/../configs");
 
-
 $devices = $reader->readModels();
 $supportDevices = [];
 foreach ($devices as $dev) {

@@ -70,6 +70,7 @@
     <th class="headers">Device model</th>
     <th class='module-name-header'>System information (uptime, description, mac-address, serial)<br><span class='module-key-name'>system</span></th>
 <th class='module-name-header'>System resources (CPU, Memory, Temperature)<br><span class='module-key-name'>sys_resources</span></th>
+<th class='module-name-header'>System temperatures (CPU, Boards, Components)<br><span class='module-key-name'>sys_temp</span></th>
 <th class='module-name-header'>Slots information and statuses<br><span class='module-key-name'>card_status</span></th>
 <th class='module-name-header'>Physical port statuses<br><span class='module-key-name'>link_info</span></th>
 <th class='module-name-header'>FDB-table (user mac addresses)<br><span class='module-key-name'>fdb</span></th>
@@ -79,7 +80,6 @@
 <th class='module-name-header'>ONUs MAC addresses (for EPON)<br><span class='module-key-name'>pon_onts_mac_addr</span></th>
 <th class='module-name-header'>ONUs serial number (for GPON)<br><span class='module-key-name'>pon_onts_serial</span></th>
 <th class='module-name-header'>Optical information (rx, tx, olt rx, distance)<br><span class='module-key-name'>pon_onts_optical</span></th>
-<th class='module-name-header'>Return optical information from PON-SFP<br><span class='module-key-name'>pon_ports_optical</span></th>
 <th class='module-name-header'>Offline reasons and time/duration of change statuses<br><span class='module-key-name'>pon_onts_reasons</span></th>
 <th class='module-name-header'>ONU vendor info<br><span class='module-key-name'>pon_onts_vendor</span></th>
 <th class='module-name-header'>Return UNI interfaces status by ONU<br><span class='module-key-name'>uni_interfaces_status</span></th>
@@ -88,72 +88,76 @@
 <th class='module-name-header'>Return table of down history (down, up, down reason)<br><span class='module-key-name'>pon_onts_down_history</span></th>
 <th class='module-name-header'>ONU configuration<br><span class='module-key-name'>pon_onts_configuration</span></th>
 <th class='module-name-header'><br><span class='module-key-name'>lldp_info</span></th>
+<th class='module-name-header'>SFP signals<br><span class='module-key-name'>sfp_optical</span></th>
+<th class='module-name-header'>SFP media info<br><span class='module-key-name'>sfp_media</span></th>
 
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>BDCOM GP3600 series</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P3310B</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P3310C</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P3310D</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P3608B</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P3612-2TE</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P3616-2TE</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>BDCOM P36xx series</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1104SN</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1108S</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1204SN</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1208S</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1216S-R1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1604</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1608</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1616</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>GCOM EPON series</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>GCOM EPON series (OLD)</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA5603T</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA5608T</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA5680T</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA5683T</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA5801</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA56xx/MA58xx series</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>V-Solution OLT V1600 series</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>V-Solution GPON OLT V1600 series</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>ZTE C300 (FW 2.1)</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>ZTE C300 (FW 1.2)</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>ZTE C320 (FW 2.1)</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>ZTE C320 (FW 1.2)</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>ZTE C600 series</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM GP3600 series<br><span style='font-size: 90%; color: gray'>bdcom_gp3600_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P3310B<br><span style='font-size: 90%; color: gray'>bdcom_p3310b</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P3310C<br><span style='font-size: 90%; color: gray'>bdcom_p3310c</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P3310D<br><span style='font-size: 90%; color: gray'>bdcom_p3310d</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P3608B<br><span style='font-size: 90%; color: gray'>bdcom_p3608b</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P3612-2TE<br><span style='font-size: 90%; color: gray'>bdcom_p3612_2te</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P3616-2TE<br><span style='font-size: 90%; color: gray'>bdcom_p3616_2te</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>BDCOM P36xx series<br><span style='font-size: 90%; color: gray'>bdcom_p36xx_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1104SN<br><span style='font-size: 90%; color: gray'>c_data_fd1104sn</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1108S<br><span style='font-size: 90%; color: gray'>c_data_fd1108s</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1204SN<br><span style='font-size: 90%; color: gray'>c_data_fd1204sn</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1208S<br><span style='font-size: 90%; color: gray'>c_data_fd1208s</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1216S-R1<br><span style='font-size: 90%; color: gray'>c_data_fd1216s_r1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1601<br><span style='font-size: 90%; color: gray'>c_data_fd1601</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>C-Data FD1604<br><span style='font-size: 90%; color: gray'>c_data_fd1604</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>C-Data FD1608<br><span style='font-size: 90%; color: gray'>c_data_fd1608</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>C-Data FD1616<br><span style='font-size: 90%; color: gray'>c_data_fd1616</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>GCOM EPON series<br><span style='font-size: 90%; color: gray'>gcom_el5610_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>GCOM EPON series (OLD)<br><span style='font-size: 90%; color: gray'>gcom_el5610_series_old</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Huawei MA5603T<br><span style='font-size: 90%; color: gray'>huawei_ma5603t</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Huawei MA5608T<br><span style='font-size: 90%; color: gray'>huawei_ma5608t</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Huawei MA5680T<br><span style='font-size: 90%; color: gray'>huawei_ma5680t</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Huawei MA5683T<br><span style='font-size: 90%; color: gray'>huawei_ma5683t</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Huawei MA5801<br><span style='font-size: 90%; color: gray'>huawei_ma5801</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Huawei MA56xx/MA58xx series<br><span style='font-size: 90%; color: gray'>huawei_smart_ax</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>V-Solution OLT V1600 series<br><span style='font-size: 90%; color: gray'>v_solution_v1600d</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>V-Solution GPON OLT V1600 series<br><span style='font-size: 90%; color: gray'>v_solution_v1600g</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ZTE C300 (FW 2.1)<br><span style='font-size: 90%; color: gray'>zte_c300</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ZTE C300 (FW 1.2)<br><span style='font-size: 90%; color: gray'>zte_c300_fw_1_2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ZTE C320 (FW 2.1)<br><span style='font-size: 90%; color: gray'>zte_c320</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ZTE C320 (FW 1.2)<br><span style='font-size: 90%; color: gray'>zte_c320_fw_1_2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ZTE C600 series<br><span style='font-size: 90%; color: gray'>zte_zxpon_olt_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
 </tbody>
 </table>
 </div>
@@ -175,67 +179,69 @@
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>BDCOM GP3600 series</th>
+            <tr><th class='device-name'>BDCOM GP3600 series<br><span style='font-size: 90%; color: gray'>bdcom_gp3600_series</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P3310B</th>
+            <tr><th class='device-name'>BDCOM P3310B<br><span style='font-size: 90%; color: gray'>bdcom_p3310b</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P3310C</th>
+            <tr><th class='device-name'>BDCOM P3310C<br><span style='font-size: 90%; color: gray'>bdcom_p3310c</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P3310D</th>
+            <tr><th class='device-name'>BDCOM P3310D<br><span style='font-size: 90%; color: gray'>bdcom_p3310d</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P3608B</th>
+            <tr><th class='device-name'>BDCOM P3608B<br><span style='font-size: 90%; color: gray'>bdcom_p3608b</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P3612-2TE</th>
+            <tr><th class='device-name'>BDCOM P3612-2TE<br><span style='font-size: 90%; color: gray'>bdcom_p3612_2te</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P3616-2TE</th>
+            <tr><th class='device-name'>BDCOM P3616-2TE<br><span style='font-size: 90%; color: gray'>bdcom_p3616_2te</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>BDCOM P36xx series</th>
+            <tr><th class='device-name'>BDCOM P36xx series<br><span style='font-size: 90%; color: gray'>bdcom_p36xx_series</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>C-Data FD1104SN</th>
+            <tr><th class='device-name'>C-Data FD1104SN<br><span style='font-size: 90%; color: gray'>c_data_fd1104sn</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1108S</th>
+            <tr><th class='device-name'>C-Data FD1108S<br><span style='font-size: 90%; color: gray'>c_data_fd1108s</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>C-Data FD1204SN</th>
+            <tr><th class='device-name'>C-Data FD1204SN<br><span style='font-size: 90%; color: gray'>c_data_fd1204sn</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>C-Data FD1208S</th>
+            <tr><th class='device-name'>C-Data FD1208S<br><span style='font-size: 90%; color: gray'>c_data_fd1208s</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>C-Data FD1216S-R1</th>
+            <tr><th class='device-name'>C-Data FD1216S-R1<br><span style='font-size: 90%; color: gray'>c_data_fd1216s_r1</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>C-Data FD1604</th>
+            <tr><th class='device-name'>C-Data FD1601<br><span style='font-size: 90%; color: gray'>c_data_fd1601</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>C-Data FD1608</th>
+            <tr><th class='device-name'>C-Data FD1604<br><span style='font-size: 90%; color: gray'>c_data_fd1604</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>C-Data FD1616</th>
+            <tr><th class='device-name'>C-Data FD1608<br><span style='font-size: 90%; color: gray'>c_data_fd1608</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>GCOM EPON series</th>
+            <tr><th class='device-name'>C-Data FD1616<br><span style='font-size: 90%; color: gray'>c_data_fd1616</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>GCOM EPON series<br><span style='font-size: 90%; color: gray'>gcom_el5610_series</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>GCOM EPON series (OLD)</th>
+            <tr><th class='device-name'>GCOM EPON series (OLD)<br><span style='font-size: 90%; color: gray'>gcom_el5610_series_old</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei MA5603T</th>
+            <tr><th class='device-name'>Huawei MA5603T<br><span style='font-size: 90%; color: gray'>huawei_ma5603t</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei MA5608T</th>
+            <tr><th class='device-name'>Huawei MA5608T<br><span style='font-size: 90%; color: gray'>huawei_ma5608t</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei MA5680T</th>
+            <tr><th class='device-name'>Huawei MA5680T<br><span style='font-size: 90%; color: gray'>huawei_ma5680t</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei MA5683T</th>
+            <tr><th class='device-name'>Huawei MA5683T<br><span style='font-size: 90%; color: gray'>huawei_ma5683t</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei MA5801</th>
+            <tr><th class='device-name'>Huawei MA5801<br><span style='font-size: 90%; color: gray'>huawei_ma5801</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei MA56xx/MA58xx series</th>
+            <tr><th class='device-name'>Huawei MA56xx/MA58xx series<br><span style='font-size: 90%; color: gray'>huawei_smart_ax</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>V-Solution OLT V1600 series</th>
+            <tr><th class='device-name'>V-Solution OLT V1600 series<br><span style='font-size: 90%; color: gray'>v_solution_v1600d</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>V-Solution GPON OLT V1600 series</th>
+            <tr><th class='device-name'>V-Solution GPON OLT V1600 series<br><span style='font-size: 90%; color: gray'>v_solution_v1600g</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>ZTE C300 (FW 2.1)</th>
+            <tr><th class='device-name'>ZTE C300 (FW 2.1)<br><span style='font-size: 90%; color: gray'>zte_c300</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>ZTE C300 (FW 1.2)</th>
+            <tr><th class='device-name'>ZTE C300 (FW 1.2)<br><span style='font-size: 90%; color: gray'>zte_c300_fw_1_2</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>ZTE C320 (FW 2.1)</th>
+            <tr><th class='device-name'>ZTE C320 (FW 2.1)<br><span style='font-size: 90%; color: gray'>zte_c320</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>ZTE C320 (FW 1.2)</th>
+            <tr><th class='device-name'>ZTE C320 (FW 1.2)<br><span style='font-size: 90%; color: gray'>zte_c320_fw_1_2</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>ZTE C600 series</th>
+            <tr><th class='device-name'>ZTE C600 series<br><span style='font-size: 90%; color: gray'>zte_zxpon_olt_series</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
 </tbody>
 </table>
@@ -251,6 +257,7 @@
     <th class="headers">Device model</th>
     <th class='module-name-header'>System information (uptime, description, mac-address, serial)<br><span class='module-key-name'>system</span></th>
 <th class='module-name-header'>System resources (CPU, Memory, Temperature)<br><span class='module-key-name'>sys_resources</span></th>
+<th class='module-name-header'>System temperatures (CPU, Boards, Components)<br><span class='module-key-name'>sys_temp</span></th>
 <th class='module-name-header'>Vlan list<br><span class='module-key-name'>vlans</span></th>
 <th class='module-name-header'>Physical port statuses<br><span class='module-key-name'>link_info</span></th>
 <th class='module-name-header'>Interface descriptions<br><span class='module-key-name'>interface_descriptions</span></th>
@@ -261,150 +268,176 @@
 <th class='module-name-header'>FDB-table (user mac addresses)<br><span class='module-key-name'>fdb</span></th>
 <th class='module-name-header'>Cable diagnostic<br><span class='module-key-name'>cable_diag</span></th>
 <th class='module-name-header'><br><span class='module-key-name'>lldp_info</span></th>
+<th class='module-name-header'>SFP signals<br><span class='module-key-name'>sfp_optical</span></th>
+<th class='module-name-header'>SFP media info<br><span class='module-key-name'>sfp_media</span></th>
 
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>Alcatel Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>ApplyNet AN-SW812</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Allied Telesis 8000 series switches</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Cisco Switch (NX-OS)</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Cisco Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Dell Powerconnect Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Dell Networking OS</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-1210-28/ME/B2</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-1228/ME</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3026</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3028</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3028G</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3052</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-10/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-10/C1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-18/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-18/C1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-26/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-26/C1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28/C1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28F/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28F/C1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-52/C1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3526</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3528</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1100-06/ME/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1100-10/ME</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-10/ME/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-12TS/ME/B1</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-20/ME/A1</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-20/ME/B1</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-28/ME/A2</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-28/ME/B1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-28XS/ME/B1</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1510-20L/ME</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3000-10TC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3000-26TC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3000-28L</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3100-24TG</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3120-24SC/A2</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3120-24SC/B</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3420-26SC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3420-28SC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3612G</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS3510-28T</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS4120-28F</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS4120-28Fv2</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS4510-28F</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3510</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3510MA</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3510MAv2</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3528M</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3552M</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES4612</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core General switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Eltex switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>HP Switch (ArubaOS)</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>HP Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>HP PROCURVE J9079A</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei general switch</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei Quidway S9300 series</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Juniper QFX5100 series</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Mikrotik CRS</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Raisecom ISCOM</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>TP-Link Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>TP-Link JetStream Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>TP-Link Smart Switch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>UBNT EdgeSwitch</th>
-        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Alcatel Switch<br><span style='font-size: 90%; color: gray'>alcatel_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ApplyNet AN-SW812<br><span style='font-size: 90%; color: gray'>applynet_sw812</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Arista<br><span style='font-size: 90%; color: gray'>arista_default</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Allied Telesis 8000 series switches<br><span style='font-size: 90%; color: gray'>ati_switch_8000</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Cisco Switch (NX-OS)<br><span style='font-size: 90%; color: gray'>cisco_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Cisco Switch<br><span style='font-size: 90%; color: gray'>cisco_general_switch_sg</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>DCN<br><span style='font-size: 90%; color: gray'>dcn_default</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Dell Powerconnect Switch<br><span style='font-size: 90%; color: gray'>dell_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Dell Networking OS<br><span style='font-size: 90%; color: gray'>dell_networking_os</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DES-1210-28/ME/B2<br><span style='font-size: 90%; color: gray'>dlink_des_1210_28_me_b2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-1228/ME<br><span style='font-size: 90%; color: gray'>dlink_des_1228_me</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3026<br><span style='font-size: 90%; color: gray'>dlink_des_3026</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3028<br><span style='font-size: 90%; color: gray'>dlink_des_3028</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3028G<br><span style='font-size: 90%; color: gray'>dlink_des_3028g</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3052<br><span style='font-size: 90%; color: gray'>dlink_des_3052g</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-10/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_10_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-10/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_10_c1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-18/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_18_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-18/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_18_c1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-26/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_26_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-26/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_26_c1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-28/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-28/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28_c1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-28F/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28f_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-28F/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28f_c1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3200-52/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_52_c1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3526<br><span style='font-size: 90%; color: gray'>dlink_des_3526</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DES-3528<br><span style='font-size: 90%; color: gray'>dlink_des_3528</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1100-06/ME/A1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1100_06_me_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1100-10/ME<br><span style='font-size: 90%; color: gray'>dlink_dgs_1100_10_me_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-10/ME/A1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_10_me_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-12TS/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_12ts_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-20/ME/A1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_20_me_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-20/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_20_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-28/ME/A2<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28_me_a2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-28/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link Switch<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28_me_b2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-28X/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28x_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-28XS/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28xs_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-1510-20L/ME<br><span style='font-size: 90%; color: gray'>dlink_dgs_1510_20l_me</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-10TC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_10tc</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-20L<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_20l</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-26TC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_26tc_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-28L<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_28l_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3100-24TG<br><span style='font-size: 90%; color: gray'>dlink_dgs_3100_24tg</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3120-24SC/A2<br><span style='font-size: 90%; color: gray'>dlink_dgs_3120_24sc_a2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3120-24SC/B<br><span style='font-size: 90%; color: gray'>dlink_dgs_3120_24sc_bx</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3420-26SC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3420_26sc_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3420-28SC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3420_28sc_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link DGS-3612G<br><span style='font-size: 90%; color: gray'>dlink_dgs_3612g</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>D-link Switch<br><span style='font-size: 90%; color: gray'>dlink_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ECS3510-28T<br><span style='font-size: 90%; color: gray'>edgecore_ecs3510_28t</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ECS4120-28F<br><span style='font-size: 90%; color: gray'>edgecore_ecs4120_28f</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Edge-core ECS4120-28Fv2<br><span style='font-size: 90%; color: gray'>edgecore_ecs4120_28fv2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Edge-core ECS4510-28F<br><span style='font-size: 90%; color: gray'>edgecore_ecs4510_28f</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Edge-core ES3510<br><span style='font-size: 90%; color: gray'>edgecore_es3510</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ES3510MA<br><span style='font-size: 90%; color: gray'>edgecore_es3510ma</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ES3510MAv2<br><span style='font-size: 90%; color: gray'>edgecore_es3510ma_v2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ES3528M<br><span style='font-size: 90%; color: gray'>edgecore_es3528m</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ES3552M<br><span style='font-size: 90%; color: gray'>edgecore_es3552m</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ES4612<br><span style='font-size: 90%; color: gray'>edgecore_es4612</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Edge-core General switch<br><span style='font-size: 90%; color: gray'>edgecore_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Eltex switch<br><span style='font-size: 90%; color: gray'>eltex_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HP Switch (ArubaOS)<br><span style='font-size: 90%; color: gray'>hp_arubaos_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HP Switch<br><span style='font-size: 90%; color: gray'>hp_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HP J9850A Switch<br><span style='font-size: 90%; color: gray'>hp_j9850a</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HP PROCURVE J9079A<br><span style='font-size: 90%; color: gray'>hp_procurve_j9079</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HPE ANW JL675A 6100<br><span style='font-size: 90%; color: gray'>hpe_anw_jl675a</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HPE Switch<br><span style='font-size: 90%; color: gray'>hpe_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Huawei general switch<br><span style='font-size: 90%; color: gray'>huawei_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Huawei Quidway S9300 series<br><span style='font-size: 90%; color: gray'>huawei_quidway_S9300_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Juniper QFX5100 series<br><span style='font-size: 90%; color: gray'>juniper_qfx51xx_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Mikrotik CRS<br><span style='font-size: 90%; color: gray'>mikrotik_crs</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Raisecom Default<br><span style='font-size: 90%; color: gray'>raisecom_default</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Raisecom ISCOM<br><span style='font-size: 90%; color: gray'>raisecom_iscom</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Raisecom ISCOM 2600<br><span style='font-size: 90%; color: gray'>raisecom_iscom_2600</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Raisecom RAX721<br><span style='font-size: 90%; color: gray'>raisecom_rax721</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>SwOS<br><span style='font-size: 90%; color: gray'>swos_default</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>TP-Link Switch<br><span style='font-size: 90%; color: gray'>tplink_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>TP-Link JetStream Switch<br><span style='font-size: 90%; color: gray'>tplink_jetstream_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>TP-Link Smart Switch<br><span style='font-size: 90%; color: gray'>tplink_smart_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>UBNT EdgeSwitch<br><span style='font-size: 90%; color: gray'>ubnt_edge_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
 </tbody>
 </table>
 </div>
@@ -425,145 +458,169 @@
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>Alcatel Switch</th>
+            <tr><th class='device-name'>Alcatel Switch<br><span style='font-size: 90%; color: gray'>alcatel_general_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>ApplyNet AN-SW812</th>
+            <tr><th class='device-name'>ApplyNet AN-SW812<br><span style='font-size: 90%; color: gray'>applynet_sw812</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Allied Telesis 8000 series switches</th>
+            <tr><th class='device-name'>Arista<br><span style='font-size: 90%; color: gray'>arista_default</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Allied Telesis 8000 series switches<br><span style='font-size: 90%; color: gray'>ati_switch_8000</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Cisco Switch (NX-OS)</th>
+            <tr><th class='device-name'>Cisco Switch (NX-OS)<br><span style='font-size: 90%; color: gray'>cisco_general_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Cisco Switch</th>
+            <tr><th class='device-name'>Cisco Switch<br><span style='font-size: 90%; color: gray'>cisco_general_switch_sg</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Dell Powerconnect Switch</th>
+            <tr><th class='device-name'>DCN<br><span style='font-size: 90%; color: gray'>dcn_default</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Dell Powerconnect Switch<br><span style='font-size: 90%; color: gray'>dell_general_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Dell Networking OS</th>
+            <tr><th class='device-name'>Dell Networking OS<br><span style='font-size: 90%; color: gray'>dell_networking_os</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-1210-28/ME/B2</th>
+            <tr><th class='device-name'>D-link DES-1210-28/ME/B2<br><span style='font-size: 90%; color: gray'>dlink_des_1210_28_me_b2</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-1228/ME</th>
+            <tr><th class='device-name'>D-link DES-1228/ME<br><span style='font-size: 90%; color: gray'>dlink_des_1228_me</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3026</th>
+            <tr><th class='device-name'>D-link DES-3026<br><span style='font-size: 90%; color: gray'>dlink_des_3026</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3028</th>
+            <tr><th class='device-name'>D-link DES-3028<br><span style='font-size: 90%; color: gray'>dlink_des_3028</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3028G</th>
+            <tr><th class='device-name'>D-link DES-3028G<br><span style='font-size: 90%; color: gray'>dlink_des_3028g</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3052</th>
+            <tr><th class='device-name'>D-link DES-3052<br><span style='font-size: 90%; color: gray'>dlink_des_3052g</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-10/A1</th>
+            <tr><th class='device-name'>D-link DES-3200-10/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_10_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-10/C1</th>
+            <tr><th class='device-name'>D-link DES-3200-10/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_10_c1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-18/A1</th>
+            <tr><th class='device-name'>D-link DES-3200-18/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_18_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-18/C1</th>
+            <tr><th class='device-name'>D-link DES-3200-18/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_18_c1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-26/A1</th>
+            <tr><th class='device-name'>D-link DES-3200-26/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_26_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-26/C1</th>
+            <tr><th class='device-name'>D-link DES-3200-26/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_26_c1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28/A1</th>
+            <tr><th class='device-name'>D-link DES-3200-28/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28/C1</th>
+            <tr><th class='device-name'>D-link DES-3200-28/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28_c1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28F/A1</th>
+            <tr><th class='device-name'>D-link DES-3200-28F/A1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28f_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-28F/C1</th>
+            <tr><th class='device-name'>D-link DES-3200-28F/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_28f_c1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3200-52/C1</th>
+            <tr><th class='device-name'>D-link DES-3200-52/C1<br><span style='font-size: 90%; color: gray'>dlink_des_3200_52_c1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3526</th>
+            <tr><th class='device-name'>D-link DES-3526<br><span style='font-size: 90%; color: gray'>dlink_des_3526</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DES-3528</th>
+            <tr><th class='device-name'>D-link DES-3528<br><span style='font-size: 90%; color: gray'>dlink_des_3528</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1100-06/ME/A1</th>
+            <tr><th class='device-name'>D-link DGS-1100-06/ME/A1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1100_06_me_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1100-10/ME</th>
+            <tr><th class='device-name'>D-link DGS-1100-10/ME<br><span style='font-size: 90%; color: gray'>dlink_dgs_1100_10_me_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-10/ME/A1</th>
+            <tr><th class='device-name'>D-link DGS-1210-10/ME/A1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_10_me_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-12TS/ME/B1</th>
+            <tr><th class='device-name'>D-link DGS-1210-12TS/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_12ts_me_b1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-20/ME/A1</th>
+            <tr><th class='device-name'>D-link DGS-1210-20/ME/A1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_20_me_a1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-20/ME/B1</th>
+            <tr><th class='device-name'>D-link DGS-1210-20/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_20_me_b1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-28/ME/A2</th>
+            <tr><th class='device-name'>D-link DGS-1210-28/ME/A2<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28_me_a2</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-28/ME/B1</th>
+            <tr><th class='device-name'>D-link DGS-1210-28/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28_me_b1</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1210-28XS/ME/B1</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-1510-20L/ME</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3000-10TC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3000-26TC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3000-28L</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3100-24TG</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3120-24SC/A2</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3120-24SC/B</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3420-26SC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3420-28SC</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link DGS-3612G</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>D-link Switch</th>
+            <tr><th class='device-name'>D-link Switch<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28_me_b2</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Edge-core ECS3510-28T</th>
+            <tr><th class='device-name'>D-link DGS-1210-28X/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28x_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-1210-28XS/ME/B1<br><span style='font-size: 90%; color: gray'>dlink_dgs_1210_28xs_me_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-1510-20L/ME<br><span style='font-size: 90%; color: gray'>dlink_dgs_1510_20l_me</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-10TC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_10tc</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-20L<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_20l</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-26TC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_26tc_a1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3000-28L<br><span style='font-size: 90%; color: gray'>dlink_dgs_3000_28l_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3100-24TG<br><span style='font-size: 90%; color: gray'>dlink_dgs_3100_24tg</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3120-24SC/A2<br><span style='font-size: 90%; color: gray'>dlink_dgs_3120_24sc_a2</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3120-24SC/B<br><span style='font-size: 90%; color: gray'>dlink_dgs_3120_24sc_bx</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3420-26SC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3420_26sc_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3420-28SC<br><span style='font-size: 90%; color: gray'>dlink_dgs_3420_28sc_b1</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link DGS-3612G<br><span style='font-size: 90%; color: gray'>dlink_dgs_3612g</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>D-link Switch<br><span style='font-size: 90%; color: gray'>dlink_general_switch</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Edge-core ECS3510-28T<br><span style='font-size: 90%; color: gray'>edgecore_ecs3510_28t</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS4120-28F</th>
+            <tr><th class='device-name'>Edge-core ECS4120-28F<br><span style='font-size: 90%; color: gray'>edgecore_ecs4120_28f</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS4120-28Fv2</th>
+            <tr><th class='device-name'>Edge-core ECS4120-28Fv2<br><span style='font-size: 90%; color: gray'>edgecore_ecs4120_28fv2</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ECS4510-28F</th>
+            <tr><th class='device-name'>Edge-core ECS4510-28F<br><span style='font-size: 90%; color: gray'>edgecore_ecs4510_28f</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3510</th>
+            <tr><th class='device-name'>Edge-core ES3510<br><span style='font-size: 90%; color: gray'>edgecore_es3510</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3510MA</th>
+            <tr><th class='device-name'>Edge-core ES3510MA<br><span style='font-size: 90%; color: gray'>edgecore_es3510ma</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3510MAv2</th>
+            <tr><th class='device-name'>Edge-core ES3510MAv2<br><span style='font-size: 90%; color: gray'>edgecore_es3510ma_v2</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3528M</th>
+            <tr><th class='device-name'>Edge-core ES3528M<br><span style='font-size: 90%; color: gray'>edgecore_es3528m</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES3552M</th>
+            <tr><th class='device-name'>Edge-core ES3552M<br><span style='font-size: 90%; color: gray'>edgecore_es3552m</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core ES4612</th>
+            <tr><th class='device-name'>Edge-core ES4612<br><span style='font-size: 90%; color: gray'>edgecore_es4612</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Edge-core General switch</th>
+            <tr><th class='device-name'>Edge-core General switch<br><span style='font-size: 90%; color: gray'>edgecore_general_switch</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Eltex switch</th>
+            <tr><th class='device-name'>Eltex switch<br><span style='font-size: 90%; color: gray'>eltex_general_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>HP Switch (ArubaOS)</th>
+            <tr><th class='device-name'>HP Switch (ArubaOS)<br><span style='font-size: 90%; color: gray'>hp_arubaos_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>HP Switch</th>
+            <tr><th class='device-name'>HP Switch<br><span style='font-size: 90%; color: gray'>hp_general_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>HP PROCURVE J9079A</th>
+            <tr><th class='device-name'>HP J9850A Switch<br><span style='font-size: 90%; color: gray'>hp_j9850a</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Huawei general switch</th>
+            <tr><th class='device-name'>HP PROCURVE J9079A<br><span style='font-size: 90%; color: gray'>hp_procurve_j9079</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HPE ANW JL675A 6100<br><span style='font-size: 90%; color: gray'>hpe_anw_jl675a</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>HPE Switch<br><span style='font-size: 90%; color: gray'>hpe_switch</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>Huawei general switch<br><span style='font-size: 90%; color: gray'>huawei_general_switch</span></th>
         <td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Huawei Quidway S9300 series</th>
+            <tr><th class='device-name'>Huawei Quidway S9300 series<br><span style='font-size: 90%; color: gray'>huawei_quidway_S9300_series</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Juniper QFX5100 series</th>
+            <tr><th class='device-name'>Juniper QFX5100 series<br><span style='font-size: 90%; color: gray'>juniper_qfx51xx_series</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
-            <tr><th class='device-name'>Mikrotik CRS</th>
+            <tr><th class='device-name'>Mikrotik CRS<br><span style='font-size: 90%; color: gray'>mikrotik_crs</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>Raisecom ISCOM</th>
+            <tr><th class='device-name'>Raisecom Default<br><span style='font-size: 90%; color: gray'>raisecom_default</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Raisecom ISCOM<br><span style='font-size: 90%; color: gray'>raisecom_iscom</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Raisecom ISCOM 2600<br><span style='font-size: 90%; color: gray'>raisecom_iscom_2600</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Raisecom RAX721<br><span style='font-size: 90%; color: gray'>raisecom_rax721</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>SwOS<br><span style='font-size: 90%; color: gray'>swos_default</span></th>
+        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>TP-Link Switch<br><span style='font-size: 90%; color: gray'>tplink_general_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>TP-Link Switch</th>
+            <tr><th class='device-name'>TP-Link JetStream Switch<br><span style='font-size: 90%; color: gray'>tplink_jetstream_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>TP-Link JetStream Switch</th>
+            <tr><th class='device-name'>TP-Link Smart Switch<br><span style='font-size: 90%; color: gray'>tplink_smart_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>TP-Link Smart Switch</th>
-        <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
-            <tr><th class='device-name'>UBNT EdgeSwitch</th>
+            <tr><th class='device-name'>UBNT EdgeSwitch<br><span style='font-size: 90%; color: gray'>ubnt_edge_switch</span></th>
         <td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-not'>-</td></tr>
 </tbody>
 </table>
@@ -577,21 +634,29 @@
 <tr>
     <th class="headers">Device model</th>
     <th class='module-name-header'>System information (uptime, description, mac-address, serial)<br><span class='module-key-name'>system</span></th>
-<th class='module-name-header'>Interface info (on L3 devices)<br><span class='module-key-name'>interface_info</span></th>
-<th class='module-name-header'>DHCP-servers info (RouterOS devices)<br><span class='module-key-name'>dhcp_server_info</span></th>
-<th class='module-name-header'>Lease table<br><span class='module-key-name'>lease_info</span></th>
-<th class='module-name-header'>Address lists info (Router OS)<br><span class='module-key-name'>address_list_info</span></th>
-<th class='module-name-header'>BGP-sessions<br><span class='module-key-name'>bgp_sessions</span></th>
+<th class='module-name-header'>System temperatures (CPU, Boards, Components)<br><span class='module-key-name'>sys_temp</span></th>
+<th class='module-name-header'>Physical port statuses<br><span class='module-key-name'>link_info</span></th>
+<th class='module-name-header'>Vlan list<br><span class='module-key-name'>vlans</span></th>
+<th class='module-name-header'>Physical port statuses<br><span class='module-key-name'>link_info</span></th>
+<th class='module-name-header'>Interface descriptions<br><span class='module-key-name'>interface_descriptions</span></th>
+<th class='module-name-header'>Traffic counters<br><span class='module-key-name'>interface_counters</span></th>
+<th class='module-name-header'>SFP signals<br><span class='module-key-name'>sfp_optical</span></th>
+<th class='module-name-header'>SFP media info<br><span class='module-key-name'>sfp_media</span></th>
+<th class='module-name-header'>Errors counters<br><span class='module-key-name'>errors</span></th>
+<th class='module-name-header'>RMON statistic<br><span class='module-key-name'>rmon</span></th>
+<th class='module-name-header'>FDB-table (user mac addresses)<br><span class='module-key-name'>fdb</span></th>
+<th class='module-name-header'>ARP information<br><span class='module-key-name'>arps</span></th>
 <th class='module-name-header'><br><span class='module-key-name'>lldp_info</span></th>
 <th class='module-name-header'>BGP information<br><span class='module-key-name'>bgp_info</span></th>
 <th class='module-name-header'>BGP information<br><span class='module-key-name'>bgp_peers</span></th>
-<th class='module-name-header'>BGP information<br><span class='module-key-name'>bgp_peer_routes</span></th>
 
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>Mikrotik RouterOS</th>
-        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-not'>-</td></tr>
+            <tr><th class='device-name'>ExtremeXOS<br><span style='font-size: 90%; color: gray'>extreme_xos</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
+            <tr><th class='device-name'>Juniper JNP204 series<br><span style='font-size: 90%; color: gray'>juniper_jnp204_series</span></th>
+        <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-not'>-</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
 </tbody>
 </table>
 </div>
@@ -614,7 +679,7 @@
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>Ping3</th>
+            <tr><th class='device-name'>Ping3<br><span style='font-size: 90%; color: gray'>equicom_ping3</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
 </tbody>
 </table>
@@ -632,7 +697,7 @@
 </tr>
 <tbody>
 
-            <tr><th class='device-name'>Ping3</th>
+            <tr><th class='device-name'>Ping3<br><span style='font-size: 90%; color: gray'>equicom_ping3</span></th>
         <td class='flag-yes'>+</td><td class='flag-yes'>+</td><td class='flag-yes'>+</td></tr>
 </tbody>
 </table>

@@ -22,6 +22,7 @@ $app->setName("SwitcherCore dev console");
 
 $app->add(new \SwitcherCore\Dev\SwitcherCoreModules());
 $app->add(new \SwitcherCore\Dev\SwitcherCoreCallModuleCommand());
+$app->add(new \SwitcherCore\Dev\GetModelsByKey());
 
 
 $app->run();

@@ -44,6 +44,7 @@ models:
       ctrl_ont_disable: \SwitcherCore\Modules\VsolOlts\GPONV1600\CtrlOntDisable
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
       #uni_interfaces_status: \SwitcherCore\Modules\VsolOlts\GPONV1600\UniInterfacesInfo
       #snooping_info: \SwitcherCore\Modules\VsolOlts\SnoopingInfo
@@ -101,6 +102,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\VsolOlts\MultiRawConsoleCommand
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
     extra:
       pon_port_size: 64

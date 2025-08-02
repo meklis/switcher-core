@@ -17,7 +17,7 @@ class SfpOpticalInfo extends AbstractInterfaces
     public function run($params = [])
     {
         $suffixOid = "";
-        if($params['interface']) {
+        if ($params['interface']) {
             $suffixOid = ".{$this->parseInterface($params['interface'])['_snmp_id']}";
         }
         $oids = array_map(function ($e) use ($suffixOid) {
@@ -26,32 +26,46 @@ class SfpOpticalInfo extends AbstractInterfaces
         $response = $this->formatResponse($this->snmp->walk($oids));
 
         $RESPONSES = [];
-        foreach ($response as $name=>$resp) {
+        foreach ($response as $name => $resp) {
             $metricName = str_replace(['sfp_optical_'], '', Helper::fromCamelCase($name));
             foreach ($resp->fetchAll() as $value) {
-                if($resp->error()) continue;
-                $iface = $this->parseInterface(Helper::getIndexByOid($value->getOid()));
+                if ($resp->error()) continue;
+                try {
+                    $iface = $this->parseInterface(Helper::getIndexByOid($value->getOid()));
+                } catch (\Throwable $t) {
+                    throw $t;
+                }
                 $RESPONSES[$iface['id']]['interface'] = $iface;
-                $RESPONSES[$iface['id']][$metricName] = $value->getParsedValue();
+                $RESPONSES[$iface['id']][$metricName] = $this->extractNumericValue($value->getParsedValue());
             }
         }
         foreach ($RESPONSES as $id => $RESPONS) {
-            if(!isset($RESPONS['temp'])) $RESPONSES[$id]['temp'] = null;
-            if(!isset($RESPONS['vcc'])) $RESPONSES[$id]['vcc'] = null;
-            if(!isset($RESPONS['tx_bias'])) $RESPONSES[$id]['tx_bias'] = null;
-            if(!isset($RESPONS['tx_power'])) $RESPONSES[$id]['tx_power'] = null;
-            if(!isset($RESPONS['rx_power'])) $RESPONSES[$id]['rx_power'] = null;
+            if (!isset($RESPONS['temp'])) $RESPONSES[$id]['temp'] = null;
+            if (!isset($RESPONS['vcc'])) $RESPONSES[$id]['vcc'] = null;
+            if (!isset($RESPONS['tx_bias'])) $RESPONSES[$id]['tx_bias'] = null;
+            if (!isset($RESPONS['tx_power'])) $RESPONSES[$id]['tx_power'] = null;
+            if (!isset($RESPONS['rx_power'])) $RESPONSES[$id]['rx_power'] = null;
         }
         $this->response = array_values($RESPONSES);
         return $this;
     }
+
     public function getPretty()
     {
-      return $this->response;
+        return $this->response;
     }
 
     public function getPrettyFiltered($filter = [])
     {
         return $this->response;
+    }
+
+    function extractNumericValue($value)
+    {
+        if (preg_match('/-?\d+(\.\d+)?/', $value, $matches)) {
+            return (float)$matches[0];
+        } else {
+            return null;
+        }
     }
 }

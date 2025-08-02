@@ -7,6 +7,7 @@ $displayModulesForTypes = [
         'info' => [
             'system',
             'sys_resources',
+            'sys_temp',
             'card_status',
             'link_info',
             'fdb',
@@ -16,7 +17,6 @@ $displayModulesForTypes = [
             'pon_onts_mac_addr',
             'pon_onts_serial',
             'pon_onts_optical',
-            'pon_ports_optical',
             'pon_onts_reasons',
             'pon_onts_vendor',
             'uni_interfaces_status',
@@ -25,6 +25,8 @@ $displayModulesForTypes = [
             'pon_onts_down_history',
             'pon_onts_configuration',
             'lldp_info',
+            'sfp_optical',
+            'sfp_media',
         ],
         'management' => [
            'ctrl_ont_reboot',
@@ -41,6 +43,7 @@ $displayModulesForTypes = [
         'info' => [
             'system',
             'sys_resources',
+            'sys_temp',
             'vlans',
             'link_info',
             'interface_descriptions',
@@ -51,6 +54,8 @@ $displayModulesForTypes = [
             'fdb',
             'cable_diag',
             'lldp_info',
+            'sfp_optical',
+            'sfp_media',
         ],
         'management' => [
             'reboot',
@@ -65,15 +70,22 @@ $displayModulesForTypes = [
     'ROUTER' => [
         'info' => [
             'system',
-            'interface_info',
-            'dhcp_server_info',
-            'lease_info',
-            'address_list_info',
-            'bgp_sessions',
+            'sys_temp',
+            'link_info',
+            'vlans',
+            'link_info',
+            'interface_descriptions',
+            'interface_counters',
+            'sfp_optical',
+            'sfp_media',
+            'errors',
+            'rmon',
+            'fdb',
+            'arps',
             'lldp_info',
             'bgp_info',
             'bgp_peers',
-            'bgp_peer_routes',
+
         ],
         'management' => [
         ],
@@ -130,7 +142,7 @@ $buildTable = function ($modulesList, $devicesList) use ($modulesData)
     $hmodels = '';
     foreach ($devicesList as $device) {
         $hmodels .= "
-            <tr><th class='device-name'>{$device['name']}</th>
+            <tr><th class='device-name'>{$device['name']}<br><span style='font-size: 90%; color: gray'>{$device['key']}</span></th>
         ";
         foreach ($modulesList as $moduleName ) {
             $exist = in_array($moduleName, $device['modules']) ? "+" : "-";

@@ -32,7 +32,6 @@ class SystemResources extends AbstractModule
             'cpu' => [
                 'util' => (int)$this->getResponseByName('resources.cpuUtil')->fetchAll()[0]->getValue(),
             ],
-            'temperature' =>  (float)($this->getResponseByName('resources.temperature')->fetchAll()[0]->getValue()),
             'disk' => null,
             'interfaces' => null,
             'cards' => null,
@@ -51,7 +50,7 @@ class SystemResources extends AbstractModule
         $oids = $this->oids->getOidsByRegex('^resources\..*');
         $oArray = [];
         foreach ($oids as $oid) {
-            $oArray[] = Oid::init($oid->getOid() . ".0", false);
+            $oArray[] = Oid::init($oid->getOid()  , false);
         }
         $this->response = $this->formatResponse($this->snmp->get($oArray));
         return $this;

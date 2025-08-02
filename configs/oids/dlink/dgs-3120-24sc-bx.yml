@@ -3,8 +3,3 @@
 - {name: dlink.sysPortCtrlOperStatus, oid: .1.3.6.1.4.1.171.11.117.4.1.2.3.1.1.6, values: {0: Down, 1: 10-Full, 2: 10-Full, 3: 10-Half, 4: 10-Half, 5: 100-Full, 6: 100-Full, 7: 100-Half, 8: 100-Half, 9: 1G-Full, 10: 1G-Full, 11: 1G-Half, 12: 1G-Half, 13: 10G-Full, 14: 10G-Full, 15: 10G-Half, 16: 10G-Half, 17: Empty, 18: Err-Disabled}}
 - {name: dlink.sysPortCtrlState, oid: .1.3.6.1.4.1.171.11.117.4.1.2.3.2.1.4, values: {2: Disabled, 3: Enabled}}
 
-
-
-- {name: ddm.power.tx, oid: .1.3.6.1.4.1.171.12.72.2.1.1.1.5}
-- {name: ddm.power.rx, oid: .1.3.6.1.4.1.171.12.72.2.1.1.1.6}
-

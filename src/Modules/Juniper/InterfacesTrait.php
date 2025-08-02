@@ -180,26 +180,26 @@ trait InterfacesTrait
                 ];
             }
         }
-        foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(irb)\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
-                $id = Helper::getIndexByOid($r->getOid());
-                $type = "BRIDGE";
-                $ifaces[Helper::getIndexByOid($r->getOid())] = [
-                    'id' => (int)$id,
-                    'name' => $r->getValue(),
-                    '_snmp_id' => $id,
-                    '_port_num' => (int)$m[2],
-                    '_slot_num' => null,
-                    '_shelf_num' => null,
-                    '_type' => $m[1],
-                    '_sorting' => 100000000 + $m[2],
-                    '_lacp_ifaces' => null,
-                    'type' => $type,
-                    '_dot1q_id' => null,
-                    '_iface_vlans' => null,
-                ];
-            }
-        }
+        // foreach ($responses['if.Name']->getResponse() as $r) {
+        //     if (preg_match('/^(irb)\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+        //         $id = Helper::getIndexByOid($r->getOid());
+        //         $type = "BRIDGE";
+        //         $ifaces[Helper::getIndexByOid($r->getOid())] = [
+        //             'id' => (int)$id,
+        //             'name' => $r->getValue(),
+        //             '_snmp_id' => $id,
+        //             '_port_num' => (int)$m[2],
+        //             '_slot_num' => null,
+        //             '_shelf_num' => null,
+        //             '_type' => $m[1],
+        //             '_sorting' => 100000000 + $m[2],
+        //             '_lacp_ifaces' => null,
+        //             'type' => $type,
+        //             '_dot1q_id' => null,
+        //             '_iface_vlans' => null,
+        //         ];
+        //     }
+        // }
 
         foreach ($responses['if.Name']->getResponse() as $r) {
             if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {

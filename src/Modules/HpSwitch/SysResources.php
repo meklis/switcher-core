@@ -21,9 +21,7 @@ class SysResources extends AbstractModule
         $this->response = [
             'cpu' => [
                 'util' => (int)$this->getResponseByName('resources.cpuUtil', $response)->fetchAll()[0]->getValue(),
-                '_temperature' => (float)($this->getResponseByName('resources.temperature', $response)->fetchAll()[0]->getValue()),
-                '_temperature_threshold' => (float)($this->getResponseByName('resources.temperatureThreshold', $response)->fetchAll()[0]->getValue()),
-            ],
+           ],
             'disk' => null,
             'interfaces' => null,
             'cards' => null,
