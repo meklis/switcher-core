@@ -3,4 +3,20 @@
 - {name: jnx.vlan.tag, oid: .1.3.6.1.4.1.2636.3.48.1.3.1.1.3 }
 - {name: jnx.vlan.fdb_id, oid:  .1.3.6.1.4.1.2636.3.48.1.3.1.1.5}
 
+<<<<<<< Updated upstream
 
+=======
+- {name: sensors.temperature.cpu, oid: .1.3.6.1.4.1.1916.1.1.1.8 }
+
+- {name: ent.aliasMappingIdentifier, oid: .1.3.6.1.2.1.47.1.3.2.1.2}
+- {name: ent.physicalName, oid: .1.3.6.1.2.1.47.1.1.1.1.7} # SFP contains 'SFP' here
+- {name: ent.physicalSerialNum, oid: .1.3.6.1.2.1.47.1.1.1.1.11} 
+- {name: ent.physicalMfgName, oid: .1.3.6.1.2.1.47.1.1.1.1.12} # sfp vendor name
+- {name: ent.physicalModelName, oid: .1.3.6.1.2.1.47.1.1.1.1.13} # part number
+
+- {name: jnx.DomCurrentModuleTemperature, oid: 1.3.6.1.4.1.2636.3.60.1.1.1.1.8}
+- {name: jnx.DomCurrentModuleVoltage, oid: 1.3.6.1.4.1.2636.3.60.1.1.1.1.25}
+- {name: jnx.DomCurrentLaneRxLaserPower, oid: 1.3.6.1.4.1.2636.3.60.1.2.1.1.6} # 1.3.6.1.4.1.2636.3.60.1.2.1.1.6.{iface_id}.{lane number} . lane numbers starts from 0.
+- {name: jnx.DomCurrentLaneTxLaserBiasCurrent, oid: 1.3.6.1.4.1.2636.3.60.1.2.1.1.7} # 1.3.6.1.4.1.2636.3.60.1.2.1.1.7.{iface_id}.{lane number} . lane numbers starts from 0.
+- {name: jnx.DomCurrentLaneTxLaserOutputPower, oid: 1.3.6.1.4.1.2636.3.60.1.2.1.1.8} # 1.3.6.1.4.1.2636.3.60.1.2.1.1.8.{iface_id}.{lane number} . lane numbers starts from 0.
+>>>>>>> Stashed changes
