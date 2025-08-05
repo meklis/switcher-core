@@ -33,7 +33,6 @@ models:
       pon_onts_status: \SwitcherCore\Modules\BDcom\GP3600\OntListWithStatuses
       pon_onts_serial: \SwitcherCore\Modules\BDcom\GP3600\OntSerial
       pon_onts_optical: \SwitcherCore\Modules\BDcom\GP3600\OntOpticalInfo
-      pon_ports_optical: \SwitcherCore\Modules\BDcom\GP3600\PonPortsOptical
       pon_onts_reasons: \SwitcherCore\Modules\BDcom\GP3600\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\GP3600\OntVendorInfo
       vlans: \SwitcherCore\Modules\BDcom\GP3600\VlanList
@@ -61,6 +60,7 @@ models:
       net_settings: \SwitcherCore\Modules\General\NetSettings
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+      sfp_optical: \SwitcherCore\Modules\BDcom\GP3600\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
     extra:
       pon_port_size: 128
@@ -87,7 +87,6 @@ models:
       pon_onts_status: \SwitcherCore\Modules\BDcom\OntListWithStatuses
       pon_onts_mac_addr: \SwitcherCore\Modules\BDcom\OntMacAddress
       pon_onts_optical: \SwitcherCore\Modules\BDcom\P3608B\OntOpticalInfo
-      pon_ports_optical: \SwitcherCore\Modules\BDcom\PonPortsOptical
       pon_onts_reasons: \SwitcherCore\Modules\BDcom\OntReasons
       pon_onts_vendor: \SwitcherCore\Modules\BDcom\OntVendorInfo
       fdb: \SwitcherCore\Modules\BDcom\FdbTableConsole
