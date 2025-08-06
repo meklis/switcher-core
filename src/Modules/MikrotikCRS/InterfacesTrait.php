@@ -10,6 +10,7 @@ use SnmpWrapper\MultiWalkerInterface;
 use SnmpWrapper\Oid;
 use SwitcherCore\Config\Objects\Model;
 use SwitcherCore\Config\OidCollector;
+use SwitcherCore\Exceptions\InterfaceNotFound;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\CacheInterface;
 use SwitcherCore\Switcher\Device;
@@ -75,13 +76,14 @@ trait InterfacesTrait
         if(count($filtered) > 0) {
             return  array_values($filtered)[0];
         }
-        throw new \Exception("Interface with name {$iface} not found");
+        throw new InterfaceNotFound("Interface with name {$iface} not found");
     }
 
     private $_interfaces;
 
     function getInterfacesIds()
     {
+
         if ($this->_interfaces !== null) {
             return $this->_interfaces;
         }
@@ -93,7 +95,6 @@ trait InterfacesTrait
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Type')->getOid()),
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
-            Oid::init($this->oids->getOidByName('dot1q.PortIfIndex')->getOid()),
         ]);
         $responses = [];
         foreach ($response as $resp) {
@@ -129,11 +130,6 @@ trait InterfacesTrait
             $id = Helper::getIndexByOid($r->getOid());
             if(isset($ifaces[$id])) {
                 $ifaces[$id]['name'] = $r->getValue();
-            }
-        }
-        foreach ($responses['dot1q.PortIfIndex'] as $r) {
-            if (isset($ifaces[$r->getValue()])) {
-                $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
             }
         }
         $this->_interfaces = $ifaces;
