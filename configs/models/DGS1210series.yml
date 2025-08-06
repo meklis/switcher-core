@@ -50,7 +50,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
 
  - name: D-link DGS-1210-20/ME/A1
    key: dlink_dgs_1210_20_me_a1
@@ -95,7 +94,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
  - name: D-link DGS-1210-10/ME/A1
    key: dlink_dgs_1210_10_me_a1
@@ -140,7 +138,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
  - name: D-link DGS-1210-20/ME/B1
    key: dlink_dgs_1210_20_me_b1
@@ -186,7 +183,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
 
  - name: D-link DGS-1210-12TS/ME/B1
    key: dlink_dgs_1210_12ts_me_b1
@@ -231,7 +227,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
 
  - name: D-link DGS-1210-28/ME/B1
    key: dlink_dgs_1210_28_me_b1
@@ -277,8 +272,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
-     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
 
  - name: D-link DGS-1210-28X/ME/B1
    key: dlink_dgs_1210_28x_me_b1
@@ -324,8 +317,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
-     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
 
 
  - name: D-link DGS-1210-28XS/ME/B1
@@ -372,7 +363,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
 
  - name: D-link Switch
    key: dlink_dgs_1210_28_me_b2
@@ -415,5 +405,3 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
-     sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
