@@ -35,5 +35,8 @@ models:
     net_settings: \SwitcherCore\Modules\General\NetSettings
     clear_iface_counters: \SwitcherCore\Modules\EltexSwitch\ClearIfaceCounters
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    sfp_media: \SwitcherCore\Modules\EltexSwitch\SfpMediaInfo
+    sfp_optical: \SwitcherCore\Modules\EltexSwitch\SfpOpticalInfo
+    sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     sys_temp: \SwitcherCore\Modules\EltexSwitch\SystemTemperatures
 

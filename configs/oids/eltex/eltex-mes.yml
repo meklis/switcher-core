@@ -1,2 +1,14 @@
 - {name: rlStack.unitIdTable, oid: .1.3.6.1.4.1.89.107.1}
 - {name: sensors.temperature.board, oid: .1.3.6.1.4.1.89.53.15.1.10}
+
+- {name: sfp.ddmValues, oid: .1.3.6.1.4.1.89.90.1.2.1.3}
+- {name: sfp.eltPhdTransceiverInfoWaveLength, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.4}
+
+- {name: sfp.eltPhdTransceiverInfoConnectorType, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.1, values: {0: unknown, 1: sc, 2: fibre-ch-st1, 3: fibre-ch-st2, 4: bnc-tnc, 5: fibre-ch-coaxial-headers, 6: fibrejack, 7: lc, 8: mt-rj, 9: m, 10: sg, 11: optical-pigtail, 12: mpo-parallel-optic, 32: hssdc-ii, 33: copper-pigtail, 34: rj-45, 127: unallocated, 255: vendorspec}} # Connector type of the interface
+- {name: sfp.eltPhdTransceiverInfoType, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.2, values: {0: unknown, 1: gbic, 2: sff, 3: sfp-sfpplus, 4: xbi-300-pin, 5: xenpak, 6: xfp, 7: xff, 8: xfp-e, 9: xpak, 10: x2, 11: dwdm-sfp, 12: qsfp, 127: reserved, 255: vendorspec}} # Type of the interface, such as SFP/XFP/GBIC.
+- {name: sfp.eltPhdTransceiverInfoComplianceCode, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.3}
+- {name: sfp.eltPhdTransceiverInfoVendorName, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.5}
+- {name: sfp.eltPhdTransceiverInfoSerialNumber, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.6}
+- {name: sfp.eltPhdTransceiverInfoFiberDiameterType, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.7, values: {1: fiber9, 2: fiber50, 3: fiber625, 4: copper, 65535: unknown}} #The diameter of the fiber, measured in micron. fiber9 - 9 micron multi-mode fiber fiber50 - 50 micron multi-mode fiber fiber625 - 62.5 micron multi-mode fiber copper - copper cable
+- {name: sfp.eltPhdTransceiverInfoTransferDistance, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.8} # The maximal distance which the interface could transmit, measured in meter.
+- {name: sfp.eltPhdTransceiverInfoPartNumber, oid: .1.3.6.1.4.1.35265.1.23.53.1.1.1.10}
