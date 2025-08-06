@@ -46,34 +46,6 @@ class DGS1210SystemResources extends SwitchesPortAbstractModule
             ];
         }
 
-        if (!$filter['load_only'] || str_contains($filter['load_only'], 'interfaces')) {
-            $response['interfaces'] = [];
-            foreach ($this->getResponseByName('agent.PortUtilizationUtil')->fetchAll() as $resp) {
-                $index = Helper::getIndexByOid($resp->getOid());
-                $response['interfaces'][$index]['util'] = $resp->getValue();
-            }
-            foreach ($this->getResponseByName('agent.PortUtilizationTx')->fetchAll() as $resp) {
-                $index = Helper::getIndexByOid($resp->getOid());
-                $response['interfaces'][$index]['util_tx'] = $resp->getValue();
-            }
-            foreach ($this->getResponseByName('agent.PortUtilizationRx')->fetchAll() as $resp) {
-                $index = Helper::getIndexByOid($resp->getOid());
-                $response['interfaces'][$index]['util_rx'] = $resp->getValue();
-            }
-            if (count($response['interfaces']) > 0) {
-                $indexes = $this->getIndexes();
-                foreach ($response['interfaces'] as $index => $data) {
-                    if (!isset($indexes[$index])) {
-                        unset($response['interfaces'][$index]);
-                    } else {
-                        $response['interfaces'][$index]['interface'] = $indexes[$index];
-                    }
-                }
-                $response['interfaces'] = array_values($response['interfaces']);
-            } else {
-                $response['interfaces'] = null;
-            }
-        }
 
         return $response;
     }
@@ -111,16 +83,7 @@ class DGS1210SystemResources extends SwitchesPortAbstractModule
         } else {
             $returnedGets = [];
         }
-        if (!$filter['load_only'] || str_contains($filter['load_only'], 'interfaces')) {
-            $returnedWalks = $this->snmp->walk([
-                Oid::init($this->oids->getOidByName('agent.PortUtilizationTx')->getOid()),
-                Oid::init($this->oids->getOidByName('agent.PortUtilizationRx')->getOid()),
-                Oid::init($this->oids->getOidByName('agent.PortUtilizationUtil')->getOid()),
-            ]);
-        } else {
-            $returnedWalks = [];
-        }
-        $this->response = $this->formatResponse(array_merge($returnedGets, $returnedWalks));
+        $this->response = $this->formatResponse($returnedGets);
         return $this;
     }
 }
