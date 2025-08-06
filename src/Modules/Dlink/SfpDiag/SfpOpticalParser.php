@@ -14,6 +14,7 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
 {
     protected $ports = [];
     protected $formatedResponse = [];
+
     function parse($filter = [])
     {
         return $this->formatedResponse;
@@ -24,6 +25,7 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
     {
         return $this->parse();
     }
+
     function getPrettyFiltered($filter = [])
     {
         return $this->parse($filter);
@@ -33,64 +35,73 @@ class SfpOpticalParser extends SwitchesPortAbstractModule
     {
         Helper::prepareFilter($filter);
         $load_only = false;
-        if($filter['load_only']) $load_only = explode(',', $filter['load_only']);
+        if ($filter['load_only']) $load_only = explode(',', $filter['load_only']);
         $ports_list = $this->getPortList($filter);
         $results = [];
-        foreach ($ports_list as $port=>$count_pairs) {
-            $oids = [];
-            if(!$load_only || in_array('vcc', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.voltage')->getOid(). ".{$port}");
-            if(!$load_only || in_array('rx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.txPower')->getOid(). ".{$port}");
-            if(!$load_only || in_array('tx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.rxPower')->getOid(). ".{$port}");
-            if(!$load_only || in_array('temp', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.temp')->getOid(). ".{$port}");
-            $this->response = $this->formatResponse($this->snmp->get($oids));
-
-            $result = [
-                'interface' => $this->parseInterface($port),
+        $oids = [];
+        foreach ($ports_list as $port => $interface) {
+            if (!$load_only || in_array('vcc', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.voltage')->getOid() . ".{$port}");
+            if (!$load_only || in_array('tx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.txPower')->getOid() . ".{$port}");
+            if (!$load_only || in_array('rx_power', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.rxPower')->getOid() . ".{$port}");
+            if (!$load_only || in_array('temp', $load_only)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddm.temp')->getOid() . ".{$port}");
+            $results[$port] = [
+                'interface' => $interface,
                 'temp' => null,
                 'vcc' => null,
                 'rx_power' => null,
                 'tx_power' => null,
                 'tx_bias' => null,
             ];
-            try {
-                $result['temp'] = $this->getResponseByName('sfp.ddm.temp')->fetchOne()->getParsedValue();
-            } catch (\Throwable $t) {}
-            try {
-                $result['vcc'] = $this->getResponseByName('sfp.ddm.voltage')->fetchOne()->getParsedValue();
-            } catch (\Throwable $t) {}
-            try {
-                $result['tx_power'] = $this->getResponseByName('sfp.ddm.rxPower')->fetchOne()->getParsedValue();
-            } catch (\Throwable $t) {}
-            try {
-                $result['tx_power'] = $this->getResponseByName('sfp.ddm.rxPower')->fetchOne()->getParsedValue();
-            } catch (\Throwable $t) {}
-            $results[] = array_map(function ($e) {
-                if($e === '-')  return null;
-                return $e;
-            }, $result);
         }
-        $this->formatedResponse = $results;
+        $this->response = $this->formatResponse($this->snmp->get($oids));
+        $this->_fillResponse($results, 'temp', 'sfp.ddm.temp');
+        $this->_fillResponse($results, 'vcc', 'sfp.ddm.voltage');
+        $this->_fillResponse($results, 'tx_power', 'sfp.ddm.txPower');
+        $this->_fillResponse($results, 'rx_power', 'sfp.ddm.rxPower');
+
+
+        $this->formatedResponse = array_values($results);
         return $this;
     }
-    protected function getPortList($filter) {
+
+    protected function _fillResponse(&$results, $keyName, $oidName)
+    {
+        try {
+            $data = $this->getResponseByName($oidName)->fetchAll();
+            if ($data) {
+                foreach ($data as $d) {
+                    $idx = Helper::getIndexByOid($d->getOid());
+                    $value = $d->getValue();
+                    if(trim($value) == '-') {
+                        $value = null;
+                    } else {
+                        $value = round($value, 2);
+                    }
+                    $results[$idx][$keyName] = $value;
+                }
+            }
+        } catch (\Throwable $t) {}
+    }
+
+    protected function getPortList($filter)
+    {
         $this->response = $this->formatResponse($this->snmp->walk([
             Oid::init($this->oids->getOidByName('dlink.PortInfoMediumType')->getOid(), true),
         ]));
         $ports_list = [];
         foreach ($this->getResponseByName('dlink.PortInfoMediumType')->fetchAll() as $ident) {
-            $port = Helper::getIndexByOid($ident->getOid());
-            if($ident->getParsedValue() == 'Fiber') {
-                 $ports_list[$port] = true;
+            $port = Helper::getIndexByOid($ident->getOid(), 1);
+            if ($ident->getParsedValue() == 'Fiber') {
+                $ports_list[$port] = $this->parseInterface($port);
             }
         }
-        if($filter['interface']) {
+        if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
-            foreach ($ports_list as $port=>$pairs) {
-                if($interface['id'] != $port) {
+            foreach ($ports_list as $port => $pairs) {
+                if ($interface['id'] != $port) {
                     unset($ports_list[$port]);
                 }
             }
-        //  return $ports_list;
         }
         return $ports_list;
     }

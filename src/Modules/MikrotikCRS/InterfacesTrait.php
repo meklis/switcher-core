@@ -82,10 +82,11 @@ trait InterfacesTrait
 
     function getInterfacesIds()
     {
-        if ($this->_interfaces) {
+        if ($this->_interfaces !== null) {
             return $this->_interfaces;
         }
-        if ($info = $this->getCache('INTERFACES', true)) {
+        $info = $this->getCache('INTERFACES', true);
+        if ($info !== null) {
             $this->_interfaces = $info;
             return $info;
         }
