@@ -1,12 +1,50 @@
-
 models:
+- name: Eltex switch
+  key: eltex_mes14xx_mes24xx_mes3708p
+  device_type: SWITCH
+  inputs:
+    - snmp
+    - console
+  detect: {description: ^(MES14.*|MES24.*|MES3708).*,  objid: ^.1.3.6.1.4.1.35265.1 }
+  oids:
+    - ./oids/eltex/eltex-mes14xx_mes24xx_mes3708.yml
+  extra:
+    console_conn_type: eltex
+    # console_commands_after_connect:
+    #   - terminal datadump
+    #   - terminal width 512
+  modules:
+    parse_interface: \SwitcherCore\Modules\EltexSwitch\ParseInterface
+    fdb: \SwitcherCore\Modules\EltexSwitch\Fdb
+    link_info: \SwitcherCore\Modules\EltexSwitch\LinkInfo
+    interface_counters: \SwitcherCore\Modules\EltexSwitch\Counters
+    system: \SwitcherCore\Modules\EltexSwitch\System
+    vlans: \SwitcherCore\Modules\EltexSwitch\VlansDot1q
+    errors: \SwitcherCore\Modules\EltexSwitch\Errors
+    rmon: \SwitcherCore\Modules\EltexSwitch\Rmon
+    pvid: \SwitcherCore\Modules\EltexSwitch\PvidDot1q
+    vlans_by_port: \SwitcherCore\Modules\EltexSwitch\VlanByPorts
+    interface_descriptions: \SwitcherCore\Modules\EltexSwitch\Descriptions
+    interfaces_list: \SwitcherCore\Modules\EltexSwitch\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\EltexSwitch\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\EltexSwitch\StatePortControl
+    console_command: \SwitcherCore\Modules\EltexSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\EltexSwitch\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\EltexSwitch\LldpInfo
+    net_settings: \SwitcherCore\Modules\General\NetSettings
+    clear_iface_counters: \SwitcherCore\Modules\EltexSwitch\ClearIfaceCounters
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    sfp_media: \SwitcherCore\Modules\EltexSwitch\SfpMediaInfo14xx24xx3708
+    sfp_optical: \SwitcherCore\Modules\EltexSwitch\SfpOpticalInfo14xx24xx3708
+    sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+
 - name: Eltex switch
   key: eltex_general_switch
   device_type: SWITCH
   inputs:
     - snmp
     - console
-  detect: {description: ^MES.*,  objid: ^.1.3.6.1.4.1.35265.1 }
+  detect: {description: ^(MES1024|MES11.*|MES21.*|MES2208P|MES31.*|MES5148|MES5248|MES2324FB).*,  objid: ^.1.3.6.1.4.1.35265.1 }
   oids:
     - ./oids/eltex/eltex-mes.yml
   extra:

@@ -7,7 +7,7 @@ use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
 use SwitcherCore\Modules\EltexSwitch\InterfacesTrait;
 use SwitcherCore\Modules\Helper;
 
-class SfpOpticalInfo extends AbstractInterfaces {
+class SfpOpticalInfo14xx24xx3708 extends AbstractInterfaces {
     use InterfacesTrait;
 
     public function run($params = []) {
@@ -24,12 +24,12 @@ class SfpOpticalInfo extends AbstractInterfaces {
 
         $oids = [];
         foreach($check_ifaces as $snmp_id => $ifc) {
-            if(!$load_only || in_array('temp', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.5");
-            if(!$load_only || in_array('vcc', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.6");
-            if(!$load_only || in_array('tx_bias', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.7");
-            if(!$load_only || in_array('tx_power', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.8");
-            if(!$load_only || in_array('rx_power', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.9");
-            if(!$load_only || in_array('wavelength', $load_only, true) || in_array('wave_length', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.eltPhdTransceiverInfoWaveLength')->getOid() . ".{$snmp_id}");
+            if(!$load_only || in_array('temp', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.1.1");
+            if(!$load_only || in_array('vcc', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.2.1");
+            if(!$load_only || in_array('tx_bias', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.3.1");
+            if(!$load_only || in_array('tx_power', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.4.1");
+            if(!$load_only || in_array('rx_power', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.ddmValues')->getOid() . ".{$snmp_id}.5.1");
+            if(!$load_only || in_array('wavelength', $load_only, true) || in_array('wave_length', $load_only, true)) $oids[] = Oid::init($this->oids->getOidByName('sfp.waveLength')->getOid() . ".{$snmp_id}");
         }
         if(!$oids) {
             $this->response = [];
@@ -40,27 +40,27 @@ class SfpOpticalInfo extends AbstractInterfaces {
         $response = [];
         if(isset($res['sfp.ddmValues'])) {
             foreach($res['sfp.ddmValues']->fetchAll() as $resp) {
-                $iface = $check_ifaces[Helper::getIndexByOid($resp->getOid(), 1)];
+                $iface = $check_ifaces[Helper::getIndexByOid($resp->getOid(), 2)];
                 $type = null;
                 $value = $resp->getValue();
-                if($value === 'NULL') continue;
-                switch(Helper::getIndexByOid($resp->getOid())) {
-                    case 5: $type = 'temp'; break;
-                    case 6: $type = 'vcc'; $value = round($value / 1000000, 2); break;
-                    case 7: $type = 'tx_bias'; $value = round($value / 1000, 2); break;
-                    case 8: $type = 'tx_power'; $value = round($value / 1000, 2); break;
-                    case 9: $type = 'rx_power'; $value = round($value / 1000, 2); break;
+                if($value === 'NULL' || $value == 0) continue;
+                switch(Helper::getIndexByOid($resp->getOid(), 1)) {
+                    case 1: $type = 'temp'; break;
+                    case 2: $type = 'vcc'; break;
+                    case 3: $type = 'tx_bias'; break;
+                    case 4: $type = 'tx_power'; $value = round($value / 1000, 2); break;
+                    case 5: $type = 'rx_power'; $value = round($value / 1000, 2); break;
                     default: continue 2;
                 }
                 if(!isset($response[$iface['id']])) $response[$iface['id']]['interface'] = $iface;
                 $response[$iface['id']][$type] = $value;
             }
         }
-        if(isset($res['sfp.eltPhdTransceiverInfoWaveLength'])) {
-            foreach($res['sfp.eltPhdTransceiverInfoWaveLength']->fetchAll() as $resp) {
+        if(isset($res['sfp.waveLength'])) {
+            foreach($res['sfp.waveLength']->fetchAll() as $resp) {
                 $iface = $check_ifaces[Helper::getIndexByOid($resp->getOid())];
                 $value = $resp->getValue();
-                if($value === 'NULL') continue;
+                if($value === 'NULL' || $value == 0) continue;
                 if(!isset($response[$iface['id']])) $response[$iface['id']]['interface'] = $iface;
                 $response[$iface['id']]['_wavelength'] = $value;
             }
