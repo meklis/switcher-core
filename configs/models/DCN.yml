@@ -32,3 +32,4 @@ models:
     sfp_optical: \SwitcherCore\Modules\DCN\SfpOpticalInfo
     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
