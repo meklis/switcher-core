@@ -1,4 +1,4 @@
-
+- {name: rlStack.unitIdTable, oid: .1.3.6.1.4.1.89.107.1} # no oid on MES14XX, MES24XX, MES3708. Added for compatibility on InterfacesTrait
 
 - {name: sfp.ddmValues, oid: .1.3.6.1.4.1.35265.52.1.1.3.2.1.8} # .1.3.6.1.4.1.35265.52.1.1.3.2.1.8.{iface_id}.{type}.1 type - 1: temp (40), 2: vcc (3), 3: tx_bias (21) 4: tx_power (-9393) 5: rx_power (-7304)
 - {name: sfp.waveLength, oid: .1.3.6.1.4.1.35265.52.1.1.3.1.1.4}
