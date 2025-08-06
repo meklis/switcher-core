@@ -6,6 +6,21 @@ models:
     - snmp
     - console
   detect: {description: ^(MES14.*|MES24.*|MES3708).*,  objid: ^.1.3.6.1.4.1.35265.1 }
+  rewrites:
+    oid: .1.3.6.1.2.1.1.1.0
+    mapping:
+      - value: ^MES14.*
+        rewrite:
+          key: eltex_mes14xx
+          name: Eltex MES14xx
+      - value: ^MES24.*
+        rewrite:
+          key: eltex_mes24xx
+          name: Eltex MES24xx
+      - value: ^MES3708
+        rewrite:
+          key: eltex_mes3708
+          name: Eltex MES3708
   oids:
     - ./oids/eltex/eltex-mes14xx_mes24xx_mes3708.yml
   extra:
