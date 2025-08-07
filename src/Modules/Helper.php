@@ -74,6 +74,10 @@ class Helper
 
         return strtoupper("$m1:$m2:$m3:$m4:$m5:$m6");
     }
+    static function hexToDecimal($hex)
+    {
+        return hexdec(rtrim(str_replace([":", ' '], '', $hex)));
+    }
     static function mac2oid($mac) {
         $mac = explode(":",strtoupper(str_replace(["-"," ","."],":",$mac)));
         $RESP = "";
@@ -127,10 +131,10 @@ class Helper
                 $str .= $char;
             }
             if(mb_detect_encoding($char, 'ASCII', true)) {
-                return iconv("ASCII", "UTF-8//IGNORE", $str,);;
+                return iconv("ASCII", "UTF-8//IGNORE", $str);;
             }
             if(mb_detect_encoding($char, 'Windows-1251', true)) {
-                return iconv("Windows-1251", "UTF-8//IGNORE", $str,);
+                return iconv("Windows-1251", "UTF-8//IGNORE", $str);
             }
             return  '';
     }

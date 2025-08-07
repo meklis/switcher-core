@@ -32,8 +32,8 @@
     8: aclQos (8)
     9: userDefined(9)
 
+
 - {name: acl.profile.rules_count,  oid: .1.3.6.1.4.1.171.10.76.28.1.15.1.2.1.3}
-- {name: acl.profile.profile_mask, oid: .1.3.6.1.4.1.171.10.76.28.1.15.1.2.1.4}
 - {name: acl.profile.dst_mac_addr_mask, oid: .1.3.6.1.4.1.171.10.76.28.1.15.1.2.1.5}
 - {name: acl.profile.src_mac_addr_mask,  oid: .1.3.6.1.4.1.171.10.76.28.1.15.1.2.1.6}
 - name: acl.profile.ip_protocol
@@ -56,6 +56,7 @@
 - {name: acl.profile.dst_port_mask,  oid: .1.3.6.1.4.1.171.10.76.28.1.15.1.2.1.13}
 - {name: acl.profile.src_port_mask,  oid: .1.3.6.1.4.1.171.10.76.28.1.15.1.2.1.14}
 
+# В случае с фильтрафией - можно ограничить по типу пакетов и навесить на конкретый порт
 - {name: acl.l2rule.ether_type, oid: .1.3.6.1.4.1.171.10.76.28.1.15.2.1.1.3}
 - {name: acl.l2rule.dst_mac_addr, oid: .1.3.6.1.4.1.171.10.76.28.1.15.2.1.1.4}
 - {name: acl.l2rule.src_mac_addr, oid: .1.3.6.1.4.1.171.10.76.28.1.15.2.1.1.5}
@@ -74,3 +75,30 @@
 - {name: acl.l2rule.match_count, oid: .1.3.6.1.4.1.171.10.76.28.1.15.2.1.1.19}
 - {name: acl.l2rule.in_port_list, oid: .1.3.6.1.4.1.171.10.76.28.1.15.2.1.1.51}
 - {name: acl.l2rule.in_vlan_list, oid: .1.3.6.1.4.1.171.10.76.28.1.15.2.1.1.52}
+
+- {name: acl.l3rule.protocol , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.3, values: {1: ICMP, 2: IGMP, 6: TCP, 17: UDP}}
+- {name: acl.l3rule.protocol_mask , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.4, values: {}}
+- {name: acl.l3rule.dst_ip_addr , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.7, values: {}}
+- {name: acl.l3rule.src_ip_addr , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.8, values: {}}
+- {name: acl.l3rule.dst_ip_addr_mask , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.9, values: {}}
+- {name: acl.l3rule.src_ip_addr_mask , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.10, values: {}}
+- {name: acl.l3rule.dst_port , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.11, values: {}}
+- {name: acl.l3rule.src_port , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.12, values: {}}
+- {name: acl.l3rule.igmp_type , oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.23, values: {}}
+- name: acl.l3rule.action
+  oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.25
+  values:
+    1: allow (1)
+    2: drop (2)
+    3: mirror (3)
+    4: rateLimit(4)
+    5: replaceDSCP(5)
+    6: replace1P(6)
+    7: replaceQueue(7)
+    8: replaceVLAN(8)
+- name: acl.l3rule.rate_limit # Rate limit for matched packet. В пакетах
+  oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.26
+- name: acl.l3rule.port_list # Rate limit for matched packet. В пакетах
+  oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.51
+- name: acl.l3rule.vlan_list
+  oid: .1.3.6.1.4.1.171.10.76.28.1.15.3.1.1.52

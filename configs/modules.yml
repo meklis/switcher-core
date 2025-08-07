@@ -615,3 +615,8 @@
 
 - name: direct_routes
   description: Origin Direct
+
+- name: acl_profiles
+  description: Returning configured ACL profiles on device (D-Link)
+  arguments:
+    - {name: profile_id, pattern: '.*', required: no}
