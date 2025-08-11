@@ -50,7 +50,6 @@ class SfpOpticalInfo extends AbstractInterfaces
         } else {
             $interfaces = $this->getInterfacesIds();
         }
-
         $sensorToInterfacesMapping = [];
         $sensorIdsNameMapping = [];
         foreach ($interfaces as $interface) {
@@ -98,11 +97,11 @@ class SfpOpticalInfo extends AbstractInterfaces
             $result[$interface['id']][$key] = (float)$val;
         }
         $this->response = array_values(array_map(function ($e) {
-            if (!isset($e['temp'])) $e['temp'] = null;
-            if (!isset($e['vcc'])) $e['vcc'] = null;
-            if (!isset($e['tx_bias'])) $e['tx_bias'] = null;
-            if (!isset($e['tx_power'])) $e['tx_power'] = null;
-            if (!isset($e['rx_power'])) $e['rx_power'] = null;
+            if (!isset($e['temp']) || !is_finite($e['temp'])) $e['temp'] = null;
+            if (!isset($e['vcc']) || !is_finite($e['vcc'])) $e['vcc'] = null;
+            if (!isset($e['tx_bias']) || !is_finite($e['tx_bias'])) $e['tx_bias'] = null;
+            if (!isset($e['tx_power']) || !is_finite($e['tx_power'])) $e['tx_power'] = null;
+            if (!isset($e['rx_power']) || !is_finite($e['rx_power'])) $e['rx_power'] = null;
             return $e;
         }, $result));
         return $this;

@@ -86,6 +86,7 @@ trait InterfacesTrait
         throw new \Exception("Interface with name {$iface} not found");
     }
 
+    private $_vlans;
     private $_interfaces;
 
     function getInterfacesIds()
@@ -101,6 +102,7 @@ trait InterfacesTrait
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
             Oid::init($this->oids->getOidByName('ent.physicalName')->getOid()),
+            Oid::init($this->oids->getOidByName('ent.physicalType')->getOid()),
         ]);
         $responses = [];
         foreach ($response as $resp) {
@@ -166,6 +168,25 @@ trait InterfacesTrait
                 }
             }
         }
+        foreach ($responses['ent.physicalType']->getResponse() as $r) {
+            $id = Helper::getIndexByOid($r->getOid());
+            if(isset($ifacesMapping[$r->getValue()])) {
+                $ifacesMapping[$r->getValue()]['_physical_id'] = $id;
+            }
+            if (preg_match('/^DOM (.*?)\s.*Sensor for (.*)$/', trim($r->getValue()), $m)) {
+                if(isset($ifacesMapping[$m[2]])) {
+                    $ifacesMapping[$m[2]]['_sensor_ids'][strtolower($m[1])] = $id;
+                }
+            } elseif (preg_match('/^Xcvr for (.*?): model (.*) type (.*) media (.*)$/', trim($r->getValue()), $m)) {
+                if(isset($ifacesMapping[$m[1]])) {
+                    $ifacesMapping[$m[1]]['_sfp'] = [
+                        'model' => $m[2],
+                        'type' => $m[3],
+                        'media' => $m[4],
+                    ];
+                }
+            }
+        }
         $ifaces = [];
         foreach ($ifacesMapping as $name => $data) {
             $ifaces[$data['id']] = $data;
@@ -174,6 +195,23 @@ trait InterfacesTrait
         $this->setCache("INTERFACES", $ifaces, 600, true);
         return $ifaces;
     }
+
+
+
+    function getVlanIdsMap()
+    {
+        if ($this->_vlans) {
+            return $this->_vlans;
+        }
+        if ($info = $this->getCache('INTERFACES_VLANS', true)) {
+            $this->_vlans = $info;
+            return $info;
+        }
+        $this->getInterfacesIds();
+        return $this->_vlans;
+    }
+
+
 
     /**
      *
