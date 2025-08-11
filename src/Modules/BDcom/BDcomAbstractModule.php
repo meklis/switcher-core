@@ -128,6 +128,7 @@ abstract class BDcomAbstractModule extends AbstractModule
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
             if (preg_match('/^GigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+                if($m[2] === '0' && $m[3] === '0') continue;
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
@@ -152,6 +153,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 ];
             }
             if (preg_match('/^FastEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+                if($m[2] === '0' && $m[3] === '1') continue;
                 $name = "fe{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
@@ -177,6 +179,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                 ];
             }
             if (preg_match('/^g(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+                if($m[2] === '0' && $m[3] === '0') continue;
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
