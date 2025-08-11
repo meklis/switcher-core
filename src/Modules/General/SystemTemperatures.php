@@ -27,6 +27,8 @@ class SystemTemperatures extends AbstractModule
         ];
         foreach ($this->response as $rawOidName => $value) {
             if($value->error()) {
+                var_dump($rawOidName);
+                var_dump($value);
                 throw new \SNMPException($value->error());
             }
             $key = str_replace("sensors.temperature.", "", $rawOidName);
