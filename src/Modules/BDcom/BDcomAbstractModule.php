@@ -127,7 +127,7 @@ abstract class BDcomAbstractModule extends AbstractModule
         $this->physicalInterfaces = [];
         foreach ($this->getResponseByName('if.Descr', $data)->fetchAll() as $iface) {
             $xid = Helper::getIndexByOid($iface->getOid());
-            if (preg_match('/^GigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+            if (preg_match('/^GigaEthernet(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
@@ -139,7 +139,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_type' => 'GigaEthernet',
                 ];
             }
-            if (preg_match('/^TGigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+            if (preg_match('/^TGigaEthernet(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' => (int)$this->getIdByName($name),
@@ -151,7 +151,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_type' => 'TGigaEthernet',
                 ];
             }
-            if (preg_match('/^FastEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+            if (preg_match('/^FastEthernet(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "fe{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
@@ -176,7 +176,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_technology' => 'epon',
                 ];
             }
-            if (preg_match('/^g(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+            if (preg_match('/^g(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
@@ -188,7 +188,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_type' => 'g',
                 ];
             }
-            if (preg_match('/^tg(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
+            if (preg_match('/^tg(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
