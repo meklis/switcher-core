@@ -1,0 +1,2 @@
+
+- { name: sensors.temperature.cpu, oid: .1.3.6.1.4.1.3320.3.6.10.1.13.1 }
