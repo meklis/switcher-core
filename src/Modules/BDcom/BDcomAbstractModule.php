@@ -151,7 +151,7 @@ abstract class BDcomAbstractModule extends AbstractModule
                     '_type' => 'TGigaEthernet',
                 ];
             }
-            if (preg_match('/^FastEthernet(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
+            if ($this->model->getKey() != 'bdcom_p3616_2te' && preg_match('/^FastEthernet(([0-9])\/([1-9]{1,3}))$/', $iface->getValue(), $m)) {
                 $name = "fe{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$this->getIdByName($name),
