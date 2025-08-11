@@ -15,4 +15,4 @@
   # .1.3.6.1.4.1.8886.1.18.2.2.1.1.2.{iface_id}.5 - Supply Voltage. Divide value by 1000 to get in Volts
 
   #- {name: sensors.temperature.cpu, oid: .1.3.6.1.4.1.8886.1.1.4.2.1}
-  - {name: sensors.temperature.board, oid: .1.3.6.1.4.1.8886.1.13.1.1.0}
+  - {name: sensors.temperature.board, oid: .1.3.6.1.4.1.8886.1.13.1.1}

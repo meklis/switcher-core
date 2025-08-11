@@ -1,3 +1,3 @@
   - {name: if.StatsDuplexStatus, oid: .1.3.6.1.2.1.10.7.2.1.19, access: read , values: {1: Down, 2: Full, 3: Half}}
 #  - {name: sensors.temperature.cpu, oid: .1.3.6.1.4.1.8886.1.1.4.2.1}
-  - {name: sensors.temperature.board, oid: .1.3.6.1.4.1.8886.1.13.1.1.0}
+  - {name: sensors.temperature.board, oid: .1.3.6.1.4.1.8886.1.13.1.1}
