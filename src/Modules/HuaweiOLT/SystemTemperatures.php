@@ -31,11 +31,8 @@ class SystemTemperatures extends \SwitcherCore\Modules\General\SystemTemperature
             }
             $key = str_replace("sensors.temperature.", "", $rawOidName);
             $val = $value->fetchOne();
-            if($val >= 2147483647) {
-                continue;
-            }
             $response[$key] = (float)$val->getValue() / 100;
-            $response['main'] = (float)$val->getValue()/ 100;
+            $response['main'] = (float)$val->getValue() / 100;
             $response['main_from'] = $key;
         }
 
