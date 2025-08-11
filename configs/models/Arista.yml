@@ -33,3 +33,5 @@ models:
     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     sfp_optical: \SwitcherCore\Modules\Arista\SfpOpticalInfo
     sfp_media: \SwitcherCore\Modules\Arista\SfpMediaInfo
+    arps: \SwitcherCore\Modules\Arista\ArpInfo
+

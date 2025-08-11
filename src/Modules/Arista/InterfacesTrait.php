@@ -58,30 +58,30 @@ trait InterfacesTrait
     function parseInterface($iface, $parseBy = 'id')
     {
         $ifaces = $this->getInterfacesIds();
-        if($parseBy == 'id') {
-            if(isset($ifaces[$iface])) {
+        if ($parseBy == 'id') {
+            if (isset($ifaces[$iface])) {
                 return $ifaces[$iface];
             }
         }
-        if($parseBy == 'physical_id') {
+        if ($parseBy == 'physical_id') {
             $filtered = array_filter($ifaces, function ($i) use ($iface, $parseBy) {
                 return isset($i['_physical_id']) && $i['_physical_id'] == $iface;
             });
-            if(count($filtered) == 1) {
+            if (count($filtered) == 1) {
                 return array_values($filtered)[0];
             }
         }
         $filtered = array_filter($ifaces, function ($i) use ($iface, $parseBy) {
             return isset($i['_port_num']) && $i['_port_num'] == $iface;
         });
-        if(count($filtered) > 0) {
-            return  array_values($filtered)[0];
+        if (count($filtered) > 0) {
+            return array_values($filtered)[0];
         }
         $filtered = array_filter($ifaces, function ($i) use ($iface, $parseBy) {
             return isset($i[$parseBy]) && $i[$parseBy] == $iface;
         });
-        if(count($filtered) > 0) {
-            return  array_values($filtered)[0];
+        if (count($filtered) > 0) {
+            return array_values($filtered)[0];
         }
         throw new \Exception("Interface with name {$iface} not found");
     }
@@ -98,6 +98,28 @@ trait InterfacesTrait
             $this->_interfaces = $info;
             return $info;
         }
+        $this->fetchInfoFromDevice();
+        return $this->_interfaces;
+    }
+
+    function getVlanIdsMap()
+    {
+        if ($this->_vlans) {
+            return $this->_vlans;
+        }
+        if ($info = $this->getCache('INTERFACES_VLANS', true)) {
+            $this->_vlans = $info;
+            return $info;
+        }
+        $this->fetchInfoFromDevice();
+        return $this->_vlans;
+    }
+
+    function fetchInfoFromDevice()
+    {
+        $this->_interfaces = null;
+        $this->_vlans = null;
+
 
         $response = $this->snmp->walk([
             Oid::init($this->oids->getOidByName('if.Name')->getOid()),
@@ -107,11 +129,12 @@ trait InterfacesTrait
         $responses = [];
         foreach ($response as $resp) {
             $name = $this->oids->findOidById($resp->getOid());
-            if($resp->getError()) {
+            if ($resp->getError()) {
                 throw new \Exception("Error walk {$name->getOid()} on device {$this->device->getIp()}");
             }
             $responses[$name->getName()] = $resp;
         }
+        $vlans = [];
         $ifacesMapping = [];
         foreach ($responses['if.Name']->getResponse() as $r) {
             $id = Helper::getIndexByOid($r->getOid());
@@ -119,47 +142,49 @@ trait InterfacesTrait
                 $slot = 0;
                 $port = $m[1];
                 $ifacesMapping[$m[0]] = [
-                    'id' => (int) $id,
+                    'id' => (int)$id,
                     'name' => $m[0],
                     '_snmp_id' => $id,
-                    '_port_num' => (int) $port,
-                    '_slot' => (int) $slot,
+                    '_port_num' => (int)$port,
+                    '_slot' => (int)$slot,
                     '_physical_id' => null,
                 ];
             } elseif (preg_match('/^Ethernet((\d{1,3})\/(\d{1,2}))$/', trim($r->getValue()), $m)) {
                 $slot = $m[3];
                 $port = $m[2];
                 $ifacesMapping[$m[0]] = [
-                    'id' => (int) $id,
+                    'id' => (int)$id,
                     'name' => $m[0],
                     '_snmp_id' => $id,
-                    '_port_num' => (int) $port,
-                    '_slot' => (int) $slot,
+                    '_port_num' => (int)$port,
+                    '_slot' => (int)$slot,
                     '_physical_id' => null,
                 ];
-            } elseif(preg_match('/^Port-Channel(\d{1,3})$/', trim($r->getValue()), $m)) {
+            } elseif (preg_match('/^Port-Channel(\d{1,3})$/', trim($r->getValue()), $m)) {
                 $port = $m[1];
                 $ifacesMapping[$m[0]] = [
-                    'id' => (int) $id,
+                    'id' => (int)$id,
                     'name' => $m[0],
                     '_snmp_id' => $id,
-                    '_port_num' => (int) $port,
+                    '_port_num' => (int)$port,
                     '_slot' => 'Port-Channel',
                     '_physical_id' => null,
                 ];
-            } 
+            } elseif (preg_match('/^Vlan([0-9]{1,4})$/', trim($r->getValue()), $m)) {
+                $vlans[Helper::getIndexByOid($r->getOid())] = (int)$m[1];
+            }
         }
         foreach ($responses['ent.physicalName']->getResponse() as $r) {
             $id = Helper::getIndexByOid($r->getOid());
-            if(isset($ifacesMapping[$r->getValue()])) {
+            if (isset($ifacesMapping[$r->getValue()])) {
                 $ifacesMapping[$r->getValue()]['_physical_id'] = $id;
             }
             if (preg_match('/^DOM (.*?)\s.*Sensor for (.*)$/', trim($r->getValue()), $m)) {
-                if(isset($ifacesMapping[$m[2]])) {
+                if (isset($ifacesMapping[$m[2]])) {
                     $ifacesMapping[$m[2]]['_sensor_ids'][strtolower($m[1])] = $id;
                 }
             } elseif (preg_match('/^Xcvr for (.*?): model (.*) type (.*) media (.*)$/', trim($r->getValue()), $m)) {
-                if(isset($ifacesMapping[$m[1]])) {
+                if (isset($ifacesMapping[$m[1]])) {
                     $ifacesMapping[$m[1]]['_sfp'] = [
                         'model' => $m[2],
                         'type' => $m[3],
@@ -170,15 +195,15 @@ trait InterfacesTrait
         }
         foreach ($responses['ent.physicalType']->getResponse() as $r) {
             $id = Helper::getIndexByOid($r->getOid());
-            if(isset($ifacesMapping[$r->getValue()])) {
+            if (isset($ifacesMapping[$r->getValue()])) {
                 $ifacesMapping[$r->getValue()]['_physical_id'] = $id;
             }
             if (preg_match('/^DOM (.*?)\s.*Sensor for (.*)$/', trim($r->getValue()), $m)) {
-                if(isset($ifacesMapping[$m[2]])) {
+                if (isset($ifacesMapping[$m[2]])) {
                     $ifacesMapping[$m[2]]['_sensor_ids'][strtolower($m[1])] = $id;
                 }
             } elseif (preg_match('/^Xcvr for (.*?): model (.*) type (.*) media (.*)$/', trim($r->getValue()), $m)) {
-                if(isset($ifacesMapping[$m[1]])) {
+                if (isset($ifacesMapping[$m[1]])) {
                     $ifacesMapping[$m[1]]['_sfp'] = [
                         'model' => $m[2],
                         'type' => $m[3],
@@ -192,25 +217,11 @@ trait InterfacesTrait
             $ifaces[$data['id']] = $data;
         }
         $this->_interfaces = $ifaces;
+        $this->_vlans = $vlans;
+        $this->setCache('INTERFACES_VLANS', $vlans, 600, true);
         $this->setCache("INTERFACES", $ifaces, 600, true);
         return $ifaces;
     }
-
-
-
-    function getVlanIdsMap()
-    {
-        if ($this->_vlans) {
-            return $this->_vlans;
-        }
-        if ($info = $this->getCache('INTERFACES_VLANS', true)) {
-            $this->_vlans = $info;
-            return $info;
-        }
-        $this->getInterfacesIds();
-        return $this->_vlans;
-    }
-
 
 
     /**
