@@ -27,8 +27,6 @@ class SystemTemperatures extends AbstractModule
         ];
         foreach ($this->response as $rawOidName => $value) {
             if($value->error()) {
-                var_dump($rawOidName);
-                var_dump($value);
                 throw new \SNMPException($value->error());
             }
             $key = str_replace("sensors.temperature.", "", $rawOidName);
@@ -58,12 +56,10 @@ class SystemTemperatures extends AbstractModule
      */
     public function run($filter = [])
     {
-        
-        $returnedGets = $this->formatResponse($this->snmp->get(
-            array_map(function ($e) {return Oid::init($e->getOid()); }, $this->oids->getOidsByRegex('sensors\.temperature\..*'))
-        ));
-        
-        $this->response = $returnedGets;
+        $returnedGets = $this->snmp->walk(
+            array_map(function ($e) {return Oid::init($e->getOid()); }, $this->oids->getOidsByRegex('sensors.temperature\..*'))
+        );
+        $this->response = $this->formatResponse($returnedGets);
         return $this;
     }
 }
