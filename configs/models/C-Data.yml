@@ -606,9 +606,9 @@ models:
               console_command: \SwitcherCore\Modules\CData\FD16xxV3\RawConsoleCommand
               multi_console_command: \SwitcherCore\Modules\CData\FD16xxV3\MultiRawConsoleCommand
               #ctrl_port_descr: \SwitcherCore\Modules\CData\FD16xxV3\PortDescriptionControl
-              #sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
-              #sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
-              #sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
+#              sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
+#              sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
+#              sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts

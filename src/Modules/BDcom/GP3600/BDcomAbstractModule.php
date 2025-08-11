@@ -118,7 +118,6 @@ abstract class BDcomAbstractModule extends AbstractModule
             $xid = (int) Helper::getIndexByOid($iface->getOid());
             $id = $this->getIdByName($iface->getValue());
             if (preg_match('/^GigaEthernet(([0-9])\/([0-9]{1,3}))$/', $iface->getValue(), $m)) {
-                if($m[2] === '0' && $m[3] === '0') continue;
                 $name = "g{$m[1]}";
                 $this->physicalInterfaces[] = [
                     'id' =>  (int)$id,
