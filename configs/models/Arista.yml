@@ -34,4 +34,5 @@ models:
     sfp_optical: \SwitcherCore\Modules\Arista\SfpOpticalInfo
     sfp_media: \SwitcherCore\Modules\Arista\SfpMediaInfo
     arps: \SwitcherCore\Modules\Arista\ArpInfo
+    direct_routes: \SwitcherCore\Modules\DellSwitch\DirectRoutes
 
