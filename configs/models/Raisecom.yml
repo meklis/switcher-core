@@ -146,4 +146,4 @@ models:
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
-     #sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
