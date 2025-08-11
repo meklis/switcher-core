@@ -3,7 +3,7 @@
 - {name: jnx.vlan.tag, oid: .1.3.6.1.4.1.2636.3.48.1.3.1.1.3 }
 - {name: jnx.vlan.fdb_id, oid:  .1.3.6.1.4.1.2636.3.48.1.3.1.1.5}
 
-- {name: sensors.temperature.cpu, oid: 1.3.6.1.4.1.2636.3.1.13.1.7.9.1.0 }
+- {name: sensors.temperature.cpu, oid: .1.3.6.1.4.1.2636.3.1.13.1.7.9.1.0.0 }
 
 - {name: ent.aliasMappingIdentifier, oid: .1.3.6.1.2.1.47.1.3.2.1.2}
 - {name: ent.physicalName, oid: .1.3.6.1.2.1.47.1.1.1.1.7} # SFP contains 'SFP' here
