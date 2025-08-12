@@ -46,7 +46,9 @@ class SfpOpticalInfo extends AbstractInterfaces
             if (!isset($RESPONS['tx_power'])) $RESPONSES[$id]['tx_power'] = null;
             if (!isset($RESPONS['rx_power'])) $RESPONSES[$id]['rx_power'] = null;
         }
-        $this->response = array_values($RESPONSES);
+        $this->response = array_values(array_filter($RESPONSES, function ($e) {
+          return $e['rx_power'] && $e['tx_power'] && $e['vcc'];
+        }));
         return $this;
     }
 
