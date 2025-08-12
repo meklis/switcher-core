@@ -2,7 +2,7 @@
 models:
 - name: Dell Powerconnect Switch
   key: dell_general_switch
-  device_type: SWITCH
+  device_type: ROUTER
   inputs:
     - snmp
     - console
@@ -41,7 +41,7 @@ models:
 
 - name: Dell Networking OS
   key: dell_networking_os
-  device_type: SWITCH
+  device_type: ROUTER
   inputs:
     - snmp
     - console
@@ -81,7 +81,7 @@ models:
 
 - name: Dell EMC Networking OS10
   key: dell_emc_networking_os
-  device_type: L3
+  device_type: ROUTER
   inputs:
     - snmp
     - console
