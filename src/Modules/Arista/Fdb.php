@@ -2,112 +2,112 @@
 
 namespace SwitcherCore\Modules\Arista;
 
+use \Exception;
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
+use SwitcherCore\Modules\Arista\InterfacesTrait;
+use SwitcherCore\Modules\General\FdbDot1BridgeWithConsole;
 use SwitcherCore\Modules\Helper;
 
-class Fdb extends FdbDot1Bridge
-{
+class Fdb extends FdbDot1BridgeWithConsole {
     use InterfacesTrait;
 
-    private $if_indexes = [];
+    protected function getFromSNMP() {
+        $oids = [
+            Oid::init($this->oids->getOidByName('dot1q.PortIfIndex')->getOid()),
+            Oid::init($this->oids->getOidByName('dot1q.FdbPort')->getOid()),
+            Oid::init($this->oids->getOidByName('dot1q.FdbStatus')->getOid()),
+        ];
+        $res = $this->formatResponse($this->snmp->walk($oids));
+        if($res['dot1q.PortIfIndex']->error()) {
+            throw new \Exception("Returned error {$res['dot1q.PortIfIndex']->error()} from {$res['dot1q.PortIfIndex']->getRaw()->ip}");
+        }
+        if($res['dot1q.FdbPort']->error()) {
+            throw new \Exception("Returned error {$res['dot1q.FdbPort']->error()} from {$res['dot1q.FdbPort']->getRaw()->ip}");
+        }
+        if($res['dot1q.FdbStatus']->error()) {
+            throw new \Exception("Returned error {$res['dot1q.FdbStatus']->error()} from {$res['dot1q.FdbStatus']->getRaw()->ip}");
+        }
 
-    protected function formate() {
-        if($this->response) {
-            $pretties = [];
-            $statuses = [];
-            $ports = [];
-            if($this->response['dot1q.FdbStatus']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbStatus']->error()} from {$this->response['dot1q.FdbStatus']->getRaw()->ip}");
-            }
-            if($this->response['dot1q.FdbPort']->error()) {
-                throw new \Exception("Returned error {$this->response['dot1q.FdbPort']->error()} from {$this->response['dot1q.FdbPort']->getRaw()->ip}");
-            }
-            while ($d = $this->response['dot1q.FdbStatus']->fetchOne()) {
-                $data = Helper::oid2MacVlan($d->getOid());
-                $statuses["{$data['vid']}-{$data['mac']}"] = $d->getParsedValue();
-            }    
-            while ($d = $this->response['dot1q.FdbPort']->fetchOne()) {
-                $data = Helper::oid2MacVlan($d->getOid());
-                $port = isset($this->if_indexes[$d->getValue()]) ? $this->if_indexes[$d->getValue()] : $d->getValue();
-                $ports["{$data['vid']}-{$data['mac']}"] = $port;
-            }            
-            foreach ($statuses as $key=>$status) {
-                list($vlanId, $macAddr) = explode("-", $key);
-                if(!isset($ports[$key])) {
+        $statuses = [];
+        $ports = [];
+
+        while ($d = $res['dot1q.PortIfIndex']->fetchOne()) {
+            $index = Helper::getIndexByOid($d->getOid());
+            $if_indexes[$index] = $d->getParsedValue();
+        }
+        while ($d = $res['dot1q.FdbStatus']->fetchOne()) {
+            $data = Helper::oid2MacVlan($d->getOid());
+            $statuses["{$data['vid']}-{$data['mac']}"] = $d->getParsedValue();
+        }    
+        while ($d = $res['dot1q.FdbPort']->fetchOne()) {
+            $data = Helper::oid2MacVlan($d->getOid());
+            $port = isset($if_indexes[$d->getValue()]) ? $if_indexes[$d->getValue()] : $d->getValue();
+            $ports["{$data['vid']}-{$data['mac']}"] = $port;
+        }
+
+        $response = [];
+        foreach ($statuses as $key => $status) {
+            list($vlanId, $macAddr) = explode("-", $key);
+            if(!isset($ports[$key])) continue;
+            if(!(int)$ports[$key]) continue;
+            try {
+                $response[] = [
+                    'interface' => $this->parseInterface($ports[$key], 'physical_id'),
+                    'vlan_id' => (int)$vlanId,
+                    'mac_address' => $macAddr,
+                    'status' => $status,
+                ];
+            } catch (\Throwable $e) {}
+        }
+
+        return array_values($response);
+    }
+
+    protected function getFromConsole(array $filter) {
+        $cmd = 'show mac address-table';
+        if($filter['mac']) {
+            $mac = Helper::formatMac3Blocks($filter['mac']);
+            $cmd .= ' address ';
+            $cmd .= $mac;
+        }
+        if($filter['interface']) {
+            $iface = $this->parseInterface($filter['interface']);
+            $cmd .= ' interface ';
+            $cmd .= $iface['name'];
+        }
+        if($filter['vlan_id']) {
+            $cmd .= ' vlan ';
+            $cmd .= $filter['vlan_id'];
+        }
+        $res = $this->getModule('console_command')->run(['command' => $cmd])->getPrettyFiltered();
+        if(!$res['success']) throw new \Exception("Error while running command {$cmd}");
+        $res = explode("\n", $res['output']);
+        $response = [];
+        foreach($res as $i => $str) {
+            if($i < 5) continue;
+            if(strpos(trim($str), 'Total Mac Addresses for this criterion:') !== false) break;
+            if(preg_match('/(\d{1,4})\s+(....\.....\.....)\s+([A-Z]{4,})\s+(Et\d{1,2}(\/\d)?|Po\d)/i', trim($str), $m)) {
+                $vlan_id = $m[1];
+                $mac = Helper::formatMac($m[2]);
+                $status = ($m[3] === 'DYNAMIC') ? 'LEARNED' : 'STATIC';
+                if(preg_match('/^Po(\d)$/i', $m[4], $mm)) {
+                    $iface = 'Port-Channel' . $mm[1];
+                } elseif(preg_match('/^Et(\d{1,2}\/?\d?)$/i', $m[4], $mm)) {
+                    $iface = 'Ethernet' . $mm[1];
+                } else {
                     continue;
                 }
-                if(!(int)$ports[$key])  continue;
-                try {
-                    $pretties[] = [
-                        'interface' => $this->parseInterface($ports[$key], 'physical_id'),
-                        'vlan_id' => (int)$vlanId,
-                        'mac_address' => $macAddr,
-                        'status' => $status,
-                    ];
-                } catch (\Throwable $e) {}
+                $interface = $this->parseInterface($iface, 'name');
+                
+                $response[] = [
+                    'interface' => $interface,
+                    'vlan_id' => $vlan_id,
+                    'mac_address' => $mac,
+                    'status' => $status,
+                ];
             }
-            return $pretties;
-        } else {
-            throw new \Exception("No response");
-        }
-    }
-    function getPrettyFiltered($filter = []) {
-        Helper::prepareFilter($filter);
-        $formated = $this->formate();
-        if($filter['interface']) {
-            $interface = $this->parseInterface($filter['interface']);
-            foreach ($formated as $num=>$fdb) {
-                if($fdb['interface']['id'] != $interface['id']) {
-                    unset($formated[$num]);
-                }
-            }
-        }
-        if($filter['vlan_id']) {
-            foreach ($formated as $num=>$fdb) {
-                if($fdb['vlan_id'] != $filter['vlan_id']) {
-                    unset($formated[$num]);
-                }
-            }
-        }
-        if($filter['mac']) {
-            foreach ($formated as $num=>$fdb) {
-                if($fdb['mac_address'] != $filter['mac']) {
-                    unset($formated[$num]);
-                }
-            }
-        }
-        return array_values($formated);
-    }
-    function getPretty()
-    {
-        return $this->formate();
-    }
-
-    public function run($filter = [])
-    {
-        Helper::prepareFilter($filter);
-
-        $ports_if_indexes_oid =  $this->oids->getOidByName('dot1q.PortIfIndex')->getOid();
-        $ports_if_indexes = $this->formatResponse($this->snmp->walk([ Oid::init($ports_if_indexes_oid) ]));
-        while ($d = $ports_if_indexes['dot1q.PortIfIndex']->fetchOne()) {
-            $index = Helper::getIndexByOid($d->getOid());
-            $this->if_indexes[$index] = $d->getParsedValue();
         }
 
-        $fdb_port =  $this->oids->getOidByName('dot1q.FdbPort')->getOid();
-        $fdb_status =  $this->oids->getOidByName('dot1q.FdbStatus')->getOid();
-        if($filter['vlan_id']) {
-            $fdb_port .= ".{$filter['vlan_id']}";
-            $fdb_status .= ".{$filter['vlan_id']}";
-        }
-        if($filter['vlan_id'] && $filter['mac']) {
-            $fdb_port .= "." . Helper::mac2oid($filter['mac']);
-            $fdb_status .= "." .   Helper::mac2oid($filter['mac']);
-        }
-        $this->response = $this->formatResponse($this->snmp->walkBulk([
-            Oid::init($fdb_status), Oid::init($fdb_port),
-        ]));
-        return $this;
+        return array_values($response);
     }
 }
