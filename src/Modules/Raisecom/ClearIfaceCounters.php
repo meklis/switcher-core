@@ -16,10 +16,15 @@ class ClearIfaceCounters extends AbstractModule {
         $iface = $this->parseInterface($params['interface']);
         if(!$iface) throw new Exception("Interface {$params['interface']} not found");
 
+        $fullname = $iface['_fullname'];
+        if(preg_match('/(gigaethernet|tengigabitethernet|ethernet)(\d{1,3}(\/\d{1,3})+)/i', $fullname, $m)) {
+            $fullname = "{$m[1]} {$m[2]}";
+        }
+
         $resp = $this->getModule('multi_console_command')
             ->run(['commands' => [
                 'config', 
-                'interface ' . $iface['_fullname'], 
+                'interface ' . $fullname, 
                 'clear interface statistics',
             ], 'break_on_error' => 'yes'])->getPretty();
 
