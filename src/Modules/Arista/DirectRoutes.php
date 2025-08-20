@@ -5,74 +5,90 @@ namespace SwitcherCore\Modules\Arista;
 use SnmpWrapper\Oid;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-class DirectRoutes extends AbstractModule {
-    public function run($params = []) {
-        $oids[] = $this->oids->getOidByName('ipAddrTable.ipAdEntIfIndex')->getOid();
-        $oids[] = $this->oids->getOidByName('ipAddrTable.ipAdEntNetMask')->getOid();
-        $oids[] = $this->oids->getOidByName('if.Descr')->getOid();
-        $oids[] = $this->oids->getOidByName('if.Alias')->getOid();
-
-        $oidObjects = [];
-        foreach ($oids as $oid) {
-            $oidObjects[] = Oid::init($oid);
+class DirectRoutes extends AbstractModule
+{
+    /**
+     * @Inject
+     * @var ConsoleInterface
+     */
+    protected $console;
+    public function run($params = [])
+    {
+        $interfaces = json_decode($this->console->exec("show ip interface | json"), true);
+        if(json_last_error() != JSON_ERROR_NONE) {
+            throw new \Exception("Error in json parser: " . json_last_error_msg());
         }
-
-        $res = $this->formatResponse($this->snmp->walk($oidObjects));
-        foreach($res as $name => $r) {
-            if($res[$name]->error()) {
-                throw new \Exception("Returned error {$res[$name]->error()} from {$res[$name]->getRaw()->ip}");
+        if(!isset($interfaces['interfaces'])) {
+            throw new \Exception("Interfaces not defined");
+        }
+        $directRoutes = [];
+        foreach ($interfaces['interfaces'] as $ifaceName=>$detailed) {
+            if(!preg_match("/^Vlan([0-9]{1,4})$/i", $ifaceName, $vlanMatch)) {
+                continue;
+            }
+            if(!$detailed['enabled']) {
+                continue;
+            }
+            $basicValues = [
+                'type' => 'v4',
+                'vlan_id' => (int)$vlanMatch[1],
+                'vlan_name' => $detailed['description'],
+                'network' => null,
+                'broadcast' => null,
+                'gateway' => null,
+                'cidr' => null,
+            ];
+            if(isset($detailed['interfaceAddress']['primaryIp'])) {
+                $directRoutes[] = array_merge(
+                    $basicValues,
+                    $this->getNetworkDetailByGatewayAndPrefix(
+                        $detailed['interfaceAddress']['primaryIp']['address'], $detailed['interfaceAddress']['primaryIp']['maskLen']
+                    )
+                );
+            }
+            if(isset($detailed['interfaceAddress']['secondaryIpsOrderedList']) && $detailed['interfaceAddress']['secondaryIpsOrderedList']) {
+                foreach ($detailed['interfaceAddress']['secondaryIpsOrderedList'] as $address) {
+                    $directRoutes[] = array_merge(
+                        $basicValues,
+                        $this->getNetworkDetailByGatewayAndPrefix(
+                            $address['address'], $address['maskLen']
+                        )
+                    );
+                }
             }
         }
-
-        $networks = [];
-        while ($d = $res['ipAddrTable.ipAdEntIfIndex']->fetchOne()) {
-            $gateway = Helper::oid2IP($d->getOid());
-            $networks[$gateway]['id'] = $d->getValue();
-        }
-        while ($d = $res['ipAddrTable.ipAdEntNetMask']->fetchOne()) {
-            $gateway = Helper::oid2IP($d->getOid());
-            $networks[$gateway]['netmask'] = $d->getValue();
-        }
-        $vlans = [];
-        while ($d = $res['if.Descr']->fetchOne()) {
-            if(!preg_match('/^Vlan\s?(\d{1,4})$/i', $d->getValue(), $m)) continue;
-            $if_id = Helper::getIndexByOid($d->getOid());
-            $vlans[$if_id]['id'] = $m[1];
-        }
-        while ($d = $res['if.Alias']->fetchOne()) {
-            $if_id = Helper::getIndexByOid($d->getOid());
-            $vlans[$if_id]['name'] = $d->getValue();
-        }
-
-        $this->response = [];
-        foreach($networks as $gateway => $arr) {
-            if(!isset($vlans[$arr['id']]['id'])) continue;
-            $subnet = long2ip(ip2long($gateway) & ip2long($arr['netmask']));
-            $cmask = 32 - log((ip2long($arr['netmask']) ^ ip2long('255.255.255.255')) + 1, 2);
-            $wcmask = long2ip( ~ip2long($arr['netmask']) );
-            $fsubnet = sprintf("%s/%s", $subnet, $cmask);
-            $bcast = long2ip(ip2long($gateway) | ip2long($wcmask));
-            
-            $this->response[] = [
-                'type' => 'v4',
-                'network' => $subnet,
-                'broadcast' => $bcast,
-                'gateway' => $gateway,
-                'cidr' => $fsubnet,
-                'vlan_id' => $vlans[$arr['id']]['id'],
-                'vlan_name' => (isset($vlans[$arr['id']]['name']) ? $vlans[$arr['id']]['name'] : null),
-            ];
-        }
-        
+        $this->response = $directRoutes;
         return $this;
     }
 
-    public function getPretty() {
+    function getNetworkDetailByGatewayAndPrefix($gateway, $prefix)
+    {
+        $ipLong = ip2long($gateway);
+        if ($ipLong === false) {
+            return null;
+        }
+        $maskLong = $prefix === 0 ? 0 : (0xFFFFFFFF << (32 - $prefix)) & 0xFFFFFFFF;
+        $networkLong = $ipLong & $maskLong;
+        $broadcastLong = $networkLong | (~$maskLong & 0xFFFFFFFF);
+        $network =  long2ip($networkLong);
+        return [
+            'network' => $network,
+            'broadcast' => long2ip($broadcastLong),
+            'gateway' => $gateway,
+            'cidr' => "{$network}/{$prefix}",
+        ];
+    }
+
+
+    public function getPretty()
+    {
         return $this->response;
     }
 
-    public function getPrettyFiltered($filter = []) {
+    public function getPrettyFiltered($filter = [])
+    {
         return $this->response;
     }
 }
