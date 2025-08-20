@@ -2,6 +2,7 @@
 
 namespace SwitcherCore\Modules\Juniper;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
@@ -29,6 +30,7 @@ class Fdb extends FdbDot1Bridge
                     $ports["{$data['vid']}-{$data['mac']}"] = $d->getValue();
                 }
             }
+            $vlanIdAssoc = $this->getVlanAssocMap();
             foreach ($statuses as $key=>$status) {
                 list($vlanId, $macAddr) = explode("-", $key);
                 if(!isset($ports[$key])) {
@@ -38,7 +40,7 @@ class Fdb extends FdbDot1Bridge
                 try {
                     $pretties[] = [
                         'interface' => $this->getIfaceByDot1q($ports[$key]),
-                        'vlan_id' => (int)$vlanId,
+                        'vlan_id' => isset($vlanIdAssoc[$vlanId]) ? (int)$vlanIdAssoc[$vlanId] : null,
                         'mac_address' => $macAddr,
                         'status' => $status,
                     ];
@@ -58,5 +60,32 @@ class Fdb extends FdbDot1Bridge
             return array_values($filtered)[0];
         }
         return null;
+    }
+
+    protected function getVlanAssocMap()
+    {
+        $resp = $this->formatResponse($this->snmp->walk([
+            Oid::init($this->oids->getOidByName('jnx.vlan.tag')->getOid()),
+            Oid::init($this->oids->getOidByName('jnx.vlan.fdb_id')->getOid()),
+        ]));
+
+        //Check errors
+        foreach ($resp as $name=>$res) {
+            if($res->error()) {
+                throw new \SNMPException("Returned error {$res->error()} for oid $name");
+            }
+        }
+        $premap = [];
+        foreach ($resp['jnx.vlan.fdb_id']->fetchAll() as $res) {
+            $id = Helper::getIndexByOid($res->getOid());
+            $premap[$id] = (int)$res->getValue();
+        }
+
+        $result = [];
+        foreach ($resp['jnx.vlan.tag']->fetchAll() as $res) {
+            $id = Helper::getIndexByOid($res->getOid());
+            $result[$premap[$id]] = $res->getValue();
+        }
+        return $result;
     }
 }

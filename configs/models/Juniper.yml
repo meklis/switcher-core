@@ -39,6 +39,7 @@ models:
     sfp_optical: \SwitcherCore\Modules\Juniper\SfpOpticalInfo
     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+    fdb: \SwitcherCore\Modules\Juniper\Fdb
 
 - name: Juniper JNP204 series
   key: juniper_jnp204_series
@@ -78,6 +79,7 @@ models:
     sfp_optical: \SwitcherCore\Modules\Juniper\SfpOpticalInfo
     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+    fdb: \SwitcherCore\Modules\Juniper\Fdb
 
 
 
