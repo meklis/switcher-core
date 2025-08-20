@@ -268,6 +268,7 @@ abstract class CDataAbstractModuleFD16xxV3 extends AbstractModule
     function getAllOntsIds($onlyOnline = false)
     {
         $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+        $ontIds = [];
         foreach ($onts as $ont) {
             if ($onlyOnline && $ont['status'] !== 'Online') {
                 continue;
