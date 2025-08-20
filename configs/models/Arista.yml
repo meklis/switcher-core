@@ -9,7 +9,7 @@ models:
     - ./oids/arista/defaults.yml
   extra:
     console_conn_type: arista
-  detect: {description: .*Arista.*,  objid: ^.1.3.6.1.4.1.30065.1.3011 }
+  detect: {description: .*Arista.*,  objid: ^.1.3.6.1.4.1.30065.1 }
   modules:
     parse_interface: \SwitcherCore\Modules\Arista\ParseInterface
     fdb: \SwitcherCore\Modules\Arista\Fdb
@@ -34,5 +34,5 @@ models:
     sfp_optical: \SwitcherCore\Modules\Arista\SfpOpticalInfo
     sfp_media: \SwitcherCore\Modules\Arista\SfpMediaInfo
     arps: \SwitcherCore\Modules\Arista\ArpInfo
-    direct_routes: \SwitcherCore\Modules\DellSwitch\DirectRoutes
+    direct_routes: \SwitcherCore\Modules\Arista\DirectRoutes
 
