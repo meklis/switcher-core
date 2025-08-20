@@ -64,7 +64,7 @@ class Fdb extends FdbDot1BridgeWithConsole {
     }
 
     protected function getFromConsole(array $filter) {
-        $cmd = 'show mac address-table';
+        $cmd = 'show mac address-table ';
         if($filter['mac']) {
             $mac = Helper::formatMac3Blocks($filter['mac']);
             $cmd .= ' address ';
@@ -79,35 +79,20 @@ class Fdb extends FdbDot1BridgeWithConsole {
             $cmd .= ' vlan ';
             $cmd .= $filter['vlan_id'];
         }
+        $cmd .= " | json";
         $res = $this->getModule('console_command')->run(['command' => $cmd])->getPrettyFiltered();
         if(!$res['success']) throw new \Exception("Error while running command {$cmd}");
-        $res = explode("\n", $res['output']);
         $response = [];
-        foreach($res as $i => $str) {
-            if($i < 5) continue;
-            if(strpos(trim($str), 'Total Mac Addresses for this criterion:') !== false) break;
-            if(preg_match('/(\d{1,4})\s+(....\.....\.....)\s+([A-Z]{4,})\s+(Et\d{1,2}(\/\d)?|Po\d)/i', trim($str), $m)) {
-                $vlan_id = $m[1];
-                $mac = Helper::formatMac($m[2]);
-                $status = ($m[3] === 'DYNAMIC') ? 'LEARNED' : 'STATIC';
-                if(preg_match('/^Po(\d)$/i', $m[4], $mm)) {
-                    $iface = 'Port-Channel' . $mm[1];
-                } elseif(preg_match('/^Et(\d{1,2}\/?\d?)$/i', $m[4], $mm)) {
-                    $iface = 'Ethernet' . $mm[1];
-                } else {
-                    continue;
-                }
-                $interface = $this->parseInterface($iface, 'name');
-                
+        $result = json_decode($res['output'], true);
+        foreach($result['unicastTable']['tableEntries'] as $row) {
+                $interface = $this->parseInterface($row['interface'], 'name');
                 $response[] = [
                     'interface' => $interface,
-                    'vlan_id' => $vlan_id,
-                    'mac_address' => $mac,
-                    'status' => $status,
+                    'vlan_id' => $row['vlanId'],
+                    'mac_address' => strtoupper($row['macAddress']),
+                    'status' => strtoupper($row['entryType']),
                 ];
-            }
         }
-
         return array_values($response);
     }
 }
