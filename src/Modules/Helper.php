@@ -51,6 +51,19 @@ class Helper
 
         return ['mac'=>strtoupper("$m1:$m2:$m3:$m4:$m5:$m6"), 'vid'=>$vid];
     }
+    static function oid2VlanMac($oid) {
+        $count = substr_count($oid, '.');
+        $dec= explode('.', $oid);
+        $vid = $dec[$count];
+        if(strlen(dechex($dec[$count-6])) == 1) $m1 = '0'.dechex($dec[$count-6]); else $m1=dechex($dec[$count-6]);
+        if(strlen(dechex($dec[$count-5])) == 1) $m2 = '0'.dechex($dec[$count-5]); else $m2=dechex($dec[$count-5]);
+        if(strlen(dechex($dec[$count-4])) == 1) $m3 = '0'.dechex($dec[$count-4]); else $m3=dechex($dec[$count-4]);
+        if(strlen(dechex($dec[$count-3])) == 1) $m4 = '0'.dechex($dec[$count-3]); else $m4=dechex($dec[$count-3]);
+        if(strlen(dechex($dec[$count-2])) == 1) $m5 = '0'.dechex($dec[$count-2]); else $m5=dechex($dec[$count-2]);
+        if(strlen(dechex($dec[$count-1])) == 1) $m6 = '0'.dechex($dec[$count-1]); else $m6=dechex($dec[$count-1]);
+
+        return ['mac'=>strtoupper("$m1:$m2:$m3:$m4:$m5:$m6"), 'vid'=>$vid];
+    }
     static function oid2mac($oid) {
         $count = substr_count($oid, '.');
         $dec= explode('.', $oid);
