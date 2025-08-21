@@ -57,11 +57,13 @@ class SshLazyConnect extends SSH implements ConsoleInterface
     function setTimeout($timeout)
     {
         $this->timeout = $timeout;
+        return $this;
     }
 
     function setStreamTimeout($timeout)
     {
         $this->stream_timeout_sec = $timeout;
+        return $this;
     }
 
     function getStream()
