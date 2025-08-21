@@ -17,6 +17,11 @@ interface ConsoleInterface
     function setHost($host,$port = 23);
     function setDeviceHelper(HelperInterface $helper);
 
+    function connectAndLogin();
+    function setTimeout($timeout);
+    function setStreamTimeout($timeout);
+    function getStream();
+
     /**
      * @return \Meklis\Network\Console\Helpers\DefaultHelper|HelperInterface
      */
