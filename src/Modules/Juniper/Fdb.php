@@ -79,35 +79,29 @@ class Fdb extends FdbDot1BridgeWithConsole {
             $cmd .= $mac;
         }
         if($filter['vlan_id']) $cmd .= ' vlan-id ' . $filter['vlan_id'];
-        $cmd .= ' | display json ';
 
         $res = $this->getModule('console_command')->run(['command' => $cmd])->getPrettyFiltered();
         if(!$res['success']) throw new \Exception("Error while running command {$cmd}");
-        $res = json_decode($res['output'], true);
-
+        $res = explode("\n", $res['output']);
+        
         $response = [];
-        foreach($res['l2ng-l2ald-rtb-macdb']['l2ng-l2ald-mac-entry-vlan']['l2ng-mac-entry'] as $arr) {
-            $mac = Helper::formatMac($arr['l2ng-l2-mac-address']);
-            $status = (($arr['l2ng-l2-mac-flags'] === 'C') ? 'SYSTEM' : (($arr['l2ng-l2-mac-flags'] === 'S' || $arr['l2ng-l2-mac-flags'] === 'P') ? 'STATIC' : 'LEARNED'));
-            $iface = $arr['l2ng-l2-mac-logical-interface'];
-            $pos = strpos($iface, '.');
-            if($pos === false) {
-                $vlan = 0;
-            } else {
-                $vlan = substr($iface, $pos + 1);
-                $iface = substr($iface, 0, $pos);
-            }
-            $interface = $this->parseInterface($iface, 'name');
+        foreach($res as $line) {
+            if(trim($line) === '') continue;
+            if(preg_match('/^[A-Za-z0-9\-\_]+\s+(..:..:..:..:..:..)\s+(S|D|L|P|C|SE|NM|R|O)\s+.*\s+((et|xe|ge)\-\d{1,2}\/\d{1,2}\/\d{1,2}(\:\d{1,4})?|ae\d{1,5}|irb)(\.(\d{1,5}))?/i', trim($line), $m)) {
+                $mac = Helper::formatMac($m[1]);
+                $status = (($m[2] === 'C') ? 'SYSTEM' : (($m[2] === 'S' || $m[2] === 'P') ? 'STATIC' : 'LEARNED'));
+                $iface = $this->parseInterface($m[3], 'name');
+                $vlan = isset($m[7]) ? $m[7] : null;
 
-            $response[] = [
-                'interface' => $interface,
-                'vlan_id' => $vlan,
-                'mac_address' => $mac,
-                'status' => $status,
-            ];
+                $response[] = [
+                    'interface' => $iface,
+                    'vlan_id' => $vlan,
+                    'mac_address' => $mac,
+                    'status' => $status,
+                ];
+            }
         }
 
         return $response;
     }
-
 }

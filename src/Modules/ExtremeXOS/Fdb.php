@@ -3,75 +3,91 @@
 namespace SwitcherCore\Modules\ExtremeXOS;
 
 use SnmpWrapper\Oid;
-use SwitcherCore\Modules\AbstractModule;
+use SwitcherCore\Modules\General\FdbDot1BridgeWithConsole;
 use SwitcherCore\Modules\Helper;
-use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-class Fdb extends AbstractModule
-{
+class Fdb extends FdbDot1BridgeWithConsole {
     use InterfacesTrait;
 
-
-    /**
-     * @Inject
-     * @var ConsoleInterface
-     */
-    protected $console;
-
-    /**
-     * @param $params
-     * @return $this|AbstractModule
-     * @throws \Exception
-     */
-    public function run($params = [])
-    {
-        /**
-         * - {name: ip, pattern: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$', required: no}
-         * - {name: vlan_id, pattern: '^[0-9]{1,4}$', required: no}
-         * - {name: vlan_name, pattern: '^.*$', required: no}
-         * - {name: interface, pattern: '^.*$', required: no}
-         * - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
-         * - {name: status, pattern: '^(disabled|invalid|OK)$', required: no, values: [disabled, invalid, OK]}
-         */
-        $command = "show fdb";
-        if(isset($params['vlan_name']) && $params['vlan_name']) {
-            $command .= " vlan {$params['vlan_name']}";
+    protected function getFromSNMP() {
+        $oids[] = Oid::init($this->oids->getOidByName('extreme.vlanIfVlanId')->getOid());
+        $oids[] = Oid::init($this->oids->getOidByName('extreme.fdbMacExosFdbStatus')->getOid());
+        $oids[] = Oid::init($this->oids->getOidByName('extreme.fdbMacExosFdbPortIfIndex')->getOid());
+        $res = $this->formatResponse($this->snmp->walk($oids));
+        if($res['extreme.vlanIfVlanId']->error()) {
+            throw new \Exception("Returned error {$res['extreme.vlanIfVlanId']->error()} from {$res['extreme.vlanIfVlanId']->getRaw()->ip}");
         }
-        if(isset($params['mac']) && $params['mac']) {
-            $command .= " {$params['mac']}";
+        if($res['extreme.fdbMacExosFdbStatus']->error()) {
+            throw new \Exception("Returned error {$res['extreme.fdbMacExosFdbStatus']->error()} from {$res['extreme.fdbMacExosFdbStatus']->getRaw()->ip}");
         }
+        if($res['extreme.fdbMacExosFdbPortIfIndex']->error()) {
+            throw new \Exception("Returned error {$res['extreme.fdbMacExosFdbPortIfIndex']->error()} from {$res['extreme.fdbMacExosFdbPortIfIndex']->getRaw()->ip}");
+        }
+        $vlanIdAssoc = [];
+        foreach ($res['extreme.vlanIfVlanId']->fetchAll() as $val) {
+            $id = Helper::getIndexByOid($val->getOid());
+            $vlanIdAssoc[$id] = $val->getValue();
+        }
+        foreach ($res['extreme.fdbMacExosFdbStatus']->fetchAll() as $val) {
+            $data = Helper::oid2VlanMac($val->getOid());
+            $statuses["{$data['vid']}-{$data['mac']}"] = $val->getParsedValue();
+        }
+        foreach ($res['extreme.fdbMacExosFdbPortIfIndex']->fetchAll() as $val) {
+            $data = Helper::oid2VlanMac($val->getOid());
+            $ports["{$data['vid']}-{$data['mac']}"] = $val->getValue();
+        }   
 
-        $this->response = $this->console->exec($command);
-        return $this;
-    }
-
-    public function getPretty()
-    {
-
-        $lines = explode("\n", $this->response);
-        array_shift($lines);
-        $parsedData = [];
-
-        foreach ($lines as $line) {
-            if(!preg_match('/^(([[:xdigit:]]{2}\:){5}[[:xdigit:]]{2})[ \t]*(.*?)\(([0-9]{1,4})\).*?([0-9]{1,3})$/', $line, $m)) {
-                continue;
-            }
+        $result = [];
+        foreach ($statuses as $key => $status) {
+            list($vlanId, $macAddr) = explode("-", $key);
+            if(!isset($ports[$key])) continue;
+            if(!(int)$ports[$key])  continue;
             try {
-                $parsedData[] = [
-                    'mac_address' => strtoupper($m[1]),
-                    '_vlan_name' => $m[3],
-                    'vlan_id' => (int)$m[4],
-                    'status' => null,
-                    'interface' => $this->parseInterface($m[5]),
+                $result[] = [
+                    'interface' => $this->parseInterface($ports[$key]),
+                    'vlan_id' => isset($vlanIdAssoc[$vlanId]) ? (int)$vlanIdAssoc[$vlanId] : null,
+                    'mac_address' => $macAddr,
+                    'status' => $status,
                 ];
-            } catch (\Exception $e) {}
+            } catch (\Throwable $e) {}
         }
-        return $parsedData;
+
+        return $result;
     }
 
-    public function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
+    protected function getFromConsole(array $filter) {
+        $cmd = 'show fdb ';
+        if($filter['vlan_id']) {
+            throw new \Exception('Search by vlan_id is not supported yet');
+        }
+        if($filter['mac']) {
+            $mac = Helper::formatMac($filter['mac']);
+            $cmd .= $mac;
+        } elseif($filter['interface']) {
+            $port = $this->parseInterface($filter['interface'])['_dot1q_id'];
+            $cmd .= 'ports ' . $port;
+        }
+        $res = $this->getModule('console_command')->run(['command' => $cmd])->getPrettyFiltered();
+        if(!$res['success']) throw new \Exception("Error while running command {$cmd}");
+        $res = explode("\n", $res['output']);
+
+        $response = [];
+        foreach($res as $line) {
+            if(preg_match('/^(..:..:..:..:..:..)\s+[A-Za-z0-9]+\((\d\d\d\d)\)\s+\d\d\d\d\s+([a-zA-Z]+)\s+[a-zA-Z]+\s+(\d{1,4})/i', trim($line), $m)) {
+                $mac = Helper::formatMac($m[1]);
+                $vlan = $m[2];
+                $status = (($m[3] === 's' || $m[3] === 'p') ? 'STATIC' : 'LEARNED');
+                $iface = $this->parseInterface($m[4], '_dot1q_id');
+
+                $response[] = [
+                    'interface' => $iface,
+                    'vlan_id' => $vlan,
+                    'mac_address' => $mac,
+                    'status' => $status,
+                ];
+            }
+        }
+        return $response;
     }
 
 }
