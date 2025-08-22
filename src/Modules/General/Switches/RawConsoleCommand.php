@@ -20,6 +20,10 @@ class RawConsoleCommand extends AbstractModule {
         if (!isset($params['command'])) {
             throw new Exception("Command parameter is required");
         }
+
+        if(preg_match("/^(.*)\<cr\>/i", $params['command'], $match)) {
+            $params['command'] = "{$match[1]}\n";
+        }
         $response = $this->console->exec($params['command']);
         $this->response = [
             'command' => $params['command'],
