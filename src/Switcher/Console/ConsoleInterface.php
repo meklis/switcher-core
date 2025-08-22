@@ -18,6 +18,7 @@ interface ConsoleInterface
     function setDeviceHelper(HelperInterface $helper);
 
     function connectAndLogin();
+    function connectOnly();
     function setTimeout($timeout);
     function setStreamTimeout($timeout);
     function getStream();
