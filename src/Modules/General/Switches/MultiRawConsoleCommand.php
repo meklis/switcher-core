@@ -23,10 +23,14 @@ class MultiRawConsoleCommand extends AbstractModule {
             $commands = $params['commands'];
         }
         $response = [];
+
+        //Ошибка должна вызывать без ввода любых команд
         foreach ($commands as $command) {
             if(preg_match("/\<\s*?exception *?['\"](.*)['\"].*?\>/", $command, $match)) {
                 throw new Exception($match[1]);
             }
+        }
+        foreach ($commands as $command) {
             if(preg_match('/\<\s*?sleep *?([0-9]{1,3}).*?\>/', $command, $match)) {
                 sleep($match[1]);
                 continue;
