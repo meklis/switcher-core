@@ -68,6 +68,6 @@ class SshLazyConnect extends SSH implements ConsoleInterface
 
     function getStream()
     {
-        return $this->socket;
+        return $this->session;
     }
 }
