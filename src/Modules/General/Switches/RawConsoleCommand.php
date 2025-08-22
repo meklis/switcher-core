@@ -36,6 +36,7 @@ class RawConsoleCommand extends AbstractModule {
     protected function validResponse($response) {
         if (preg_match('/invalid/i', $response)) return false;
         if (preg_match('/Set unsuccessfully/i', $response)) return false;
+        if (preg_match("/Ambiguous command .* marker/i", $response)) return false;
         return true;
     }
 
