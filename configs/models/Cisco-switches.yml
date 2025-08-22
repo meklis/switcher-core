@@ -3,8 +3,12 @@ models:
 - name: Cisco Switch (NX-OS)
   key: cisco_general_switch
   device_type: SWITCH
+  extra:
+    console_conn_type:
+      cisco
   inputs:
     - snmp
+    - console
   detect: {description: .*NX-OS.*,  objid: ^.1.3.6.1.4.1.9.12 }
   modules:
     parse_interface: \SwitcherCore\Modules\CiscoSwitch\ParseInterface
@@ -21,11 +25,16 @@ models:
     lldp_info: \SwitcherCore\Modules\CiscoSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    console_command: \SwitcherCore\Modules\CiscoSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\CiscoSwitch\MultiRawConsoleCommand
 
 
 - name: Cisco Switch
   key: cisco_general_switch_sg
   device_type: SWITCH
+  extra:
+    console_conn_type:
+      cisco
   inputs:
     - snmp
   detect: {description: .*,  objid: ^.1.3.6.1.4.1.9.6 }
@@ -46,3 +55,5 @@ models:
     lldp_info: \SwitcherCore\Modules\CiscoSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    console_command: \SwitcherCore\Modules\CiscoSwitch\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\CiscoSwitch\MultiRawConsoleCommand
