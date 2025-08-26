@@ -47,12 +47,15 @@ class Fdb extends FdbDot1Bridge
             return $this->_fdb;
         }
         $params = [];
-        if (isset($params['mac']) && $params['mac']) {
-            $filter['?mac-address'] = $params['mac'];
+        if($filter['interface']) {
+            $params['?interface'] = $this->parseInterface($filter['interface'])['name'];
         }
-        if (isset($params['vlan_id']) && $params['vlan_id']) {
-            $filter['?vid'] = $params['vlan_id'];
+        if($filter['mac']) {
+            $params['?mac-address'] = Helper::formatMac($filter['mac']);
         }
+        // if(isset($params['vlan_id']) && $params['vlan_id']) {
+        //     $filter['?vid'] = $params['vlan_id'];
+        // }
         $resp = $this->api->comm("/interface/bridge/host/print", $params);
         if (!$resp) {
             return [];
