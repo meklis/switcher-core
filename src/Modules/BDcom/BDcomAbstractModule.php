@@ -254,6 +254,9 @@ abstract class BDcomAbstractModule extends AbstractModule
             if (preg_match('/^TGigaEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
                 $name = "tg{$m[1]}";
             }
+            if ($this->model->getKey() === 'bdcom_p3616_2te' && preg_match('/^FastEthernet([0-9]\/[1-9]{1,3})$/', $iface->getValue(), $m)) {
+                continue;
+            }
             if (preg_match('/^FastEthernet([0-9]\/[0-9]{1,3})$/', $iface->getValue(), $m)) {
                 $name = "fe{$m[1]}";
             }
