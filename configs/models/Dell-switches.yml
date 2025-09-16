@@ -91,7 +91,7 @@ models:
   oids:
     - ./oids/dell/ems.yml
   extra:
-    console_conn_type: dell
+    console_conn_type: dell_emc_networking_os
   modules:
     parse_interface: \SwitcherCore\Modules\DellSwitch\ParseInterface
     fdb: \SwitcherCore\Modules\DellSwitch\Fdb
