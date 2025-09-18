@@ -111,7 +111,7 @@ models:
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
-    arps: \SwitcherCore\Modules\DellSwitch\ArpInfo
+    arps: \SwitcherCore\Modules\DellSwitch\ArpInfoEMC
     bgp_info: \SwitcherCore\Modules\DellSwitch\BgpInfo
     bgp_peers: \SwitcherCore\Modules\DellSwitch\BgpPeers
     direct_routes: \SwitcherCore\Modules\DellSwitch\DirectRoutes
