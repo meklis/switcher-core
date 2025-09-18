@@ -6,31 +6,38 @@ use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class ArpInfo extends AbstractModule
-{
+class ArpInfo extends AbstractModule {
     use InterfacesTrait;
 
-    public function run($params = [])
-    {
-        $oid = $this->oids->getOidByName('ip.arp.macAddr')->getOid();
+    public function run($params = []) {
+        $filter_vlan = false;
+        $filter_ip = false;
+        $filter_mac = false;
+        if(isset($params['vlan_id']) && intval($params['vlan_id']) > 0 && intval($params['vlan_id']) < 4095) {
+            $filter_vlan = $params['vlan_id'];
+        }
+        if(isset($params['ip']) && preg_match('/^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/', $params['ip'])) {
+            $filter_ip = $params['ip'];
+        }
+        if(isset($params['mac'])) {
+            $filter_mac = Helper::formatMac($params['mac']);
+        }
 
-        $this->response = $this->formatResponse($this->snmp->walk([Oid::init($oid)]));
-        return $this;
-    }
-
-    public function getPretty()
-    {
-        $ifaceByVlans = [];
-        $vlanIds = [];
         foreach ($this->getInterfacesIds() as $interface) {
             $ifaceByVlans[$interface['id']] = $interface;
             if($interface['type'] == "BRIDGE" || $interface['type'] == "LACP") {
                 $vlanIds[$interface['id']] = $interface['_port_num'];
+                if($filter_vlan && $interface['_port_num'] == $filter_vlan) {
+                    $filter_vlan_index = $interface['id'];
+                }
             }
             if (isset($interface['_iface_vlans'])) {
                 foreach ($interface['_iface_vlans'] as $key => $vlanId) {
                     $ifaceByVlans[$key] = $interface;
                     $vlanIds[$key] = $vlanId;
+                    if($filter_vlan && $vlanId == $filter_vlan) {
+                        $filter_vlan_index = $key;
+                    }
                 }
             }
         }
@@ -38,33 +45,40 @@ class ArpInfo extends AbstractModule
             unset($ifaceInfo['_iface_vlans']);
             $ifaceByVlans[$iface] = $ifaceInfo;
         }
-
-        if ($this->response['ip.arp.macAddr']->error()) {
-            throw new \SNMPException($this->response['ip.arp.macAddr']->error());
+        $oid = $this->oids->getOidByName('ip.arp.macAddr')->getOid();
+        if($filter_vlan && isset($filter_vlan_index)) {
+            $oid .= ".{$filter_vlan_index}";
         }
-        $response = [];
-        foreach ($this->response['ip.arp.macAddr']->fetchAll() as $mac) {
-            $ip = Helper::getIndexByOid($mac->getOid(), 3) . "." .
-                Helper::getIndexByOid($mac->getOid(), 2) . "." .
-                Helper::getIndexByOid($mac->getOid(), 1) . "." .
-                Helper::getIndexByOid($mac->getOid())
-            ;
-            $vlanIdIndex = Helper::getIndexByOid($mac->getOid(), 4);
+        if($filter_vlan && isset($filter_vlan_index) && $filter_ip) {
+            $oid .= ".{$filter_ip}";
+        }
+        $res = $this->formatResponse($this->snmp->walk([Oid::init($oid)]));
 
-            $response[] = [
-                'mac' => $mac->getHexValue(),
+        $this->response = [];
+        foreach($res['ip.arp.macAddr']->fetchAll() as $val) {
+            $ip = Helper::oid2IP($val->getOid());
+            if($filter_ip && $ip !== $filter_ip) continue;
+            $vlan_index = Helper::getIndexByOid($val->getOid(), 4);
+            $mac = $val->getHexValue();
+            if($filter_mac && $mac !== $filter_mac) continue;
+
+            $this->response[] = [
+                'interface' => isset($ifaceByVlans[$vlan_index]) ? $ifaceByVlans[$vlan_index] : null,
+                'mac' => $mac,
                 'ip' => $ip,
-                'vlan_id' => isset($vlanIds[$vlanIdIndex]) ? (int)$vlanIds[$vlanIdIndex] : null,
-                'interface' => isset($ifaceByVlans[$vlanIdIndex]) ? $ifaceByVlans[$vlanIdIndex] : null,
-                '_raw_iface_id' => $vlanIdIndex,
+                'vlan_id' => isset($vlanIds[$vlan_index]) ? $vlanIds[$vlan_index] : null,
+                '_raw_iface_id' => $vlan_index,
             ];
-        }
 
-        return $response;
+        }
+        return $this;
     }
 
-    public function getPrettyFiltered($filter = [])
-    {
+    public function getPretty() {
+        return $this->response;
+    }
+
+    public function getPrettyFiltered($filter = []) {
         return $this->getPretty();
     }
 

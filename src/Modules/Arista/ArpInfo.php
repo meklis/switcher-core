@@ -6,47 +6,55 @@ use SnmpWrapper\Oid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 
-class ArpInfo extends AbstractModule
-{
+class ArpInfo extends AbstractModule {
     use InterfacesTrait;
 
-    public function run($params = [])
-    {
-        $oid = $this->oids->getOidByName('ip.arp.macAddr')->getOid();
+    public function getPrettyFiltered($filter = []) {
+        return $this->response;
+    }
 
-        $this->response = $this->formatResponse($this->snmp->walk([Oid::init($oid)]));
+    public function getPretty() {
+        return $this->response;
+    }
+
+    public function run($params = []) {
+        $cmd = 'show arp';
+        if(isset($params['vlan_id']) && intval($params['vlan_id']) > 0 && intval($params['vlan_id']) < 4095) {
+            $cmd .= ' interface vlan' . $params['vlan_id'];
+        }
+        if(isset($params['ip']) && preg_match('/^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/', $params['ip'])) {
+            $cmd .= ' ' . $params['ip'];
+        }
+        if(isset($params['mac'])) {
+            $mac = Helper::formatMac3Blocks($params['mac']);
+            $cmd .= ' mac-address ' . $mac;
+        }
+        $cmd .= " | json";
+        
+        $res = $this->getModule('console_command')->run(['command' => $cmd])->getPrettyFiltered();
+        if(!$res['success']) throw new \Exception("Error while running command {$cmd}");
+
+        $this->response = [];
+        $res = json_decode($res['output'], true);
+        if(isset($res['ipV4Neighbors'])) {
+            foreach($res['ipV4Neighbors'] as $row) {
+                $vlan_id = null;
+                if(preg_match('/vlan(\d{1,4})/i', $row['interface'], $m)) {
+                    $vlan_id = $m[1];
+                }
+                $iface = null;
+                if(preg_match('/(Ethernet\d{1,3}\/?\d?\d?\d?|Port\-Channel\d{1,3})/', $row['interface'], $m)) {
+                    $iface = $this->parseInterface($m[1], 'name');
+                }
+                $this->response[] = [
+                    'interface' => $iface,
+                    'mac' => Helper::formatMac($row['hwAddress']),
+                    'ip' => $row['address'],
+                    'vlan_id' => $vlan_id,
+                    '_age' => (isset($row['age']) ? $row['age'] : null),
+                ];
+            }
+        }
         return $this;
     }
-
-    public function getPretty()
-    {
-        if ($this->response['ip.arp.macAddr']->error()) {
-            throw new \SNMPException($this->response['ip.arp.macAddr']->error());
-        }
-        $vlanIds = $this->getVlanIdsMap();
-        $response = [];
-        foreach ($this->response['ip.arp.macAddr']->fetchAll() as $mac) {
-            $ip = Helper::getIndexByOid($mac->getOid(), 3) . "." .
-                Helper::getIndexByOid($mac->getOid(), 2) . "." .
-                Helper::getIndexByOid($mac->getOid(), 1) . "." .
-                Helper::getIndexByOid($mac->getOid())
-            ;
-            $vlanIdIndex = Helper::getIndexByOid($mac->getOid(), 4);
-
-            $response[] = [
-                'mac' => $mac->getHexValue(),
-                'ip' => $ip,
-                'vlan_id' => isset($vlanIds[$vlanIdIndex]) ? $vlanIds[$vlanIdIndex] : null,
-                'interface' =>  null,
-            ];
-        }
-
-        return $response;
-    }
-
-    public function getPrettyFiltered($filter = [])
-    {
-        return $this->getPretty();
-    }
-
 }
