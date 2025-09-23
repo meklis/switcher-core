@@ -33,12 +33,32 @@ class ArpInfo extends AbstractModule
          * - {name: mac, pattern: '^[a-fA-F0-9:]{17}|[a-fA-F0-9]{12}$', required: no}
          * - {name: status, pattern: '^(disabled|invalid|OK)$', required: no, values: [disabled, invalid, OK]}
          */
-        $command = "show iparp";
-        if(isset($params['ip']) && $params['ip']) {
-            $command .= " {$params['ip']}";
+        $filter_vlan_id = false;
+        if(isset($params['vlan_id']) && intval($params['vlan_id']) > 0 && intval($params['vlan_id']) < 4097) {
+            $oids[] = Oid::init($this->oids->getOidByName('extreme.vlanIfDescr')->getOid());
+            $oids[] = Oid::init($this->oids->getOidByName('extreme.vlanIfVlanId')->getOid());
+            $res = $this->formatResponse($this->snmp->walk($oids));
+
+            foreach($res['extreme.vlanIfDescr']->fetchAll() as $val) {
+                $vlan_names[Helper::getIndexByOid($val->getOid())] = $val->getValue();
+            }
+            foreach($res['extreme.vlanIfVlanId']->fetchAll() as $val) {
+                $vlan_ids[$val->getValue()] = Helper::getIndexByOid($val->getOid());
+            }
+
+            if(isset($vlan_names[$vlan_ids[$params['vlan_id']]])) {
+                $filter_vlan_id = $vlan_names[$vlan_ids[$params['vlan_id']]];
+            }
         }
-        if(isset($params['mac']) && $params['mac']) {
-            $command .= " {$params['mac']}";
+
+        $command = "show iparp";
+        if($filter_vlan_id) {
+            $command .= " {$filter_vlan_id}";
+        } elseif(isset($params['ip']) && $params['ip']) {
+            $command .= " {$params['ip']}";
+        } elseif(isset($params['mac']) && $params['mac']) {
+            $mac = Helper::formatMac($params['mac']);
+            $command .= " {$mac}";
         }
 
         $this->response = $this->console->exec($command);
