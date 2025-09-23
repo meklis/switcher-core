@@ -45,7 +45,7 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\HPESwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HPESwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\General\NetSettings
+    #net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 - name: HP Switch
@@ -116,7 +116,7 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\HpArubaOsSwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HpArubaOsSwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\General\NetSettings
+    #net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 - name: HPE ANW JL675A 6100
@@ -140,7 +140,7 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\HPESwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HPESwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\General\NetSettings
+    #net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
 
 - name: HPE Switch
@@ -164,5 +164,5 @@ models:
     ctrl_port_descr: \SwitcherCore\Modules\HPESwitch\SetPortDescription
     ctrl_port_state: \SwitcherCore\Modules\HPESwitch\StatePortControl
     lldp_info: \SwitcherCore\Modules\HpSwitch\LldpInfo
-    net_settings: \SwitcherCore\Modules\General\NetSettings
+    #net_settings: \SwitcherCore\Modules\General\NetSettings
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
