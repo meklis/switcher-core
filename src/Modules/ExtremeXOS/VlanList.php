@@ -2,40 +2,30 @@
 
 namespace SwitcherCore\Modules\ExtremeXOS;
 
+use SnmpWrapper\Oid;
 use SwitcherCore\Exceptions\IncompleteResponseException;
-use SwitcherCore\Modules\AbstractModule;
-use SwitcherCore\Modules\General\Switches\AbstractInterfaces;
-use SwitcherCore\Modules\General\Switches\FdbDot1Bridge;
 use SwitcherCore\Modules\Helper;
 
-class VlanList extends \SwitcherCore\Modules\General\Switches\VlansDot1q
-{
+class VlanList extends \SwitcherCore\Modules\General\Switches\VlansDot1q {
     use InterfacesTrait;
 
-    protected function formate() {
-        $response = [];
-        $forbidden = $this->getResponseByName('dot1q.VlanStaticForbiddenEgressPorts');
-        $untagged = $this->getResponseByName('dot1q.VlanStaticUntaggedPorts');
-        $names = $this->getResponseByName('dot1q.VlanStaticName');
-        $egress = $this->getResponseByName('dot1q.VlanStaticEgressPorts');
+    private $filter_vlan_id = false;
 
-        if($names->error()) {
-            throw new IncompleteResponseException($names->error());
-        }
-        if($egress->error()) {
-            throw new IncompleteResponseException($egress->error());
-        }
-        if($untagged->error()) {
-            throw new IncompleteResponseException($untagged->error());
-        }
-        if($forbidden->error()) {
-            throw new IncompleteResponseException($forbidden->error());
-        }
+    protected function formate() {
+        $vlan_ids = $this->getResponseByName('extreme.vlanIfVlanId');
+        $names = $this->getResponseByName('extreme.vlanIfDescr');
+        $tagged = $this->getResponseByName('extreme.vlanOpaqueTaggedPorts');
+        $untagged = $this->getResponseByName('extreme.vlanOpaqueUntaggedPorts');
+        if($vlan_ids->error()) throw new IncompleteResponseException($vlan_ids->error());
+        if($names->error()) throw new IncompleteResponseException($names->error());
+        if($untagged->error()) throw new IncompleteResponseException($untagged->error());
+        if($tagged->error()) throw new IncompleteResponseException($tagged->error());
 
         $indexes = [];
         foreach ($this->getInterfacesIds() as $iface) {
-            $indexes[$iface['id']] = $iface;
+            $indexes[$iface['_dot1q_id']] = $iface;
         }
+        
         $formater = function ($resp) use ($indexes) {
             $dex = Helper::hexToBinStr($resp->getHexValue());
             $ports = [];
@@ -48,26 +38,49 @@ class VlanList extends \SwitcherCore\Modules\General\Switches\VlansDot1q
         $response = [];
         foreach ($names->fetchAll() as $resp) {
             $response[Helper::getIndexByOid($resp->getOid())]['name'] = $resp->getValue();
-            $response[Helper::getIndexByOid($resp->getOid())]['id'] = Helper::getIndexByOid($resp->getOid());
+        }
+        foreach ($vlan_ids->fetchAll() as $resp) {
+            $response[Helper::getIndexByOid($resp->getOid())]['id'] = $resp->getValue();
         }
 
-        foreach ($egress->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['egress'] = $formater($resp);
+        foreach ($tagged->fetchAll() as $resp) {
+            $response[Helper::getIndexByOid($resp->getOid(), 1)]['ports']['tagged'] = $formater($resp);
         }
-
         foreach ($untagged->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['untagged'] = $formater($resp);
+            $response[ Helper::getIndexByOid($resp->getOid(), 1)]['ports']['untagged'] = $formater($resp);
         }
-        foreach ($forbidden->fetchAll() as $resp) {
-            $response[ Helper::getIndexByOid($resp->getOid())]['ports']['forbidden'] = $formater($resp);
-        }
-        foreach ($response as $vlan_id => $resp) {
-            foreach ($resp['ports']['egress'] as $port) {
-                if(in_array($port, $response[$vlan_id]['ports']['untagged'])) continue;
-                if(in_array($port, $response[$vlan_id]['ports']['forbidden'])) continue;
-                $response[$vlan_id]['ports']['tagged'][] = $port;
-            }
+        foreach ($response as $vlan_if_id => $resp) {
+            $response[$vlan_if_id]['ports']['egress'] = [];
+            $response[$vlan_if_id]['ports']['forbidden'] = [];
+            if(!isset($resp['ports']['tagged'])) $response[$vlan_if_id]['ports']['tagged'] = [];
+            if(!isset($resp['ports']['untagged'])) $response[$vlan_if_id]['ports']['untagged'] = [];
+            if($this->filter_vlan_id && $this->filter_vlan_id != $resp['id']) unset($response[$vlan_if_id]);
         }
         return array_values($response);
     }
+
+    function getPretty() {
+        return $this->formate();
+    }
+
+    function getPrettyFiltered($filter = []) {
+        return $this->getPretty();
+    }
+
+    public function run($filter = [])
+    {
+        Helper::prepareFilter($filter);
+        if($filter['vlan_id']) $this->filter_vlan_id = $filter['vlan_id'];
+        $oids[] = $this->oids->getOidByName('extreme.vlanIfVlanId')->getOid();
+        $oids[] = $this->oids->getOidByName('extreme.vlanIfDescr')->getOid();
+        $oids[] = $this->oids->getOidByName('extreme.vlanOpaqueTaggedPorts')->getOid();
+        $oids[] = $this->oids->getOidByName('extreme.vlanOpaqueUntaggedPorts')->getOid();
+        $oidObjects = [];
+        foreach ($oids as $oid) {
+            $oidObjects[] = Oid::init($oid);
+        }
+        $this->response = $this->formatResponse($this->snmp->walk($oidObjects));
+        return $this;
+    }
+
 }
