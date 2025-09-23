@@ -25,9 +25,7 @@ class CtrlOntDescription extends CDataAbstractModuleFD16xxV3
     {
         $iface = $this->parseInterface($filter['interface']);
 
-        if(!preg_match('/^[A-Za-z0-9_-]{1,}$/', $filter['description'])) {
-            throw new \Exception("Incorrect description format");
-        }
+        $filter['description'] = str_replace(" ", '_', $filter['description']);
 
         $commands = [
             'interface gpon 0/0',
