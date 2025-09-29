@@ -91,7 +91,7 @@ models:
   oids:
     - ./oids/dell/ems.yml
   extra:
-    console_conn_type: dell
+    console_conn_type: dell_emc_networking_os
   modules:
     parse_interface: \SwitcherCore\Modules\DellSwitch\ParseInterface
     fdb: \SwitcherCore\Modules\DellSwitch\Fdb
@@ -111,7 +111,7 @@ models:
     multi_console_command: \SwitcherCore\Modules\DellSwitch\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\DellSwitch\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
-    arps: \SwitcherCore\Modules\DellSwitch\ArpInfo
+    arps: \SwitcherCore\Modules\DellSwitch\ArpInfoEMC
     bgp_info: \SwitcherCore\Modules\DellSwitch\BgpInfo
     bgp_peers: \SwitcherCore\Modules\DellSwitch\BgpPeers
     direct_routes: \SwitcherCore\Modules\DellSwitch\DirectRoutes
