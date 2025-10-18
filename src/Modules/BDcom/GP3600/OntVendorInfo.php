@@ -67,7 +67,7 @@ class OntVendorInfo extends BDcomAbstractModule
             if(!preg_match('/^ont\.fwVer([0-9])(.*)$/', $name, $m)) continue;
             if($value->error()) continue;
             foreach ($value->fetchAll() as $val) {
-                $xid = Helper::getIndexByOid($r->getOid());
+                $xid = Helper::getIndexByOid($val->getOid());
                 if(!isset($ifaces[$xid]['versions'][$m[1]])) {
                     $ifaces[$xid]['versions'][$m[1]] = [
                             'image_num' => (int)$m[1],
@@ -107,16 +107,16 @@ class OntVendorInfo extends BDcomAbstractModule
      * @return $this|AbstractModule
      * @throws Exception
      */
-    public function run($filter = [])
-    {
+    public function run($filter = []) {
+        Helper::prepareFilter($filter);
         $vendorInfo[] = $this->oids->getOidByName('ont.vendor');
         $vendorInfo[] = $this->oids->getOidByName('ont.model');
         $vendorInfo[] = $this->oids->getOidByName('ont.modelId');
         $vendorInfo[] = $this->oids->getOidByName('ont.omccVersion');
 
-        if($filter['interface']) {
+        // if($filter['interface']) {
             $vendorInfo = array_merge($vendorInfo, $this->oids->getOidsByRegex('^ont.fwVer'));
-        }
+        // }
 
         $oids = [];
         foreach ($vendorInfo as $oid) {
