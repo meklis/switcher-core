@@ -11,10 +11,10 @@ use SwitcherCore\Modules\ZTE\ModuleAbstract;
 class InterfaceCounters extends ModuleAbstract
 {
 
-    function getOidsForPhysical()
+    function getOidsForPhysical($interface = null)
     {
-        return array_map(function ($e) {
-            return Oid::init($e->getOid());
+        $basicOids = array_map(function ($e) {
+            return $e->getOid();
         }, [
             $this->oids->getOidByName('if.InErrors'),
             $this->oids->getOidByName('if.OutErrors'),
@@ -25,13 +25,45 @@ class InterfaceCounters extends ModuleAbstract
             $this->oids->getOidByName('if.HCInBroadcastPkts'),
             $this->oids->getOidByName('if.HCOutBroadcastPkts'),
         ]);
+        $oids = [];
+        if($interface != null) {
+            $oids = array_map(function ($e) use ($interface) {
+                return Oid::init("{$e}.{$interface['_xid']}");
+            }, $basicOids);
+        } else {
+            $interfaces = $this->getModule('interfaces_list')->run(['interface' => null,])->getPrettyFiltered(['interface' => null,]);
+            foreach ($interfaces as $interface) {
+                $oids = array_merge($oids, array_map(function ($e) use ($interface) {
+                    return Oid::init("{$e}.{$interface['_xid']}");
+                }, $basicOids));
+            }
+        }
+        return $oids;
     }
 
-    function getOidsForOnts()
+    function getOidsForOnts($interface = null)
     {
-        return array_map(function ($e) {
-            return Oid::init($e->getOid());
+        $basicOids = array_map(function ($o) {
+            return $o->getOid();
         }, $this->oids->getOidsByRegex('^xpon.ont.counters'));
+        $oids = [];
+        if($interface != null) {
+            $oids = array_map(function ($e) use ($interface) {
+                return Oid::init("{$e}.{$interface['_xpon_id']}");
+            }, $basicOids);
+        } else {
+            $ontStatuses = $this->getModule('pon_onts_status')->run(['interface' => null,])->getPrettyFiltered(['interface' => null,]);
+            foreach ($ontStatuses as $ont) {
+                $interface = $ont['interface'];
+                if($ont['status'] != 'Online') {
+                    continue;
+                }
+                $oids = array_merge($oids, array_map(function ($e) use ($interface) {
+                    return Oid::init("{$e}.{$interface['_xpon_id']}");
+                }, $basicOids));
+            }
+        }
+        return $oids;
     }
 
     public function run($params = [])
@@ -39,27 +71,18 @@ class InterfaceCounters extends ModuleAbstract
         if ($params['interface']) {
             $interface = $this->parseInterface($params['interface']);
             if ($interface['type'] === 'ONU') {
-                $oids = array_map(function ($e) use ($interface) {
-                    return $e->setOid($e->getOid() . "." . $interface['_xpon_id']);
-                }, $this->getOidsForOnts());
+                $oids = $this->getOidsForOnts($interface);
             } else {
-                $oids = array_map(function ($e) use ($interface) {
-                    return $e->setOid($e->getOid()  . "." . $interface['_xid']);
-                }, $this->getOidsForPhysical());
+                $oids =  $this->getOidsForPhysical($interface);
             }
-            $this->response = $this->formatResponse($this->snmp->get($oids));
-            return $this;
-        }
-
-        if ($params['interface_type'] === 'ONU') {
+        } elseif ($params['interface_type'] === 'ONU') {
             $oids = $this->getOidsForOnts();
         } elseif ($params['interface_type'] === 'PHYSICAL') {
             $oids = $this->getOidsForPhysical();
         } else {
             $oids = array_merge($this->getOidsForOnts(), $this->getOidsForPhysical());
         }
-
-        $this->response = $this->formatResponse($this->snmp->walk($oids));
+        $this->response = $this->formatResponse($this->snmp->get($oids));
         return $this;
     }
 

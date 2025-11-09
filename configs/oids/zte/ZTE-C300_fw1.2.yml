@@ -63,8 +63,8 @@
 - {name: xpon.ont.counters.outOctets, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.3}
 - {name: xpon.ont.counters.inCrcErrors, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.10}
 - {name: xpon.ont.counters.outCrcErrors, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.11}
-- {name: xpon.ont.counters.inMulticastPkts, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.8}
-- {name: xpon.ont.counters.outMulticastPkts, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.9}
+#- {name: xpon.ont.counters.inMulticastPkts, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.8}
+#- {name: xpon.ont.counters.outMulticastPkts, oid: .1.3.6.1.4.1.3902.1015.1010.5.56.1.1.9}
 
 - {name: epon.uncfg.regTime, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.14.1.6}
 - {name: epon.uncfg.onuModel, oid: .1.3.6.1.4.1.3902.1015.1010.1.7.14.1.9}
