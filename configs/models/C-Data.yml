@@ -38,6 +38,7 @@ models:
       interface_counters: \SwitcherCore\Modules\CData\FD11XX\InterfaceCounters
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\FD11XX\SnoopingInfo
     extra:
       pon_port_size: 64
       pon_type: EPON
@@ -96,6 +97,7 @@ models:
       pon_ports_optical: \SwitcherCore\Modules\CData\FD11XX\PonPortsOptical
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\FD11XX\SnoopingInfo
     extra:
       pon_type: EPON
       console_conn_type: stels
@@ -162,6 +164,7 @@ models:
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\CData\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\SnoopingInfo
 
     extra:
       pon_type: EPON
@@ -228,6 +231,7 @@ models:
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\CData\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\SnoopingInfo
 
     extra:
       pon_type: EPON
@@ -304,6 +308,7 @@ models:
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\CData\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\SnoopingInfo
 
     extra:
       pon_type: EPON
@@ -391,6 +396,7 @@ models:
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
+              snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -429,6 +435,7 @@ models:
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\CData\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\SnoopingInfo
     extra:
       pon_type: GPON
       pon_port_size: 128
@@ -500,6 +507,7 @@ models:
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
+              snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -541,6 +549,7 @@ models:
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\CData\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\SnoopingInfo
     extra:
       pon_type: GPON
       pon_port_size: 128
@@ -613,6 +622,7 @@ models:
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
+              snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -728,6 +738,7 @@ models:
               sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
+              snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
             extra:
               pon_type: GPON
               pon_port_size: 128
@@ -766,6 +777,7 @@ models:
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       sys_temp: \SwitcherCore\Modules\CData\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\CData\SnoopingInfo
     extra:
       pon_type: GPON
       pon_port_size: 128

@@ -261,6 +261,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       onu_ip_host: \SwitcherCore\Modules\ZTE\C600Series\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
+      snooping_info: \SwitcherCore\Modules\ZTE\C600Series\SnoopingInfo
 
     extra:
       console_conn_type: zte

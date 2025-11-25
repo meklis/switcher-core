@@ -35,12 +35,17 @@ class SnoopingInfo extends VsolOltsAbstractModule
         }
         if ($filter['mac_address']) {
             $data = array_filter($data, function ($e) use ($filter) {
-                return $e['mac_address'] == Helper::formatMac($filter['mac']);
+                return $e['mac_address'] == Helper::formatMac($filter['mac_address']);
             });
         }
         if ($filter['vlan_id']) {
             $data = array_filter($data, function ($e) use ($filter) {
                 return $e['vlan_id'] == $filter['vlan_id'];
+            });
+        }
+        if ($filter['ip']) {
+            $data = array_filter($data, function ($e) use ($filter) {
+                return $e['ip'] == $filter['ip'];
             });
         }
         return array_values($data);
@@ -93,10 +98,10 @@ class SnoopingInfo extends VsolOltsAbstractModule
                         $resp[$id]['ip'] = $response->fetchOne()->getParsedValue();
                         break;
                     case 'dhcp.snooping.bindingLease':
-                        $resp[$id]['lease_time'] = (int) $response->fetchOne()->getParsedValue();
+                        $resp[$id]['remaining'] = (int) $response->fetchOne()->getParsedValue();
                         break;
                     case 'dhcp.snooping.bindingType':
-                        $resp[$id]['type'] = $response->fetchOne()->getParsedValue();
+                        $resp[$id]['_type'] = $response->fetchOne()->getParsedValue();
                         break;
                     case 'dhcp.snooping.bindingVlan':
                         $resp[$id]['vlan_id'] = (int)$response->fetchOne()->getParsedValue();

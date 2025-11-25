@@ -62,6 +62,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\GP3600\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\GP3600\SnoopingInfo
     extra:
       pon_port_size: 128
       console_conn_type: bdcom
@@ -116,6 +117,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64 
       console_conn_type: bdcom
@@ -171,6 +173,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -226,6 +229,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -281,6 +285,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -336,6 +341,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -391,6 +397,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom
@@ -447,6 +454,7 @@ models:
       sfp_diag: \SwitcherCore\Modules\General\SfpDiag
       sfp_optical: \SwitcherCore\Modules\BDcom\SfpOpticalInfo
       sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+      snooping_info: \SwitcherCore\Modules\BDcom\SnoopingInfo
     extra:
       pon_port_size: 64
       console_conn_type: bdcom

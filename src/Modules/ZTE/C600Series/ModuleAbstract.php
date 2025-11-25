@@ -159,7 +159,7 @@ abstract class ModuleAbstract extends AbstractModule
             }
             $iface = $xidList['names']["{$m[1]}/{$m[2]}/{$m[3]}"];
         }
-        if(is_string($name) && preg_match('/^.*?([0-9])\/([0-9]{1,3})\/([0-9]{1,3}):([0-9]{1,3})$/', $name, $m)) {
+        if(is_string($name) && preg_match('/^.*?([0-9])\/([0-9]{1,3})\/([0-9]{1,3})[:\.]([0-9]{1,3})/', $name, $m)) {
             if(!isset($xidList['names']["{$m[1]}/{$m[2]}/{$m[3]}"])) {
                 throw new \Exception("Error parse port with name={$name}, searching key={$m[1]}/{$m[2]}/{$m[3]}");
             }
