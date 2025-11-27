@@ -38,6 +38,7 @@ models:
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     snooping_info: \SwitcherCore\Modules\Raisecom\SnoopingInfo
 
  - name: Raisecom ISCOM
    key: raisecom_iscom
@@ -77,6 +78,7 @@ models:
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     snooping_info: \SwitcherCore\Modules\Raisecom\SnoopingInfo
   
  - name: Raisecom RAX721
    key: raisecom_rax721
@@ -114,6 +116,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\General\Switches\MultiRawConsoleCommand
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     #snooping_info: \SwitcherCore\Modules\Raisecom\SnoopingInfo
 
  - name: Raisecom Default
    key: raisecom_default
@@ -122,6 +125,8 @@ models:
    inputs:
      - snmp
      - console
+   oids:
+     - ./oids/raisecom/iscom.yml
    extra:
      console_conn_type: raisecom     
    modules:
@@ -147,3 +152,4 @@ models:
      clear_iface_counters: \SwitcherCore\Modules\Raisecom\ClearIfaceCounters
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     snooping_info: \SwitcherCore\Modules\Raisecom\SnoopingInfo

@@ -33,3 +33,4 @@ models:
     clear_iface_counters: SwitcherCore\Modules\AlcatelSwitch\ClearIfaceCounters
     supported_modules: \SwitcherCore\Modules\General\SupportedModules
     sys_temp: \SwitcherCore\Modules\AlcatelSwitch\SystemTemperatures
+    snooping_info: \SwitcherCore\Modules\AlcatelSwitch\SnoopingInfo

@@ -514,6 +514,7 @@
 - name: snooping_info
   descr: Return information about DHCP snooping
   arguments:
+    - {name: ip, pattern: '^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$', required: no}
     - {name: interface, pattern: '.*', required: no}
     - {name: mac_address, pattern: '.*', required: no}
     - {name: vlan_id, pattern: '.*', required: no}
