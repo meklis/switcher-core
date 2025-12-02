@@ -6,6 +6,7 @@ namespace SwitcherCore\Modules\BDcom\GP3600;
 
 use Exception;
 use SwitcherCore\Config\Objects\Oid;
+use SnmpWrapper\Oid as SnmpWrapperOid;
 use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\Helper;
 use SwitcherCore\Switcher\Objects\SnmpResponse;
@@ -41,6 +42,8 @@ class UniInterfacesVlans extends BDcomAbstractModule
      */
     public function run($filter = [])
     {
+        if($filter['interface']) return $this->getByIface($filter['interface']);
+
         $gponProfiles = $this->getModule('pon_profiles')->run()->getPretty();
         if(!isset($gponProfiles['vlan'])) {
             throw new \Exception("Error load vlans profiles list from gpon_profiles module");
@@ -52,12 +55,8 @@ class UniInterfacesVlans extends BDcomAbstractModule
         }
 
         $oids = [];
-        if($filter['interface']) {
-            $interface = $this->parseInterface($filter['interface']);
-            $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.uni.vlanProfileId')->getOid() . ".{$interface['xid']}");
-        } else {
-            $oids[] = \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.uni.vlanProfileId')->getOid());
-        }
+        $oids[] = SnmpWrapperOid::init($this->oids->getOidByName('ont.uni.vlanProfileId')->getOid());
+        
         $response = $this->formatResponse($this->snmp->walk($oids));
         if(!isset($response['ont.uni.vlanProfileId'])) {
             throw new \Exception("Error loading ont.uni.vlanProfileId");
@@ -83,6 +82,35 @@ class UniInterfacesVlans extends BDcomAbstractModule
                    'unis' => array_values($e['unis']),
             ];
         }, $data));
+        return $this;
+    }
+
+    protected function getByIface($iface) {
+        $iface = $this->parseInterface($iface);
+        $oid = SnmpWrapperOid::init($this->oids->getOidByName('ont.uni.vlanProfileId')->getOid() . ".{$iface['xid']}");
+        $respVlanProfileId = $this->formatResponse($this->snmp->walk([$oid]));
+        $data['interface'] = $iface;
+        foreach ($respVlanProfileId['ont.uni.vlanProfileId']->fetchAll() as $val) {
+            $uni = Helper::getIndexByOid($val->getOid());
+            $profileId = $val->getValue();
+            $oids = array_map(function ($oid) use ($profileId) {
+                return SnmpWrapperOid::init($oid->getOid() . ".{$profileId}");
+            }, $this->oids->getOidsByRegex('^profile\.onu\.vlan.*'));
+            $r = $this->formatResponse($this->snmp->get($oids));
+            
+            $data['unis'][$uni]['num'] = (int) $uni;
+            $data['unis'][$uni]['id'] = $profileId;
+            foreach($r as $name => $resp) {
+                if(!preg_match('/^profile\.onu\.(.*?)\.(.*)/', $name, $m)) {
+                    continue;
+                }
+                foreach($resp->fetchAll() as $respProfileOnu) {
+                    $data['unis'][$uni][$m[2]] = $respProfileOnu->getParsedValue();
+                }
+            }
+            $data['unis'] = array_values($data['unis']);
+        }
+        $this->response = [$data];
         return $this;
     }
 }
