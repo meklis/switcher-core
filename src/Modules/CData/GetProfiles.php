@@ -57,7 +57,7 @@ class GetProfiles extends AbstractModule
                 $prepared[] = $this->oids->getOidByName('profile.sla.name');
             }
         } else {
-            $prepared = $this->oids->getOidsByRegex('profile\..*');
+            $prepared = $this->oids->getOidsByRegex('^profile\..*');
         }
 
         $oids = array_map(function ($e) {
