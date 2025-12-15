@@ -24,12 +24,13 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
 
     function getPretty()
     {
-        return  $this->response;
+        return $this->response;
     }
 
-    protected function formate($resp) {
+    protected function formate($resp)
+    {
         $data = $this->getResponseByName('pon.ontStatus', $resp);
-        if($data->error()) {
+        if ($data->error()) {
             throw new \Exception($data->error());
         }
         $interfaces = [];
@@ -58,23 +59,24 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
                     'interface' => [
                         'name' => $interface['name'] . ":" . $ontNum,
                         'parent' => $interface['id'],
-                        'id' =>  $interface['id'] + $ontNum,
+                        'id' => $interface['id'] + $ontNum,
                         'xid' => $interface['xid'],
                         'type' => 'ONU',
                         '_onu' => $ontNum,
                         '_port' => $interface['_port'],
-                        '_slot' =>  $interface['_slot'],
+                        '_slot' => $interface['_slot'],
                         'uni' => null,
                     ],
                     'status' => $statusText,
                     'admin_state' => null,
-                    'bind_status'  => null,
+                    'bind_status' => null,
                 ];
             }
         }
         return $interfaces;
     }
 
+    protected $allInterfaceStatuses = null;
 
     /**
      * @param array $filter
@@ -84,7 +86,7 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
     public function run($filter = [])
     {
         $data = [];
-        if(isset($filter['interface']) && $filter['interface']) {
+        if (isset($filter['interface']) && $filter['interface']) {
             $iface = $this->parseInterface($filter['interface']);
             /**
              * @var WrappedResponse[] $resp
@@ -98,24 +100,34 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
                     ]
                 )
             );
-            foreach ($resp as $oidName=>$value) {
-                if($value->error()) {
+            foreach ($resp as $oidName => $value) {
+                if ($value->error()) {
                     throw new Exception($value->error());
                 };
                 $data[$iface['id']]['interface'] = $iface;
                 $name = 'UNKNOWN';
                 switch ($oidName) {
-                    case 'ont.adminStatus': $name = 'admin_state'; break;
-                    case 'ont.lastDownReason': $name = 'bind_status'; break;
-                    case 'ont.opStatus': $name = 'status'; break;
+                    case 'ont.adminStatus':
+                        $name = 'admin_state';
+                        break;
+                    case 'ont.lastDownReason':
+                        $name = 'bind_status';
+                        break;
+                    case 'ont.opStatus':
+                        $name = 'status';
+                        break;
                 }
                 $data[$iface['id']][$name] = $value->fetchOne()->getParsedValue();
             }
-            if($data[$iface['id']]['status'] == 'Online') {
+            if ($data[$iface['id']]['status'] == 'Online') {
                 $data[$iface['id']]['bind_status'] = 'Online';
             }
             $this->response = array_values($data);
         } else {
+            if($this->allInterfaceStatuses !== null) {
+                $this->response = $this->allInterfaceStatuses;
+                return $this;
+            }
             $resp = $this->formatResponse(
                 $this->snmp->walk(
                     [
@@ -123,7 +135,7 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
                     ]
                 )
             );
-            if($resp['ont.opStatus']->error()) {
+            if ($resp['ont.opStatus']->error()) {
                 throw new \Exception($resp['ont.opStatus']->error());
             }
 
@@ -136,6 +148,7 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
             }
             $this->fillBindStatuses($data);
             $this->response = array_values($data);
+            $this->allInterfaceStatuses = $this->response;
         }
 
         return $this;
@@ -145,28 +158,28 @@ class OntListWithStatuses extends CDataAbstractModuleFD16xxV3
     {
         $oid = $this->oids->getOidByName('ont.lastDownReason')->getOid();
         $oids = [];
-        foreach ($statuses as $index=>$status) {
-            if($status['status'] != 'Online') {
+        foreach ($statuses as $index => $status) {
+            if ($status['status'] != 'Online') {
                 $oids[] = Oid::init("{$oid}.{$status['interface']['_snmp_id']}");
             } else {
                 $statuses[$index]['bind_status'] = $status['status'];
             }
         }
-        if(!$oids) {
+        if (!$oids) {
             return [];
         }
         $responses = $this->formatResponse($this->snmp->get($oids));
-        if(!isset($responses['ont.lastDownReason']) || $responses['ont.lastDownReason']->error()) {
-            return  [];
+        if (!isset($responses['ont.lastDownReason']) || $responses['ont.lastDownReason']->error()) {
+            return [];
         }
         foreach ($responses['ont.lastDownReason']->fetchAll() as $resp) {
             $index = Helper::getIndexByOid($resp->getOid());
             $iface = $this->parseInterface($index);
-            if($resp->getParsedValue() !== 'Unknown') {
+            if ($resp->getParsedValue() !== 'Unknown') {
                 $statuses[$iface['id']]['bind_status'] = $resp->getParsedValue();
             }
         }
-        return  $statuses;
+        return $statuses;
     }
 }
 

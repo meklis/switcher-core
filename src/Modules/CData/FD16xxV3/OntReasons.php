@@ -46,10 +46,10 @@ class OntReasons extends CDataAbstractModuleFD16xxV3
      * @return array
      * @throws \SwitcherCore\Exceptions\IncompleteResponseException
      */
-    private function processWithInterface($response) {
+    private function processWithInterface($interface, $response) {
         $return = [];
         $responses = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
+        foreach ($this->getModule('pon_onts_status')->run(['interface' => $interface])->getPrettyFiltered(['meta' => 'yes', 'interface' => $interface])   as $onts) {
             $return[$onts['interface']['_snmp_id']] = $onts;
         }
         $issetIds = [];
@@ -111,7 +111,7 @@ class OntReasons extends CDataAbstractModuleFD16xxV3
                     $oids[] = Oid::init("{$oid->getOid()}.$id");
                 }
             }
-            $this->response = $this->processWithInterface($this->snmp->get($oids));
+            $this->response = $this->processWithInterface($filter['interface'], $this->snmp->get($oids));
         }
         return $this;
     }

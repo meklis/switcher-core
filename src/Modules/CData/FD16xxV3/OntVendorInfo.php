@@ -54,10 +54,10 @@ class OntVendorInfo extends CDataAbstractModuleFD16xxV3
      * @return array
      * @throws \SwitcherCore\Exceptions\IncompleteResponseException
      */
-    private function processWithInterface($response) {
+    private function processWithInterface($interface, $response) {
         $return = [];
         $responses = [];
-        foreach ($this->getModule('pon_onts_status')->run()->getPrettyFiltered(['meta' => 'yes']) as $onts) {
+        foreach ($this->getModule('pon_onts_status')->run(['interface' => $interface])->getPrettyFiltered(['meta' => 'yes', 'interface' => $interface]) as $onts) {
             $return[$onts['interface']['_snmp_id']] = $onts;
         }
         $issetIds = [];
@@ -102,20 +102,21 @@ class OntVendorInfo extends CDataAbstractModuleFD16xxV3
         $optical[] = $this->oids->getOidByName('ont.verHardware');
         $optical[] = $this->oids->getOidByName('ont.vendor');
         $optical[] = $this->oids->getOidByName('ont.model');
-        if(!$filter['interface']) {
+        if($filter['interface']) {
+            $oids = [];
+            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
+                foreach ($optical as $optId) {
+                    $oids[] = Oid::init("{$optId->getOid()}.$id");
+                }
+            }
+            echo "Start walk by interface\n";
+            $this->response = $this->processWithInterface($filter['interface'], $this->snmp->get($oids));
+        } else {
             $oids = [];
             foreach ($optical as $opt) {
                 $oids[] = Oid::init($opt->getOid());
             }
             $this->response = $this->processNoInterface($this->formatResponse($this->snmp->walkNext($oids)));
-        } else {
-            $oids = [];
-            foreach ($this->getOntIdsByInterface($filter['interface']) as $id) {
-                foreach ($optical as $optId) {
-                   $oids[] = Oid::init("{$optId->getOid()}.$id");
-                }
-            }
-            $this->response = $this->processWithInterface($this->snmp->get($oids));
         }
         return $this;
     }
