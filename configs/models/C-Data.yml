@@ -821,7 +821,7 @@ models:
       console_commands_after_connect:
         - {command: enable, check_password: true}
         - config
-    detect: {description: .*,  objid: ^.1.3.6.1.4.1.17409$ }
+    detect: {description: CDATAONU,  objid: ^.1.3.6.1.4.1.17409$ }
     modules:
       parse_interface: \SwitcherCore\Modules\CData\FD5008\ParseInterface
       link_info: \SwitcherCore\Modules\CData\FD5008\LinkInfo
