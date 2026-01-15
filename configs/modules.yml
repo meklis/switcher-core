@@ -353,6 +353,10 @@
   arguments:
     - {name: interface, pattern: '.*', required: yes}
   descr: Информация о ОНУшке (детально)
+- name: zte_ont_configuration
+  arguments:
+    - {name: interface, pattern: '.*', required: yes}
+  descr: Информация конфигурации ОНУшки
 
 #Get ONU state by interface
 - name: gpon_profiles

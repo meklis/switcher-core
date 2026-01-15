@@ -262,6 +262,7 @@ models:
       onu_ip_host: \SwitcherCore\Modules\ZTE\C600Series\OnuIpHost
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       snooping_info: \SwitcherCore\Modules\ZTE\C600Series\SnoopingInfo
+      zte_ont_configuration: \SwitcherCore\Modules\ZTE\C600Series\ZteOntConfiguration
 
     extra:
       console_conn_type: zte
