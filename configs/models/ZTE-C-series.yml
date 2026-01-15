@@ -30,6 +30,7 @@ models:
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
+      vlans: \SwitcherCore\Modules\ZTE\C300Series\Vlans
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
@@ -81,6 +82,7 @@ models:
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
+      vlans: \SwitcherCore\Modules\ZTE\C300Series\Vlans
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
@@ -132,6 +134,7 @@ models:
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
+      vlans: \SwitcherCore\Modules\ZTE\C300Series\Vlans
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
@@ -183,6 +186,7 @@ models:
       gpon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       pon_profiles: \SwitcherCore\Modules\ZTE\C300Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C300Series\Fdb
+      vlans: \SwitcherCore\Modules\ZTE\C300Series\Vlans
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C300Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C300Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C300Series\OntDownHistory
@@ -243,6 +247,7 @@ models:
       gpon_profiles: \SwitcherCore\Modules\ZTE\C600Series\GponOntProfileList
       pon_profiles: \SwitcherCore\Modules\ZTE\C600Series\GponOntProfileList
       fdb: \SwitcherCore\Modules\ZTE\C600Series\Fdb
+      vlans: \SwitcherCore\Modules\ZTE\C600Series\Vlans
       pon_onts_reasons: \SwitcherCore\Modules\ZTE\C600Series\OntReasons
       pon_onts_configuration: \SwitcherCore\Modules\ZTE\C600Series\OntConfiguration
       pon_onts_down_history: \SwitcherCore\Modules\ZTE\C600Series\OntDownHistory
