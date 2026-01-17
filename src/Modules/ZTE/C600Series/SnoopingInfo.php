@@ -117,7 +117,7 @@ class SnoopingInfo extends ModuleAbstract {
             }
         }
         if(isset($filter['interface'])) {
-            $iface = $this->parseInterface($filter['interface'])['name'];
+            $iface = $this->parseInterface($filter['interface']);
             // $iface = str_replace(['gpon_onu-', 'epon_onu-'], 'vport-', $iface);
             // $iface = str_replace(':', '.', $iface);
             // $iface .= ':1';
