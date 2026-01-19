@@ -40,6 +40,7 @@ class MultiRawConsoleCommand extends ModuleAbstract
                 $resp['success'] = false;
                 $resp['command'] = $command;
                 $resp['output'] = "Exception: " . $e->getMessage();
+                $resp['_buffer'] = $this->telnet->getGlobalBuffer();
             }
             if(!$resp['success'] && $params['break_on_error'] == 'yes') {
                 break;
