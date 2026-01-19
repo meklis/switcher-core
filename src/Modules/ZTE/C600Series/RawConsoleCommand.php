@@ -37,6 +37,7 @@ class RawConsoleCommand extends ModuleAbstract
         if(preg_match('/\[OK\]/', $response)) return  true;
         if(preg_match('/Invalid input detected/', $response)) return  false;
         if(preg_match('/Failed/', $response)) return  false;
+        if(preg_match('/Error/', $response)) return  false;
         return  true;
     }
 

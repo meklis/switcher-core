@@ -33,9 +33,14 @@ class MultiRawConsoleCommand extends ModuleAbstract
                 $command = $match[1];
                 $prompt = $match[2];
             }
-
-            $resp = $this->getModule('console_command')->run(['command' => trim($command), 'prompt' => $prompt])->getPretty();
-            $response[] = $resp;
+            try {
+                $resp = $this->getModule('console_command')->run(['command' => trim($command), 'prompt' => $prompt])->getPretty();
+                $response[] = $resp;
+            } catch (\Exception $e) {
+                $resp['success'] = false;
+                $resp['command'] = $command;
+                $resp['output'] = "Exception: " . $e->getMessage();
+            }
             if(!$resp['success'] && $params['break_on_error'] == 'yes') {
                 break;
             }
