@@ -36,7 +36,7 @@ class MultiRawConsoleCommand extends ModuleAbstract
             try {
                 $resp = $this->getModule('console_command')->run(['command' => trim($command), 'prompt' => $prompt])->getPretty();
                 $response[] = $resp;
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 $resp['success'] = false;
                 $resp['command'] = $command;
                 $resp['output'] = $this->telnet->getBuffer();
