@@ -27,23 +27,28 @@ class SfpMediaInfo extends \SwitcherCore\Modules\General\Switches\SfpMediaInfo {
         ];
         $res = $this->formatResponse($this->snmp->walk($oids));
         $sfp_ids = [];
-        foreach($res['ent.physicalName']->fetchAll() as $oid) {
-            $id = Helper::getIndexByOid($oid->getOid());
-            if(preg_match('/sfp/i', $oid->getValue())) {
-                $sfp_ids[$id] = true;
+        try {
+            foreach($res['ent.physicalName']->fetchAll() as $oid) {
+                $id = Helper::getIndexByOid($oid->getOid());
+                if(preg_match('/sfp/i', $oid->getValue())) {
+                    $sfp_ids[$id] = true;
+                }
             }
-        }
+        } catch (\Exception $e) {}
+        
         $mapping_id = [];
-        foreach($res['ent.aliasMappingIdentifier']->fetchAll() as $oid) {
-            $id = Helper::getIndexByOid($oid->getOid(), 1);
-            // $val = $oid->getValue();
-            // $val = explode('.', $val);
-            // $val = $val[count($val) - 1];
-            $val = Helper::getIndexByOid($oid->getValue());
-            if(!isset($sfp_ids[$id])) continue;
-            if(!isset($interfaces[$val])) continue;
-            $mapping_id[$val] = $id;
-        }
+        try {
+            foreach($res['ent.aliasMappingIdentifier']->fetchAll() as $oid) {
+                $id = Helper::getIndexByOid($oid->getOid(), 1);
+                // $val = $oid->getValue();
+                // $val = explode('.', $val);
+                // $val = $val[count($val) - 1];
+                $val = Helper::getIndexByOid($oid->getValue());
+                if(!isset($sfp_ids[$id])) continue;
+                if(!isset($interfaces[$val])) continue;
+                $mapping_id[$val] = $id;
+            }
+        } catch (\Exception $e) {}
         
         $oids = [
             Oid::init($this->oids->getOidByName('ent.physicalSerialNum')->getOid() . (($filter_iface && isset($mapping_id[$filter_iface])) ? ".{$mapping_id[$filter_iface]}" : "")),
@@ -52,26 +57,34 @@ class SfpMediaInfo extends \SwitcherCore\Modules\General\Switches\SfpMediaInfo {
         ];
         $res = $this->formatResponse($this->snmp->walk($oids));
         $sn = [];
-        foreach($res['ent.physicalSerialNum']->fetchAll() as $oid) {
-            $id = Helper::getIndexByOid($oid->getOid());
-            if(isset($sfp_ids[$id]) && in_array($id, $mapping_id) && $oid->getValue() !== '') {
-                $sn[$id] = $oid->getValue();
+        try {
+            foreach($res['ent.physicalSerialNum']->fetchAll() as $oid) {
+                $id = Helper::getIndexByOid($oid->getOid());
+                if(isset($sfp_ids[$id]) && in_array($id, $mapping_id) && $oid->getValue() !== '') {
+                    $sn[$id] = $oid->getValue();
+                }
             }
-        }
+        } catch (\Exception $e) {}
+
         $vendor_name = [];
-        foreach($res['ent.physicalMfgName']->fetchAll() as $oid) {
-            $id = Helper::getIndexByOid($oid->getOid());
-            if(isset($sfp_ids[$id]) && in_array($id, $mapping_id) && $oid->getValue() !== '') {
-                $vendor_name[$id] = $oid->getValue();
+        try {
+            foreach($res['ent.physicalMfgName']->fetchAll() as $oid) {
+                $id = Helper::getIndexByOid($oid->getOid());
+                if(isset($sfp_ids[$id]) && in_array($id, $mapping_id) && $oid->getValue() !== '') {
+                    $vendor_name[$id] = $oid->getValue();
+                }
             }
-        }
+        } catch (\Exception $e) {}
+
         $part_number = [];
-        foreach($res['ent.physicalModelName']->fetchAll() as $oid) {
-            $id = Helper::getIndexByOid($oid->getOid());
-            if(isset($sfp_ids[$id]) && in_array($id, $mapping_id) && $oid->getValue() !== '') {
-                $part_number[$id] = $oid->getValue();
+        try {
+            foreach($res['ent.physicalModelName']->fetchAll() as $oid) {
+                $id = Helper::getIndexByOid($oid->getOid());
+                if(isset($sfp_ids[$id]) && in_array($id, $mapping_id) && $oid->getValue() !== '') {
+                    $part_number[$id] = $oid->getValue();
+                }
             }
-        }
+        } catch (\Exception $e) {}
 
         $resp = [];
         foreach($mapping_id as $iface_id => $id) {

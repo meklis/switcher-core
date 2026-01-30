@@ -32,48 +32,58 @@ class SfpOpticalInfo extends AbstractModule {
         $res = $this->formatResponse($this->snmp->walk($oids));
         $vcc = [];
         if(!$load_only || in_array('vcc', $load_only, true)) {
-            foreach($res['jnx.DomCurrentModuleVoltage']->fetchAll() as $oid) {
-                $vcc[Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 1000;
-                if($oid->getValue() == 0) $vcc[Helper::getIndexByOid($oid->getOid())] = null;
-            }
+            try {
+                foreach($res['jnx.DomCurrentModuleVoltage']->fetchAll() as $oid) {
+                    $vcc[Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 1000;
+                    if($oid->getValue() == 0) $vcc[Helper::getIndexByOid($oid->getOid())] = null;
+                }
+            } catch (\Exception $e) {}
         }
         $temp = [];
         if(!$load_only || in_array('temp', $load_only, true)) {
-            foreach($res['jnx.DomCurrentModuleTemperature']->fetchAll() as $oid) {
-                $temp[Helper::getIndexByOid($oid->getOid())] = $oid->getValue();
-                if($oid->getValue() == 0) $temp[Helper::getIndexByOid($oid->getOid())] = null;
-            }
+            try {
+                foreach($res['jnx.DomCurrentModuleTemperature']->fetchAll() as $oid) {
+                    $temp[Helper::getIndexByOid($oid->getOid())] = $oid->getValue();
+                    if($oid->getValue() == 0) $temp[Helper::getIndexByOid($oid->getOid())] = null;
+                }
+            } catch (\Exception $e) {}
         }
 
         $rx_power = [];
         if(!$load_only || in_array('rx_power', $load_only, true)) {
-            foreach($res['jnx.DomCurrentLaneRxLaserPower']->fetchAll() as $oid) {
-                $iface_id = Helper::getIndexByOid($oid->getOid(), 1);
-                $rx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 100;
-                if($oid->getValue() == 0) $rx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = null;
-                if(!isset($max_channel[$iface_id])) $max_channel[$iface_id] = 0;
-                if($max_channel[$iface_id] < Helper::getIndexByOid($oid->getOid())) $max_channel[$iface_id] = Helper::getIndexByOid($oid->getOid());
-            }
+            try {
+                foreach($res['jnx.DomCurrentLaneRxLaserPower']->fetchAll() as $oid) {
+                    $iface_id = Helper::getIndexByOid($oid->getOid(), 1);
+                    $rx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 100;
+                    if($oid->getValue() == 0) $rx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = null;
+                    if(!isset($max_channel[$iface_id])) $max_channel[$iface_id] = 0;
+                    if($max_channel[$iface_id] < Helper::getIndexByOid($oid->getOid())) $max_channel[$iface_id] = Helper::getIndexByOid($oid->getOid());
+                }
+            } catch (\Exception $e) {}
         }
         $tx_power = [];
         if(!$load_only || in_array('tx_power', $load_only, true)) {
-            foreach($res['jnx.DomCurrentLaneTxLaserOutputPower']->fetchAll() as $oid) {
-                $iface_id = Helper::getIndexByOid($oid->getOid(), 1);
-                $tx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 100;
-                if($oid->getValue() == 0) $tx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = null;
-                if(!isset($max_channel[$iface_id])) $max_channel[$iface_id] = 0;
-                if($max_channel[$iface_id] < Helper::getIndexByOid($oid->getOid())) $max_channel[$iface_id] = Helper::getIndexByOid($oid->getOid());
-            }
+            try {
+                foreach($res['jnx.DomCurrentLaneTxLaserOutputPower']->fetchAll() as $oid) {
+                    $iface_id = Helper::getIndexByOid($oid->getOid(), 1);
+                    $tx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 100;
+                    if($oid->getValue() == 0) $tx_power[$iface_id][Helper::getIndexByOid($oid->getOid())] = null;
+                    if(!isset($max_channel[$iface_id])) $max_channel[$iface_id] = 0;
+                    if($max_channel[$iface_id] < Helper::getIndexByOid($oid->getOid())) $max_channel[$iface_id] = Helper::getIndexByOid($oid->getOid());
+                }
+            } catch (\Exception $e) {}
         }        
         $tx_bias = [];
         if(!$load_only || in_array('tx_bias', $load_only, true)) {
-            foreach($res['jnx.DomCurrentLaneTxLaserBiasCurrent']->fetchAll() as $oid) {
-                $iface_id = Helper::getIndexByOid($oid->getOid(), 1);
-                $tx_bias[$iface_id][Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 1000;
-                if($oid->getValue() == 0) $tx_bias[$iface_id][Helper::getIndexByOid($oid->getOid())] = null;
-                if(!isset($max_channel[$iface_id])) $max_channel[$iface_id] = 0;
-                if($max_channel[$iface_id] < Helper::getIndexByOid($oid->getOid())) $max_channel[$iface_id] = Helper::getIndexByOid($oid->getOid());
-            }
+            try {
+                foreach($res['jnx.DomCurrentLaneTxLaserBiasCurrent']->fetchAll() as $oid) {
+                    $iface_id = Helper::getIndexByOid($oid->getOid(), 1);
+                    $tx_bias[$iface_id][Helper::getIndexByOid($oid->getOid())] = floatval($oid->getValue()) / 1000;
+                    if($oid->getValue() == 0) $tx_bias[$iface_id][Helper::getIndexByOid($oid->getOid())] = null;
+                    if(!isset($max_channel[$iface_id])) $max_channel[$iface_id] = 0;
+                    if($max_channel[$iface_id] < Helper::getIndexByOid($oid->getOid())) $max_channel[$iface_id] = Helper::getIndexByOid($oid->getOid());
+                }
+            } catch (\Exception $e) {}
         }
 
         $resp = [];
