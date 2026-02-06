@@ -43,9 +43,10 @@ class InterfaceDescriptionsFD16 extends CDataAbstractModuleFD16xxV3
     {
         $data = [];
         foreach ($this->response as $resp) {
+            $iface = $this->parseInterface(Helper::getIndexByOid($resp->getOid()));
             $data[] = [
-                'interface' => $this->parseInterface(Helper::getIndexByOid($resp->getOid())),
-                'description' => $resp->getValue(),
+                'interface' => $iface,
+                'description' => (string)trim(str_replace("{$iface['_type']} 0/0/{$iface['_port']} onu {$iface['_onu']}", "", $resp->getValue())),
             ];
         }
         return $data;

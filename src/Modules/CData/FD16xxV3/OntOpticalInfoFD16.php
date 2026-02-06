@@ -39,11 +39,13 @@ class OntOpticalInfoFD16 extends CDataAbstractModuleFD16xxV3
         }
         foreach ($responses as $r) {
             $oid = $this->oids->findOidById($r->getOid());
-            if ($oid->getName() === 'ont.distance' || $oid->getName() === 'pon.portOpticalRxOfOnu') {
-                $onuId = Helper::getIndexByOid($r->getOid());
-            } else {
+            $countDots = substr_count($r->getOid(), '.');
+            if ($countDots == 16) {
                 $onuId = Helper::getIndexByOid($r->getOid(), 2);
+            } else {
+                $onuId = Helper::getIndexByOid($r->getOid());
             }
+
             $interface = $this->parseInterface($onuId);
 
             $return[$onuId]['interface'] = $interface;
@@ -121,27 +123,20 @@ class OntOpticalInfoFD16 extends CDataAbstractModuleFD16xxV3
             $oids = [];
             foreach ($this->getAllOntsIds(true) as $id) {
                 foreach ($optical as $optId) {
-                    if ($optId->getName() === 'ont.distance' || $optId->getName() === 'pon.portOpticalRxOfOnu') {
-                        $oids[] = Oid::init("{$optId->getOid()}.$id");
-                    } else {
-                        $oids[] = Oid::init("{$optId->getOid()}.$id.0.0");
-                    }
+                    $oids[] = Oid::init("{$optId->getOid()}.$id");
                 }
             }
-            $responses = $this->snmp->get($oids);
+            $responses = $this->snmp->walk($oids);
             $this->response = $this->process($responses);
         } else {
             $oids = [];
             foreach ($this->getOntIdsByInterface($filter['interface'], true) as $id) {
                 foreach ($optical as $optId) {
-                    if ($optId->getName() === 'ont.distance' || $optId->getName() === 'pon.portOpticalRxOfOnu') {
-                        $oids[] = Oid::init("{$optId->getOid()}.$id");
-                    } else {
-                        $oids[] = Oid::init("{$optId->getOid()}.$id.0.0");
-                    }
+                    $oids[] = Oid::init("{$optId->getOid()}.$id");
                 }
             }
-            $this->response = $this->process($this->snmp->get($oids));
+            $responses = $this->snmp->walk($oids);
+            $this->response = $this->process($responses);
         }
         return $this;
     }
