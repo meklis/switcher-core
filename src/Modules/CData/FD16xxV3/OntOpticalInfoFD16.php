@@ -128,6 +128,7 @@ class OntOpticalInfoFD16 extends CDataAbstractModuleFD16xxV3
                     }
                 }
             }
+
             $responses = $this->snmp->get($oids);
             $this->response = $this->process($responses);
         } else {
