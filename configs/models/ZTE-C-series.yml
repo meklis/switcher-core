@@ -268,6 +268,7 @@ models:
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
       snooping_info: \SwitcherCore\Modules\ZTE\C600Series\SnoopingInfo
       zte_ont_configuration: \SwitcherCore\Modules\ZTE\C600Series\ZteOntConfiguration
+      vlans_by_port: \SwitcherCore\Modules\ZTE\C600Series\VlansByPort
 
     extra:
       console_conn_type: zte
