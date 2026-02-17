@@ -31,7 +31,10 @@ abstract class ModuleAbstract extends AbstractModule
             $this->_xidInterfaces = $ifaces;
             return $ifaces;
         }
-        $resp = $this->formatResponse($this->snmp->walk([Oid::init($this->oids->getOidByName('if.Name')->getOid())]));
+        $resp = $this->formatResponse($this->snmp->walk([
+            Oid::init($this->oids->getOidByName('if.Name')->getOid()),
+            Oid::init($this->oids->getOidByName('zxr10.cpuVlanTransPortName')->getOid())
+            ]));
         if ($resp['if.Name']->error()) {
             throw new \Exception($resp['if.Name']->error());
         }
@@ -98,6 +101,32 @@ abstract class ModuleAbstract extends AbstractModule
                 ];
             }
         }
+
+        if ($resp['zxr10.cpuVlanTransPortName']->error()) {
+            //throw new \Exception($resp['zxr10.cpuVlanTransPortName']->error());
+        } else {
+            foreach ($resp['zxr10.cpuVlanTransPortName']->fetchAll() as $f) {
+                if(preg_match('/^smartgroup(\d{1,3})$/', trim($f->getValue()), $m)) {
+                    $type = 'LACP';
+                    $id = 70000000 + intval($m[1]);
+                    $response[$id] = [
+                        'id' => (int) $id,
+                        '_xid' => Helper::getIndexByOid($f->getOid()),
+                        'type' => $type,
+                        '_shelf' => 0,
+                        '_slot' => 0,
+                        '_port' => (int) $m[1],
+                        'name' => $m[0],
+                        'parent' => null,
+                        '_onu' => null,
+                        '_pon_max_ont_size' => null,
+                        '_technology' => null,
+                        '_oid_id' =>  null,
+                    ];
+                }
+            }
+        }
+
         $data['names'] = $response;
         foreach ($response as  $val) {
             $data['id'][$val['id']] = $val;
@@ -147,9 +176,15 @@ abstract class ModuleAbstract extends AbstractModule
         return count($gponCards) > 0;
     }
 
-    public function parseInterface($name)
-    {
+    public function parseInterface($name) {
         $xidList = $this->listInterfacesByXidNames();
+        if(is_string($name) && preg_match('/^(smartgroup|sg)(\d{1,3})/', $name, $m)) {
+            foreach($xidList['id'] as $if) {
+                if($if['type'] === 'LACP' && intval($if['_port']) === intval($m[2])) {
+                    return $if;
+                }
+            }
+        }
         //Попытка распарсить интерфейс PON по его имени
         $iface = null;
         $ontNum = null;
