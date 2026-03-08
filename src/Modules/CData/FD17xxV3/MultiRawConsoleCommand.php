@@ -1,0 +1,62 @@
+<?php
+
+namespace SwitcherCore\Modules\CData\FD17xxV3;
+
+use SwitcherCore\Modules\CData\FD17xxV3\CDataAbstractModuleFD17xxV3;
+
+class MultiRawConsoleCommand extends CDataAbstractModuleFD17xxV3
+{
+    public function run($params = [])
+    {
+        if(!isset($params['commands'])) {
+            throw new \Exception("Commands parameter is required");
+        }
+        if(!is_array($params['commands']) && is_string($params['commands'])) {
+            $commands = explode("\n", $params['commands']);
+        } else {
+            $commands = $params['commands'];
+        }
+        $response = [];
+        foreach ($commands as $command) {
+            if(preg_match("/\<\s*?exception *?['\"](.*)['\"].*?\>/", $command, $match)) {
+                throw new \Exception($match[1]);
+            }
+            if(preg_match('/\<\s*?sleep *?([0-9]{1,3}).*?\>/', $command, $match)) {
+                sleep($match[1]);
+                continue;
+            }
+            if(preg_match('/^\<f\>(.*)$/', $command, $match)) {
+                $command = $match[1];
+                $resp = $this->getModule('console_command')->run(['command' => trim($command)])->getPretty();
+                $resp['success'] = true;
+                $response[] = $resp;
+                continue;
+            }
+
+            $prompt = null;
+            if(preg_match("/^(.*)\<\s*?prompt *?['\"](.*)['\"].*?\>/i", $command, $match)) {
+                $command = $match[1];
+                $prompt = $match[2];
+            }
+
+            $resp = $this->getModule('console_command')->run(['command' => trim($command), 'prompt' => $prompt])->getPretty();
+            $response[] = $resp;
+            if(!$resp['success'] && $params['break_on_error'] == 'yes') {
+                break;
+            }
+        }
+        $this->response = $response;
+
+        return $this;
+    }
+
+    public function getPretty()
+    {
+        return $this->response;
+    }
+
+    public function getPrettyFiltered($filter = [], $fromCache = false)
+    {
+        return $this->response;
+    }
+}
