@@ -825,8 +825,8 @@ models:
       console_conn_type: cdata
       console_commands_after_connect:
         - {command: enable, check_password: true}
+        - terminal length 0
         - config
-        - vty output show-more
     modules:
       system: \SwitcherCore\Modules\CData\FD17xxV3\SystemInformation
       pon_ports_list: \SwitcherCore\Modules\CData\FD17xxV3\PonPortsList

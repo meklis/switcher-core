@@ -77,7 +77,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
             if(!preg_match('/^([[:xdigit:]]{16}).*\((.*)\)$/', $ont['sn'], $ontSN)) {
                 throw new \Exception("Parse error");
             }
-            $iface = $this->parseInterface("gpon 0/0/{$ont['port']}" . ":" . ($id));
+            $iface = $this->parseInterface("gpon 0/0/{$ont['port']}" );
             $data[] = [
                 '_serial_ascii' => trim($ontSN[2]),
                 '_serial_hex' => trim($ontSN[1]),
