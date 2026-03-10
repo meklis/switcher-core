@@ -22,7 +22,7 @@ class PonPortsList extends CDataAbstractModuleFD17xxV3
 
     function getPretty()
     {
-        return array_values(array_filter($this->getInterfaces(), function($interface) {
+        return array_values(array_filter($this->getPhysicalInterfaces(), function($interface) {
             return $interface['type'] == 'PON';
         }));
     }
