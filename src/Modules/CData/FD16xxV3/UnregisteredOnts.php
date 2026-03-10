@@ -86,7 +86,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
             $iface['_snmp_id'] = null;
             $data[] = [
                 '_serial_ascii' => trim($ontSN[2]),
-                '_serial_hex' => trim($ontSN[1]),
+                '_serial_hex' => strtoupper(bin2hex(substr($ontSN[1], 0, 4))) . substr($ontSN[1], 4),
                 'serial' => str_replace("-", "", trim($ontSN[2])),
                 '_ident' => str_replace("-", "", trim($ontSN[2])),
                 'interface' => $iface,
