@@ -53,6 +53,9 @@ class SfpOpticalInfo extends CDataAbstractModuleFD17xxV3 {
             foreach($res['ddm.gponPortTxBias']->fetchAll() as $val) {
                 $snmp_id = Helper::getIndexByOid($val->getOid());
                 $tx_bias[$snmp_id] = $val->getParsedValue();
+                if(preg_match('/^(\-?\d+\.?\d*)\s/', $tx_bias[$snmp_id], $m)) {
+                    $tx_bias[$snmp_id] = $m[1];
+                }
             }
         }
         $tx_power = [];
@@ -60,6 +63,9 @@ class SfpOpticalInfo extends CDataAbstractModuleFD17xxV3 {
             foreach($res['ddm.gponPortTxPower']->fetchAll() as $val) {
                 $snmp_id = Helper::getIndexByOid($val->getOid());
                 $tx_power[$snmp_id] = $val->getParsedValue();
+                if(preg_match('/^(\-?\d+\.?\d*)\s/', $tx_power[$snmp_id], $m)) {
+                    $tx_power[$snmp_id] = $m[1];
+                }
             }
         }   
         $rx_power = [];
@@ -67,6 +73,9 @@ class SfpOpticalInfo extends CDataAbstractModuleFD17xxV3 {
             foreach($res['ddm.gponPortRxPower']->fetchAll() as $val) {
                 $snmp_id = Helper::getIndexByOid($val->getOid());
                 $rx_power[$snmp_id] = $val->getParsedValue();
+                if(preg_match('/^(\-?\d+\.?\d*)\s/', $rx_power[$snmp_id], $m)) {
+                    $rx_power[$snmp_id] = $m[1];
+                }
             }
         }
         $resp = [];
