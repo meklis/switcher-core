@@ -12,6 +12,9 @@ use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
 {
+    private const ONU_SNMP_INDEX_BASE = 0x02480000;
+    private const ONU_SNMP_INDEX_PORT_STEP = 0x1000;
+    private const ONU_SNMP_INDEX_ONU_MASK = 0x0FFF;
 
     /**
      * @Inject
@@ -30,22 +33,17 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
 
     protected $_interfaces = [];
 
-    public function getPhysicalInterfaces() {
-        $ifaces = $this->getInterfaces();
-        return array_filter($ifaces, fn ($e) => $e['_onu'] === null);
-    }
-
-    public function getInterfaces()
+    function getPhysicalInterfaces()
     {
         if ($this->_interfaces) {
             return $this->_interfaces;
         }
-        if ($ifaces = $this->getCache('INTERFACES', true)) {
+        if ($ifaces = $this->getCache('PHYS_INTERFACES', true)) {
             $this->_interfaces = $ifaces;
             return $this->_interfaces;
         }
         $data = $this->formatResponse($this->snmp->walk([
-             \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Descr')->getOid())
+            \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Descr')->getOid())
         ]));
         if ($data['if.Descr']->error()) {
             throw new \SNMPException("Error get if.Descr: " . $data['if.Descr']->error());
@@ -54,12 +52,8 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         foreach ($data['if.Descr']->fetchAll() as $d) {
             $id = null;
             $type = null;
-            if (preg_match('/^(eth|ge|xge|gpon|epon)\s?([0-9])\/([0-9])\/([0-9]{1,2}):?([0-9]{1,3})?$/', $d->getValue(), $m)) {
-                if ($m[1] === 'eth') {
-                    $id = 100000 + ($m[3] * 10000) + ($m[4] * 100);
-                    if(isset($m[5])) $id += $m[5];
-                    $type = 'ETH';
-                } elseif ($m[1] === 'ge') {
+            if (preg_match('/^(ge|xge|gpon|epon) ([0-9])\/([0-9])\/([0-9]{1,2})$/', $d->getValue(), $m)) {
+                if ($m[1] === 'ge') {
                     $id = 1000 + ($m[3] * 100) + $m[4];
                     $type = 'ETH';
                 } elseif ($m[1] === 'xge') {
@@ -74,7 +68,7 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
                 }
                 $resp[$id] = [
                     'id' =>  (int)$id,
-                    'name' => str_replace(" ", "", trim($d->getValue())),
+                    'name' => $d->getValue(),
                     'parent' => null,
                     'type' => $type,
                     '_snmp_id' => Helper::getIndexByOid($d->getOid()),
@@ -91,45 +85,8 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
             $this->logger->debug(json_encode($data['if.Descr']->fetchAll(), JSON_PRETTY_PRINT));
             throw new \Exception("if.Descr returned empty response");
         }
-        
-        $data = $this->formatResponse($this->snmp->walk([
-             \SnmpWrapper\Oid::init($this->oids->getOidByName('ont.opticalRx')->getOid())
-        ]));
-
-        if ($data['ont.opticalRx']->error()) {
-            throw new \SNMPException("Error get ont.opticalRx: " . $data['ont.opticalRx']->error());
-        }
-
-        $onu_list = [];
-        foreach($data['ont.opticalRx']->fetchAll() as $d) {
-            $snmp_id = Helper::getIndexByOid($d->getOid(), 2);
-            $parent_snmp_id = Helper::getIndexByOid($d->getOid());
-            if(!isset($indexes[$parent_snmp_id])) $indexes[$parent_snmp_id] = 0;
-            $indexes[$parent_snmp_id]++;
-            foreach($resp as $id => $arr) {
-                if($arr['_snmp_id'] === $parent_snmp_id) {
-                    $id = $id + $indexes[$parent_snmp_id];
-                    $onu_list[$id]['id'] = (int)$id;
-                    $onu_list[$id]['name'] = "{$arr['name']}:{$indexes[$parent_snmp_id]}";
-                    $onu_list[$id]['parent'] = $arr['id'];
-                    $onu_list[$id]['type'] = 'ONU';
-                    $onu_list[$id]['_snmp_id'] = $snmp_id;
-                    $onu_list[$id]['_type'] = 'gpon';
-                    $onu_list[$id]['_shelf'] = $arr['_shelf'];
-                    $onu_list[$id]['_slot'] = $arr['_slot'];
-                    $onu_list[$id]['_port'] = $arr['_port'];
-                    $onu_list[$id]['_onu'] = $indexes[$parent_snmp_id];
-                    $onu_list[$id]['_technology'] = 'gpon';
-                    break;
-                }
-            }
-        }
-
-        $resp = array_merge($resp, $onu_list);
-        ksort($resp);
-
         $this->_interfaces = $resp;
-        $this->setCache('INTERFACES', $resp, 600, true);
+        $this->setCache('PHYS_INTERFACES', $resp, 600, true);
         return $resp;
     }
 
@@ -143,10 +100,70 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         return $resp;
     }
 
+
+    function encodeSnmpOid($value)
+    {
+        if (preg_match('/^(ge|xge|gpon|epon) ([0-9])\/([0-9])\/([0-9]{1,2}):([0-9]{1,})$/', $value, $matches)) {
+            $port = (int)$matches[4];
+            $onuNum = (int)$matches[5];
+
+            if ($port < 1) {
+                throw new \Exception("Invalid PON port number");
+            }
+            if ($onuNum < 1 || $onuNum > self::ONU_SNMP_INDEX_ONU_MASK) {
+                throw new \Exception("Invalid ONU number");
+            }
+
+            return self::ONU_SNMP_INDEX_BASE
+                + (($port - 1) * self::ONU_SNMP_INDEX_PORT_STEP)
+                + $onuNum;
+        }
+
+        throw new \Exception("Allow only for ONU");
+    }
+
+    function decodeSnmpOid($oid)
+    {
+        $oid = (int)$oid;
+        if ($oid < self::ONU_SNMP_INDEX_BASE) {
+            throw new \Exception("Unable to decode ONU index");
+        }
+
+        $relativeOid = $oid - self::ONU_SNMP_INDEX_BASE;
+        $portOlt = (int)floor($relativeOid / self::ONU_SNMP_INDEX_PORT_STEP) + 1;
+        $onuNum = $relativeOid & self::ONU_SNMP_INDEX_ONU_MASK;
+
+        if (!$onuNum) {
+            throw new \Exception("Unable to decode ONU number");
+        }
+
+        $parentIface =  array_filter($this->getPhysicalInterfaces(), function ($iface) use ($portOlt, $onuNum) {
+            return $iface['_port'] == $portOlt && $iface['type'] == 'PON';
+        });
+        if(!$parentIface) {
+            throw new \Exception("Unable to find parent PON port. Defined port - {$portOlt}");
+        }
+        $iface = array_shift($parentIface);
+
+        return  [
+            'id' => $iface['id'] + $onuNum,
+            'name' => $iface['name'] . ":{$onuNum}",
+            'parent' => $iface['id'],
+            'type' => 'ONU',
+            '_snmp_id' => $oid,
+            '_onu' => $onuNum,
+            '_type' => $iface['_type'],
+            '_shelf' => $iface['_shelf'],
+            '_slot' => $iface['_slot'],
+            '_port' => $iface['_port'],
+            '_technology' => 'gpon',
+        ];
+    }
+
     protected function parseInterface($input, $searchBy=null)
     {
         //Определение, что это ID физ порта
-        if(is_numeric($input) && $input >= 100000 && $input <= 300000) {
+        if(is_numeric($input) && $input >= 1000 && $input <= 3000) {
             $interface = $this->findInterface($input, 'id');
             if ($interface === null) {
                 throw new \Exception("Interface with xid=$input not found");
@@ -155,36 +172,54 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         }
 
         //Определение, что это локальный ID пон-порта или ОНУ
-        if (is_numeric($input) && $input >= 700000 && $searchBy != '_snmp_id') {
-            //$portID = floor($input / 1000) * 1000;
-            $interface = $this->findInterface($input, 'id');
+        if (is_numeric($input) && $input >= 10000000 && $searchBy != '_snmp_id') {
+            $portID = floor($input / 1000) * 1000;
+            $interface = $this->findInterface($portID, 'id');
             if ($interface === null) {
                 throw new \Exception("Interface with id=$input not found");
             }
-            return $interface;
+            $onu = ($input - 10000000) % 1000;
+            if(!$onu) {
+                return $interface;
+            } else {
+                $interface['type'] = 'ONU';
+                $interface['parent'] = $portID;
+                $interface['id'] = $input;
+                $interface['name'] .=  ":{$onu}";
+                $interface['_snmp_id'] = $this->encodeSnmpOid($interface['name']);
+                $interface['_onu'] =  $onu;
+                return $interface;
+            }
         }
 
         //Поиск по _snmp_id или преобразование номера в ОНУ
-        if (is_numeric($input) && $searchBy === '_snmp_id') {
+        if (is_numeric($input) && $input > 10000  && ($input < 10000000 || $searchBy === '_snmp_id')) {
             //Check is port
             if ($interface = $this->findInterface($input, '_snmp_id')) {
                 return $interface;
             }
             //Find for ONU
-            throw new \Exception("Interface with _smnp_id=$input not found");
+            return $this->decodeSnmpOid($input);
         }
 
         if (!is_numeric($input)) {
-            if (preg_match('/^(eth|ge|xe|xge|gpon|epon|pon)([0-9])\/([0-9])\/([0-9]{1,2})\:?([0-9]{1,3})?$/', str_replace(" ", "", trim($input)), $m)) {
+            if (preg_match('/^(ge|xe|xge|gpon|epon|pon)([0-9])\/([0-9])\/([0-9]{1,2})\:?([0-9]{1,3})?$/', str_replace(" ", "", trim($input)), $m)) {
                 if($m[1] === 'xe') {
                     $m[1] = 'xge';
                 }
-                $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}" . (isset($m[5]) ? ":{$m[5]}" : ""), 'name');
+                $interface = $this->findInterface("{$m[1]} {$m[2]}/{$m[3]}/{$m[4]}", 'name');
                 if(!$interface) {
                     throw new \Exception("Can't find interface by name={$input}");
-                } else {
-                    return $interface;
                 }
+                if(count($m) >= 6) {
+                    $interface['type'] = 'ONU';
+                    $interface['parent'] = $interface['id'];
+                    $interface['id'] = $interface['id'] + (int)$m[5];
+                    $interface['name'] .=  ":{$m[5]}";
+                    $interface['_snmp_id'] = $this->encodeSnmpOid($interface['name']);
+                    $interface['_onu'] =  (int)$m[5];
+                }
+                return $interface;
             }
         }
 
@@ -193,7 +228,7 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
 
     private function findInterface($findValue, $findKey)
     {
-        $filtered = array_values(array_filter($this->getInterfaces(), function ($val) use ($findValue, $findKey) {
+        $filtered = array_values(array_filter($this->getPhysicalInterfaces(), function ($val) use ($findValue, $findKey) {
             return isset($val[$findKey]) && $val[$findKey] == $findValue;
         }));
         if (count($filtered) > 0) {
@@ -202,58 +237,58 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         return null;
     }
 
-    // protected $_ontStatuses = null;
+    protected $_ontStatuses = null;
 
     /**
      * @param $interface
      * @throws DependencyException
      * @throws NotFoundException
      */
-    // function getOntIdsByInterface($interface, $onlyOnline = false)
-    // {
-    //     $interface = $this->parseInterface($interface);
-    //     if ($interface['type'] !== 'PON') {
-    //         return [(int)$interface['_snmp_id']];
-    //     }
-    //     $min = $interface['id'];
-    //     $max = $min + 128;
-    //     if (!$this->_ontStatuses) {
-    //         $onts = $this->getModule('pon_onts_status')->run()->getPretty();
-    //         $this->_ontStatuses = $onts;
-    //     } else {
-    //         $onts = $this->_ontStatuses;
-    //     }
-
-    //     $ontIds = [];
-    //     foreach ($onts as $ont) {
-    //         if ($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
-    //             if ($onlyOnline && $ont['status'] !== 'Online') {
-    //                 continue;
-    //             }
-    //             $ontIds[] = (int)$ont['interface']['_snmp_id'];
-    //         }
-    //     }
-    //     return $ontIds;
-    // }
-
-    public function getOntIdsByInterface($interface, $onlyOnline = false) {
+    function getOntIdsByInterface($interface, $onlyOnline = false)
+    {
         $interface = $this->parseInterface($interface);
-        if ($interface['type'] !== 'PON') return [(int)$interface['_snmp_id']];
+        if ($interface['type'] !== 'PON') {
+            return [(int)$interface['_snmp_id']];
+        }
+        $min = $interface['id'];
+        $max = $min + 128;
         if (!$this->_ontStatuses) {
             $onts = $this->getModule('pon_onts_status')->run()->getPretty();
             $this->_ontStatuses = $onts;
         } else {
             $onts = $this->_ontStatuses;
         }
+
         $ontIds = [];
         foreach ($onts as $ont) {
-            if ($ont['interface']['id'] === $interface['id']) {
-                if ($onlyOnline && $ont['status'] !== 'Online') continue;
+            if ($ont['interface']['id'] > $min && $ont['interface']['id'] <= $max) {
+                if ($onlyOnline && $ont['status'] !== 'Online') {
+                    continue;
+                }
+                $ontIds[] = (int)$ont['interface']['_snmp_id'];
+            }
+        }
+        return $ontIds;
+    }
+
+    /**
+     * @param $interface
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    function getAllOntsIds($onlyOnline = false)
+    {
+        $onts = $this->getModule('pon_onts_status')->run()->getPretty();
+        $ontIds = [];
+        foreach ($onts as $ont) {
+            if ($onlyOnline && $ont['status'] !== 'Online') {
+                continue;
             }
             $ontIds[] = (int)$ont['interface']['_snmp_id'];
         }
         return $ontIds;
     }
+
 
     public function getAllOntsIfaces($onlyOnline = false) {
         $onts = $this->getModule('pon_onts_status')->run()->getPretty();
@@ -270,26 +305,6 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         }
         return $onts_ifaces;
     }
-
-
-
-    // /**
-    //  * @param $interface
-    //  * @throws DependencyException
-    //  * @throws NotFoundException
-    //  */
-    // function getAllOntsIds($onlyOnline = false)
-    // {
-    //     $onts = $this->getModule('pon_onts_status')->run()->getPretty();
-    //     $ontIds = [];
-    //     foreach ($onts as $ont) {
-    //         if ($onlyOnline && $ont['status'] !== 'Online') {
-    //             continue;
-    //         }
-    //         $ontIds[] = (int)$ont['interface']['_snmp_id'];
-    //     }
-    //     return $ontIds;
-    // }
 
     protected function _exe($command)
     {

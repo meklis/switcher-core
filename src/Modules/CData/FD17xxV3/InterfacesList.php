@@ -20,7 +20,7 @@ class InterfacesList extends CDataAbstractModuleFD17xxV3
 
     function getPretty()
     {
-        return array_values($this->getInterfaces());
+        return array_values($this->getPhysicalInterfaces());
     }
 
     /**
