@@ -143,58 +143,6 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         return $resp;
     }
 
-
-    // function encodeSnmpOid($value)
-    // {
-    //     $fillData = function ($val, $size) {
-    //         return str_pad(decbin($val), $size, '0', STR_PAD_LEFT);
-    //     };
-    //     if (preg_match('/^(ge|xge|gpon|epon) ([0-9])\/([0-9])\/([0-9]{1,2}):([0-9]{1,})$/', $value, $matches)) {
-    //         $port = (int)$matches[4];
-    //         $onuNum = (int)$matches[5] ;
-    //         return bindec("010010" .
-    //             $fillData($port - 1, 6) .
-    //             $fillData($onuNum, 12));
-    //     } else {
-    //         throw new \Exception("Allow only for ONU");
-    //     }
-
-    // }
-
-    // function decodeSnmpOid($oid)
-    // {
-    //     $onuNum = 0;
-    //     $binary = str_pad(decbin($oid), 24, '0', STR_PAD_LEFT);
-    //     $type = bindec(substr($binary, 0, 6));
-
-    //     $portOlt = bindec(substr($binary, 6, 6)) + 1;
-    //     $onuNum = bindec(substr($binary, 12, 12));
-    //     if(!$onuNum) {
-    //         throw new \Exception("Unable to decode ONU number");
-    //     }
-    //     $parentIface =  array_filter($this->getPhysicalInterfaces(), function ($iface) use ($portOlt, $onuNum) {
-    //         return $iface['_port'] == $portOlt && $iface['type'] == 'PON';
-    //     });
-    //     if(!$parentIface) {
-    //         throw new \Exception("Unable to find parent PON port. Defined port - {$portOlt}");
-    //     }
-    //     $iface = array_shift($parentIface);
-
-    //     return  [
-    //         'id' => $iface['id'] + $onuNum,
-    //         'name' => $iface['name'] . ":{$onuNum}",
-    //         'parent' => $iface['id'],
-    //         'type' => 'ONU',
-    //         '_snmp_id' => $oid,
-    //         '_onu' => $onuNum,
-    //         '_type' => $iface['_type'],
-    //         '_shelf' => $iface['_shelf'],
-    //         '_slot' => $iface['_slot'],
-    //         '_port' => $iface['_port'],
-    //         '_technology' => 'gpon',
-    //     ];
-    // }
-
     protected function parseInterface($input, $searchBy=null)
     {
         //Определение, что это ID физ порта

@@ -79,6 +79,12 @@ class UnregisteredOnts extends CDataAbstractModuleFD17xxV3
                 throw new \Exception("Parse error");
             }
             $iface = $this->parseInterface("gpon0/2/{$ont['port']}");
+            $iface['type'] = "ONU";
+            $iface['parent'] = $iface['id'];
+            $iface['id'] += $id;
+            $iface['name'] .= ":{$id}";
+            $iface['_onu'] = $id;
+            $iface['_snmp_id'] = null;
             $data[] = [
                 '_serial_ascii' => trim($ontSN[2]),
                 '_serial_hex' => trim($ontSN[1]),
