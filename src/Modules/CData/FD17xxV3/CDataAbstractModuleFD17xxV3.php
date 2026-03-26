@@ -12,7 +12,8 @@ use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
 {
-    private const ONU_SNMP_INDEX_BASE = 0x02480000;
+    private const ONU_SNMP_INDEX_SLOT_SHIFT = 24;
+    private const ONU_SNMP_INDEX_BASE = 0x00480000;
     private const ONU_SNMP_INDEX_PORT_STEP = 0x1000;
     private const ONU_SNMP_INDEX_ONU_MASK = 0x0FFF;
 
@@ -104,9 +105,13 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
     function encodeSnmpOid($value)
     {
         if (preg_match('/^(ge|xge|gpon|epon) ([0-9])\/([0-9])\/([0-9]{1,2}):([0-9]{1,})$/', $value, $matches)) {
+            $slot = (int)$matches[3];
             $port = (int)$matches[4];
             $onuNum = (int)$matches[5];
 
+            if ($slot < 1) {
+                throw new \Exception("Invalid slot number");
+            }
             if ($port < 1) {
                 throw new \Exception("Invalid PON port number");
             }
@@ -114,7 +119,8 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
                 throw new \Exception("Invalid ONU number");
             }
 
-            return self::ONU_SNMP_INDEX_BASE
+            return ($slot << self::ONU_SNMP_INDEX_SLOT_SHIFT)
+                + self::ONU_SNMP_INDEX_BASE
                 + (($port - 1) * self::ONU_SNMP_INDEX_PORT_STEP)
                 + $onuNum;
         }
@@ -125,11 +131,14 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
     function decodeSnmpOid($oid)
     {
         $oid = (int)$oid;
-        if ($oid < self::ONU_SNMP_INDEX_BASE) {
+        $slot = $oid >> self::ONU_SNMP_INDEX_SLOT_SHIFT;
+        $relativeOid = $oid & 0x00FFFFFF;
+
+        if ($slot < 1 || $relativeOid < self::ONU_SNMP_INDEX_BASE) {
             throw new \Exception("Unable to decode ONU index");
         }
 
-        $relativeOid = $oid - self::ONU_SNMP_INDEX_BASE;
+        $relativeOid -= self::ONU_SNMP_INDEX_BASE;
         $portOlt = (int)floor($relativeOid / self::ONU_SNMP_INDEX_PORT_STEP) + 1;
         $onuNum = $relativeOid & self::ONU_SNMP_INDEX_ONU_MASK;
 
@@ -137,11 +146,11 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
             throw new \Exception("Unable to decode ONU number");
         }
 
-        $parentIface =  array_filter($this->getPhysicalInterfaces(), function ($iface) use ($portOlt, $onuNum) {
-            return $iface['_port'] == $portOlt && $iface['type'] == 'PON';
+        $parentIface =  array_filter($this->getPhysicalInterfaces(), function ($iface) use ($slot, $portOlt) {
+            return $iface['_slot'] == $slot && $iface['_port'] == $portOlt && $iface['type'] == 'PON';
         });
         if(!$parentIface) {
-            throw new \Exception("Unable to find parent PON port. Defined port - {$portOlt}");
+            throw new \Exception("Unable to find parent PON port. Defined slot/port - {$slot}/{$portOlt}");
         }
         $iface = array_shift($parentIface);
 
