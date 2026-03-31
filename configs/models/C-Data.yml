@@ -850,7 +850,7 @@ models:
       ctrl_ont_descr: \SwitcherCore\Modules\CData\FD17xxV3\CtrlOntDescription
       console_command: \SwitcherCore\Modules\CData\FD17xxV3\RawConsoleCommand
       multi_console_command: \SwitcherCore\Modules\CData\FD17xxV3\MultiRawConsoleCommand
-      #ctrl_port_descr: \SwitcherCore\Modules\CData\FD17xxV3\PortDescriptionControl
+      ctrl_port_descr: \SwitcherCore\Modules\CData\FD17xxV3\PortDescriptionControl
       ctrl_ont_delete: \SwitcherCore\Modules\CData\FD17xxV3\OntDeleteGpon
       uni_interfaces_status: \SwitcherCore\Modules\CData\FD17xxV3\OntUniPortsStatus
       unregistered_onts: \SwitcherCore\Modules\CData\FD17xxV3\UnregisteredOnts

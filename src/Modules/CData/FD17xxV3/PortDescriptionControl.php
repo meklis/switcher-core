@@ -1,10 +1,10 @@
 <?php
 
-namespace SwitcherCore\Modules\CData\FD16xxV3;
+namespace SwitcherCore\Modules\CData\FD17xxV3;
 
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
-class PortDescriptionControl extends CDataAbstractModuleFD16xxV3
+class PortDescriptionControl extends CDataAbstractModuleFD17xxV3
 {
     /**
      * @Inject
@@ -15,7 +15,7 @@ class PortDescriptionControl extends CDataAbstractModuleFD16xxV3
     function setPortNameViaConsole($interface, $description)
     {
 
-        $this->console->exec("interface gpon 0/0");
+        $this->console->exec("interface gpon {$interface['_shelf']}/{$interface['_slot']}");
         $response = $this->console->exec("port-desc {$interface['_port']} description {$description}");
 
         if (preg_match('/Command incomplete/', $response)) return false;
