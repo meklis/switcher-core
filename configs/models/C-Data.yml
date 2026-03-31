@@ -819,6 +819,7 @@ models:
     detect: {description: FD1700S,  objid: ^.1.3.6.1.4.1.17409$}
     oids:
       - ./oids/cdata/fd-gpon-series.yml
+      - ./oids/cdata/fd-1700-series.yml
     extra:
       pon_type: GPON
       pon_port_size: 128

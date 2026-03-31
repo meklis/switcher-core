@@ -34,7 +34,7 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
         $oids = [];
         foreach ($interfaces as $iface) {
             $oids = array_merge($oids, [
-                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid() . ".{$iface['_snmp_id']}"),
+                \SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid() . ".{$iface['_snmp_id']}"),
             ]);
         }
         return $oids;
@@ -53,7 +53,7 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
         return $data;
     }
 
-    public function fetchData($data, $oid_name = 'ont.description')
+    public function fetchData($data, $oid_name = 'if.description')
     {
         $resp = $this->getResponseByName($oid_name, $data);
         if ($resp->error()) {
@@ -74,14 +74,14 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
             $interface = $this->parseInterface($filter['interface']);
             if ($interface['type'] == 'ONU') {
                 $data = $this->formatResponse(
-                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$interface['_snmp_id']}")])
+                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid() . ".{$interface['_snmp_id']}")])
                 );
                 $this->response = $this->fetchData($data);
             } else {
                 $data = $this->formatResponse(
-                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.Name')->getOid() . ".{$interface['_snmp_id']}")])
+                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid() . ".{$interface['_snmp_id']}")])
                 );
-                $this->response = $this->fetchData($data, 'if.Name');
+                $this->response = $this->fetchData($data, 'if.description');
             }
             return $this;
         }
@@ -95,14 +95,14 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
 
         if ($filter['interface_type'] == 'ONU' || $without_arguments) {
             $data = $this->formatResponse(
-                $this->snmp->walk([\SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid())])
+                $this->snmp->walk([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid())])
             );
             $this->response = $onts = $this->fetchData($data);
         }
         if ($filter['interface_type'] == 'PHYSICAL' || $without_arguments) {
             $oids = $this->getOidsByInterfacesArray($this->getPhysicalInterfaces());
             $data = $this->formatResponse($this->snmp->get($oids));
-            $this->response = $physicals = $this->fetchData($data, 'if.Name');
+            $this->response = $physicals = $this->fetchData($data, 'if.description');
         }
 
         if ($without_arguments) {
