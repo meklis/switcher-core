@@ -53,7 +53,7 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
         return $data;
     }
 
-    public function fetchData($data, $oid_name = 'if.description')
+    public function fetchData($data, $oid_name = 'ont.description')
     {
         $resp = $this->getResponseByName($oid_name, $data);
         if ($resp->error()) {
@@ -74,7 +74,7 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
             $interface = $this->parseInterface($filter['interface']);
             if ($interface['type'] == 'ONU') {
                 $data = $this->formatResponse(
-                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid() . ".{$interface['_snmp_id']}")])
+                    $this->snmp->get([\SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid() . ".{$interface['_snmp_id']}")])
                 );
                 $this->response = $this->fetchData($data);
             } else {
@@ -95,7 +95,7 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
 
         if ($filter['interface_type'] == 'ONU' || $without_arguments) {
             $data = $this->formatResponse(
-                $this->snmp->walk([\SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid())])
+                $this->snmp->walk([\SnmpWrapper\Oid::init($this->oids->getOidByName('ont.description')->getOid())])
             );
             $this->response = $onts = $this->fetchData($data);
         }
