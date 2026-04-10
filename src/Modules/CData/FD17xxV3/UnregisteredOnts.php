@@ -57,10 +57,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD17xxV3
         $result = [];
         foreach (explode("\n", $finded) as $line) {
             if (preg_match('/Aging time|Total/', $line)) continue;
-            if (preg_match('/Frame\/Slot/', $line)) {
-                $fieldID++;
-                continue;
-            }
+
             if (preg_match('/^(.*): (.*)$/', trim($line), $matches)) {
                 $result[$fieldID][Helper::fromCamelCase(trim($matches[1]))] = trim($matches[2]);
             }
@@ -78,7 +75,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD17xxV3
             if(!preg_match('/^([A-Za-z0-9]{12}).*\((.*)\)$/', $ont['sn'], $ontSN)) {
                 throw new \Exception("Parse error");
             }
-            $iface = $this->parseInterface("gpon0/2/{$ont['port']}");
+            $iface = $this->parseInterface("gpon{$ont['frame_slot']}/{$ont['port']}");
             $iface['type'] = "ONU";
             $iface['parent'] = $iface['id'];
             $iface['id'] += $id;
