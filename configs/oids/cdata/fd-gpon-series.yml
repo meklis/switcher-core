@@ -126,6 +126,24 @@
 - {name: ont.profile.line, oid: .1.3.6.1.4.1.17409.2.8.4.6.1.1.6}
 - {name: ont.profile.srv, oid: .1.3.6.1.4.1.17409.2.8.4.6.1.1.7}
 
+# Service-port configuration (NSCRTV-PON-TREE-EXT-SERVICE-PORT-MIB / servicePortCfgInfoTable)
+# Index: <deviceIndex=1>.<cardIndex=0>.<servicePortId>
+- {name: srv_port.svlan,           oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.4}
+- {name: srv_port.pon_port,        oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.5}
+- {name: srv_port.onu_id,          oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.6}
+- {name: srv_port.gem_id,          oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.7}
+- {name: srv_port.user_vlan,       oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.8}
+- {name: srv_port.user_vlan_pri,   oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.9}
+- {name: srv_port.eth_type,        oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.10}
+- {name: srv_port.up_traffic_id,   oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.11}
+- {name: srv_port.down_traffic_id, oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.12}
+- {name: srv_port.admin_status,    oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.13, values: {0: Disabled, 1: Enabled}}
+- {name: srv_port.online_state,    oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.14, values: {0: Offline, 1: Online}}
+- {name: srv_port.tag_action,      oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.15}
+- {name: srv_port.inner_vid,       oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.16}
+- {name: srv_port.inner_pri,       oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.17}
+- {name: srv_port.description,     oid: .1.3.6.1.4.1.34592.1.3.100.9.2.1.18}
+
 - {name: ddm.gponPortTemperature, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.1.1.0}
 - {name: ddm.gponPortVoltage, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.2.1.0}
 - {name: ddm.gponPortTxBias, oid: .1.3.6.1.4.1.34592.1.5.1.1.2.17.2.1.3.1.0}

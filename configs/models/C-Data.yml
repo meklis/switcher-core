@@ -394,6 +394,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
               snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
@@ -505,6 +506,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
               snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
@@ -620,6 +622,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
               sys_temp: \SwitcherCore\Modules\CData\FD16xxV3\SystemTemperatures
               snooping_info: \SwitcherCore\Modules\CData\FD16xxV3\SnoopingInfo
@@ -733,6 +736,7 @@ models:
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
               pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
+              pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
               sfp_optical: \SwitcherCore\Modules\CData\FD16xxV3\SfpOpticalInfo
               sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag

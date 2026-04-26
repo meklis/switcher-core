@@ -396,6 +396,11 @@
     - {name: load_only, pattern: '.*', required: no}
   descr: ONU configuration
 
+- name: pon_onts_service_profile
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+  descr: ONU service-port configuration (vlan, traffic profile bindings)
+
 - name: pon_onts_mac_addr
   descr: ONUs MAC addresses (for EPON)
   arguments:
