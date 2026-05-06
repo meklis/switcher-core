@@ -59,7 +59,9 @@ class UnregisteredOnts extends CDataAbstractModuleFD17xxV3
             if (preg_match('/Aging time|Total/', $line)) continue;
             if (preg_match('/Frame\/Slot/', $line)) {
                 $fieldID++;
-                continue;
+                if (preg_match('/^(.*): (.*)$/', trim($line), $matches)) {
+                    $result[$fieldID][Helper::fromCamelCase(trim($matches[1]))] = trim($matches[2]);
+                }
             }
             if (preg_match('/^(.*): (.*)$/', trim($line), $matches)) {
                 $result[$fieldID][Helper::fromCamelCase(trim($matches[1]))] = trim($matches[2]);
