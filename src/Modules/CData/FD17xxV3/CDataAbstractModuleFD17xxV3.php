@@ -53,7 +53,7 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         foreach ($data['if.Descr']->fetchAll() as $d) {
             $id = null;
             $type = null;
-            if (preg_match('/^(ge|xge|gpon|epon) ([0-9])\/([0-9])\/([0-9]{1,2})$/', $d->getValue(), $m)) {
+            if (preg_match('/^(eth|ge|xge|gpon|epon) ?([0-9])\/([0-9])\/([0-9]{1,2})$/', $d->getValue(), $m)) {
                 if ($m[1] === 'ge') {
                     $id = 1000 + ($m[3] * 100) + $m[4];
                     $type = 'ETH';
@@ -212,11 +212,14 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         }
 
         if (!is_numeric($input)) {
-            if (preg_match('/^(ge|xe|xge|gpon|epon|pon)([0-9])\/([0-9])\/([0-9]{1,2})\:?([0-9]{1,3})?$/', str_replace(" ", "", trim($input)), $m)) {
+            if (preg_match('/^(eth|ge|xe|xge|gpon|epon|pon)([0-9])\/([0-9])\/([0-9]{1,2})\:?([0-9]{1,3})?$/', str_replace(" ", "", trim($input)), $m)) {
                 if($m[1] === 'xe') {
                     $m[1] = 'xge';
                 }
                 $interface = $this->findInterface("{$m[1]} {$m[2]}/{$m[3]}/{$m[4]}", 'name');
+                if(!$interface) {
+                    $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}", 'name');
+                }
                 if(!$interface) {
                     throw new \Exception("Can't find interface by name={$input}");
                 }
