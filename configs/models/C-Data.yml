@@ -392,7 +392,7 @@ models:
               sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
-              pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -504,7 +504,7 @@ models:
               sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
-              pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -620,7 +620,7 @@ models:
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
-              pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -734,7 +734,7 @@ models:
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
-              pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
+              pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
               sfp_media: \SwitcherCore\Modules\CData\FD16xxV3\SfpMediaInfo
