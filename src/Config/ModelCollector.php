@@ -49,16 +49,16 @@ class ModelCollector extends Collector
     function getModelByKey($key) {
         foreach ($this->modelsDB as $model) {
             if($model->getKey() === $key) {
-                return $model;
+                return clone $model;
             }
-            $model = clone $model;
-            if($model->getRewrites() && isset($model->getRewrites()['mapping'])) {
-                foreach ($model->getRewrites()['mapping'] as $rewrite) {
+            $rewrited = clone $model;
+            if($rewrited->getRewrites() && isset($rewrited->getRewrites()['mapping'])) {
+                foreach ($rewrited->getRewrites()['mapping'] as $rewrite) {
                     if(isset($rewrite['rewrite']['key']) && $rewrite['rewrite']['key'] == $key) {
                         foreach ($rewrite['rewrite'] as $key=>$value) {
-                            $model->{$key} = $value;
+                            $rewrited->{$key} = $value;
                         }
-                        return  $model;
+                        return  clone $rewrited;
                     }
                 }
             }
