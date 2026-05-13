@@ -76,7 +76,7 @@ class ModelCollector extends Collector
             if($model->getRewrites() && isset($model->getRewrites()['mapping'])) {
                 foreach ($model->getRewrites()['mapping'] as $rewrite) {
                     if(isset($rewrite['rewrite']['key']) && $rewrite['rewrite']['key'] != $model->getKey()) {
-                        $modelKeys[] = $model->getKey();
+                        $modelKeys[] = $rewrite['rewrite']['key'];
                     }
                 }
             }
