@@ -33,6 +33,7 @@ class InterfaceDescriptionsFD17 extends CDataAbstractModuleFD17xxV3
     {
         $oids = [];
         foreach ($interfaces as $iface) {
+            if($iface['id'] > 100000 && $iface['id'] < 200000) continue;   // if interface is 'eth */*/*' or 'eth */*/*:*'
             $oids = array_merge($oids, [
                 \SnmpWrapper\Oid::init($this->oids->getOidByName('if.description')->getOid() . ".{$iface['_snmp_id']}"),
             ]);

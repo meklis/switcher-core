@@ -53,8 +53,13 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
         foreach ($data['if.Descr']->fetchAll() as $d) {
             $id = null;
             $type = null;
-            if (preg_match('/^(eth|ge|xge|gpon|epon) ?([0-9])\/([0-9])\/([0-9]{1,2})$/', $d->getValue(), $m)) {
-                if ($m[1] === 'ge') {
+            if (preg_match('/^(eth|ge|xge|gpon|epon) ?([0-9])\/([0-9])\/([0-9]{1,2})(\:([0-9]{1,2}))?$/', $d->getValue(), $m)) {
+                if ($m[1] === 'eth') {
+                    $id = 100000 + ($m[3] * 10000) + ($m[4] * 100);
+                    if(isset($m[6])) {
+                        $id = $id + intval($m[6]);
+                    }
+                } elseif ($m[1] === 'ge') {
                     $id = 1000 + ($m[3] * 100) + $m[4];
                     $type = 'ETH';
                 } elseif ($m[1] === 'xge') {
@@ -171,6 +176,14 @@ abstract class CDataAbstractModuleFD17xxV3 extends AbstractModule
 
     protected function parseInterface($input, $searchBy=null)
     {
+         if(is_numeric($input) && $input >= 100000 && $input <= 300000) {
+            $interface = $this->findInterface($input, 'id');
+            if ($interface === null) {
+                throw new \Exception("Interface with xid=$input not found");
+            }
+            return $interface;
+        }
+
         //Определение, что это ID физ порта
         if(is_numeric($input) && $input >= 1000 && $input <= 3000) {
             $interface = $this->findInterface($input, 'id');
