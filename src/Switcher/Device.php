@@ -186,6 +186,9 @@ class Device
      */
     public function setModelKey($modelKey)
     {
+        if (is_string($modelKey)) {
+            $modelKey = trim($modelKey);
+        }
         $this->modelKey = $modelKey;
         return $this;
     }

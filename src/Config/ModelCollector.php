@@ -63,7 +63,9 @@ class ModelCollector extends Collector
                 }
             }
         }
-        throw new \Exception("Model not found by key $key");
+        $modelKeys = $this->getAllModelKeys();
+        sort($modelKeys);
+        throw new \Exception("Model not found by key $key. Available model keys: " . implode(', ', $modelKeys));
     }
 
     /**
