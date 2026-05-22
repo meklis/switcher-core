@@ -36,9 +36,16 @@ class ModelCollector extends Collector
             if(!$model->detectByIfacesCount($ifacesCount)) {
                 continue;
             }
-            return $model;
+            return clone $model;
         }
         throw new Exception("Device {$descr} not supported by system");
+    }
+
+    public function __clone()
+    {
+        foreach ($this->modelsDB as $key => $model) {
+            $this->modelsDB[$key] = clone $model;
+        }
     }
 
     /**
