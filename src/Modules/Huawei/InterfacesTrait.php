@@ -121,15 +121,12 @@ trait InterfacesTrait
         }
 
         $entPhysical = [];
-        $lastEthNum = 0;
         foreach ($responses['ent.physicalName'] as $r) {
+
             if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $id = $m[5];
-                if($m[1] == "Ethernet") {
-                    $lastEthNum  = $m[5];
-                }
                 if ($m[1] == 'GigabitEthernet') {
-                    $id = $lastEthNum + $m[5];
+                    $id = 100 + $m[5];
                 }
 
                 $entPhysical[$id] = Helper::getIndexByOid($r->getOid());
@@ -137,20 +134,18 @@ trait InterfacesTrait
         }
 
         $ifaces = [];
-        $lastEthNum = 0;
         foreach ($responses['if.Name'] as $r) {
             if (preg_match('/^(GigabitEthernet|Ethernet)(([0-9]{1,4})\/([0-9]{1,4})\/([0-9]{1,4}))$/', $r->getValue(), $m)) {
                 $name = "eth{$m[5]}";
                 $shortName = '';
                 $id = $m[5];
                 if($m[1] == "Ethernet") {
-                    $lastEthNum  = $m[5];
                     $shortName = "Eth{$m[3]}/{$m[4]}/{$m[5]}";
                 }
                 if ($m[1] == 'GigabitEthernet') {
                     $name = "Ge{$m[5]}";
                     $shortName = "GE{$m[3]}/{$m[4]}/{$m[5]}";
-                    $id = $lastEthNum + $m[5];
+                    $id = 100 + $m[5];
                 }
 
                 $ifaces[Helper::getIndexByOid($r->getOid())] = [

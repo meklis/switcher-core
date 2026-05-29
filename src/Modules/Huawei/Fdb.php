@@ -46,7 +46,6 @@ class Fdb extends FdbDot1Bridge
             $interfacesList[$iface['_short_name']] = $iface;
         }
 
-
         $fdb = [];
         foreach (explode("\n", $data) as $line) {
             if(preg_match('/^([[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4})\s*?([0-9]{1,4})\/.*?[ ]{1,}(XGE|GE|Eth-|.*?)[ ]{1,}(\S.*)$/', trim($line), $matches)) {
