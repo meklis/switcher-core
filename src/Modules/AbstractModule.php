@@ -98,6 +98,30 @@ abstract class AbstractModule
         }
 
         $command = $params['command'];
+        $oldStreamTimeout = null;
+        if (strpos($command, "<stream_timeout=") !== false) {
+            if (preg_match('/<stream_timeout=([0-9]+(?:\.[0-9]+)?)>/', $command, $m)) {
+                if ((float)$m[1] <= 0) {
+                    $this->response = [
+                        'command' => $params['command'],
+                        'output' => '',
+                        'success' => "ERROR PARSE STREAM TIMEOUT",
+                    ];
+                    return $this;
+                }
+                $oldStreamTimeout = $this->console->getStreamTimeout();
+                $this->console->setStreamTimeout((float)$m[1]);
+                $command = trim(str_replace($m[0], '', $command));
+            } else {
+                $this->response = [
+                    'command' => $params['command'],
+                    'output' => '',
+                    'success' => "ERROR PARSE STREAM TIMEOUT",
+                ];
+                return $this;
+            }
+        }
+
         if (strpos($command, "<cr>") !== false) {
             $command = trim(str_replace("<cr>", "", $command));
             $this->console->write($command);
@@ -118,6 +142,9 @@ abstract class AbstractModule
                     'output' => '',
                     'success' => "ERROR PARSE PROMPT",
                 ];
+                if ($oldStreamTimeout !== null) {
+                    $this->console->setStreamTimeout($oldStreamTimeout);
+                }
                 return $this;
             }
         } elseif (strpos($command, "<confirm-if=") !== false) {
@@ -137,6 +164,9 @@ abstract class AbstractModule
                     'output' => '',
                     'success' => "ERROR PARSE PROMPT",
                 ];
+                if ($oldStreamTimeout !== null) {
+                    $this->console->setStreamTimeout($oldStreamTimeout);
+                }
                 return $this;
             }
         } elseif (strpos($command, "<confirm=") !== false) {
@@ -153,12 +183,19 @@ abstract class AbstractModule
                     'output' => '',
                     'success' => "ERROR PARSE PROMPT",
                 ];
+                if ($oldStreamTimeout !== null) {
+                    $this->console->setStreamTimeout($oldStreamTimeout);
+                }
                 return $this;
             }
         } elseif (isset($params['prompt'])) {
-            $response = $this->console->exec($params['command'], true, $params['prompt']);
+            $response = $this->console->exec($command, true, $params['prompt']);
         } else {
-            $response = $this->console->exec($params['command']);
+            $response = $this->console->exec($command);
+        }
+
+        if ($oldStreamTimeout !== null) {
+            $this->console->setStreamTimeout($oldStreamTimeout);
         }
 
         $this->response = [
