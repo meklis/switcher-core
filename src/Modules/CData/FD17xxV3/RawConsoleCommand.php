@@ -2,7 +2,6 @@
 
 namespace SwitcherCore\Modules\CData\FD17xxV3;
 
-use Exception;
 use SwitcherCore\Modules\CData\FD17xxV3\CDataAbstractModuleFD17xxV3;
 use SwitcherCore\Switcher\Console\ConsoleInterface;
 
@@ -16,19 +15,7 @@ class RawConsoleCommand extends CDataAbstractModuleFD17xxV3
 
     public function run($params = [])
     {
-        if (!$this->console) {
-            throw new Exception("Module required telnet connection");
-        }
-        if (!isset($params['command'])) {
-            throw new \Exception("Command parameter is required");
-        }
-        $response = $this->console->exec($params['command']);
-        $this->response = [
-            'command' => $params['command'],
-            'output' => $response,
-            'success' => $this->validResponse($response),
-        ];
-        return $this;
+        return $this->rawConsoleCommandRun($params);
     }
 
     protected function validResponse($response)

@@ -5,32 +5,20 @@ namespace SwitcherCore\Modules\ZTE\C600Series;
 
 
 
-use Exception;
 use SwitcherCore\Modules\ZTE\C600Series\ModuleAbstract;
+use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 class RawConsoleCommand extends ModuleAbstract
 {
+    /**
+     * @Inject
+     * @var ConsoleInterface
+     */
+    protected $console;
+
     public function run($params = [])
     {
-        if (!$this->telnet) {
-            throw new Exception("Module required telnet connection");
-        }
-        if(!isset($params['command'])) {
-            throw new \Exception("Command parameter is required");
-        }
-        
-        if(isset($params['prompt'])) {
-            $response = $this->telnet->exec($params['command'], true, $params['prompt']);
-        } else {
-            $response = $this->telnet->exec($params['command']);
-        }
-
-        $this->response = [
-            'command' => $params['command'],
-            'output' => $response,
-            'success' => $this->validResponse($response),
-        ];
-        return $this;
+        return $this->rawConsoleCommandRun($params);
     }
     protected function validResponse($response) {
         if(preg_match('/\[Successful\]/', $response)) return  true;

@@ -9,7 +9,7 @@ interface ConsoleInterface
     function getGlobalBuffer();
     function exec($command, $add_newline = true, $prompt = null);
     function write($buffer, $add_newline = true);
-    function waitPrompt($prompt = null);
+    function waitPrompt($prompt = null, $timeout = null);
     function getBuffer();
     function connect($host, $port, HelperInterface $helper);
     function disconnect();
@@ -21,6 +21,8 @@ interface ConsoleInterface
     function connectOnly();
     function setTimeout($timeout);
     function setStreamTimeout($timeout);
+    function getTimeout();
+    function getStreamTimeout();
     function getStream();
 
     /**

@@ -21,19 +21,7 @@ class RawConsoleCommand extends GCOMAbstractModule
 
     public function run($params = [])
     {
-        if (!$this->console) {
-            throw new \Exception("Module required console connection");
-        }
-        if (!isset($params['command'])) {
-            throw new \Exception("Command parameter is required");
-        }
-        $response = $this->console->exec($params['command']);
-        $this->response = [
-            'command' => $params['command'],
-            'output' => $response,
-            'success' => $this->validResponse($response),
-        ];
-        return $this;
+        return $this->rawConsoleCommandRun($params);
     }
 
     protected function validResponse($response)
@@ -56,4 +44,3 @@ class RawConsoleCommand extends GCOMAbstractModule
 
 
 }
-

@@ -77,6 +77,16 @@ class SshLazyConnect extends SSH implements ConsoleInterface
         return $this;
     }
 
+    function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    function getStreamTimeout()
+    {
+        return $this->stream_timeout_sec;
+    }
+
     function getStream()
     {
         return $this->session;

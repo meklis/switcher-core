@@ -80,6 +80,16 @@ class TelnetLazyConnect extends Telnet implements ConsoleInterface
         $this->stream_timeout_sec = $timeout;
     }
 
+    function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    function getStreamTimeout()
+    {
+        return $this->stream_timeout_sec;
+    }
+
     function getStream()
     {
         return $this->socket;

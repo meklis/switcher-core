@@ -84,6 +84,131 @@ abstract class AbstractModule
     }
 
     /**
+     * @param array $params
+     * @return self
+     * @throws Exception
+     */
+    protected function rawConsoleCommandRun($params = [])
+    {
+        if (!property_exists($this, 'console') || !$this->console) {
+            throw new Exception("Module required console connection");
+        }
+        if (!isset($params['command'])) {
+            throw new Exception("Command parameter is required");
+        }
+
+        $command = $params['command'];
+        if (strpos($command, "<cr>") !== false) {
+            $command = trim(str_replace("<cr>", "", $command));
+            $this->console->write($command);
+            usleep(100000);
+            $this->console->write("");
+            $this->console->waitPrompt($this->console->getDeviceHelper()->getPrompt());
+            $response = $this->console->getBuffer();
+        } elseif (strpos($command, "<prompt=") !== false) {
+            if (preg_match("/<prompt=[\"'](.*?)[\"']>/", $command, $m) || preg_match('/<prompt=(.*?)>/', $command, $m)) {
+                $command = trim(str_replace($m[0], '', $command));
+                $this->console->write($command);
+                usleep(300000);
+                $this->console->waitPrompt($m[1]);
+                $response = $this->console->getBuffer();
+            } else {
+                $this->response = [
+                    'command' => $params['command'],
+                    'output' => '',
+                    'success' => "ERROR PARSE PROMPT",
+                ];
+                return $this;
+            }
+        } elseif (strpos($command, "<confirm-if=") !== false) {
+            if (preg_match('/<confirm-if=(.*?)>/', $command, $m) && $confirmIf = $this->parseRawConsoleConfirmIfArguments($m[1])) {
+                $command = trim(str_replace($m[0], '', $command));
+                $this->console->write($command);
+                usleep(300000);
+
+                if ($this->rawConsoleWaitPrompt(preg_quote($confirmIf['prompt'], '/'), 2)) {
+                    $this->console->write($confirmIf['confirm']);
+                    $this->console->waitPrompt($this->console->getDeviceHelper()->getPrompt());
+                }
+                $response = $this->console->getBuffer();
+            } else {
+                $this->response = [
+                    'command' => $params['command'],
+                    'output' => '',
+                    'success' => "ERROR PARSE PROMPT",
+                ];
+                return $this;
+            }
+        } elseif (strpos($command, "<confirm=") !== false) {
+            if (preg_match("/<confirm=[\"'](.*?)[\"']>/", $command, $m) || preg_match('/<confirm=(.*?)>/', $command, $m)) {
+                $command = trim(str_replace($m[0], '', $command));
+                $this->console->write($command);
+                usleep(300000);
+                $this->console->write($m[1]);
+                $this->console->waitPrompt($this->console->getDeviceHelper()->getPrompt());
+                $response = $this->console->getBuffer();
+            } else {
+                $this->response = [
+                    'command' => $params['command'],
+                    'output' => '',
+                    'success' => "ERROR PARSE PROMPT",
+                ];
+                return $this;
+            }
+        } elseif (isset($params['prompt'])) {
+            $response = $this->console->exec($params['command'], true, $params['prompt']);
+        } else {
+            $response = $this->console->exec($params['command']);
+        }
+
+        $this->response = [
+            'command' => $params['command'],
+            'output' => $response,
+            'success' => $this->validResponse($response),
+        ];
+        return $this;
+    }
+
+    protected function parseRawConsoleConfirmIfArguments($arguments)
+    {
+        if (!preg_match('/^\s*(?:"([^"]*)"|\'([^\']*)\'|([^,]*))\s*,\s*(?:"([^"]*)"|\'([^\']*)\'|(.*))\s*$/', $arguments, $m)) {
+            return false;
+        }
+
+        $confirm = $m[1] !== '' ? $m[1] : ($m[2] !== '' ? $m[2] : $m[3]);
+        $prompt = $m[4] !== '' ? $m[4] : ($m[5] !== '' ? $m[5] : $m[6]);
+        if (trim($prompt) === '') {
+            return false;
+        }
+
+        return [
+            'confirm' => trim($confirm),
+            'prompt' => trim($prompt),
+        ];
+    }
+
+    protected function rawConsoleWaitPrompt($prompt, $timeout)
+    {
+        $lastTimeout = $this->console->getTimeout();
+        $lastStreamTimeout = $this->console->getStreamTimeout();
+        $this->console->setTimeout($timeout);
+        $this->console->setStreamTimeout($timeout);
+
+        try {
+            $this->console->waitPrompt($prompt, $timeout);
+            return true;
+        } catch (Exception $e) {
+            if (strpos($e->getMessage(), 'Stream timeout') !== false || strpos($e->getMessage(), "Couldn't find the requested") !== false) {
+                return false;
+            }
+            throw $e;
+        } finally {
+            $this->console->setTimeout($lastTimeout);
+            $this->console->setStreamTimeout($lastStreamTimeout);
+        }
+    }
+
+    /**
      * @return array
      */
     public abstract function getPretty();
