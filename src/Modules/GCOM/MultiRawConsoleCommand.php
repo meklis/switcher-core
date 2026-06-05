@@ -4,24 +4,10 @@
 namespace SwitcherCore\Modules\GCOM;
 
 
-use SwitcherCore\Config\Objects\Model;
-use SwitcherCore\Modules\AbstractModule;
 use SwitcherCore\Modules\GCOM\GCOMAbstractModule;
-use SwitcherCore\Modules\Helper;
-use SwitcherCore\Switcher\Console\ConsoleInterface;
 
 class MultiRawConsoleCommand extends GCOMAbstractModule
 {
-
-    /**
-     * @Inject
-     * @var ConsoleInterface
-     */
-    protected $console;
-
-    protected $interfaces;
-
-
     function getRaw()
     {
         return $this->response;
@@ -39,13 +25,9 @@ class MultiRawConsoleCommand extends GCOMAbstractModule
     }
 
 
-    public function run($filter = [])
+    public function run($params = [])
     {
-        $this->response = array_values(array_filter($this->getPhysicalInterfaces(), function ($p) {
-          return $p['type'] === 'PON';
-        }));
-        return $this;
+        return $this->multiRawConsoleCommandRun($params);
     }
 
 }
-
