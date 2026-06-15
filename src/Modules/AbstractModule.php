@@ -285,7 +285,7 @@ abstract class AbstractModule
 
             $resp = $this->getModule('console_command')->run(['command' => trim($command), 'prompt' => $prompt])->getPretty();
             $response[] = $resp;
-            if (!$resp['success'] && ($params['break_on_error'] ?? null) == 'yes') {
+            if (!$resp['success'] && ($params['break_on_error'] ?? 'yes') != 'no') {
                 break;
             }
         }

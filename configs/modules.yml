@@ -485,7 +485,7 @@
   descr: Execute commands in console (for macros or ONU registration)
   arguments:
     - {name: commands, pattern: '.*', required: true}
-    - {name: break_on_error, pattern: '(yes|no)', required: false}
+    - {name: break_on_error, pattern: '(yes|no)', required: false, default: 'yes'}
 
 - name: parse_interface
   descr: Returened parsed interface from input
