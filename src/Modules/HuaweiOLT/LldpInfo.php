@@ -90,7 +90,7 @@ class LldpInfo extends HuaweiOLTAbstractModule
         }
     }
 
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
         return $this->formate();
     }

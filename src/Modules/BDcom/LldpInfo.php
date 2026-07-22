@@ -86,7 +86,7 @@ class LldpInfo extends BDcomAbstractModule
         }
     }
 
-    function getPrettyFiltered($filter = [])
+    function getPrettyFiltered($filter = [], $fromCache = false)
     {
         return $this->formate();
     }
