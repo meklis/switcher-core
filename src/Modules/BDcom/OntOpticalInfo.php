@@ -135,7 +135,7 @@ class OntOpticalInfo extends BDcomAbstractModule
         if (!$loadOnly || in_array("distance", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.distance');
         }
-        if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
+        if ($filter['interface'] && (!$loadOnly || in_array("olt_rx", $loadOnly))) {
             $info[] = $this->oids->getOidByName('pon.opticalOltRx');
         }
         $oids = [];
@@ -153,18 +153,10 @@ class OntOpticalInfo extends BDcomAbstractModule
             $this->response = $this->formatResponse($this->snmp->get($oids));
 
         } else {
-            $responses = [];
-            foreach ($this->getModule('pon_onts_status')->run(['interface'=> null, 'load_only'=>'status'])->getPrettyFiltered() as $status) {
-                if($status['status'] !== 'Online') continue;
-                $reqOids = array_map(function ($oid) use ($status) {
-                    return Oid::init("{$oid}.{$status['interface']['xid']}");
-                }, $oids);
-                $resp = $this->snmp->get($reqOids, 7, 2);
-                foreach ($resp as $r) {
-                    $responses[] = $r;
-                }
-            }
-            $this->response = $this->formatResponse($responses);
+            $oids = array_map(function ($e) {
+                return Oid::init($e);
+            }, $oids);
+            $this->response = $this->formatResponse($this->snmp->walk($oids));
         }
         return $this;
     }
