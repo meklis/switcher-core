@@ -136,7 +136,7 @@ class OntOpticalInfo extends BDcomAbstractModule
         if (!$loadOnly || in_array("distance", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.distance');
         }
-        if ($filter['interface'] && (!$loadOnly || in_array("olt_rx", $loadOnly))) {
+        if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('pon.opticalOltRx');
         }
         $oids = [];
