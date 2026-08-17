@@ -32,7 +32,7 @@ class RawConsoleCommand extends HuaweiOLTAbstractModule
         return $this->response;
     }
 
-    public function getPrettyFiltered($filter = [])
+    public function getPrettyFiltered($filter = [], $fromCache = false)
     {
         return $this->response;
     }

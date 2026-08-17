@@ -28,6 +28,11 @@ class OntSerial extends HuaweiOLTAbstractModule
         $resp = [];
         foreach ($this->getResponseByName('ont.gpon.config.ident')->fetchAll() as $d) {
             $blocks = explode(":", $d->getHexValue());
+            // GPON serial is 8 bytes (4-byte vendor prefix + 4-byte serial).
+            // Skip ONTs whose ident is empty or incomplete to avoid undefined offsets.
+            if (count($blocks) < 8) {
+                continue;
+            }
             $serialASCII =  $this->convertHexToString("{$blocks[0]}:{$blocks[1]}:{$blocks[2]}:{$blocks[3]}") .
                 $blocks[4] . $blocks[5] . $blocks[6] . $blocks[7];
             $serialHEX =  str_replace(":", "",$d->getHexValue());
