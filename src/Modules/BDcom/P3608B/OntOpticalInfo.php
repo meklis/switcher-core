@@ -127,7 +127,7 @@ class OntOpticalInfo extends BDcomAbstractModule
         if (!$loadOnly || in_array("tx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.opticalTx');
         }
-        if (!$loadOnly || in_array("voltage", $loadOnly)) {
+        if ($filter['interface'] && (!$loadOnly || in_array("voltage", $loadOnly))) {
             $info[] = $this->oids->getOidByName('ont.opticalVoltage');
         }
         if (!$loadOnly || in_array("temp", $loadOnly)) {
@@ -136,7 +136,7 @@ class OntOpticalInfo extends BDcomAbstractModule
         if (!$loadOnly || in_array("distance", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.distance');
         }
-        if ($filter['interface'] && (!$loadOnly || in_array("olt_rx", $loadOnly))) {
+        if (!$loadOnly || in_array("olt_rx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('pon.opticalOltRx');
         }
         $oids = [];
@@ -162,7 +162,7 @@ class OntOpticalInfo extends BDcomAbstractModule
                 $reqOids = array_map(function ($oid) use ($status) {
                     return Oid::init("{$oid}.{$status['interface']['xid']}");
                 }, $oids);
-                $resp = $this->snmp->get($reqOids, 7, 2);
+                $resp = $this->snmp->get($reqOids, 1, 2);
                 foreach ($resp as $r) {
                    $responses[] = $r;
                 }

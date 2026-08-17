@@ -101,6 +101,7 @@ class OntOpticalInfo extends BDcomAbstractModule
             if (!isset($e['rx'])) $e['rx'] = null;
             if (!isset($e['tx'])) $e['tx'] = null;
             if (!isset($e['olt_rx'])) $e['olt_rx'] = null;
+            if (!$e['olt_rx']) $e['olt_rx'] = null;
             if ($e['tx'] < -50) $e['tx'] = null;
             if ($e['rx'] < -50) $e['rx'] = null;
             return $e;
@@ -126,7 +127,7 @@ class OntOpticalInfo extends BDcomAbstractModule
         if (!$loadOnly || in_array("tx", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.opticalTx');
         }
-        if (!$loadOnly || in_array("voltage", $loadOnly)) {
+        if ($filter['interface'] && (!$loadOnly || in_array("voltage", $loadOnly))) {
             $info[] = $this->oids->getOidByName('ont.opticalVoltage');
         }
         if (!$loadOnly || in_array("temp", $loadOnly)) {
@@ -135,7 +136,7 @@ class OntOpticalInfo extends BDcomAbstractModule
         if (!$loadOnly || in_array("distance", $loadOnly)) {
             $info[] = $this->oids->getOidByName('ont.distance');
         }
-        if ($filter['interface'] && (!$loadOnly || in_array("olt_rx", $loadOnly))) {
+        if ((!$loadOnly || in_array("olt_rx", $loadOnly))) {
             $info[] = $this->oids->getOidByName('pon.opticalOltRx');
         }
         $oids = [];
@@ -153,10 +154,19 @@ class OntOpticalInfo extends BDcomAbstractModule
             $this->response = $this->formatResponse($this->snmp->get($oids));
 
         } else {
-            $oids = array_map(function ($e) {
-                return Oid::init($e);
-            }, $oids);
-            $this->response = $this->formatResponse($this->snmp->walk($oids));
+            //Load only active onts
+            $responses = [];
+            foreach ($this->getModule('pon_onts_status')->run(['interface'=> null, 'load_only'=>'status'])->getPrettyFiltered() as $status) {
+                if($status['status'] !== 'Online') continue;
+                $reqOids = array_map(function ($oid) use ($status) {
+                    return Oid::init("{$oid}.{$status['interface']['xid']}");
+                }, $oids);
+                $resp = $this->snmp->get($reqOids, 1, 2);
+                foreach ($resp as $r) {
+                    $responses[] = $r;
+                }
+            }
+            $this->response = $this->formatResponse($responses);
         }
         return $this;
     }
