@@ -413,7 +413,6 @@ abstract class AbstractModule
         $symbols = explode(":", $string);
         $str = '';
         foreach ($symbols as $symbol) {
-            if(!hexdec($symbol)) continue;
             $char = Helper::hexToStr($symbol);
             if(!mb_detect_encoding($char, 'ASCII', true)) {
                 continue;

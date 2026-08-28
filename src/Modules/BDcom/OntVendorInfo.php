@@ -36,7 +36,7 @@ class OntVendorInfo extends BDcomAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $xid = Helper::getIndexByOid($r->getOid());
                 $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['vendor'] = $this->convertHexToString($r->getHexValue());
+                $ifaces[$xid]['vendor'] = trim($r->getValue());
             }
         }
         $data = $this->getResponseByName('ont.model');
@@ -44,7 +44,7 @@ class OntVendorInfo extends BDcomAbstractModule
             foreach ($data->fetchAll() as $r) {
                 $xid = Helper::getIndexByOid($r->getOid());
                 $ifaces[$xid]['interface'] = $this->parseInterface($xid);
-                $ifaces[$xid]['model'] = $this->convertHexToString($r->getHexValue());
+                $ifaces[$xid]['model'] = trim($r->getValue());
             }
         }
         $data = $this->getResponseByName('ont.verSoftware');
