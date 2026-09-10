@@ -20,3 +20,19 @@
 - { name: sfp.ddm.temp, oid: .1.3.6.1.4.1.171.12.72.2.1.1.1.2}
 - { name: sfp.ddm.voltage, oid: .1.3.6.1.4.1.171.12.72.2.1.1.1.3}
 
+# swIpMacBindMIB (dlink-common-mgmt.23) - IP-MAC-Port Binding / DHCP snooping.
+# Only present on "managed" tier switches (DES-3200/30xx, DGS-3000/3100/3120/3420);
+# not present on the web-smart "ME" line (DGS-1100/1210-ME) - confirmed by live probing.
+- { name: dhcpSnoop.mac, oid: .1.3.6.1.4.1.171.12.23.4.3.1.2}
+- { name: dhcpSnoop.leaseTime, oid: .1.3.6.1.4.1.171.12.23.4.3.1.3}
+- { name: dhcpSnoop.port, oid: .1.3.6.1.4.1.171.12.23.4.3.1.4}
+- { name: dhcpSnoop.status, oid: .1.3.6.1.4.1.171.12.23.4.3.1.5}
+
+# swDHCPRelayMIB (dlink-common-mgmt.42) - global toggles for the two mutually
+# exclusive DHCP forwarding modes these switches run in production. Neither one
+# keeps its own client-binding table (verified against the vendor MIB) - the
+# swIpMacBindingDHCPSnoopTable above is the only one - but which of these two is
+# enabled tells us whether this switch is even in the DHCP path at all.
+- { name: dhcpRelay.state, oid: .1.3.6.1.4.1.171.12.42.1.1}
+- { name: dhcpRelay.localState, oid: .1.3.6.1.4.1.171.12.42.4.1}
+
