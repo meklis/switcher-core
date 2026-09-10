@@ -533,6 +533,24 @@
     - {name: mac_address, pattern: '.*', required: no}
     - {name: vlan_id, pattern: '.*', required: no}
 
+- name: acl_v4_info
+  descr: IPv4 ACL profiles (source-IP based rules, per port)
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: acl_v6_info
+  descr: IPv6 ACL profiles (ethernet-type based permit/deny rules, per port)
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
+- name: acl_ports_info
+  descr: ACL rules (v4 and v6) grouped by interface
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+  depends:
+    - acl_v4_info
+    - acl_v6_info
+
 - name: ctrl_reset_port
   descr: Reset physical port
   arguments:

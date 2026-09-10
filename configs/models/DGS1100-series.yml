@@ -53,6 +53,9 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1100-10/ME
    key: dlink_dgs_1100_10_me_a1
@@ -100,3 +103,6 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser

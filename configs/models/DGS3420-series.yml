@@ -47,6 +47,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
  - name: D-link DGS-3420-26SC
    key: dlink_dgs_3420_26sc_b1
    ports: 28
@@ -95,3 +98,6 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser

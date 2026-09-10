@@ -50,3 +50,6 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser

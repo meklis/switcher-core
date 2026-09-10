@@ -8,3 +8,13 @@
 - {name: agent.PortUtilizationRx, oid: .1.3.6.1.4.1.171.12.1.1.7.1.3 }
 - {name: agent.PortUtilizationUtil, oid: .1.3.6.1.4.1.171.12.1.1.7.1.4 }
 
+# Not in the sourced OID list - inferred from the DES-3526 family (same
+# generation, same .171.11.x port-info branch, same reused parser classes
+# for link_info/cable_diag above), so assumed to share the legacy
+# dlink-common-mgmt.9.2 ACL branch too. UNVERIFIED - no live device of this
+# exact model exists to confirm against.
+- { name: acl.v4.ipList, oid: .1.3.6.1.4.1.171.12.9.2.2.1.4}
+- { name: acl.v4.ports, oid: .1.3.6.1.4.1.171.12.9.2.2.1.21}
+- { name: acl.v6.action, oid: .1.3.6.1.4.1.171.12.9.2.1.1.13}
+- { name: acl.v6.ports, oid: .1.3.6.1.4.1.171.12.9.2.1.1.14}
+

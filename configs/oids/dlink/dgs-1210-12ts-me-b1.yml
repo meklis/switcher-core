@@ -32,3 +32,11 @@
 - {name: dlink.CableDiagAction, oid: .1.3.6.1.4.1.171.10.76.44.1.35.1.1.12, values: {1: Action, 2: Processing, 3: Other, 4: ActionCarefulMode}}
 - {name: dlink.CableDiagStatus, oid: .1.3.6.1.4.1.171.10.76.44.1.35.1.1.13, values: {1: NotRun, 2: Proccessing, 3: LastTestOk, 4: LastTestFailed}}
 
+
+# D-Link ACL profiles (ME-line per-model private OID branch, confirmed live).
+# This ME-line model inverts the Acl6ProfileAction encoding vs the "managed"
+# tier (1=permit, 2=deny instead of 1=deny, 2=permit).
+- { name: acl.v4.ipList, oid: .1.3.6.1.4.1.171.10.76.44.1.15.3.1.1.8}
+- { name: acl.v4.ports, oid: .1.3.6.1.4.1.171.10.76.44.1.15.3.1.1.51}
+- { name: acl.v6.action, oid: .1.3.6.1.4.1.171.10.76.44.1.15.2.1.1.11, values: {1: permit, 2: deny}}
+- { name: acl.v6.ports, oid: .1.3.6.1.4.1.171.10.76.44.1.15.2.1.1.51}

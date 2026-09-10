@@ -53,6 +53,9 @@ models:
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-10/C1
@@ -103,6 +106,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-18/C1
@@ -153,6 +159,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-26/C1
@@ -204,6 +213,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-28/C1
@@ -255,6 +267,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DES-3200-52/C1
    key: dlink_des_3200_52_c1
@@ -305,6 +320,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-28F/C1
@@ -356,6 +374,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-18/A1
@@ -405,6 +426,9 @@ models:
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-26/A1
@@ -502,6 +526,9 @@ models:
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DES-3200-28F/A1
@@ -550,3 +577,6 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser

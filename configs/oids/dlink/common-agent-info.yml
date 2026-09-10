@@ -36,3 +36,15 @@
 - { name: dhcpRelay.state, oid: .1.3.6.1.4.1.171.12.42.1.1}
 - { name: dhcpRelay.localState, oid: .1.3.6.1.4.1.171.12.42.4.1}
 
+# swAuthAclMIB (dlink-common-mgmt.9) - IPv4 ACL profiles (source-IP based) and
+# IPv6 ACL profiles (ethernet-type based, used at this ISP to block IPv6 on
+# non-bound ports). Indexed by [profileId, accessId]; port lists are bitmaps
+# decoded the same way as VLAN egress-port bitmaps (Helper::hexToBinStr).
+# Values here are the "managed" tier default (dlink-common-mgmt.9.3); older
+# devices (e.g. DES-3526) override these in their own oids file with the
+# legacy dlink-common-mgmt.9.2 branch.
+- { name: acl.v4.ipList, oid: .1.3.6.1.4.1.171.12.9.3.2.1.4}
+- { name: acl.v4.ports, oid: .1.3.6.1.4.1.171.12.9.3.2.1.21}
+- { name: acl.v6.action, oid: .1.3.6.1.4.1.171.12.9.3.1.1.13, values: {1: deny, 2: permit}}
+- { name: acl.v6.ports, oid: .1.3.6.1.4.1.171.12.9.3.1.1.14}
+

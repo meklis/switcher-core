@@ -50,6 +50,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1210-20/ME/A1
    key: dlink_dgs_1210_20_me_a1
@@ -94,6 +97,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1210-10/ME/A1
    key: dlink_dgs_1210_10_me_a1
@@ -138,6 +144,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1210-20/ME/B1
    key: dlink_dgs_1210_20_me_b1
@@ -183,6 +192,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1210-12TS/ME/B1
    key: dlink_dgs_1210_12ts_me_b1
@@ -192,8 +204,8 @@ models:
      - snmp
      - console
    oids:
-     - ./oids/dlink/dgs-1210-12ts-me-b1.yml
      - ./oids/dlink/common-agent-info.yml
+     - ./oids/dlink/dgs-1210-12ts-me-b1.yml
    detect: {description: ^DGS-1210-12TS\/ME\/B1$,  objid: .171.10.76.44.1$ }
    extra:
      diag_linkup: false
@@ -227,6 +239,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1210-28/ME/B1
    key: dlink_dgs_1210_28_me_b1
@@ -272,6 +287,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-1210-28X/ME/B1
    key: dlink_dgs_1210_28x_me_b1
@@ -282,6 +300,7 @@ models:
      - console
    oids:
      - ./oids/dlink/dgs-1210-28xs-me-b1.yml
+     - ./oids/dlink/dgs-1210-28x-me-b1-acl.yml
    detect: {description: ^DGS-1210-28X\/ME\/B1$,  objid: ^.*171.10.76 }
    extra:
      diag_linkup: false
@@ -317,6 +336,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DGS-1210-28XS/ME/B1
@@ -330,6 +352,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
      - ./oids/dlink/common-agent-info.yml
      - ./oids/dlink/dgs-1210-28xs-me-b1.yml
+     - ./oids/dlink/dgs-1210-28xs-me-b1-acl.yml
    detect: {description: ^DGS-1210-28XS\/ME\/B1$,  objid: ^.*171.10.76.39.1$ }
    extra:
      diag_linkup: false
@@ -363,6 +386,9 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link Switch
    key: dlink_dgs_1210_28_me_b2
@@ -374,6 +400,7 @@ models:
      - ./oids/dlink/common-diag-cable.yml
      - ./oids/dlink/common-agent-info.yml
      - ./oids/dlink/dgs-1210-28xs-me-b1.yml
+     - ./oids/dlink/dgs-1210-28-me-b2-acl.yml
    detect: {description: DGS-1210-28\/ME\/B2,  objid: ^.1.3.6.1.4.1.171 }
    extra:
      console_conn_type: dlink
@@ -405,3 +432,6 @@ models:
      lldp_info: \SwitcherCore\Modules\Dlink\LldpInfo
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser

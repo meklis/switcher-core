@@ -55,6 +55,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
  - name: D-link DGS-3000-26TC
    key: dlink_dgs_3000_26tc_a1
    ports: 26
@@ -103,6 +106,9 @@ models:
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
  - name: D-link DGS-3000-28L
    key: dlink_dgs_3000_28l_b1
@@ -152,6 +158,9 @@ models:
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
      sfp_optical: \SwitcherCore\Modules\Dlink\SfpDiag\SfpOpticalParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
 
 
  - name: D-link DGS-3000-20L
@@ -201,3 +210,6 @@ models:
      net_settings: \SwitcherCore\Modules\General\NetSettings
      supported_modules: \SwitcherCore\Modules\General\SupportedModules
      snooping_info: \SwitcherCore\Modules\Dlink\Snooping\DefaultParser
+     acl_v4_info: \SwitcherCore\Modules\Dlink\Acl\V4\DefaultParser
+     acl_v6_info: \SwitcherCore\Modules\Dlink\Acl\V6\DefaultParser
+     acl_ports_info: \SwitcherCore\Modules\Dlink\Acl\Ports\DefaultParser
