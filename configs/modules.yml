@@ -476,6 +476,11 @@
     - { name: type, pattern: '^(all|gpon|epon)$', required: no, values: [ all,gpon,epon ] }
     - {name: sn_as_ascii, pattern: '.*', required: no}
 
+- name: pon_onts_blacklist
+  descr: List ONUs blocked (blacklisted) by serial number
+  arguments:
+    - {name: interface, pattern: '.*', required: no}
+
 - name: console_command
   descr:  Execute command in console
   arguments:

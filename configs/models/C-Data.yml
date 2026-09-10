@@ -160,6 +160,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_onts_blacklist: \SwitcherCore\Modules\CData\OntBlacklist
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -227,6 +228,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_onts_blacklist: \SwitcherCore\Modules\CData\OntBlacklist
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -304,6 +306,7 @@ models:
       multi_console_command: \SwitcherCore\Modules\CData\MultiRawConsoleCommand
       ctrl_port_descr: \SwitcherCore\Modules\CData\PortDescriptionControl
       unregistered_onts: \SwitcherCore\Modules\CData\UnregisteredOnts
+      pon_onts_blacklist: \SwitcherCore\Modules\CData\OntBlacklist
       pon_profiles: \SwitcherCore\Modules\CData\GetProfiles
       pon_onts_configuration: \SwitcherCore\Modules\CData\PonOntsConfiguration
       supported_modules: \SwitcherCore\Modules\General\SupportedModules
@@ -392,6 +395,7 @@ models:
               sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_onts_blacklist: \SwitcherCore\Modules\CData\FD16xxV3\OntBlacklist
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
@@ -504,6 +508,7 @@ models:
               sfp_diag: \SwitcherCore\Modules\CData\FD16xxV3\SfpDiag
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_onts_blacklist: \SwitcherCore\Modules\CData\FD16xxV3\OntBlacklist
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
@@ -620,6 +625,7 @@ models:
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_onts_blacklist: \SwitcherCore\Modules\CData\FD16xxV3\OntBlacklist
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
@@ -734,6 +740,7 @@ models:
               ctrl_ont_delete: \SwitcherCore\Modules\CData\FD16xxV3\OntDeleteGpon
               uni_interfaces_status: \SwitcherCore\Modules\CData\FD16xxV3\OntUniPortsStatus
               unregistered_onts: \SwitcherCore\Modules\CData\FD16xxV3\UnregisteredOnts
+              pon_onts_blacklist: \SwitcherCore\Modules\CData\FD16xxV3\OntBlacklist
               pon_profiles: \SwitcherCore\Modules\CData\FD16xxV3\GetProfiles
               pon_onts_configuration: \SwitcherCore\Modules\CData\FD16xxV3\PonOntsConfiguration
               pon_onts_service_profile: \SwitcherCore\Modules\CData\FD16xxV3\OntsServiceProfile
