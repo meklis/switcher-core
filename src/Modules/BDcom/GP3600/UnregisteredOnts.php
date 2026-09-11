@@ -53,7 +53,11 @@ class UnregisteredOnts extends BDcomAbstractModule
                 $portId = Helper::getIndexByOid($sn->getOid(), 1);
                 $uniqId = Helper::getIndexByOid($sn->getOid());
                 $ponPort = $this->parseInterface($portId, 'xid');
-                $iface = $this->parseInterface($ponPort['name'] . ":" . $uniqId);
+                try {
+                    $iface = $this->parseInterface($ponPort['name'] . ":" . $uniqId);
+                } catch (\InvalidArgumentException $e) {
+                    $iface = $this->parseInterface($ponPort['name']);
+                }
                 $val = $sn->getValue();
                 $hexVal = strtoupper(bin2hex(substr($val, 0, 4))) . substr($val, 5);
                 $data["{$portId}.{$uniqId}"] = [
