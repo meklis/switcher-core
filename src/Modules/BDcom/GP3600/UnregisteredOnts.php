@@ -52,12 +52,13 @@ class UnregisteredOnts extends BDcomAbstractModule
             foreach ($response['ont.disabled.ident']->fetchAll() as  $sn) {
                 $portId = Helper::getIndexByOid($sn->getOid(), 1);
                 $uniqId = Helper::getIndexByOid($sn->getOid());
-                $ponPort = $this->parseInterface($portId, 'xid');
-                try {
-                    $iface = $this->parseInterface($ponPort['name'] . ":" . $uniqId);
-                } catch (\InvalidArgumentException $e) {
-                    $iface = $this->parseInterface($ponPort['name']);
-                }
+                $iface = $this->parseInterface($portId, 'xid');
+
+                $iface['name'] .=  ":" . $uniqId;
+                $iface['type'] = 'ONU';
+                $iface['parent'] = $iface['id'];
+                $iface['id'] += $uniqId;
+
                 $val = $sn->getValue();
                 $hexVal = strtoupper(bin2hex(substr($val, 0, 4))) . substr($val, 5);
                 $data["{$portId}.{$uniqId}"] = [

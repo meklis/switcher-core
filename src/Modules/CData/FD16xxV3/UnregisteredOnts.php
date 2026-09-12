@@ -74,7 +74,7 @@ class UnregisteredOnts extends CDataAbstractModuleFD16xxV3
             } else {
                 $portUniqIds[$ont['port']] = $id;
             }
-            if(!preg_match('/^([[:xdigit:]]{16}).*\((.*)\)$/', $ont['sn'], $ontSN)) {
+            if(!preg_match('/^([A-Za-z0-9]{12}).*\((.*)\)$/', $ont['sn'], $ontSN)) {
                 throw new \Exception("Parse error");
             }
             $iface = $this->parseInterface("gpon 0/0/{$ont['port']}" );
