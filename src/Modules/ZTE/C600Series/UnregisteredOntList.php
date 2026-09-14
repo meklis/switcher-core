@@ -41,6 +41,7 @@ class UnregisteredOntList extends ModuleAbstract
            Oid::init($this->oids->getOidByName('gpon.uncfg.serial')->getOid()),
            Oid::init($this->oids->getOidByName('gpon.uncfg.type')->getOid()),
            Oid::init($this->oids->getOidByName('gpon.uncfg.fwVersion')->getOid()),
+           Oid::init($this->oids->getOidByName('gpon.uncfg.speedMode')->getOid()),
         ];
         $response = $this->formatResponse($this->snmp->walk($oids));
         if($this->getResponseByName('gpon.uncfg.serial', $response)->error() && strpos($this->getResponseByName('gpon.uncfg.serial', $response)->error(), "No Such Instance") !== false) {
@@ -72,6 +73,10 @@ class UnregisteredOntList extends ModuleAbstract
         foreach ($this->getResponseByName('gpon.uncfg.fwVersion', $response)->fetchAll() as $d) {
             $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
             $data["{$key}"]['fw_version'] = $d->getParsedValue();
+        }
+        foreach ($this->getResponseByName('gpon.uncfg.speedMode', $response)->fetchAll() as $d) {
+            $key = Helper::getIndexByOid($d->getOid(), 1) . "." . Helper::getIndexByOid($d->getOid());
+            $data["{$key}"]['_speed_mode'] = $d->getParsedValue();
         }
         return  array_values($data);
     }
