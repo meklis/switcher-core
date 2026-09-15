@@ -59,6 +59,10 @@ class SnoopingInfo extends CDataAbstractModuleFD17xxV3 {
         if(isset($filter['interface'])) {
             $iface = $this->parseInterface($filter['interface']);
             $if_name = $iface['name'];
+            // Фильтр "port" на устройстве принимает только физический F/S/P (например
+            // "pon 0/2/1"), а не конкретную ONU на нём ("Incorrect F/S/P parameters"
+            // иначе) - сужение до одной ONU происходит client-side в getPrettyFiltered().
+            $if_name = preg_replace('/:\d+$/', '', $if_name);
             if(strpos($if_name, 'gpon') !== false) $if_name = str_replace('gpon', 'pon', $if_name);
             $cmd .= ' port ' . $if_name;
         } elseif(isset($filter['mac_address'])) {
@@ -72,19 +76,24 @@ class SnoopingInfo extends CDataAbstractModuleFD17xxV3 {
         $r = $this->getModule('console_command')->run(['command' => $cmd])->getPretty();
         $r = explode("\n", $r['output']);
         $resp = [];
-        
+
         foreach($r as $line) {
             $m = [];
-            if(preg_match('/^(([0-9a-f]{2}:?){6})\s+((\d{1,3}\.?){4})\s+(\d{1,4})\s+((ge|lag|xge|epon|gpon|fe)\s\d{1,3}\/\d{1,3}\/\d{1,3})\s+(\d{1,4})\s+(\d{1,10})\s+(dynamic|static)\s+(valid|invalid)$/i', trim($line), $m)) {
+            // Колонка с номером ONU есть не на всех прошивках/моделях - делаем её опциональной
+            // в регулярке (как в CData\FD16xxV3\SnoopingInfo), чтобы не терять все строки там,
+            // где её нет.
+            if(preg_match('/^(([0-9a-f]{2}:?){6})\s+((\d{1,3}\.?){4})\s+(\d{1,4})\s+((ge|lag|xge|epon|gpon|fe)\s\d{1,3}\/\d{1,3}\/\d{1,3})(?:\s+(\d{1,4}))?\s+(\d{1,10})\s+(dynamic|static)\s+(valid|invalid)$/i', trim($line), $m)) {
                 if(strtoupper($m[11]) === 'INVALID') continue;
                 $resp[] = [
-                    'interface' => $this->parseInterface($m[6]),
+                    // Номер ONU был в $m[8], но раньше не подмешивался в interface - интерфейс
+                    // всегда оставался на уровне физического порта.
+                    'interface' => $this->parseInterface($m[8] !== '' ? $m[6] . ':' . $m[8] : $m[6]),
                     'mac_address' => Helper::formatMac($m[1]),
                     'vlan_id' => (int) $m[5],
                     'ip' => $m[3],
                     'remaining' => (int) $m[9],
                     '_type' => strtoupper($m[10]),
-                    '_onu_id' => (int) $m[8],
+                    '_onu_id' => $m[8] !== '' ? (int) $m[8] : null,
                     //'_status' => strtoupper($m[11]),
                 ];
             }
