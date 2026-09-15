@@ -15,10 +15,14 @@ use SwitcherCore\Modules\Helper;
  * console `show dhcp-snooping bind-table all` output (MAC/IP/VLAN/port/
  * lease all matched exactly). SNMP is missing the ONU id and lease/remaining
  * columns the MIB declares (present in the schema, "No Such Object" on real
- * firmware) and dhcpSnBindPortId only ever resolves to the physical port's
- * ifIndex, never a specific ONU - so a request scoped to a specific ONU
- * falls back to the console table, which the base run() logic already
- * handles correctly (and is the only source of onu_id/remaining anyway).
+ * firmware), and dhcpSnBindPortId only ever resolves to the physical port's
+ * ifIndex - neither SNMP nor the console table (`show dhcp-snooping
+ * bind-table`) exposes the ONU on this platform, confirmed live (its Port
+ * column and help text have no per-ONU option). resolveOnuByMac() below
+ * recovers it by cross-referencing the MAC against the `fdb` module's
+ * `show mac-address port ... with-ont-location` output, which does carry
+ * the ONU number, so ONU-scoped requests still fall back to the console
+ * table for parity with other C-Data variants.
  */
 class SnoopingInfo extends CDataAbstractModule {
     /**
@@ -142,7 +146,7 @@ class SnoopingInfo extends CDataAbstractModule {
                 '_type' => isset($row['type']) ? $row['type']->getParsedValue() : null,
             ];
         }
-        $this->response = $resp;
+        $this->response = $this->resolveOnuByMac($resp);
         return $this;
     }
 
@@ -152,10 +156,9 @@ class SnoopingInfo extends CDataAbstractModule {
      * newer vtysh-style dialect using 'show dhcp-snooping bind-table'
      * instead, which only supports scoping by IP or VLAN server-side (no
      * 'port'/'mac' sub-filter), and its Port column never carries an ONU
-     * suffix either - so per-ONU precision isn't available from this
-     * console any more than it is from SNMP. Kept as the fallback anyway
-     * for parity with other C-Data variants and in case some port/mac
-     * request needs it client-side filtered.
+     * suffix either. Kept as the fallback anyway for parity with other
+     * C-Data variants and in case some port/mac request needs it
+     * client-side filtered; resolveOnuByMac() recovers the ONU afterwards.
      *
      * @param array $filter
      * @return $this
@@ -193,7 +196,46 @@ class SnoopingInfo extends CDataAbstractModule {
                 ];
             }
         }
-        $this->response = $resp;
+        $this->response = $this->resolveOnuByMac($resp);
         return $this;
+    }
+
+    /**
+     * Ни SNMP, ни `show dhcp-snooping bind-table` не отдают ONU - только
+     * физический PON-порт. Сопоставляем mac_address с ONU-уровневой FDB
+     * (`fdb` module, `show mac-address port ... with-ont-location`), которая
+     * на этой платформе ONU уже отдаёт, и подменяем interface на найденный.
+     * Если MAC в FDB не нашёлся (запись устарела) - оставляем физпорт как есть.
+     *
+     * @param array $resp
+     * @return array
+     */
+    protected function resolveOnuByMac($resp) {
+        $indexesByPort = [];
+        foreach ($resp as $i => $entry) {
+            if ($entry['interface']['type'] !== 'PON') continue;
+            $indexesByPort[$entry['interface']['name']][] = $i;
+        }
+
+        foreach ($indexesByPort as $portName => $indexes) {
+            try {
+                $fdb = $this->getModule('fdb')->run(['interface' => $portName])->getPretty();
+            } catch (Exception $e) {
+                continue;
+            }
+            $onuByMac = [];
+            foreach ($fdb as $fdbEntry) {
+                if (($fdbEntry['interface']['type'] ?? null) !== 'ONU') continue;
+                $onuByMac[Helper::formatMac($fdbEntry['mac_address'])] = $fdbEntry['interface'];
+            }
+            foreach ($indexes as $i) {
+                $mac = Helper::formatMac($resp[$i]['mac_address']);
+                if (isset($onuByMac[$mac])) {
+                    $resp[$i]['interface'] = $onuByMac[$mac];
+                }
+            }
+        }
+
+        return $resp;
     }
 }
