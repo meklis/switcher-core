@@ -59,6 +59,10 @@ class SnoopingInfo extends CDataAbstractModuleFD16xxV3 {
         if(isset($filter['interface'])) {
             $iface = $this->parseInterface($filter['interface']);
             $if_name = $iface['name'];
+            // Device's "port" filter only accepts the physical F/S/P (e.g. "pon 0/0/5"),
+            // not a specific ONU on it ("Incorrect F/S/P parameters" otherwise) - narrowing
+            // down to one ONU happens client-side in getPrettyFiltered().
+            $if_name = preg_replace('/:\d+$/', '', $if_name);
             if(strpos($if_name, 'gpon') !== false) $if_name = str_replace('gpon', 'pon', $if_name);
             $cmd .= ' port ' . $if_name;
         } elseif(isset($filter['mac_address'])) {
@@ -78,7 +82,7 @@ class SnoopingInfo extends CDataAbstractModuleFD16xxV3 {
             if(preg_match('/^(([0-9a-f]{2}:?){6})\s+((\d{1,3}\.?){4})\s+(\d{1,4})\s+((ge|lag|xge|epon|gpon|fe)\s\d{1,3}\/\d{1,3}\/\d{1,3})\s+(\d{1,4})\s+(\d{1,10})\s+(dynamic|static)\s+(valid|invalid)$/i', trim($line), $m)) {
                 if(strtoupper($m[11]) === 'INVALID') continue;
                 $resp[] = [
-                    'interface' => $this->parseInterface($m[6]),
+                    'interface' => $this->parseInterface($m[8] ? $m[6] . ':' . $m[8] : $m[6]),
                     'mac_address' => Helper::formatMac($m[1]),
                     'vlan_id' => (int) $m[5],
                     'ip' => $m[3],
