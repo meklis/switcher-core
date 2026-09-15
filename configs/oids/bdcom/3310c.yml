@@ -121,5 +121,19 @@
 - {name: ont.bandwidthRxCIR, oid: .1.3.6.1.4.1.3320.101.9.1.1.18 }
 - {name: ont.bandwidthRxFIR, oid: .1.3.6.1.4.1.3320.101.9.1.1.19 }
 
+# NMS-DHCP-SNOOPING-MIB (nmslocal.233) - DHCP snooping bindings. Confirmed
+# live: index is [IpAddress-as-32bit, Vlan, Interface(=standard ifIndex)],
+# even though the MIB source only documents IpAddress as the index - so
+# every column here is walked and read directly rather than decoded from
+# the OID suffix.
+- {name: dhcpSnoop.status, oid: .1.3.6.1.4.1.3320.2.233.1}
+- {name: dhcpSnoop.ip, oid: .1.3.6.1.4.1.3320.2.233.2.1.1}
+- {name: dhcpSnoop.mac, oid: .1.3.6.1.4.1.3320.2.233.2.1.2}
+- {name: dhcpSnoop.vlan, oid: .1.3.6.1.4.1.3320.2.233.2.1.3}
+- {name: dhcpSnoop.interface, oid: .1.3.6.1.4.1.3320.2.233.2.1.4}
+- {name: dhcpSnoop.leaseTime, oid: .1.3.6.1.4.1.3320.2.233.2.1.5}
+- {name: dhcpSnoop.type, oid: .1.3.6.1.4.1.3320.2.233.2.1.6, values: {1: DHCP_SN, 2: MANUAL}}
+- {name: dhcpSnoop.rowStatus, oid: .1.3.6.1.4.1.3320.2.233.2.1.8}
+
 
 

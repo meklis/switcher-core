@@ -108,6 +108,9 @@ abstract class CDataAbstractModule extends AbstractModule
         } elseif (!is_numeric($input)) {
             if (preg_match('/^(pon|xge|ge)([0-9])\/([0-9])\/([0-9]{1,3})\:?([0-9]{1,3})?\/?([0-9]{1,3})?$/', $input, $m)) {
                 $interface = $this->findInterface("{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}", 'name');
+                if ($interface === null) {
+                    throw new \Exception("Interface with name='{$m[1]}{$m[2]}/{$m[3]}/{$m[4]}' not found");
+                }
                 $response = [
                     'name' => $interface['name'],
                     'id' =>  (int)$interface['id'],

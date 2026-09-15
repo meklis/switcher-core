@@ -112,3 +112,12 @@
 
 - {name: ont.profile.line, oid: .1.3.6.1.4.1.34592.1.3.1.1.2.1.1.2.1.3}
 - {name: ont.profile.srv, oid: .1.3.6.1.4.1.34592.1.3.1.1.2.1.1.2.1.4}
+
+# nscrtvPonTreeExt.dhcpManagementObjects.dhcpSnoopingBindTable - confirmed
+# live. Index is [Ip(4 octets), Vlan]; onuId/gemId/lease (columns 7-9) are
+# declared in the MIB but come back "No Such Object" on this firmware - not
+# available via SNMP here, unlike the console `show dhcp-snooping bind-table`.
+- {name: dhcpSnoop.mac, oid: .1.3.6.1.4.1.34592.1.3.100.5.4.1.3}
+- {name: dhcpSnoop.port, oid: .1.3.6.1.4.1.34592.1.3.100.5.4.1.4}
+- {name: dhcpSnoop.type, oid: .1.3.6.1.4.1.34592.1.3.100.5.4.1.5, values: {1: DYNAMIC, 2: STATIC}}
+- {name: dhcpSnoop.rowStatus, oid: .1.3.6.1.4.1.34592.1.3.100.5.4.1.6}
