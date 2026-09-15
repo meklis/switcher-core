@@ -37,12 +37,12 @@ class FdbTableConsole extends BDcomAbstractModule
     {
         $response = [];
         $data = "";
-       if($filter['interface']) {
+       if(!empty($filter['interface'])) {
            $iface = $this->parseInterface($filter['interface']);
            $data = $this->console->exec("show mac address-table interface {$iface['name']}");
-       } elseif ($filter['mac']) {
+       } elseif (!empty($filter['mac'])) {
            throw new \Exception("Searching by mac-address not supported yet.");
-       } elseif ($filter['vlan_id']) {
+       } elseif (!empty($filter['vlan_id'])) {
            $data = $this->console->exec("show mac address-table vlan {$filter['vlan_id']}");
        } else {
            $data = $this->console->exec("show mac address-table");

@@ -69,12 +69,26 @@ class SnoopingInfo extends BDcomAbstractModule {
         $r = $this->getModule('console_command')->run(['command' => $cmd])->getPretty();
         $r = explode("\n", $r['output']);
         $resp = [];
+        $fdbByPort = [];
         foreach($r as $line) {
             $m = [];
             if(preg_match('/^(([0-9a-f]{2}:?){6})\s+((\d{1,3}\.?){4})\s+(\d{1,10})\s+(dhcp_sn|manual)\s+(\d{1,4})\s+((g|tg|epon|gpon|fe)\d{1,3}\/\d{1,3})$/i', trim($line), $m)) {
+                // Эта таблица не показывает номер ONU вообще - только родительский PON-порт.
+                // Определяем ONU по FDB порта (кэш per port), как в BDcom\SnoopingInfo.
+                $interface = $this->parseInterface($m[8]);
+                $mac = Helper::formatMac($m[1]);
+                if (!array_key_exists($interface['id'], $fdbByPort)) {
+                    $fdbByPort[$interface['id']] = $this->getModule('fdb')->run(['interface' => $interface['id']])->getPretty();
+                }
+                foreach ($fdbByPort[$interface['id']] as $fdbRow) {
+                    if (Helper::formatMac($fdbRow['mac_address']) === $mac) {
+                        $interface = $fdbRow['interface'];
+                        break;
+                    }
+                }
                 $resp[] = [
-                    'interface' => $this->parseInterface($m[8]),
-                    'mac_address' => Helper::formatMac($m[1]),
+                    'interface' => $interface,
+                    'mac_address' => $mac,
                     'vlan_id' => (int) $m[7],
                     'ip' => $m[3],
                     'remaining' => (int) $m[5],
