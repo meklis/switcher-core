@@ -34,7 +34,10 @@ class SnoopingInfo extends BDcomAbstractModule {
         if ($filter['interface']) {
             $interface = $this->parseInterface($filter['interface']);
             $data = array_filter($data, function ($e) use ($interface) {
-                return $e['interface']['id'] == $interface['id'] || $e['interface']['parent'] == $interface['id'];
+                // На части прошивок таблица привязана к PON-порту, а не к ONU
+                return $e['interface']['id'] == $interface['id']
+                    || $e['interface']['parent'] == $interface['id']
+                    || $e['interface']['id'] == $interface['parent'];
             });
         }
         if ($filter['mac_address']) {
@@ -66,10 +69,11 @@ class SnoopingInfo extends BDcomAbstractModule {
      * @throws Exception
      */
     public function run($filter = []) {
+        $interface = null;
         if (!empty($filter['interface'])) {
             $interface = $this->parseInterface($filter['interface']);
             if ($interface['type'] === 'ONU') {
-                return $this->runViaConsole();
+                return $this->runViaConsole($interface);
             }
         }
         try {
@@ -77,7 +81,7 @@ class SnoopingInfo extends BDcomAbstractModule {
         } catch (Exception $e) {
             // Tree not implemented on this firmware/model - fall back rather
             // than fail the whole call.
-            return $this->runViaConsole();
+            return $this->runViaConsole($interface);
         }
     }
 
@@ -152,12 +156,14 @@ class SnoopingInfo extends BDcomAbstractModule {
      * @return $this
      * @throws Exception
      */
-    protected function runViaConsole() {
-        // Server-side "| include" filtering is unreliable on this firmware
-        // (it fails to match IP addresses and bare port names, e.g. "epon0/5"),
-        // so the full table is always fetched and filtering is done client-side
-        // in getPrettyFiltered().
+    protected function runViaConsole($interface = null) {
         $cmd = 'show ip dhcp-relay snooping binding all';
+        if ($interface) {
+            $mac = $interface['type'] === 'ONU' ? $this->getOnuMac($interface) : null;
+            $portName = $interface['type'] === 'ONU' ? preg_replace('/:\d+$/', '', $interface['name']) : $interface['name'];
+            // Грубый серверный пре-фильтр (| include ищет по подстроке), точная фильтрация - в getPrettyFiltered()
+            $cmd .= ' | include ' . ($mac ?: $portName);
+        }
         $r = $this->getModule('console_command')->run(['command' => $cmd])->getPretty();
         $r = explode("\n", $r['output']);
         $resp = [];
@@ -181,5 +187,11 @@ class SnoopingInfo extends BDcomAbstractModule {
         }
         $this->response = $resp;
         return $this;
+    }
+
+    private function getOnuMac($interface) {
+        // MAC абонента из FDB по этому интерфейсу - точнее и быстрее, чем grep по всему порту
+        $fdb = $this->getModule('fdb')->run(['interface' => $interface['id']])->getPretty();
+        return $fdb ? strtolower($fdb[0]['mac_address']) : null;
     }
 }
