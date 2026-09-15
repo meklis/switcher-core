@@ -25,7 +25,7 @@ class FdbTableConsoleFD1616 extends CDataAbstractModuleFD16xxV3
     {
         $data = $this->getPretty();
 
-        if($filter['mac']) {
+        if(!empty($filter['mac'])) {
             $data = array_filter($data, function ($e) use ($filter) {
                 return $e['mac_address'] == Helper::formatMac($filter['mac']);
             });
@@ -41,9 +41,9 @@ class FdbTableConsoleFD1616 extends CDataAbstractModuleFD16xxV3
 
     public function run($filter = [])
     {
-        if($filter['vlan_id']) {
+        if(!empty($filter['vlan_id'])) {
             $resp = $this->console->exec("show mac-address vlan {$filter['vlan']}");
-        } elseif ($filter['interface']) {
+        } elseif (!empty($filter['interface'])) {
             $iface = $this->parseInterface($filter['interface']);
             if(strpos($iface['_type'], "pon") !== false) {
                 $iface['_type'] = "pon";

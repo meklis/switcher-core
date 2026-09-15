@@ -25,18 +25,18 @@ class FdbTableConsole extends BDcomAbstractModule
     function getPrettyFiltered($filter = [], $fromCache = false)
     {
         $data = $this->getPretty();
-        if($filter['interface']) {
+        if(!empty($filter['interface'])) {
             $interface = $this->parseInterface($filter['interface']);
             $data = array_filter($data, function ($e) use ($interface) {
                return $e['interface']['id'] == $interface['id'];
             });
         }
-        if($filter['mac']) {
+        if(!empty($filter['mac'])) {
             $data = array_filter($data, function ($e) use ($filter) {
                 return $e['mac_address'] == Helper::formatMac($filter['mac']);
             });
         }
-        if($filter['vlan_id']) {
+        if(!empty($filter['vlan_id'])) {
             $data = array_filter($data, function ($e) use ($filter) {
                 return $e['vlan_id'] == $filter['vlan_id'];
             });
@@ -52,13 +52,13 @@ class FdbTableConsole extends BDcomAbstractModule
 
     public function run($filter = [])
     {
-        if ($filter['mac']) {
+        if (!empty($filter['mac'])) {
             $mac = Helper::formatMac3Blocks($filter['mac']);
             $command = "show mac address-table {$filter['mac']}";
-        } elseif ($filter['interface']) {
+        } elseif (!empty($filter['interface'])) {
             $iface = $this->parseInterface($filter['interface']);
             $command = "show mac address-table interface {$iface['name']}";
-        } elseif ($filter['vlan_id']) {
+        } elseif (!empty($filter['vlan_id'])) {
             $iface = $this->parseInterface($filter['vlan_id']);
             $command = "show mac address-table vlan {$iface['vlan_id']}";
         } else {
