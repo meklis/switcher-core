@@ -130,6 +130,7 @@ class SnoopingInfo extends BDcomAbstractModule {
         $collect('dhcpSnoop.rowStatus', 'status');
 
         $resp = [];
+        $fdbByPort = [];
         foreach ($byIndex as $row) {
             if (!isset($row['ip'], $row['mac'], $row['vlan'], $row['iface'], $row['status'])) continue;
             // RowStatus (RFC 2579): only active(1) rows are live bindings.
@@ -139,9 +140,24 @@ class SnoopingInfo extends BDcomAbstractModule {
             } catch (\Exception $e) {
                 continue;
             }
+            $mac = $row['mac']->getHexValue();
+            if ($interface['type'] === 'PON') {
+                // На части прошивок nmsBindingsInterface указывает на родительский PON-порт,
+                // а не на конкретную ONU (см. докблок класса) - определяем ONU по FDB порта,
+                // кэшируя per port, чтобы не дёргать устройство на каждую строку.
+                if (!array_key_exists($interface['id'], $fdbByPort)) {
+                    $fdbByPort[$interface['id']] = $this->getModule('fdb')->run(['interface' => $interface['id']])->getPretty();
+                }
+                foreach ($fdbByPort[$interface['id']] as $fdbRow) {
+                    if (Helper::formatMac($fdbRow['mac_address']) === Helper::formatMac($mac)) {
+                        $interface = $fdbRow['interface'];
+                        break;
+                    }
+                }
+            }
             $resp[] = [
                 'interface' => $interface,
-                'mac_address' => $row['mac']->getHexValue(),
+                'mac_address' => $mac,
                 'vlan_id' => (int) $row['vlan']->getValue(),
                 'ip' => $row['ip']->getValue(),
                 'remaining' => isset($row['lease']) ? (int) $row['lease']->getValue() : null,
