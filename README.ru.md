@@ -49,6 +49,7 @@ Switcher-Core скрывает вендор-специфичные проток�
 
 * [Полная таблица совместимости устройств и модулей](docs/DEVICES.md)
 * [Справочник модулей](docs/MODULES.md)
+* [Подробный справочник по устройствам и модулям (HTML)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/meklis/switcher-core/master/docs/device_info.html)
 
 ## Требования
 

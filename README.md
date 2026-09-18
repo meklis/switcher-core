@@ -49,6 +49,7 @@ If your equipment is not in the supported list, implement the module classes and
 
 * [Full device and module compatibility matrix](docs/DEVICES.md)
 * [Module reference](docs/MODULES.md)
+* [Per-device module and response reference (HTML)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/meklis/switcher-core/master/docs/device_info.html)
 
 ## Requirements
 
