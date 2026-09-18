@@ -41,6 +41,8 @@ class OntDelete extends HuaweiOLTAbstractModule
             $this->console->exec("y");
         } catch (\Throwable $e) {
             $this->console->setStreamTimeout(2);
+            $this->console->write("n", true);
+            sleep(1);
             $this->console->exec("undo service-port port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']} ont {$iface['_onu']}", true, "<cr>.*}:");
             $this->console->exec("", true, ".*\(y\/n\)\[n\]");
             $this->console->exec("y");
