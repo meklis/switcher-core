@@ -1,5 +1,26 @@
 ### Список поддерживаемых модулей    
     
+### [acl_ports_info](#acl_ports_info) - ACL rules (v4 and v6) grouped by interface 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [acl_v4_info](#acl_v4_info) - IPv4 ACL profiles (source-IP based rules, per port) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
+### [acl_v6_info](#acl_v6_info) - IPv6 ACL profiles (ethernet-type based permit/deny rules, per port) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
 ### [address_list_ctrl](#address_list_ctrl) - Управление записями в адрес-листе 
     
 **Аргументы:**    
@@ -18160,6 +18181,13 @@ true
       
     
     
+### [pon_onts_blacklist](#pon_onts_blacklist) - List ONUs blocked (blacklisted) by serial number 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
+      
+    
+    
 ### [pon_onts_configuration](#pon_onts_configuration) - ONU configuration 
     
 **Аргументы:**    
@@ -20307,6 +20335,13 @@ true
 - **interface**, проверка выражением: *.**    
 - **sn_as_ascii**, проверка выражением: *.**    
 - **use_cache**, проверка выражением: *(no|yes)*    
+      
+    
+    
+### [pon_onts_service_profile](#pon_onts_service_profile) - ONU service-port configuration (vlan, traffic profile bindings) 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**    
       
     
     
@@ -35037,6 +35072,7 @@ true
 ### [snooping_info](#snooping_info) - Return information about DHCP snooping 
     
 **Аргументы:**    
+- **ip**, проверка выражением: *^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$*    
 - **interface**, проверка выражением: *.**    
 - **mac_address**, проверка выражением: *.**    
 - **vlan_id**, проверка выражением: *.**    
@@ -36211,6 +36247,13 @@ true
 </p>
 </details>
             
+    
+### [zte_ont_configuration](#zte_ont_configuration) - Информация конфигурации ОНУшки 
+    
+**Аргументы:**    
+- **interface**, проверка выражением: *.**, обязательный    
+      
+    
     
 ### [zte_ont_info](#zte_ont_info) - Информация о ОНУшке (детально) 
     
