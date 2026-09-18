@@ -37,3 +37,44 @@ jobs:
 
     - name: Run test suite
       run: composer run-script tests
+
+  regen-docs:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: master
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --ignore-platform-reqs
+
+    - name: Regenerate docs/device_info.html
+      run: php docs/generate-html-doc.php
+
+    - name: Commit and push if changed
+      run: |
+        if git diff --quiet -- docs/device_info.html; then
+          echo "No changes in docs/device_info.html"
+          exit 0
+        fi
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add docs/device_info.html
+        git commit -m "Regenerate docs/device_info.html [skip ci]"
+        git push origin HEAD:master
