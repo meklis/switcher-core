@@ -34,8 +34,20 @@ class OntDelete extends HuaweiOLTAbstractModule
         //separate 'Enter', so exec() presses Enter twice - first executes the command,
         //second answers '{ <cr>|gemport<K> }:' and device asks for confirmation.
         //Any additional Enter here answers confirmation with default 'n' and cancels removing
-        $this->console->exec("undo service-port port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']} ont {$iface['_onu']}", true, ".*\(y\/n\)\[n\]");
-        $this->console->exec("y");
+        $streamTimeout = $this->console->getStreamTimeout();
+        try {
+            $this->console->setStreamTimeout(2);
+            $this->console->exec("undo service-port port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']} ont {$iface['_onu']}", true, ".*\(y\/n\)\[n\]");
+            $this->console->exec("y");
+        } catch (\Throwable $e) {
+            $this->console->setStreamTimeout(2);
+            $this->console->exec("undo service-port port {$iface['_shelf']}/{$iface['_slot']}/{$iface['_port']} ont {$iface['_onu']}", true, "<cr>.*}:");
+            $this->console->exec("", true, ".*\(y\/n\)\[n\]");
+            $this->console->exec("y");
+            $this->logger->info("Used legacy undo service port");
+        }
+        $this->console->setStreamTimeout($streamTimeout);
+
         //Remove ONT
         $this->console->exec("interface {$iface['_technology']} {$iface['_shelf']}/{$iface['_slot']}");
         $resp = $this->console->exec("ont delete {$iface['_port']} {$iface['_onu']}");
