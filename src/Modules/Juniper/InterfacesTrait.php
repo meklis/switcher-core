@@ -225,7 +225,8 @@ trait InterfacesTrait
                 }
             }
         }
-        foreach ($responses['dot1q.PortIfIndex']->getResponse() as $r) {
+        // На MX (например MX80) Bridge MIB нет - ответ пустой
+        foreach ($responses['dot1q.PortIfIndex']->getResponse() ?: [] as $r) {
             if (isset($ifaces[$r->getValue()])) {
                 $ifaces[$r->getValue()]['_dot1q_id'] = Helper::getIndexByOid($r->getOid());
             }

@@ -19,6 +19,10 @@ class VlanList extends \SwitcherCore\Modules\General\Switches\VlansDot1q
         $names = $this->getResponseByName('dot1q.VlanStaticName');
         $egress = $this->getResponseByName('dot1q.VlanStaticEgressPorts');
 
+        // Без bridge-domain'ов (L3-конфиг на MX) Bridge MIB нет - VLAN'ов нет
+        if(strpos((string)$names->error(), 'No Such') !== false) {
+            return [];
+        }
         if($names->error()) {
             throw new IncompleteResponseException($names->error());
         }

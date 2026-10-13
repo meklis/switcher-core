@@ -52,6 +52,49 @@ models:
   detect: {description: .*,  objid: ^.1.3.6.1.4.1.2636.1.1.1.2.144 }
   extra:
     console_conn_type: junos
+    sys_resources_id: 9.1.0.0 # Routing Engine в jnxOperatingTable
+    console_commands_after_connect:
+      - set cli screen-length 0
+  modules:
+    parse_interface: \SwitcherCore\Modules\Juniper\ParseInterface
+    link_info: \SwitcherCore\Modules\Juniper\LinkInfo
+    interface_counters: \SwitcherCore\Modules\Juniper\Counters
+    system: \SwitcherCore\Modules\Juniper\System
+    vlans: \SwitcherCore\Modules\Juniper\VlanList
+    errors: \SwitcherCore\Modules\Juniper\Errors
+    rmon: \SwitcherCore\Modules\Juniper\Rmon
+    pvid: \SwitcherCore\Modules\Juniper\PvidDot1q
+    interface_descriptions: \SwitcherCore\Modules\Juniper\Descriptions
+    interfaces_list: \SwitcherCore\Modules\Juniper\InterfacesList
+    ctrl_port_descr: \SwitcherCore\Modules\Juniper\SetPortDescription
+    ctrl_port_state: \SwitcherCore\Modules\Juniper\StatePortControl
+    console_command: \SwitcherCore\Modules\Juniper\RawConsoleCommand
+    multi_console_command: \SwitcherCore\Modules\Juniper\MultiRawConsoleCommand
+    lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
+    arps: \SwitcherCore\Modules\Juniper\ArpInfo
+    bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
+    bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
+    direct_routes: \SwitcherCore\Modules\Juniper\DirectRoutes
+    supported_modules: \SwitcherCore\Modules\General\SupportedModules
+    sfp_media: \SwitcherCore\Modules\Juniper\SfpMediaInfo
+    sfp_optical: \SwitcherCore\Modules\Juniper\SfpOpticalInfo
+    sfp_diag: \SwitcherCore\Modules\General\SfpDiag
+    sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
+    sys_resources: \SwitcherCore\Modules\Juniper\SysResources
+    fdb: \SwitcherCore\Modules\Juniper\Fdb
+
+- name: Juniper MX80 series
+  key: juniper_mx80
+  device_type: ROUTER
+  oids:
+    - ./oids/juniper.yml
+  inputs:
+    - snmp
+    - console
+  detect: {description: .*,  objid: ^.1.3.6.1.4.1.2636.1.1.1.2.90$ }
+  extra:
+    console_conn_type: junos
+    sys_resources_id: 9.1.0.0 # Routing Engine в jnxOperatingTable
     console_commands_after_connect:
       - set cli screen-length 0
   modules:
@@ -80,7 +123,4 @@ models:
     sfp_diag: \SwitcherCore\Modules\General\SfpDiag
     sys_temp: \SwitcherCore\Modules\General\SystemTemperatures
     fdb: \SwitcherCore\Modules\Juniper\Fdb
-
-
-
-
+    sys_resources: \SwitcherCore\Modules\Juniper\SysResources

@@ -22,6 +22,10 @@ class Fdb extends FdbDot1BridgeWithConsole {
         if($res['jnx.vlan.fdb_id']->error()) {
             throw new \Exception("Returned error {$res['jnx.vlan.fdb_id']->error()} from {$res['jnx.vlan.fdb_id']->getRaw()->ip}");
         }
+        // Без bridge-domain'ов (L3-конфиг на MX) Bridge MIB нет - FDB пустая
+        if(strpos((string)$res['dot1q.FdbStatus']->error(), 'No Such') !== false) {
+            return [];
+        }
         if($res['dot1q.FdbStatus']->error()) {
             throw new \Exception("Returned error {$res['dot1q.FdbStatus']->error()} from {$res['dot1q.FdbStatus']->getRaw()->ip}");
         }
