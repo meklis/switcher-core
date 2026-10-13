@@ -35,6 +35,9 @@ class BgpPeers extends AbstractModule
                 $bgpPeers[$idx][$name] = $d->getParsedValue();
             }
         }
+        foreach ($bgpPeers as &$peer) {
+            $peer['ip_version'] = 'ipv4';
+        }
         return array_values($bgpPeers);
     }
 

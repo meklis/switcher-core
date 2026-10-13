@@ -20,3 +20,15 @@
 - {name: jnx.sysUptimeSeconds, oid: .1.3.6.1.4.1.2636.3.40.1.4.1.1.1.7} # Uptime in seconds for QFX5100
 - {name: resources.cpuUtil, oid: .1.3.6.1.4.1.2636.3.1.13.1.8} # jnxOperatingCPU
 - {name: resources.memUtil, oid: .1.3.6.1.4.1.2636.3.1.13.1.11} # jnxOperatingBuffer
+
+# BGP4-V2-MIB-JUNIPER (jnxBgpM2), contains IPv4 and IPv6 peers. Index: <routing instance>.<local addr type>.<local addr>.<remote addr type>.<remote addr>
+- {name: jnx.bgp.peer.identifier, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.1}
+- {name: jnx.bgp.peer.state, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.2, values: {1: idle, 2: connect, 3: active, 4: opensent, 5: openconfirm, 6: established}}
+- {name: jnx.bgp.peer.admin_status, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.3, values: {1: disabled, 2: enabled}} # jnxBgpM2PeerStatus halted/running
+- {name: jnx.bgp.peer.configured_version, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.4}
+- {name: jnx.bgp.peer.negotiated_version, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.5} # always 0 on Junos, configured_version is used instead
+- {name: jnx.bgp.peer.local_port, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.8}
+- {name: jnx.bgp.peer.remote_port, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.12}
+- {name: jnx.bgp.peer.remote_as, oid: .1.3.6.1.4.1.2636.5.1.1.2.1.1.1.13}
+- {name: jnx.bgp.peer.last_error, oid: .1.3.6.1.4.1.2636.5.1.1.2.2.1.1.2} # jnxBgpM2PeerLastErrorSent, same value as bgpPeerLastError
+- {name: jnx.bgp.peer.established_time, oid: .1.3.6.1.4.1.2636.5.1.1.2.4.1.1.1} # jnxBgpM2PeerFsmEstablishedTime
