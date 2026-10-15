@@ -67,13 +67,20 @@ class CoreConnector
     public function __construct($configPath, $buildCachePath = null)
     {
         if($buildCachePath && file_exists($buildCachePath) && time() - filemtime($buildCachePath) < 300) {
-                $obj = unserialize( file_get_contents($buildCachePath));
+            // Кеш может быть битым (недописан параллельным процессом) - тогда просто пересобираем
+            try {
+                $obj = unserialize(file_get_contents($buildCachePath));
+            } catch (\Throwable $e) {
+                $obj = null;
+            }
+            if($obj instanceof self) {
                 $this->walker = new MultiWalker();
                 $this->oidCollector = $obj->oidCollector;
                 $this->modelCollector = $obj->modelCollector;
                 $this->moduleCollector = $obj->moduleCollector;
                 $this->trapCollector = $obj->trapCollector;
                 return;
+            }
         }
         $this->walker = new MultiWalker();
         $reader = new Reader($configPath);
@@ -83,7 +90,10 @@ class CoreConnector
         $this->trapCollector = TrapCollector::init($reader);
 
         if($buildCachePath) {
-            file_put_contents($buildCachePath, serialize($this));
+            // Пишем через временный файл + rename, чтобы читатели не видели недописанный файл
+            $tmpPath = $buildCachePath . '.' . getmypid() . '.tmp';
+            file_put_contents($tmpPath, serialize($this));
+            rename($tmpPath, $buildCachePath);
         }
     }
 
