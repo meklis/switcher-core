@@ -109,7 +109,7 @@ trait InterfacesTrait
         $ifaces = [];
         $ifaceByNames = [];
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})$/i', trim($r->getValue()), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,3})$/i', trim($r->getValue()), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
                 $id = Helper::getIndexByOid($r->getOid());
                 $type = "GE";
@@ -134,7 +134,7 @@ trait InterfacesTrait
             }
         }
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}):([0-9]{1,3})$/i', trim($r->getValue()), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,3}):([0-9]{1,3})$/i', trim($r->getValue()), $m)) {
                 [$shelf, $slot, $port] = explode("/", $m[2]);
                 $id = Helper::getIndexByOid($r->getOid());
                 $type = "GE";
@@ -202,7 +202,7 @@ trait InterfacesTrait
          }
 
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,3})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 if(isset($ifaceByNames["{$m[1]}-{$m[2]}"])) {
                     $ifaces[$ifaceByNames["{$m[1]}-{$m[2]}"]]['_iface_vlans'][$id] = $m[3];
@@ -210,7 +210,7 @@ trait InterfacesTrait
             }
         }
         foreach ($responses['if.Name']->getResponse() as $r) {
-            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}):([0-9]{1,3})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
+            if (preg_match('/^(et|xe|ge)-([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,3}):([0-9]{1,3})\.([0-9]{1,5})$/', trim($r->getValue()), $m)) {
                 $id = Helper::getIndexByOid($r->getOid());
                 if(isset($ifaceByNames["{$m[1]}-{$m[2]}:{$m[3]}"])) {
                     $ifaces[$ifaceByNames["{$m[1]}-{$m[2]}:{$m[3]}"]]['_iface_vlans'][$id] = $m[4];
