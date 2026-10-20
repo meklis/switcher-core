@@ -113,6 +113,10 @@ class SfpOpticalInfo extends AbstractModule {
                     $resp[$id][$name]['tx_power'] = isset($tx_power[$id][$i]) ? $tx_power[$id][$i] : null;
                     $resp[$id][$name]['tx_bias'] = isset($tx_bias[$id][$i]) ? $tx_bias[$id][$i] : null;
                 }
+
+                $resp[$id]['rx_power'] = $resp[$id]['_first_channel']['rx_power'];
+                $resp[$id]['tx_power'] = $resp[$id]['_first_channel']['tx_power'];
+                $resp[$id]['tx_bias'] = $resp[$id]['_first_channel']['tx_bias'];
             }
         }
         $this->response = array_values($resp);
