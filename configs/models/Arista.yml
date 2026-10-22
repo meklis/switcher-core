@@ -34,5 +34,6 @@ models:
     sfp_optical: \SwitcherCore\Modules\Arista\SfpOpticalInfo
     sfp_media: \SwitcherCore\Modules\Arista\SfpMediaInfo
     arps: \SwitcherCore\Modules\Arista\ArpInfo
+    arp_ping: \SwitcherCore\Modules\Arista\ArpPing
     direct_routes: \SwitcherCore\Modules\Arista\DirectRoutes
 

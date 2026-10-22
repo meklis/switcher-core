@@ -34,7 +34,9 @@ class ArpInfo extends AbstractModule
          * - {name: status, pattern: '^(disabled|invalid|OK)$', required: no, values: [disabled, invalid, OK]}
          */
         $filter_vlan_id = false;
-        if(isset($params['vlan_id']) && intval($params['vlan_id']) > 0 && intval($params['vlan_id']) < 4097) {
+        $filter_ip = isset($params['ip']) && $params['ip'];
+        // При указанном IP запрос точечный - имя влана не нужно, лишние walk не делаем
+        if(!$filter_ip && isset($params['vlan_id']) && intval($params['vlan_id']) > 0 && intval($params['vlan_id']) < 4097) {
             $oids[] = Oid::init($this->oids->getOidByName('extreme.vlanIfDescr')->getOid());
             $oids[] = Oid::init($this->oids->getOidByName('extreme.vlanIfVlanId')->getOid());
             $res = $this->formatResponse($this->snmp->walk($oids));
@@ -52,10 +54,10 @@ class ArpInfo extends AbstractModule
         }
 
         $command = "show iparp";
-        if($filter_vlan_id) {
-            $command .= " {$filter_vlan_id}";
-        } elseif(isset($params['ip']) && $params['ip']) {
+        if($filter_ip) {
             $command .= " {$params['ip']}";
+        } elseif($filter_vlan_id) {
+            $command .= " {$filter_vlan_id}";
         } elseif(isset($params['mac']) && $params['mac']) {
             $mac = Helper::formatMac($params['mac']);
             $command .= " {$mac}";

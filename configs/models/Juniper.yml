@@ -31,6 +31,7 @@ models:
     lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     net_settings: \SwitcherCore\Modules\General\NetSettings
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
+    arp_ping: \SwitcherCore\Modules\Juniper\ArpPing
     bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
     bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
     direct_routes: \SwitcherCore\Modules\Juniper\DirectRoutes
@@ -72,6 +73,7 @@ models:
     multi_console_command: \SwitcherCore\Modules\Juniper\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
+    arp_ping: \SwitcherCore\Modules\Juniper\ArpPing
     bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
     bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
     direct_routes: \SwitcherCore\Modules\Juniper\DirectRoutes
@@ -114,6 +116,7 @@ models:
     multi_console_command: \SwitcherCore\Modules\Juniper\MultiRawConsoleCommand
     lldp_info: \SwitcherCore\Modules\Juniper\LldpInfo
     arps: \SwitcherCore\Modules\Juniper\ArpInfo
+    arp_ping: \SwitcherCore\Modules\Juniper\ArpPing
     bgp_info: \SwitcherCore\Modules\Juniper\BgpInfo
     bgp_peers: \SwitcherCore\Modules\Juniper\BgpPeers
     direct_routes: \SwitcherCore\Modules\Juniper\DirectRoutes

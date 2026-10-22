@@ -33,6 +33,7 @@ models:
      multi_console_command: \SwitcherCore\Modules\ExtremeXOS\MultiRawConsoleCommand
      lldp_info: \SwitcherCore\Modules\ExtremeXOS\LldpInfo
      arps: \SwitcherCore\Modules\ExtremeXOS\ArpInfo
+     arp_ping: \SwitcherCore\Modules\ExtremeXOS\ArpPing
      bgp_info: \SwitcherCore\Modules\ExtremeXOS\BgpInfo
      bgp_peers: \SwitcherCore\Modules\ExtremeXOS\BgpPeers
      direct_routes: \SwitcherCore\Modules\ExtremeXOS\DirectRoutes
