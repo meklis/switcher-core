@@ -114,6 +114,12 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
         $interface = $this->parseInterface($filter['interface']);
         $this->response = [];
         $statuses = $this->getUniDataByConsole($interface);
+        // ONT не всегда успевает отдать состояние портов (например, сразу после запроса оптики) -
+        // OLT выводит прочерки вместо данных. Это не обрыв линка, повторяем запрос
+        for ($attempt = 0; $attempt < 2 && $statuses && !$this->hasUniData($statuses); $attempt++) {
+            sleep(1);
+            $statuses = $this->getUniDataByConsole($interface);
+        }
         if(!$statuses) {
             $this->response = null;
             return  $this;
@@ -125,6 +131,22 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
         ];
 
         return $this;
+    }
+
+    /**
+     * Check that console response has state of at least one UNI (not only dashes)
+     *
+     * @param array $statuses
+     * @return bool
+     */
+    protected function hasUniData($statuses)
+    {
+        foreach ($statuses as $uni) {
+            if (isset($uni['status']) && $uni['status'] !== null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function fillAdminStatus(&$statuses, $interface)
