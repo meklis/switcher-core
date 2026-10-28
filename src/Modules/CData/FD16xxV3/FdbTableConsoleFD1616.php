@@ -57,6 +57,9 @@ class FdbTableConsoleFD1616 extends CDataAbstractModuleFD16xxV3
         } else {
             $resp = $this->console->exec("show mac-address all");
         }
+        if (strpos($resp, "Unknown command") !== false) {
+            throw new \Exception("Error get FDB from console: " . trim($resp));
+        }
         $responses = [];
         foreach (explode("\n", $resp) as $line) {
             if (preg_match('/^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})\s*?([0-9]{1,4})\s*?(-|[0-9]{1,4})\s*?(-|[0-9]{1,4})\s*?((ge|xe|gpon)[0-9]\/[0-9]\/[0-9]{1,3})\s*?(-|[0-9]{1,4})\s*?(-|[0-9]{1,4})\s*?(\S*)$/', trim($line), $match)) {

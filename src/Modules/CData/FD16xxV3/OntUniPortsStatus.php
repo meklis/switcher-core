@@ -112,19 +112,28 @@ class OntUniPortsStatus extends CDataAbstractModuleFD16xxV3
            throw new  \Exception("Interface not specified");
         }
         $interface = $this->parseInterface($filter['interface']);
+        if ($interface['type'] != 'ONU') {
+            throw new \Exception("Interface type {$interface['type']} should be onu");
+        }
         $this->response = [];
-        $statuses = $this->getUniDataByConsole($interface);
-        // ONT не всегда успевает отдать состояние портов (например, сразу после запроса оптики) -
-        // OLT выводит прочерки вместо данных. Это не обрыв линка, повторяем запрос
-        for ($attempt = 0; $attempt < 2 && $statuses && !$this->hasUniData($statuses); $attempt++) {
-            sleep(1);
+        try {
             $statuses = $this->getUniDataByConsole($interface);
+            // ONT не всегда успевает отдать состояние портов (например, сразу после запроса оптики) -
+            // OLT выводит прочерки вместо данных. Это не обрыв линка, повторяем запрос
+            for ($attempt = 0; $attempt < 2 && $statuses && !$this->hasUniData($statuses); $attempt++) {
+                sleep(1);
+                $statuses = $this->getUniDataByConsole($interface);
+            }
+            if(!$statuses) {
+                $this->response = null;
+                return  $this;
+            }
+            $this->fillAdminStatus($statuses, $interface);
+        } finally {
+            // Консольная сессия переиспользуется другими модулями - в режиме interface
+            // команды show mac-address и т.п. отвечают "% Unknown command"
+            $this->console->exec("exit");
         }
-        if(!$statuses) {
-            $this->response = null;
-            return  $this;
-        }
-        $this->fillAdminStatus($statuses, $interface);
         $this->response[] = [
             'interface' => $interface,
             'unis' => array_values($statuses),
